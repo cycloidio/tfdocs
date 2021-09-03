@@ -5,6 +5,11 @@
             "google_compute_instance_iam_policy",
             "google_compute_instance_iam_binding",
             "google_compute_instance_iam_member"
+        ],
+        "google_storage_bucket_iam": [
+            "google_storage_bucket_iam_policy",
+            "google_storage_bucket_iam_binding",
+            "google_storage_bucket_iam_member"
         ]
     }
 }

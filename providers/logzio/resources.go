@@ -242,6 +242,41 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_drop_filter",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "field_conditions",
+					Description: `(Block list) Filters for an exact match of a field:value pair.`,
+				},
+				resource.Attribute{
+					Name:        "log_type",
+					Description: `(String) Filters for the [log type](https://docs.logz.io/user-guide/log-shipping/built-in-log-types.html). Emit or leave empty if you want this filter to apply to all types.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Boolean) If true, the drop filter is active and logs that match the filter are dropped before indexing. If false, the drop filter is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `(String) Exact field name in your Kibana mapping for the selected ` + "`" + `log_type` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Object) Exact field value. The filter looks for an exact value match of the entire object.`,
+				},
+				resource.Attribute{
+					Name:        "drop_filter_id",
+					Description: `(String) Drop filter ID in the Logz.io database.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_endpoint",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -491,10 +526,11 @@ var (
 
 		"logzio_alert":              0,
 		"logzio_alert_v2":           1,
-		"logzio_endpoint":           2,
-		"logzio_log_shipping_token": 3,
-		"logzio_subaccount":         4,
-		"logzio_user":               5,
+		"logzio_drop_filter":        2,
+		"logzio_endpoint":           3,
+		"logzio_log_shipping_token": 4,
+		"logzio_subaccount":         5,
+		"logzio_user":               6,
 	}
 )
 

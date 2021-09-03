@@ -38,6 +38,10 @@ var (
 					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
 				},
 				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
 				},
@@ -148,6 +152,10 @@ var (
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `The ID of the Vultr application installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the Vultr marketplace application installed on the server.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -262,6 +270,10 @@ var (
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `The ID of the Vultr application installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `The ID of the Vultr marketplace application installed on the server.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -771,6 +783,10 @@ var (
 					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
 				},
 				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
 				},
@@ -947,6 +963,10 @@ var (
 					Description: `The ID of the Vultr application installed on the server.`,
 				},
 				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the Vultr marketplace application installed on the server.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `The ID of the Vultr snapshot that the server was restored from.`,
 				},
@@ -1107,6 +1127,10 @@ var (
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `The ID of the Vultr application installed on the server.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the Vultr marketplace application installed on the server.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",

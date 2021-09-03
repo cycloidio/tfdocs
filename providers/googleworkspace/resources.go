@@ -41,6 +41,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "googleworkspace_gmail_send_as_alias",
+			Category:         "Resources",
+			ShortDescription: `Gmail Send As Alias resource in the Terraform Googleworkspace provider. Please ensure the Gmail API is enabled for your workspace and that the user being configured has a Gmail license.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "googleworkspace_group",
 			Category:         "Resources",
 			ShortDescription: `Group resource manages Google Workspace Groups.`,
@@ -123,17 +133,18 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"googleworkspace_chrome_policy":   0,
-		"googleworkspace_domain":          1,
-		"googleworkspace_domain_alias":    2,
-		"googleworkspace_group":           3,
-		"googleworkspace_group_member":    4,
-		"googleworkspace_group_settings":  5,
-		"googleworkspace_org_unit":        6,
-		"googleworkspace_role":            7,
-		"googleworkspace_role_assignment": 8,
-		"googleworkspace_schema":          9,
-		"googleworkspace_user":            10,
+		"googleworkspace_chrome_policy":       0,
+		"googleworkspace_domain":              1,
+		"googleworkspace_domain_alias":        2,
+		"googleworkspace_gmail_send_as_alias": 3,
+		"googleworkspace_group":               4,
+		"googleworkspace_group_member":        5,
+		"googleworkspace_group_settings":      6,
+		"googleworkspace_org_unit":            7,
+		"googleworkspace_role":                8,
+		"googleworkspace_role_assignment":     9,
+		"googleworkspace_schema":              10,
+		"googleworkspace_user":                11,
 	}
 )
 

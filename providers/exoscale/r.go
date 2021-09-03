@@ -67,6 +67,63 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "exoscale_database (beta)",
+			Category:         "Resources",
+			ShortDescription: `Provides an Exoscale database service resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database (beta)",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The creation date of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The disk size of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `The database service feature flags.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The database service metadata.`,
+				},
+				resource.Attribute{
+					Name:        "node_cpus",
+					Description: `The number of CPUs of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "node_memory",
+					Description: `The amount of memory of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `The number of nodes of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the database service.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date of the latest database service update.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The database service connection URI. ## Import An existing database service can be imported as a resource by specifying ` + "`" + `NAME@ZONE` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_database.example my-database@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` [dbaas-doc]: https://community.exoscale.com/documentation/dbaas/ [zone]: https://www.exoscale.com/datacenters/`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "exoscale_domain",
 			Category:         "Resources Data",
 			ShortDescription: `Provides an Exoscale DNS Domain resource.`,
@@ -142,8 +199,8 @@ var (
 					Description: `(Required) The number of Compute instance members the Instance Pool manages.`,
 				},
 				resource.Attribute{
-					Name:        "service_offering",
-					Description: `(Required) The managed Compute instances [size][size], e.g. ` + "`" + `tiny` + "`" + `, ` + "`" + `small` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `large` + "`" + ` etc.`,
+					Name:        "instance_type",
+					Description: `(Required) The managed Compute instances [type][type] (format: ` + "`" + `FAMILY.SIZE` + "`" + `, e.g. ` + "`" + `standard.medium` + "`" + `, ` + "`" + `memory.huge` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -162,8 +219,12 @@ var (
 					Description: `The name of the [SSH key pair][sshkeypair] to install when creating Compute instances.`,
 				},
 				resource.Attribute{
+					Name:        "ipv6",
+					Description: `Enable IPv6 on managed Compute instances (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "instance_prefix",
-					Description: `The string to add as prefix to managed Compute instances name (default ` + "`" + `pool` + "`" + `).`,
+					Description: `The string to add as prefix to managed Compute instances name (default: ` + "`" + `pool` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "affinity_group_ids",
@@ -183,7 +244,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deploy_target_id",
-					Description: `A Deploy Target ID. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `A Deploy Target ID.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of key/value labels. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -433,7 +498,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The Kubernetes version of the SKS Nodepool members. ## Import An existing SKS Nodepool can be imported as a resource by ` + "`" + `<CLUSTER-ID>/<NODEPOOL-ID>@<ZONE>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_nodepool.ci-builders eb556678-ec59-4be6-8c54-0406ae0f6da6/8c08b92a-e673-47c7-866e-dc009f620a82@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` [r-sks_cluster]: sks_cluster.html [sks-doc]: https://community.exoscale.com/documentation/sks/ [zone]: https://www.exoscale.com/datacenters/`,
+					Description: `The Kubernetes version of the SKS Nodepool members. ## Import An existing SKS Nodepool can be imported as a resource by ` + "`" + `<CLUSTER-ID>/<NODEPOOL-ID>@<ZONE>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import exoscale_sks_nodepool.ci-builders eb556678-ec59-4be6-8c54-0406ae0f6da6/8c08b92a-e673-47c7-866e-dc009f620a82@de-fra-1 ` + "`" + `` + "`" + `` + "`" + ` [r-sks_cluster]: sks_cluster.html [sks-doc]: https://community.exoscale.com/documentation/sks/ [type]: https://www.exoscale.com/pricing/#/compute/ [zone]: https://www.exoscale.com/datacenters/`,
 				},
 			},
 		},
@@ -465,21 +530,22 @@ var (
 
 		"exoscale_affinity":             0,
 		"exoscale_compute":              1,
-		"exoscale_domain":               2,
-		"exoscale_domain_record":        3,
-		"exoscale_instance_pool":        4,
-		"exoscale_ipaddress":            5,
-		"exoscale_network":              6,
-		"exoscale_nic":                  7,
-		"exoscale_nlb":                  8,
-		"exoscale_nlb_service":          9,
-		"exoscale_secondary_ipaddress":  10,
-		"exoscale_security_group":       11,
-		"exoscale_security_group_rule":  12,
-		"exoscale_security_group_rules": 13,
-		"exoscale_sks_cluster":          14,
-		"exoscale_sks_nodepool":         15,
-		"exoscale_ssh_keypair":          16,
+		"exoscale_database (beta)":      2,
+		"exoscale_domain":               3,
+		"exoscale_domain_record":        4,
+		"exoscale_instance_pool":        5,
+		"exoscale_ipaddress":            6,
+		"exoscale_network":              7,
+		"exoscale_nic":                  8,
+		"exoscale_nlb":                  9,
+		"exoscale_nlb_service":          10,
+		"exoscale_secondary_ipaddress":  11,
+		"exoscale_security_group":       12,
+		"exoscale_security_group_rule":  13,
+		"exoscale_security_group_rules": 14,
+		"exoscale_sks_cluster":          15,
+		"exoscale_sks_nodepool":         16,
+		"exoscale_ssh_keypair":          17,
 	}
 )
 

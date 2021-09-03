@@ -330,6 +330,10 @@ of the device claim operation can be obtained from the claim workflow.
 					Description: `A Pure Storage FlashArray device.`,
 				},
 				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
+				},
+				resource.Attribute{
 					Name:        "NetAppOntap",
 					Description: `A NetApp ONTAP storage system.`,
 				},
@@ -726,6 +730,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
@@ -9699,7 +9707,7 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 				},
 				resource.Attribute{
 					Name:        "localHttp",
-					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
+					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
 				},
 				resource.Attribute{
 					Name:        "sd_upgrade_mount_only",
@@ -9759,7 +9767,7 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 				},
 				resource.Attribute{
 					Name:        "ntlmsspi",
-					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
+					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
 				},
 				resource.Attribute{
 					Name:        "nfs",
@@ -9771,7 +9779,7 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 				},
 				resource.Attribute{
 					Name:        "www",
-					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
+					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
 				},
 				resource.Attribute{
 					Name:        "nw_upgrade_full",
@@ -10906,7 +10914,7 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 				},
 				resource.Attribute{
 					Name:        "localHttp",
-					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
+					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
 				},
 				resource.Attribute{
 					Name:        "sd_upgrade_mount_only",
@@ -10966,7 +10974,7 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 				},
 				resource.Attribute{
 					Name:        "ntlmsspi",
-					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
+					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
 				},
 				resource.Attribute{
 					Name:        "nfs",
@@ -10978,7 +10986,7 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 				},
 				resource.Attribute{
 					Name:        "www",
-					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
+					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
 				},
 				resource.Attribute{
 					Name:        "nw_upgrade_full",
@@ -11100,7 +11108,7 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				},
 				resource.Attribute{
 					Name:        "localHttp",
-					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
+					Description: `Image to be downloaded from a https server. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the local https server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade, e.g., sd_upgrade_mount_only - download the image into sd and upgrade wait for the server on-next boot.`,
 				},
 				resource.Attribute{
 					Name:        "sd_upgrade_mount_only",
@@ -11160,7 +11168,7 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				},
 				resource.Attribute{
 					Name:        "ntlmsspi",
-					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
+					Description: `Mount options of CIFS file server is ntlmsspi. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. Example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) CIFS Server Hostname or IP Address. For example:CIFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. Example:share/subfolder. + ` + "`" + `http_server` + "`" + `:(HashMap) - HTTP (for WWW) file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `location_link` + "`" + `:(string) HTTP/HTTPS link to the image. Accepted formats HTTP[s]://server-hostname/share/image or HTTP[s]://serverip/share/image. For a successful upgrade, the remote share server must have network connectivity with the CIMC of the selected devices. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the HTTP server. Empty if nothing is configured. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `map_type` + "`" + `:(string) File server protocols such as CIFS, NFS, WWW for HTTP (S) that hosts the image.`,
 				},
 				resource.Attribute{
 					Name:        "nfs",
@@ -11172,7 +11180,7 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				},
 				resource.Attribute{
 					Name:        "www",
-					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(Computed) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(Computed) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(Computed) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
+					Description: `File server protocol used is WWW. + ` + "`" + `nfs_server` + "`" + `:(HashMap) - NFS file server option for network share upgrade. This complex property has following sub-properties: + ` + "`" + `file_location` + "`" + `:(string) The location to the image file. The accepted format is IP-or-hostname/folder1/folder2/.../imageFile. + ` + "`" + `mount_options` + "`" + `:(string) Mount option as configured on the NFS Server. For example:nolock. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `remote_file` + "`" + `:(string)(ReadOnly) Filename of the image in the remote share location. For example:ucs-c220m5-huu-3.1.2c.iso. + ` + "`" + `remote_ip` + "`" + `:(string)(ReadOnly) NFS Server Hostname or IP Address. For example:NFS-server-hostname or 10.10.8.7. The remote share server should have network connectivity with the CIMC of the selected devices for a successful upgrade. + ` + "`" + `remote_share` + "`" + `:(string)(ReadOnly) Directory where the image is stored. For example:/share/subfolder. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password as configured on the file server. + ` + "`" + `upgradeoption` + "`" + `:(string) Option to control the upgrade operation. Some examples, 1) nw_upgrade_mount_only - mount the image from a file server and run the upgrade on the next server boot and 2) nw_upgrade_full - mount the image and immediately run the upgrade.`,
 				},
 				resource.Attribute{
 					Name:        "nw_upgrade_full",
@@ -11729,6 +11737,22 @@ The HyperFlex feature limits that are available to end users.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "NA",
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Datacenter",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+				},
+				resource.Attribute{
+					Name:        "Stretched Cluster",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+				},
+				resource.Attribute{
+					Name:        "Edge",
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+				},
+				resource.Attribute{
 					Name:        "ESXi",
 					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
 				},
@@ -11782,6 +11806,22 @@ The HyperFlex installer feature limits for internal system use.
 				"internal",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NA",
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Datacenter",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+				},
+				resource.Attribute{
+					Name:        "Stretched Cluster",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+				},
+				resource.Attribute{
+					Name:        "Edge",
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+				},
 				resource.Attribute{
 					Name:        "ESXi",
 					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
@@ -11843,6 +11883,22 @@ HyperFlex health check definition metadata.
 				resource.Attribute{
 					Name:        "SCHEDULED",
 					Description: `Execute the health check on a scheduled interval.`,
+				},
+				resource.Attribute{
+					Name:        "All",
+					Description: `The Health Check is hypervisor-agnostic.`,
+				},
+				resource.Attribute{
+					Name:        "ESXi",
+					Description: `The Health Check is supported only on Vmware ESXi hypervisor of any version.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The Health Check is supported only on Cisco IWE platform.`,
+				},
+				resource.Attribute{
+					Name:        "HyperV",
+					Description: `The Health Check is supported only on Microsoft HyperV hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "EXECUTE_ON_LEADER_NODE",
@@ -12036,6 +12092,18 @@ It defines node settings such as IP address configuration for hypervisor managem
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Storage",
+					Description: `Cluster of storage nodes used to persist data.`,
+				},
+				resource.Attribute{
+					Name:        "Compute",
+					Description: `Cluster of compute nodes used to execute business logic.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `This cluster type is Unknown. Expect Compute or Storage as valid values.`,
+				},
+				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
@@ -12131,6 +12199,22 @@ An entry specifying supported server firmware version in regex format.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "NA",
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Datacenter",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+				},
+				resource.Attribute{
+					Name:        "Stretched Cluster",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+				},
+				resource.Attribute{
+					Name:        "Edge",
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+				},
+				resource.Attribute{
 					Name:        "ESXi",
 					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
 				},
@@ -12195,6 +12279,22 @@ A supported server model.
 				"model",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NA",
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Datacenter",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+				},
+				resource.Attribute{
+					Name:        "Stretched Cluster",
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+				},
+				resource.Attribute{
+					Name:        "Edge",
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+				},
 				resource.Attribute{
 					Name:        "ESXi",
 					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
@@ -12585,6 +12685,10 @@ The beta features enabled for the specified account.
 				resource.Attribute{
 					Name:        "TerraformCloud",
 					Description: `Enables an ability to create Terraform Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `Enables an ability to use Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "WashingtonEFT",
@@ -13094,7 +13198,7 @@ LDAP Policy configurations.
 				},
 				resource.Attribute{
 					Name:        "ConfiguredCredentials",
-					Description: `Requires a known set of credentials to be specified for the initial bind process. If the initial bind process succeeds, then the distinguished name (DN) of the user name is queried and re-used for the re-binding process. If the re-binding process fails, then the user is denied access. + ` + "`" + `domain` + "`" + `:(string) The IPv4 domain that all users must be in. + ` + "`" + `enable_encryption` + "`" + `:(bool) If enabled, the endpoint encrypts all information it sends to the LDAP server. + ` + "`" + `enable_group_authorization` + "`" + `:(bool) If enabled, user authorization is also done at the group level for LDAP users not in the local user database. + ` + "`" + `filter` + "`" + `:(string) Criteria to identify entries in search requests. + ` + "`" + `group_attribute` + "`" + `:(string) Groups to which an LDAP entry belongs. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `nested_group_search_depth` + "`" + `:(int) Search depth to look for a nested LDAP group in an LDAP group map. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) The password of the user for initial bind process. It can be any string that adheres to the following constraints. It can have character except spaces, tabs, line breaks. It cannot be more than 254 characters. + ` + "`" + `timeout` + "`" + `:(int) LDAP authentication timeout duration, in seconds.`,
+					Description: `Requires a known set of credentials to be specified for the initial bind process. If the initial bind process succeeds, then the distinguished name (DN) of the user name is queried and re-used for the re-binding process. If the re-binding process fails, then the user is denied access. + ` + "`" + `domain` + "`" + `:(string) The IPv4 domain that all users must be in. + ` + "`" + `enable_encryption` + "`" + `:(bool) If enabled, the endpoint encrypts all information it sends to the LDAP server. + ` + "`" + `enable_group_authorization` + "`" + `:(bool) If enabled, user authorization is also done at the group level for LDAP users not in the local user database. + ` + "`" + `filter` + "`" + `:(string) Criteria to identify entries in search requests. + ` + "`" + `group_attribute` + "`" + `:(string) Groups to which an LDAP entry belongs. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `nested_group_search_depth` + "`" + `:(int) Search depth to look for a nested LDAP group in an LDAP group map. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) The password of the user for initial bind process. It can be any string that adheres to the following constraints. It can have character except spaces, tabs, line breaks. It cannot be more than 254 characters. + ` + "`" + `timeout` + "`" + `:(int) LDAP authentication timeout duration, in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "Extracted",
@@ -14116,9 +14220,9 @@ A policy specifying container runtime configuration, such as docker proxy, no pr
 			Name:             "",
 			Type:             "intersight_kubernetes_network_policy",
 			Category:         "kubernetes",
-			ShortDescription: `A policy specifying the CIDR for internal networks in a Kubernetes cluster like POD network, and Service network.`,
+			ShortDescription: `A policy specifying the CIDR for internal networks in a Kubernetes cluster like Pod network, and Service network.`,
 			Description: `
-A policy specifying the CIDR for internal networks in a Kubernetes cluster like POD network, and Service network.
+A policy specifying the CIDR for internal networks in a Kubernetes cluster like Pod network, and Service network.
 `,
 			Keywords: []string{
 				"kubernetes",
@@ -15050,6 +15154,10 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 					Description: `A Pure Storage FlashArray device.`,
 				},
 				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
+				},
+				resource.Attribute{
 					Name:        "NetAppOntap",
 					Description: `A NetApp ONTAP storage system.`,
 				},
@@ -15277,7 +15385,15 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -15301,7 +15417,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(Computed) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(ReadOnly) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
 				},
 				resource.Attribute{
 					Name:        "static",
@@ -15309,7 +15425,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "DHCP",
-					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
+					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -15325,7 +15441,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "Template",
-					Description: `Indicates that the given answers are used to populate the answer filetemplate. The template allows the users to refer some server specificanswers as fields/placeholders and replace these placeholders with theactual values for each Server during OS installation using 'Answers' and'AdditionalParameters' properties in os.Install MO.The answer file templates can be created by users as os.ConfigurationFile objects. + ` + "`" + `error_msgs` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `install_target` + "`" + `:(string)(Computed) The target in which OS installation triggered, the value represented is StorageControllerID follwed by PhysicalDisk SerialNumber in case of Physcial disk or VirtualDriveId for virtual drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `processed_install_target` + "`" + `:(HashMap) -(Computed) The target in which OS installation triggered, this is populated after processing the given data. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `serial_number` + "`" + `:(string)(Computed) The Serial Number of the server.`,
+					Description: `Indicates that the given answers are used to populate the answer filetemplate. The template allows the users to refer some server specificanswers as fields/placeholders and replace these placeholders with theactual values for each Server during OS installation using 'Answers' and'AdditionalParameters' properties in os.Install MO.The answer file templates can be created by users as os.ConfigurationFile objects. + ` + "`" + `error_msgs` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `install_target` + "`" + `:(string)(ReadOnly) The target in which OS installation triggered, the value represented is StorageControllerID follwed by PhysicalDisk SerialNumber in case of Physcial disk or VirtualDriveId for virtual drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `processed_install_target` + "`" + `:(HashMap) -(ReadOnly) The target in which OS installation triggered, this is populated after processing the given data. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `serial_number` + "`" + `:(string)(ReadOnly) The Serial Number of the server.`,
 				},
 				resource.Attribute{
 					Name:        "NotValidated",
@@ -15341,7 +15457,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "InProgress",
-					Description: `The validation is in progress. + ` + "`" + `step_name` + "`" + `:(string)(Computed) The validation step name.`,
+					Description: `The validation is in progress. + ` + "`" + `step_name` + "`" + `:(string)(ReadOnly) The validation step name.`,
 				},
 				resource.Attribute{
 					Name:        "OS Install Schema Validation",
@@ -15417,7 +15533,15 @@ os.OsInstall object.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -15493,7 +15617,15 @@ using workflow engine MO workflow.WorkflowInfo.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. The maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -15525,7 +15657,7 @@ using workflow engine MO workflow.WorkflowInfo.
 				},
 				resource.Attribute{
 					Name:        "DHCP",
-					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
+					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -15578,6 +15710,70 @@ using workflow engine MO workflow.WorkflowInfo.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_power_policy",
+			Category:         "power",
+			ShortDescription: `Power Management policy models a configuration that can be applied to Chassis or Server to manage Power Related Features.`,
+			Description: `
+Power Management policy models a configuration that can be applied to Chassis or Server to manage Power Related Features.
+`,
+			Keywords: []string{
+				"power",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysOff",
+					Description: `Set the Power Restore Mode to Off.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysOn",
+					Description: `Set the Power Restore Mode to On.`,
+				},
+				resource.Attribute{
+					Name:        "LastState",
+					Description: `Set the Power Restore Mode to LastState.`,
+				},
+				resource.Attribute{
+					Name:        "Grid",
+					Description: `Grid Mode requires two power sources. If one source fails, the surviving PSUs connected to the other source provides power to the chassis.`,
+				},
+				resource.Attribute{
+					Name:        "NotRedundant",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements. No Redundant PSUs are maintained.`,
+				},
+				resource.Attribute{
+					Name:        "N+1",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus one additional PSU for redundancy.`,
+				},
+				resource.Attribute{
+					Name:        "N+2",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus two additional PSU for redundancy. This Mode is only supported for UCS X series Chassis.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_power_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_power_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16081,7 +16277,7 @@ A profile specifying configuration settings for a physical server.
 				},
 				resource.Attribute{
 					Name:        "Drift-failed",
-					Description: `Config change state represents there is internal error in calculating endpoint configuraion drift. + ` + "`" + `initial_config_context` + "`" + `:(HashMap) -(Computed) Stores initial Configuration state. Used for reverting back to initial state of ConfigContext in case of validation failure. This complex property has following sub-properties: + ` + "`" + `config_state` + "`" + `:(string)(Computed) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, Pending-changes, Out-of-sync, Validating, Configuring, Failed. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(Computed) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `Config change state represents there is internal error in calculating endpoint configuraion drift. + ` + "`" + `initial_config_context` + "`" + `:(HashMap) -(ReadOnly) Stores initial Configuration state. Used for reverting back to initial state of ConfigContext in case of validation failure. This complex property has following sub-properties: + ` + "`" + `config_state` + "`" + `:(string)(ReadOnly) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, Pending-changes, Out-of-sync, Validating, Configuring, Failed. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
 				resource.Attribute{
 					Name:        "Standalone",
@@ -16266,7 +16462,7 @@ Policy to configure SNMP settings on endpoint.
 				},
 				resource.Attribute{
 					Name:        "SHA-512",
-					Description: `SHA-512 protocol is used to authenticate SNMP user. + ` + "`" + `is_auth_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'authPassword' property has been set. + ` + "`" + `is_privacy_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'privacyPassword' property has been set. + ` + "`" + `name` + "`" + `:(string) SNMP username. Must have a minimum of 1 and and a maximum of 31 characters. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `privacy_password` + "`" + `:(string) Privacy password for the user. + ` + "`" + `privacy_type` + "`" + `:(string) Privacy protocol for the user.`,
+					Description: `SHA-512 protocol is used to authenticate SNMP user. + ` + "`" + `is_auth_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'authPassword' property has been set. + ` + "`" + `is_privacy_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'privacyPassword' property has been set. + ` + "`" + `name` + "`" + `:(string) SNMP username. Must have a minimum of 1 and and a maximum of 31 characters. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `privacy_password` + "`" + `:(string) Privacy password for the user. + ` + "`" + `privacy_type` + "`" + `:(string) Privacy protocol for the user.`,
 				},
 				resource.Attribute{
 					Name:        "NA",
@@ -18348,19 +18544,30 @@ Secure shell policy on the endpoint.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_storage_disk_group_policy",
+			Type:             "intersight_storage_drive_group",
 			Category:         "storage",
-			ShortDescription: `A reusable RAID disk group configuration that can be applied across multiple servers. Also provides options to move JBOD disks in the disk group to Unconfigured Good state before they are used in the disk group.`,
+			ShortDescription: `A reusable RAID drive group configuration that specifies a pool of drives and a set of virtual drives that are to be created using this pool of drives.`,
 			Description: `
-A reusable RAID disk group configuration that can be applied across multiple servers. Also provides options to move JBOD disks in the disk group to Unconfigured Good state before they are used in the disk group.
+A reusable RAID drive group configuration that specifies a pool of drives and a set of virtual drives that are to be created using this pool of drives.
 `,
 			Keywords: []string{
 				"storage",
-				"disk",
+				"drive",
 				"group",
-				"policy",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Any",
+					Description: `Any type of drive can be used for virtual drive creation.`,
+				},
+				resource.Attribute{
+					Name:        "HDD",
+					Description: `Hard disk drives should be used for virtual drive creation.`,
+				},
+				resource.Attribute{
+					Name:        "SSD",
+					Description: `Solid state drives should be used for virtual drive creation. + ` + "`" + `drives_per_span` + "`" + `:(int) Number of drives within this span group. The minimum number of disks needed in a span group varies based on RAID level. RAID0 requires at least one disk. RAID1 and RAID10 requires at least 2 and in multiples of . RAID5 and RAID50 require at least 3 disks in a span group. RAID6 and RAID60 require atleast 4 disks in a span. + ` + "`" + `minimum_drive_size` + "`" + `:(int) Minimum size of the drive to be used for creating this RAID group. + ` + "`" + `num_dedicated_hot_spares` + "`" + `:(string) Number of dedicated hot spare disks for this RAID group. Allowed value is a comma or hyphen separated number range. + ` + "`" + `number_of_spans` + "`" + `:(int) Number of span groups to be created for this RAID group. Non-nested RAID levels have a single span. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `use_remaining_drives` + "`" + `:(bool) This flag enables the drive group to use all the remaining drives on the server.`,
+				},
 				resource.Attribute{
 					Name:        "Raid0",
 					Description: `RAID 0 Stripe Raid Level.`,
@@ -18390,40 +18597,12 @@ A reusable RAID disk group configuration that can be applied across multiple ser
 					Description: `RAID 60 Mirror Raid Level.`,
 				},
 				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
+					Name:        "0",
+					Description: `Drives are selected manually by the user.`,
 				},
 				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_storage_disk_group_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_disk_group_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_storage_storage_policy",
-			Category:         "storage",
-			ShortDescription: `The storage policy models the reusable storage related configuration that can be applied on many servers. This policy allows creation of RAID groups using existing disk group policies and virtual drives on the drive groups. The user has options to move all unused disks to JBOD or Unconfigured good state. The encryption of drives can be enabled through this policy using remote keys from a KMIP server.`,
-			Description: `
-The storage policy models the reusable storage related configuration that can be applied on many servers. This policy allows creation of RAID groups using existing disk group policies and virtual drives on the drive groups. The user has options to move all unused disks to JBOD or Unconfigured good state. The encryption of drives can be enabled through this policy using remote keys from a KMIP server.
-`,
-			Keywords: []string{
-				"storage",
-				"policy",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "UnconfiguredGood",
-					Description: `Unconfigured good state -ready to be added in a RAID group.`,
-				},
-				resource.Attribute{
-					Name:        "Jbod",
-					Description: `JBOD state where the disks start showing up to host os.`,
+					Name:        "1",
+					Description: `Drives are selected automatically based on the RAID and virtual drive configuration.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -18451,7 +18630,7 @@ The storage policy models the reusable storage related configuration that can be
 				},
 				resource.Attribute{
 					Name:        "Blocked",
-					Description: `Host can neither read nor write to the VD. + ` + "`" + `boot_drive` + "`" + `:(bool) The flag enables the use of this virtual drive as a boot drive. + ` + "`" + `disk_group_name` + "`" + `:(string)(Computed) Disk group policy that has the disk group in which this virtual drive needs to be created. + ` + "`" + `disk_group_policy` + "`" + `:(string) Disk group policy that has the disk group in which this virtual drive needs to be created. + ` + "`" + `drive_cache` + "`" + `:(string) Drive Cache property expect disk cache policy.`,
+					Description: `Host can neither read nor write to the VD. + ` + "`" + `drive_cache` + "`" + `:(string) Disk cache policy for the virtual drive.`,
 				},
 				resource.Attribute{
 					Name:        "Default",
@@ -18467,19 +18646,7 @@ The storage policy models the reusable storage related configuration that can be
 				},
 				resource.Attribute{
 					Name:        "Disable",
-					Description: `Disables IO caching on the drive. + ` + "`" + `expand_to_available` + "`" + `:(bool) The flag enables this virtual drive to use all the available space in the disk group. When this flag is configured, the size property is ignored. + ` + "`" + `io_policy` + "`" + `:(string) Desired IO mode - direct IO or cached IO.`,
-				},
-				resource.Attribute{
-					Name:        "Default",
-					Description: `Use platform default IO mode.`,
-				},
-				resource.Attribute{
-					Name:        "Direct",
-					Description: `Use direct IO for writing directly into the disk.`,
-				},
-				resource.Attribute{
-					Name:        "Cached",
-					Description: `Use cached IO for writing into cache and then to disk. + ` + "`" + `name` + "`" + `:(string) The name of the virtual drive. The name can be between 1 and 15 alphanumeric characters. Spaces or any special characters other than - (hyphen), _ (underscore), : (colon), and . (period) are not allowed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `read_policy` + "`" + `:(string) Read ahead mode to be used to read data from this virtual drive.`,
+					Description: `Disables IO caching on the drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `read_policy` + "`" + `:(string) Read ahead mode to be used to read data from this virtual drive.`,
 				},
 				resource.Attribute{
 					Name:        "Default",
@@ -18491,35 +18658,27 @@ The storage policy models the reusable storage related configuration that can be
 				},
 				resource.Attribute{
 					Name:        "NoReadAhead",
-					Description: `Do not use read ahead mode for the policy. + ` + "`" + `size` + "`" + `:(int) Virtual drive size in MB. Size is mandatory field unless the 'Expand to Available' option is enabled. + ` + "`" + `strip_size` + "`" + `:(string) The strip size is the portion of a stripe that resides on a single drive in the drive group. The stripe consists of the data segments that the RAID controller writes across multiple drives, not including parity drives.`,
+					Description: `Do not use read ahead mode for the policy. + ` + "`" + `strip_size` + "`" + `:(int) Desired strip size - Allowed values are 64KiB, 128KiB, 256KiB, 512KiB, 1024KiB.`,
 				},
 				resource.Attribute{
-					Name:        "Default",
-					Description: `Use platform default strip size for a virtual drive.`,
+					Name:        "64",
+					Description: `Number of bytes in a strip is 64 Kibibytes.`,
 				},
 				resource.Attribute{
-					Name:        "32k",
-					Description: `Enables a strip size of 32k for a virtual drive.`,
+					Name:        "128",
+					Description: `Number of bytes in a strip is 128 Kibibytes.`,
 				},
 				resource.Attribute{
-					Name:        "64k",
-					Description: `Enables a strip size of 64k for a virtual drive.`,
+					Name:        "256",
+					Description: `Number of bytes in a strip is 256 Kibibytes.`,
 				},
 				resource.Attribute{
-					Name:        "128k",
-					Description: `Enables a strip size of 128k for a virtual drive.`,
+					Name:        "512",
+					Description: `Number of bytes in a strip is 512 Kibibytes.`,
 				},
 				resource.Attribute{
-					Name:        "256k",
-					Description: `Enables a strip size of 256k for a virtual drive.`,
-				},
-				resource.Attribute{
-					Name:        "512k",
-					Description: `Enables a strip size of 512k for a virtual drive.`,
-				},
-				resource.Attribute{
-					Name:        "1024k",
-					Description: `Enables a strip size of 1024k for a virtual drive. + ` + "`" + `vdid` + "`" + `:(string)(Computed) Unique Id of the Virtual Drive to be used to identify Virtual Drive when name is empty. + ` + "`" + `write_policy` + "`" + `:(string) Write mode to be used to write data to this virtual drive.`,
+					Name:        "1024",
+					Description: `Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte. + ` + "`" + `write_policy` + "`" + `:(string) Write mode to be used to write data to this virtual drive.`,
 				},
 				resource.Attribute{
 					Name:        "Default",
@@ -18535,7 +18694,139 @@ The storage policy models the reusable storage related configuration that can be
 				},
 				resource.Attribute{
 					Name:        "AlwaysWriteBack",
-					Description: `With this policy, write caching remains Write Back even if the battery backup unit is defective or discharged. ## Import ` + "`" + `intersight_storage_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `With this policy, write caching remains Write Back even if the battery backup unit is defective or discharged. ## Import ` + "`" + `intersight_storage_drive_group` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_drive_group.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_storage_policy",
+			Category:         "storage",
+			ShortDescription: `The storage policy models the reusable storage related configuration that can be applied on many servers. This policy allows creation of RAID groups using existing disk group policies and virtual drives on the drive groups. The user has options to move all unused disks to JBOD or Unconfigured good state. The encryption of drives can be enabled through this policy using remote keys from a KMIP server.`,
+			Description: `
+The storage policy models the reusable storage related configuration that can be applied on many servers. This policy allows creation of RAID groups using existing disk group policies and virtual drives on the drive groups. The user has options to move all unused disks to JBOD or Unconfigured good state. The encryption of drives can be enabled through this policy using remote keys from a KMIP server.
+`,
+			Keywords: []string{
+				"storage",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "MSTOR-RAID-1",
+					Description: `Virtual drive will be created on the M.2 RAID controller in the first slot.`,
+				},
+				resource.Attribute{
+					Name:        "MSTOR-RAID-2",
+					Description: `Virtual drive will be created on the M.2 RAID controller in the second slot, if available.`,
+				},
+				resource.Attribute{
+					Name:        "MSTOR-RAID-1,MSTOR-RAID-2",
+					Description: `Virtual drive will be created on the M.2 RAID controller in both the slots, if available. + ` + "`" + `enable` + "`" + `:(bool) If enabled, this will create a virtual drive on the M.2 RAID controller. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Use platform default access mode.`,
+				},
+				resource.Attribute{
+					Name:        "ReadWrite",
+					Description: `Enables host to perform read-write on the VD.`,
+				},
+				resource.Attribute{
+					Name:        "ReadOnly",
+					Description: `Host can only read from the VD.`,
+				},
+				resource.Attribute{
+					Name:        "Blocked",
+					Description: `Host can neither read nor write to the VD. + ` + "`" + `drive_cache` + "`" + `:(string) Disk cache policy for the virtual drive.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Use platform default drive cache mode.`,
+				},
+				resource.Attribute{
+					Name:        "NoChange",
+					Description: `Drive cache policy is unchanged.`,
+				},
+				resource.Attribute{
+					Name:        "Enable",
+					Description: `Enables IO caching on the drive.`,
+				},
+				resource.Attribute{
+					Name:        "Disable",
+					Description: `Disables IO caching on the drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `read_policy` + "`" + `:(string) Read ahead mode to be used to read data from this virtual drive.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Use platform default read ahead mode.`,
+				},
+				resource.Attribute{
+					Name:        "ReadAhead",
+					Description: `Use read ahead mode for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "NoReadAhead",
+					Description: `Do not use read ahead mode for the policy. + ` + "`" + `strip_size` + "`" + `:(int) Desired strip size - Allowed values are 64KiB, 128KiB, 256KiB, 512KiB, 1024KiB.`,
+				},
+				resource.Attribute{
+					Name:        "64",
+					Description: `Number of bytes in a strip is 64 Kibibytes.`,
+				},
+				resource.Attribute{
+					Name:        "128",
+					Description: `Number of bytes in a strip is 128 Kibibytes.`,
+				},
+				resource.Attribute{
+					Name:        "256",
+					Description: `Number of bytes in a strip is 256 Kibibytes.`,
+				},
+				resource.Attribute{
+					Name:        "512",
+					Description: `Number of bytes in a strip is 512 Kibibytes.`,
+				},
+				resource.Attribute{
+					Name:        "1024",
+					Description: `Number of bytes in a strip is 1024 Kibibytes or 1 Mebibyte. + ` + "`" + `write_policy` + "`" + `:(string) Write mode to be used to write data to this virtual drive.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Use platform default write mode.`,
+				},
+				resource.Attribute{
+					Name:        "WriteThrough",
+					Description: `Data is written through the cache and to the physical drives. Performance is improved, because subsequent reads of that data can be satisfied from the cache.`,
+				},
+				resource.Attribute{
+					Name:        "WriteBackGoodBbu",
+					Description: `Data is stored in the cache, and is only written to the physical drives when space in the cache is needed. Virtual drives requesting this policy fall back to Write Through caching when the battery backup unit (BBU) cannot guarantee the safety of the cache in the event of a power failure.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysWriteBack",
+					Description: `With this policy, write caching remains Write Back even if the battery backup unit is defective or discharged.`,
+				},
+				resource.Attribute{
+					Name:        "NoChange",
+					Description: `Drive state will not be modified by Storage Policy.`,
+				},
+				resource.Attribute{
+					Name:        "UnconfiguredGood",
+					Description: `Unconfigured good state -ready to be added in a RAID group.`,
+				},
+				resource.Attribute{
+					Name:        "Jbod",
+					Description: `JBOD state where the disks start showing up to Host OS.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_storage_storage_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_storage_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19039,6 +19330,10 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Description: `A Pure Storage FlashArray device.`,
 				},
 				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
+				},
+				resource.Attribute{
 					Name:        "NetAppOntap",
 					Description: `A NetApp ONTAP storage system.`,
 				},
@@ -19181,6 +19476,54 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_techsupportmanagement_tech_support_bundle` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_techsupportmanagement_tech_support_bundle.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_thermal_policy",
+			Category:         "thermal",
+			ShortDescription: `Thermal Management policy models a configuration that can be applied to Chassis or Server to manage Thermal Features.`,
+			Description: `
+Thermal Management policy models a configuration that can be applied to Chassis or Server to manage Thermal Features.
+`,
+			Keywords: []string{
+				"thermal",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Balanced",
+					Description: `The fans run faster when needed based on the heat generated by the server. When possible, the fans returns to the minimum required speed.`,
+				},
+				resource.Attribute{
+					Name:        "LowPower",
+					Description: `The Fans run at the minimum speed required to keep the server cool.`,
+				},
+				resource.Attribute{
+					Name:        "HighPower",
+					Description: `The fans are kept at higher speed to emphasizes performance over power consumption. This Mode is only supported for UCS X series Chassis.`,
+				},
+				resource.Attribute{
+					Name:        "MaximumPower",
+					Description: `The fans are always kept at maximum speed. This option provides the most cooling and consumes the most power. This Mode is only supported for UCS X series Chassis.`,
+				},
+				resource.Attribute{
+					Name:        "Acoustic",
+					Description: `The fan speed is reduced to reduce noise levels in acoustic-sensitive environments. This Mode is only supported for UCS X series Chassis.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_thermal_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_thermal_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19514,7 +19857,7 @@ Policy to configure virtual media settings on endpoint.
 				},
 				resource.Attribute{
 					Name:        "hdd",
-					Description: `Uses hard disk drive as the virtual media mount device. + ` + "`" + `file_location` + "`" + `:(string) Remote location of image. Preferred format is 'hostname/filePath/fileName'. + ` + "`" + `host_name` + "`" + `:(string) IP address or hostname of the remote server. + ` + "`" + `is_password_set` + "`" + `:(bool)(Computed) Indicates whether the value of the 'password' property has been set. + ` + "`" + `mount_options` + "`" + `:(string) Mount options for the Virtual Media mapping. The field can be left blank or filled in a comma separated list with the following options.\ For NFS, supported options are ro, rw, nolock, noexec, soft, port=VALUE, timeo=VALUE, retry=VALUE.\ For CIFS, supported options are soft, nounix, noserverino, guest.\ For CIFS version < 3.0, vers=VALUE is mandatory. e.g. vers=2.0\ For HTTP/HTTPS, the only supported option is noauto. + ` + "`" + `mount_protocol` + "`" + `:(string) Protocol to use to communicate with the remote server.`,
+					Description: `Uses hard disk drive as the virtual media mount device. + ` + "`" + `file_location` + "`" + `:(string) Remote location of image. Preferred format is 'hostname/filePath/fileName'. + ` + "`" + `host_name` + "`" + `:(string) IP address or hostname of the remote server. + ` + "`" + `is_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'password' property has been set. + ` + "`" + `mount_options` + "`" + `:(string) Mount options for the Virtual Media mapping. The field can be left blank or filled in a comma separated list with the following options.\ For NFS, supported options are ro, rw, nolock, noexec, soft, port=VALUE, timeo=VALUE, retry=VALUE.\ For CIFS, supported options are soft, nounix, noserverino, guest.\ For CIFS version < 3.0, vers=VALUE is mandatory. e.g. vers=2.0\ For HTTP/HTTPS, the only supported option is noauto. + ` + "`" + `mount_protocol` + "`" + `:(string) Protocol to use to communicate with the remote server.`,
 				},
 				resource.Attribute{
 					Name:        "nfs",
@@ -19530,7 +19873,7 @@ Policy to configure virtual media settings on endpoint.
 				},
 				resource.Attribute{
 					Name:        "https",
-					Description: `HTTPS protocol for vmedia mount. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password associated with the username. + ` + "`" + `remote_file` + "`" + `:(string) The remote file location path for the virtual media mapping. Accepted formats are:HDD for CIFS/NFS: hostname-or-IP/filePath/fileName.img.CDD for CIFS/NFS: hostname-or-IP/filePath/fileName.iso.HDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.img.CDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.iso. + ` + "`" + `remote_path` + "`" + `:(string) URL path to the location of the image on the remote server. The preferred format is '/path'. + ` + "`" + `sanitized_file_location` + "`" + `:(string)(Computed) File Location in standard format 'hostname/filePath/fileName'. This field should be used to calculate config drift. User input format may vary while inventory will return data in format in compliance with mount option for the mount. Both will be converged to this standard format for comparison. + ` + "`" + `username` + "`" + `:(string) Username to log in to the remote server. + ` + "`" + `volume_name` + "`" + `:(string) Identity of the image for Virtual Media mapping.`,
+					Description: `HTTPS protocol for vmedia mount. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `password` + "`" + `:(string) Password associated with the username. + ` + "`" + `remote_file` + "`" + `:(string) The remote file location path for the virtual media mapping. Accepted formats are:HDD for CIFS/NFS: hostname-or-IP/filePath/fileName.img.CDD for CIFS/NFS: hostname-or-IP/filePath/fileName.iso.HDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.img.CDD for HTTP/S: http[s]://hostname-or-IP/filePath/fileName.iso. + ` + "`" + `remote_path` + "`" + `:(string) URL path to the location of the image on the remote server. The preferred format is '/path'. + ` + "`" + `sanitized_file_location` + "`" + `:(string)(ReadOnly) File Location in standard format 'hostname/filePath/fileName'. This field should be used to calculate config drift. User input format may vary while inventory will return data in format in compliance with mount option for the mount. Both will be converged to this standard format for comparison. + ` + "`" + `username` + "`" + `:(string) Username to log in to the remote server. + ` + "`" + `volume_name` + "`" + `:(string) Identity of the image for Virtual Media mapping.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -20426,6 +20769,22 @@ Captures a customized data type definition that can be used for task or workflow
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_custom_data_type_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_custom_data_type_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
 				},
 				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
+				},
+				resource.Attribute{
 					Name:        "string",
 					Description: `Enum to specify a string data type.`,
 				},
@@ -20448,6 +20807,14 @@ Captures a customized data type definition that can be used for task or workflow
 				resource.Attribute{
 					Name:        "enum",
 					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) -`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -20596,6 +20963,10 @@ error parameters.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
@@ -20847,7 +21218,7 @@ Rollback workflow contains details about the workflow instance, tasks to be roll
 				},
 				resource.Attribute{
 					Name:        "Failed",
-					Description: `Status of rollback task when it is failed. + ` + "`" + `task_info_moid` + "`" + `:(string) Moid of TaskInfo that supports rollback operation. + ` + "`" + `task_path` + "`" + `:(string)(Computed) Path of rollback task if it is inside sub-workflow.`,
+					Description: `Status of rollback task when it is failed. + ` + "`" + `task_info_moid` + "`" + `:(string) Moid of TaskInfo that supports rollback operation. + ` + "`" + `task_path` + "`" + `:(string)(ReadOnly) Path of rollback task if it is inside sub-workflow.`,
 				},
 				resource.Attribute{
 					Name:        "NotStarted",
@@ -20863,7 +21234,7 @@ Rollback workflow contains details about the workflow instance, tasks to be roll
 				},
 				resource.Attribute{
 					Name:        "Failed",
-					Description: `Status of rollback task when it is failed. + ` + "`" + `task_info_moid` + "`" + `:(string) Moid of TaskInfo that supports rollback operation. + ` + "`" + `task_path` + "`" + `:(string)(Computed) Path of rollback task if it is inside sub-workflow.`,
+					Description: `Status of rollback task when it is failed. + ` + "`" + `task_info_moid` + "`" + `:(string) Moid of TaskInfo that supports rollback operation. + ` + "`" + `task_path` + "`" + `:(string)(ReadOnly) Path of rollback task if it is inside sub-workflow.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -20964,7 +21335,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(Computed) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `:(JSON as string) Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(ReadOnly) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `:(JSON as string) Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -21148,7 +21519,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "Invalid",
-					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(Computed) Description of the error. + ` + "`" + `field` + "`" + `:(string)(Computed) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(Computed) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(Computed) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
+					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(ReadOnly) Description of the error. + ` + "`" + `field` + "`" + `:(string)(ReadOnly) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(ReadOnly) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(ReadOnly) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -21161,6 +21532,22 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
 				},
 				resource.Attribute{
 					Name:        "string",
@@ -21185,6 +21572,14 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				resource.Attribute{
 					Name:        "enum",
 					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) - ### [workflow.DecisionTask](#argument-reference) A DecisionTask is a control task that executes a sequence of WorkflowTasks based off decision provided and evaluated by this task.`,
 				},
 				resource.Attribute{
 					Name:        "Scheduled",
@@ -21211,6 +21606,22 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Description: `The enum represents the status when task has failed.`,
 				},
 				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
+				},
+				resource.Attribute{
 					Name:        "string",
 					Description: `Enum to specify a string data type.`,
 				},
@@ -21233,6 +21644,14 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				resource.Attribute{
 					Name:        "enum",
 					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) -`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -21389,6 +21808,10 @@ Contains information for a workflow execution which is a runtime instance of wor
 				resource.Attribute{
 					Name:        "PendingRetryFailed",
 					Description: `Wait reason when the workflow is pending a RetryFailed action.`,
+				},
+				resource.Attribute{
+					Name:        "WaitingToStart",
+					Description: `Workflow is waiting to start on workflow engine.`,
 				},
 				resource.Attribute{
 					Name:        "SystemDefined",
@@ -21602,74 +22025,76 @@ Contains information for a workflow execution which is a runtime instance of wor
 		"intersight_os_bulk_install_info":                                    190,
 		"intersight_os_configuration_file":                                   191,
 		"intersight_os_install":                                              192,
-		"intersight_recovery_backup_config_policy":                           193,
-		"intersight_recovery_backup_profile":                                 194,
-		"intersight_recovery_on_demand_backup":                               195,
-		"intersight_recovery_restore":                                        196,
-		"intersight_recovery_schedule_config_policy":                         197,
-		"intersight_resource_group":                                          198,
-		"intersight_sdcard_policy":                                           199,
-		"intersight_sdwan_profile":                                           200,
-		"intersight_sdwan_router_node":                                       201,
-		"intersight_sdwan_router_policy":                                     202,
-		"intersight_sdwan_vmanage_account_policy":                            203,
-		"intersight_server_config_import":                                    204,
-		"intersight_server_profile":                                          205,
-		"intersight_server_profile_template":                                 206,
-		"intersight_smtp_policy":                                             207,
-		"intersight_snmp_policy":                                             208,
-		"intersight_software_appliance_distributable":                        209,
-		"intersight_software_hcl_meta":                                       210,
-		"intersight_software_hyperflex_bundle_distributable":                 211,
-		"intersight_software_hyperflex_distributable":                        212,
-		"intersight_software_release_meta":                                   213,
-		"intersight_software_solution_distributable":                         214,
-		"intersight_software_ucsd_bundle_distributable":                      215,
-		"intersight_software_ucsd_distributable":                             216,
-		"intersight_softwarerepository_authorization":                        217,
-		"intersight_softwarerepository_category_mapper":                      218,
-		"intersight_softwarerepository_category_mapper_model":                219,
-		"intersight_softwarerepository_category_support_constraint":          220,
-		"intersight_softwarerepository_operating_system_file":                221,
-		"intersight_softwarerepository_release":                              222,
-		"intersight_sol_policy":                                              223,
-		"intersight_ssh_policy":                                              224,
-		"intersight_storage_disk_group_policy":                               225,
-		"intersight_storage_storage_policy":                                  226,
-		"intersight_syslog_policy":                                           227,
-		"intersight_tam_advisory_count":                                      228,
-		"intersight_tam_advisory_definition":                                 229,
-		"intersight_tam_advisory_info":                                       230,
-		"intersight_tam_advisory_instance":                                   231,
-		"intersight_tam_security_advisory":                                   232,
-		"intersight_techsupportmanagement_collection_control_policy":         233,
-		"intersight_techsupportmanagement_tech_support_bundle":               234,
-		"intersight_uuidpool_pool":                                           235,
-		"intersight_virtualization_virtual_disk":                             236,
-		"intersight_virtualization_virtual_machine":                          237,
-		"intersight_vmedia_policy":                                           238,
-		"intersight_vmrc_console":                                            239,
-		"intersight_vnic_eth_adapter_policy":                                 240,
-		"intersight_vnic_eth_if":                                             241,
-		"intersight_vnic_eth_network_policy":                                 242,
-		"intersight_vnic_eth_qos_policy":                                     243,
-		"intersight_vnic_fc_adapter_policy":                                  244,
-		"intersight_vnic_fc_if":                                              245,
-		"intersight_vnic_fc_network_policy":                                  246,
-		"intersight_vnic_fc_qos_policy":                                      247,
-		"intersight_vnic_iscsi_adapter_policy":                               248,
-		"intersight_vnic_iscsi_boot_policy":                                  249,
-		"intersight_vnic_iscsi_static_target_policy":                         250,
-		"intersight_vnic_lan_connectivity_policy":                            251,
-		"intersight_vnic_san_connectivity_policy":                            252,
-		"intersight_vrf_vrf":                                                 253,
-		"intersight_workflow_batch_api_executor":                             254,
-		"intersight_workflow_custom_data_type_definition":                    255,
-		"intersight_workflow_error_response_handler":                         256,
-		"intersight_workflow_rollback_workflow":                              257,
-		"intersight_workflow_task_definition":                                258,
-		"intersight_workflow_workflow_definition":                            259,
-		"intersight_workflow_workflow_info":                                  260,
+		"intersight_power_policy":                                            193,
+		"intersight_recovery_backup_config_policy":                           194,
+		"intersight_recovery_backup_profile":                                 195,
+		"intersight_recovery_on_demand_backup":                               196,
+		"intersight_recovery_restore":                                        197,
+		"intersight_recovery_schedule_config_policy":                         198,
+		"intersight_resource_group":                                          199,
+		"intersight_sdcard_policy":                                           200,
+		"intersight_sdwan_profile":                                           201,
+		"intersight_sdwan_router_node":                                       202,
+		"intersight_sdwan_router_policy":                                     203,
+		"intersight_sdwan_vmanage_account_policy":                            204,
+		"intersight_server_config_import":                                    205,
+		"intersight_server_profile":                                          206,
+		"intersight_server_profile_template":                                 207,
+		"intersight_smtp_policy":                                             208,
+		"intersight_snmp_policy":                                             209,
+		"intersight_software_appliance_distributable":                        210,
+		"intersight_software_hcl_meta":                                       211,
+		"intersight_software_hyperflex_bundle_distributable":                 212,
+		"intersight_software_hyperflex_distributable":                        213,
+		"intersight_software_release_meta":                                   214,
+		"intersight_software_solution_distributable":                         215,
+		"intersight_software_ucsd_bundle_distributable":                      216,
+		"intersight_software_ucsd_distributable":                             217,
+		"intersight_softwarerepository_authorization":                        218,
+		"intersight_softwarerepository_category_mapper":                      219,
+		"intersight_softwarerepository_category_mapper_model":                220,
+		"intersight_softwarerepository_category_support_constraint":          221,
+		"intersight_softwarerepository_operating_system_file":                222,
+		"intersight_softwarerepository_release":                              223,
+		"intersight_sol_policy":                                              224,
+		"intersight_ssh_policy":                                              225,
+		"intersight_storage_drive_group":                                     226,
+		"intersight_storage_storage_policy":                                  227,
+		"intersight_syslog_policy":                                           228,
+		"intersight_tam_advisory_count":                                      229,
+		"intersight_tam_advisory_definition":                                 230,
+		"intersight_tam_advisory_info":                                       231,
+		"intersight_tam_advisory_instance":                                   232,
+		"intersight_tam_security_advisory":                                   233,
+		"intersight_techsupportmanagement_collection_control_policy":         234,
+		"intersight_techsupportmanagement_tech_support_bundle":               235,
+		"intersight_thermal_policy":                                          236,
+		"intersight_uuidpool_pool":                                           237,
+		"intersight_virtualization_virtual_disk":                             238,
+		"intersight_virtualization_virtual_machine":                          239,
+		"intersight_vmedia_policy":                                           240,
+		"intersight_vmrc_console":                                            241,
+		"intersight_vnic_eth_adapter_policy":                                 242,
+		"intersight_vnic_eth_if":                                             243,
+		"intersight_vnic_eth_network_policy":                                 244,
+		"intersight_vnic_eth_qos_policy":                                     245,
+		"intersight_vnic_fc_adapter_policy":                                  246,
+		"intersight_vnic_fc_if":                                              247,
+		"intersight_vnic_fc_network_policy":                                  248,
+		"intersight_vnic_fc_qos_policy":                                      249,
+		"intersight_vnic_iscsi_adapter_policy":                               250,
+		"intersight_vnic_iscsi_boot_policy":                                  251,
+		"intersight_vnic_iscsi_static_target_policy":                         252,
+		"intersight_vnic_lan_connectivity_policy":                            253,
+		"intersight_vnic_san_connectivity_policy":                            254,
+		"intersight_vrf_vrf":                                                 255,
+		"intersight_workflow_batch_api_executor":                             256,
+		"intersight_workflow_custom_data_type_definition":                    257,
+		"intersight_workflow_error_response_handler":                         258,
+		"intersight_workflow_rollback_workflow":                              259,
+		"intersight_workflow_task_definition":                                260,
+		"intersight_workflow_workflow_definition":                            261,
+		"intersight_workflow_workflow_info":                                  262,
 	}
 )
 

@@ -63,7 +63,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold Config The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
 				},
 				resource.Attribute{
 					Name:        "metric_name",
@@ -83,7 +83,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold Config`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -225,7 +225,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold Config The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
 				},
 				resource.Attribute{
 					Name:        "metric_name",
@@ -245,7 +245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold Config`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -1078,6 +1078,10 @@ var (
 					Description: `The cluster ID.`,
 				},
 				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB the cluster runs, in ` + "`" + `major-version` + "`" + `.` + "`" + `minor-version` + "`" + ` format.`,
+				},
+				resource.Attribute{
 					Name:        "mongo_uri",
 					Description: `Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
 				},
@@ -1158,7 +1162,7 @@ var (
 					Description: `Indicates whether the cluster is a replica set or a sharded cluster.`,
 				},
 				resource.Attribute{
-					Name:        "provider_backup_enabled",
+					Name:        "cloud_backup",
 					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
@@ -1340,6 +1344,10 @@ var (
 					Description: `The cluster ID.`,
 				},
 				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB the cluster runs, in ` + "`" + `major-version` + "`" + `.` + "`" + `minor-version` + "`" + ` format.`,
+				},
+				resource.Attribute{
 					Name:        "mongo_uri",
 					Description: `Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
 				},
@@ -1420,7 +1428,7 @@ var (
 					Description: `Indicates whether the cluster is a replica set or a sharded cluster.`,
 				},
 				resource.Attribute{
-					Name:        "provider_backup_enabled",
+					Name:        "cloud_backup",
 					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
@@ -1622,6 +1630,10 @@ var (
 					Description: `Name of the cluster as it appears in Atlas.`,
 				},
 				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB the cluster runs, in ` + "`" + `major-version` + "`" + `.` + "`" + `minor-version` + "`" + ` format.`,
+				},
+				resource.Attribute{
 					Name:        "mongo_uri",
 					Description: `Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
 				},
@@ -1699,6 +1711,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_backup",
 					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
@@ -1888,6 +1904,10 @@ var (
 					Description: `Name of the cluster as it appears in Atlas.`,
 				},
 				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB the cluster runs, in ` + "`" + `major-version` + "`" + `.` + "`" + `minor-version` + "`" + ` format.`,
+				},
+				resource.Attribute{
 					Name:        "mongo_uri",
 					Description: `Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.`,
 				},
@@ -1965,6 +1985,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
+					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_backup",
 					Description: `Flag indicating if the cluster uses Cloud Backup Snapshots for backups.`,
 				},
 				resource.Attribute{
@@ -2818,10 +2842,6 @@ var (
 					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
-				},
-				resource.Attribute{
 					Name:        "azure_directory_id",
 					Description: `Unique identifier for an Azure AD directory.`,
 				},
@@ -2894,10 +2914,6 @@ var (
 				resource.Attribute{
 					Name:        "status_name",
 					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
 				},
 				resource.Attribute{
 					Name:        "azure_directory_id",
@@ -2994,10 +3010,6 @@ var (
 					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
-				},
-				resource.Attribute{
 					Name:        "azure_directory_id",
 					Description: `Unique identifier for an Azure AD directory.`,
 				},
@@ -3078,10 +3090,6 @@ var (
 				resource.Attribute{
 					Name:        "status_name",
 					Description: `The VPC peering connection status value can be one of the following: ` + "`" + `INITIATING` + "`" + `, ` + "`" + `PENDING_ACCEPTANCE` + "`" + `, ` + "`" + `FAILED` + "`" + `, ` + "`" + `FINALIZING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `TERMINATING` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "atlas_cidr_block",
-					Description: `Unique identifier for an Azure AD directory.`,
 				},
 				resource.Attribute{
 					Name:        "azure_directory_id",
@@ -3219,6 +3227,210 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_search_index",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Search Index.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `(Required) The unique identifier of the Atlas Search index. Use the ` + "`" + `mongodbatlas_search_indexes` + "`" + `datasource to find the IDs of all Atlas Search indexes.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The name of the cluster containing the collection with one or more Atlas Search indexes. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzers",
+					Description: `[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).`,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection the index is on.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) Name of the database the collection is in.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_dynamic",
+					Description: `Flag indicating whether the index uses dynamic or static mappings.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_fields",
+					Description: `Object containing one or more field specifications.`,
+				},
+				resource.Attribute{
+					Name:        "search_analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzers",
+					Description: `[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).`,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection the index is on.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) Name of the database the collection is in.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_dynamic",
+					Description: `Flag indicating whether the index uses dynamic or static mappings.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_fields",
+					Description: `Object containing one or more field specifications.`,
+				},
+				resource.Attribute{
+					Name:        "search_analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_search_indexes",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Search Indexes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) Name of the cluster containing the collection with one or more Atlas Search indexes.`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) Name of the database containing the collection with one or more Atlas Search indexes.`,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection with one or more Atlas Search indexes.`,
+				},
+				resource.Attribute{
+					Name:        "page_num",
+					Description: `Page number, starting with one, that Atlas returns of the total number of objects.`,
+				},
+				resource.Attribute{
+					Name:        "items_per_page",
+					Description: `Number of items that Atlas returns per page, up to a maximum of 500. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Represents the total of the search indexes`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a search index. ### Results`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzers",
+					Description: `[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).`,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection the index is on.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) Name of the database the collection is in.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_dynamic",
+					Description: `Flag indicating whether the index uses dynamic or static mappings.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_fields",
+					Description: `Object containing one or more field specifications.`,
+				},
+				resource.Attribute{
+					Name:        "search_analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Represents the total of the search indexes`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a search index. ### Results`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.`,
+				},
+				resource.Attribute{
+					Name:        "analyzers",
+					Description: `[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).`,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection the index is on.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) Name of the database the collection is in.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_dynamic",
+					Description: `Flag indicating whether the index uses dynamic or static mappings.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_fields",
+					Description: `Object containing one or more field specifications.`,
+				},
+				resource.Attribute{
+					Name:        "search_analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3375,8 +3587,10 @@ var (
 		"mongodbatlas_network_peerings":                      16,
 		"mongodbatlas_project":                               17,
 		"mongodbatlas_projects":                              18,
-		"mongodbatlas_team":                                  19,
-		"mongodbatlas_x509_authentication_database_user":     20,
+		"mongodbatlas_search_index":                          19,
+		"mongodbatlas_search_indexes":                        20,
+		"mongodbatlas_team":                                  21,
+		"mongodbatlas_x509_authentication_database_user":     22,
 	}
 )
 

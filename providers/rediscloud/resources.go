@@ -286,7 +286,7 @@ Plan: 0 to add, 1 to change, 0 to destroy.
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Defaults to 10 mins) Used when updating the subscrition`,
+					Description: `(Defaults to 30 mins) Used when updating the subscription`,
 				},
 				resource.Attribute{
 					Name:        "delete",

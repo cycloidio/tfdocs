@@ -51,6 +51,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "spectrocloud_cloudaccount_openstack",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "spectrocloud_cloudaccount_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -117,12 +127,13 @@ var (
 		"spectrocloud_cloudaccount_aws":        1,
 		"spectrocloud_cloudaccount_azure":      2,
 		"spectrocloud_cloudaccount_gcp":        3,
-		"spectrocloud_cloudaccount_vsphere":    4,
-		"spectrocloud_cluster_profile":         5,
-		"spectrocloud_pack":                    6,
-		"spectrocloud_project":                 7,
-		"spectrocloud_role":                    8,
-		"spectrocloud_user":                    9,
+		"spectrocloud_cloudaccount_openstack":  4,
+		"spectrocloud_cloudaccount_vsphere":    5,
+		"spectrocloud_cluster_profile":         6,
+		"spectrocloud_pack":                    7,
+		"spectrocloud_project":                 8,
+		"spectrocloud_role":                    9,
+		"spectrocloud_user":                    10,
 	}
 )
 

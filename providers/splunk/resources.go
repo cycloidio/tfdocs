@@ -375,6 +375,41 @@ Create and manage splunk dashboards/views.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "splunk_generic_acl",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+Manage the ACL of any Splunk object not already managed in Terraform. To define the ACL of an object that is itself
+managed in Terraform, use the ` + "`" + `acl` + "`" + ` block on that configured resource instead of using a ` + "`" + `splunk_generic_acl` + "`" + ` resource.
+
+Note: This resource doesn't actually create any remote resources, because ACLs can only exist (and always exist) for
+knowledge objects. They can, however, be managed separately.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) REST API Endpoint path to the object, relative to servicesNS/<owner>/<app>`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The ACL to apply to the object, including app/owner to properly identify the object. Though technically optional, it should be explicitly set for this resource to really be valid. Some objects, such as apps, require specific values for app and owner. Consult the REST API documentation regarding which values to use for app and owner for objects that don't fit in the normal namespace. ## Attribute Reference In addition to all arguments above, This resource block exports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource ## Import Generic ACL resources can be imported by specifying their owner, app, and path with a colon-delimited string as the ID: ` + "`" + `` + "`" + `` + "`" + ` terraform import splunk_generic_acl <owner>:<app>:<path> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource ## Import Generic ACL resources can be imported by specifying their owner, app, and path with a colon-delimited string as the ID: ` + "`" + `` + "`" + `` + "`" + ` terraform import splunk_generic_acl <owner>:<app>:<path> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "splunk_global_http_event_collector",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -1642,6 +1677,10 @@ Create and manage saved searches.
 					Description: `(Optional) You can override the Slack webhook URL here if you need to send the alert message to a different Slack team`,
 				},
 				resource.Attribute{
+					Name:        "action_webhook_param_url",
+					Description: `(Optional) URL to send the HTTP POST request to. Must be accessible from the Splunk server`,
+				},
+				resource.Attribute{
 					Name:        "actions",
 					Description: `(Optional) A comma-separated list of actions to enable. For example: rss,email`,
 				},
@@ -1943,22 +1982,23 @@ Create indexes on Splunk Cloud instances. [BETA]
 		"splunk_authorization_roles":         4,
 		"splunk_configs_conf":                5,
 		"splunk_data_ui_views":               6,
-		"splunk_global_http_event_collector": 7,
-		"splunk_indexes":                     8,
-		"splunk_inputs_http_event_collector": 9,
-		"splunk_inputs_monitor":              10,
-		"splunk_inputs_script":               11,
-		"splunk_inputs_tcp_cooked":           12,
-		"splunk_inputs_tcp_raw":              13,
-		"splunk_inputs_tcp_splunktcptoken":   14,
-		"splunk_inputs_tcp_ssl":              15,
-		"splunk_inputs_udp":                  16,
-		"splunk_outputs_tcp_default":         17,
-		"splunk_outputs_tcp_group":           18,
-		"splunk_outputs_tcp_server":          19,
-		"splunk_outputs_tcp_syslog":          20,
-		"splunk_saved_searches":              21,
-		"splunk_sh_indexes_manager":          22,
+		"splunk_generic_acl":                 7,
+		"splunk_global_http_event_collector": 8,
+		"splunk_indexes":                     9,
+		"splunk_inputs_http_event_collector": 10,
+		"splunk_inputs_monitor":              11,
+		"splunk_inputs_script":               12,
+		"splunk_inputs_tcp_cooked":           13,
+		"splunk_inputs_tcp_raw":              14,
+		"splunk_inputs_tcp_splunktcptoken":   15,
+		"splunk_inputs_tcp_ssl":              16,
+		"splunk_inputs_udp":                  17,
+		"splunk_outputs_tcp_default":         18,
+		"splunk_outputs_tcp_group":           19,
+		"splunk_outputs_tcp_server":          20,
+		"splunk_outputs_tcp_syslog":          21,
+		"splunk_saved_searches":              22,
+		"splunk_sh_indexes_manager":          23,
 	}
 )
 

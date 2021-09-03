@@ -81,6 +81,34 @@ Use this data source to access information about the Azure DevOps organization c
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_team",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about an existing Team in a Project within Azure DevOps.`,
+			Description: `
+
+Use this data source to access information about an existing Team in a Project within Azure DevOps.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_teams",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about existing Teams in a Project or globally within an Azure DevOps organization`,
+			Description: `
+
+Use this data source to access information about existing Teams in a Project or globally within an Azure DevOps organization
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_git_repositories",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to access information about existing Git Repositories within Azure DevOps.`,
@@ -188,13 +216,15 @@ Use this data source to access information about an existing users within Azure 
 		"azuredevops_agent_queue":      2,
 		"azuredevops_area":             3,
 		"azuredevops_client_config":    4,
-		"azuredevops_git_repositories": 5,
-		"azuredevops_git_repository":   6,
-		"azuredevops_group":            7,
-		"azuredevops_iteration":        8,
-		"azuredevops_project":          9,
-		"azuredevops_projects":         10,
-		"azuredevops_users":            11,
+		"azuredevops_team":             5,
+		"azuredevops_teams":            6,
+		"azuredevops_git_repositories": 7,
+		"azuredevops_git_repository":   8,
+		"azuredevops_group":            9,
+		"azuredevops_iteration":        10,
+		"azuredevops_project":          11,
+		"azuredevops_projects":         12,
+		"azuredevops_users":            13,
 	}
 )
 

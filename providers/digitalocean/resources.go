@@ -607,7 +607,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "distribution",
-					Description: `An optional distribution name for the image. Valid values are documented [here](https://developers.digitalocean.com/documentation/v2/#create-a-custom-image)`,
+					Description: `An optional distribution name for the image. Valid values are documented [here](https://docs.digitalocean.com/reference/api/api-reference/#operation/create_custom_image)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -634,7 +634,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Database Droplet size associated with the cluster (ex. ` + "`" + `db-s-1vcpu-1gb` + "`" + `). See here for a [list of valid size slugs](https://developers.digitalocean.com/documentation/v2/#databases).`,
+					Description: `(Required) Database Droplet size associated with the cluster (ex. ` + "`" + `db-s-1vcpu-1gb` + "`" + `). See here for a [list of valid size slugs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Databases).`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -885,7 +885,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule",
-					Description: `(Required) A rule specifying a resource allowed to access the database cluster. The following arguments must be specified: - ` + "`" + `type` + "`" + ` - (Required) The type of resource that the firewall rule allows to access the database cluster. The possible values are: ` + "`" + `droplet` + "`" + `, ` + "`" + `k8s` + "`" + `, ` + "`" + `ip_addr` + "`" + `, or ` + "`" + `tag` + "`" + `. - ` + "`" + `value` + "`" + ` - (Required) The ID of the specific resource, the name of a tag applied to a group of resources, or the IP address that the firewall rule allows to access the database cluster. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+					Description: `(Required) A rule specifying a resource allowed to access the database cluster. The following arguments must be specified: - ` + "`" + `type` + "`" + ` - (Required) The type of resource that the firewall rule allows to access the database cluster. The possible values are: ` + "`" + `droplet` + "`" + `, ` + "`" + `k8s` + "`" + `, ` + "`" + `ip_addr` + "`" + `, ` + "`" + `tag` + "`" + `, or ` + "`" + `app` + "`" + `. - ` + "`" + `value` + "`" + ` - (Required) The ID of the specific resource, the name of a tag applied to a group of resources, or the IP address that the firewall rule allows to access the database cluster. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -1113,7 +1113,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The unique slug that indentifies the type of Droplet. You can find a list of available slugs on [DigitalOcean API documentation](https://developers.digitalocean.com/documentation/v2/#list-all-sizes).`,
+					Description: `(Required) The unique slug that indentifies the type of Droplet. You can find a list of available slugs on [DigitalOcean API documentation](https://docs.digitalocean.com/reference/api/api-reference/#tag/Sizes).`,
 				},
 				resource.Attribute{
 					Name:        "backups",
@@ -1133,7 +1133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_networking",
-					Description: `(Optional) Boolean controlling if private networking is enabled. When VPC is enabled on an account, this will provision the Droplet inside of your account's default VPC for the region. Use the ` + "`" + `vpc_uuid` + "`" + ` attribute to specify a different VPC.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",

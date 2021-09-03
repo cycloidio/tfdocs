@@ -467,6 +467,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_drop_filter",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "field_conditions",
+					Description: `Filters for an exact match of a field:value pair.`,
+				},
+				resource.Attribute{
+					Name:        "log_type",
+					Description: `Filters for the [log type](https://docs.logz.io/user-guide/log-shipping/built-in-log-types.html). Emit or leave empty if you want this filter to apply to all types.`,
+				},
+				resource.Attribute{
+					Name:        "drop_filter_id",
+					Description: `Drop filter ID in the Logz.io database. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `If true, the drop filter is active and logs that match the filter are dropped before indexing. If false, the drop filter is disabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "active",
+					Description: `If true, the drop filter is active and logs that match the filter are dropped before indexing. If false, the drop filter is disabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_endpoint",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -652,10 +684,11 @@ var (
 
 		"logzio_alert":              0,
 		"logzio_alert_v2":           1,
-		"logzio_endpoint":           2,
-		"logzio_log_shipping_token": 3,
-		"logzio_subaccount":         4,
-		"logzio_user":               5,
+		"logzio_drop_filter":        2,
+		"logzio_endpoint":           3,
+		"logzio_log_shipping_token": 4,
+		"logzio_subaccount":         5,
+		"logzio_user":               6,
 	}
 )
 

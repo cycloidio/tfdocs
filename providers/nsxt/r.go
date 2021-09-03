@@ -5057,11 +5057,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Required) EVPN Mode, one of ` + "`" + `INLINE` + "`" + ` or ` + "`" + `ROUTE_SERVER` + "`" + `. In ` + "`" + `ROUTE_SERVER` + "`" + ` mode, edge nodes participate in the BGP EVPN control plane route exchanges only and do not participate in the data forwarding`,
+					Description: `(Required) EVPN Mode, one of ` + "`" + `INLINE` + "`" + ` or ` + "`" + `ROUTE_SERVER` + "`" + `. In ` + "`" + `ROUTE_SERVER` + "`" + ` mode, edge nodes participate in the BGP EVPN control plane route exchanges only and do not participate in data forwarding.`,
 				},
 				resource.Attribute{
 					Name:        "vni_pool_path",
-					Description: `(Optional) This setting is only applicable (and required) with ` + "`" + `INLINE` + "`" + ` mode.`,
+					Description: `(Optional) Path of VNI pool to use. This setting is only applicable (and required) with ` + "`" + `INLINE` + "`" + ` mode.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -5141,7 +5141,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vnis",
-					Description: `(Required) Single VNI or ranged of VNIs. Please note that the range should match exactly to the range of vlans. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Required) Single VNI or range of VNIs. Please note that the range should match the range of vlans exactly. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "revision",
@@ -6353,7 +6353,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource.`,
+					Description: `The NSX policy path for this rule.`,
 				},
 				resource.Attribute{
 					Name:        "sequence_number",
@@ -6383,7 +6383,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource.`,
+					Description: `The NSX policy path for this rule.`,
 				},
 				resource.Attribute{
 					Name:        "sequence_number",
@@ -8545,7 +8545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "algorithm",
-					Description: `(Required) Algorithm one of "ORACLE_TNS", "FTP", "SUN_RPC_TCP", "SUN_RPC_UDP", "MS_RPC_TCP", "MS_RPC_UDP", "NBNS_BROADCAST", "NBDG_BROADCAST", "TFTP" ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Required) Algorithm, one of ` + "`" + `ORACLE_TNS` + "`" + `, ` + "`" + `FTP` + "`" + `, ` + "`" + `SUN_RPC_TCP` + "`" + `, ` + "`" + `SUN_RPC_UDP` + "`" + `, ` + "`" + `MS_RPC_TCP` + "`" + `, ` + "`" + `MS_RPC_UDP` + "`" + `, ` + "`" + `NBNS_BROADCAST` + "`" + `(Deprecated), ` + "`" + `NBDG_BROADCAST` + "`" + `(Deprecated), ` + "`" + `TFTP` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8839,7 +8839,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "redistribution_config",
-					Description: `(Deprecated) Route redistribution properties. This setting is for local manager only. This setting is deprecated, please use ` + "`" + `nsxt_policy_gateway_redistribution_config` + "`" + ` resource instead.`,
+					Description: `(Deprecated) Route redistribution properties. This setting is for local manager only and supported with NSXt 3.0.0 onwards. This setting is deprecated, please use ` + "`" + `nsxt_policy_gateway_redistribution_config` + "`" + ` resource instead.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",

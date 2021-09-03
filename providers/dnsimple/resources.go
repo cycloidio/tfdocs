@@ -11,16 +11,85 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "dnsimple_record",
+			Type:             "dnsimple_domain",
 			Category:         "Resources",
-			ShortDescription: `Provides a DNSimple record resource.`,
+			ShortDescription: ``,
 			Description:      ``,
-			Keywords: []string{
-				"record",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The domain name to be created`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dnsimple_email_forward",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
+					Description: `(Required) The domain to add the email forwarding rule to`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `The name part (the part before the @) of the source email address on the domain`,
+				},
+				resource.Attribute{
+					Name:        "destination_email",
+					Description: `(Required) The destination email address on another domain ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The email forward ID`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `The name part (the part before the @) of the source email address on the domain`,
+				},
+				resource.Attribute{
+					Name:        "alias_email",
+					Description: `The source email address on the domain`,
+				},
+				resource.Attribute{
+					Name:        "destination_email",
+					Description: `The destination email address on another domain`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The email forward ID`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `The name part (the part before the @) of the source email address on the domain`,
+				},
+				resource.Attribute{
+					Name:        "alias_email",
+					Description: `The source email address on the domain`,
+				},
+				resource.Attribute{
+					Name:        "destination_email",
+					Description: `The destination email address on another domain`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dnsimple_zone_record",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_name",
 					Description: `(Required) The domain to add the record to`,
 				},
 				resource.Attribute{
@@ -68,11 +137,11 @@ var (
 					Description: `The priority of the record`,
 				},
 				resource.Attribute{
-					Name:        "domain_id",
+					Name:        "zone_id",
 					Description: `The domain ID of the record`,
 				},
 				resource.Attribute{
-					Name:        "hostname",
+					Name:        "qualified_name",
 					Description: `The FQDN of the record ## Import DNSimple resources can be imported using their parent zone name (domain name) and numeric record ID.`,
 				},
 			},
@@ -102,11 +171,11 @@ var (
 					Description: `The priority of the record`,
 				},
 				resource.Attribute{
-					Name:        "domain_id",
+					Name:        "zone_id",
 					Description: `The domain ID of the record`,
 				},
 				resource.Attribute{
-					Name:        "hostname",
+					Name:        "qualified_name",
 					Description: `The FQDN of the record ## Import DNSimple resources can be imported using their parent zone name (domain name) and numeric record ID.`,
 				},
 			},
@@ -115,7 +184,9 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"dnsimple_record": 0,
+		"dnsimple_domain":        0,
+		"dnsimple_email_forward": 1,
+		"dnsimple_zone_record":   2,
 	}
 )
 

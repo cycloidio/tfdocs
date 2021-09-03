@@ -386,7 +386,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_ids",
-					Description: `(Optional) A list of workspace IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` is provided. ->`,
+					Description: `(Optional) A list of workspace IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` is provided.`,
+				},
+				resource.Attribute{
+					Name:        "slug",
+					Description: `(Optional) A reference to the ` + "`" + `tfe_slug` + "`" + ` data source that contains the ` + "`" + `source_path` + "`" + ` to where the local policies are located. This is used when policies are located locally, and can only be used when there is no VCS repo or explicit Policy IDs. This _requires_ the usage of the ` + "`" + `tfe_slug` + "`" + ` data source. ->`,
 				},
 				resource.Attribute{
 					Name:        "identifier",

@@ -184,6 +184,31 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_vpc_public_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about Scaleway VPC Public Gateways.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Exact name of the public gateway. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found public gateway. Addition attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_vpc_public_gateway_ip",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about Scaleway VPC Public Gateway IPs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -205,6 +230,8 @@ var (
 		"scaleway_registry_image":          14,
 		"scaleway_registry_namespace":      15,
 		"scaleway_vpc_private_network":     16,
+		"scaleway_vpc_public_gateway":      17,
+		"scaleway_vpc_public_gateway_ip":   18,
 	}
 )
 

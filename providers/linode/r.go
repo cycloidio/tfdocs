@@ -629,7 +629,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rdns",
-					Description: `(Optional) The reverse DNS assigned to this address. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The reverse DNS assigned to this address.`,
+				},
+				resource.Attribute{
+					Name:        "apply_immediately",
+					Description: `(Optional) If true, the instance will be rebooted to update network interfaces. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
@@ -1024,12 +1028,20 @@ var (
 					Description: `(Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings [in the Linode API v4 documentation](linode.com/docs/api/object-storage/#object-storage-bucket-access-update__request-body-schema).`,
 				},
 				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Optional) The access key to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Optional) The secret key to authenticate with.`,
+				},
+				resource.Attribute{
 					Name:        "cors_enabled",
 					Description: `(Optional) If true, the bucket will have CORS enabled for all origins.`,
 				},
 				resource.Attribute{
 					Name:        "versioning",
-					Description: `(Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
+					Description: `(Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires ` + "`" + `access_key` + "`" + ` and ` + "`" + `secret_key` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "certificate",
@@ -1411,6 +1423,10 @@ var (
 					Description: `(optional) The domains the user has permissions access to.`,
 				},
 				resource.Attribute{
+					Name:        "firewall_grant",
+					Description: `(optional) The firewalls the user has permissions access to.`,
+				},
+				resource.Attribute{
 					Name:        "image_grant",
 					Description: `(optional) The images the user has permissions access to.`,
 				},
@@ -1449,6 +1465,10 @@ var (
 				resource.Attribute{
 					Name:        "add_domains",
 					Description: `(optional) If true, this User may add Domains.`,
+				},
+				resource.Attribute{
+					Name:        "add_firewalls",
+					Description: `(optional) If true, this User may add Firewalls.`,
 				},
 				resource.Attribute{
 					Name:        "add_images",
@@ -1503,6 +1523,10 @@ var (
 				resource.Attribute{
 					Name:        "add_domains",
 					Description: `(optional) If true, this User may add Domains.`,
+				},
+				resource.Attribute{
+					Name:        "add_firewalls",
+					Description: `(optional) If true, this User may add Firewalls.`,
 				},
 				resource.Attribute{
 					Name:        "add_images",

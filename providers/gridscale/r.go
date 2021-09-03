@@ -4665,6 +4665,10 @@ var (
 					Description: `(Optional) (one of storage, storage_high, storage_insane).`,
 				},
 				resource.Attribute{
+					Name:        "storage_variant",
+					Description: `(Optional) Storage variant (one of local or distributed). Default: "distributed".`,
+				},
+				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
@@ -4718,6 +4722,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_variant",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{

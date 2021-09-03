@@ -12,10 +12,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_as3",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip as3 resource`,
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_as3 resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"as3",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "as3_json",
@@ -23,7 +30,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_filter",
-					Description: `(Optional) If there are muntiple tenants in a json this attribute helps the user to set a particular tenant to which he want to reflect the changes. Other tenants will neither be created nor be modified`,
+					Description: `(Optional) If there are multiple tenants on a BIG-IP, this attribute helps the user to set a particular tenant to which he want to reflect the changes. Other tenants will neither be created nor be modified.`,
 				},
 				resource.Attribute{
 					Name:        "ignore_metadata",
@@ -31,15 +38,59 @@ var (
 				},
 				resource.Attribute{
 					Name:        "as3_example1.json",
-					Description: `Example AS3 Declarative JSON file with single tenant ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", "Sample_01": { "class": "Tenant", "defaultRouteDomain": 0, "Application_1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.2.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.0.1.100", "192.0.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Example AS3 Declarative JSON file with single tenant ` + "`" + `` + "`" + `` + "`" + `json { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", "Sample_01": { "class": "Tenant", "defaultRouteDomain": 0, "Application_1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.2.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.0.1.100", "192.0.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "as3_example2.json",
-					Description: `Example AS3 Declarative JSON file with multiple tenants ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", "Sample_02": { "class": "Tenant", "defaultRouteDomain": 0, "Application_2": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.2.2.10" ], "pool": "web_pool2" }, "web_pool2": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.2.1.100", "192.2.1.110" ] } ] } } }, "Sample_03": { "class": "Tenant", "defaultRouteDomain": 0, "Application_3": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.1.2.10" ], "pool": "web_pool3" }, "web_pool3": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.3.1.100", "192.3.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Example AS3 Declarative JSON file with multiple tenants ` + "`" + `` + "`" + `` + "`" + `json { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", "Sample_02": { "class": "Tenant", "defaultRouteDomain": 0, "Application_2": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.2.2.10" ], "pool": "web_pool2" }, "web_pool2": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.2.1.100", "192.2.1.110" ] } ] } } }, "Sample_03": { "class": "Tenant", "defaultRouteDomain": 0, "Application_3": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.1.2.10" ], "pool": "web_pool3" }, "web_pool3": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.3.1.100", "192.3.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ` ## Import As3 resources can be imported using the partition name, e.g., ( use comma separated partition names if there are multiple partitions in as3 deployments ) ` + "`" + `` + "`" + `` + "`" + ` terraform import bigip_as3.test Sample_http_01 terraform import bigip_as3.test Sample_http_01,Sample_non_http_01 ` + "`" + `` + "`" + `` + "`" + ` #### Import examples ( single and multiple partitions ) ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bigip_as3.test Sample_http_01 bigip_as3.test: Importing from ID "Sample_http_01"... bigip_as3.test: Import prepared! Prepared bigip_as3 for import bigip_as3.test: Refreshing state... [id=Sample_http_01] Import successful! The resources that were imported are shown above. These resources are now in your Terraform state and will henceforth be managed by Terraform. $ terraform show # bigip_as3.test: resource "bigip_as3" "test" { as3_json = jsonencode( { action = "deploy" class = "AS3" declaration = { Sample_http_01 = { A1 = { class = "Application" jsessionid = { class = "Persist" cookieMethod = "hash" cookieName = "JSESSIONID" persistenceMethod = "cookie" } service = { class = "Service_HTTP" persistenceMethods = [ { use = "jsessionid" }, ] pool = "web_pool" virtualAddresses = [ "10.0.2.10", ] } web_pool = { class = "Pool" members = [ { serverAddresses = [ "192.0.2.10", "192.0.2.11", ] servicePort = 80 }, ] monitors = [ "http", ] } } class = "Tenant" } class = "ADC" id = "UDP_DNS_Sample" label = "UDP_DNS_Sample" remark = "Sample of a UDP DNS Load Balancer Service" schemaVersion = "3.0.0" } persist = true } ) id = "Sample_http_01" tenant_filter = "Sample_http_01" tenant_list = "Sample_http_01" } $ terraform import bigip_as3.test Sample_http_01,Sample_non_http_01 bigip_as3.test: Importing from ID "Sample_http_01,Sample_non_http_01"... bigip_as3.test: Import prepared! Prepared bigip_as3 for import bigip_as3.test: Refreshing state... [id=Sample_http_01,Sample_non_http_01] Import successful! The resources that were imported are shown above. These resources are now in your Terraform state and will henceforth be managed by Terraform. $ terraform show # bigip_as3.test: resource "bigip_as3" "test" { as3_json = jsonencode( { action = "deploy" class = "AS3" declaration = { Sample_http_01 = { A1 = { class = "Application" jsessionid = { class = "Persist" cookieMethod = "hash" cookieName = "JSESSIONID" persistenceMethod = "cookie" } service = { class = "Service_HTTP" persistenceMethods = [ { use = "jsessionid" }, ] pool = "web_pool" virtualAddresses = [ "10.0.2.10", ] } web_pool = { class = "Pool" members = [ { serverAddresses = [ "192.0.2.10", "192.0.2.11", ] servicePort = 80 }, ] monitors = [ "http", ] } } class = "Tenant" } Sample_non_http_01 = { DNS_Service = { Pool1 = { class = "Pool" members = [ { serverAddresses = [ "10.1.10.100", ] servicePort = 53 }, { serverAddresses = [ "10.1.10.101", ] servicePort = 53 }, ] monitors = [ "icmp", ] } class = "Application" service = { class = "Service_UDP" pool = "Pool1" virtualAddresses = [ "10.1.20.121", ] virtualPort = 53 } } class = "Tenant" } class = "ADC" id = "UDP_DNS_Sample" label = "UDP_DNS_Sample" remark = "Sample of a UDP DNS Load Balancer Service" schemaVersion = "3.0.0" } persist = true } ) id = "Sample_http_01,Sample_non_http_01" tenant_filter = "Sample_http_01,Sample_non_http_01" tenant_list = "Sample_http_01,Sample_non_http_01" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "AS3 documentation",
 					Description: `https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/composing-a-declaration.html`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_bigiq_as3",
+			Category:         "BIG-IQ",
+			ShortDescription: `Provides details about bigip_bigiq_as3 resource`,
+			Description:      ``,
+			Keywords: []string{
+				"big",
+				"iq",
+				"bigiq",
+				"as3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bigiq_address",
+					Description: `(Required) Address of the BIG-IQ to which your targer BIG-IP is attached`,
+				},
+				resource.Attribute{
+					Name:        "bigiq_user",
+					Description: `(Required) User name of the BIG-IQ to which your targer BIG-IP is attached`,
+				},
+				resource.Attribute{
+					Name:        "bigiq_password",
+					Description: `(Required) Password of the BIG-IQ to which your targer BIG-IP is attached`,
+				},
+				resource.Attribute{
+					Name:        "as3_json",
+					Description: `(Required) Path/Filename of Declarative AS3 JSON which is a json file used with builtin ` + "`" + `` + "`" + `` + "`" + `file` + "`" + `` + "`" + `` + "`" + ` function`,
+				},
+				resource.Attribute{
+					Name:        "bigiq_example.json",
+					Description: `Example AS3 Declarative JSON file ` + "`" + `` + "`" + `` + "`" + `json { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.7.0", "id": "example-declaration-01", "label": "Task1", "remark": "Task 1 - HTTP Application Service", "target": { "address": "xx.xxx.xx.xxx" }, "Task1": { "class": "Tenant", "MyWebApp1http": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.1.2.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.0.2.33", "192.0.2.13" ], "shareNodes": true } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "AS3 documentation",
+					Description: `https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/big-iq.html`,
+				},
+				resource.Attribute{
+					Name:        "Note",
+					Description: `This resource does not support teanat_filter parameter as BIG-IP As3 resource`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -116,10 +167,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_common_license_manage_bigiq",
-			Category:         "Resources",
+			Category:         "BIG-IQ",
 			ShortDescription: `Provides details about bigip_common_license_manage_bigiq resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"big",
+				"iq",
+				"common",
+				"license",
+				"manage",
+				"bigiq",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigiq_address",
@@ -187,10 +245,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_do",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip do resource`,
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_do resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"do",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "do_json",
@@ -202,7 +267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "example.json",
-					Description: `Example of DO Declarative JSON ` + "`" + `` + "`" + `` + "`" + `hcl { "schemaVersion": "1.0.0", "class": "Device", "async": true, "label": "my BIG-IP declaration for declarative onboarding", "Common": { "class": "Tenant", "hostname": "bigip.example.com", "myLicense": { "class": "License", "licenseType": "regKey", "regKey": "xxxx" }, "admin": { "class": "User", "userType": "regular", "password": "xxxx", "shell": "bash" }, "myProvisioning": { "class": "Provision", "ltm": "nominal", "gtm": "minimum" }, "external": { "class": "VLAN", "tag": 4093, "mtu": 1500, "interfaces": [ { "name": "1.1", "tagged": true } ], "cmpHash": "dst-ip" }, "external-self": { "class": "SelfIp", "address": "x.x.x.x", "vlan": "external", "allowService": "default", "trafficGroup": "traffic-group-local-only" } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Example of DO Declarative JSON ` + "`" + `` + "`" + `` + "`" + `json { "schemaVersion": "1.0.0", "class": "Device", "async": true, "label": "my BIG-IP declaration for declarative onboarding", "Common": { "class": "Tenant", "hostname": "bigip.example.com", "myLicense": { "class": "License", "licenseType": "regKey", "regKey": "xxxx" }, "admin": { "class": "User", "userType": "regular", "password": "xxxx", "shell": "bash" }, "myProvisioning": { "class": "Provision", "ltm": "nominal", "gtm": "minimum" }, "external": { "class": "VLAN", "tag": 4093, "mtu": 1500, "interfaces": [ { "name": "1.1", "tagged": true } ], "cmpHash": "dst-ip" }, "external-self": { "class": "SelfIp", "address": "x.x.x.x", "vlan": "external", "allowService": "default", "trafficGroup": "traffic-group-local-only" } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "DO documentation",
@@ -213,11 +278,47 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_bigip_event_service_discovery",
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_event_service_discovery resource`,
+			Description:      ``,
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"event",
+				"service",
+				"discovery",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "taskid",
+					Description: `(Required) servicediscovery endpoint ( Below example shows how to create endpoing using AS3 )`,
+				},
+				resource.Attribute{
+					Name:        "node",
+					Description: `(Required) Map of node which will be added to pool which will be having node name(id),node address(ip) and node port(port) For more information, please refer below document https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/declarations/discovery.html?highlight=service%20discovery#event-driven-service-discovery Below example shows how to use event-driven service discovery, introduced in AS3 3.9.0. With event-driven service discovery, you POST a declaration with the addressDiscovery property set to event. This creates a new endpoint which you can use to add nodes that does not require an AS3 declaration, so it can be more efficient than using PATCH or POST to add nodes. When you use the event value for addressDiscovery, the system creates the new endpoint with the following syntax: https://<host>/mgmt/shared/service-discovery/task/~<tenant name>~<application name>~<pool name>/nodes. For example, in the following declaration, assuming 192.0.2.14 is our BIG-IP, the endpoint that is created is: https://192.0.2.14/mgmt/shared/service-discovery/task/~Sample_event_sd~My_app~My_pool/nodes Once the endpoint is created( taskid ), you can use it to add nodes to the BIG-IP pool First we show the initial declaration to POST to the BIG-IP system. { "class": "ADC", "schemaVersion": "3.9.0", "id": "Pool", "Sample_event_sd": { "class": "Tenant", "My_app": { "class": "Application", "My_pool": { "class": "Pool", "members": [ { "servicePort": 8080, "addressDiscovery": "static", "serverAddresses": [ "192.0.2.2" ] }, { "servicePort": 8080, "addressDiscovery": "event" } ] } } } } Once the declaration has been sent to the BIG-IP, we can use taskid/id ( ~Sample_event_sd~My_app~My_pool" ) and node list for the resource to dynamically update the node list.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_bigip_fast_application",
-			Category:         "Resources",
+			Category:         "F5 Automation Tool Chain(ATC)",
 			ShortDescription: `Provides details about bigip_fast_application resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"application",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fast_json",
@@ -245,10 +346,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_fast_template",
-			Category:         "Resources",
+			Category:         "F5 Automation Tool Chain(ATC)",
 			ShortDescription: `Provides details about bigip_fast_template resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"template",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source",
@@ -323,10 +432,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_datagroup",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_datagroup resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"datagroup",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -354,10 +469,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_irule",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_irule resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"irule",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -373,10 +494,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_monitor",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_monitor resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"monitor",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "parent",
@@ -464,10 +591,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_node",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_node resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"node",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -498,10 +631,6 @@ var (
 					Description: `(Optional) Default is "user-up" you can set to "user-down" if you want to disable`,
 				},
 				resource.Attribute{
-					Name:        "session",
-					Description: `(Optional) Enables or disables the node for new sessions. Can be set to ` + "`" + `user-enabled` + "`" + ` or ` + "`" + `user-disabled` + "`" + `. (Default: ` + "`" + `user-enabled` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "interval",
 					Description: `(Optional) Specifies the amount of time before sending the next DNS query. Default is 3600. This needs to be specified inside the fqdn (fully qualified domain name).`,
 				},
@@ -515,50 +644,88 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_persistence_profile_cookie",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_persistence_profile_cookie resource`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"persistence",
+				"profile",
+				"cookie",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_persistence_profile_dstaddr",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_persistence_profile_dstaddr resource`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"persistence",
+				"profile",
+				"dstaddr",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_persistence_profile_srcaddr",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_persistence_profile_srcaddr resource`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"persistence",
+				"profile",
+				"srcaddr",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_persistence_profile_ssl",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_persistence_profile_ssl resource`,
 			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"persistence",
+				"profile",
+				"ssl",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_policy",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_policy resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"policy",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "strategy",
@@ -590,10 +757,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_pool",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_pool resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"pool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -641,14 +814,21 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_pool_attachment",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_pool_attachment resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"pool",
+				"attachment",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) Name of the pool to which members should be attached,it should be "full path".The full path is the combination of the partition + name of the pool.(For example ` + "`" + `/Common/my-pool` + "`" + `)`,
+					Description: `(Required) Name of the pool to which members should be attached,it should be "full path".The full path is the combination of the partition + name of the pool.(For example ` + "`" + `/Common/my-pool` + "`" + `) or partition + directory + name of the pool (For example ` + "`" + `/Common/test/my-pool` + "`" + `).When including directory in fullpath we have to make sure it is created in the given partition before using it.`,
 				},
 				resource.Attribute{
 					Name:        "node",
@@ -680,10 +860,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_client_ssl",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_client_ssl resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"client",
+				"ssl",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -767,10 +955,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_fasthttp",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_fasthttp resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"fasthttp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -814,10 +1009,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_fastl4",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_fastl4 resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"fastl4",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -856,15 +1058,100 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "bigip_bigip_ltm_profile_http",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip_ltm_profile_http resource`,
+			Type:             "bigip_bigip_ltm_profile_ftp",
+			Category:         "Local Traffic Manager(LTM)",
+			ShortDescription: `Provides details about bigip_ltm_profile_ftp resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"ftp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) Displays the administrative partition within which this profile resides`,
+				},
+				resource.Attribute{
 					Name:        "defaults_from",
-					Description: `(Required) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
+					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified. ### Arguments which are updated/available in Bigip versions (14.x - 16.x) for FTP profile.For more information refer below KB article https://support.f5.com/csp/article/K08859735`,
+				},
+				resource.Attribute{
+					Name:        "ftps_mode",
+					Description: `(Optional) Specifies if you want to Disallow, Allow, or Require FTPS mode. The default is Disallow`,
+				},
+				resource.Attribute{
+					Name:        "enforce_tlssession_reuse",
+					Description: `(Optional) Specifies, when selected (enabled), that the system enforces the data connection to reuse a TLS session. The default value is unchecked (disabled)`,
+				},
+				resource.Attribute{
+					Name:        "allow_active_mode",
+					Description: `(Optional)Specifies, when selected (enabled), that the system allows FTP Active Transfer mode. The default value is enabled ### Arguments which are updated/available in Bigip versions (12.x - 13.x) for FTP profile.For more information refer below KB article https://support.f5.com/csp/article/K13044205`,
+				},
+				resource.Attribute{
+					Name:        "allow_ftps",
+					Description: `(Optional)Allow explicit FTPS negotiation. The default is disabled.When enabled (selected), that the system allows explicit FTPS negotiation for SSL or TLS.`,
+				},
+				resource.Attribute{
+					Name:        "translate_extended",
+					Description: `(Optional)Specifies, when selected (enabled), that the system uses ensures compatibility between IP version 4 and IP version 6 clients and servers when using the FTP protocol. The default is selected (enabled). ## Common Arguments for all versions`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `(Optional)Specifies, when checked (enabled), that the system inspects FTP traffic for security vulnerabilities using an FTP security profile. This option is available only on systems licensed for BIG-IP ASM.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)Allows you to configure the FTP service to run on an alternate port. The default is 20.`,
+				},
+				resource.Attribute{
+					Name:        "log_profile",
+					Description: `(Optional)Configures the ALG log profile that controls logging`,
+				},
+				resource.Attribute{
+					Name:        "log_publisher",
+					Description: `(Optional)Configures the log publisher that handles events logging for this profile`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)User defined description for FTP profile`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_ltm_profile_http",
+			Category:         "Local Traffic Manager(LTM)",
+			ShortDescription: `Provides details about bigip_ltm_profile_http resource`,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"http",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "proxy_type",
+					Description: `(optional,type ` + "`" + `string` + "`" + `) Specifies the proxy mode for this profile: reverse, explicit, or transparent. The default is ` + "`" + `reverse` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "defaults_from",
+					Description: `(optional,type ` + "`" + `string` + "`" + `) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(optional,type ` + "`" + `string` + "`" + `) Specifies user-defined description.`,
+				},
+				resource.Attribute{
+					Name:        "basic_auth_realm",
+					Description: `(Optional) Specifies a quoted string for the basic authentication realm. The system sends this string to a client whenever authorization fails. The default value is ` + "`" + `none` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "fallback_host",
@@ -872,23 +1159,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fallback_status_codes",
-					Description: `(Optional) Specifies one or more three-digit status codes that can be returned by an HTTP server.`,
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) Specifies one or more three-digit status codes that can be returned by an HTTP server,that should trigger a redirection to the fallback host.`,
+				},
+				resource.Attribute{
+					Name:        "head_erase",
+					Description: `(Optional) Specifies the header string that you want to erase from an HTTP request. Default is ` + "`" + `none` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "head_insert",
+					Description: `(Optional) Specifies a quoted header string that you want to insert into an HTTP request.Default is ` + "`" + `none` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "insert_xforwarded_for",
+					Description: `(Optional) When using connection pooling, which allows clients to make use of other client requests' server-side connections, you can insert the X-Forwarded-For header and specify a client IP address`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_permitted",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) Specifies headers that the BIG-IP system allows in an HTTP response.If you are specifying more than one header, separate the headers with a blank space.`,
+				},
+				resource.Attribute{
+					Name:        "request_chunking",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies how the system handles HTTP content that is chunked by a client. The default is ` + "`" + `preserve` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "response_chunking",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies how the system handles HTTP content that is chunked by a server. The default is ` + "`" + `selective` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "oneconnect_transformations",
 					Description: `(Optional) Enables the system to perform HTTP header transformations for the purpose of keeping server-side connections open. This feature requires configuration of a OneConnect profile`,
 				},
 				resource.Attribute{
-					Name:        "basic_auth_realm",
-					Description: `(Optional) Specifies a quoted string for the basic authentication realm. The system sends this string to a client whenever authorization fails. The default value is none`,
+					Name:        "redirect_rewrite",
+					Description: `(Optional) Specifies whether the system rewrites the URIs that are part of HTTP redirect (3XX) responses. The default is ` + "`" + `none` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "head_insert",
-					Description: `(Optional) Specifies a quoted header string that you want to insert into an HTTP request`,
+					Name:        "request_chunking",
+					Description: `(Optional) Specifies how the system handles HTTP content that is chunked by a client. The default is ` + "`" + `preserve` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_cookies",
+					Description: `(Optional) Type the cookie names for the system to encrypt.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_cookie_secret",
+					Description: `(Optional) Type a passphrase for cookie encryption.`,
 				},
 				resource.Attribute{
 					Name:        "insert_xforwarded_for",
-					Description: `(Optional) When using connection pooling, which allows clients to make use of other client requests' server-side connections, you can insert the X-Forwarded-For header and specify a client IP address ## Import BIG-IP LTM http profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bigip_ltm_profile_http.test-http /Common/test-http ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies, when enabled, that the system inserts an X-Forwarded-For header in an HTTP request with the client IP address, to use with connection pooling. The default is ` + "`" + `Disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lws_width",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the maximum column width for any given line, when inserting an HTTP header in an HTTP request. The default is ` + "`" + `80` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lws_width",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the linear white space (LWS) separator that the system inserts when a header exceeds the maximum width you specify in the LWS Maximum Columns setting.`,
+				},
+				resource.Attribute{
+					Name:        "accept_xff",
+					Description: `(Optional) Enables or disables trusting the client IP address, and statistics from the client IP address, based on the request's XFF (X-forwarded-for) headers, if they exist.`,
+				},
+				resource.Attribute{
+					Name:        "xff_alternative_names",
+					Description: `(Optional) Specifies alternative XFF headers instead of the default X-forwarded-for header. ## Import BIG-IP LTM http profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash terraform import bigip_ltm_profile_http.test-http /Common/test-http ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -896,10 +1231,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_http2",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_http2 resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"http2",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -951,10 +1293,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_httpcompress",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_httpcompress resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"httpcompress",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -974,10 +1323,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_oneconnect",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_oneconnect resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"oneconnect",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partition",
@@ -1021,10 +1377,18 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_server_ssl",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_server_ssl resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"server",
+				"ssl",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
@@ -1100,10 +1464,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_profile_tcp",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_profile_tcp resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"profile",
+				"tcp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partition",
@@ -1147,10 +1518,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_snat",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_snat resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"snat",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1194,10 +1571,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_snatpool",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_snatpool resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"snatpool",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1213,10 +1596,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_virtual_address",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_virtual_address resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"virtual",
+				"address",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1228,7 +1618,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "advertize_route",
-					Description: `(Optional) Enabled dynamic routing of the address`,
+					Description: `(Optional) Enabled dynamic routing of the address ( In versions prior to BIG-IP 13.0.0 HF1, you can configure the Route Advertisement option for a virtual address to be either Enabled or Disabled only. Beginning with BIG-IP 13.0.0 HF1, F5 added more settings for the Route Advertisement option. In addition, the Enabled setting is deprecated and replaced by the Selective setting. For more information, please look into KB article https://support.f5.com/csp/article/K85543242 )`,
 				},
 				resource.Attribute{
 					Name:        "conn_limit",
@@ -1248,7 +1638,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "icmp_echo",
-					Description: `(Optional, Default=true) Enable/Disable ICMP response to the virtual address`,
+					Description: `(Optional, Default=enabled) Specifies how the system sends responses to ICMP echo requests on a per-virtual address basis.`,
 				},
 				resource.Attribute{
 					Name:        "traffic_group",
@@ -1260,10 +1650,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ltm_virtual_server",
-			Category:         "Resources",
+			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_virtual_server resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"virtual",
+				"server",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port",
@@ -1341,16 +1738,25 @@ var (
 					Name:        "fallback_persistence_profile",
 					Description: `(Optional) Specifies a fallback persistence profile for the Virtual Server to use when the default persistence profile is not available.`,
 				},
+				resource.Attribute{
+					Name:        "security_log_profiles",
+					Description: `(Optional) Specifies the log profile applied to the virtual server.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_net_ike_peer",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_net_ike_peer resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"net",
+				"ike",
+				"peer",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1494,10 +1900,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_net_route",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_net_route resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"net",
+				"route",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1517,10 +1927,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_net_selfip",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_net_selfip resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"net",
+				"selfip",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1544,10 +1958,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_net_tunnel",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_net_tunnel resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"net",
+				"tunnel",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1623,10 +2041,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_net_vlan",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_net_vlan resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"net",
+				"vlan",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1654,10 +2076,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ssl_certificate",
-			Category:         "Resources",
+			Category:         "System",
 			ShortDescription: `Provides details about bigip_ssl_certificate resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"ssl",
+				"certificate",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
@@ -1673,10 +2099,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_ssl_key",
-			Category:         "Resources",
+			Category:         "System",
 			ShortDescription: `Provides details about bigip_ssl_key resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"ssl",
+				"key",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
@@ -1692,10 +2122,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_dns",
-			Category:         "Resources",
+			Category:         "System",
 			ShortDescription: `Provides details about bigip_sys_dns resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"dns",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_servers",
@@ -1715,10 +2149,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_iapp",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip iapp resource for BIG-IP`,
+			Category:         "System",
+			ShortDescription: `Provides details about bigip_sys_iapp resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"iapp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1790,10 +2228,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_ntp",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip ntp`,
+			Category:         "System",
+			ShortDescription: `Provides details about bigip_sys_ntp resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"ntp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigip_sys_ntp",
@@ -1821,34 +2263,34 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_provision",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip provision resource for BIG-IP`,
+			Category:         "System",
+			ShortDescription: `Provides details about module provision resource for BIG-IP`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"provision",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigip_sys_provision",
 					Description: `Is the resource which is used to provision big-ip modules like asm, afm, ilx etc`,
 				},
 				resource.Attribute{
-					Name:        "full_path",
-					Description: `Specifies the module being enabled. It can be one among the list [afm, am, apm, asm, avr, cgnat, fps, gtm, ilx, lc, ltm, pem, swg, urldb, sslo, vcmp]`,
+					Name:        "Common/ilx",
+					Description: `Common is the partition and ilx is the module being enabled it could be asm, afm apm etc.`,
 				},
 				resource.Attribute{
 					Name:        "cpuRatio",
-					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
+					Description: `how much cpu resources you need for this resource`,
 				},
 				resource.Attribute{
 					Name:        "diskRatio",
-					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
+					Description: `how much disk space you want to allocate for this resource.`,
 				},
 				resource.Attribute{
 					Name:        "memoryRatio",
-					Description: `(Optional) Use this option only when the level option is set to custom. F5 recommends that you do not modify this option. The default value is zero.`,
-				},
-				resource.Attribute{
-					Name:        "level",
-					Description: `(Optional) Specifies the level of resources that you want to provision for a module. The list of allowed values are [minimum, nominal, dedicated, custom, none]`,
+					Description: `how much memory you want to deidcate for this resource`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1856,10 +2298,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_snmp",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip snmp resource for BIG-IP`,
+			Category:         "System",
+			ShortDescription: `Provides details about SNMP resource for BIG-IP`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"snmp",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sys_contact",
@@ -1879,10 +2325,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_sys_snmp_traps",
-			Category:         "Resources",
-			ShortDescription: `Provides details about bigip snmp_traps resource for BIG-IP`,
+			Category:         "System",
+			ShortDescription: `Provides details about snmp_traps resource for BIG-IP`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"system",
+				"sys",
+				"snmp",
+				"traps",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1910,10 +2361,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "bigip_bigip_traffic_selector",
-			Category:         "Resources",
+			Category:         "Network",
 			ShortDescription: `Provides details about bigip_traffic_selector resource`,
 			Description:      ``,
-			Keywords:         []string{},
+			Keywords: []string{
+				"network",
+				"traffic",
+				"selector",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1963,52 +2418,55 @@ var (
 	resourcesMap = map[string]int{
 
 		"bigip_bigip_as3":                             0,
-		"bigip_bigip_cm_device":                       1,
-		"bigip_bigip_cm_devicegroup":                  2,
-		"bigip_bigip_command":                         3,
-		"bigip_bigip_common_license_manage_bigiq":     4,
-		"bigip_bigip_do":                              5,
-		"bigip_bigip_fast_application":                6,
-		"bigip_bigip_fast_template":                   7,
-		"bigip_bigip_ipsec_policy":                    8,
-		"bigip_bigip_ltm_datagroup":                   9,
-		"bigip_bigip_ltm_irule":                       10,
-		"bigip_bigip_ltm_monitor":                     11,
-		"bigip_bigip_ltm_node":                        12,
-		"bigip_bigip_ltm_persistence_profile_cookie":  13,
-		"bigip_bigip_ltm_persistence_profile_dstaddr": 14,
-		"bigip_bigip_ltm_persistence_profile_srcaddr": 15,
-		"bigip_bigip_ltm_persistence_profile_ssl":     16,
-		"bigip_bigip_ltm_policy":                      17,
-		"bigip_bigip_ltm_pool":                        18,
-		"bigip_bigip_ltm_pool_attachment":             19,
-		"bigip_bigip_ltm_profile_client_ssl":          20,
-		"bigip_bigip_ltm_profile_fasthttp":            21,
-		"bigip_bigip_ltm_profile_fastl4":              22,
-		"bigip_bigip_ltm_profile_http":                23,
-		"bigip_bigip_ltm_profile_http2":               24,
-		"bigip_bigip_ltm_profile_httpcompress":        25,
-		"bigip_bigip_ltm_profile_oneconnect":          26,
-		"bigip_bigip_ltm_profile_server_ssl":          27,
-		"bigip_bigip_ltm_profile_tcp":                 28,
-		"bigip_bigip_ltm_snat":                        29,
-		"bigip_bigip_ltm_snatpool":                    30,
-		"bigip_bigip_ltm_virtual_address":             31,
-		"bigip_bigip_ltm_virtual_server":              32,
-		"bigip_bigip_net_ike_peer":                    33,
-		"bigip_bigip_net_route":                       34,
-		"bigip_bigip_net_selfip":                      35,
-		"bigip_bigip_net_tunnel":                      36,
-		"bigip_bigip_net_vlan":                        37,
-		"bigip_bigip_ssl_certificate":                 38,
-		"bigip_bigip_ssl_key":                         39,
-		"bigip_bigip_sys_dns":                         40,
-		"bigip_bigip_sys_iapp":                        41,
-		"bigip_bigip_sys_ntp":                         42,
-		"bigip_bigip_sys_provision":                   43,
-		"bigip_bigip_sys_snmp":                        44,
-		"bigip_bigip_sys_snmp_traps":                  45,
-		"bigip_bigip_traffic_selector":                46,
+		"bigip_bigip_bigiq_as3":                       1,
+		"bigip_bigip_cm_device":                       2,
+		"bigip_bigip_cm_devicegroup":                  3,
+		"bigip_bigip_command":                         4,
+		"bigip_bigip_common_license_manage_bigiq":     5,
+		"bigip_bigip_do":                              6,
+		"bigip_bigip_event_service_discovery":         7,
+		"bigip_bigip_fast_application":                8,
+		"bigip_bigip_fast_template":                   9,
+		"bigip_bigip_ipsec_policy":                    10,
+		"bigip_bigip_ltm_datagroup":                   11,
+		"bigip_bigip_ltm_irule":                       12,
+		"bigip_bigip_ltm_monitor":                     13,
+		"bigip_bigip_ltm_node":                        14,
+		"bigip_bigip_ltm_persistence_profile_cookie":  15,
+		"bigip_bigip_ltm_persistence_profile_dstaddr": 16,
+		"bigip_bigip_ltm_persistence_profile_srcaddr": 17,
+		"bigip_bigip_ltm_persistence_profile_ssl":     18,
+		"bigip_bigip_ltm_policy":                      19,
+		"bigip_bigip_ltm_pool":                        20,
+		"bigip_bigip_ltm_pool_attachment":             21,
+		"bigip_bigip_ltm_profile_client_ssl":          22,
+		"bigip_bigip_ltm_profile_fasthttp":            23,
+		"bigip_bigip_ltm_profile_fastl4":              24,
+		"bigip_bigip_ltm_profile_ftp":                 25,
+		"bigip_bigip_ltm_profile_http":                26,
+		"bigip_bigip_ltm_profile_http2":               27,
+		"bigip_bigip_ltm_profile_httpcompress":        28,
+		"bigip_bigip_ltm_profile_oneconnect":          29,
+		"bigip_bigip_ltm_profile_server_ssl":          30,
+		"bigip_bigip_ltm_profile_tcp":                 31,
+		"bigip_bigip_ltm_snat":                        32,
+		"bigip_bigip_ltm_snatpool":                    33,
+		"bigip_bigip_ltm_virtual_address":             34,
+		"bigip_bigip_ltm_virtual_server":              35,
+		"bigip_bigip_net_ike_peer":                    36,
+		"bigip_bigip_net_route":                       37,
+		"bigip_bigip_net_selfip":                      38,
+		"bigip_bigip_net_tunnel":                      39,
+		"bigip_bigip_net_vlan":                        40,
+		"bigip_bigip_ssl_certificate":                 41,
+		"bigip_bigip_ssl_key":                         42,
+		"bigip_bigip_sys_dns":                         43,
+		"bigip_bigip_sys_iapp":                        44,
+		"bigip_bigip_sys_ntp":                         45,
+		"bigip_bigip_sys_provision":                   46,
+		"bigip_bigip_sys_snmp":                        47,
+		"bigip_bigip_sys_snmp_traps":                  48,
+		"bigip_bigip_traffic_selector":                49,
 	}
 )
 

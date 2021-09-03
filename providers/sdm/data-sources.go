@@ -2256,6 +2256,50 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: ``,
 				},
@@ -2601,6 +2645,38 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "tls_required",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port",
 					Description: ``,
 				},
 				resource.Attribute{
@@ -4822,6 +4898,50 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: ``,
 				},
@@ -5167,6 +5287,38 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "tls_required",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port",
 					Description: ``,
 				},
 				resource.Attribute{
@@ -5651,6 +5803,10 @@ A Role is a collection of access grants, and typically corresponds to a team, Ac
 					Description: `(Optional) Unique human-readable name of the Role.`,
 				},
 				resource.Attribute{
+					Name:        "access_rules",
+					Description: `(Optional) AccessRules JSON encoded access rules data.`,
+				},
+				resource.Attribute{
 					Name:        "composite",
 					Description: `(Optional) True if the Role is a composite role. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by a Roles data source:`,
 				},
@@ -5673,6 +5829,10 @@ A Role is a collection of access grants, and typically corresponds to a team, Ac
 				resource.Attribute{
 					Name:        "name",
 					Description: `Unique human-readable name of the Role.`,
+				},
+				resource.Attribute{
+					Name:        "access_rules",
+					Description: `AccessRules JSON encoded access rules data.`,
 				},
 				resource.Attribute{
 					Name:        "composite",
@@ -5703,6 +5863,10 @@ A Role is a collection of access grants, and typically corresponds to a team, Ac
 				resource.Attribute{
 					Name:        "name",
 					Description: `Unique human-readable name of the Role.`,
+				},
+				resource.Attribute{
+					Name:        "access_rules",
+					Description: `AccessRules JSON encoded access rules data.`,
 				},
 				resource.Attribute{
 					Name:        "composite",

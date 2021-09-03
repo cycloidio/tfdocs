@@ -11,6 +11,288 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_active_directory_domain_service",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an Active Directory Domain Service.`,
+			Description: `
+
+Gets information about an Active Directory Domain Service.
+
+-> **Supported Modes:** At present this data source only supports **User Forest** mode and _not_ **Resource Forest** mode. [Read more](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/concepts-resource-forest) about the different operation modes for this service.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The display name for your managed Active Directory Domain Service resource. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which the Domain Service should exist. Changing this forces a new resource to be created. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Domain Service.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `A unique ID for the managed domain deployment.`,
+				},
+				resource.Attribute{
+					Name:        "domain_configuration_type",
+					Description: `The forest type used by the managed domain. One of ` + "`" + `ResourceTrusting` + "`" + `, for a _Resource Forest_, or blank, for a _User Forest_.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
+				},
+				resource.Attribute{
+					Name:        "filtered_sync_enabled",
+					Description: `Whether group-based filtered sync (also called scoped synchronisation) is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "secure_ldap",
+					Description: `A ` + "`" + `secure_ldap` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Domain Service exists.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `A ` + "`" + `notifications` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "initial_replica_set",
+					Description: `A ` + "`" + `replica_set` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "additional_replica_sets",
+					Description: `Zero or more ` + "`" + `replica_set` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `A ` + "`" + `security` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `The SKU of the Domain Service resource. One of ` + "`" + `Standard` + "`" + `, ` + "`" + `Enterprise` + "`" + ` or ` + "`" + `Premium` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource. --- A ` + "`" + `secure_ldap` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether secure LDAP is enabled for the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_enabled",
+					Description: `Whether external access to LDAPS over the Internet, is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_ip_address",
+					Description: `The publicly routable IP address for LDAPS clients to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "pfx_certificate",
+					Description: `The certificate to use for LDAPS, as a base64-encoded TripleDES-SHA1 encrypted PKCS#12 bundle (PFX file). --- A ` + "`" + `notifications` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "additional_recipients",
+					Description: `A list of additional email addresses to notify when there are alerts in the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "notify_dc_admins",
+					Description: `Whethermembers of the _AAD DC Administrators_ group are notified when there are alerts in the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "notify_global_admins",
+					Description: `Whether all Global Administrators are notified when there are alerts in the managed domain. --- A ` + "`" + `replica_set` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "domain_controller_ip_addresses",
+					Description: `A list of subnet IP addresses for the domain controllers in the replica set, typically two.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_ip_address",
+					Description: `The publicly routable IP address for the domain controllers in the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location in which the replica set resides.`,
+				},
+				resource.Attribute{
+					Name:        "replica_set_id",
+					Description: `A unique ID for the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "service_status",
+					Description: `The current service status for the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet in which the replica set resides. --- A ` + "`" + `security` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ntlm_v1_enabled",
+					Description: `Whether legacy NTLM v1 support is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sync_kerberos_passwords",
+					Description: `Whether Kerberos password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "sync_ntlm_passwords",
+					Description: `Whether NTLM password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "sync_on_prem_passwords",
+					Description: `Whether on-premises password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "tls_v1_enabled",
+					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Domain Service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Domain Service.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `A unique ID for the managed domain deployment.`,
+				},
+				resource.Attribute{
+					Name:        "domain_configuration_type",
+					Description: `The forest type used by the managed domain. One of ` + "`" + `ResourceTrusting` + "`" + `, for a _Resource Forest_, or blank, for a _User Forest_.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
+				},
+				resource.Attribute{
+					Name:        "filtered_sync_enabled",
+					Description: `Whether group-based filtered sync (also called scoped synchronisation) is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "secure_ldap",
+					Description: `A ` + "`" + `secure_ldap` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the Domain Service exists.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `A ` + "`" + `notifications` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "initial_replica_set",
+					Description: `A ` + "`" + `replica_set` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "additional_replica_sets",
+					Description: `Zero or more ` + "`" + `replica_set` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `A ` + "`" + `security` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `The SKU of the Domain Service resource. One of ` + "`" + `Standard` + "`" + `, ` + "`" + `Enterprise` + "`" + ` or ` + "`" + `Premium` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource. --- A ` + "`" + `secure_ldap` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether secure LDAP is enabled for the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_enabled",
+					Description: `Whether external access to LDAPS over the Internet, is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_ip_address",
+					Description: `The publicly routable IP address for LDAPS clients to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "pfx_certificate",
+					Description: `The certificate to use for LDAPS, as a base64-encoded TripleDES-SHA1 encrypted PKCS#12 bundle (PFX file). --- A ` + "`" + `notifications` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "additional_recipients",
+					Description: `A list of additional email addresses to notify when there are alerts in the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "notify_dc_admins",
+					Description: `Whethermembers of the _AAD DC Administrators_ group are notified when there are alerts in the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "notify_global_admins",
+					Description: `Whether all Global Administrators are notified when there are alerts in the managed domain. --- A ` + "`" + `replica_set` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "domain_controller_ip_addresses",
+					Description: `A list of subnet IP addresses for the domain controllers in the replica set, typically two.`,
+				},
+				resource.Attribute{
+					Name:        "external_access_ip_address",
+					Description: `The publicly routable IP address for the domain controllers in the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location in which the replica set resides.`,
+				},
+				resource.Attribute{
+					Name:        "replica_set_id",
+					Description: `A unique ID for the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "service_status",
+					Description: `The current service status for the replica set.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet in which the replica set resides. --- A ` + "`" + `security` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ntlm_v1_enabled",
+					Description: `Whether legacy NTLM v1 support is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sync_kerberos_passwords",
+					Description: `Whether Kerberos password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "sync_ntlm_passwords",
+					Description: `Whether NTLM password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "sync_on_prem_passwords",
+					Description: `Whether on-premises password hashes are synchronized to the managed domain.`,
+				},
+				resource.Attribute{
+					Name:        "tls_v1_enabled",
+					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Domain Service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_advisor_recommendations",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Advisor Recommendations.`,
@@ -1433,7 +1715,15 @@ Use this data source to access information about an existing App Service.
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
-					Description: `Are WebSockets enabled for this App Service? --- A ` + "`" + `source_control` + "`" + ` block exports the following:`,
+					Description: `Are WebSockets enabled for this App Service?`,
+				},
+				resource.Attribute{
+					Name:        "acr_use_managed_identity_credentials",
+					Description: `Are Managed Identity Credentials used for Azure Container Registry pull.`,
+				},
+				resource.Attribute{
+					Name:        "acr_user_managed_identity_client_id",
+					Description: `The User Managed Identity Client Id. --- A ` + "`" + `source_control` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "repo_url",
@@ -1707,7 +1997,15 @@ Use this data source to access information about an existing App Service.
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
-					Description: `Are WebSockets enabled for this App Service? --- A ` + "`" + `source_control` + "`" + ` block exports the following:`,
+					Description: `Are WebSockets enabled for this App Service?`,
+				},
+				resource.Attribute{
+					Name:        "acr_use_managed_identity_credentials",
+					Description: `Are Managed Identity Credentials used for Azure Container Registry pull.`,
+				},
+				resource.Attribute{
+					Name:        "acr_user_managed_identity_client_id",
+					Description: `The User Managed Identity Client Id. --- A ` + "`" + `source_control` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "repo_url",
@@ -2116,8 +2414,44 @@ Use this data source to access information about an existing 3rd Generation (v3)
 					Description: `The ID of the v3 App Service Environment.`,
 				},
 				resource.Attribute{
+					Name:        "allow_new_private_endpoint_connections",
+					Description: `Are new Private Endpoint Connections allowed.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_setting",
 					Description: `A ` + "`" + `cluster_setting` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_host_count",
+					Description: `The number of Dedicated Hosts used by this ASEv3.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffix",
+					Description: `the DNS suffix for this App Service Environment V3.`,
+				},
+				resource.Attribute{
+					Name:        "external_inbound_ip_addresses",
+					Description: `The external outbound IP addresses of the App Service Environment V3.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_network_dependencies",
+					Description: `An Inbound Network Dependencies block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "internal_inbound_ip_addresses",
+					Description: `The internal outbound IP addresses of the App Service Environment V3.`,
+				},
+				resource.Attribute{
+					Name:        "internal_load_balancing_mode",
+					Description: `The Internal Load Balancing Mode of this ASEv3.`,
+				},
+				resource.Attribute{
+					Name:        "ip_ssl_address_count",
+					Description: `The number of IP SSL addresses reserved for the App Service Environment V3.`,
+				},
+				resource.Attribute{
+					Name:        "linux_outbound_ip_addresses",
+					Description: `The list of Outbound IP Addresses of Linux based Apps in this App Service Environment V3.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -2132,6 +2466,10 @@ Use this data source to access information about an existing 3rd Generation (v3)
 					Description: `The ID of the v3 App Service Environment Subnet.`,
 				},
 				resource.Attribute{
+					Name:        "windows_outbound_ip_addresses",
+					Description: `Outbound addresses of Windows based Apps in this App Service Environment V3.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to the v3 App Service Environment. --- A ` + "`" + `cluster_setting` + "`" + ` block exports the following:`,
 				},
@@ -2141,7 +2479,19 @@ Use this data source to access information about an existing 3rd Generation (v3)
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value for the Cluster Setting. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value for the Cluster Setting. --- An ` + "`" + `inbound_network_dependencies` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A short description of the purpose of the network traffic.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `A list of IP addresses that network traffic will originate from in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `The ports that network traffic will arrive to the App Service Environment V3 on. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2215,7 +2565,11 @@ Use this data source to access information about an existing App Service Plan (f
 				},
 				resource.Attribute{
 					Name:        "maximum_number_of_workers",
-					Description: `The maximum number of workers supported with the App Service Plan's sku. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
+					Description: `The maximum number of workers supported with the App Service Plan's sku.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `App Service Plan perform availability zone balancing. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -2281,7 +2635,11 @@ Use this data source to access information about an existing App Service Plan (f
 				},
 				resource.Attribute{
 					Name:        "maximum_number_of_workers",
-					Description: `The maximum number of workers supported with the App Service Plan's sku. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
+					Description: `The maximum number of workers supported with the App Service Plan's sku.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `App Service Plan perform availability zone balancing. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -2395,6 +2753,10 @@ Use this data source to access information about an existing Application Insight
 					Description: `The retention period in days.`,
 				},
 				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `The id of the associated Log Analytics workspace`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `Tags applied to the component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
@@ -2431,6 +2793,10 @@ Use this data source to access information about an existing Application Insight
 				resource.Attribute{
 					Name:        "retention_in_days",
 					Description: `The retention period in days.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `The id of the associated Log Analytics workspace`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -4122,7 +4488,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "enable_multiple_write_locations",
-					Description: `If multi-master is enabled for this Cosmos DB account. ` + "`" + `consistency_policy` + "`" + ` The current consistency Settings for this CosmosDB account with the following properties:`,
+					Description: `If multiple write locations are enabled for this Cosmos DB account. ` + "`" + `consistency_policy` + "`" + ` The current consistency Settings for this CosmosDB account with the following properties:`,
 				},
 				resource.Attribute{
 					Name:        "consistency_level",
@@ -4166,19 +4532,19 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "primary_key",
-					Description: `The Primary master key for the CosmosDB Account.`,
+					Description: `The Primary key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The Secondary master key for the CosmosDB Account.`,
+					Description: `The Secondary key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "primary_readonly_key",
-					Description: `The Primary read-only master Key for the CosmosDB Account.`,
+					Description: `The Primary read-only Key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_readonly_key",
-					Description: `The Secondary read-only master key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4236,7 +4602,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "enable_multiple_write_locations",
-					Description: `If multi-master is enabled for this Cosmos DB account. ` + "`" + `consistency_policy` + "`" + ` The current consistency Settings for this CosmosDB account with the following properties:`,
+					Description: `If multiple write locations are enabled for this Cosmos DB account. ` + "`" + `consistency_policy` + "`" + ` The current consistency Settings for this CosmosDB account with the following properties:`,
 				},
 				resource.Attribute{
 					Name:        "consistency_level",
@@ -4280,23 +4646,50 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "primary_key",
-					Description: `The Primary master key for the CosmosDB Account.`,
+					Description: `The Primary key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The Secondary master key for the CosmosDB Account.`,
+					Description: `The Secondary key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "primary_readonly_key",
-					Description: `The Primary read-only master Key for the CosmosDB Account.`,
+					Description: `The Primary read-only Key for the CosmosDB Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_readonly_key",
-					Description: `The Secondary read-only master key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the CosmosDB Account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cosmosdb_mongo_database",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Cosmos DB Mongo Database.`,
+			Description: `
+
+Use this data source to access information about an existing Cosmos DB Mongo Database.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Cosmos DB Mongo Database.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Cosmos DB Mongo Database. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Cosmos Mongo Database.`,
 				},
 			},
 		},
@@ -4400,6 +4793,61 @@ Use this data source to access information about an existing Data Lake Store.
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Data Lake Store.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_data_protection_backup_vault",
+			Category:         "Data Sources",
+			ShortDescription: `Manages a Backup Vault.`,
+			Description: `
+
+Use this data source to access information about an existing Backup Vault.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Backup Vault.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Backup Vault exists.`,
+				},
+				resource.Attribute{
+					Name:        "datastore_type",
+					Description: `Specifies the type of the data store.`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `Specifies the backup storage redundancy.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `A ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags which are assigned to the Backup Vault. --- ` + "`" + `identity` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Specifies the identity type of the Backup Vault.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Identity of this Backup Vault.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this Backup Vault. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Backup Vault.`,
 				},
 			},
 		},
@@ -4931,6 +5379,102 @@ Use this data source to access information about an existing Databricks workspac
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Databricks Workspace.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_databricks_workspace_private_endpoint_connection",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information on an existing Databricks Workspace private endpoint connection state`,
+			Description: `
+
+Use this data source to access information on an existing Databricks Workspace private endpoint connection state.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The Name of the Resource Group where the Databricks Workspace exists. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `The resource ID of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint_id",
+					Description: `The resource ID of the Private Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "connections",
+					Description: `A ` + "`" + `connections` + "`" + ` block as documented below. --- A ` + "`" + `connections` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "workspace_private_endpoint_id",
+					Description: `The Databricks Workspace resource ID for the private link endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of a private endpoint connection. Possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + ` or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the current state of a private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "action_required",
+					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Databricks Workspace Private Endpoint Connection.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `The resource ID of the Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint_id",
+					Description: `The resource ID of the Private Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "connections",
+					Description: `A ` + "`" + `connections` + "`" + ` block as documented below. --- A ` + "`" + `connections` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "workspace_private_endpoint_id",
+					Description: `The Databricks Workspace resource ID for the private link endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of a private endpoint connection. Possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + ` or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the current state of a private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "action_required",
+					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Databricks Workspace Private Endpoint Connection.`,
 				},
 			},
 		},
@@ -6649,8 +7193,20 @@ Use this data source to access information about a Function App.
 					Description: `Is the app loaded at all times?`,
 				},
 				resource.Attribute{
+					Name:        "app_scale_limit",
+					Description: `The number of workers this function app can scale out to. Only applicable to apps on the Consumption and Premium plan.`,
+				},
+				resource.Attribute{
 					Name:        "cors",
 					Description: `A ` + "`" + `cors` + "`" + ` block as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "dotnet_framework_version",
+					Description: `The version of the .net framework's CLR used in this App Service.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_instance_minimum",
+					Description: `The number of minimum instances for this function app. Only applicable to apps on the Premium plan.`,
 				},
 				resource.Attribute{
 					Name:        "http2_enabled",
@@ -6671,6 +7227,10 @@ Use this data source to access information about a Function App.
 				resource.Attribute{
 					Name:        "pre_warmed_instance_count",
 					Description: `The number of pre-warmed instances for this function app. Only applicable to apps on the Premium plan.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_scale_monitoring_enabled",
+					Description: `Is Runtime Scale Monitoring Enabled on this function app?`,
 				},
 				resource.Attribute{
 					Name:        "scm_use_main_ip_restriction",
@@ -6867,8 +7427,20 @@ Use this data source to access information about a Function App.
 					Description: `Is the app loaded at all times?`,
 				},
 				resource.Attribute{
+					Name:        "app_scale_limit",
+					Description: `The number of workers this function app can scale out to. Only applicable to apps on the Consumption and Premium plan.`,
+				},
+				resource.Attribute{
 					Name:        "cors",
 					Description: `A ` + "`" + `cors` + "`" + ` block as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "dotnet_framework_version",
+					Description: `The version of the .net framework's CLR used in this App Service.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_instance_minimum",
+					Description: `The number of minimum instances for this function app. Only applicable to apps on the Premium plan.`,
 				},
 				resource.Attribute{
 					Name:        "http2_enabled",
@@ -6889,6 +7461,10 @@ Use this data source to access information about a Function App.
 				resource.Attribute{
 					Name:        "pre_warmed_instance_count",
 					Description: `The number of pre-warmed instances for this function app. Only applicable to apps on the Premium plan.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_scale_monitoring_enabled",
+					Description: `Is Runtime Scale Monitoring Enabled on this function app?`,
 				},
 				resource.Attribute{
 					Name:        "scm_use_main_ip_restriction",
@@ -7643,7 +8219,11 @@ Use this data source to access information about an existing IoTHub.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the IoTHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the IoTHub.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The Hostname of the IoTHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10324,6 +10904,65 @@ Use this data source to access information about an existing Load Balancer Rule.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_local_network_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Local Network Gateway.`,
+			Description: `
+
+Use this data source to access information about an existing Local Network Gateway.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Local Network Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Local Network Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "address_space",
+					Description: `The list of string CIDRs representing the address spaces the gateway exposes.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `A ` + "`" + `bgp_settings` + "`" + ` block as defined below containing the Local Network Gateway's BGP speaker settings.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_address",
+					Description: `The gateway IP address the Local Network Gateway uses.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_fqdn",
+					Description: `The gateway FQDN the Local Network Gateway uses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Local Network Gateway. --- ` + "`" + `bgp_settings` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `The BGP speaker's ASN.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_peering_address",
+					Description: `The BGP peering address and BGP identifier of this BGP speaker.`,
+				},
+				resource.Attribute{
+					Name:        "peer_weight",
+					Description: `The weight added to routes learned from this BGP speaker. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Local Network Gateway.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_log_analytics_workspace",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Log Analytics (formally Operational Insights) Workspace.`,
@@ -10667,8 +11306,36 @@ Use this data source to access information about an existing Maintenance Configu
 					Description: `The scope of the Maintenance Configuration.`,
 				},
 				resource.Attribute{
+					Name:        "visibility",
+					Description: `The visibility of the Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `A ` + "`" + `window` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `The properties assigned to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. --- A ` + "`" + `window` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "start_date_time",
+					Description: `Effective start date of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date_time",
+					Description: `Effective expiration date of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `The duration of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `The time zone for the maintenance window.`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10685,8 +11352,36 @@ Use this data source to access information about an existing Maintenance Configu
 					Description: `The scope of the Maintenance Configuration.`,
 				},
 				resource.Attribute{
+					Name:        "visibility",
+					Description: `The visibility of the Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `A ` + "`" + `window` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `The properties assigned to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. --- A ` + "`" + `window` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "start_date_time",
+					Description: `Effective start date of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date_time",
+					Description: `Effective expiration date of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `The duration of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `The time zone for the maintenance window.`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13438,7 +14133,15 @@ Use this data source to access information about Service Tags.
 				},
 				resource.Attribute{
 					Name:        "address_prefixes",
-					Description: `List of address prefixes for the service type (and optionally a specific region). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of address prefixes for the service type (and optionally a specific region).`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_cidrs",
+					Description: `List of IPv4 addresses for the service type (and optionally a specific region)`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidrs",
+					Description: `List of IPv6 addresses for the service type (and optionally a specific region) ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15091,6 +15794,10 @@ Use this data source to access information about an existing Redis Cache
 					Description: `the Weekday name for the patch item`,
 				},
 				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `The ISO 8601 timespan which specifies the amount of time the Redis Cache can be updated.`,
+				},
+				resource.Attribute{
 					Name:        "start_hour_utc",
 					Description: `The Start Hour for maintenance in UTC ~>`,
 				},
@@ -15203,6 +15910,10 @@ Use this data source to access information about an existing Redis Cache
 				resource.Attribute{
 					Name:        "day_of_week",
 					Description: `the Weekday name for the patch item`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `The ISO 8601 timespan which specifies the amount of time the Redis Cache can be updated.`,
 				},
 				resource.Attribute{
 					Name:        "start_hour_utc",
@@ -16001,7 +16712,15 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The secondary access key for the authorization rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string_alias",
+					Description: `The alias Primary Connection String for the ServiceBus Namespace, if the namespace is Geo DR paired.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string_alias",
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16027,7 +16746,15 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The secondary access key for the authorization rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string_alias",
+					Description: `The alias Primary Connection String for the ServiceBus Namespace, if the namespace is Geo DR paired.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string_alias",
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16149,7 +16876,15 @@ Use this data source to access information about an existing ServiceBus Queue Au
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The Secondary Connection String for the ServiceBus Queue authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Connection String for the ServiceBus Queue authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string_alias",
+					Description: `The alias Primary Connection String for the ServiceBus Namespace, if the namespace is Geo DR paired.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string_alias",
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16386,7 +17121,15 @@ Use this data source to access information about a ServiceBus Topic Authorizatio
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The Secondary Connection String for the ServiceBus Topic authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Connection String for the ServiceBus Topic authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string_alias",
+					Description: `The alias Primary Connection String for the ServiceBus Namespace, if the namespace is Geo DR paired.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string_alias",
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16412,7 +17155,15 @@ Use this data source to access information about a ServiceBus Topic Authorizatio
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The Secondary Connection String for the ServiceBus Topic authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Connection String for the ServiceBus Topic authorization Rule.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string_alias",
+					Description: `The alias Primary Connection String for the ServiceBus Namespace, if the namespace is Geo DR paired.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string_alias",
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18352,6 +19103,10 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 					Description: `(Optional) Only permit ` + "`" + `https` + "`" + ` access. If ` + "`" + `false` + "`" + `, both ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + ` are permitted. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Optional) IP address, or a range of IP addresses, from which to accept requests. When specifying a range, note that the range is inclusive.`,
+				},
+				resource.Attribute{
 					Name:        "signed_version",
 					Description: `(Optional) Specifies the signed storage service version to use to authorize requests made with this account SAS. Defaults to ` + "`" + `2017-07-29` + "`" + `.`,
 				},
@@ -18860,6 +19615,61 @@ Use this data source to access information about an existing Storage Management 
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Storage Management Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_share",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing File Share.`,
+			Description: `
+
+Use this data source to access information about an existing File Share.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the File Share.`,
+				},
+				resource.Attribute{
+					Name:        "quota",
+					Description: `The quota of the File Share in GB.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `A map of custom file share metadata.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `One or more acl blocks as defined below. --- A ` + "`" + `acl` + "`" + ` block has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID which should be used for this Shared Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy",
+					Description: `An ` + "`" + `access_policy` + "`" + ` block as defined below. --- A ` + "`" + `access_policy` + "`" + ` block has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `The permissions which should be associated with this Shared Identifier. Possible value is combination of ` + "`" + `r` + "`" + ` (read), ` + "`" + `w` + "`" + ` (write), ` + "`" + `d` + "`" + ` (delete), and ` + "`" + `l` + "`" + ` (list).`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `The time at which this Access Policy should be valid from, in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) format.`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `The time at which this Access Policy should be valid until, in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) format. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Storage.`,
 				},
 			},
 		},
@@ -20875,6 +21685,182 @@ Use this data source to access information about an existing Vmware Private Clou
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_vpn_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `Manages a VPN Gateway within a Virtual Hub.`,
+			Description: `
+
+Use this data source to access information about an existing VPN Gateway within a Virtual Hub.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Name of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group where the VPN Gateway exists. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the VPN Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub_id",
+					Description: `The ID of the Virtual Hub within which this VPN Gateway has been created.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `A ` + "`" + `bgp_settings` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "scale_unit",
+					Description: `The Scale Unit of this VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the VPN Gateway. --- A ` + "`" + `bgp_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `The ASN of the BGP Speaker.`,
+				},
+				resource.Attribute{
+					Name:        "peer_weight",
+					Description: `The weight added to Routes learned from this BGP Speaker.`,
+				},
+				resource.Attribute{
+					Name:        "instance_0_bgp_peering_address",
+					Description: `An ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_1_bgp_peering_address",
+					Description: `An ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below. --- A ` + "`" + `instance_bgp_peering_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_ips",
+					Description: `A list of custom BGP peering addresses to assigned to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `A ` + "`" + `bgp_settings` + "`" + ` block as defined below. --- A ` + "`" + `bgp_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bgp_peering_address",
+					Description: `The Address which should be used for the BGP Peering.`,
+				},
+				resource.Attribute{
+					Name:        "instance_0_bgp_peering_address",
+					Description: `an ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_1_bgp_peering_address",
+					Description: `an ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below. --- A ` + "`" + `instance_bgp_peering_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip_configuration_id",
+					Description: `The pre-defined id of VPN Gateway Ip Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "default_ips",
+					Description: `The list of default BGP peering addresses which belong to the pre-defined VPN Gateway IP configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_ips",
+					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the VPN Gateway.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location where the VPN Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_hub_id",
+					Description: `The ID of the Virtual Hub within which this VPN Gateway has been created.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `A ` + "`" + `bgp_settings` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "scale_unit",
+					Description: `The Scale Unit of this VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the VPN Gateway. --- A ` + "`" + `bgp_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `The ASN of the BGP Speaker.`,
+				},
+				resource.Attribute{
+					Name:        "peer_weight",
+					Description: `The weight added to Routes learned from this BGP Speaker.`,
+				},
+				resource.Attribute{
+					Name:        "instance_0_bgp_peering_address",
+					Description: `An ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_1_bgp_peering_address",
+					Description: `An ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below. --- A ` + "`" + `instance_bgp_peering_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_ips",
+					Description: `A list of custom BGP peering addresses to assigned to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `A ` + "`" + `bgp_settings` + "`" + ` block as defined below. --- A ` + "`" + `bgp_settings` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bgp_peering_address",
+					Description: `The Address which should be used for the BGP Peering.`,
+				},
+				resource.Attribute{
+					Name:        "instance_0_bgp_peering_address",
+					Description: `an ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_1_bgp_peering_address",
+					Description: `an ` + "`" + `instance_bgp_peering_address` + "`" + ` block as defined below. --- A ` + "`" + `instance_bgp_peering_address` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip_configuration_id",
+					Description: `The pre-defined id of VPN Gateway Ip Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "default_ips",
+					Description: `The list of default BGP peering addresses which belong to the pre-defined VPN Gateway IP configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_ips",
+					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the VPN Gateway.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_web_application_firewall_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Web Application Firewall Policy.`,
@@ -20901,206 +21887,213 @@ Use this data source to access information about an existing Web Application Fir
 
 	dataSourcesMap = map[string]int{
 
-		"azurerm_advisor_recommendations":                    0,
-		"azurerm_api_management":                             1,
-		"azurerm_api_management_api":                         2,
-		"azurerm_api_management_api_version_set":             3,
-		"azurerm_api_management_gateway":                     4,
-		"azurerm_api_management_group":                       5,
-		"azurerm_api_management_product":                     6,
-		"azurerm_api_management_user":                        7,
-		"azurerm_app_configuration":                          8,
-		"azurerm_app_service":                                9,
-		"azurerm_app_service_certificate":                    10,
-		"azurerm_app_service_certificate_order":              11,
-		"azurerm_app_service_environment":                    12,
-		"azurerm_app_service_environment_v3":                 13,
-		"azurerm_app_service_plan":                           14,
-		"azurerm_application_gateway":                        15,
-		"azurerm_application_insights":                       16,
-		"azurerm_application_security_group":                 17,
-		"azurerm_attestation":                                18,
-		"azurerm_automation_account":                         19,
-		"azurerm_automation_variable_bool":                   20,
-		"azurerm_automation_variable_datetime":               21,
-		"azurerm_automation_variable_int":                    22,
-		"azurerm_automation_variable_string":                 23,
-		"azurerm_availability_set":                           24,
-		"azurerm_backup_policy_vm":                           25,
-		"azurerm_batch_account":                              26,
-		"azurerm_batch_certificate":                          27,
-		"azurerm_batch_pool":                                 28,
-		"azurerm_billing_enrollment_account_scope":           29,
-		"azurerm_billing_mca_account_scope":                  30,
-		"azurerm_blueprint_definition":                       31,
-		"azurerm_blueprint_published_version":                32,
-		"azurerm_cdn_profile":                                33,
-		"azurerm_client_config":                              34,
-		"azurerm_cognitive_account":                          35,
-		"azurerm_container_registry":                         36,
-		"azurerm_container_registry_scope_map":               37,
-		"azurerm_container_registry_token":                   38,
-		"azurerm_cosmosdb_account":                           39,
-		"azurerm_data_factory":                               40,
-		"azurerm_data_lake_store":                            41,
-		"azurerm_data_share":                                 42,
-		"azurerm_data_share_account":                         43,
-		"azurerm_data_share_dataset_blob_storage":            44,
-		"azurerm_data_share_dataset_data_lake_gen1":          45,
-		"azurerm_data_share_dataset_data_lake_gen2":          46,
-		"azurerm_data_share_dataset_kusto_cluster":           47,
-		"azurerm_data_share_dataset_kusto_database":          48,
-		"azurerm_database_migration_project":                 49,
-		"azurerm_database_migration_service":                 50,
-		"azurerm_databricks_workspace":                       51,
-		"azurerm_dedicated_host":                             52,
-		"azurerm_dedicated_host_group":                       53,
-		"azurerm_dev_test_lab":                               54,
-		"azurerm_dev_test_virtual_network":                   55,
-		"azurerm_digital_twins_instance":                     56,
-		"azurerm_disk_access":                                57,
-		"azurerm_disk_encryption_set":                        58,
-		"azurerm_dns_zone":                                   59,
-		"azurerm_eventgrid_domain_topic":                     60,
-		"azurerm_eventgrid_topic":                            61,
-		"azurerm_eventhub":                                   62,
-		"azurerm_eventhub_authorization_rule":                63,
-		"azurerm_eventhub_cluster":                           64,
-		"azurerm_eventhub_consumer_group":                    65,
-		"azurerm_eventhub_namespace":                         66,
-		"azurerm_eventhub_namespace_authorization_rule":      67,
-		"azurerm_express_route_circuit":                      68,
-		"azurerm_firewall":                                   69,
-		"azurerm_firewall_policy":                            70,
-		"azurerm_function_app":                               71,
-		"azurerm_function_app_host_keys":                     72,
-		"azurerm_hdinsight_cluster":                          73,
-		"azurerm_healthcare_service":                         74,
-		"azurerm_image":                                      75,
-		"azurerm_images":                                     76,
-		"azurerm_iothub":                                     77,
-		"azurerm_iothub_dps":                                 78,
-		"azurerm_iothub_dps_shared_access_policy":            79,
-		"azurerm_iothub_shared_access_policy":                80,
-		"azurerm_ip_group":                                   81,
-		"azurerm_key_vault":                                  82,
-		"azurerm_key_vault_access_policy":                    83,
-		"azurerm_key_vault_certificate":                      84,
-		"azurerm_key_vault_certificate_data":                 85,
-		"azurerm_key_vault_certificate_issuer":               86,
-		"azurerm_key_vault_key":                              87,
-		"azurerm_key_vault_managed_hardware_security_module": 88,
-		"azurerm_key_vault_secret":                           89,
-		"azurerm_key_vault_secrets":                          90,
-		"azurerm_kubernetes_cluster":                         91,
-		"azurerm_kubernetes_cluster_node_pool":               92,
-		"azurerm_kubernetes_service_versions":                93,
-		"azurerm_kusto_cluster":                              94,
-		"azurerm_lb":                                         95,
-		"azurerm_lb_backend_address_pool":                    96,
-		"azurerm_lb_rule":                                    97,
-		"azurerm_log_analytics_workspace":                    98,
-		"azurerm_logic_app_integration_account":              99,
-		"azurerm_logic_app_workflow":                         100,
-		"azurerm_machine_learning_workspace":                 101,
-		"azurerm_maintenance_configuration":                  102,
-		"azurerm_managed_application_definition":             103,
-		"azurerm_managed_disk":                               104,
-		"azurerm_management_group":                           105,
-		"azurerm_maps_account":                               106,
-		"azurerm_mariadb_server":                             107,
-		"azurerm_monitor_action_group":                       108,
-		"azurerm_monitor_diagnostic_categories":              109,
-		"azurerm_monitor_log_profile":                        110,
-		"azurerm_monitor_scheduled_query_rules_alert":        111,
-		"azurerm_monitor_scheduled_query_rules_log":          112,
-		"azurerm_mssql_database":                             113,
-		"azurerm_mssql_elasticpool":                          114,
-		"azurerm_mssql_server":                               115,
-		"azurerm_mysql_server":                               116,
-		"azurerm_nat_gateway":                                117,
-		"azurerm_netapp_account":                             118,
-		"azurerm_netapp_pool":                                119,
-		"azurerm_netapp_snapshot":                            120,
-		"azurerm_netapp_volume":                              121,
-		"azurerm_network_ddos_protection_plan":               122,
-		"azurerm_network_interface":                          123,
-		"azurerm_network_security_group":                     124,
-		"azurerm_network_service_tags":                       125,
-		"azurerm_network_watcher":                            126,
-		"azurerm_notification_hub":                           127,
-		"azurerm_notification_hub_namespace":                 128,
-		"azurerm_platform_image":                             129,
-		"azurerm_policy_definition":                          130,
-		"azurerm_policy_set_definition":                      131,
-		"azurerm_postgresql_flexible_server":                 132,
-		"azurerm_postgresql_server":                          133,
-		"azurerm_private_dns_zone":                           134,
-		"azurerm_private_endpoint_connection":                135,
-		"azurerm_private_link_service":                       136,
-		"azurerm_private_link_service_endpoint_connections":  137,
-		"azurerm_proximity_placement_group":                  138,
-		"azurerm_public_ip":                                  139,
-		"azurerm_public_ip_prefix":                           140,
-		"azurerm_public_ips":                                 141,
-		"azurerm_recovery_services_vault":                    142,
-		"azurerm_redis_cache":                                143,
-		"azurerm_redis_enterprise_database":                  144,
-		"azurerm_resource_group":                             145,
-		"azurerm_resources":                                  146,
-		"azurerm_role_definition":                            147,
-		"azurerm_route_filter":                               148,
-		"azurerm_route_table":                                149,
-		"azurerm_search_service":                             150,
-		"azurerm_sentinel_alert_rule":                        151,
-		"azurerm_sentinel_alert_rule_template":               152,
-		"azurerm_servicebus_namespace":                       153,
-		"azurerm_servicebus_namespace_authorization_rule":    154,
-		"azurerm_servicebus_queue":                           155,
-		"azurerm_servicebus_queue_authorization_rule":        156,
-		"azurerm_servicebus_subscription":                    157,
-		"azurerm_servicebus_topic":                           158,
-		"azurerm_servicebus_topic_authorization_rule":        159,
-		"azurerm_shared_image":                               160,
-		"azurerm_shared_image_gallery":                       161,
-		"azurerm_shared_image_version":                       162,
-		"azurerm_shared_image_versions":                      163,
-		"azurerm_signalr_service":                            164,
-		"azurerm_snapshot":                                   165,
-		"azurerm_spatial_anchors_account":                    166,
-		"azurerm_spring_cloud_app":                           167,
-		"azurerm_spring_cloud_service":                       168,
-		"azurerm_sql_database":                               169,
-		"azurerm_sql_server":                                 170,
-		"azurerm_ssh_public_key":                             171,
-		"azurerm_storage_account":                            172,
-		"azurerm_storage_account_blob_container_sas":         173,
-		"azurerm_storage_account_sas":                        174,
-		"azurerm_storage_blob":                               175,
-		"azurerm_storage_container":                          176,
-		"azurerm_storage_encryption_scope":                   177,
-		"azurerm_storage_management_policy":                  178,
-		"azurerm_storage_sync":                               179,
-		"azurerm_storage_sync_group":                         180,
-		"azurerm_storage_table_entity":                       181,
-		"azurerm_stream_analytics_job":                       182,
-		"azurerm_subnet":                                     183,
-		"azurerm_subscription":                               184,
-		"azurerm_subscriptions":                              185,
-		"azurerm_synapse_workspace":                          186,
-		"azurerm_template_spec_version":                      187,
-		"azurerm_traffic_manager_geographical_location":      188,
-		"azurerm_traffic_manager_profile":                    189,
-		"azurerm_user_assigned_identity":                     190,
-		"azurerm_virtual_hub":                                191,
-		"azurerm_virtual_machine":                            192,
-		"azurerm_virtual_machine_scale_set":                  193,
-		"azurerm_virtual_network":                            194,
-		"azurerm_virtual_network_gateway":                    195,
-		"azurerm_virtual_network_gateway_connection":         196,
-		"azurerm_virtual_wan":                                197,
-		"azurerm_vmware_private_cloud":                       198,
-		"azurerm_web_application_firewall_policy":            199,
+		"azurerm_active_directory_domain_service":                  0,
+		"azurerm_advisor_recommendations":                          1,
+		"azurerm_api_management":                                   2,
+		"azurerm_api_management_api":                               3,
+		"azurerm_api_management_api_version_set":                   4,
+		"azurerm_api_management_gateway":                           5,
+		"azurerm_api_management_group":                             6,
+		"azurerm_api_management_product":                           7,
+		"azurerm_api_management_user":                              8,
+		"azurerm_app_configuration":                                9,
+		"azurerm_app_service":                                      10,
+		"azurerm_app_service_certificate":                          11,
+		"azurerm_app_service_certificate_order":                    12,
+		"azurerm_app_service_environment":                          13,
+		"azurerm_app_service_environment_v3":                       14,
+		"azurerm_app_service_plan":                                 15,
+		"azurerm_application_gateway":                              16,
+		"azurerm_application_insights":                             17,
+		"azurerm_application_security_group":                       18,
+		"azurerm_attestation":                                      19,
+		"azurerm_automation_account":                               20,
+		"azurerm_automation_variable_bool":                         21,
+		"azurerm_automation_variable_datetime":                     22,
+		"azurerm_automation_variable_int":                          23,
+		"azurerm_automation_variable_string":                       24,
+		"azurerm_availability_set":                                 25,
+		"azurerm_backup_policy_vm":                                 26,
+		"azurerm_batch_account":                                    27,
+		"azurerm_batch_certificate":                                28,
+		"azurerm_batch_pool":                                       29,
+		"azurerm_billing_enrollment_account_scope":                 30,
+		"azurerm_billing_mca_account_scope":                        31,
+		"azurerm_blueprint_definition":                             32,
+		"azurerm_blueprint_published_version":                      33,
+		"azurerm_cdn_profile":                                      34,
+		"azurerm_client_config":                                    35,
+		"azurerm_cognitive_account":                                36,
+		"azurerm_container_registry":                               37,
+		"azurerm_container_registry_scope_map":                     38,
+		"azurerm_container_registry_token":                         39,
+		"azurerm_cosmosdb_account":                                 40,
+		"azurerm_cosmosdb_mongo_database":                          41,
+		"azurerm_data_factory":                                     42,
+		"azurerm_data_lake_store":                                  43,
+		"azurerm_data_protection_backup_vault":                     44,
+		"azurerm_data_share":                                       45,
+		"azurerm_data_share_account":                               46,
+		"azurerm_data_share_dataset_blob_storage":                  47,
+		"azurerm_data_share_dataset_data_lake_gen1":                48,
+		"azurerm_data_share_dataset_data_lake_gen2":                49,
+		"azurerm_data_share_dataset_kusto_cluster":                 50,
+		"azurerm_data_share_dataset_kusto_database":                51,
+		"azurerm_database_migration_project":                       52,
+		"azurerm_database_migration_service":                       53,
+		"azurerm_databricks_workspace":                             54,
+		"azurerm_databricks_workspace_private_endpoint_connection": 55,
+		"azurerm_dedicated_host":                                   56,
+		"azurerm_dedicated_host_group":                             57,
+		"azurerm_dev_test_lab":                                     58,
+		"azurerm_dev_test_virtual_network":                         59,
+		"azurerm_digital_twins_instance":                           60,
+		"azurerm_disk_access":                                      61,
+		"azurerm_disk_encryption_set":                              62,
+		"azurerm_dns_zone":                                         63,
+		"azurerm_eventgrid_domain_topic":                           64,
+		"azurerm_eventgrid_topic":                                  65,
+		"azurerm_eventhub":                                         66,
+		"azurerm_eventhub_authorization_rule":                      67,
+		"azurerm_eventhub_cluster":                                 68,
+		"azurerm_eventhub_consumer_group":                          69,
+		"azurerm_eventhub_namespace":                               70,
+		"azurerm_eventhub_namespace_authorization_rule":            71,
+		"azurerm_express_route_circuit":                            72,
+		"azurerm_firewall":                                         73,
+		"azurerm_firewall_policy":                                  74,
+		"azurerm_function_app":                                     75,
+		"azurerm_function_app_host_keys":                           76,
+		"azurerm_hdinsight_cluster":                                77,
+		"azurerm_healthcare_service":                               78,
+		"azurerm_image":                                            79,
+		"azurerm_images":                                           80,
+		"azurerm_iothub":                                           81,
+		"azurerm_iothub_dps":                                       82,
+		"azurerm_iothub_dps_shared_access_policy":                  83,
+		"azurerm_iothub_shared_access_policy":                      84,
+		"azurerm_ip_group":                                         85,
+		"azurerm_key_vault":                                        86,
+		"azurerm_key_vault_access_policy":                          87,
+		"azurerm_key_vault_certificate":                            88,
+		"azurerm_key_vault_certificate_data":                       89,
+		"azurerm_key_vault_certificate_issuer":                     90,
+		"azurerm_key_vault_key":                                    91,
+		"azurerm_key_vault_managed_hardware_security_module":       92,
+		"azurerm_key_vault_secret":                                 93,
+		"azurerm_key_vault_secrets":                                94,
+		"azurerm_kubernetes_cluster":                               95,
+		"azurerm_kubernetes_cluster_node_pool":                     96,
+		"azurerm_kubernetes_service_versions":                      97,
+		"azurerm_kusto_cluster":                                    98,
+		"azurerm_lb":                                               99,
+		"azurerm_lb_backend_address_pool":                          100,
+		"azurerm_lb_rule":                                          101,
+		"azurerm_local_network_gateway":                            102,
+		"azurerm_log_analytics_workspace":                          103,
+		"azurerm_logic_app_integration_account":                    104,
+		"azurerm_logic_app_workflow":                               105,
+		"azurerm_machine_learning_workspace":                       106,
+		"azurerm_maintenance_configuration":                        107,
+		"azurerm_managed_application_definition":                   108,
+		"azurerm_managed_disk":                                     109,
+		"azurerm_management_group":                                 110,
+		"azurerm_maps_account":                                     111,
+		"azurerm_mariadb_server":                                   112,
+		"azurerm_monitor_action_group":                             113,
+		"azurerm_monitor_diagnostic_categories":                    114,
+		"azurerm_monitor_log_profile":                              115,
+		"azurerm_monitor_scheduled_query_rules_alert":              116,
+		"azurerm_monitor_scheduled_query_rules_log":                117,
+		"azurerm_mssql_database":                                   118,
+		"azurerm_mssql_elasticpool":                                119,
+		"azurerm_mssql_server":                                     120,
+		"azurerm_mysql_server":                                     121,
+		"azurerm_nat_gateway":                                      122,
+		"azurerm_netapp_account":                                   123,
+		"azurerm_netapp_pool":                                      124,
+		"azurerm_netapp_snapshot":                                  125,
+		"azurerm_netapp_volume":                                    126,
+		"azurerm_network_ddos_protection_plan":                     127,
+		"azurerm_network_interface":                                128,
+		"azurerm_network_security_group":                           129,
+		"azurerm_network_service_tags":                             130,
+		"azurerm_network_watcher":                                  131,
+		"azurerm_notification_hub":                                 132,
+		"azurerm_notification_hub_namespace":                       133,
+		"azurerm_platform_image":                                   134,
+		"azurerm_policy_definition":                                135,
+		"azurerm_policy_set_definition":                            136,
+		"azurerm_postgresql_flexible_server":                       137,
+		"azurerm_postgresql_server":                                138,
+		"azurerm_private_dns_zone":                                 139,
+		"azurerm_private_endpoint_connection":                      140,
+		"azurerm_private_link_service":                             141,
+		"azurerm_private_link_service_endpoint_connections":        142,
+		"azurerm_proximity_placement_group":                        143,
+		"azurerm_public_ip":                                        144,
+		"azurerm_public_ip_prefix":                                 145,
+		"azurerm_public_ips":                                       146,
+		"azurerm_recovery_services_vault":                          147,
+		"azurerm_redis_cache":                                      148,
+		"azurerm_redis_enterprise_database":                        149,
+		"azurerm_resource_group":                                   150,
+		"azurerm_resources":                                        151,
+		"azurerm_role_definition":                                  152,
+		"azurerm_route_filter":                                     153,
+		"azurerm_route_table":                                      154,
+		"azurerm_search_service":                                   155,
+		"azurerm_sentinel_alert_rule":                              156,
+		"azurerm_sentinel_alert_rule_template":                     157,
+		"azurerm_servicebus_namespace":                             158,
+		"azurerm_servicebus_namespace_authorization_rule":          159,
+		"azurerm_servicebus_queue":                                 160,
+		"azurerm_servicebus_queue_authorization_rule":              161,
+		"azurerm_servicebus_subscription":                          162,
+		"azurerm_servicebus_topic":                                 163,
+		"azurerm_servicebus_topic_authorization_rule":              164,
+		"azurerm_shared_image":                                     165,
+		"azurerm_shared_image_gallery":                             166,
+		"azurerm_shared_image_version":                             167,
+		"azurerm_shared_image_versions":                            168,
+		"azurerm_signalr_service":                                  169,
+		"azurerm_snapshot":                                         170,
+		"azurerm_spatial_anchors_account":                          171,
+		"azurerm_spring_cloud_app":                                 172,
+		"azurerm_spring_cloud_service":                             173,
+		"azurerm_sql_database":                                     174,
+		"azurerm_sql_server":                                       175,
+		"azurerm_ssh_public_key":                                   176,
+		"azurerm_storage_account":                                  177,
+		"azurerm_storage_account_blob_container_sas":               178,
+		"azurerm_storage_account_sas":                              179,
+		"azurerm_storage_blob":                                     180,
+		"azurerm_storage_container":                                181,
+		"azurerm_storage_encryption_scope":                         182,
+		"azurerm_storage_management_policy":                        183,
+		"azurerm_storage_share":                                    184,
+		"azurerm_storage_sync":                                     185,
+		"azurerm_storage_sync_group":                               186,
+		"azurerm_storage_table_entity":                             187,
+		"azurerm_stream_analytics_job":                             188,
+		"azurerm_subnet":                                           189,
+		"azurerm_subscription":                                     190,
+		"azurerm_subscriptions":                                    191,
+		"azurerm_synapse_workspace":                                192,
+		"azurerm_template_spec_version":                            193,
+		"azurerm_traffic_manager_geographical_location":            194,
+		"azurerm_traffic_manager_profile":                          195,
+		"azurerm_user_assigned_identity":                           196,
+		"azurerm_virtual_hub":                                      197,
+		"azurerm_virtual_machine":                                  198,
+		"azurerm_virtual_machine_scale_set":                        199,
+		"azurerm_virtual_network":                                  200,
+		"azurerm_virtual_network_gateway":                          201,
+		"azurerm_virtual_network_gateway_connection":               202,
+		"azurerm_virtual_wan":                                      203,
+		"azurerm_vmware_private_cloud":                             204,
+		"azurerm_vpn_gateway":                                      205,
+		"azurerm_web_application_firewall_policy":                  206,
 	}
 )
 

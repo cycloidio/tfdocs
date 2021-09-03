@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "astra_access_list",
+			Category:         "Data Sources",
+			ShortDescription: `astra_access_list provides a datasource that lists the access lists for an Astra database.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "astra_available_regions",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve a list of available cloud regions in Astra`,
@@ -61,6 +71,36 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "astra_private_link_endpoints",
+			Category:         "Data Sources",
+			ShortDescription: `astra_private_link_endpoints provides a datasource that lists the private link endpoints for an Astra database.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "astra_private_links",
+			Category:         "Data Sources",
+			ShortDescription: `astra_private_links provides a datasource that lists the private links in an Astra database.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "astra_role",
+			Category:         "Data Sources",
+			ShortDescription: `astra_role provides a datasource that lists the custom roles for an org.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "astra_secure_connect_bundle_url",
 			Category:         "Data Sources",
 			ShortDescription: `astra_secure_connect_bundle_url provides a datasource that generates a temporary secure connect bundle URL. This URL lasts five minutes. Secure connect bundles are used to connect to Astra using cql cassandra drivers. See the docs https://docs.datastax.com/en/astra/docs/connecting-to-database.html for more information on how to connect.`,
@@ -73,12 +113,16 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"astra_available_regions":         0,
-		"astra_database":                  1,
-		"astra_databases":                 2,
-		"astra_keyspace":                  3,
-		"astra_keyspaces":                 4,
-		"astra_secure_connect_bundle_url": 5,
+		"astra_access_list":               0,
+		"astra_available_regions":         1,
+		"astra_database":                  2,
+		"astra_databases":                 3,
+		"astra_keyspace":                  4,
+		"astra_keyspaces":                 5,
+		"astra_private_link_endpoints":    6,
+		"astra_private_links":             7,
+		"astra_role":                      8,
+		"astra_secure_connect_bundle_url": 9,
 	}
 )
 

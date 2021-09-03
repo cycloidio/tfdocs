@@ -2227,6 +2227,54 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
@@ -2587,6 +2635,26 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -3210,6 +3278,14 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "public_key",
 					Description: ``,
 				},
@@ -3230,6 +3306,14 @@ A Resource is a database or server for which strongDM manages access.
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique identifier for the Resource resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "port_override",
@@ -3399,6 +3483,10 @@ A Role is a collection of access grants, and typically corresponds to a team, Ac
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Role.`,
+				},
+				resource.Attribute{
+					Name:        "access_rules",
+					Description: `(Optional) AccessRules JSON encoded access rules data.`,
 				},
 				resource.Attribute{
 					Name:        "composite",

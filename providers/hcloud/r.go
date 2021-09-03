@@ -141,9 +141,22 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_placement_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a Hetzner Cloud Placement Group to represent a Placement Group in the Hetzner Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"placement",
+				"group",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_rdns",
 			Category:         "Resources",
-			ShortDescription: `Provides a Hetzner Cloud Reverse DNS Entry to create, modify and reset reverse dns entries for Hetzner Cloud Floating IPs or servers.`,
+			ShortDescription: `Provides a Hetzner Cloud Reverse DNS Entry to create, modify and reset reverse dns entries for Hetzner Cloud Servers, Floating IPs or Load Balancers.`,
 			Description:      ``,
 			Keywords: []string{
 				"rdns",
@@ -240,13 +253,14 @@ var (
 		"hcloud_network":                7,
 		"hcloud_network_route":          8,
 		"hcloud_network_subnet":         9,
-		"hcloud_rdns":                   10,
-		"hcloud_server":                 11,
-		"hcloud_server_network":         12,
-		"hcloud_snapshot":               13,
-		"hcloud_ssh_key":                14,
-		"hcloud_volume":                 15,
-		"hcloud_volume_attachment":      16,
+		"hcloud_placement_group":        10,
+		"hcloud_rdns":                   11,
+		"hcloud_server":                 12,
+		"hcloud_server_network":         13,
+		"hcloud_snapshot":               14,
+		"hcloud_ssh_key":                15,
+		"hcloud_volume":                 16,
+		"hcloud_volume_attachment":      17,
 	}
 )
 

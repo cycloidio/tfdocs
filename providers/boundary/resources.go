@@ -131,6 +131,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "boundary_managed_group",
+			Category:         "Resources",
+			ShortDescription: `The managed group resource allows you to configure a Boundary group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "boundary_role",
 			Category:         "Resources",
 			ShortDescription: `The role resource allows you to configure a Boundary role.`,
@@ -185,10 +195,11 @@ var (
 		"boundary_host":                     9,
 		"boundary_host_catalog":             10,
 		"boundary_host_set":                 11,
-		"boundary_role":                     12,
-		"boundary_scope":                    13,
-		"boundary_target":                   14,
-		"boundary_user":                     15,
+		"boundary_managed_group":            12,
+		"boundary_role":                     13,
+		"boundary_scope":                    14,
+		"boundary_target":                   15,
+		"boundary_user":                     16,
 	}
 )
 

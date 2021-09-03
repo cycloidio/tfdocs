@@ -1015,7 +1015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customized_route_advertisement",
-					Description: `(Optional and ForeNew) Advanced option. Customized route(s) to be advertised to other VPCs that are connected to the same TGW. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
+					Description: `(Optional and ForceNew) Advanced option. Customized route(s) to be advertised to other VPCs that are connected to the same TGW. Example: "10.8.0.0/16,10.9.0.0/16,10.10.0.0/16".`,
 				},
 				resource.Attribute{
 					Name:        "disable_local_route_propagation",
@@ -1204,7 +1204,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spoke_vpc_id",
-					Description: `(Required) Combination of the Spoke's VNet name and resource group. Example: "Foo_VNet:Bar_RG". ## Import`,
+					Description: `(Required) Combination of the Spoke's VNet name, resource group and GUID. Example: "Foo_VNet:Bar_RG:GUID". As of controller version 6.5 spoke_vpc_id must include the GUID of the VPC. ## Import`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1398,6 +1398,14 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "target_version",
+					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please see the [Controller upgrade guide](https://docs.aviatrix.com/HowTos/inline_upgrade.html) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "manage_gateway_upgrades",
+					Description: `(Optional) If true, aviatrix_controller_config will upgrade all gateways when target_version is set. If false, only the controller will be upgraded when target_version is set. In that case gateway upgrades should be handled in each gateway resource individually using the software_version and image_version attributes. Type: boolean. Default: true. Available as of provider version R2.20.0+. ### Security Options`,
+				},
+				resource.Attribute{
 					Name:        "sg_management_account_name",
 					Description: `(Optional) Select the [primary access account](https://docs.aviatrix.com/HowTos/aviatrix_account.html#setup-primary-access-account-for-aws-cloud).`,
 				},
@@ -1462,22 +1470,34 @@ var (
 					Description: `(Optional) File path to server private key. Available as of provider version R2.18+. ### Misc.`,
 				},
 				resource.Attribute{
-					Name:        "target_version",
-					Description: `(Optional) The release version number to which the controller will be upgraded to. If not specified, controller will not be upgraded. If set to "latest", controller will be upgraded to the latest release. Please see the [Controller upgrade guide](https://docs.aviatrix.com/HowTos/inline_upgrade.html) for more information.`,
-				},
-				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
 					Description: `(Optional) Enable VPC/VNET DNS Server for the controller. Valid values: true, false. Default value: false. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `Current version of the controller. ## Import Instance controller_config can be imported using controller IP, e.g. controller IP is : 10.11.12.13 ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_controller_config.test 10-11-12-13 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current version of the controller without build number. Example: "6.5"`,
+				},
+				resource.Attribute{
+					Name:        "previous_version",
+					Description: `Previous version of the controller including the build number. Example: "6.5.123". Available as of provider version R2.20.0+.`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current version of the controller including the build number. Example: "6.5.123". Available as of provider version R2.20.0+. ## Import Instance controller_config can be imported using controller IP, e.g. controller IP is : 10.11.12.13 ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_controller_config.test 10-11-12-13 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "version",
-					Description: `Current version of the controller. ## Import Instance controller_config can be imported using controller IP, e.g. controller IP is : 10.11.12.13 ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_controller_config.test 10-11-12-13 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current version of the controller without build number. Example: "6.5"`,
+				},
+				resource.Attribute{
+					Name:        "previous_version",
+					Description: `Previous version of the controller including the build number. Example: "6.5.123". Available as of provider version R2.20.0+.`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current version of the controller including the build number. Example: "6.5.123". Available as of provider version R2.20.0+. ## Import Instance controller_config can be imported using controller IP, e.g. controller IP is : 10.11.12.13 ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aviatrix_controller_config.test 10-11-12-13 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1718,10 +1738,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description. ## Import`,
+					Description: `(Optional) Description. ### Managed CloudN (CaaG) Upgrade`,
+				},
+				resource.Attribute{
+					Name:        "software_version",
+					Description: `(Optional/Computed) The desired software version of the CaaG. If set, we will attempt to update the CaaG to the specified version. If left blank, the software version will continue to be managed through the aviatrix_controller_config resource. Type: String. Example: "6.5.892". Available as of provider version R2.20.0. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "is_caag",
+					Description: `Is this device a Managed CloudN (CaaG). Type: Boolean. Available as of provider version R2.20.0. ## Import`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "is_caag",
+					Description: `Is this device a Managed CloudN (CaaG). Type: Boolean. Available as of provider version R2.20.0. ## Import`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1951,11 +1984,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "east_west_inspection_excluded_cidrs",
-					Description: `(Optional) Network List Excluded From East-West Inspection. CIDRs to be excluded from inspection. Type: Set(String). Available as of provider version R2.19.2+.`,
+					Description: `(Optional) Network List Excluded From East-West Inspection. CIDRs to be excluded from inspection. Type: Set(String). Available as of provider version R2.19.5+.`,
 				},
 				resource.Attribute{
 					Name:        "fail_close_enabled",
-					Description: `(Optional/Computed) Enable Fail Close. When Fail Close is enabled, FireNet gateway drops all traffic when there are no firewalls attached to the FireNet gateways. Type: Boolean. Available as of provider version R2.19.2+.`,
+					Description: `(Optional/Computed) Enable Fail Close. When Fail Close is enabled, FireNet gateway drops all traffic when there are no firewalls attached to the FireNet gateways. Type: Boolean. Available as of provider version R2.19.5+.`,
 				},
 				resource.Attribute{
 					Name:        "tgw_segmentation_for_egress_enabled",
@@ -2092,7 +2125,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "management_subnet",
-					Description: `(Optional) Management Interface Subnet. Select the subnet whose name contains “gateway and firewall management”. For GCP, ` + "`" + `management_subnet` + "`" + ` must be in the form ` + "`" + `cidr~~region~~name` + "`" + `. Required for Palo Alto Networks VM-Series, and required to be empty for Check Point or Fortinet series.`,
+					Description: `(Optional) Management Interface Subnet. Select the subnet whose name contains “gateway and firewall management”. For GCP, ` + "`" + `management_subnet` + "`" + ` must be in the form ` + "`" + `cidr~~region~~name` + "`" + `. Required for Palo Alto Networks VM-Series and OCI Check Point firewalls. Otherwise, it must be empty.`,
 				},
 				resource.Attribute{
 					Name:        "egress_subnet",
@@ -2460,7 +2493,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Name of the Aviatrix gateway to be created.`,
+					Description: `(Required) Name of the Aviatrix gateway to be created. !> When creating a Gateway with an Azure VNet created in Controller version 6.4 or earlier or with an Azure VNet created out of band, referencing ` + "`" + `vpc_id` + "`" + ` in another resource on the same apply that creates this Gateway will cause Terraform to throw an error. Please use the Gateway data source to reference the ` + "`" + `vpc_id` + "`" + ` of this Gateway in other resources.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -2500,7 +2533,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_ha_eip",
-					Description: `(Optional) Public IP address to be assigned to the HA peering instance. Only available for AWS and GCP.`,
+					Description: `(Optional) Public IP address to be assigned to the HA peering instance. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP address resource and its resource group in Azure to be assigned to the HA peering instance. Example: "IP_Name:Resource_Group_Name". Required if ` + "`" + `peering_ha_eip` + "`" + ` is set and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "peering_ha_gw_size",
@@ -2668,7 +2705,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn_lan_vpc_id",
-					Description: `(Optional) FQDN LAN VPC ID. This attribute is required when enabling FQDN gateway FireNet in GCP. Available as of provider version R2.18.1+. ### Misc.`,
+					Description: `(Optional) FQDN LAN VPC ID. This attribute is required when enabling FQDN gateway FireNet in GCP. Available as of provider version R2.18.1+. ### Spot Instance`,
+				},
+				resource.Attribute{
+					Name:        "enable_spot_instance",
+					Description: `(Optional) Enable spot instance. NOT supported for production deployment.`,
+				},
+				resource.Attribute{
+					Name:        "spot_price",
+					Description: `(Optional) Price for spot instance. NOT supported for production deployment. ### Gateway Upgrade`,
+				},
+				resource.Attribute{
+					Name:        "software_version",
+					Description: `(Optional/Computed) The software version of the gateway. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "image_version",
+					Description: `(Optional/Computed) The image version of the gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `software_version` + "`" + `. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_software_version",
+					Description: `(Optional/Computed) The software version of the HA gateway. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the HA gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "peering_ha_image_version",
+					Description: `(Optional/Computed) The image version of the HA gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `ha_software_version` + "`" + `. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -2676,7 +2737,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only supported for AWS and GCP gateways.`,
+					Description: `(Optional) Specified EIP to use for gateway creation. Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. Available in Controller version 3.5+. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP Address resource and its resource group in Azure to be assigned to the gateway instance. Example: "IP_Name:Resource_Group_Name". Required when ` + "`" + `allocate_new_eip` + "`" + ` is false and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_vpc_dns_server",
@@ -3764,7 +3829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Name of the gateway which is going to be created.`,
+					Description: `(Required) Name of the gateway which is going to be created. !> When creating a Spoke Gateway with an Azure VNet created in Controller version 6.4 or earlier or with an Azure VNet created out of band, referencing ` + "`" + `vpc_id` + "`" + ` in another resource on the same apply that creates this Spoke Gateway will cause Terraform to throw an error. Please use the Spoke Gateway data source to reference the ` + "`" + `vpc_id` + "`" + ` of this Spoke Gateway in other resources.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -3800,7 +3865,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS and GCP.`,
+					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "ha_azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP Address resource and its resource group in Azure to be assigned to the HA Spoke Gateway instance. Example: "IP_Name:Resource_Group_Name". Required if ` + "`" + `ha_eip` + "`" + ` is set and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_gw_size",
@@ -3884,7 +3953,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_oob_availability_zone",
-					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Misc. !>`,
+					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Spot Instance`,
+				},
+				resource.Attribute{
+					Name:        "enable_spot_instance",
+					Description: `(Optional) Enable spot instance. NOT supported for production deployment.`,
+				},
+				resource.Attribute{
+					Name:        "spot_price",
+					Description: `(Optional) Price for spot instance. NOT supported for production deployment. ### Gateway Upgrade`,
+				},
+				resource.Attribute{
+					Name:        "software_version",
+					Description: `(Optional/Computed) The software version of the gateway. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "image_version",
+					Description: `(Optional/Computed) The image version of the gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `software_version` + "`" + `. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "ha_software_version",
+					Description: `(Optional/Computed) The software version of the HA gateway. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the HA gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "ha_image_version",
+					Description: `(Optional/Computed) The image version of the HA gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `ha_software_version` + "`" + `. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0. ### Misc. !>`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -3892,7 +3985,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS, GCP, AWSGov, AWSChina, AWS Top Secret and AWS Secret.`,
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller 4.7+. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP Address resource and its resource group in Azure to be assigned to the Spoke Gateway instance. Example: "IP_Name:Resource_Group_Name". Required if ` + "`" + `allocate_new_eip` + "`" + ` is false and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_mesh",
@@ -4410,11 +4507,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_gateway_ip",
-					Description: `(Optional) Remote gateway IP. Required when 'tunnel_protocol' != 'LAN'.`,
+					Description: `(Optional) Remote gateway IP. Required when ` + "`" + `tunnel_protocol` + "`" + ` != 'LAN'.`,
 				},
 				resource.Attribute{
 					Name:        "connection_type",
-					Description: `(Required) Connection type. Valid values: 'bgp', 'static'. Default value: 'bgp'.`,
+					Description: `(Required) Connection type. Valid values: 'bgp', 'static'. Default value: 'bgp'. ~>`,
 				},
 				resource.Attribute{
 					Name:        "tunnel_protocol",
@@ -4434,7 +4531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_vpc_name",
-					Description: `(Optional) Name of the remote VPC for a LAN BGP connection with an Azure Transit Gateway. Required when 'connection_type' = 'bgp' and tunnel_protocol' = 'LAN' with an Azure transit gateway. Must be in the form "<VNET-name>:<resource-group-name>". Available as of provider version R2.18+. ### HA`,
+					Description: `(Optional) Name of the remote VPC for a LAN BGP connection with an Azure Transit Gateway. Required when ` + "`" + `connection_type` + "`" + ` = 'bgp' and ` + "`" + `tunnel_protocol` + "`" + ` = 'LAN' with an Azure transit gateway. Must be in the format "<vnet-name>:<resource-group-name>:<subscription-id>". Available as of provider version R2.18+. ### HA`,
 				},
 				resource.Attribute{
 					Name:        "ha_enabled",
@@ -4534,11 +4631,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_learned_cidrs_approval",
-					Description: `(Optional) Enable learned CIDRs approval for the connection. Only valid with 'connection_type' = 'bgp'. Requires the transit_gateway's 'learned_cidrs_approval_mode' attribute be set to 'connection'. Valid values: true, false. Default value: false. Available as of provider version R2.18+.`,
+					Description: `(Optional) Enable learned CIDRs approval for the connection. Only valid with ` + "`" + `connection_type` + "`" + ` = 'bgp'. Requires the transit_gateway's ` + "`" + `learned_cidrs_approval_mode` + "`" + ` attribute be set to 'connection'. Valid values: true, false. Default value: false. Available as of provider version R2.18+.`,
 				},
 				resource.Attribute{
 					Name:        "approved_cidrs",
-					Description: `(Optional/Computed) Set of approved cidrs. Requires 'enable_learned_cidrs_approval' to be true. Type: Set(String).`,
+					Description: `(Optional/Computed) Set of approved CIDRs. Requires ` + "`" + `enable_learned_cidrs_approval` + "`" + ` to be true. Type: Set(String).`,
 				},
 				resource.Attribute{
 					Name:        "enable_ikev2",
@@ -4546,7 +4643,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manual_bgp_advertised_cidrs",
-					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Only valid with 'connection_type'= 'bgp'. Available as of provider version R2.18+.`,
+					Description: `(Optional) Configure manual BGP advertised CIDRs for this connection. Only valid with ` + "`" + `connection_type` + "`" + `= 'bgp'. Available as of provider version R2.18+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_event_triggered_ha",
@@ -4611,7 +4708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gw_name",
-					Description: `(Required) Name of the gateway which is going to be created.`,
+					Description: `(Required) Name of the gateway which is going to be created. !> When creating a Transit Gateway with an Azure VNet created in Controller version 6.4 or earlier or with an Azure VNet created out of band, referencing ` + "`" + `vpc_id` + "`" + ` in anothe resource on the same apply that creates this Transit Gateway will cause Terraform to throw an error. Please use the Transit Gateway data source to reference the ` + "`" + `vpc_id` + "`" + ` of this Transit Gateway in other resources.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -4651,7 +4748,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_eip",
-					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS, GCP, AWSGov, AWSChina, AWS Top Secret and AWS Secret.`,
+					Description: `(Optional) Public IP address that you want to assign to the HA peering instance. If no value is given, a new EIP will automatically be allocated. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "ha_azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP Address resource and its resource group in Azure to be assigned to the HA Transit Gateway instance. Example: "IP_Name:Resource_Group_Name". Required if ` + "`" + `ha_eip` + "`" + ` is set and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "ha_gw_size",
@@ -4811,7 +4912,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_oob_availability_zone",
-					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Misc.`,
+					Description: `(Optional) HA OOB availability zone. Required if enabling Private OOB and HA. Example: "us-west-1b". ### Spot Instance`,
+				},
+				resource.Attribute{
+					Name:        "enable_spot_instance",
+					Description: `(Optional) Enable spot instance. NOT supported for production deployment.`,
+				},
+				resource.Attribute{
+					Name:        "spot_price",
+					Description: `(Optional) Price for spot instance. NOT supported for production deployment. ### Gateway Upgrade`,
+				},
+				resource.Attribute{
+					Name:        "software_version",
+					Description: `(Optional/Computed) The software version of the gateway. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "image_version",
+					Description: `(Optional/Computed) The image version of the gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `software_version` + "`" + `. If set, we will attempt to update the gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "ha_software_version",
+					Description: `(Optional/Computed) The software version of the HA gateway. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the HA gateway upgrade can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "6.5.821". Available as of provider version R2.20.0.`,
+				},
+				resource.Attribute{
+					Name:        "ha_image_version",
+					Description: `(Optional/Computed) The image version of the HA gateway. Use ` + "`" + `aviatrix_gateway_image` + "`" + ` data source to programmatically retrieve this value for the desired ` + "`" + `ha_software_version` + "`" + `. If set, we will attempt to update the HA gateway to the specified version if current version is different. If left blank, the gateway upgrades can be managed with the ` + "`" + `aviatrix_controller_config` + "`" + ` resource. Type: String. Example: "hvm-cloudx-aws-022021". Available as of provider version R2.20.0. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "allocate_new_eip",
@@ -4819,7 +4944,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS and GCP.`,
+					Description: `(Optional) Required when ` + "`" + `allocate_new_eip` + "`" + ` is false. It uses the specified EIP for this gateway. Available in Controller version 4.7+. Only available for AWS, GCP, Azure, OCI, AzureGov, AWSGov, AWSChina, AzureChina, AWS Top Secret and AWS Secret.`,
+				},
+				resource.Attribute{
+					Name:        "azure_eip_name_resource_group",
+					Description: `(Optional) Name of public IP Address resource and its resource group in Azure to be assigned to the Transit Gateway instance. Example: "IP_Name:Resource_Group_Name". Required if ` + "`" + `allocate_new_eip` + "`" + ` is false and ` + "`" + `cloud_type` + "`" + ` is Azure, AzureGov or AzureChina. Available as of provider version 2.20+.`,
 				},
 				resource.Attribute{
 					Name:        "enable_active_mesh",
@@ -5315,7 +5444,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group",
-					Description: `(Optional) The name of an existing resource group or a new resource group to be created for the Azure VNET. A new resource group will be created if left blank. Only available for Azure, AzureGov and AzureChina providers. Available as of provider version R2.19+. ### Misc.`,
+					Description: `(Optional) The name of an existing resource group or a new resource group to be created for the Azure VNet. A new resource group will be created if left blank. Only available for Azure, AzureGov and AzureChina providers. Available as of provider version R2.19+. ### Misc.`,
 				},
 				resource.Attribute{
 					Name:        "aviatrix_transit_vpc",
@@ -5331,7 +5460,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "aviatrix_firenet_vpc",
-					Description: `If you are using/ upgraded to Aviatrix Terraform Provider R1.8+, and a VPC resource was originally created with a provider version <R1.8, you must do 'terraform refresh' to update and apply the attribute’s default value (false) into the state file. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `If you are using/ upgraded to Aviatrix Terraform Provider R1.8+, and a VPC resource was originally created with a provider version <R1.8, you must do 'terraform refresh' to update and apply the attribute’s default value (false) into the state file. ## Attribute Reference In addition to all arguments above, the following attributes are exported: ->`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -5339,7 +5468,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "azure_vnet_resource_id",
-					Description: `Azure vnet resource ID.`,
+					Description: `Azure VNet resource ID.`,
 				},
 				resource.Attribute{
 					Name:        "route_tables",
@@ -5413,7 +5542,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "azure_vnet_resource_id",
-					Description: `Azure vnet resource ID.`,
+					Description: `Azure VNet resource ID.`,
 				},
 				resource.Attribute{
 					Name:        "route_tables",

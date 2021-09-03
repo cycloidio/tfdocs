@@ -21,6 +21,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_certificates",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Certificates.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_datacenter",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Datacenter.`,
@@ -59,6 +69,16 @@ This resource may be useful to create highly available infrastructure, distribut
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_firewalls",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Firewall.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_floating_ip",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Floating IP.`,
@@ -67,6 +87,20 @@ This resource may be useful to create highly available infrastructure, distribut
 Provides details about a Hetzner Cloud Floating IP.
 
 This resource can be useful when you need to determine a Floating IP ID based on the IP address.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_floating_ips",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Floating IPs.`,
+			Description: `
+Provides details about multiple Hetzner Cloud Floating IPs.
+
 
 `,
 			Keywords:   []string{},
@@ -88,9 +122,33 @@ This resource is useful if you want to use a non-terraform managed image.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_images",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Images.`,
+			Description: `
+Provides details about multiple Hetzner Cloud Images.
+
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_load_balancer",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Load Balancer.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_load_balancers",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Load Balancers.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -139,6 +197,36 @@ This resource is useful if you want to use a non-terraform managed network.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_networks",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Networks.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_placement_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud Placement Group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_placement_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Placement Groups.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_server",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Server.`,
@@ -172,6 +260,20 @@ Use this resource to get detailed information about specific Server Type.
 			ShortDescription: `List all available Hetzner Cloud Server Types.`,
 			Description: `
 Provides a list of available Hetzner Cloud Server Types.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_servers",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Servers.`,
+			Description: `
+Provides details about multiple Hetzner Cloud Servers.
+This resource is useful if you want to use non-terraform managed servers.
 
 `,
 			Keywords:   []string{},
@@ -219,26 +321,46 @@ This resource is useful if you want to use a non-terraform managed volume.
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_volumes",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud volumes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"hcloud_certificate":   0,
-		"hcloud_datacenter":    1,
-		"hcloud_datacenters":   2,
-		"hcloud_firewall":      3,
-		"hcloud_floating_ip":   4,
-		"hcloud_image":         5,
-		"hcloud_load_balancer": 6,
-		"hcloud_location":      7,
-		"hcloud_locations":     8,
-		"hcloud_network":       9,
-		"hcloud_server":        10,
-		"hcloud_server_type":   11,
-		"hcloud_server_types":  12,
-		"hcloud_ssh_key":       13,
-		"hcloud_ssh_keys":      14,
-		"hcloud_volume":        15,
+		"hcloud_certificate":      0,
+		"hcloud_certificates":     1,
+		"hcloud_datacenter":       2,
+		"hcloud_datacenters":      3,
+		"hcloud_firewall":         4,
+		"hcloud_firewalls":        5,
+		"hcloud_floating_ip":      6,
+		"hcloud_floating_ips":     7,
+		"hcloud_image":            8,
+		"hcloud_images":           9,
+		"hcloud_load_balancer":    10,
+		"hcloud_load_balancers":   11,
+		"hcloud_location":         12,
+		"hcloud_locations":        13,
+		"hcloud_network":          14,
+		"hcloud_networks":         15,
+		"hcloud_placement_group":  16,
+		"hcloud_placement_groups": 17,
+		"hcloud_server":           18,
+		"hcloud_server_type":      19,
+		"hcloud_server_types":     20,
+		"hcloud_servers":          21,
+		"hcloud_ssh_key":          22,
+		"hcloud_ssh_keys":         23,
+		"hcloud_volume":           24,
+		"hcloud_volumes":          25,
 	}
 )
 

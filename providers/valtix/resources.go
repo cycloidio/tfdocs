@@ -42,11 +42,15 @@ Manages address objects that can be used as source (for egress) or a target (bac
 				},
 				resource.Attribute{
 					Name:        "tag_key",
-					Description: `(Required), name of the tag`,
+					Description: `(Deprecated), name of the tag`,
 				},
 				resource.Attribute{
 					Name:        "tag_value",
-					Description: `(Required), value of the tag`,
+					Description: `(Deprecated), value of the tag`,
+				},
+				resource.Attribute{
+					Name:        "tag_list",
+					Description: `(Required) object with tag_key=<key> and tag_value=<value>, this block can be repeated multiple times. Application is selected if ALL the tags specified match`,
 				},
 				resource.Attribute{
 					Name:        "csp_account_name",
@@ -54,7 +58,7 @@ Manages address objects that can be used as source (for egress) or a target (bac
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(OptionalRestrict the tag_key and tag_value for only the given vpc_id`,
+					Description: `(Optional) Restrict the tag_key and tag_value for only the given vpc_id`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -142,27 +146,23 @@ Manages address objects that can be used as source (for egress) or a target (bac
 				},
 				resource.Attribute{
 					Name:        "csp_account_name",
-					Description: `(Required) This is the name of the account added via valtix_cloud_account that selects the csp account to get the VPC`,
+					Description: `(Optional) This is the name of the account added via valtix_cloud_account that selects the csp account to get the VPC`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) Region where the VPC is defined`,
+					Description: `(Optional) Region where the VPC is defined`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) VPC Id`,
+					Description: `(Optional) VPC Id`,
 				},
 				resource.Attribute{
-					Name:        "tag_key",
-					Description: `(Required), name of the tag`,
-				},
-				resource.Attribute{
-					Name:        "tag_value",
-					Description: `(Required), value of the tag`,
+					Name:        "tag_list",
+					Description: `(Required) object with tag_key=<key> and tag_value=<value>, this block can be repeated multiple times. Application is selected if ALL the tags specified match`,
 				},
 				resource.Attribute{
 					Name:        "resource_group",
-					Description: `(Azure only) Resource group name ## DYNAMIC_SERVICE_ENDPOINTS`,
+					Description: `(Azure only - optional) Resource group name ## DYNAMIC_SERVICE_ENDPOINTS`,
 				},
 				resource.Attribute{
 					Name:        "csp_account_name",
@@ -182,10 +182,23 @@ Manages address objects that can be used as source (for egress) or a target (bac
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) Bucket Name`,
+					Description: `(Required) Bucket Name ## GROUP`,
+				},
+				resource.Attribute{
+					Name:        "address_group_ids",
+					Description: `(Required) list of address ids that can be grouped together ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "address_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_service_object)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_service_object)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -213,10 +226,19 @@ Manages address objects that can be used as source (for egress) or a target (bac
 				},
 				resource.Attribute{
 					Name:        "integration_url",
-					Description: `(Required for ServiceNow and Slack) Webhook URL or ServiceNow Url`,
+					Description: `(Required for ServiceNow and Slack) Webhook URL or ServiceNow Url ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -343,10 +365,19 @@ Manages certificates that are presented to the end user when they access valtix 
 				},
 				resource.Attribute{
 					Name:        "azure_key_vault_secret_name",
-					Description: `(Required) Azure secret name`,
+					Description: `(Required) Azure secret name ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the certificate that can be referenced in other resources (e.g. valtix_profile_decryption)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the certificate that can be referenced in other resources (e.g. valtix_profile_decryption)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -573,6 +604,10 @@ must be defined before valtix_gateway can be created
 					Description: `(Optional) diagnostics profile id`,
 				},
 				resource.Attribute{
+					Name:        "settings",
+					Description: `(Optional) Gateway settings. This block can be repeated multiple times. Please check [this section](#gateway-settings) for the structure.`,
+				},
+				resource.Attribute{
 					Name:        "instance_details",
 					Description: `(Required) contains the parameters used to deploy gateway in each availability zone. This block can be repeated multiple times for deploying gateway instances in multiple zones. Look below for the structure of this block. Atleast 1 block must be provided. ## Instance Details This section is not required for AWS HUB mode as instance details are configured from service VPC referenced in vpc_id attribute`,
 				},
@@ -586,10 +621,27 @@ must be defined before valtix_gateway can be created
 				},
 				resource.Attribute{
 					Name:        "datapath_subnet",
-					Description: `(Required) specifies the VPC subnet ID used for data traffic where the Valtix gateway instance(s) are deployed for this availability zone.`,
+					Description: `(Required) specifies the VPC subnet ID used for data traffic where the Valtix gateway instance(s) are deployed for this availability zone. ## Gateway settings Gateway settings define a list of settings that applies to the given gateway ### To enable EBS encryption for the gateway instances using default KMS key ` + "`" + `` + "`" + `` + "`" + `hcl settings { name = "gateway.aws.ebs.encryption.key.default" value = "true" } ` + "`" + `` + "`" + `` + "`" + ` ### To enable EBS encryption for the gateway instances using specified KMS key ` + "`" + `` + "`" + `` + "`" + `hcl settings { name = "gateway.aws.ebs.encryption.key.customer_key" value = "<KMS key ID>" } ` + "`" + `` + "`" + `` + "`" + ` ### To add a list of custom tags to the gateway instances ` + "`" + `` + "`" + `` + "`" + `hcl settings { name = "custom_tags" value = "[{\"key\":\"customer_key1\",\"value\":\"customer_value1\"},{\"key\":\"customer_key2\",\"value\":\"customer_value2\"}]" } ` + "`" + `` + "`" + `` + "`" + ` ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "gateway_gwlb_endpoints",
+					Description: `AWS Gateway Load Balancer endpoints created in each of the AZs. It's in the following format ` + "`" + `` + "`" + `` + "`" + ` gateway_gwlb_endpoints { endpoint_id = "vpce-047c749fc6f7e0c0d" network_interface_id = "eni-017eacdb23d2ebaf4" subnet_id = "subnet-0d61750e97caafd9d" } gateway_gwlb_endpoints { endpoint_id = "vpce-0707fa3f03c5064a7" network_interface_id = "eni-020464bd838461bca" subnet_id = "subnet-0fd61e07f200224f1" } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "gateway_endpoint",
+					Description: `For the Ingress Gateway, shows the NLB DNS/IP of the Valtix Gateway. This must be used as an endpoint for your application and Valtix proxies the traffic received on this endpoint to the target application configured`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_gwlb_endpoints",
+					Description: `AWS Gateway Load Balancer endpoints created in each of the AZs. It's in the following format ` + "`" + `` + "`" + `` + "`" + ` gateway_gwlb_endpoints { endpoint_id = "vpce-047c749fc6f7e0c0d" network_interface_id = "eni-017eacdb23d2ebaf4" subnet_id = "subnet-0d61750e97caafd9d" } gateway_gwlb_endpoints { endpoint_id = "vpce-0707fa3f03c5064a7" network_interface_id = "eni-020464bd838461bca" subnet_id = "subnet-0fd61e07f200224f1" } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "gateway_endpoint",
+					Description: `For the Ingress Gateway, shows the NLB DNS/IP of the Valtix Gateway. This must be used as an endpoint for your application and Valtix proxies the traffic received on this endpoint to the target application configured`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -677,10 +729,19 @@ A policy rule set is a list of firewall rules. The rule set can be applied to mu
 				},
 				resource.Attribute{
 					Name:        "packet_capture_enabled",
-					Description: `(Optional) true/false. Capture pcap when traffic matches the rule.`,
+					Description: `(Optional) true/false. Capture pcap when traffic matches the rule. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "rule_set_id",
+					Description: `Id of the rule set that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule_set_id",
+					Description: `Id of the rule set that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -805,8 +866,17 @@ Create Anti Virus Profile
 					Name:        "action",
 					Description: `(Required) Default action for all the attacks. Valid values:`,
 				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -930,10 +1000,19 @@ Create Web Application Firewall (WAF) profile
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) "RATE" or "SAMPLE". When "RATE" is selected, number_of_events and time must be provided. action is applied once the provided rule_ids match the given count in the given time. If the type is "SAMPLE", the action is applied once the count of the events matces`,
+					Description: `(Optional) "RATE" or "SAMPLE". When "RATE" is selected, number_of_events and time must be provided. action is applied once the provided rule_ids match the given count in the given time. If the type is "SAMPLE", the action is applied once the count of the events matces ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -957,10 +1036,19 @@ Create a decryption profile that can be used in a service.
 				},
 				resource.Attribute{
 					Name:        "certificate_name",
-					Description: `(Required) Certificate name from the valtix_certificate object`,
+					Description: `(Required) Certificate name from the valtix_certificate object ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_service_object)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_service_object)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1006,8 +1094,17 @@ Data loss prevention profile
 					Name:        "action",
 					Description: `(Required) action upon detecting the data loss prevention. Valid values:`,
 				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1038,8 +1135,8 @@ Create FQDN filtering profile
 					Description: `(Optional) Default FQDN filter behavious. Structure [defined below](#fqdn-filter) ## FQDN Filter`,
 				},
 				resource.Attribute{
-					Name:        "fqdn",
-					Description: `(Required) String or regular expression or a predefined Category`,
+					Name:        "fqdn_list",
+					Description: `(Required) List of strings or regular expressions or predefined Categories`,
 				},
 				resource.Attribute{
 					Name:        "policy",
@@ -1047,10 +1144,19 @@ Create FQDN filtering profile
 				},
 				resource.Attribute{
 					Name:        "decryption_exception",
-					Description: `(Optional) true/false. In the proxy mode disable decryption and inspection of packets`,
+					Description: `(Optional) true/false. In the proxy mode disable decryption and inspection of packets. Defaults to true. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1086,10 +1192,19 @@ Create FQDN filtering profile
 				},
 				resource.Attribute{
 					Name:        "rate_limited_methods",
-					Description: `(Required) HTTP actions/methods to which the rate limiting is applied. Valid values are GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS`,
+					Description: `(Required) HTTP actions/methods to which the rate limiting is applied. Valid values are METHOD_GET, METHOD_POST, METHOD_PUT, METHOD_DELETE, METHOD_PATCH, METHOD_HEAD, METHOD_OPTIONS ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1136,7 +1251,7 @@ Create FQDN filtering profile
 					Description: `(Required) syslog server ip`,
 				},
 				resource.Attribute{
-					Name:        "syslog_server_port",
+					Name:        "syslog_port",
 					Description: `(Required) syslog server port`,
 				},
 				resource.Attribute{
@@ -1161,10 +1276,19 @@ Create FQDN filtering profile
 				},
 				resource.Attribute{
 					Name:        "web_attack_severity",
-					Description: `(Optional) One of "Alert", "Emergency", "Critical", "Error", "Warning", "Notice", "Info", "Debug". Forward web attacks with the given severity only`,
+					Description: `(Optional) One of "Alert", "Emergency", "Critical", "Error", "Warning", "Notice", "Info", "Debug". Forward web attacks with the given severity only ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_gateway)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_gateway)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1200,10 +1324,19 @@ Create Malicious Sources Profile
 				},
 				resource.Attribute{
 					Name:        "vendor_rule_set_name",
-					Description: `(Optional) Vendor rule set name/version. Find the values from the UI. The rulesets are published everyday. Unless you want to use a specific version, Valtix recommends to use auto_update as described above If this argument is specified, Auto Update of Trustwave IP Reputation Ruleset is disabled and the profile will only use this version for Trustwave IP Reputation Ruleset.`,
+					Description: `(Optional) Vendor rule set name/version. Find the values from the UI. The rulesets are published everyday. Unless you want to use a specific version, Valtix recommends to use auto_update as described above If this argument is specified, Auto Update of Trustwave IP Reputation Ruleset is disabled and the profile will only use this version for Trustwave IP Reputation Ruleset. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1251,11 +1384,11 @@ Create IPS (Network Intrusion) Profile
 				},
 				resource.Attribute{
 					Name:        "categories",
-					Description: `(Optional) List of predefined categories. Structure [defined below](#categories)`,
+					Description: `(Optional) Predefined Categories. Structure [defined below](#categories). This block can be repeated multiple times.`,
 				},
 				resource.Attribute{
 					Name:        "classes",
-					Description: `(Optional) List of predefined classes. Structure [defined below](#classes)`,
+					Description: `(Optional) Predefined classes. Structure [defined below](#classes). This block can be repeated multiple times.`,
 				},
 				resource.Attribute{
 					Name:        "pcap",
@@ -1263,11 +1396,11 @@ Create IPS (Network Intrusion) Profile
 				},
 				resource.Attribute{
 					Name:        "rule_event_filter",
-					Description: `(Optional) Rate Limit / Sample a set of rules. Structure is [defined below](#rule-event-filter)`,
+					Description: `(Optional) Rate Limit / Sample a set of rules. Structure is [defined below](#rule-event-filter). This block can be repeated multiple times.`,
 				},
 				resource.Attribute{
 					Name:        "event_suppressor",
-					Description: `(Optional) Suppress a given set of rule ids for traffic from certain sources. Structure is [defined below](#event-suppressor)`,
+					Description: `(Optional) Suppress a given set of rule ids for traffic from certain sources. Structure is [defined below](#event-suppressor). This block can be repeated multiple times.`,
 				},
 				resource.Attribute{
 					Name:        "profile_event_filter",
@@ -1319,10 +1452,19 @@ Create IPS (Network Intrusion) Profile
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) "RATE" or "SAMPLE". When "RATE" is selected, number_of_events and time must be provided. action is applied once the provided rule_ids match the given count in the given time. If the type is "SAMPLE", the action is applied once the count of the events matces`,
+					Description: `(Optional) "RATE" or "SAMPLE". When "RATE" is selected, number_of_events and time must be provided. action is applied once the provided rule_ids match the given count in the given time. If the type is "SAMPLE", the action is applied once the count of the events matces ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1396,8 +1538,8 @@ Create URL Filtering Profile
 					Description: `(Optional) Default behavior of URL filter. Structure [defined below](#url-filter) ## URL Filter`,
 				},
 				resource.Attribute{
-					Name:        "url",
-					Description: `(Required) String or regular expression or a predefined Category`,
+					Name:        "url_list",
+					Description: `(Required) List of Strings or regular expressions or predefined Categories`,
 				},
 				resource.Attribute{
 					Name:        "filter_methods",
@@ -1409,10 +1551,19 @@ Create URL Filtering Profile
 				},
 				resource.Attribute{
 					Name:        "return_status",
-					Description: `(Optional) HTTP status code to return for DENY and DENY_NOLOG policy`,
+					Description: `(Optional) HTTP status code to return for DENY and DENY_NOLOG policy ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `Id of the profile that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1516,10 +1667,19 @@ Create URL Filtering Profile
 				},
 				resource.Attribute{
 					Name:        "destination_ports",
-					Description: `(Required) Destination port number as a string or a continuous range of destination port numbers (e.g "80" or "80-100")`,
+					Description: `(Required) Destination port number as a string or a continuous range of destination port numbers (e.g "80" or "80-100") ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `Id of the service object that can be referenced in other resources (e.g. valtix_policy_rules)`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `Id of the service object that can be referenced in other resources (e.g. valtix_policy_rules)`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",

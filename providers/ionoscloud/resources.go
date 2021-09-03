@@ -37,7 +37,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional)[string] Description for the Virtual Data Center. ## Import Resource Datacenter can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import ionoscloud_datacenter.mydc {datacenter uuid} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)[string] Description for the Virtual Data Center.`,
+				},
+				resource.Attribute{
+					Name:        "sec_auth_protection",
+					Description: `(Optional) [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Computed) The version of that Data Center. Gets incremented with every change`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Computed) List of features supported by the location this data center is part of ## Import Resource Datacenter can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import ionoscloud_datacenter.mydc {datacenter uuid} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

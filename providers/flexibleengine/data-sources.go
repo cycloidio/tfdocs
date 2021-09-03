@@ -135,28 +135,24 @@ var (
 					Description: `(Optional) Type of the cluster. Possible values: VirtualMachine, BareMetal or Windows ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference:`,
 				},
 				resource.Attribute{
-					Name:        "billingMode",
-					Description: `Charging mode of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Cluster description.`,
+					Name:        "id",
+					Description: `The ID of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the cluster in string format.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "flavor_id",
-					Description: `The cluster specification in string format.`,
+					Name:        "description",
+					Description: `Cluster description.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
 					Description: `The version of cluster in string format.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The cluster specification in string format.`,
 				},
 				resource.Attribute{
 					Name:        "container_network_cidr",
@@ -167,8 +163,16 @@ var (
 					Description: `The container network type: overlay_l2 , underlay_ipvlan or vpc-router.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC used to create the node.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `The ID of the subnet used to create the node.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "highway_subnet_id",
@@ -187,34 +191,30 @@ var (
 					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
 				},
 				resource.Attribute{
-					Name:        "security_group_id",
-					Description: `Security group ID of the cluster.`,
+					Name:        "billingMode",
+					Description: `Charging mode of the cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "billingMode",
-					Description: `Charging mode of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Cluster description.`,
+					Name:        "id",
+					Description: `The ID of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the cluster in string format.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "flavor_id",
-					Description: `The cluster specification in string format.`,
+					Name:        "description",
+					Description: `Cluster description.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
 					Description: `The version of cluster in string format.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The cluster specification in string format.`,
 				},
 				resource.Attribute{
 					Name:        "container_network_cidr",
@@ -225,8 +225,16 @@ var (
 					Description: `The container network type: overlay_l2 , underlay_ipvlan or vpc-router.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC used to create the node.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `The ID of the subnet used to create the node.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "highway_subnet_id",
@@ -245,8 +253,8 @@ var (
 					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
 				},
 				resource.Attribute{
-					Name:        "security_group_id",
-					Description: `Security group ID of the cluster.`,
+					Name:        "billingMode",
+					Description: `Charging mode of the cluster.`,
 				},
 			},
 		},
@@ -298,7 +306,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Cluster_id",
+					Name:        "cluster_id",
 					Description: `(Required) The id of container cluster.`,
 				},
 				resource.Attribute{
@@ -330,18 +338,6 @@ var (
 					Description: `Node's billing mode: The value is 0 (on demand).`,
 				},
 				resource.Attribute{
-					Name:        "charge_mode",
-					Description: `Bandwidth billing type.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth_size",
-					Description: `Bandwidth (Mbit/s), in the range of [1, 2000].`,
-				},
-				resource.Attribute{
-					Name:        "extendparam",
-					Description: `Extended parameters.`,
-				},
-				resource.Attribute{
 					Name:        "eip_ids",
 					Description: `List of existing elastic IP IDs.`,
 				},
@@ -350,12 +346,12 @@ var (
 					Description: `The node's virtual machine ID in ECS.`,
 				},
 				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Elastic IP parameters of the node.`,
-				},
-				resource.Attribute{
 					Name:        "private_ip",
 					Description: `Private IP of the node`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Elastic IP parameters of the node.`,
 				},
 				resource.Attribute{
 					Name:        "ip_type",
@@ -363,14 +359,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "share_type",
-					Description: `The bandwidth sharing type. NOTE: This parameter is mandatory when share_type is set to PER and is optional when share_type is set to WHOLE with an ID specified. Enumerated values: PER (indicates exclusive bandwidth) and WHOLE (indicates sharing)`,
+					Description: `Bandwidth sharing type.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_size",
+					Description: `Bandwidth (Mbit/s), in the range of [1, 2000].`,
+				},
+				resource.Attribute{
+					Name:        "charge_mode",
+					Description: `Bandwidth billing type.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
 					Description: `Disk size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "volumetype",
+					Name:        "volume_type",
 					Description: `Disk type.`,
 				},
 				resource.Attribute{
@@ -378,7 +382,7 @@ var (
 					Description: `Disk size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "volumetype",
+					Name:        "volume_type",
 					Description: `Disk type.`,
 				},
 			},
@@ -400,18 +404,6 @@ var (
 					Description: `Node's billing mode: The value is 0 (on demand).`,
 				},
 				resource.Attribute{
-					Name:        "charge_mode",
-					Description: `Bandwidth billing type.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth_size",
-					Description: `Bandwidth (Mbit/s), in the range of [1, 2000].`,
-				},
-				resource.Attribute{
-					Name:        "extendparam",
-					Description: `Extended parameters.`,
-				},
-				resource.Attribute{
 					Name:        "eip_ids",
 					Description: `List of existing elastic IP IDs.`,
 				},
@@ -420,12 +412,12 @@ var (
 					Description: `The node's virtual machine ID in ECS.`,
 				},
 				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Elastic IP parameters of the node.`,
-				},
-				resource.Attribute{
 					Name:        "private_ip",
 					Description: `Private IP of the node`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Elastic IP parameters of the node.`,
 				},
 				resource.Attribute{
 					Name:        "ip_type",
@@ -433,14 +425,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "share_type",
-					Description: `The bandwidth sharing type. NOTE: This parameter is mandatory when share_type is set to PER and is optional when share_type is set to WHOLE with an ID specified. Enumerated values: PER (indicates exclusive bandwidth) and WHOLE (indicates sharing)`,
+					Description: `Bandwidth sharing type.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_size",
+					Description: `Bandwidth (Mbit/s), in the range of [1, 2000].`,
+				},
+				resource.Attribute{
+					Name:        "charge_mode",
+					Description: `Bandwidth billing type.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
 					Description: `Disk size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "volumetype",
+					Name:        "volume_type",
 					Description: `Disk type.`,
 				},
 				resource.Attribute{
@@ -448,7 +448,7 @@ var (
 					Description: `Disk size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "volumetype",
+					Name:        "volume_type",
 					Description: `Disk type.`,
 				},
 			},

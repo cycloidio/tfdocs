@@ -710,10 +710,6 @@ var (
 					Description: `The unique dns entry for the cluster in this case point to the master.`,
 				},
 				resource.Attribute{
-					Name:        "built_at",
-					Description: `The date where the Kubernetes cluster was build.`,
-				},
-				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date where the Kubernetes cluster was create.`,
 				},
@@ -782,10 +778,6 @@ var (
 				resource.Attribute{
 					Name:        "dns_entry",
 					Description: `The unique dns entry for the cluster in this case point to the master.`,
-				},
-				resource.Attribute{
-					Name:        "built_at",
-					Description: `The date where the Kubernetes cluster was build.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1221,7 +1213,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) If is used, them all instances will be from that region.`,
+					Description: `(Optional) If is used, them all template will be from that region, has to be declared here if is not declared in the provider`,
 				},
 				resource.Attribute{
 					Name:        "filter",

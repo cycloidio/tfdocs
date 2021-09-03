@@ -1556,10 +1556,97 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 			Type:             "vra_region",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_region.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Description: `\_region
+
+This is an example of how to lookup a region data source.
+
+**Region data source**
+` + "`" + `` + "`" + `` + "`" + `hcl
+data "vra_region" "region_1" {
+  cloud_account_id = "cloud_account_id"
+  region           = "us-east-1"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+data "vra_region" "eastus" {
+  cloud_account_id = "cloud_account_id"
+  region           = "eastus"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+The region data source supports the following arguments:
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_id",
+					Description: `(Optional) The id of the cloud account this region belongs to. Example: 9e49`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) The id of this resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this resource instance. Example: 9e49`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC. Example: 2012-09-27`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `Unique identifier of region on the provider side. Example: us-west`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to. Example: 9e49`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity. Example: csp@vmware.com`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. Example: 2012-09-27`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC. Example: 2012-09-27`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `Unique identifier of region on the provider side. Example: us-west`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to. Example: 9e49`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity. Example: csp@vmware.com`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. Example: 2012-09-27`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",

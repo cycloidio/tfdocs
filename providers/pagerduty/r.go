@@ -162,7 +162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "advanced_condition_json",
-					Description: `(Optional) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://v2.developer.pagerduty.com/docs/global-event-rules-api#section-advanced-condition) in the PagerDuty API documentation.`,
+					Description: `(Optional) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://developer.pagerduty.com/docs/rest-api-v2/global-event-rules-api/#advanced-condition-parameter) in the PagerDuty API documentation.`,
 				},
 				resource.Attribute{
 					Name:        "depends_on",
@@ -235,6 +235,73 @@ var (
 				resource.Attribute{
 					Name:        "html_url",
 					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_extension_servicenow",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a ServiceNow service extension in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"extension",
+				"servicenow",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the service extension.`,
+				},
+				resource.Attribute{
+					Name:        "extension_schema",
+					Description: `(Required) This is the schema for this extension.`,
+				},
+				resource.Attribute{
+					Name:        "extension_objects",
+					Description: `(Required) This is the objects for which the extension applies (An array of service ids).`,
+				},
+				resource.Attribute{
+					Name:        "snow_user",
+					Description: `(Required) The ServiceNow username.`,
+				},
+				resource.Attribute{
+					Name:        "snow_password",
+					Description: `(Required) The ServiceNow password.`,
+				},
+				resource.Attribute{
+					Name:        "sync_options",
+					Description: `(Required) The ServiceNow sync option.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Target Webhook URL`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The ServiceNow task type, typically ` + "`" + `incident` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "referer",
+					Description: `(Required) The ServiceNow referer. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the extension.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the extension.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -589,7 +656,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "overflow",
-					Description: `(Optional) Any on-call schedule entries that pass the date range bounds will be truncated at the bounds, unless the parameter ` + "`" + `overflow` + "`" + ` is passed. For instance, if your schedule is a rotation that changes daily at midnight UTC, and your date range is from ` + "`" + `2011-06-01T10:00:00Z` + "`" + ` to ` + "`" + `2011-06-01T14:00:00Z` + "`" + `: If you don't pass the overflow=true parameter, you will get one schedule entry returned with a start of ` + "`" + `2011-06-01T10:00:00Z` + "`" + ` and end of ` + "`" + `2011-06-01T14:00:00Z` + "`" + `. If you do pass the ` + "`" + `overflow` + "`" + ` parameter, you will get one schedule entry returned with a start of ` + "`" + `2011-06-01T00:00:00Z` + "`" + ` and end of ` + "`" + `2011-06-02T00:00:00Z` + "`" + `. Schedule layers (` + "`" + `layer` + "`" + `) supports the following:`,
+					Description: `(Optional) Any on-call schedule entries that pass the date range bounds will be truncated at the bounds, unless the parameter ` + "`" + `overflow` + "`" + ` is passed. For instance, if your schedule is a rotation that changes daily at midnight UTC, and your date range is from ` + "`" + `2011-06-01T10:00:00Z` + "`" + ` to ` + "`" + `2011-06-01T14:00:00Z` + "`" + `: If you don't pass the overflow=true parameter, you will get one schedule entry returned with a start of ` + "`" + `2011-06-01T10:00:00Z` + "`" + ` and end of ` + "`" + `2011-06-01T14:00:00Z` + "`" + `. If you do pass the ` + "`" + `overflow` + "`" + ` parameter, you will get one schedule entry returned with a start of ` + "`" + `2011-06-01T00:00:00Z` + "`" + ` and end of ` + "`" + `2011-06-02T00:00:00Z` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `(Optional) Teams associated with the schedule. Schedule layers (` + "`" + `layer` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -739,7 +810,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "end_time",
-					Description: `The support hours' ending time of day. When using ` + "`" + `type = "use_support_hours"` + "`" + ` in ` + "`" + `incident_urgency_rule` + "`" + ` you must specify at least one (otherwise optional) ` + "`" + `scheduled_actions` + "`" + ` block. The block contains the following arguments:`,
+					Description: `The support hours' ending time of day. A ` + "`" + `scheduled_actions` + "`" + ` block is required when using ` + "`" + `type = "use_support_hours"` + "`" + ` in ` + "`" + `incident_urgency_rule` + "`" + `. The block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -759,7 +830,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Designates either the start or the end of the scheduled action. Can be ` + "`" + `support_hours_start` + "`" + ` or ` + "`" + `support_hours_end` + "`" + `. Below is an example for a ` + "`" + `pagerduty_service` + "`" + ` resource with ` + "`" + `incident_urgency_rules` + "`" + ` with ` + "`" + `type = "use_support_hours"` + "`" + `, ` + "`" + `support_hours` + "`" + ` and a default ` + "`" + `scheduled_action` + "`" + ` as well. ` + "`" + `` + "`" + `` + "`" + `hcl resource "pagerduty_service" "foo" { name = "bar" description = "bar bar bar" auto_resolve_timeout = 3600 acknowledgement_timeout = 3600 escalation_policy = pagerduty_escalation_policy.foo.id incident_urgency_rule { type = "use_support_hours" during_support_hours { type = "constant" urgency = "high" } outside_support_hours { type = "constant" urgency = "low" } } support_hours { type = "fixed_time_per_day" time_zone = "America/Lima" start_time = "09:00:00" end_time = "17:00:00" days_of_week = [1, 2, 3, 4, 5] } scheduled_actions { type = "urgency_change" to_urgency = "high" at { type = "named_time" name = "support_hours_start" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+					Description: `Designates either the start or the end of the scheduled action. Can be ` + "`" + `support_hours_start` + "`" + ` or ` + "`" + `support_hours_end` + "`" + `. Note that it is currently only possible to define the scheduled action when urgency is set to ` + "`" + `high` + "`" + ` for ` + "`" + `during_support_hours` + "`" + ` and to ` + "`" + `low` + "`" + ` for ` + "`" + `outside_support_hours` + "`" + ` in ` + "`" + `incident_urgency_rule` + "`" + `. Below is an example for a ` + "`" + `pagerduty_service` + "`" + ` resource with ` + "`" + `incident_urgency_rules` + "`" + ` with ` + "`" + `type = "use_support_hours"` + "`" + `, ` + "`" + `support_hours` + "`" + ` and a default ` + "`" + `scheduled_action` + "`" + ` as well. ` + "`" + `` + "`" + `` + "`" + `hcl resource "pagerduty_service" "foo" { name = "bar" description = "bar bar bar" auto_resolve_timeout = 3600 acknowledgement_timeout = 3600 escalation_policy = pagerduty_escalation_policy.foo.id incident_urgency_rule { type = "use_support_hours" during_support_hours { type = "constant" urgency = "high" } outside_support_hours { type = "constant" urgency = "low" } } support_hours { type = "fixed_time_per_day" time_zone = "America/Lima" start_time = "09:00:00" end_time = "17:00:00" days_of_week = [1, 2, 3, 4, 5] } scheduled_actions { type = "urgency_change" to_urgency = "high" at { type = "named_time" name = "support_hours_start" } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1167,19 +1238,20 @@ var (
 		"pagerduty_escalation_policy":      2,
 		"pagerduty_event_rule":             3,
 		"pagerduty_extension":              4,
-		"pagerduty_maintenance_window":     5,
-		"pagerduty_response_play":          6,
-		"pagerduty_ruleset":                7,
-		"pagerduty_ruleset_rule":           8,
-		"pagerduty_schedule":               9,
-		"pagerduty_service":                10,
-		"pagerduty_service_dependency":     11,
-		"pagerduty_service_integration":    12,
-		"pagerduty_team":                   13,
-		"pagerduty_team_membership":        14,
-		"pagerduty_user":                   15,
-		"pagerduty_user_contact_method":    16,
-		"pagerduty_user_notification_rule": 17,
+		"pagerduty_extension_servicenow":   5,
+		"pagerduty_maintenance_window":     6,
+		"pagerduty_response_play":          7,
+		"pagerduty_ruleset":                8,
+		"pagerduty_ruleset_rule":           9,
+		"pagerduty_schedule":               10,
+		"pagerduty_service":                11,
+		"pagerduty_service_dependency":     12,
+		"pagerduty_service_integration":    13,
+		"pagerduty_team":                   14,
+		"pagerduty_team_membership":        15,
+		"pagerduty_user":                   16,
+		"pagerduty_user_contact_method":    17,
+		"pagerduty_user_notification_rule": 18,
 	}
 )
 

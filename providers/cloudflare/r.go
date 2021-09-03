@@ -297,7 +297,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "github",
-					Description: `(Optional) Use a GitHub organization as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { github { name = "my-github-org-name" # (Required) GitHub organization name team = ["my-github-team-name"] # (Optional) GitHub teams identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Use a GitHub organization as the ` + "`" + `include` + "`" + ` condition. Example: ` + "`" + `` + "`" + `` + "`" + `hcl # ... other configuration include { github { name = "my-github-org-name" # (Required) GitHub organization name teams = ["my-github-team-name"] # (Optional) GitHub teams identity_provider_id = "ca298b82-93b5-41bf-bc2d-10493f09b761" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "azure",
@@ -1635,6 +1635,10 @@ var (
 					Description: `(Optional) Free text description.`,
 				},
 				resource.Attribute{
+					Name:        "load_shedding",
+					Description: `(Optional) Setting for controlling load shedding for this pool.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) Whether to enable (the default) this pool. Disabled pools will not receive traffic and are excluded from health checks. Disabling a pool will cause any load balancers using it to failover to the next pool (if any).`,
 				},
@@ -1648,7 +1652,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notification_email",
-					Description: `(Optional) The email address to send health status notifications to. This can be an individual mailbox or a mailing list. Multiple emails can be supplied as a comma delimited list. The`,
+					Description: `(Optional) The email address to send health status notifications to. This can be an individual mailbox or a mailing list. Multiple emails can be supplied as a comma delimited list.`,
+				},
+				resource.Attribute{
+					Name:        "latitude",
+					Description: `(Optional) The latitude this pool is physically located at; used for proximity steering. Values should be between -90 and 90.`,
+				},
+				resource.Attribute{
+					Name:        "longitude",
+					Description: `(Optional) The longitude this pool is physically located at; used for proximity steering. Values should be between -180 and 180. The`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1668,7 +1680,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "header",
-					Description: `(Optional) The HTTP request headers. For security reasons, this header also needs to be a subdomain of the overall zone. Fields documented below.`,
+					Description: `(Optional) The HTTP request headers. For security reasons, this header also needs to be a subdomain of the overall zone. Fields documented below. The`,
+				},
+				resource.Attribute{
+					Name:        "default_percent",
+					Description: `(Optional) Percent of traffic to shed 0 - 100.`,
+				},
+				resource.Attribute{
+					Name:        "default_policy",
+					Description: `(Optional) Method of shedding traffic "", "hash" or "random".`,
+				},
+				resource.Attribute{
+					Name:        "session_percent",
+					Description: `(Optional) Percent of session traffic to shed 0 - 100.`,
+				},
+				resource.Attribute{
+					Name:        "session_policy",
+					Description: `(Optional) Method of shedding session traffic "" or "hash".`,
 				},
 				resource.Attribute{
 					Name:        "header",
@@ -1841,6 +1869,56 @@ var (
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Whether the rule is enabled or not. Valid values: ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Import An existing Magic Firewall Ruleset can be imported using the account ID and ruleset ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_magic_firewall_ruleset.example d41d8cd98f00b204e9800998ecf8427e/cb029e245cfdd66dc8d2e570d5dd3322 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_notification_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to create and manage notification policies for Cloudflare's products.`,
+			Description:      ``,
+			Keywords: []string{
+				"notification",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account for which the notification policy has to be created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the notification policy.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) The status of the notification policy, a boolean value.`,
+				},
+				resource.Attribute{
+					Name:        "alert_type",
+					Description: `(Required) The event type that will trigger the dispatch of a notification.`,
+				},
+				resource.Attribute{
+					Name:        "email_integration",
+					Description: `(Optional) The email id to which the notification should be dispatched. One of email, webhooks, or PagerDuty mechanisms is required.`,
+				},
+				resource.Attribute{
+					Name:        "webhooks_integration",
+					Description: `(Optional) The unique id of a configured webhooks endpoint to which the notification should be dispatched. One of email, webhooks, or PagerDuty mechanisms is required.`,
+				},
+				resource.Attribute{
+					Name:        "pagerduty_integration",
+					Description: `(Optional) The unique id of a configured pagerduty endpoint to which the notification should be dispatched. One of email, webhooks, or PagerDuty mechanisms is required.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the notification policy.`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) Optional filterable items for a policy. ## Import An existing notification policy can be imported using the account ID and the policy ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_notification_policy.example 72c379d136459405d964d27aa0f18605/c4a7362d577a6c3019a474fd6f485821 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2464,6 +2542,163 @@ var (
 					Description: `record ID as returned by [API](https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records)`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_ruleset",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource which manages Cloudflare rulesets.`,
+			Description:      ``,
+			Keywords: []string{
+				"ruleset",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) The ID of the account where the ruleset is being created. Conflicts with ` + "`" + `"zone_id"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Brief summary of the ruleset and its intended use.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) Type of Ruleset to create. Valid values are ` + "`" + `"custom"` + "`" + `, ` + "`" + `"managed"` + "`" + `, ` + "`" + `"root"` + "`" + `, ` + "`" + `"schema"` + "`" + ` or ` + "`" + `"zone"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "phase",
+					Description: `(Required) Point in the request/response lifecycle where the ruleset will be created. Valid values are ` + "`" + `"ddos_l4"` + "`" + `, ` + "`" + `"ddos_l7"` + "`" + `, ` + "`" + `"http_request_firewall_custom"` + "`" + `, ` + "`" + `"http_request_firewall_managed"` + "`" + `, ` + "`" + `"http_request_late_transform"` + "`" + `, ` + "`" + `"http_request_main"` + "`" + `, ` + "`" + `"http_request_sanitize"` + "`" + `, ` + "`" + `"http_request_transform"` + "`" + `, ` + "`" + `"http_response_firewall_managed"` + "`" + `, ` + "`" + `"magic_transit"` + "`" + `, or ` + "`" + `"http_ratelimit"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Required) List of rules to apply to the ruleset (refer to the [nested schema](#nestedblock--rules)).`,
+				},
+				resource.Attribute{
+					Name:        "shareable_entitlement_name",
+					Description: `(Optional) Name of entitlement that is shareable between entities.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The ID of the zone where the ruleset is being created. Conflicts with ` + "`" + `"account_id"` + "`" + `. <a id="nestedblock--rules"></a>`,
+				},
+				resource.Attribute{
+					Name:        "action_parameters",
+					Description: `(Required) List of parameters that configure the behavior of the ruleset rule action (refer to the [nested schema](#nestedblock--action-parameters)).`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action to perform in the ruleset rule. Valid values are ` + "`" + `"block"` + "`" + `, ` + "`" + `"challenge"` + "`" + `, ` + "`" + `"ddos_dynamic"` + "`" + `, ` + "`" + `"execute"` + "`" + `, ` + "`" + `"force_connection_close"` + "`" + `, ` + "`" + `"js_challenge"` + "`" + `, ` + "`" + `"log"` + "`" + `, ` + "`" + `"rewrite"` + "`" + `, ` + "`" + `"score"` + "`" + `, or ` + "`" + `"skip"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Brief summary of the ruleset rule and its intended use.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the rule is active.`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Criteria for an HTTP request to trigger the ruleset rule action. Uses the Firewall Rules expression language based on Wireshark display filters. Refer to the [Firewall Rules language](https://developers.cloudflare.com/firewall/cf-firewall-language) documentation for all available fields, operators, and functions.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Read only) Unique rule identifier.`,
+				},
+				resource.Attribute{
+					Name:        "ref",
+					Description: `(Read only) Rule reference.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Identifier of the action parameter to modify.`,
+				},
+				resource.Attribute{
+					Name:        "increment",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "overrides",
+					Description: `(Optional) List of override configurations to apply to the ruleset (refer to the [nested schema](#nestedblock--action-parameters-overrides)).`,
+				},
+				resource.Attribute{
+					Name:        "products",
+					Description: `(Optional) Products to target with the actions. Valid values are ` + "`" + `"bic"` + "`" + `, ` + "`" + `"hot"` + "`" + `, ` + "`" + `"ratelimit"` + "`" + `, ` + "`" + `"securityLevel"` + "`" + `, ` + "`" + `"uablock"` + "`" + `, ` + "`" + `"waf"` + "`" + ` or ` + "`" + `"zonelockdown"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ruleset",
+					Description: `(Optional) Which ruleset to target. Valid value is ` + "`" + `"current"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Optional) List of URI properties to configure for the ruleset rule when performing URL rewrite transformations (refer to the [nested schema](#nestedblock--action-parameters-uri)).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) <a id="nestedblock--action-parameters-uri"></a>`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) URI path configuration when performing a URL rewrite (refer to the [nested schema](#nestedblock--action-parameters-uri-shared)).`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional) Query string configuration when performing a URL rewrite (refer to the [nested schema](#nestedblock--action-parameters-uri-shared)). <a id="nestedblock--action-parameters-uri-shared"></a>`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Optional) Expression that defines the updated (dynamic) value of the URI path or query string component. Conflicts with ` + "`" + `value` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) Static string value of the updated URI path or query string component. Conflicts with ` + "`" + `expression` + "`" + `. <a id="nestedblock--action-parameters-overrides"></a>`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `(Optional) List of tag-based overrides (refer to the [nested schema](#nestedblock--action-parameters-overrides-categories)).`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the current ruleset-level override enables or disables the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Optional) List of rule-based overrides (refer to the [nested schema](#nestedblock--action-parameters-overrides-rules)). <a id="nestedblock--action-parameters-overrides-categories"></a>`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Optional) Tag name to apply the ruleset rule override to.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Action to perform in the tag-level override. Valid values are ` + "`" + `"block"` + "`" + `, ` + "`" + `"challenge"` + "`" + `, ` + "`" + `"ddos_dynamic"` + "`" + `, ` + "`" + `"execute"` + "`" + `, ` + "`" + `"force_connection_close"` + "`" + `, ` + "`" + `"js_challenge"` + "`" + `, ` + "`" + `"log"` + "`" + `, ` + "`" + `"rewrite"` + "`" + `, ` + "`" + `"score"` + "`" + `, or ` + "`" + `"skip"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the current tag-level override enables or disables the ruleset rules with the specified tag. <a id="nestedblock--action-parameters-overrides-rules"></a>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Rule ID to apply the override to.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Action to perform in the rule-level override. Valid values are ` + "`" + `"block"` + "`" + `, ` + "`" + `"challenge"` + "`" + `, ` + "`" + `"ddos_dynamic"` + "`" + `, ` + "`" + `"execute"` + "`" + `, ` + "`" + `"force_connection_close"` + "`" + `, ` + "`" + `"js_challenge"` + "`" + `, ` + "`" + `"log"` + "`" + `, ` + "`" + `"rewrite"` + "`" + `, ` + "`" + `"score"` + "`" + `, or ` + "`" + `"skip"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the current rule-level override enables or disables the rule.`,
+				},
+				resource.Attribute{
+					Name:        "score_threshold",
+					Description: `(Optional) Anomaly score threshold to apply in the ruleset rule override. Only applicable to modsecurity-based rulesets. ## Import Currently, you cannot import rulesets.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3250,24 +3485,26 @@ var (
 		"cloudflare_logpush_job":                 24,
 		"cloudflare_logpush_ownership_challenge": 25,
 		"cloudflare_magic_firewall_ruleset":      26,
-		"cloudflare_origin_ca_certificate":       27,
-		"cloudflare_page_rule":                   28,
-		"cloudflare_rate_limit":                  29,
-		"cloudflare_record":                      30,
-		"cloudflare_spectrum_application":        31,
-		"cloudflare_static_route":                32,
-		"cloudflare_waf_group":                   33,
-		"cloudflare_waf_override":                34,
-		"cloudflare_waf_package":                 35,
-		"cloudflare_waf_rule":                    36,
-		"cloudflare_worker_cron_trigger":         37,
-		"cloudflare_worker_route":                38,
-		"cloudflare_worker_script":               39,
-		"cloudflare_workers_kv":                  40,
-		"cloudflare_workers_kv_namespace":        41,
-		"cloudflare_zone":                        42,
-		"cloudflare_zone_lockdown":               43,
-		"cloudflare_zone_settings_override":      44,
+		"cloudflare_notification_policy":         27,
+		"cloudflare_origin_ca_certificate":       28,
+		"cloudflare_page_rule":                   29,
+		"cloudflare_rate_limit":                  30,
+		"cloudflare_record":                      31,
+		"cloudflare_ruleset":                     32,
+		"cloudflare_spectrum_application":        33,
+		"cloudflare_static_route":                34,
+		"cloudflare_waf_group":                   35,
+		"cloudflare_waf_override":                36,
+		"cloudflare_waf_package":                 37,
+		"cloudflare_waf_rule":                    38,
+		"cloudflare_worker_cron_trigger":         39,
+		"cloudflare_worker_route":                40,
+		"cloudflare_worker_script":               41,
+		"cloudflare_workers_kv":                  42,
+		"cloudflare_workers_kv_namespace":        43,
+		"cloudflare_zone":                        44,
+		"cloudflare_zone_lockdown":               45,
+		"cloudflare_zone_settings_override":      46,
 	}
 )
 

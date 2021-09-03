@@ -150,16 +150,16 @@ var (
 					Description: `The current state of the subscription. The list of possible states are: ` + "`" + `pending` + "`" + `, ` + "`" + `processing` + "`" + `, ` + "`" + `issued` + "`" + `, and ` + "`" + `renewing` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "managed_dns_challenge",
-					Description: `The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership. See Managed DNS Challenge below for details.`,
+					Name:        "managed_dns_challenges",
+					Description: `A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership. See Managed DNS Challenge below for details.`,
 				},
 				resource.Attribute{
 					Name:        "managed_http_challenges",
-					Description: `A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. See Managed HTTP Challenges below for details. ### Managed DNS Challenge The available attributes in the ` + "`" + `managed_dns_challenge` + "`" + ` block are:`,
+					Description: `A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. See Managed HTTP Challenges below for details. ### Managed DNS Challenge The available attributes in the ` + "`" + `managed_dns_challenges` + "`" + ` block are:`,
 				},
 				resource.Attribute{
 					Name:        "record_name",
-					Description: `The name of the DNS record to add. For example ` + "`" + `_acme-challenge.example.com` + "`" + `. Accessed like this, ` + "`" + `fastly_tls_subscription.tls.managed_dns_challenge.record_name` + "`" + `.`,
+					Description: `The name of the DNS record to add. For example ` + "`" + `_acme-challenge.example.com` + "`" + `. Accessed like this, ` + "`" + `fastly_tls_subscription.tls.managed_dns_challenges.record_name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "record_type",
@@ -196,16 +196,16 @@ var (
 					Description: `The current state of the subscription. The list of possible states are: ` + "`" + `pending` + "`" + `, ` + "`" + `processing` + "`" + `, ` + "`" + `issued` + "`" + `, and ` + "`" + `renewing` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "managed_dns_challenge",
-					Description: `The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership. See Managed DNS Challenge below for details.`,
+					Name:        "managed_dns_challenges",
+					Description: `A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership. See Managed DNS Challenge below for details.`,
 				},
 				resource.Attribute{
 					Name:        "managed_http_challenges",
-					Description: `A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. See Managed HTTP Challenges below for details. ### Managed DNS Challenge The available attributes in the ` + "`" + `managed_dns_challenge` + "`" + ` block are:`,
+					Description: `A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. See Managed HTTP Challenges below for details. ### Managed DNS Challenge The available attributes in the ` + "`" + `managed_dns_challenges` + "`" + ` block are:`,
 				},
 				resource.Attribute{
 					Name:        "record_name",
-					Description: `The name of the DNS record to add. For example ` + "`" + `_acme-challenge.example.com` + "`" + `. Accessed like this, ` + "`" + `fastly_tls_subscription.tls.managed_dns_challenge.record_name` + "`" + `.`,
+					Description: `The name of the DNS record to add. For example ` + "`" + `_acme-challenge.example.com` + "`" + `. Accessed like this, ` + "`" + `fastly_tls_subscription.tls.managed_dns_challenges.record_name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "record_type",

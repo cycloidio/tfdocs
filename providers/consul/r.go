@@ -55,7 +55,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the policy within.`,
+					Description: `(Optional, Enterprise Only) The namespace in which to create the auth method.`,
 				},
 				resource.Attribute{
 					Name:        "namespace_rule",
@@ -107,7 +107,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Enterprise Only) The namespace to create the policy within.`,
+					Description: `(Enterprise Only) The namespace in which to create the auth method.`,
 				},
 				resource.Attribute{
 					Name:        "namespace_rule",
@@ -153,7 +153,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Enterprise Only) The namespace to create the policy within.`,
+					Description: `(Enterprise Only) The namespace in which to create the auth method.`,
 				},
 				resource.Attribute{
 					Name:        "namespace_rule",
@@ -852,7 +852,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the configuration entry being registred.`,
+					Description: `(Required) The name of the configuration entry being registered.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -1279,7 +1279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `Arbitrary KV metadata associated with the namespace.`,
+					Description: `Arbitrary KV metadata associated with the namespace. ## Import ` + "`" + `consul_namespace` + "`" + ` can be imported. This is useful to manage attributes of the default namespace that is created automatically: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace.default default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1301,7 +1301,103 @@ var (
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `Arbitrary KV metadata associated with the namespace.`,
+					Description: `Arbitrary KV metadata associated with the namespace. ## Import ` + "`" + `consul_namespace` + "`" + ` can be imported. This is useful to manage attributes of the default namespace that is created automatically: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace.default default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "namespace_policy_attachment",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to add a policy as a default for a namespace`,
+			Description:      ``,
+			Keywords: []string{
+				"namespace",
+				"policy",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) The namespace to attach the policy to.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy attached to the namespace. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The name of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The name of the policy attached to the namespace. ## Import ` + "`" + `consul_namespace_policy_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the ` + "`" + `default` + "`" + ` namespace: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace_policy_attachment.default default:policy_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The name of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The name of the policy attached to the namespace. ## Import ` + "`" + `consul_namespace_policy_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the ` + "`" + `default` + "`" + ` namespace: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace_policy_attachment.default default:policy_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "namespace_role_attachment",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to add a role as a default for a namespace`,
+			Description:      ``,
+			Keywords: []string{
+				"namespace",
+				"role",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) The namespace to attach the role to.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The name of the role attached to the namespace. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The name of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The name of the role attached to the namespace. ## Import ` + "`" + `consul_namespace_role_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the ` + "`" + `default` + "`" + ` namespace: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace_role_attachment.default default:role_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The name of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The name of the role attached to the namespace. ## Import ` + "`" + `consul_namespace_role_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the ` + "`" + `default` + "`" + ` namespace: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_namespace_role_attachment.default default:role_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1557,7 +1653,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "checks",
-					Description: `(Optional, list of checks) Health-checks to register to monitor the service. The list of attributes for each health-check is detailled below.`,
+					Description: `(Optional, list of checks) Health-checks to register to monitor the service. The list of attributes for each health-check is detailed below.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1731,10 +1827,12 @@ var (
 		"consul_keys":                        13,
 		"consul_license":                     14,
 		"consul_namespace":                   15,
-		"consul_network_area":                16,
-		"consul_node":                        17,
-		"consul_prepared_query":              18,
-		"consul_service":                     19,
+		"namespace_policy_attachment":        16,
+		"namespace_role_attachment":          17,
+		"consul_network_area":                18,
+		"consul_node":                        19,
+		"consul_prepared_query":              20,
+		"consul_service":                     21,
 	}
 )
 

@@ -109,6 +109,18 @@ var (
 					Name:        "short_name",
 					Description: `The short name of the application.`,
 				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The vendor who authored the application.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `This defines if an application is ` + "`" + `one-click` + "`" + ` or ` + "`" + `marketplace` + "`" + ` .`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -122,6 +134,18 @@ var (
 				resource.Attribute{
 					Name:        "short_name",
 					Description: `The short name of the application.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The vendor who authored the application.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `This defines if an application is ` + "`" + `one-click` + "`" + ` or ` + "`" + `marketplace` + "`" + ` .`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
 				},
 			},
 		},
@@ -385,6 +409,10 @@ var (
 					Name:        "app_id",
 					Description: `The server's application ID.`,
 				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -458,6 +486,10 @@ var (
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `The server's application ID.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
 				},
 			},
 		},
@@ -766,6 +798,10 @@ var (
 					Description: `The server's application ID.`,
 				},
 				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
+				},
+				resource.Attribute{
 					Name:        "firewall_group_id",
 					Description: `The ID of the firewall group applied to this server.`,
 				},
@@ -870,6 +906,10 @@ var (
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `The server's application ID.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The Marketplace ID for this application.`,
 				},
 				resource.Attribute{
 					Name:        "firewall_group_id",

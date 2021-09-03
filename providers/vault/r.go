@@ -1618,7 +1618,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_lease_ttl_seconds",
-					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import Consul secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_consul_secret_backend.example consul ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `(Optional) Specifies if the secret backend is local only. ## Attributes Reference No additional attributes are exported by this resource. ## Import Consul secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_consul_secret_backend.example consul ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1754,7 +1758,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "elasticsearch",
-					Description: `(Optional) A nested block containing configuration options for Elasticsearch connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
+					Description: `(Optional) A nested block containing configuration options for Elasticsearch connections.`,
+				},
+				resource.Attribute{
+					Name:        "snowflake",
+					Description: `(Optional) A nested block containing configuration options for Snowflake connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "hosts",
@@ -1798,7 +1806,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_url",
-					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload) for an example. ### MongoDB Atlas Configuration Options`,
+					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload) for an example.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### MongoDB Atlas Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "public_key",
@@ -1842,7 +1854,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
-					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ### MySQL Configuration Options`,
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### MySQL Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1858,7 +1874,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
-					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ### PostgreSQL Configuration Options`,
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "tls_certificate_key",
+					Description: `(Optional) x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca",
+					Description: `(Optional) x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### PostgreSQL Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1874,7 +1902,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
-					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ### Oracle Configuration Options`,
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### Oracle Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1890,7 +1922,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
-					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ### Elasticsearch Configuration Options`,
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### Elasticsearch Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -1902,7 +1938,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) The password to be used in the connection. ## Attributes Reference No additional attributes are exported by this resource. ## Import Database secret backend connections can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/config/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secret_backend_connection.example postgres/config/postgres ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The password to be used in the connection. ### Snowflake Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload) for an example.`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The username to be used in the connection (the account admin level).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated. ## Attributes Reference No additional attributes are exported by this resource. ## Import Database secret backend connections can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/config/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secret_backend_connection.example postgres/config/postgres ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2299,6 +2363,63 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_gcp_secret_static_account",
+			Category:         "Resources",
+			ShortDescription: `Creates a Static Account for the GCP Secret Backend for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"gcp",
+				"secret",
+				"static",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required, Forces new resource) Path where the GCP Secrets Engine is mounted`,
+				},
+				resource.Attribute{
+					Name:        "static_account",
+					Description: `(Required, Forces new resource) Name of the Static Account to create`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `(Required, Forces new resource) Email of the GCP service account to manage.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `(Optional, Forces new resource) Type of secret generated for this static account. Accepted values: ` + "`" + `access_token` + "`" + `, ` + "`" + `service_account_key` + "`" + `. Defaults to ` + "`" + `access_token` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "token_scopes",
+					Description: `(Optional, Required for ` + "`" + `secret_type = "access_token"` + "`" + `) List of OAuth scopes to assign to ` + "`" + `access_token` + "`" + ` secrets generated under this static account (` + "`" + `access_token` + "`" + ` static accounts only).`,
+				},
+				resource.Attribute{
+					Name:        "binding",
+					Description: `(Optional) Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below. The ` + "`" + `binding` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Required) Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource. ## Attributes Reference In addition to the fields above, the following attributes are also exposed:`,
+				},
+				resource.Attribute{
+					Name:        "service_account_project",
+					Description: `Project the service account belongs to. ## Import A static account can be imported using its Vault Path. For example, referencing the example above, ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_secret_static_account.static_account gcp/static-account/project_viewer ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_account_project",
+					Description: `Project the service account belongs to. ## Import A static account can be imported using its Vault Path. For example, referencing the example above, ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_secret_static_account.static_account gcp/static-account/project_viewer ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2745,13 +2866,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group.`,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group. ## Import Identity group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_group.test 'fcbf1efb-2b69-4209-bed8-811e3475dad3' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ` + "`" + `id` + "`" + ` of the created group.`,
+					Description: `The ` + "`" + `id` + "`" + ` of the created group. ## Import Identity group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_group.test 'fcbf1efb-2b69-4209-bed8-811e3475dad3' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3059,7 +3180,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_config",
-					Description: `(Optional) Provider specific handling configuration`,
+					Description: `(Optional) Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `(Optional) Specifies if the auth method is local only.`,
 				},
 				resource.Attribute{
 					Name:        "default_lease_ttl",
@@ -3467,7 +3592,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for the LDAP auth backend mount ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `(Optional) Description for the LDAP auth backend mount`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `(Optional) Specifies if the auth method is local only. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -3752,13 +3881,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).`,
+					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Okta authentication backends can be imported using its ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_okta_auth_backend.example okta ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).`,
+					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Okta authentication backends can be imported using its ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_okta_auth_backend.example okta ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5417,57 +5546,58 @@ var (
 		"vault_gcp_auth_backend_role":                        31,
 		"vault_gcp_secret_backend":                           32,
 		"vault_gcp_secret_roleset":                           33,
-		"vault_generic_endpoint":                             34,
-		"vault_generic_secret":                               35,
-		"vault_github_auth_backend":                          36,
-		"vault_github_team":                                  37,
-		"vault_github_user":                                  38,
-		"vault_identity_entity":                              39,
-		"vault_identity_entity_alias":                        40,
-		"vault_identity_entity_policies":                     41,
-		"vault_identity_group":                               42,
-		"vault_identity_group_alias":                         43,
-		"vault_identity_group_member_entity_ids":             44,
-		"vault_identity_group_policies":                      45,
-		"vault_identity_oidc":                                46,
-		"vault_identity_oidc_key":                            47,
-		"vault_identity_oidc_key_allowed_client_id":          48,
-		"vault_identity_oidc_role":                           49,
-		"vault_jwt_auth_backend":                             50,
-		"vault_jwt_auth_backend_role":                        51,
-		"vault_kubernetes_auth_backend_config":               52,
-		"vault_kubernetes_auth_backend_role":                 53,
-		"vault_ldap_auth_backend":                            54,
-		"vault_ldap_auth_backend_group":                      55,
-		"vault_ldap_auth_backend_user":                       56,
-		"vault_mfa_duo":                                      57,
-		"vault_mount":                                        58,
-		"vault_namespace":                                    59,
-		"vault_okta_auth_backend":                            60,
-		"vault_okta_auth_backend_group":                      61,
-		"vault_okta_auth_backend_user":                       62,
-		"vault_pki_secret_backend":                           63,
-		"vault_pki_secret_backend_cert":                      64,
-		"vault_pki_secret_backend_config_ca":                 65,
-		"vault_pki_secret_backend_config_urls":               66,
-		"vault_pki_secret_backend_crl_config":                67,
-		"vault_pki_secret_backend_intermediate_cert_request": 68,
-		"vault_pki_secret_backend_intermediate_set_signed":   69,
-		"vault_pki_secret_backend_role":                      70,
-		"vault_pki_secret_backend_root_cert":                 71,
-		"vault_pki_secret_backend_root_sign_intermediate":    72,
-		"vault_pki_secret_backend_sign":                      73,
-		"vault_policy":                                       74,
-		"vault_quota_lease_count":                            75,
-		"vault_quota_rate_limit":                             76,
-		"vault_rabbitmq_secret_backend":                      77,
-		"vault_rabbitmq_secret_backend_role":                 78,
-		"vault_rgp_policy":                                   79,
-		"vault_ssh_secret_backend_ca":                        80,
-		"vault_ssh_secret_backend_role":                      81,
-		"vault_token":                                        82,
-		"vault_token_auth_backend_role":                      83,
-		"vault_transit_secret_backend_key":                   84,
+		"vault_gcp_secret_static_account":                    34,
+		"vault_generic_endpoint":                             35,
+		"vault_generic_secret":                               36,
+		"vault_github_auth_backend":                          37,
+		"vault_github_team":                                  38,
+		"vault_github_user":                                  39,
+		"vault_identity_entity":                              40,
+		"vault_identity_entity_alias":                        41,
+		"vault_identity_entity_policies":                     42,
+		"vault_identity_group":                               43,
+		"vault_identity_group_alias":                         44,
+		"vault_identity_group_member_entity_ids":             45,
+		"vault_identity_group_policies":                      46,
+		"vault_identity_oidc":                                47,
+		"vault_identity_oidc_key":                            48,
+		"vault_identity_oidc_key_allowed_client_id":          49,
+		"vault_identity_oidc_role":                           50,
+		"vault_jwt_auth_backend":                             51,
+		"vault_jwt_auth_backend_role":                        52,
+		"vault_kubernetes_auth_backend_config":               53,
+		"vault_kubernetes_auth_backend_role":                 54,
+		"vault_ldap_auth_backend":                            55,
+		"vault_ldap_auth_backend_group":                      56,
+		"vault_ldap_auth_backend_user":                       57,
+		"vault_mfa_duo":                                      58,
+		"vault_mount":                                        59,
+		"vault_namespace":                                    60,
+		"vault_okta_auth_backend":                            61,
+		"vault_okta_auth_backend_group":                      62,
+		"vault_okta_auth_backend_user":                       63,
+		"vault_pki_secret_backend":                           64,
+		"vault_pki_secret_backend_cert":                      65,
+		"vault_pki_secret_backend_config_ca":                 66,
+		"vault_pki_secret_backend_config_urls":               67,
+		"vault_pki_secret_backend_crl_config":                68,
+		"vault_pki_secret_backend_intermediate_cert_request": 69,
+		"vault_pki_secret_backend_intermediate_set_signed":   70,
+		"vault_pki_secret_backend_role":                      71,
+		"vault_pki_secret_backend_root_cert":                 72,
+		"vault_pki_secret_backend_root_sign_intermediate":    73,
+		"vault_pki_secret_backend_sign":                      74,
+		"vault_policy":                                       75,
+		"vault_quota_lease_count":                            76,
+		"vault_quota_rate_limit":                             77,
+		"vault_rabbitmq_secret_backend":                      78,
+		"vault_rabbitmq_secret_backend_role":                 79,
+		"vault_rgp_policy":                                   80,
+		"vault_ssh_secret_backend_ca":                        81,
+		"vault_ssh_secret_backend_role":                      82,
+		"vault_token":                                        83,
+		"vault_token_auth_backend_role":                      84,
+		"vault_transit_secret_backend_key":                   85,
 	}
 )
 

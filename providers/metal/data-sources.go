@@ -30,6 +30,10 @@ var (
 					Description: `Name of the connection resource`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `String list of tags`,
+				},
+				resource.Attribute{
 					Name:        "facility",
 					Description: `Slug of a facility to which the connection belongs`,
 				},
@@ -42,6 +46,10 @@ var (
 					Description: `ID of organization to which the connection belongs`,
 				},
 				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the connection belongs`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection`,
 				},
@@ -52,6 +60,10 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
@@ -104,6 +116,10 @@ var (
 					Description: `Name of the connection resource`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `String list of tags`,
+				},
+				resource.Attribute{
 					Name:        "facility",
 					Description: `Slug of a facility to which the connection belongs`,
 				},
@@ -116,6 +132,10 @@ var (
 					Description: `ID of organization to which the connection belongs`,
 				},
 				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the connection belongs`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection`,
 				},
@@ -126,6 +146,10 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
@@ -582,6 +606,62 @@ var (
 				resource.Attribute{
 					Name:        "metro",
 					Description: `The metro code the facility is part of`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Equinix Metal Gateways`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_id",
+					Description: `(Required) UUID of the metal gateway resource to retrieve ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of the project where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `UUID of the VLAN where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "ip_reservation_id",
+					Description: `UUID of IP reservation block bound to the gateway`,
+				},
+				resource.Attribute{
+					Name:        "private_ipv4_subnet_size",
+					Description: `Size of the private IPv4 subnet bound to this metal gateway, one of (8, 16, 32, 64, 128)` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Status of the gateway resource`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of the project where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `UUID of the VLAN where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "ip_reservation_id",
+					Description: `UUID of IP reservation block bound to the gateway`,
+				},
+				resource.Attribute{
+					Name:        "private_ipv4_subnet_size",
+					Description: `Size of the private IPv4 subnet bound to this metal gateway, one of (8, 16, 32, 64, 128)` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Status of the gateway resource`,
 				},
 			},
 		},
@@ -1396,6 +1476,18 @@ var (
 					Name:        "project_id",
 					Description: `ID of project to which the VC belongs`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Speed of the Virtual Circuit resource`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1409,6 +1501,18 @@ var (
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `ID of project to which the VC belongs`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `Speed of the Virtual Circuit resource`,
 				},
 			},
 		},
@@ -1464,101 +1568,11 @@ var (
 			Name:             "",
 			Type:             "metal_volume",
 			Category:         "Data Sources",
-			ShortDescription: `Provides an Equinix Metal Block Storage Volume Datasource.`,
+			ShortDescription: `(Removed) Provides an Equinix Metal Block Storage Volume Datasource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of volume for lookup`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The ID the parent Equinix Metal project (for lookup by name) Either ` + "`" + `volume_id` + "`" + ` or both ` + "`" + `project_id` + "`" + ` and ` + "`" + `name` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the volume`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id the volume is in`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The size in GB of the volume`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `Performance plan the volume is on`,
-				},
-				resource.Attribute{
-					Name:        "billing_cycle",
-					Description: `The billing cycle, defaults to hourly`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility slug the volume resides in`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the volume`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `Whether the volume is locked or not`,
-				},
-				resource.Attribute{
-					Name:        "device_ids",
-					Description: `UUIDs of devices to which this volume is attached`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the volume`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id the volume is in`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The size in GB of the volume`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `Performance plan the volume is on`,
-				},
-				resource.Attribute{
-					Name:        "billing_cycle",
-					Description: `The billing cycle, defaults to hourly`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility slug the volume resides in`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the volume`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `Whether the volume is locked or not`,
-				},
-				resource.Attribute{
-					Name:        "device_ids",
-					Description: `UUIDs of devices to which this volume is attached`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
@@ -1568,21 +1582,22 @@ var (
 		"metal_device":               1,
 		"metal_device_bgp_neighbors": 2,
 		"metal_facility":             3,
-		"metal_hardware_reservation": 4,
-		"metal_ip_block_ranges":      5,
-		"metal_metro":                6,
-		"metal_operating_system":     7,
-		"metal_organization":         8,
-		"metal_port":                 9,
-		"metal_precreated_ip_block":  10,
-		"metal_project":              11,
-		"metal_project_ssh_key":      12,
-		"metal_reserved_ip_block":    13,
-		"metal_spot_market_price":    14,
-		"metal_spot_market_request":  15,
-		"metal_virtual_circuit":      16,
-		"metal_vlan":                 17,
-		"metal_volume":               18,
+		"metal_gateway":              4,
+		"metal_hardware_reservation": 5,
+		"metal_ip_block_ranges":      6,
+		"metal_metro":                7,
+		"metal_operating_system":     8,
+		"metal_organization":         9,
+		"metal_port":                 10,
+		"metal_precreated_ip_block":  11,
+		"metal_project":              12,
+		"metal_project_ssh_key":      13,
+		"metal_reserved_ip_block":    14,
+		"metal_spot_market_price":    15,
+		"metal_spot_market_request":  16,
+		"metal_virtual_circuit":      17,
+		"metal_vlan":                 18,
+		"metal_volume":               19,
 	}
 )
 

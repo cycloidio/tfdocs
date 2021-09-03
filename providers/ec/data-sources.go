@@ -750,6 +750,14 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 					Description: `The deployment unique ID.`,
 				},
 				resource.Attribute{
+					Name:        "deployments.#.alias",
+					Description: `Deployment alias.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.name",
+					Description: `The name of the deployment.`,
+				},
+				resource.Attribute{
 					Name:        "deployments.#.elasticsearch_resource_id",
 					Description: `The Elasticsearch resource unique ID.`,
 				},
@@ -774,6 +782,14 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 				resource.Attribute{
 					Name:        "deployments.#.deployment_id",
 					Description: `The deployment unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.alias",
+					Description: `Deployment alias.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.name",
+					Description: `The name of the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "deployments.#.elasticsearch_resource_id",

@@ -318,6 +318,26 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_vpc_public_gateway",
+			Category:         "Resources",
+			ShortDescription: `Manages Scaleway VPC Public Gateways.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_vpc_public_gateway_ip",
+			Category:         "Resources",
+			ShortDescription: `Manages Scaleway VPC Public Gateways IP.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -352,6 +372,8 @@ var (
 		"scaleway_rdb_user":                      27,
 		"scaleway_registry_namespace":            28,
 		"scaleway_vpc_private_network":           29,
+		"scaleway_vpc_public_gateway":            30,
+		"scaleway_vpc_public_gateway_ip":         31,
 	}
 )
 

@@ -664,7 +664,7 @@ Provides an Elastic Cloud traffic filter resource, which allows traffic filter r
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Type of the ruleset. It can be ` + "`" + `"ip"` + "`" + ` or ` + "`" + `"vpce"` + "`" + `.`,
+					Description: `(Required) Type of the ruleset. It can be ` + "`" + `"ip"` + "`" + `, ` + "`" + `"vpce"` + "`" + ` or ` + "`" + `"azure_private_endpoint"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -680,11 +680,19 @@ Provides an Elastic Cloud traffic filter resource, which allows traffic filter r
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Required) Source type, ` + "`" + `"ip"` + "`" + ` or ` + "`" + `"vpce"` + "`" + `, from which the ruleset accepts traffic.`,
+					Description: `(Optional) traffic filter source: IP address, CIDR mask, or VPC endpoint ID,`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of this individual rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Description of this individual rule.`,
+				},
+				resource.Attribute{
+					Name:        "azure_endpoint_name",
+					Description: `(Optional) Azure endpoint name. Only applicable when the ruleset type is set to ` + "`" + `"azure_private_endpoint"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "azure_endpoint_guid",
+					Description: `(Optional) Azure endpoint GUID. Only applicable when the ruleset type is set to ` + "`" + `"azure_private_endpoint"` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",

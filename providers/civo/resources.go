@@ -463,7 +463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applications",
-					Description: `(Optional) A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -528,10 +528,6 @@ var (
 				resource.Attribute{
 					Name:        "dns_entry",
 					Description: `The unique dns entry for the cluster in this case point to the master.`,
-				},
-				resource.Attribute{
-					Name:        "built_at",
-					Description: `The date where the Kubernetes cluster was build.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -602,10 +598,6 @@ var (
 				resource.Attribute{
 					Name:        "dns_entry",
 					Description: `The unique dns entry for the cluster in this case point to the master.`,
-				},
-				resource.Attribute{
-					Name:        "built_at",
-					Description: `The date where the Kubernetes cluster was build.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -626,6 +618,10 @@ var (
 					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region of the node pool, has to match that of the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "target_nodes_size",
 					Description: `(Optional) The size of each node.`,
 				},
@@ -638,12 +634,16 @@ var (
 					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region of the node pool, has to match that of the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "target_nodes_size",
 					Description: `(Optional) The size of each node.`,
 				},
 				resource.Attribute{
 					Name:        "num_target_nodes",
-					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a`,
+					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -652,12 +652,16 @@ var (
 					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region of the node pool, has to match that of the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "target_nodes_size",
 					Description: `(Optional) The size of each node.`,
 				},
 				resource.Attribute{
 					Name:        "num_target_nodes",
-					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a`,
+					Description: `(Optional) The number of instances to create. ## Import Then the Kubernetes cluster node pool can be imported using the cluster's and pool id ` + "`" + `cluster_id:node_pool_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_kubernetes_node_pool.my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1175,15 +1179,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A name that you wish to use to refer to this volume .`,
+					Description: `(Required) A name that you wish to use to refer to this volume.`,
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `(Required) A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .`,
+					Description: `(Required) A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.`,
 				},
 				resource.Attribute{
-					Name:        "bootable",
-					Description: `(Required) Mark the volume as bootable. ## Attributes Reference The following attributes are exported:`,
+					Name:        "network_id",
+					Description: `(Required) The network that the volume belongs to. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1198,16 +1202,12 @@ var (
 					Description: `The size of the volume.`,
 				},
 				resource.Attribute{
-					Name:        "bootable",
-					Description: `if is bootable or not.`,
-				},
-				resource.Attribute{
 					Name:        "mount_point",
 					Description: `The mount point of the volume.`,
 				},
 				resource.Attribute{
-					Name:        "created_at",
-					Description: `The date of the creation of the volume. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_volume.db 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "network_id",
+					Description: `The network that the volume belongs to. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_volume.db 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1224,16 +1224,12 @@ var (
 					Description: `The size of the volume.`,
 				},
 				resource.Attribute{
-					Name:        "bootable",
-					Description: `if is bootable or not.`,
-				},
-				resource.Attribute{
 					Name:        "mount_point",
 					Description: `The mount point of the volume.`,
 				},
 				resource.Attribute{
-					Name:        "created_at",
-					Description: `The date of the creation of the volume. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_volume.db 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "network_id",
+					Description: `The network that the volume belongs to. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import civo_volume.db 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

@@ -621,7 +621,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_sql_analytics_access",
-					Description: `(Optional) This is a field to allow the group to have access to [SQL Analytics](https://databricks.com/product/sql-analytics) feature through [databricks_sql_endpoint](sql_endpoint.md). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/databricks-sql) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
+				},
+				resource.Attribute{
+					Name:        "workspace_access",
+					Description: `(Optional) This is a field to allow the group to have access to Databricks Workspace. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -797,7 +801,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_profile_arn",
-					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. This ARN would be validated upon resource creation and it's not possible to skip validation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. This ARN would be validated upon resource creation and it's not possible to skip validation.`,
+				},
+				resource.Attribute{
+					Name:        "is_meta_instance_profile",
+					Description: `(Optional) Whether the instance profile is a meta instance profile. Used only in [IAM credential passthrough](https://docs.databricks.com/security/credential-passthrough/iam-passthrough.html). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -901,7 +909,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_concurrent_runs",
-					Description: `(Optional) (Integer) An optional maximum allowed number of concurrent runs of the job.`,
+					Description: `(Optional) (Integer) An optional maximum allowed number of concurrent runs of the job. Defaults to`,
 				},
 				resource.Attribute{
 					Name:        "email_notifications",
@@ -1331,16 +1339,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "network_id",
-					Description: `(Optional) ` + "`" + `network_id` + "`" + ` from [networks](mws_networks.md)`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/).`,
-				},
-				resource.Attribute{
-					Name:        "credentials_id",
-					Description: `` + "`" + `credentials_id` + "`" + ` from [credentials](mws_credentials.md)`,
 				},
 				resource.Attribute{
 					Name:        "customer_managed_key_id",
@@ -1351,12 +1351,8 @@ var (
 					Description: `(Optional) ` + "`" + `customer_managed_key_id` + "`" + ` from [customer managed keys](mws_customer_managed_keys.md) with ` + "`" + `use_cases` + "`" + ` set to ` + "`" + `MANAGED_SERVICES` + "`" + `. This is used to encrypt the workspace's notebook and secret data in the control plane.`,
 				},
 				resource.Attribute{
-					Name:        "storage_customer_managed_key_id",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
 					Name:        "deployment_name",
-					Description: `part of URL: ` + "`" + `https://<deployment-name>.cloud.databricks.com` + "`" + ``,
+					Description: `(Optional) part of URL: ` + "`" + `https://<deployment-name>.cloud.databricks.com` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "workspace_name",
@@ -1372,7 +1368,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_access_settings_id",
-					Description: `(Optional) Canonical unique identifier of [databricks_mws_private_access_settings](mws_private_access_settings.md) in Databricks Account ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Canonical unique identifier of [databricks_mws_private_access_settings](mws_private_access_settings.md) in Databricks Account The following arguments could be modified after the workspace is running:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) ` + "`" + `network_id` + "`" + ` from [networks](mws_networks.md). Modifying [networks on running workspaces](mws_networks.md#modifying-networks-on-running-workspaces) would require three separate ` + "`" + `terraform apply` + "`" + ` steps.`,
+				},
+				resource.Attribute{
+					Name:        "credentials_id",
+					Description: `` + "`" + `credentials_id` + "`" + ` from [credentials](mws_credentials.md)`,
+				},
+				resource.Attribute{
+					Name:        "storage_customer_managed_key_id",
+					Description: `(Optional) ` + "`" + `customer_managed_key_id` + "`" + ` from [customer managed keys](mws_customer_managed_keys.md) with ` + "`" + `use_cases` + "`" + ` set to ` + "`" + `STORAGE` + "`" + `. This is used to encrypt the DBFS Storage & Cluster EBS Volumes. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1475,6 +1483,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_obo_token",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"obo",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `Application ID of [databricks_service_principal](service_principal.md#application_id) to create PAT token for.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime_seconds",
+					Description: `(Integer) The number of seconds before the token expires. Token resource is re-created when it expires.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(String) Comment that describes the purpose of the token. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Canonical unique identifier for the token.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Canonical unique identifier for the token.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_permissions",
 			Category:         "Security",
 			ShortDescription: ``,
@@ -1519,6 +1563,57 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_repo",
+			Category:         "Workspace",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"workspace",
+				"repo",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the Git Repository to clone from. If value changes, repo is re-created`,
+				},
+				resource.Attribute{
+					Name:        "git_provider",
+					Description: `(Optional, if it's possible to detect Git provider by host name) case insensitive name of the Git provider. Following values are supported right now (maybe a subject for change, consult [Repos API documentation](https://docs.databricks.com/dev-tools/api/latest/repos.html)): ` + "`" + `gitHub` + "`" + `, ` + "`" + `gitHubEnterprise` + "`" + `, ` + "`" + `bitbucketCloud` + "`" + `, ` + "`" + `bitbucketServer` + "`" + `, ` + "`" + `azureDevOpsServices` + "`" + `, ` + "`" + `gitLab` + "`" + `, ` + "`" + `gitLabEnterpriseEdition` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) path to put the checked out Repo. If not specified, then repo will be created in the user's repo directory (` + "`" + `/Repos/<username>/...` + "`" + `). If value changes, repo is re-created`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Optional) name of the branch for initial checkout. If not specified, the default branch of the repository will be used. Conflicts with ` + "`" + `tag` + "`" + `. If ` + "`" + `branch` + "`" + ` is removed, and ` + "`" + `tag` + "`" + ` isn't specified, then the repository will stay at the previously checked out state.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) name of the tag for initial checkout. Conflicts with ` + "`" + `branch` + "`" + ` ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Repo identifier`,
+				},
+				resource.Attribute{
+					Name:        "commit_hash",
+					Description: `Hash of the HEAD commit at time of the last executed operation. It won't change if you manually perform pull operation via UI or API ## Access Control`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Repo identifier`,
+				},
+				resource.Attribute{
+					Name:        "commit_hash",
+					Description: `Hash of the HEAD commit at time of the last executed operation. It won't change if you manually perform pull operation via UI or API ## Access Control`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1677,12 +1772,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "databricks_sql_dashboard",
-			Category:         "SQL Analytics",
+			Category:         "Databricks SQL",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"sql",
-				"analytics",
 				"dashboard",
 			},
 			Arguments:  []resource.Attribute{},
@@ -1691,12 +1785,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "databricks_sql_endpoint",
-			Category:         "SQL Analytics",
+			Category:         "Databricks SQL",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"sql",
-				"analytics",
 				"endpoint",
 			},
 			Arguments: []resource.Attribute{
@@ -1734,7 +1827,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_photon",
-					Description: `Whether to enable [Photon](https://databricks.com/product/delta-engine). This field is optional. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `Whether to enable [Photon](https://databricks.com/product/delta-engine). This field is optional and is enabled by default. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "jdbc_url",
@@ -1866,12 +1959,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "databricks_sql_query",
-			Category:         "SQL Analytics",
+			Category:         "Databricks SQL",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"sql",
-				"analytics",
 				"query",
 			},
 			Arguments:  []resource.Attribute{},
@@ -1880,12 +1972,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "databricks_sql_visualization",
-			Category:         "SQL Analytics",
+			Category:         "Databricks SQL",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"sql",
-				"analytics",
 				"visualization",
 			},
 			Arguments:  []resource.Attribute{},
@@ -1894,12 +1985,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "databricks_sql_widget",
-			Category:         "SQL Analytics",
+			Category:         "Databricks SQL",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"sql",
-				"analytics",
 				"widget",
 			},
 			Arguments:  []resource.Attribute{},
@@ -1965,7 +2055,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_sql_analytics_access",
-					Description: `(Optional) This is a field to allow the group to have access to [SQL Analytics](https://databricks.com/product/sql-analytics) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
+					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/sql-analytics) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -2054,22 +2144,24 @@ var (
 		"databricks_mws_vpc_endpoint":            22,
 		"databricks_mws_workspaces":              23,
 		"databricks_notebook":                    24,
-		"databricks_permissions":                 25,
-		"databricks_pipeline":                    26,
-		"databricks_secret":                      27,
-		"databricks_secret_acl":                  28,
-		"databricks_secret_scope":                29,
-		"databricks_service_principal":           30,
-		"databricks_sql_dashboard":               31,
-		"databricks_sql_endpoint":                32,
-		"databricks_sql_permissions":             33,
-		"databricks_sql_query":                   34,
-		"databricks_sql_visualization":           35,
-		"databricks_sql_widget":                  36,
-		"databricks_token":                       37,
-		"databricks_user":                        38,
-		"databricks_user_instance_profile":       39,
-		"databricks_workspace_conf":              40,
+		"databricks_obo_token":                   25,
+		"databricks_permissions":                 26,
+		"databricks_pipeline":                    27,
+		"databricks_repo":                        28,
+		"databricks_secret":                      29,
+		"databricks_secret_acl":                  30,
+		"databricks_secret_scope":                31,
+		"databricks_service_principal":           32,
+		"databricks_sql_dashboard":               33,
+		"databricks_sql_endpoint":                34,
+		"databricks_sql_permissions":             35,
+		"databricks_sql_query":                   36,
+		"databricks_sql_visualization":           37,
+		"databricks_sql_widget":                  38,
+		"databricks_token":                       39,
+		"databricks_user":                        40,
+		"databricks_user_instance_profile":       41,
+		"databricks_workspace_conf":              42,
 	}
 )
 

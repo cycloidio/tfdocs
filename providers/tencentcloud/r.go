@@ -8252,6 +8252,10 @@ var (
 					Description: `(Optional) Project ID, default value is 0.`,
 				},
 				resource.Attribute{
+					Name:        "runtime_version",
+					Description: `(Optional) Container Runtime version.`,
+				},
+				resource.Attribute{
 					Name:        "service_cidr",
 					Description: `(Optional, ForceNew) A network address block of the service. Different from vpc cidr and cidr of other clusters within this vpc. Must be in 10./192.168/172.[16-31] segments.`,
 				},
@@ -8284,12 +8288,28 @@ var (
 					Description: `(Optional, ForceNew) The customized parameters for kube-scheduler. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
+					Name:        "auto_format_and_mount",
+					Description: `(Optional, ForceNew) Indicate whether to auto format and mount or not. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disk_partition",
+					Description: `(Optional, ForceNew) The name of the device or partition to mount.`,
+				},
+				resource.Attribute{
 					Name:        "disk_size",
 					Description: `(Optional, ForceNew) Volume of disk in GB. Default is ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_type",
 					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_HSSD` + "`" + ` and ` + "`" + `CLOUD_TSSD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_system",
+					Description: `(Optional, ForceNew) File system, e.g. ` + "`" + `ext3/ext4/xfs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mount_target",
+					Description: `(Optional, ForceNew) Mount target.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -8743,6 +8763,10 @@ var (
 					Description: `(Optional, ForceNew) Indicate whether to auto format and mount or not. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "disk_partition",
+					Description: `(Optional, ForceNew) The name of the device or partition to mount.`,
+				},
+				resource.Attribute{
 					Name:        "disk_size",
 					Description: `(Optional, ForceNew) Volume of disk in GB. Default is ` + "`" + `0` + "`" + `.`,
 				},
@@ -8934,6 +8958,10 @@ var (
 					Description: `(Required, ForceNew) Specified types of CVM instance.`,
 				},
 				resource.Attribute{
+					Name:        "backup_instance_types",
+					Description: `(Optional) Backup CVM instance types if specified instance type sold out or mismatch.`,
+				},
+				resource.Attribute{
 					Name:        "bandwidth_package_id",
 					Description: `(Optional) bandwidth package id. if user is standard user, then the bandwidth_package_id is needed, or default has bandwidth_package_id.`,
 				},
@@ -8984,6 +9012,10 @@ var (
 				resource.Attribute{
 					Name:        "auto_format_and_mount",
 					Description: `(Optional, ForceNew) Indicate whether to auto format and mount or not. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disk_partition",
+					Description: `(Optional, ForceNew) The name of the device or partition to mount.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -9153,6 +9185,10 @@ var (
 					Description: `(Optional, ForceNew) Indicate whether to auto format and mount or not. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "disk_partition",
+					Description: `(Optional, ForceNew) The name of the device or partition to mount.`,
+				},
+				resource.Attribute{
 					Name:        "disk_size",
 					Description: `(Optional, ForceNew) Volume of disk in GB. Default is ` + "`" + `0` + "`" + `.`,
 				},
@@ -9166,7 +9202,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_target",
-					Description: `(Optional, ForceNew) Mount target. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+					Description: `(Optional, ForceNew) Mount target.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional, ForceNew) Data disk snapshot ID. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_format_and_mount",
+					Description: `(Optional, ForceNew) Indicate whether to auto format and mount or not. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -9177,8 +9221,12 @@ var (
 					Description: `(Optional, ForceNew) Types of disk, available values: ` + "`" + `CLOUD_PREMIUM` + "`" + ` and ` + "`" + `CLOUD_SSD` + "`" + ` and ` + "`" + `CLOUD_HSSD` + "`" + ` and ` + "`" + `CLOUD_TSSD` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `(Optional, ForceNew) Data disk snapshot ID. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
+					Name:        "file_system",
+					Description: `(Optional, ForceNew) File system, e.g. ` + "`" + `ext3/ext4/xfs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mount_target",
+					Description: `(Optional, ForceNew) Mount target. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -10344,6 +10392,10 @@ var (
 					Description: `(Optional, ForceNew) Pay type of instance. Valid values:` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID` + "`" + `. Default is ` + "`" + `POSTPAID` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) CPU cores.`,
+				},
+				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Optional, ForceNew) The version number of the database engine to use. Supported versions include 5.5/5.6/5.7/8.0, and default is 5.7.`,
 				},
@@ -10603,6 +10655,10 @@ var (
 					Description: `(Optional, ForceNew) Pay type of instance. Valid values:` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID` + "`" + `. Default is ` + "`" + `POSTPAID` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "cpu",
+					Description: `(Optional) CPU cores.`,
+				},
+				resource.Attribute{
 					Name:        "force_delete",
 					Description: `(Optional) Indicate whether to delete instance directly or not. Default is ` + "`" + `false` + "`" + `. If set true, the instance will be deleted instead of staying recycle bin. Note: only works for ` + "`" + `PREPAID` + "`" + ` instance. When the main mysql instance set true, this para of the readonly mysql instance will not take effect.`,
 				},
@@ -10743,6 +10799,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_nat_gateway_snat",
+			Category:         "Virtual Private Cloud(VPC)",
+			ShortDescription: `Provides a resource to create a NAT Gateway SNat rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"nat",
+				"gateway",
+				"snat",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Description.`,
+				},
+				resource.Attribute{
+					Name:        "nat_gateway_id",
+					Description: `(Required, ForceNew) NAT gateway ID.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_addr",
+					Description: `(Required) Elastic IP address pool.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required, ForceNew) Resource type. Valid values: SUBNET, NETWORKINTERFACE.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional, ForceNew) Instance ID, required when ` + "`" + `resource_type` + "`" + ` is NETWORKINTERFACE.`,
+				},
+				resource.Attribute{
+					Name:        "instance_private_ip_addr",
+					Description: `(Optional, ForceNew) Private IPs of the instance's primary ENI, required when ` + "`" + `resource_type` + "`" + ` is NETWORKINTERFACE.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr_block",
+					Description: `(Optional, ForceNew) The IPv4 CIDR of the subnet, required when ` + "`" + `resource_type` + "`" + ` is SUBNET.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, ForceNew) Subnet instance ID, required when ` + "`" + `resource_type` + "`" + ` is SUBNET. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time.`,
+				},
+				resource.Attribute{
+					Name:        "snat_id",
+					Description: `SNAT rule ID. ## Import VPN gateway route can be imported using the id, the id format must be '{nat_gateway_id}#{resource_id}', resource_id range ` + "`" + `subnet_id` + "`" + `, ` + "`" + `instance_id` + "`" + `, e.g. SUBNET SNat ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_nat_gateway_snat.my_snat nat-r4ip1cwt#subnet-2ap74y35 ` + "`" + `` + "`" + `` + "`" + ` NETWORKINTERFACT SNat ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_nat_gateway_snat.my_snat nat-r4ip1cwt#ins-da412f5a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time.`,
+				},
+				resource.Attribute{
+					Name:        "snat_id",
+					Description: `SNAT rule ID. ## Import VPN gateway route can be imported using the id, the id format must be '{nat_gateway_id}#{resource_id}', resource_id range ` + "`" + `subnet_id` + "`" + `, ` + "`" + `instance_id` + "`" + `, e.g. SUBNET SNat ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_nat_gateway_snat.my_snat nat-r4ip1cwt#subnet-2ap74y35 ` + "`" + `` + "`" + `` + "`" + ` NETWORKINTERFACT SNat ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_nat_gateway_snat.my_snat nat-r4ip1cwt#ins-da412f5a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_placement_group",
 			Category:         "Cloud Virtual Machine(CVM)",
 			ShortDescription: `Provide a resource to create a placement group.`,
@@ -10850,6 +10982,10 @@ var (
 				resource.Attribute{
 					Name:        "public_access_switch",
 					Description: `(Optional) Indicates whether to enable the access to an instance from public network or not.`,
+				},
+				resource.Attribute{
+					Name:        "root_user",
+					Description: `(Optional, ForceNew) Instance root account name. This parameter is optional, Default value is ` + "`" + `root` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -10999,16 +11135,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "backup_period",
-					Description: `(Required) Specifys which day the backup action should take place. Valid values: ` + "`" + `Monday` + "`" + `, ` + "`" + `Tuesday` + "`" + `, ` + "`" + `Wednesday` + "`" + `, ` + "`" + `Thursday` + "`" + `, ` + "`" + `Friday` + "`" + `, ` + "`" + `Saturday` + "`" + ` and ` + "`" + `Sunday` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "backup_time",
 					Description: `(Required) Specifys what time the backup action should take place. And the time interval should be one hour.`,
 				},
 				resource.Attribute{
 					Name:        "redis_id",
-					Description: `(Required, ForceNew) ID of a redis instance to which the policy will be applied. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, ForceNew) ID of a redis instance to which the policy will be applied.`,
+				},
+				resource.Attribute{
+					Name:        "backup_period",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -14690,6 +14826,86 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_gateway_route",
+			Category:         "VPN",
+			ShortDescription: `Provides a resource to create a VPN gateway route.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"gateway",
+				"route",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "destination_cidr_block",
+					Description: `(Required, ForceNew) Destination IDC IP range.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, ForceNew) Instance ID of the next hop.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required, ForceNew) Next hop type (type of the associated instance). Valid values: VPNCONN (VPN tunnel) and CCN (CCN instance).`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required, ForceNew) Priority. Valid values: 0 and 100.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Required) Status. Valid values: ENABLE and DISABLE.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `(Required, ForceNew) VPN gateway ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time.`,
+				},
+				resource.Attribute{
+					Name:        "route_id",
+					Description: `Route ID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Route type. Default value: Static.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. ## Import VPN gateway route can be imported using the id, the id format must be '{vpn_gateway_id}#{route_id}', e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway_route.route1 vpngw-ak9sjem2#vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time.`,
+				},
+				resource.Attribute{
+					Name:        "route_id",
+					Description: `Route ID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Route type. Default value: Static.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. ## Import VPN gateway route can be imported using the id, the id format must be '{vpn_gateway_id}#{route_id}', e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway_route.route1 vpngw-ak9sjem2#vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -14807,53 +15023,55 @@ var (
 		"tencentcloud_mysql_privilege":                         110,
 		"tencentcloud_mysql_readonly_instance":                 111,
 		"tencentcloud_nat_gateway":                             112,
-		"tencentcloud_placement_group":                         113,
-		"tencentcloud_postgresql_instance":                     114,
-		"tencentcloud_protocol_template":                       115,
-		"tencentcloud_protocol_template_group":                 116,
-		"tencentcloud_redis_backup_config":                     117,
-		"tencentcloud_redis_instance":                          118,
-		"tencentcloud_reserved_instance":                       119,
-		"tencentcloud_route_entry":                             120,
-		"tencentcloud_route_table":                             121,
-		"tencentcloud_route_table_entry":                       122,
-		"tencentcloud_scf_function":                            123,
-		"tencentcloud_scf_namespace":                           124,
-		"tencentcloud_security_group":                          125,
-		"tencentcloud_security_group_lite_rule":                126,
-		"tencentcloud_security_group_rule":                     127,
-		"tencentcloud_sqlserver_account":                       128,
-		"tencentcloud_sqlserver_account_db_attachment":         129,
-		"tencentcloud_sqlserver_basic_instance":                130,
-		"tencentcloud_sqlserver_db":                            131,
-		"tencentcloud_sqlserver_instance":                      132,
-		"tencentcloud_sqlserver_publish_subscribe":             133,
-		"tencentcloud_sqlserver_readonly_instance":             134,
-		"tencentcloud_ssl_certificate":                         135,
-		"tencentcloud_ssl_pay_certificate":                     136,
-		"tencentcloud_ssm_secret":                              137,
-		"tencentcloud_ssm_secret_version":                      138,
-		"tencentcloud_subnet":                                  139,
-		"tencentcloud_tcaplus_cluster":                         140,
-		"tencentcloud_tcaplus_idl":                             141,
-		"tencentcloud_tcaplus_table":                           142,
-		"tencentcloud_tcaplus_tablegroup":                      143,
-		"tencentcloud_tcr_instance":                            144,
-		"tencentcloud_tcr_namespace":                           145,
-		"tencentcloud_tcr_repository":                          146,
-		"tencentcloud_tcr_token":                               147,
-		"tencentcloud_tcr_vpc_attachment":                      148,
-		"tencentcloud_vod_adaptive_dynamic_streaming_template": 149,
-		"tencentcloud_vod_image_sprite_template":               150,
-		"tencentcloud_vod_procedure_template":                  151,
-		"tencentcloud_vod_snapshot_by_time_offset_template":    152,
-		"tencentcloud_vod_super_player_config":                 153,
-		"tencentcloud_vpc":                                     154,
-		"tencentcloud_vpc_acl":                                 155,
-		"tencentcloud_vpc_acl_attachment":                      156,
-		"tencentcloud_vpn_connection":                          157,
-		"tencentcloud_vpn_customer_gateway":                    158,
-		"tencentcloud_vpn_gateway":                             159,
+		"tencentcloud_nat_gateway_snat":                        113,
+		"tencentcloud_placement_group":                         114,
+		"tencentcloud_postgresql_instance":                     115,
+		"tencentcloud_protocol_template":                       116,
+		"tencentcloud_protocol_template_group":                 117,
+		"tencentcloud_redis_backup_config":                     118,
+		"tencentcloud_redis_instance":                          119,
+		"tencentcloud_reserved_instance":                       120,
+		"tencentcloud_route_entry":                             121,
+		"tencentcloud_route_table":                             122,
+		"tencentcloud_route_table_entry":                       123,
+		"tencentcloud_scf_function":                            124,
+		"tencentcloud_scf_namespace":                           125,
+		"tencentcloud_security_group":                          126,
+		"tencentcloud_security_group_lite_rule":                127,
+		"tencentcloud_security_group_rule":                     128,
+		"tencentcloud_sqlserver_account":                       129,
+		"tencentcloud_sqlserver_account_db_attachment":         130,
+		"tencentcloud_sqlserver_basic_instance":                131,
+		"tencentcloud_sqlserver_db":                            132,
+		"tencentcloud_sqlserver_instance":                      133,
+		"tencentcloud_sqlserver_publish_subscribe":             134,
+		"tencentcloud_sqlserver_readonly_instance":             135,
+		"tencentcloud_ssl_certificate":                         136,
+		"tencentcloud_ssl_pay_certificate":                     137,
+		"tencentcloud_ssm_secret":                              138,
+		"tencentcloud_ssm_secret_version":                      139,
+		"tencentcloud_subnet":                                  140,
+		"tencentcloud_tcaplus_cluster":                         141,
+		"tencentcloud_tcaplus_idl":                             142,
+		"tencentcloud_tcaplus_table":                           143,
+		"tencentcloud_tcaplus_tablegroup":                      144,
+		"tencentcloud_tcr_instance":                            145,
+		"tencentcloud_tcr_namespace":                           146,
+		"tencentcloud_tcr_repository":                          147,
+		"tencentcloud_tcr_token":                               148,
+		"tencentcloud_tcr_vpc_attachment":                      149,
+		"tencentcloud_vod_adaptive_dynamic_streaming_template": 150,
+		"tencentcloud_vod_image_sprite_template":               151,
+		"tencentcloud_vod_procedure_template":                  152,
+		"tencentcloud_vod_snapshot_by_time_offset_template":    153,
+		"tencentcloud_vod_super_player_config":                 154,
+		"tencentcloud_vpc":                                     155,
+		"tencentcloud_vpc_acl":                                 156,
+		"tencentcloud_vpc_acl_attachment":                      157,
+		"tencentcloud_vpn_connection":                          158,
+		"tencentcloud_vpn_customer_gateway":                    159,
+		"tencentcloud_vpn_gateway":                             160,
+		"tencentcloud_vpn_gateway_route":                       161,
 	}
 )
 

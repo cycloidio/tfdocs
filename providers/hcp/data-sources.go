@@ -81,9 +81,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcp_hvn_peering_connection",
+			Category:         "Data Sources",
+			ShortDescription: `The HVN peering connection data source provides information about an existing peering connection between HVNs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcp_hvn_route",
 			Category:         "Data Sources",
 			ShortDescription: `The HVN route data source provides information about an existing HVN route.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcp_packer_image_iteration",
+			Category:         "Data Sources",
+			ShortDescription: `The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -110,8 +130,10 @@ var (
 		"hcp_consul_cluster":                 4,
 		"hcp_consul_versions":                5,
 		"hcp_hvn":                            6,
-		"hcp_hvn_route":                      7,
-		"hcp_vault_cluster":                  8,
+		"hcp_hvn_peering_connection":         7,
+		"hcp_hvn_route":                      8,
+		"hcp_packer_image_iteration":         9,
+		"hcp_vault_cluster":                  10,
 	}
 )
 

@@ -57,6 +57,10 @@ var (
 					Description: `(Required) Connection type - dedicated or shared`,
 				},
 				resource.Attribute{
+					Name:        "mode",
+					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
+				},
+				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional) ID of the project where the connection is scoped to, must be set for shared connection`,
 				},
@@ -70,7 +74,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for the connection resource ## Attributes Reference`,
+					Description: `(Optional) Description for the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) String list of tags ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -190,7 +198,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_detach_volumes",
-					Description: `(Optional) Delete device even if it has volumes attached. Only applies for destroy action. The ` + "`" + `ip_address` + "`" + ` block has 3 fields:`,
+					Description: `(Optional) Delete device even if it has volumes attached. Only applies for destroy action.`,
+				},
+				resource.Attribute{
+					Name:        "reinstall",
+					Description: `(Optional) Whether the device should be reinstalled instead of destroyed when modifying user_data, custom_data, or operating system. The ` + "`" + `ip_address` + "`" + ` block has 3 fields:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -202,7 +214,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reservation_ids",
-					Description: `List of UUIDs of [IP block reservations](reserved_ip_block.md) from which the public IPv4 address should be taken. You can supply one ` + "`" + `ip_address` + "`" + ` block per IP address type. If you use the ` + "`" + `ip_address` + "`" + ` you must always pass a block for ` + "`" + `private_ipv4` + "`" + `. To learn more about using the reserved IP addresses for new devices, see the examples in the [metal_reserved_ip_block](reserved_ip_block.md) documentation. ## Attributes Reference The following attributes are exported:`,
+					Description: `List of UUIDs of [IP block reservations](reserved_ip_block.md) from which the public IPv4 address should be taken. You can supply one ` + "`" + `ip_address` + "`" + ` block per IP address type. If you use the ` + "`" + `ip_address` + "`" + ` you must always pass a block for ` + "`" + `private_ipv4` + "`" + `. To learn more about using the reserved IP addresses for new devices, see the examples in the [metal_reserved_ip_block](reserved_ip_block.md) documentation. The ` + "`" + `reinstall` + "`" + ` block has 3 fields:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether the provider should favour reinstall over destroy and create. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preserve_data",
+					Description: `(Optional) Whether the non-OS disks should be kept or wiped during reinstall. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deprovision_fast",
+					Description: `(Optional) Whether the OS disk should be filled with ` + "`" + `00h` + "`" + ` bytes before reinstall. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "access_private_ipv4",
@@ -494,6 +518,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_gateway",
+			Category:         "Resources",
+			ShortDescription: `Create Equinix Metal Gateways`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of the project where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `UUID of the VLAN where the gateway is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "ip_reservation_id",
+					Description: `(Optional) UUID of IP reservation block to bind to the gateway, the reservation must be in the same metro as the VLAN, conflicts with ` + "`" + `private_ipv4_subnet_size` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "private_ipv4_subnet_size",
+					Description: `(Optional) Size of the private IPv4 subnet to create for this metal gateway, must be one of (8, 16, 32, 64, 128), conflicts with ` + "`" + `ip_reservation_id` + "`" + ` ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Status of the gateway resource`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "state",
+					Description: `Status of the gateway resource`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_ip_attachment",
 			Category:         "Resources",
 			ShortDescription: `Provides a Resource for Attaching IP Subnets from a Reserved Block to a Device`,
@@ -666,6 +726,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_port",
+			Category:         "Resources",
+			ShortDescription: `Manipulate device ports`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Required) ID of the port to read`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `(Required) Whether the port should be bonded`,
+				},
+				resource.Attribute{
+					Name:        "layer2",
+					Description: `(Optional) Whether to put the port to Layer 2 mode, valid only for bond ports`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `(Optional) List off VLAN UUIDs to attach to the port`,
+				},
+				resource.Attribute{
+					Name:        "native_vlan_id",
+					Description: `(Optional) UUID of a VLAN to assign as a native VLAN. It must be one of attached VLANs (from ` + "`" + `vlan_ids` + "`" + ` parameter), valid only for physical (non-bond) ports`,
+				},
+				resource.Attribute{
+					Name:        "reset_on_delete",
+					Description: `(Optional) Behavioral setting to reset the port to default settings. For a bond port it means layer3 without vlans attached, eth ports will be bonded without native vlan and vlans attached ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the port, e.g. ` + "`" + `bond0` + "`" + ` or ` + "`" + `eth0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `One of layer2-bonded, layer2-individual, layer3, hybrid and hybrid-bonded. This attribute is only set on bond ports.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type is either "NetworkBondPort" for bond ports or "NetworkPort" for bondable ethernet ports`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address of the port`,
+				},
+				resource.Attribute{
+					Name:        "bond_id",
+					Description: `UUID of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bond_name",
+					Description: `Name of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Flag indicating whether the port is bonded`,
+				},
+				resource.Attribute{
+					Name:        "disbond_supported",
+					Description: `Flag indicating whether the port can be removed from a bond`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the port, e.g. ` + "`" + `bond0` + "`" + ` or ` + "`" + `eth0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `One of layer2-bonded, layer2-individual, layer3, hybrid and hybrid-bonded. This attribute is only set on bond ports.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type is either "NetworkBondPort" for bond ports or "NetworkPort" for bondable ethernet ports`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address of the port`,
+				},
+				resource.Attribute{
+					Name:        "bond_id",
+					Description: `UUID of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bond_name",
+					Description: `Name of the bond port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Flag indicating whether the port is bonded`,
+				},
+				resource.Attribute{
+					Name:        "disbond_supported",
+					Description: `Flag indicating whether the port can be removed from a bond`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_port_vlan_attachment",
 			Category:         "Resources",
 			ShortDescription: `Provides a Resource for Attaching VLANs to Device Ports`,
@@ -812,6 +972,38 @@ var (
 				resource.Attribute{
 					Name:        "max_prefix",
 					Description: `The maximum number of route filters allowed per server ## Import This resource can be imported using an existing project ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_project {existing_project_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_project_api_key",
+			Category:         "Resources",
+			ShortDescription: `Create Equinix Metal Project API Keys`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `UUID of the project where the API key is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description string for the Project API Key resource`,
+				},
+				resource.Attribute{
+					Name:        "read-only",
+					Description: `Flag indicating whether the API key shoud be read-only ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `API token which can be used in Equinix Metal API clients`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "token",
+					Description: `API token which can be used in Equinix Metal API clients`,
 				},
 			},
 		},
@@ -1197,6 +1389,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "metal_user_api_key",
+			Category:         "Resources",
+			ShortDescription: `Create Equinix Metal User API Keys`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description string for the User API Key resource`,
+				},
+				resource.Attribute{
+					Name:        "read-only",
+					Description: `Flag indicating whether the API key shoud be read-only ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `UUID of the owner of the API key`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `API token which can be used in Equinix Metal API clients`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `UUID of the owner of the API key`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `API token which can be used in Equinix Metal API clients`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "metal_virtual_circuit",
 			Category:         "Resources",
 			ShortDescription: `Create Equinix Fabric Virtual Circuit`,
@@ -1233,7 +1461,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for the connection resource ## Attributes Reference`,
+					Description: `(Optional) Description for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags for the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `(Optional) Speed of the Virtual Circuit resource ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1295,177 +1531,21 @@ var (
 			Name:             "",
 			Type:             "metal_volume",
 			Category:         "Resources",
-			ShortDescription: `Provides an Equinix Metal Block Storage Volume Resource.`,
+			ShortDescription: `(Removed) Provides an Equinix Metal Block Storage Volume Resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "plan",
-					Description: `(Required) The service plan slug of the volume`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `(Required) The facility to create the volume in`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The metal project ID to deploy the volume in`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `(Required) The size in GB to make the volume`,
-				},
-				resource.Attribute{
-					Name:        "billing_cycle",
-					Description: `The billing cycle, defaults to "hourly"`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Optional description for the volume`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_policies",
-					Description: `Optional list of snapshot policies`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `Lock or unlock the volume ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the volume`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `The description of the volume`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The size in GB of the volume`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `Performance plan the volume is on`,
-				},
-				resource.Attribute{
-					Name:        "billing_cycle",
-					Description: `The billing cycle, defaults to hourly`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility slug the volume resides in`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the volume`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `Whether the volume is locked or not`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id the volume is in`,
-				},
-				resource.Attribute{
-					Name:        "attachments",
-					Description: `A list of attachments, each with it's own ` + "`" + `href` + "`" + ` attribute`,
-				},
-				resource.Attribute{
-					Name:        "created",
-					Description: `The timestamp for when the volume was created`,
-				},
-				resource.Attribute{
-					Name:        "updated",
-					Description: `The timestamp for the last time the volume was updated`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the volume`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `The description of the volume`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `The size in GB of the volume`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `Performance plan the volume is on`,
-				},
-				resource.Attribute{
-					Name:        "billing_cycle",
-					Description: `The billing cycle, defaults to hourly`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility slug the volume resides in`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the volume`,
-				},
-				resource.Attribute{
-					Name:        "locked",
-					Description: `Whether the volume is locked or not`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `The project id the volume is in`,
-				},
-				resource.Attribute{
-					Name:        "attachments",
-					Description: `A list of attachments, each with it's own ` + "`" + `href` + "`" + ` attribute`,
-				},
-				resource.Attribute{
-					Name:        "created",
-					Description: `The timestamp for when the volume was created`,
-				},
-				resource.Attribute{
-					Name:        "updated",
-					Description: `The timestamp for the last time the volume was updated`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "metal_volume_attachment",
 			Category:         "Resources",
-			ShortDescription: `Provides attachment of volumes to devices in the Equinix Metal Host.`,
+			ShortDescription: `(Removed) Provides attachment of volumes to devices in the Equinix Metal Host.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "volume_id",
-					Description: `(Required) The ID of the volume to attach`,
-				},
-				resource.Attribute{
-					Name:        "device_id",
-					Description: `(Required) The ID of the device to which the volume should be attached ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume attachment`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of the volume attachment`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
@@ -1475,18 +1555,22 @@ var (
 		"metal_connection":           1,
 		"metal_device":               2,
 		"metal_device_network_type":  3,
-		"metal_ip_attachment":        4,
-		"metal_organization":         5,
-		"metal_port_vlan_attachment": 6,
-		"metal_project":              7,
-		"metal_project_ssh_key":      8,
-		"metal_reserved_ip_block":    9,
-		"metal_spot_market_request":  10,
-		"metal_ssh_key":              11,
-		"metal_virtual_circuit":      12,
-		"metal_vlan":                 13,
-		"metal_volume":               14,
-		"metal_volume_attachment":    15,
+		"metal_gateway":              4,
+		"metal_ip_attachment":        5,
+		"metal_organization":         6,
+		"metal_port":                 7,
+		"metal_port_vlan_attachment": 8,
+		"metal_project":              9,
+		"metal_project_api_key":      10,
+		"metal_project_ssh_key":      11,
+		"metal_reserved_ip_block":    12,
+		"metal_spot_market_request":  13,
+		"metal_ssh_key":              14,
+		"metal_user_api_key":         15,
+		"metal_virtual_circuit":      16,
+		"metal_vlan":                 17,
+		"metal_volume":               18,
+		"metal_volume_attachment":    19,
 	}
 )
 

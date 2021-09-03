@@ -183,6 +183,34 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "lacework_alert_channel_email",
+			Category:         "Alert Channels",
+			ShortDescription: `Create and manage Email Alert Channel integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"alert",
+				"channels",
+				"channel",
+				"email",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Alert Channel integration name.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Required) The list of email addresses that you want to receive the alerts.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Email Alert Channel integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_alert_channel_email.auditors EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lacework_alert_channel_gcp_pub_sub",
 			Category:         "Alert Channels",
 			ShortDescription: `Create and manage GCP Pub Sub Alert Channel integrations`,
@@ -1077,6 +1105,79 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "lacework_integration_gar",
+			Category:         "Container Registry Integrations",
+			ShortDescription: `Create and manage Google Artifact Registry (GAR) integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"integrations",
+				"integration",
+				"gar",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The integration name.`,
+				},
+				resource.Attribute{
+					Name:        "registry_domain",
+					Description: `(Required) The GAR domain, which specifies the location where you store the images. For a list of supported domains, see [Supported Registry Domains](#supported-registry-domains) below.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_num_imgs",
+					Description: `(Optional) The maximum number of newest container images to assess per repository. Must be one of ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, or ` + "`" + `15` + "`" + `. Defaults to ` + "`" + `5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_repositories",
+					Description: `(Optional) A list of repositories to assess. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The service account client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `(Required) The service account client email.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `(Required) The service account private key ID.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The service account private key. ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lacework_integration_gcp_at",
 			Category:         "Cloud Account Integrations",
 			ShortDescription: `Create and manage Google Cloud Audit Trail integrations`,
@@ -1272,6 +1373,71 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_integration_ghcr",
+			Category:         "Container Registry Integrations",
+			ShortDescription: `Create and manage Github Container Registry (GHCR) integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"integrations",
+				"integration",
+				"ghcr",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The integration name.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The Github username.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The Github personal access token with permission ` + "`" + `read:packages` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `(Optional) Enable or disable SSL communication. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "registry_notifications",
+					Description: `(Optional) Subscribe to registry notifications. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_num_imgs",
+					Description: `(Optional) The maximum number of newest container images to assess per repository. Must be one of ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, or ` + "`" + `15` + "`" + `. Defaults to ` + "`" + `5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "limit_by_repositories",
+					Description: `(Optional) A list of repositories to assess. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. ## Import A Lacework Github container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_ghcr.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1281,29 +1447,32 @@ var (
 		"lacework_alert_channel_aws_s3":          2,
 		"lacework_alert_channel_cisco_webex":     3,
 		"lacework_alert_channel_datadog":         4,
-		"lacework_alert_channel_gcp_pub_sub":     5,
-		"lacework_alert_channel_jira_cloud":      6,
-		"lacework_alert_channel_jira_server":     7,
-		"lacework_alert_channel_microsoft_teams": 8,
-		"lacework_alert_channel_newrelic":        9,
-		"lacework_alert_channel_pagerduty":       10,
-		"lacework_alert_channel_qradar":          11,
-		"lacework_alert_channel_service_now":     12,
-		"lacework_alert_channel_slack":           13,
-		"lacework_alert_channel_splunk":          14,
-		"lacework_alert_channel_victorops":       15,
-		"lacework_alert_channel_webhook":         16,
-		"lacework_integration_aws_cfg":           17,
-		"lacework_integration_aws_ct":            18,
-		"lacework_integration_aws_govcloud_cfg":  19,
-		"lacework_integration_azure_al":          20,
-		"lacework_integration_azure_cfg":         21,
-		"lacework_integration_docker_hub":        22,
-		"lacework_integration_docker_v2":         23,
-		"lacework_integration_ecr":               24,
-		"lacework_integration_gcp_at":            25,
-		"lacework_integration_gcp_cfg":           26,
-		"lacework_integration_gcr":               27,
+		"lacework_alert_channel_email":           5,
+		"lacework_alert_channel_gcp_pub_sub":     6,
+		"lacework_alert_channel_jira_cloud":      7,
+		"lacework_alert_channel_jira_server":     8,
+		"lacework_alert_channel_microsoft_teams": 9,
+		"lacework_alert_channel_newrelic":        10,
+		"lacework_alert_channel_pagerduty":       11,
+		"lacework_alert_channel_qradar":          12,
+		"lacework_alert_channel_service_now":     13,
+		"lacework_alert_channel_slack":           14,
+		"lacework_alert_channel_splunk":          15,
+		"lacework_alert_channel_victorops":       16,
+		"lacework_alert_channel_webhook":         17,
+		"lacework_integration_aws_cfg":           18,
+		"lacework_integration_aws_ct":            19,
+		"lacework_integration_aws_govcloud_cfg":  20,
+		"lacework_integration_azure_al":          21,
+		"lacework_integration_azure_cfg":         22,
+		"lacework_integration_docker_hub":        23,
+		"lacework_integration_docker_v2":         24,
+		"lacework_integration_ecr":               25,
+		"lacework_integration_gar":               26,
+		"lacework_integration_gcp_at":            27,
+		"lacework_integration_gcp_cfg":           28,
+		"lacework_integration_gcr":               29,
+		"lacework_integration_ghcr":              30,
 	}
 )
 

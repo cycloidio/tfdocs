@@ -616,6 +616,14 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which edge cluster belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge cluster. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) NSX-T Edge Cluster name.`,
 				},

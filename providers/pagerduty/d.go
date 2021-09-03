@@ -59,7 +59,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found escalation policy. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Escalation_Policies/get_escalation_policies`,
+					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -69,7 +69,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found escalation policy. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Escalation_Policies/get_escalation_policies`,
+					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get`,
 				},
 			},
 		},
@@ -211,7 +211,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found schedule. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Schedules/get_schedules`,
+					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1schedules~1%7Bid%7D/get`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -221,7 +221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found schedule. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Schedules/get_schedules`,
+					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1schedules~1%7Bid%7D/get`,
 				},
 			},
 		},
@@ -254,6 +254,34 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The short name of the found service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_service_integration",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a service integration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The service name to use to find a service in the PagerDuty API.`,
+				},
+				resource.Attribute{
+					Name:        "integration_summary",
+					Description: `(Required) The integration summary used to find the desired integration on the service ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "integration_key",
+					Description: `The integration key for the integration. This can be used to configure alerts.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "integration_key",
+					Description: `The integration key for the integration. This can be used to configure alerts.`,
 				},
 			},
 		},
@@ -323,7 +351,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found user. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Users/get_users`,
+					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users/get`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -333,7 +361,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found user. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Users/get_users`,
+					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users/get`,
 				},
 			},
 		},
@@ -455,7 +483,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Vendors/get_vendors`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1vendors/get`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -469,7 +497,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Vendors/get_vendors`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1vendors/get`,
 				},
 			},
 		},
@@ -484,10 +512,11 @@ var (
 		"pagerduty_ruleset":             4,
 		"pagerduty_schedule":            5,
 		"pagerduty_service":             6,
-		"pagerduty_team":                7,
-		"pagerduty_user":                8,
-		"pagerduty_user_contact_method": 9,
-		"pagerduty_vendor":              10,
+		"pagerduty_service_integration": 7,
+		"pagerduty_team":                8,
+		"pagerduty_user":                9,
+		"pagerduty_user_contact_method": 10,
+		"pagerduty_vendor":              11,
 	}
 )
 

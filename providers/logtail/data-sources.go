@@ -1,4 +1,4 @@
-package vmp
+package logtail
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_customer_services",
+			Type:             "logtail_source",
 			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -23,7 +23,7 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"vmp_customer_services": 0,
+		"logtail_source": 0,
 	}
 )
 

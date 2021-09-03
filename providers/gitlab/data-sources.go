@@ -23,7 +23,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "full_path",
-					Description: `(Optional) The full path of the group.`,
+					Description: `(Optional) The full path of the group. >`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -143,7 +143,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Optional) Only return members with the desidered access level. Acceptable values are: ` + "`" + `guest` + "`" + `, ` + "`" + `reporter` + "`" + `, ` + "`" + `developer` + "`" + `, ` + "`" + `maintainer` + "`" + `, ` + "`" + `owner` + "`" + `.`,
+					Description: `(Optional) Only return members with the desired access level. Acceptable values are: ` + "`" + `guest` + "`" + `, ` + "`" + `reporter` + "`" + `, ` + "`" + `developer` + "`" + `, ` + "`" + `maintainer` + "`" + `, ` + "`" + `owner` + "`" + `. >`,
 				},
 				resource.Attribute{
 					Name:        "members",
@@ -1019,7 +1019,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "two_factor_enabled",
-					Description: `Whether user's two factor auth is enabled.`,
+					Description: `Whether user's two-factor auth is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "note",
@@ -1043,7 +1043,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linkedin",
-					Description: `Linkedin profile of the user.`,
+					Description: `LinkedIn profile of the user.`,
 				},
 				resource.Attribute{
 					Name:        "twitter",
@@ -1133,7 +1133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "two_factor_enabled",
-					Description: `Whether user's two factor auth is enabled.`,
+					Description: `Whether user's two-factor auth is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "note",
@@ -1157,7 +1157,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linkedin",
-					Description: `Linkedin profile of the user.`,
+					Description: `LinkedIn profile of the user.`,
 				},
 				resource.Attribute{
 					Name:        "twitter",

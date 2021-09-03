@@ -1177,6 +1177,258 @@ The resource is used to create audit syslog policies
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_botpolicy",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botpolicy resource is used to create a botpolicy.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the bot policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the bot policy is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my bot policy" or 'my bot policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression that the policy uses to determine whether to apply bot profile on the specified request.`,
+				},
+				resource.Attribute{
+					Name:        "profilename",
+					Description: `(Required) Name of the bot profile to apply if the request matches this bot policy.`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any type of information about this bot policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of the messagelog action to use for requests that match this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the bot policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my bot policy" or 'my bot policy'). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Botpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botpolicy resource can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicy.tf_botpolicy tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Botpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botpolicy resource can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicy.tf_botpolicy tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botpolicylabel",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botpolicylabel resource is used to create a user-defined bot policy label, to which you can bind policies.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botpolicylabel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name for the bot policy label. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the responder policy label is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my responder policy label" or my responder policy label').`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this bot policy label. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A botpolicylabel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicylabel.tf_botpolicylabel tf_botpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A botpolicylabel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicylabel.tf_botpolicylabel tf_botpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The Botprofile resource is used to create a collection of profile settings to configure bot management on the appliance.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "signature",
+					Description: `(Optional) Name of object containing bot static signature details.`,
+				},
+				resource.Attribute{
+					Name:        "errorurl",
+					Description: `(Optional) URL that Bot protection uses as the Error URL.`,
+				},
+				resource.Attribute{
+					Name:        "trapurl",
+					Description: `(Optional) URL that Bot protection uses as the Trap URL.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "bot_enable_white_list",
+					Description: `(Optional) Enable white-list bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "bot_enable_black_list",
+					Description: `(Optional) Enable black-list bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "bot_enable_rate_limit",
+					Description: `(Optional) Enable rate-limit bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "devicefingerprint",
+					Description: `(Optional) Enable device-fingerprint bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "devicefingerprintaction",
+					Description: `(Optional) Action to be taken for device-fingerprint based bot detection. Possible values: [ NONE, LOG, DROP, REDIRECT, RESET, MITIGATION ]`,
+				},
+				resource.Attribute{
+					Name:        "bot_enable_ip_reputation",
+					Description: `(Optional) Enable IP-reputation bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "trap",
+					Description: `(Optional) Enable trap bot detection. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "trapaction",
+					Description: `(Optional) Action to be taken for bot trap based bot detection. Possible values: [ NONE, LOG, DROP, REDIRECT, RESET ]`,
+				},
+				resource.Attribute{
+					Name:        "bot_enable_tps",
+					Description: `(Optional) Enable TPS. Possible values: [ on, off ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile.tf_botprofile botprofile_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile.tf_botprofile botprofile_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botsettings",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botsettings  resource is used to create and update the ADC BOT settings.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botsettings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "defaultprofile",
+					Description: `(Optional) Profile to use when a connection does not match any policy. Default setting is " ", which sends unmatched connections back to the Citrix ADC without attempting to filter them further.`,
+				},
+				resource.Attribute{
+					Name:        "javascriptname",
+					Description: `(Optional) Name of the JavaScript that the Bot Management feature uses in response. Must begin with a letter or number, and can consist of from 1 to 31 letters, numbers, and the hyphen (-) and underscore (_) symbols. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cookie name" or 'my cookie name').`,
+				},
+				resource.Attribute{
+					Name:        "sessiontimeout",
+					Description: `(Optional) Timeout, in seconds, after which a user session is terminated.`,
+				},
+				resource.Attribute{
+					Name:        "sessioncookiename",
+					Description: `(Optional) Name of the SessionCookie that the Bot Management feature uses for tracking. Must begin with a letter or number, and can consist of from 1 to 31 letters, numbers, and the hyphen (-) and underscore (_) symbols. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cookie name" or 'my cookie name').`,
+				},
+				resource.Attribute{
+					Name:        "dfprequestlimit",
+					Description: `(Optional) Number of requests to allow without bot session cookie if device fingerprint is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "signatureautoupdate",
+					Description: `(Optional) Flag used to enable/disable bot auto update signatures. Possible values: [ on, off ]`,
+				},
+				resource.Attribute{
+					Name:        "signatureurl",
+					Description: `(Optional) URL to download the bot signature mapping file from server.`,
+				},
+				resource.Attribute{
+					Name:        "proxyserver",
+					Description: `(Optional) Proxy Server IP to get updated signatures from AWS.`,
+				},
+				resource.Attribute{
+					Name:        "proxyport",
+					Description: `(Optional) Proxy Server Port to get updated signatures from AWS. Range 1-65535`,
+				},
+				resource.Attribute{
+					Name:        "trapurlautogenerate",
+					Description: `(Optional) Enable/disable trap URL auto generation. When enabled, trap URL is updated within the configured interval. Default value: OFF Possible values = ON, OFF`,
+				},
+				resource.Attribute{
+					Name:        "trapurlinterval",
+					Description: `(Optional)Time in seconds after which trap URL is updated. Default value: 3600 Minimum value = 300 Maximum value = 86400`,
+				},
+				resource.Attribute{
+					Name:        "trapurllength",
+					Description: `(Optional) Length of the auto-generated trap URL. Default value: 32 Minimum value = 10 Maximum value = 255 ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botsettings.It is a unique string prefixed with "tf-botsettings". ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csaction.tf_csaction tf_csaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botsettings.It is a unique string prefixed with "tf-botsettings". ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csaction.tf_csaction tf_csaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_cluster",
 			Category:         "Cluster",
 			ShortDescription: ``,
@@ -1347,7 +1599,27 @@ Cluster IP address.
 				},
 				resource.Attribute{
 					Name:        "insecure_skip_verify",
-					Description: `(Optional) Boolean variable that defines if an error should be thrown if the target ADC's TLS certificate is not trusted. When ` + "`" + `true` + "`" + ` the error will be ignored. When ` + "`" + `false` + "`" + ` such an error will cause the failure of any provider operation. Defaults to ` + "`" + `false` + "`" + `. Cluster nodegroup supports the following:`,
+					Description: `(Optional) Boolean variable that defines if an error should be thrown if the target ADC's TLS certificate is not trusted. When ` + "`" + `true` + "`" + ` the error will be ignored. When ` + "`" + `false` + "`" + ` such an error will cause the failure of any provider operation. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "addsnip",
+					Description: `(Optional) Boolean variable that determines if a node SNIP should be added to the CLIP before joining the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "snip_ipaddress",
+					Description: `(Optional) Node SNIP address to add to the CLIP. Applied only when ` + "`" + `addsnip=true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "snip_netmask",
+					Description: `(Optional) Node SNIP netmask to add to the CLIP. Applied only when ` + "`" + `addsnip=true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vtysh_enable",
+					Description: `(Optional) Boolean variable that determines if vtysh commands should be applied to the CLIP before node joins the custer.`,
+				},
+				resource.Attribute{
+					Name:        "vtysh",
+					Description: `(Optional) Vtysh commands to add to the CLIP before node joins the cluster. Applied only when ` + "`" + `vtysh_enable=true` + "`" + `. Cluster nodegroup supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3435,6 +3707,39 @@ The iptunnel resource is used to create ipv4 network tunnels.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_lbmetrictable",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbmetrictable resource is used to create metric table.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbmetrictable",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metrictable",
+					Description: `(Optional) Name for the metric table. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my metrictable" or 'my metrictable'). ## Import An lbmetrictable can be imported using its id, e.g. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmetrictable. It has the same value as the ` + "`" + `metrictable` + "`" + ` attribute. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_metrictable.tf_metrictable tf_metrictable ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmetrictable. It has the same value as the ` + "`" + `metrictable` + "`" + ` attribute. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_metrictable.tf_metrictable tf_metrictable ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_lbmonitor",
 			Category:         "Load Balancing",
 			ShortDescription: ``,
@@ -3856,6 +4161,104 @@ The lbmonitor resource is used to create load balancing monitors.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_lbmonitor_metric_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `\_metric\_binding
+
+The lbmonitor\_metric\_binding resource is used bind load balancing monitor to metric.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbmonitor",
+				"metric",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) Metric name in the metric table, whose setting is changed. A value zero disables the metric and it will not be used for load calculation.`,
+				},
+				resource.Attribute{
+					Name:        "metricweight",
+					Description: `(Optional) The weight for the specified service metric with respect to others.`,
+				},
+				resource.Attribute{
+					Name:        "metricthreshold",
+					Description: `(Optional) Threshold to be used for that metric.`,
+				},
+				resource.Attribute{
+					Name:        "monitorname",
+					Description: `(Required) Name of the monitor. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmonitor\_metric\_binding. It is the concatenation of the ` + "`" + `monitorname` + "`" + ` and ` + "`" + `metric` + "`" + ` attributes separated by a comma. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbmonitor_metric_binding.tf_lbmonitor_metric_binding tf_lbmonitor_metric_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmonitor\_metric\_binding. It is the concatenation of the ` + "`" + `monitorname` + "`" + ` and ` + "`" + `metric` + "`" + ` attributes separated by a comma. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbmonitor_metric_binding.tf_lbmonitor_metric_binding tf_lbmonitor_metric_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbmonitor_sslcertkey_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbmonitor_sslcertkey_bindingresource is used to add an sslcertkey to lbmonitor.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbmonitor",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certkeyname",
+					Description: `(Required) The name of the certificate bound to the monitor.`,
+				},
+				resource.Attribute{
+					Name:        "ca",
+					Description: `(Optional) The rule for use of CRL corresponding to this CA certificate during client authentication. If crlCheck is set to Mandatory, the system will deny all SSL clients if the CRL is missing, expired - NextUpdate date is in the past, or is incomplete with remote CRL refresh enabled. If crlCheck is set to optional, the system will allow SSL clients in the above error cases.However, in any case if the client certificate is revoked in the CRL, the SSL client will be denied access.`,
+				},
+				resource.Attribute{
+					Name:        "crlcheck",
+					Description: `(Optional) The state of the CRL check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ocspcheck",
+					Description: `(Optional) The state of the OCSP check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "monitorname",
+					Description: `(Required) Name of the monitor. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmonitor_sslcertkey_binding. It has the same value as the concatenation of the ` + "`" + `monitorname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A lbmonitor\_sslcertkey\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbmonitor_sslcertkey_binding.tf_lbmonitor_sslcertkey_binding tf_monitor,tf_sslcertkey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbmonitor_sslcertkey_binding. It has the same value as the concatenation of the ` + "`" + `monitorname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A lbmonitor\_sslcertkey\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbmonitor_sslcertkey_binding.tf_lbmonitor_sslcertkey_binding tf_monitor,tf_sslcertkey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_lbparameter",
 			Category:         "Load Balancing",
 			ShortDescription: ``,
@@ -3964,6 +4367,140 @@ The lbparameter resource is used to set load balancing parameters.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbparameter. It is a unique string prefixed with "tf-lbparameter"`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbprofile",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The Lbprofile resource is used to set load balancing parameters in a profile.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "lbprofilename",
+					Description: `(Required) Name of the LB profile.`,
+				},
+				resource.Attribute{
+					Name:        "dbslb",
+					Description: `(Optional) Enable database specific load balancing for MySQL and MSSQL service types. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "processlocal",
+					Description: `(Optional) By turning on this option packets destined to a vserver in a cluster will not under go any steering. Turn this option for single pa cket request response mode or when the upstream device is performing a proper RSS for connection based distribution. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "httponlycookieflag",
+					Description: `(Optional) Include the HttpOnly attribute in persistence cookies. The HttpOnly attribute limits the scope of a cookie to HTTP requests and helps mitigate the risk of cross-site scripting attacks. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "cookiepassphrase",
+					Description: `(Optional) Use this parameter to specify the passphrase used to generate secured persistence cookie value. It specifies the passphrase with a maximum of 31 characters.`,
+				},
+				resource.Attribute{
+					Name:        "usesecuredpersistencecookie",
+					Description: `(Optional) Encode persistence cookie values using SHA2 hash. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "useencryptedpersistencecookie",
+					Description: `(Optional) Encode persistence cookie values using SHA2 hash. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "literaladccookieattribute",
+					Description: `(Optional) String configured as LiteralADCCookieAttribute will be appended as attribute for Citrix ADC cookie (for example: LB cookie persistence , GSLB site persistence, CS cookie persistence, LB group cookie persistence). Sample usage - add lb profile lbprof -LiteralADCCookieAttribute ";SameSite=None".`,
+				},
+				resource.Attribute{
+					Name:        "computedadccookieattribute",
+					Description: `(Optional) ComputedADCCookieAttribute accepts ns variable as input in form of string starting with $ (to understand how to configure ns variable, please check man add ns variable). policies can be configured to modify this variable for every transaction and the final value of the variable after policy evaluation will be appended as attribute to Citrix ADC cookie (for example: LB cookie persistence , GSLB sitepersistence, CS cookie persistence, LB group cookie persistence). Only one of ComputedADCCookieAttribute, LiteralADCCookieAttribute can be set. Sample usage - add ns variable lbvar -type TEXT(100) -scope Transaction add ns assignment lbassign -variable $lbvar -set "\\";SameSite=Strict\\"" add rewrite policy lbpol <valid policy expression> lbassign bind rewrite global lbpol 100 next -type RES_OVERRIDE add lb profile lbprof -ComputedADCCookieAttribute "$lbvar" For incoming client request, if above policy evaluates TRUE, then SameSite=Strict will be appended to ADC generated cookie.`,
+				},
+				resource.Attribute{
+					Name:        "storemqttclientidandusername",
+					Description: `(Optional) This option allows to store the MQTT clientid and username in transactional logs. Default value: NO Possible values : [YES, NO]`,
+				},
+				resource.Attribute{
+					Name:        "lbhashalgorithm",
+					Description: `(Optional) This option dictates the hashing algorithm used for hash based LB methods (URLHASH, DOMAINHASH, SOURCEIPHASH, DESTINATIONIPHASH, SRCIPDESTIPHASH, SRCIPSRCPORTHASH, TOKEN, USER_TOKEN, CALLIDHASH). Default value: [DEFAULT] Possible values : [DEFAULT, PRAC, JARH]`,
+				},
+				resource.Attribute{
+					Name:        "lbhashfingers",
+					Description: `(Optional) This option is used to specify the number of fingers to be used in PRAC and JARH algorithms for hash based LB methods. Increasing the number of fingers might give better distribution of traffic at the expense of additional memory. Default value: 256 Minimum value = 1 Maximum value = 1024 ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbprofile. It has the same value as the ` + "`" + `lbprofilename` + "`" + ` attribute. ## Import A lbprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbprofile.tf_lbprofile tf_lbprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbprofile. It has the same value as the ` + "`" + `lbprofilename` + "`" + ` attribute. ## Import A lbprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbprofile.tf_lbprofile tf_lbprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbsipparameters",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbsipparameters resource is used to configure the global SIP parameters.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbsipparameters",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rnatsrcport",
+					Description: `(Optional) Port number with which to match the source port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "rnatdstport",
+					Description: `(Optional) Port number with which to match the destination port in server-initiated SIP traffic. The rport parameter is added, without a value, to SIP packets that have a matching destination port number, and CALL-ID based persistence is implemented for the responses received by the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "retrydur",
+					Description: `(Optional) Time, in seconds, for which a client must wait before initiating a connection after receiving a 503 Service Unavailable response from the SIP server. The time value is sent in the "Retry-After" header in the 503 response.`,
+				},
+				resource.Attribute{
+					Name:        "addrportvip",
+					Description: `(Optional) Add the rport parameter to the VIA headers of SIP requests that virtual servers receive from clients or servers. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sip503ratethreshold",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "rnatsecuresrcport",
+					Description: `(Optional) Port number with which to match the source port in server-initiated SIP over SSL traffic. The rport parameter is added, without a value, to SIP packets that have a matching source port number, and CALL-ID based persistence is implemented for the responses received by the virtual server. Range 1 - 65535`,
+				},
+				resource.Attribute{
+					Name:        "rnatsecuredstport",
+					Description: `(Optional) Port number with which to match the destination port in server-initiated SIP over SSL traffic. The rport parameter is added, without a value, to SIP packets that have a matching destination port number, and CALL-ID based persistence is implemented for the responses received by the virtual server. Range 1 - 65535`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbsipparameters. It is a unique string prefixed with "tf_lbsipparameters"`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbsipparameters. It is a unique string prefixed with "tf_lbsipparameters"`,
 				},
 			},
 		},
@@ -4438,6 +4975,108 @@ The lbvserver resource is used to create load balancing virtual servers.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_lbvserver_analyticsprofile_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_analyticsprofile_binding resource is used to bound Analytics Profile to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"analyticsprofile",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "analyticsprofile",
+					Description: `(Required) Name of the analytics profile bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A lbvserver_analyticsprofile_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_analyticsprofile_binding.tf_lbvserver_analyticsprofile_binding tf_lbvserver_analyticsprofile_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A lbvserver_analyticsprofile_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_analyticsprofile_binding.tf_lbvserver_analyticsprofile_binding tf_lbvserver_analyticsprofile_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_appflowpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_appflowpolicy_binding resource is used to add AppFlow policies to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"appflowpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver\_appflowpolicy\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_appflowpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_appflowpolicy_binding.tf_lbvserver_appflowpolicy_binding tf_lbvserver,tf_appflowpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver\_appflowpolicy\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_appflowpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_appflowpolicy_binding.tf_lbvserver_appflowpolicy_binding tf_lbvserver,tf_appflowpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_lbvserver_appfwpolicy_binding",
 			Category:         "Load Balancing",
 			ShortDescription: ``,
@@ -4495,6 +5134,316 @@ The lbvserver_appfwpolicy_binding resource is used to add AppFw policies to lbvs
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbvserver_appfwpolicy_binding. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_appqoepolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_appqoepolicy_binding resource is used to bind load balancing virtual servers with appqoe policies.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"appqoepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_appqoepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_appqoepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_appqoepolicy_binding.tf_lbvserver_appqoepolicy_binding tf_lbvserver_appqoepolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_appqoepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_appqoepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_appqoepolicy_binding.tf_lbvserver_appqoepolicy_binding tf_lbvserver_appqoepolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_auditsyslogpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_auditsyslogpolicy_binding resource is used to bind load balancing virtual servers with audit syslog policies.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applicable only to compression, rewrite, videooptimization and cache policies. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_auditsyslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_auditsyslogpolicy_binding.tf_lbvserver_auditsyslogpolicy_binding tf_lbvserver_auditsyslogpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_auditsyslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_auditsyslogpolicy_binding.tf_lbvserver_auditsyslogpolicy_binding tf_lbvserver_auditsyslogpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_authorizationpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_authorizationpolicy_bindingresource is used to add an authorization policy to lbmonitor.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"authorizationpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_authorizationpolicy_binding. It has the same value as the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_authorizationpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_authorizationpolicy_binding.tf_lbvserver_authorizationpolicy_binding test_lbvserver,tf_authorizationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_authorizationpolicy_binding. It has the same value as the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_authorizationpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_authorizationpolicy_binding.tf_lbvserver_authorizationpolicy_binding test_lbvserver,tf_authorizationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_botpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"botpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applicable only to compression, rewrite, videooptimization and cache policies. Possible values: [ REQUEST, RESPONSE ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the citrixadc_lbvserver_botpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A citrixadc_lbvserver_botpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_citrixadc_lbvserver_botpolicy_binding.tf_citrixadc_lbvserver_botpolicy_binding tf_citrixadc_lbvserver_botpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the citrixadc_lbvserver_botpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A citrixadc_lbvserver_botpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_citrixadc_lbvserver_botpolicy_binding.tf_citrixadc_lbvserver_botpolicy_binding tf_citrixadc_lbvserver_botpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_cachepolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_cachepolicy_binding resource is used to create add a cache policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"cachepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_cachepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_cachepolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_cachepolicy_binding.tf_lbvserver_cachepolicy_binding tf_lbvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_cachepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_cachepolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_cachepolicy_binding.tf_lbvserver_cachepolicy_binding tf_lbvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4558,6 +5507,194 @@ The lbvserver\_cmppolicy\_binding resource is used to bind load balancing virtua
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbvserver\_cmppolicy\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_cmppolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_cmppolicy_binding.tf_bind tf_lbvserver,tf_cmppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_contentinspectionpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_contentinspectionpolicy_binding resource is used to add a content inspection policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"contentinspectionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_contentinspectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_contentinspectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_contentinspectionpolicy_binding.tf_lbvserver_contentinspectionpolicy_binding tf_lbvserver,tf_contentinspectionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_contentinspectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_contentinspectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_contentinspectionpolicy_binding.tf_lbvserver_contentinspectionpolicy_binding tf_lbvserver,tf_contentinspectionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_dnspolicy64_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_dnspolicy64_binding resource is used to add a dns policy64 to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"dnspolicy64",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applicable only to compression, rewrite, videooptimization and cache policies. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_dnspolicy64_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_dnspolicy64_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_dnspolicy64_binding.tf_lbvserver_dnspolicy64_binding tf_lbvserver,tf_dnspolicy64 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_dnspolicy64_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_dnspolicy64_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_dnspolicy64_binding.tf_lbvserver_dnspolicy64_binding tf_lbvserver,tf_dnspolicy64 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_feopolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_feopolicy_binding resource is used to add a front end optimization policy to lbvserver.
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"feopolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_feopolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_feopolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_feopolicy_binding.tf_lbvserver_feopolicy_binding tf_lbvserver,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_feopolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_feopolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_feopolicy_binding.tf_lbvserver_feopolicy_binding tf_lbvserver,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4837,6 +5974,132 @@ of ` + "`" + `resource_citrixadc_servicegroup` + "`" + ` should not be set for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_lbvserver_spilloverpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_spilloverpolicy_binding resource is used to add a spillover policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"spilloverpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_spilloverpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_spilloverpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_spilloverpolicy_binding.tf_lbvserver_spilloverpolicy_binding tf_lbvserver,tf_spilloverpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_spilloverpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_spilloverpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_spilloverpolicy_binding.tf_lbvserver_spilloverpolicy_binding tf_lbvserver,tf_spilloverpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_tmtrafficpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_tmtrafficpolicy_binding is used to add a tmtraffic policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"tmtrafficpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). .`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applicable only to compression, rewrite, videooptimization and cache policies. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Applicable only to rewrite, videooptimization and cache policies. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the virtual server or user-defined policy label to invoke if the policy evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_tmtrafficpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_tmtrafficpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_tmtrafficpolicy_binding.tf_lbvserver_tmtrafficpolicy_binding tf_lbvserver,tf_tmttrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_tmtrafficpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_tmtrafficpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_tmtrafficpolicy_binding.tf_lbvserver_tmtrafficpolicy_binding tf_lbvserver,tf_tmttrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_lbvserver_transformpolicy_binding",
 			Category:         "Load Balancing",
 			ShortDescription: ``,
@@ -4895,6 +6158,132 @@ The lbvserver\_transformpolicy\_binding resource is used to bind load balancing 
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbvserver\_transformpolicy\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver\_transformpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_transformpolicy_binding.tf_binding tf_lbvserver,tf_trans_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_videooptimizationdetectionpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_videooptimizationdetectionpolicy_binding resource is used to add a videooptimizationdetection policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"videooptimizationdetectionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_videooptimizationdetectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_videooptimizationdetectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_videooptimizationdetectionpolicy_binding.tf_vopolicy_binding tf_lbvserver,tf_vop ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_videooptimizationdetectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_videooptimizationdetectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_videooptimizationdetectionpolicy_binding.tf_vopolicy_binding tf_lbvserver,tf_vop ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbvserver_videooptimizationpacingpolicy_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbvserver_videooptimizationpacingpolicy_bindingresource is used to add a videooptimizationpacing policy to lbvserver.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbvserver",
+				"videooptimizationpacingpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a virtual server or policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the virtual server. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vserver" or 'my vserver'). . ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_videooptimizationpacingpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_videooptimizationpacingpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_videooptimizationpacingpolicy_binding.tf_lbvserver_videooptimizationpacingpolicy_binding tf_lbvserver,tf_pacingpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbvserver_videooptimizationpacingpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A lbvserver_videooptimizationpacingpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbvserver_videooptimizationpacingpolicy_binding.tf_lbvserver_videooptimizationpacingpolicy_binding tf_lbvserver,tf_pacingpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5422,7 +6811,11 @@ The nsconfig_save resource is used to apply the save operation for ns config.
 				},
 				resource.Attribute{
 					Name:        "concurrent_save_interval",
-					Description: `(Optional) Time period between tries to save the resource when processing the save error workflow. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+					Description: `(Optional) Time period between tries to save the resource when processing the save error workflow.`,
+				},
+				resource.Attribute{
+					Name:        "save_on_destroy",
+					Description: `(Optional) Boolean flag. If set to ` + "`" + `true` + "`" + ` then the save configuration operation will be applied during the destroy operation. Defaults to ` + "`" + `false` + "`" + `. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6286,6 +7679,106 @@ The nslicenseserver resource is used to create license server entry in ADC.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the nslicenseserver. It has the same value as the ` + "`" + `servername` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_nsmode",
+			Category:         "NS",
+			ShortDescription: ``,
+			Description: `
+
+The nsmode resource is used to enable or disable ADC modes.
+
+
+`,
+			Keywords: []string{
+				"ns",
+				"nsmode",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fr",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "l2",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "usip",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cka",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tcpb",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "mbf",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "edge",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "usnip",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "l3",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "pmtud",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "mediaclassification",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "sradv",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "dradv",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "iradv",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "sradv6",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "dradv6",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bridgebpdus",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "ulfd",
+					Description: `(Optional) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the nsmode resource. It is a random string prefixed with "tf-nsmode-"`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the nsmode resource. It is a random string prefixed with "tf-nsmode-"`,
 				},
 			},
 		},
@@ -9047,6 +10540,38 @@ The sslaction resource is used to create ssl actions.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_sslcacertgroup",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslcacertgroup resource is used to configure a Group of CA certificate-key pairs resource.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslcacertgroup",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cacertgroupname",
+					Description: `(Required) Name given to the CA certificate group. The name will be used to add the CA certificates to the group. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my file" or 'my file'). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslcacertgroup. It has the same value as the ` + "`" + `cacertgroupname` + "`" + ` attribute. ## Import A sslaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslcacertgroup.tf_sslcacertgroup tf_sslcacertgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslcacertgroup. It has the same value as the ` + "`" + `cacertgroupname` + "`" + ` attribute. ## Import A sslaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslcacertgroup.tf_sslcacertgroup tf_sslcacertgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_sslcertkey",
 			Category:         "SSL",
 			ShortDescription: ``,
@@ -10326,122 +11851,245 @@ The vlan resource is used to create vlans.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vlan_interface_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `\_interface\_binding
+
+The vlan\_interface\_binding resource is used to bind a vlan to an interface.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vlan",
+				"interface",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ifnum",
+					Description: `(Required) The interface to be bound to the VLAN, specified in slot/port notation (for example, 1/3).`,
+				},
+				resource.Attribute{
+					Name:        "tagged",
+					Description: `(Optional) Make the interface an 802.1q tagged interface. Packets sent on this interface on this VLAN have an additional 4-byte 802.1q tag, which identifies the VLAN. To use 802.1q tagging, you must also configure the switch connected to the appliance's interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "vlanid",
+					Description: `(Required) Specifies the virtual LAN ID.`,
+				},
+				resource.Attribute{
+					Name:        "ownergroup",
+					Description: `(Optional) The owner node group in a Cluster for this vlan. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan\_interface\_binding. It is the concatenation of the vlanid and ifnum attributes separated by a comma. ## Import A vlan\_interface\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan_interface_binding.tf_bind 40,1/1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan\_interface\_binding. It is the concatenation of the vlanid and ifnum attributes separated by a comma. ## Import A vlan\_interface\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan_interface_binding.tf_bind 40,1/1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vlan_nsip_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `\_nsip\_binding
+
+The vlan\_nsip\_binding resource is used to bind vlan to ipv4 nsip address.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vlan",
+				"nsip",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipaddress",
+					Description: `(Required) The IP address assigned to the VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) Subnet mask for the network address defined for this VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "td",
+					Description: `(Optional) Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0.`,
+				},
+				resource.Attribute{
+					Name:        "ownergroup",
+					Description: `(Optional) The owner node group in a Cluster for this vlan.`,
+				},
+				resource.Attribute{
+					Name:        "vlanid",
+					Description: `(Required) Specifies the virtual LAN ID. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan\_nsip\_binding. It is the concatenation of the ` + "`" + `vlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes separated by a comma. ## Import A vlan\_nsip\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan_nsip_binding.tf_bind 40,10.222.74.146 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vlan\_nsip\_binding. It is the concatenation of the ` + "`" + `vlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes separated by a comma. ## Import A vlan\_nsip\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vlan_nsip_binding.tf_bind 40,10.222.74.146 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"citrixadc_appfwfieldtype":                          0,
-		"citrixadc_appfwjsoncontenttype":                    1,
-		"citrixadc_appfwpolicy":                             2,
-		"citrixadc_appfwpolicylabel":                        3,
-		"citrixadc_appfwprofile":                            4,
-		"citrixadc_appfwprofile_cookieconsistency_binding":  5,
-		"citrixadc_appfwprofile_crosssitescripting_binding": 6,
-		"citrixadc_appfwprofile_denyurl_binding":            7,
-		"citrixadc_appfwprofile_sqlinjection_binding":       8,
-		"citrixadc_appfwprofile_starturl_binding":           9,
-		"citrixadc_appfwxmlcontenttype":                     10,
-		"citrixadc_auditmessageaction":                      11,
-		"citrixadc_auditsyslogaction":                       12,
-		"citrixadc_auditsyslogpolicy":                       13,
-		"citrixadc_cluster":                                 14,
-		"citrixadc_clusterfiles_syncer":                     15,
-		"citrixadc_cmppolicy":                               16,
-		"citrixadc_csaction":                                17,
-		"citrixadc_cspolicy":                                18,
-		"citrixadc_csvserver":                               19,
-		"citrixadc_csvserver_appfwpolicy_binding":           20,
-		"citrixadc_csvserver_cmppolicy_binding":             21,
-		"citrixadc_csvserver_cspolicy_binding":              22,
-		"citrixadc_csvserver_filterpolicy_binding":          23,
-		"citrixadc_csvserver_responderpolicy_binding":       24,
-		"citrixadc_csvserver_rewritepolicy_binding":         25,
-		"citrixadc_csvserver_transformpolicy_binding":       26,
-		"citrixadc_dnsnsrec":                                27,
-		"citrixadc_dnssoarec":                               28,
-		"citrixadc_filterpolicy":                            29,
-		"citrixadc_gslbservice":                             30,
-		"citrixadc_gslbsite":                                31,
-		"citrixadc_gslbvserver":                             32,
-		"citrixadc_inat":                                    33,
-		"citrixadc_installer":                               34,
-		"citrixadc_interface":                               35,
-		"citrixadc_ipset":                                   36,
-		"citrixadc_iptunnel":                                37,
-		"citrixadc_lbmonitor":                               38,
-		"citrixadc_lbparameter":                             39,
-		"citrixadc_lbvserver":                               40,
-		"citrixadc_lbvserver_appfwpolicy_binding":           41,
-		"citrixadc_lbvserver_cmppolicy_binding":             42,
-		"citrixadc_lbvserver_filterpolicy_binding":          43,
-		"citrixadc_lbvserver_responderpolicy_binding":       44,
-		"citrixadc_lbvserver_rewritepolicy_binding":         45,
-		"citrixadc_lbvserver_service_binding":               46,
-		"citrixadc_lbvserver_servicegroup_binding":          47,
-		"citrixadc_lbvserver_transformpolicy_binding":       48,
-		"citrixadc_linkset":                                 49,
-		"citrixadc_netprofile":                              50,
-		"citrixadc_nsacl":                                   51,
-		"citrixadc_nsacls":                                  52,
-		"citrixadc_nscapacity":                              53,
-		"citrixadc_nsconfig_clear":                          54,
-		"citrixadc_nsconfig_save":                           55,
-		"citrixadc_nsconfig_update":                         56,
-		"citrixadc_nsfeature":                               57,
-		"citrixadc_nshttpprofile":                           58,
-		"citrixadc_nsip":                                    59,
-		"citrixadc_nsip6":                                   60,
-		"citrixadc_nslicense":                               61,
-		"citrixadc_nslicenseserver":                         62,
-		"citrixadc_nsparam":                                 63,
-		"citrixadc_nsrpcnode":                               64,
-		"citrixadc_nstcpparam":                              65,
-		"citrixadc_nstcpprofile":                            66,
-		"citrixadc_nsvpxparam":                              67,
-		"citrixadc_password_resetter":                       68,
-		"citrixadc_pinger":                                  69,
-		"citrixadc_policydataset":                           70,
-		"citrixadc_policydataset_value_binding":             71,
-		"citrixadc_policyexpression":                        72,
-		"citrixadc_policypatset":                            73,
-		"citrixadc_policypatset_pattern_binding":            74,
-		"citrixadc_policystringmap":                         75,
-		"citrixadc_policystringmap_pattern_binding":         76,
-		"citrixadc_quicbridgeprofile":                       77,
-		"citrixadc_rebooter":                                78,
-		"citrixadc_responderaction":                         79,
-		"citrixadc_responderpolicy":                         80,
-		"citrixadc_responderpolicylabel":                    81,
-		"citrixadc_rewriteaction":                           82,
-		"citrixadc_rewritepolicy":                           83,
-		"citrixadc_rewritepolicylabel":                      84,
-		"citrixadc_rnat":                                    85,
-		"citrixadc_route":                                   86,
-		"citrixadc_routerdynamicrouting":                    87,
-		"citrixadc_server":                                  88,
-		"citrixadc_service":                                 89,
-		"citrixadc_servicegroup":                            90,
-		"citrixadc_servicegroup_lbmonitor_binding":          91,
-		"citrixadc_servicegroup_servicegroupmember_binding": 92,
-		"citrixadc_sslaction":                               93,
-		"citrixadc_sslcertkey":                              94,
-		"citrixadc_sslcipher":                               95,
-		"citrixadc_ssldhparam":                              96,
-		"citrixadc_sslparameter":                            97,
-		"citrixadc_sslpolicy":                               98,
-		"citrixadc_sslprofile":                              99,
-		"citrixadc_sslprofile_sslcipher_binding":            100,
-		"citrixadc_sslvserver_sslcertkey_binding":           101,
-		"citrixadc_sslvserver_sslpolicy_binding":            102,
-		"citrixadc_systemcmdpolicy":                         103,
-		"citrixadc_systemextramgmtcpu":                      104,
-		"citrixadc_systemfile":                              105,
-		"citrixadc_systemgroup":                             106,
-		"citrixadc_systemuser":                              107,
-		"citrixadc_transformaction":                         108,
-		"citrixadc_transformpolicy":                         109,
-		"citrixadc_transformprofile":                        110,
-		"citrixadc_vlan":                                    111,
+		"citrixadc_appfwfieldtype":                                     0,
+		"citrixadc_appfwjsoncontenttype":                               1,
+		"citrixadc_appfwpolicy":                                        2,
+		"citrixadc_appfwpolicylabel":                                   3,
+		"citrixadc_appfwprofile":                                       4,
+		"citrixadc_appfwprofile_cookieconsistency_binding":             5,
+		"citrixadc_appfwprofile_crosssitescripting_binding":            6,
+		"citrixadc_appfwprofile_denyurl_binding":                       7,
+		"citrixadc_appfwprofile_sqlinjection_binding":                  8,
+		"citrixadc_appfwprofile_starturl_binding":                      9,
+		"citrixadc_appfwxmlcontenttype":                                10,
+		"citrixadc_auditmessageaction":                                 11,
+		"citrixadc_auditsyslogaction":                                  12,
+		"citrixadc_auditsyslogpolicy":                                  13,
+		"citrixadc_botpolicy":                                          14,
+		"citrixadc_botpolicylabel":                                     15,
+		"citrixadc_botprofile":                                         16,
+		"citrixadc_botsettings":                                        17,
+		"citrixadc_cluster":                                            18,
+		"citrixadc_clusterfiles_syncer":                                19,
+		"citrixadc_cmppolicy":                                          20,
+		"citrixadc_csaction":                                           21,
+		"citrixadc_cspolicy":                                           22,
+		"citrixadc_csvserver":                                          23,
+		"citrixadc_csvserver_appfwpolicy_binding":                      24,
+		"citrixadc_csvserver_cmppolicy_binding":                        25,
+		"citrixadc_csvserver_cspolicy_binding":                         26,
+		"citrixadc_csvserver_filterpolicy_binding":                     27,
+		"citrixadc_csvserver_responderpolicy_binding":                  28,
+		"citrixadc_csvserver_rewritepolicy_binding":                    29,
+		"citrixadc_csvserver_transformpolicy_binding":                  30,
+		"citrixadc_dnsnsrec":                                           31,
+		"citrixadc_dnssoarec":                                          32,
+		"citrixadc_filterpolicy":                                       33,
+		"citrixadc_gslbservice":                                        34,
+		"citrixadc_gslbsite":                                           35,
+		"citrixadc_gslbvserver":                                        36,
+		"citrixadc_inat":                                               37,
+		"citrixadc_installer":                                          38,
+		"citrixadc_interface":                                          39,
+		"citrixadc_ipset":                                              40,
+		"citrixadc_iptunnel":                                           41,
+		"citrixadc_lbmetrictable":                                      42,
+		"citrixadc_lbmonitor":                                          43,
+		"citrixadc_lbmonitor_metric_binding":                           44,
+		"citrixadc_lbmonitor_sslcertkey_binding":                       45,
+		"citrixadc_lbparameter":                                        46,
+		"citrixadc_lbprofile":                                          47,
+		"citrixadc_lbsipparameters":                                    48,
+		"citrixadc_lbvserver":                                          49,
+		"citrixadc_lbvserver_analyticsprofile_binding":                 50,
+		"citrixadc_lbvserver_appflowpolicy_binding":                    51,
+		"citrixadc_lbvserver_appfwpolicy_binding":                      52,
+		"citrixadc_lbvserver_appqoepolicy_binding":                     53,
+		"citrixadc_lbvserver_auditsyslogpolicy_binding":                54,
+		"citrixadc_lbvserver_authorizationpolicy_binding":              55,
+		"citrixadc_lbvserver_botpolicy_binding":                        56,
+		"citrixadc_lbvserver_cachepolicy_binding":                      57,
+		"citrixadc_lbvserver_cmppolicy_binding":                        58,
+		"citrixadc_lbvserver_contentinspectionpolicy_binding":          59,
+		"citrixadc_lbvserver_dnspolicy64_binding":                      60,
+		"citrixadc_lbvserver_feopolicy_binding":                        61,
+		"citrixadc_lbvserver_filterpolicy_binding":                     62,
+		"citrixadc_lbvserver_responderpolicy_binding":                  63,
+		"citrixadc_lbvserver_rewritepolicy_binding":                    64,
+		"citrixadc_lbvserver_service_binding":                          65,
+		"citrixadc_lbvserver_servicegroup_binding":                     66,
+		"citrixadc_lbvserver_spilloverpolicy_binding":                  67,
+		"citrixadc_lbvserver_tmtrafficpolicy_binding":                  68,
+		"citrixadc_lbvserver_transformpolicy_binding":                  69,
+		"citrixadc_lbvserver_videooptimizationdetectionpolicy_binding": 70,
+		"citrixadc_lbvserver_videooptimizationpacingpolicy_binding":    71,
+		"citrixadc_linkset":                                            72,
+		"citrixadc_netprofile":                                         73,
+		"citrixadc_nsacl":                                              74,
+		"citrixadc_nsacls":                                             75,
+		"citrixadc_nscapacity":                                         76,
+		"citrixadc_nsconfig_clear":                                     77,
+		"citrixadc_nsconfig_save":                                      78,
+		"citrixadc_nsconfig_update":                                    79,
+		"citrixadc_nsfeature":                                          80,
+		"citrixadc_nshttpprofile":                                      81,
+		"citrixadc_nsip":                                               82,
+		"citrixadc_nsip6":                                              83,
+		"citrixadc_nslicense":                                          84,
+		"citrixadc_nslicenseserver":                                    85,
+		"citrixadc_nsmode":                                             86,
+		"citrixadc_nsparam":                                            87,
+		"citrixadc_nsrpcnode":                                          88,
+		"citrixadc_nstcpparam":                                         89,
+		"citrixadc_nstcpprofile":                                       90,
+		"citrixadc_nsvpxparam":                                         91,
+		"citrixadc_password_resetter":                                  92,
+		"citrixadc_pinger":                                             93,
+		"citrixadc_policydataset":                                      94,
+		"citrixadc_policydataset_value_binding":                        95,
+		"citrixadc_policyexpression":                                   96,
+		"citrixadc_policypatset":                                       97,
+		"citrixadc_policypatset_pattern_binding":                       98,
+		"citrixadc_policystringmap":                                    99,
+		"citrixadc_policystringmap_pattern_binding":                    100,
+		"citrixadc_quicbridgeprofile":                                  101,
+		"citrixadc_rebooter":                                           102,
+		"citrixadc_responderaction":                                    103,
+		"citrixadc_responderpolicy":                                    104,
+		"citrixadc_responderpolicylabel":                               105,
+		"citrixadc_rewriteaction":                                      106,
+		"citrixadc_rewritepolicy":                                      107,
+		"citrixadc_rewritepolicylabel":                                 108,
+		"citrixadc_rnat":                                               109,
+		"citrixadc_route":                                              110,
+		"citrixadc_routerdynamicrouting":                               111,
+		"citrixadc_server":                                             112,
+		"citrixadc_service":                                            113,
+		"citrixadc_servicegroup":                                       114,
+		"citrixadc_servicegroup_lbmonitor_binding":                     115,
+		"citrixadc_servicegroup_servicegroupmember_binding":            116,
+		"citrixadc_sslaction":                                          117,
+		"citrixadc_sslcacertgroup":                                     118,
+		"citrixadc_sslcertkey":                                         119,
+		"citrixadc_sslcipher":                                          120,
+		"citrixadc_ssldhparam":                                         121,
+		"citrixadc_sslparameter":                                       122,
+		"citrixadc_sslpolicy":                                          123,
+		"citrixadc_sslprofile":                                         124,
+		"citrixadc_sslprofile_sslcipher_binding":                       125,
+		"citrixadc_sslvserver_sslcertkey_binding":                      126,
+		"citrixadc_sslvserver_sslpolicy_binding":                       127,
+		"citrixadc_systemcmdpolicy":                                    128,
+		"citrixadc_systemextramgmtcpu":                                 129,
+		"citrixadc_systemfile":                                         130,
+		"citrixadc_systemgroup":                                        131,
+		"citrixadc_systemuser":                                         132,
+		"citrixadc_transformaction":                                    133,
+		"citrixadc_transformpolicy":                                    134,
+		"citrixadc_transformprofile":                                   135,
+		"citrixadc_vlan":                                               136,
+		"citrixadc_vlan_interface_binding":                             137,
+		"citrixadc_vlan_nsip_binding":                                  138,
 	}
 )
 

@@ -41,8 +41,17 @@ var (
 					Name:        "group_id",
 					Description: `(Required) The ID of a GitLab group allowed to perform the relevant action. Mutually exclusive with ` + "`" + `user_id` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
+				resource.Attribute{
+					Name:        "branch_protection_id",
+					Description: `The ID of the branch protection (not the branch name).`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "branch_protection_id",
+					Description: `The ID of the branch protection (not the branch name).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -220,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "runners_token",
-					Description: `The group level registration token to use during runner setup. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `The group level registration token to use during runner setup. ## Import You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_group.example example ` + "`" + `` + "`" + `` + "`" + ` [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -242,7 +251,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "runners_token",
-					Description: `The group level registration token to use during runner setup. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `The group level registration token to use during runner setup. ## Import You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_group.example example ` + "`" + `` + "`" + `` + "`" + ` [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
 		},
@@ -733,7 +742,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pages_access_level",
-					Description: `(Optional) Enable pages access control Valid values are ` + "`" + `disabled` + "`" + `, ` + "`" + `private` + "`" + `, ` + "`" + `enabled` + "`" + `, ` + "`" + `public` + "`" + `. ` + "`" + `private` + "`" + ` is the default. ## Attributes Reference The following additional attributes are exported:`,
+					Description: `(Optional) Enable pages access control Valid values are ` + "`" + `disabled` + "`" + `, ` + "`" + `private` + "`" + `, ` + "`" + `enabled` + "`" + `, ` + "`" + `public` + "`" + `. ` + "`" + `private` + "`" + ` is the default.`,
+				},
+				resource.Attribute{
+					Name:        "build_coverage_regex",
+					Description: `(Optional) Test coverage parsing for the project.`,
+				},
+				resource.Attribute{
+					Name:        "ci_config_path",
+					Description: `(Optional) Custom Path to CI config file. ## Attributes Reference The following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -805,7 +822,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_file_size",
-					Description: `(Optional, int) Maximum file size (MB). ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
+					Description: `(Optional, int) Maximum file size (MB). ## Import You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_project.example richardc/example ` + "`" + `` + "`" + `` + "`" + ` [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -879,7 +896,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_file_size",
-					Description: `(Optional, int) Maximum file size (MB). ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
+					Description: `(Optional, int) Maximum file size (MB). ## Import You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_project.example richardc/example ` + "`" + `` + "`" + `` + "`" + ` [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
 				},
 			},
 		},
@@ -909,10 +926,54 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_ids",
-					Description: `(Optional) A list of group IDs who's members can approve of the merge request ## Import GitLab project approval rules can be imported using an id consisting of ` + "`" + `project-id:rule-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_approval_rule.example "12345:6" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A list of group IDs whose members can approve of the merge request.`,
+				},
+				resource.Attribute{
+					Name:        "protected_branch_ids",
+					Description: `(Optional) A list of protected branch IDs (not branch names) for which the rule applies. ## Import GitLab project approval rules can be imported using an id consisting of ` + "`" + `project-id:rule-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_approval_rule.example "12345:6" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_project_badge",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required) The id of the project to add the badge to.`,
+				},
+				resource.Attribute{
+					Name:        "link_url",
+					Description: `(Required) The url linked with the badge.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `(Required) The image url which will be presented on project overview. ## Attributes Reference The resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "rendered_link_url",
+					Description: `The link_url argument rendered (in case of use of placeholders).`,
+				},
+				resource.Attribute{
+					Name:        "rendered_image_url",
+					Description: `The image_url argument rendered (in case of use of placeholders). ## Import GitLab project badges can be imported using an id made up of ` + "`" + `{project_id}:{badge_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash terraform import gitlab_project_badge.foo 1:3 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rendered_link_url",
+					Description: `The link_url argument rendered (in case of use of placeholders).`,
+				},
+				resource.Attribute{
+					Name:        "rendered_image_url",
+					Description: `The image_url argument rendered (in case of use of placeholders). ## Import GitLab project badges can be imported using an id made up of ` + "`" + `{project_id}:{badge_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash terraform import gitlab_project_badge.foo 1:3 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1110,7 +1171,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "merge_requests_disable_committers_approval",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` if you want to prevent approval of merge requests by merge request committers. Default is ` + "`" + `false` + "`" + `. ## Importing approval configuration You can import an approval configuration state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `. For example: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_project_level_mr_approvals.foo 53 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` if you want to prevent approval of merge requests by merge request committers. Default is ` + "`" + `false` + "`" + `. ## Import You can import an approval configuration state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_level_mr_approvals.foo 53 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1133,7 +1194,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Required) One of five levels of access to the project. ## Import GitLab group membership can be imported using an id made up of ` + "`" + `group_id:user_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_membership.test "12345:1337" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) One of five levels of access to the project. ## Import GitLab project membership can be imported using an id made up of ` + "`" + `project_id:user_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_membership.test "12345:1337" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1253,7 +1314,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_context",
-					Description: `(Optional) Append instance name instead of branch to the status. Must enable to set a GitLab status check as _required_ in GitHub. See [Static / dynamic status check names] to learn more. ## Importing GitHub service You can import a service_github state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_github.github 1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Append instance name instead of branch to the status. Must enable to set a GitLab status check as _required_ in GitHub. See [Static / dynamic status check names] to learn more. ## Import You can import a service_github state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_service_github.github 1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1512,13 +1573,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique id assigned to the user by the GitLab server. ## Importing users You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: terraform import gitlab_user.example 42`,
+					Description: `The unique id assigned to the user by the GitLab server. ## Import You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_user.example 42 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique id assigned to the user by the GitLab server. ## Importing users You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: terraform import gitlab_user.example 42`,
+					Description: `The unique id assigned to the user by the GitLab server. ## Import You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import gitlab_user.example 42 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1545,20 +1606,21 @@ var (
 		"gitlab_pipeline_trigger":           16,
 		"gitlab_project":                    17,
 		"gitlab_project_approval_rule":      18,
-		"gitlab_project_cluster":            19,
-		"gitlab_project_freeze_period":      20,
-		"gitlab_project_hook":               21,
-		"gitlab_project_level_mr_approvals": 22,
-		"gitlab_project_membership":         23,
-		"gitlab_project_mirror":             24,
-		"gitlab_project_share_group":        25,
-		"gitlab_project_variable":           26,
-		"gitlab_service_github":             27,
-		"gitlab_service_jira":               28,
-		"gitlab_service_pipelines_email":    29,
-		"gitlab_service_slack":              30,
-		"gitlab_tag_protection":             31,
-		"gitlab_user":                       32,
+		"gitlab_project_badge":              19,
+		"gitlab_project_cluster":            20,
+		"gitlab_project_freeze_period":      21,
+		"gitlab_project_hook":               22,
+		"gitlab_project_level_mr_approvals": 23,
+		"gitlab_project_membership":         24,
+		"gitlab_project_mirror":             25,
+		"gitlab_project_share_group":        26,
+		"gitlab_project_variable":           27,
+		"gitlab_service_github":             28,
+		"gitlab_service_jira":               29,
+		"gitlab_service_pipelines_email":    30,
+		"gitlab_service_slack":              31,
+		"gitlab_tag_protection":             32,
+		"gitlab_user":                       33,
 	}
 )
 

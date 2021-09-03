@@ -97,7 +97,7 @@ var (
 			Name:             "",
 			Type:             "consul_acl_policy",
 			Category:         "Data Sources",
-			ShortDescription: `Provides information about a Consul ACL Poliy.`,
+			ShortDescription: `Provides information about a Consul ACL Policy.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -777,11 +777,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overriden if necessary.`,
+					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overridden if necessary.`,
 				},
 				resource.Attribute{
 					Name:        "wait_index",
-					Description: `(Optional) Index number used to enable blocking quereis.`,
+					Description: `(Optional) Index number used to enable blocking queries.`,
 				},
 				resource.Attribute{
 					Name:        "wait_time",
@@ -865,11 +865,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overriden if necessary.`,
+					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overridden if necessary.`,
 				},
 				resource.Attribute{
 					Name:        "wait_index",
-					Description: `(Optional) Index number used to enable blocking quereis.`,
+					Description: `(Optional) Index number used to enable blocking queries.`,
 				},
 				resource.Attribute{
 					Name:        "wait_time",
@@ -1209,11 +1209,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overriden if necessary.`,
+					Description: `(Optional) Specify the Consul ACL token to use when performing the request. This defaults to the same API token configured by the ` + "`" + `consul` + "`" + ` provider but may be overridden if necessary.`,
 				},
 				resource.Attribute{
 					Name:        "wait_index",
-					Description: `(Optional) Index number used to enable blocking quereis.`,
+					Description: `(Optional) Index number used to enable blocking queries.`,
 				},
 				resource.Attribute{
 					Name:        "wait_time",

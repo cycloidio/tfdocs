@@ -50,7 +50,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold Config The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
 				},
 				resource.Attribute{
 					Name:        "metric_name",
@@ -70,7 +70,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold`,
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Threshold Config`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -515,7 +515,7 @@ var (
 					Description: `UTC ISO 8601 formatted point in time when Atlas created the restore job.`,
 				},
 				resource.Attribute{
-					Name:        "delivery_type",
+					Name:        "delivery_type_config",
 					Description: `Type of restore job to create. Possible values are: automated and download.`,
 				},
 				resource.Attribute{
@@ -585,7 +585,7 @@ var (
 					Description: `UTC ISO 8601 formatted point in time when Atlas created the restore job.`,
 				},
 				resource.Attribute{
-					Name:        "delivery_type",
+					Name:        "delivery_type_config",
 					Description: `Type of restore job to create. Possible values are: automated and download.`,
 				},
 				resource.Attribute{
@@ -714,11 +714,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pit_enabled",
-					Description: `(Optional) - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.`,
+					Description: `(Optional) - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.`,
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
-					Description: `(Optional) Flag indicating if the cluster uses Cloud Backup for backups. If true, the cluster uses Cloud Backup for backups. If provider_backup_enabled and backup_enabled are false, the cluster does not use Atlas backups. You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled. ~>`,
+					Description: `(Optional) Flag indicating if the cluster uses Cloud Backup for backups.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_backup",
+					Description: `(Optional) Flag indicating if the cluster uses Cloud Backup for backups. If true, the cluster uses Cloud Backup for backups. If cloud_backup and backup_enabled are false, the cluster does not use Atlas backups. You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled. ~>`,
 				},
 				resource.Attribute{
 					Name:        "backing_provider_name",
@@ -874,7 +878,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state_name",
-					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy Cloud Backup Policy will be added if provider_backup_enabled is enabled because MongoDB Atlas automatically creates a default policy, if not, returned values will be empty.`,
+					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy",
@@ -980,7 +984,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state_name",
-					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy Cloud Backup Policy will be added if provider_backup_enabled is enabled because MongoDB Atlas automatically creates a default policy, if not, returned values will be empty.`,
+					Description: `Current state of the cluster. The possible states are: - IDLE - CREATING - UPDATING - DELETING - DELETED - REPAIRING ### Cloud Backup Policy`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy",
@@ -1237,7 +1241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "google_cloud_kms",
-					Description: `(Required) Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project. ### aws_kms Refer to the example in the [official github repository](https://github.com/mongodb/terraform-provider-mongodbatlas/tree/master/examples) to implement Encryption at Rest`,
+					Description: `(Required) Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project. ### aws_kms_config Refer to the example in the [official github repository](https://github.com/mongodb/terraform-provider-mongodbatlas/tree/master/examples) to implement Encryption at Rest`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1253,7 +1257,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_id",
-					Description: `ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the ` + "`" + `role_id` + "`" + ` attribute of the ` + "`" + `mongodbatlas_cloud_provider_access` + "`" + ` resource. ### azure_key_vault`,
+					Description: `ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the ` + "`" + `role_id` + "`" + ` attribute of the ` + "`" + `mongodbatlas_cloud_provider_access` + "`" + ` resource. ### azure_key_vault_config`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1289,7 +1293,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The unique identifier for an Azure AD tenant within an Azure subscription. ### google_cloud_kms`,
+					Description: `The unique identifier for an Azure AD tenant within an Azure subscription. ### google_cloud_kms_config`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1399,7 +1403,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defer",
-					Description: `Defer maintenance for the given project for one week. ->`,
+					Description: `Defer maintenance for the given project for one week.`,
+				},
+				resource.Attribute{
+					Name:        "auto_defer",
+					Description: `Automatically defer any maintenance for the given project for one week. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1564,7 +1572,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_name",
-					Description: `(Required- AWS) Name of the network peer to which Atlas connects.`,
+					Description: `(Required - GCP) Name of the network peer to which Atlas connects.`,
 				},
 				resource.Attribute{
 					Name:        "azure_directory_id",
@@ -1834,6 +1842,264 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_search_index",
+			Category:         "Resources",
+			ShortDescription: `Provides a Search Index resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"search",
+				"index",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the search index you want to create.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the organization or project you want to create the search index within.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The name of the cluster where you want to create the search index within.`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)`,
+				},
+				resource.Attribute{
+					Name:        "analyzers",
+					Description: `[Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects. ` + "`" + `` + "`" + `` + "`" + ` analyzers = <<-EOF [{ "name": "index_analyzer_test_name", "char_filters": { "type": "mapping", "mappings": {"\\" : "/"} }, "tokenizer": { "type": "nGram", "min_gram": 2, "max_gram": 5 }, "token_filters": { "type": "length", "min": 20, "max": 33 } }] EOF ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) Name of the collection the index is on.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) Name of the database the collection is in.`,
+				},
+				resource.Attribute{
+					Name:        "mappings_dynamic",
+					Description: `Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to ` + "`" + `true` + "`" + `. For static mapping, specify the fields to index using ` + "`" + `mappings_fields` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "mappings_fields",
+					Description: `attribute is required when ` + "`" + `mappings_dynamic` + "`" + ` is true. This field needs to be a JSON string in order to be decoded correctly. ` + "`" + `` + "`" + `` + "`" + `hcl mappings_fields = <<-EOF { "address": { "type": "document", "fields": { "city": { "type": "string", "analyzer": "lucene.simple", "ignoreAbove": 255 }, "state": { "type": "string", "analyzer": "lucene.english" } } }, "company": { "type": "string", "analyzer": "lucene.whitespace", "multi": { "mySecondaryAnalyzer": { "type": "string", "analyzer": "lucene.french" } } }, "employees": { "type": "string", "analyzer": "lucene.standard" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "search_analyzer",
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer) ### Analyzers An [Atlas Search analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/) prepares a set of documents to be indexed by performing a series of operations to transform, filter, and group sequences of characters. You can define a custom analyzer to suit your specific indexing needs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the custom analyzer. Names must be unique within an index, and may`,
+				},
+				resource.Attribute{
+					Name:        "char_filters",
+					Description: `Array containing zero or more character filters. Always require a ` + "`" + `type` + "`" + ` field, and some take additional options as well ` + "`" + `` + "`" + `` + "`" + `hcl "char_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL_OPTION": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas search supports four ` + "`" + `types` + "`" + ` of character filters:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Must be ` + "`" + `htmlStrip` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tokenizer",
+					Description: `(Required) Tokenizer to use. Determines how Atlas Search splits up text into discrete chunks of indexing. Always require a type field, and some take additional options as well. ` + "`" + `` + "`" + `` + "`" + `hcl "tokenizer":{ "type": "<tokenizer-type>", "ADDITIONAL_OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following tokenizer options:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `standard` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "max_token_length",
+					Description: `Maximum length for a single token. Tokens greater than this length are split at ` + "`" + `maxTokenLength` + "`" + ` into multiple tokens.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `whitespace` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "max_token_length",
+					Description: `Maximum length for a single token. Tokens greater than this length are split at ` + "`" + `maxTokenLength` + "`" + ` into multiple tokens.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `nGram` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_gram",
+					Description: `(Required) Number of characters to include in the shortest token created.`,
+				},
+				resource.Attribute{
+					Name:        "max_gram",
+					Description: `(Required) Number of characters to include in the longest token created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `edgeGram` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_gram",
+					Description: `(Required) Number of characters to include in the shortest token created.`,
+				},
+				resource.Attribute{
+					Name:        "max_gram",
+					Description: `(Required) Number of characters to include in the longest token created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `regexCaptureGroup` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Required) A regular expression to match against.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Required) Index of the character group within the matching expression to extract into tokens. Use 0 to extract all character groups.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `regexSplit` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Required) A regular expression to match against.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `uaxUrlEmail` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tokenFilters",
+					Description: `Array containing zero or more token filters. Always require a type field, and some take additional options as well: ` + "`" + `` + "`" + `` + "`" + `hcl "token_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL-OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following token filters:`,
+				},
+				resource.Attribute{
+					Name:        "original_tokens",
+					Description: `Specifies whether to include or omit the original tokens in the output of the token filter. Value can be one of the following:`,
+				},
+				resource.Attribute{
+					Name:        "include",
+					Description: `to include the original tokens with the encoded tokens in the output of the token filter. We recommend this value if you want queries on both the original tokens as well as the encoded forms.`,
+				},
+				resource.Attribute{
+					Name:        "omit",
+					Description: `to omit the original tokens and include only the encoded tokens in the output of the token filter. Use this value if you want to only query on the encoded forms of the original tokens.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `length` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `The minimum length of a token. Must be less than or equal to ` + "`" + `max` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `The maximum length of a token. Must be greater than or equal to ` + "`" + `min` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be 'icuNormalizer'.`,
+				},
+				resource.Attribute{
+					Name:        "normalization_form",
+					Description: `Normalization form to apply. Accepted values are:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `nGram` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_gram",
+					Description: `(Required) The minimum length of generated n-grams. Must be less than or equal to ` + "`" + `maxGram` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_gram",
+					Description: `(Required) The maximum length of generated n-grams. Must be greater than or equal to ` + "`" + `minGram` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "terms_not_in_bounds",
+					Description: `Accepted values are:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `edgeGram` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_gram",
+					Description: `(Required) The minimum length of generated n-grams. Must be less than or equal to ` + "`" + `max_gram` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_gram",
+					Description: `(Required) The maximum length of generated n-grams. Must be greater than or equal to ` + "`" + `min_gram` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "terms_not_in_bounds",
+					Description: `Accepted values are:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `shingle` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_shingle_size",
+					Description: `(Required) Minimum number of tokens per shingle. Must be less than or equal to ` + "`" + `max_shingle_size` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_shingle_size",
+					Description: `(Required) Maximum number of tokens per shingle. Must be greater than or equal to ` + "`" + `min_shingle_size` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `regex` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Required) Regular expression pattern to apply to each token.`,
+				},
+				resource.Attribute{
+					Name:        "replacement",
+					Description: `(Required) Replacement string to substitute wherever a matching pattern occurs.`,
+				},
+				resource.Attribute{
+					Name:        "matches",
+					Description: `(Required) Acceptable values are:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `snowballstemming` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "stemmer_name",
+					Description: `(Required) The following values are valid:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Must be ` + "`" + `stopword` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The list of stop words that correspond to the tokens to remove. Value must be one or more stop words.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_case",
+					Description: `The flag that indicates whether or not to ignore case of stop words when filtering the tokens to remove. The value can be one of the following:`,
+				},
+				resource.Attribute{
+					Name:        "true",
+					Description: `to ignore case and remove all tokens that match the specified stop words`,
+				},
+				resource.Attribute{
+					Name:        "false",
+					Description: `to be case-sensitive and remove only tokens that exactly match the specified case If omitted, defaults to ` + "`" + `true` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_team",
 			Category:         "Resources",
 			ShortDescription: `Provides a Team resource.`,
@@ -1982,8 +2248,9 @@ var (
 		"mongodbatlas_network_peering":                       12,
 		"mongodbatlas_private_ip_mode":                       13,
 		"mongodbatlas_project":                               14,
-		"mongodbatlas_team":                                  15,
-		"mongodbatlas_x509_authentication_database_user":     16,
+		"mongodbatlas_search_index":                          15,
+		"mongodbatlas_team":                                  16,
+		"mongodbatlas_x509_authentication_database_user":     17,
 	}
 )
 

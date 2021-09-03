@@ -46,6 +46,76 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nirmata_catalog_git_app",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the application in catalog.`,
+				},
+				resource.Attribute{
+					Name:        "git_credentials",
+					Description: `(Required) the git credential name.`,
+				},
+				resource.Attribute{
+					Name:        "git_repository",
+					Description: `(Required) the repository URL as used in the git clone command.`,
+				},
+				resource.Attribute{
+					Name:        "git_branch",
+					Description: `(Required) the Git branch to track. name.`,
+				},
+				resource.Attribute{
+					Name:        "git_directory_list",
+					Description: `(Optional) the directories to track.`,
+				},
+				resource.Attribute{
+					Name:        "git_include_list",
+					Description: `(Optional) the file extensions to track.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_catalog_helm_app",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the application in catalog.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) the application name.`,
+				},
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) the repository URL.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required). the location of the chart. (https://charts.bitnami.com/bitnami/airflow-0.0.1.tgz)`,
+				},
+				resource.Attribute{
+					Name:        "app_version",
+					Description: `(Required). specify the version of the application. ("0.0.1")`,
+				},
+				resource.Attribute{
+					Name:        "chart_version",
+					Description: `(Required).the version of the chart. ("1.2.3")`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nirmata_cluster",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -786,6 +856,10 @@ var (
 					Description: `(Required) the kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on the add-on application's environment.`,
+				},
+				resource.Attribute{
 					Name:        "namespace",
 					Description: `(Optional) the cluster namespace bound to this environment. Defaults to the environment name.`,
 				},
@@ -809,6 +883,10 @@ var (
 					Description: `(Optional) use as the default environment type.`,
 				},
 				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on the add-on application's environment type.`,
+				},
+				resource.Attribute{
 					Name:        "resource_limits",
 					Description: `(Required) a map of resource limits for the environment. Commonly used resources include ` + "`" + `cpu` + "`" + `, ` + "`" + `memory` + "`" + `, and ` + "`" + `storage` + "`" + `. Check the [Kubernetes docs](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for a complete reference.`,
 				},
@@ -820,15 +898,17 @@ var (
 	resourcesMap = map[string]int{
 
 		"nirmata_aws_role_credentials":    0,
-		"nirmata_cluster":                 1,
-		"nirmata_cluster_addon":           2,
-		"nirmata_cluster_imported":        3,
-		"nirmata_cluster_registered":      4,
-		"nirmata_cluster_type_eks":        5,
-		"nirmata_cluster_type_gke":        6,
-		"nirmata_cluster_type_registered": 7,
-		"nirmata_environment":             8,
-		"nirmata_environment_type":        9,
+		"nirmata_catalog_git_app":         1,
+		"nirmata_catalog_helm_app":        2,
+		"nirmata_cluster":                 3,
+		"nirmata_cluster_addon":           4,
+		"nirmata_cluster_imported":        5,
+		"nirmata_cluster_registered":      6,
+		"nirmata_cluster_type_eks":        7,
+		"nirmata_cluster_type_gke":        8,
+		"nirmata_cluster_type_registered": 9,
+		"nirmata_environment":             10,
+		"nirmata_environment_type":        11,
 	}
 )
 

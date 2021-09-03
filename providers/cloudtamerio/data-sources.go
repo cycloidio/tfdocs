@@ -69,6 +69,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudtamerio_ou",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -79,6 +89,7 @@ var (
 		"cloudtamerio_cloud_rule":                  3,
 		"cloudtamerio_compliance_check":            4,
 		"cloudtamerio_compliance_standard":         5,
+		"cloudtamerio_ou":                          6,
 	}
 )
 

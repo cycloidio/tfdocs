@@ -1,4 +1,4 @@
-package vmp
+package rafay
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_cname",
+			Type:             "rafay_addon",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -21,7 +21,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_customer",
+			Type:             "rafay_agent",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -31,7 +31,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_customer_user",
+			Type:             "rafay_blueprint",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -41,7 +41,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_dns_group",
+			Type:             "rafay_cloud_credential",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -51,7 +51,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_dns_masterservergroup",
+			Type:             "rafay_cluster_override",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -61,7 +61,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_dns_secondaryzonegroup",
+			Type:             "rafay_eks_cluster",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -71,7 +71,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_dns_tsig",
+			Type:             "rafay_group",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -81,7 +81,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_dns_zone",
+			Type:             "rafay_groupassociation",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -91,7 +91,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_origin",
+			Type:             "rafay_import_cluster",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -101,7 +101,47 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vmp_rules_engine_policy",
+			Type:             "rafay_namespace",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rafay_pipeline",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rafay_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rafay_repositories",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rafay_workload",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -113,16 +153,20 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vmp_cname":                  0,
-		"vmp_customer":               1,
-		"vmp_customer_user":          2,
-		"vmp_dns_group":              3,
-		"vmp_dns_masterservergroup":  4,
-		"vmp_dns_secondaryzonegroup": 5,
-		"vmp_dns_tsig":               6,
-		"vmp_dns_zone":               7,
-		"vmp_origin":                 8,
-		"vmp_rules_engine_policy":    9,
+		"rafay_addon":            0,
+		"rafay_agent":            1,
+		"rafay_blueprint":        2,
+		"rafay_cloud_credential": 3,
+		"rafay_cluster_override": 4,
+		"rafay_eks_cluster":      5,
+		"rafay_group":            6,
+		"rafay_groupassociation": 7,
+		"rafay_import_cluster":   8,
+		"rafay_namespace":        9,
+		"rafay_pipeline":         10,
+		"rafay_project":          11,
+		"rafay_repositories":     12,
+		"rafay_workload":         13,
 	}
 )
 

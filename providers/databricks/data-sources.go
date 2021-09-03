@@ -282,7 +282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "category",
-					Description: `(Optional) Node category, which can be one of:`,
+					Description: `(Optional, case insensitive string) Node category, which can be one of (depending on the cloud environment, could be checked with ` + "`" + `databricks clusters list-node-types|jq '.node_types[]|.category'|sort |uniq` + "`" + `):`,
 				},
 				resource.Attribute{
 					Name:        "photon_worker_capable",
@@ -417,7 +417,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "long_term_support",
-					Description: `(boolean, optional) if we should limit the search only to LTS (long term support) versions. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to LTS (long term support) & ESR (extended support) versions. Default to ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ml",
@@ -430,6 +430,10 @@ var (
 				resource.Attribute{
 					Name:        "gpu",
 					Description: `(boolean, optional) if we should limit the search only to runtimes that support GPUs. Default to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "photon",
+					Description: `(boolean, optional) if we should limit the search only to Photon runtimes. Default to ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "beta",

@@ -226,7 +226,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_windows",
-					Description: `(Optional) Specify a list of time windows for to execute revertToSpot strategy. Time window format: ` + "`" + `ddd:hh:mm-ddd:hh:mm` + "`" + `. Example: ` + "`" + `Mon:03:00-Wed:02:30` + "`" + ` <a id="load-balancers"></a> ## Load Balancers`,
+					Description: `(Optional) Specify a list of time windows for to execute revertToSpot strategy. Time window format: ` + "`" + `ddd:hh:mm-ddd:hh:mm` + "`" + `. Example: ` + "`" + `Mon:03:00-Wed:02:30` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "resource_tag_specification",
+					Description: `(Optional) User will specify which resources should be tagged with group tags.`,
+				},
+				resource.Attribute{
+					Name:        "should_tag_snapshots",
+					Description: `(Optional) Tag specification for Snapshot resources.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_load_balancers",
@@ -334,11 +342,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "threshold",
-					Description: `(Required) The value against which the specified statistic is compared.`,
+					Description: `(Required) The value against which the specified statistic is compared. If a ` + "`" + `step_adjustment` + "`" + ` object is defined, then it cannot be specified.`,
 				},
 				resource.Attribute{
 					Name:        "action_type",
-					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `.`,
+					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `. If a ` + "`" + `step_adjustment` + "`" + ` object is defined, then it cannot be specified.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -378,7 +386,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `setMinTarget` + "`" + ` – set the field ` + "`" + `min_target_capacity` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
+					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "step_adjustment",
+					Description: `(Optional) The list of steps to define actions to take based on different thresholds. When set, policy-level ` + "`" + `threshold` + "`" + ` and ` + "`" + `action_type` + "`" + ` cannot be specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The action to take when scale up according to step's threshold is needed.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the action to take when scale up is needed. Valid types: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adjustment",
+					Description: `(Optional) The number/percentage associated with the specified adjustment type. Required if using ` + "`" + `"adjustment"` + "`" + ` or ` + "`" + `"percentageAdjustment"` + "`" + ` as action type.`,
+				},
+				resource.Attribute{
+					Name:        "maximum",
+					Description: `(Optional) The upper limit number of instances that you can scale up to. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"target"` + "`" + ` nor ` + "`" + `"minimum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "minimum",
+					Description: `(Optional) The lower limit number of instances that you can scale down to. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"target"` + "`" + ` nor ` + "`" + `"maximum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "min_target_capacity",
+					Description: `(Optional) The desired target capacity of a group. Required if using ` + "`" + `"setMinTarget"` + "`" + ` as action type`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) The desired number of instances. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"minimum"` + "`" + ` nor ` + "`" + `"maximum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) The value against which the specified statistic is compared in order to determine if a step should be applied. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `setMinTarget` + "`" + ` – set the field ` + "`" + `min_target_capacity` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "adjustment",
@@ -418,11 +462,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "threshold",
-					Description: `(Required) The value against which the specified statistic is compared.`,
+					Description: `(Required) The value against which the specified statistic is compared. If a ` + "`" + `step_adjustment` + "`" + ` object is defined, then it cannot be specified.`,
 				},
 				resource.Attribute{
 					Name:        "action_type",
-					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `.`,
+					Description: `(Optional; if not using ` + "`" + `min_target_capacity` + "`" + ` or ` + "`" + `max_target_capacity` + "`" + `) The type of action to perform for scaling. Valid values: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"setMinTarget"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `. If a ` + "`" + `step_adjustment` + "`" + ` object is defined, then it cannot be specified.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -462,7 +506,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
+					Description: `(Optional) The source of the metric. Valid values: ` + "`" + `"cloudWatch"` + "`" + `, ` + "`" + `"spectrum"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "step_adjustment",
+					Description: `(Optional) The list of steps to define actions to take based on different thresholds. When set, policy-level ` + "`" + `threshold` + "`" + ` and ` + "`" + `action_type` + "`" + ` cannot be specified.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The action to take when scale up according to step's threshold is needed.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the action to take when scale up is needed. Valid types: ` + "`" + `"adjustment"` + "`" + `, ` + "`" + `"updateCapacity"` + "`" + `, ` + "`" + `"setMaxTarget"` + "`" + `, ` + "`" + `"percentageAdjustment"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adjustment",
+					Description: `(Optional) The number/percentage associated with the specified adjustment type. Required if using ` + "`" + `"adjustment"` + "`" + ` or ` + "`" + `"percentageAdjustment"` + "`" + ` as action type.`,
+				},
+				resource.Attribute{
+					Name:        "maximum",
+					Description: `(Optional) The upper limit number of instances that you can scale up to. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"target"` + "`" + ` nor ` + "`" + `"minimum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "minimum",
+					Description: `(Optional) The lower limit number of instances that you can scale down to. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"target"` + "`" + ` nor ` + "`" + `"maximum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "max_target_capacity",
+					Description: `(Optional) The desired target capacity of a group. Required if using ` + "`" + `"setMaxTarget"` + "`" + ` as action type`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) The desired number of instances. Required if using ` + "`" + `"updateCapacity"` + "`" + ` as action type and neither ` + "`" + `"minimum"` + "`" + ` nor ` + "`" + `"maximum"` + "`" + ` are not defined.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) The value against which the specified statistic is compared in order to determine if a step should be applied. If you do not specify an action type, you can only use – ` + "`" + `adjustment` + "`" + `, ` + "`" + `minTargetCapacity` + "`" + `, ` + "`" + `maxTargetCapacity` + "`" + `. While using action_type, please also set the following: When using ` + "`" + `adjustment` + "`" + ` – set the field ` + "`" + `adjustment` + "`" + ` When using ` + "`" + `updateCapacity` + "`" + ` – set the fields ` + "`" + `minimum` + "`" + `, ` + "`" + `maximum` + "`" + `, and ` + "`" + `target` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "adjustment",
@@ -534,7 +614,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "predictive_mode",
-					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 dimensions { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "spectrum" statistic = "average" unit = "bytes" cooldown = 120 target = 2 predictive_mode = "FORCAST_AND_SCALE" max_capacity_per_scale = "10" dimensions { name = "name-1" value = "value-1" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the AWS Instance's "Elastic Network Interfaces". It's a good idea to familiarize yourself with [AWS's Elastic Network Interfaces docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to understand the implications of using these attributes.`,
+					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 dimensions { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 step_adjustments { threshold = 50 action { type = "setMinTarget" min_target_capacity = "3" } } // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "spectrum" statistic = "average" unit = "bytes" cooldown = 120 target = 2 predictive_mode = "FORCAST_AND_SCALE" max_capacity_per_scale = "10" dimensions { name = "name-1" value = "value-1" } } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `scaling_multiple_metrics` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "expressions",
+					Description: `(Optional) Array of objects (Expression config)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) An expression consisting of the metric names listed in the 'metrics' array.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The expression name.`,
+				},
+				resource.Attribute{
+					Name:        "metrics",
+					Description: `(Optional) Array of objects (Metric config)`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of the source metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The expression name.`,
+				},
+				resource.Attribute{
+					Name:        "name_space",
+					Description: `(Required, default: ` + "`" + `AWS/EC2` + "`" + `) The namespace for the alarm's associated metric.`,
+				},
+				resource.Attribute{
+					Name:        "statistic",
+					Description: `(Optional) The metric statistics to return. Valid values: ` + "`" + `"average"` + "`" + `, ` + "`" + `"sum"` + "`" + `, ` + "`" + `"sampleCount"` + "`" + `, ` + "`" + `"maximum"` + "`" + `, ` + "`" + `"minimum"` + "`" + `, ` + "`" + `"percentile"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "extended_statistic",
+					Description: `(Optional) Percentile statistic. Valid values: ` + "`" + `"p0.1"` + "`" + ` - ` + "`" + `"p100"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "unit",
+					Description: `(Optional) The unit for the alarm's associated metric. Valid values: ` + "`" + `"seconds"` + "`" + `, ` + "`" + `"microseconds"` + "`" + `, ` + "`" + `"milliseconds"` + "`" + `, ` + "`" + `"bytes"` + "`" + `, ` + "`" + `"kilobytes"` + "`" + `, ` + "`" + `"megabytes"` + "`" + `, ` + "`" + `"gigabytes"` + "`" + `, ` + "`" + `"terabytes"` + "`" + `, ` + "`" + `"bits"` + "`" + `, ` + "`" + `"kilobits"` + "`" + `, ` + "`" + `"megabits"` + "`" + `, ` + "`" + `"gigabits"` + "`" + `, ` + "`" + `"terabits"` + "`" + `, ` + "`" + `"percent"` + "`" + `, ` + "`" + `"count"` + "`" + `, ` + "`" + `"bytes/second"` + "`" + `, ` + "`" + `"kilobytes/second"` + "`" + `, ` + "`" + `"megabytes/second"` + "`" + `, ` + "`" + `"gigabytes/second"` + "`" + `, ` + "`" + `"terabytes/second"` + "`" + `, ` + "`" + `"bits/second"` + "`" + `, ` + "`" + `"kilobits/second"` + "`" + `, ` + "`" + `"megabits/second"` + "`" + `, ` + "`" + `"gigabits/second"` + "`" + `, ` + "`" + `"terabits/second"` + "`" + `, ` + "`" + `"count/second"` + "`" + `, ` + "`" + `"none"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dimensions",
+					Description: `(Optional) The dimensions for the alarm's associated metric. When name is "instanceId", no value is needed.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_id",
@@ -2429,7 +2553,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "minimum_instnace_lifetime",
-					Description: `(Optional) Defines the preferred minimum instance lifetime. Markets which comply with this preference will be prioritized. Optional values: 1, 3, 6, 12, 24.`,
+					Description: `(Optional) Defines the preferred minimum instance lifetime. Markets which comply with this preference will be prioritized. Optional values: ` + "`" + `1` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `24` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "persist_private_ip",
@@ -2541,7 +2665,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu_credits",
-					Description: `(Optional) cpuCredits can have one of two values: ` + "`" + `"unlimited"` + "`" + `, ` + "`" + `"standard"` + "`" + `.`,
+					Description: `(Optional) cpuCredits can have one of two values: ` + "`" + `"unlimited"` + "`" + `, ` + "`" + `"standard"` + "`" + `. <a id="block-device-mapping"></a> ## Block Device Mapping`,
 				},
 				resource.Attribute{
 					Name:        "block_device_mappings",
@@ -2552,12 +2676,16 @@ var (
 					Description: `(Required) The name of the device to mount.`,
 				},
 				resource.Attribute{
+					Name:        "ebs",
+					Description: `(Required) Object`,
+				},
+				resource.Attribute{
 					Name:        "volume_type",
 					Description: `(Optional, Default: ` + "`" + `"standard"` + "`" + `) The type of volume. Can be ` + "`" + `"standard"` + "`" + `, ` + "`" + `"gp2"` + "`" + `, ` + "`" + `"gp3"` + "`" + `, ` + "`" + `"io1"` + "`" + `, ` + "`" + `"st1"` + "`" + ` or ` + "`" + `"sc1"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
-					Description: `(Optional) The size of the volume in gigabytes.`,
+					Description: `(Optional) The size of the volume, in GiBs.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -2566,6 +2694,14 @@ var (
 				resource.Attribute{
 					Name:        "delete_on_termination",
 					Description: `(Optional) Whether the volume should be destroyed on instance termination.`,
+				},
+				resource.Attribute{
+					Name:        "resource_tag_specification",
+					Description: `(Optional) User will specify which resources should be tagged with group tags.`,
+				},
+				resource.Attribute{
+					Name:        "should_tag_snapshots",
+					Description: `(Optional) Tag specification for Snapshot resources.`,
 				},
 				resource.Attribute{
 					Name:        "device_index",
@@ -2577,7 +2713,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "associate_ipv6_address",
-					Description: `(Optional) Indicates whether to assign an IPv6 address. Amazon EC2 chooses the IPv6 addresses from the range of the subnet. Default: false Usage: ` + "`" + `` + "`" + `` + "`" + `hcl network_interface { device_index = 0 associate_public_ip_address = "false" associate_ipv6_address = "true" } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
+					Description: `(Optional) Indicates whether to assign an IPv6 address. Amazon EC2 chooses the IPv6 addresses from the range of the subnet. Default: ` + "`" + `false` + "`" + ` Usage: ` + "`" + `` + "`" + `` + "`" + `hcl network_interface { device_index = 0 associate_public_ip_address = false associate_ipv6_address = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
@@ -2589,15 +2725,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Optional) DATETIME in ISO-8601 format. Sets a start time for scheduled actions. If "frequency" or "cronExpression" are not used - the task will run only once at the start time and will then be deleted from the instance configuration. Example: 2019-05-23T10:55:09Z`,
+					Description: `(Optional) DATETIME in ISO-8601 format. Sets a start time for scheduled actions. If "frequency" or "cronExpression" are not used - the task will run only once at the start time and will then be deleted from the instance configuration. Example: ` + "`" + `"2019-05-23T10:55:09Z"` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "cron_expression",
-					Description: `(Optional) A valid cron expression. For example: "`,
-				},
-				resource.Attribute{
-					Name:        "loadBalancersConfig",
-					Description: `(Optional) Load Balancers integration object.`,
+					Description: `(Optional) A valid cron expression. The cron is running in UTC time zone and is in Unix cron format Cron Expression Validator Script. Only one of ‘frequency’ or ‘cronExpression’ should be used at a time. Example: ` + "`" + `"0 1`,
 				},
 				resource.Attribute{
 					Name:        "load_balancers",
@@ -2613,23 +2745,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "balancer_id",
-					Description: `The Multai load balancer ID. Default: lb-123456`,
+					Description: `The Multai load balancer ID. Example: lb-123456`,
 				},
 				resource.Attribute{
 					Name:        "target_set_id",
-					Description: `The Multai load target set ID. Default: ts-123456`,
+					Description: `The Multai load target set ID. Example: ts-123456`,
 				},
 				resource.Attribute{
 					Name:        "auto_weight",
 					Description: `"Auto Weight" will automatically provide a higher weight for instances that are larger as appropriate. For example, if you have configured your Elastigroup with m4.large and m4.xlarge instances the m4.large will have half the weight of an m4.xlarge. This ensures that larger instances receive a higher number of MLB requests.`,
 				},
 				resource.Attribute{
-					Name:        "zone_awareness",
+					Name:        "az_awareness",
 					Description: `"AZ Awareness" will ensure that instances within the same AZ are using the corresponding MLB runtime instance in the same AZ. This feature reduces multi-zone data transfer fees.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The resource type. Valid Values: CLASSIC, TARGET_GROUP, MULTAI_TARGET_SET. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl load_balancers { arn = "arn" type = "CLASSIC" balancer_id = "lb-123" target_set_id = "ts-123" auto_weight = "true" az_awareness = "true" } ` + "`" + `` + "`" + `` + "`" + ` <a id="route53"></a> ## route53`,
+					Description: `The resource type. Valid Values: ` + "`" + `"CLASSIC"` + "`" + `, ` + "`" + `"TARGET_GROUP"` + "`" + `, ` + "`" + `"MULTAI_TARGET_SET"` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl load_balancers { arn = "arn" type = "CLASSIC" balancer_id = "lb-123" target_set_id = "ts-123" auto_weight = "true" az_awareness = "true" } ` + "`" + `` + "`" + `` + "`" + ` <a id="route53"></a> ## Route53`,
 				},
 				resource.Attribute{
 					Name:        "integration_route53",
@@ -2673,10 +2805,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) String, Action type. Supported action types: ` + "`" + `pause` + "`" + `, ` + "`" + `resume` + "`" + `, ` + "`" + `recycle` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl managed_instance_action { type = "pause" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) String, Action type. Supported action types: ` + "`" + `pause` + "`" + `, ` + "`" + `resume` + "`" + `, ` + "`" + `recycle` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl managed_instance_action { type = "pause" } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The group ID.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The group ID.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2760,15 +2901,15 @@ var (
 					Description: `(Required) The MrScaler instance types for the task nodes.`,
 				},
 				resource.Attribute{
-					Name:        "task_target",
+					Name:        "task_desired_capacity",
 					Description: `(Required) amount of instances in task group.`,
 				},
 				resource.Attribute{
-					Name:        "task_maximum",
+					Name:        "task_max_size",
 					Description: `(Optional) maximal amount of instances in task group.`,
 				},
 				resource.Attribute{
-					Name:        "task_minimum",
+					Name:        "task_min_size",
 					Description: `(Optional) The minimal amount of instances in task group.`,
 				},
 				resource.Attribute{
@@ -2808,15 +2949,15 @@ var (
 					Description: `(Required) The MrScaler instance types for the core nodes.`,
 				},
 				resource.Attribute{
-					Name:        "core_target",
+					Name:        "core_desired_capacity",
 					Description: `(Required) amount of instances in core group.`,
 				},
 				resource.Attribute{
-					Name:        "core_maximum",
+					Name:        "core_max_size",
 					Description: `(Optional) maximal amount of instances in core group.`,
 				},
 				resource.Attribute{
-					Name:        "core_minimum",
+					Name:        "core_min_size",
 					Description: `(Optional) The minimal amount of instances in core group.`,
 				},
 				resource.Attribute{
@@ -3164,7 +3305,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acd_identifier",
-					Description: `(Required) The AKS identifier.`,
+					Description: `(Required) The AKS identifier. A valid identifier should be formatted as ` + "`" + `acd-nnnnnnnn` + "`" + ` and previously used identifiers cannot be reused.`,
 				},
 				resource.Attribute{
 					Name:        "aks_resource_group_name",
@@ -3185,6 +3326,18 @@ var (
 				resource.Attribute{
 					Name:        "custom_data",
 					Description: `(Optional) Must contain a valid Base64 encoded string.`,
+				},
+				resource.Attribute{
+					Name:        "managed_service_identity",
+					Description: `(Optional) List of Managed Service Identity objects.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the Azure Resource Group where the Managed Service Identity is located.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Managed Service Identity.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -3639,7 +3792,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spot_percentage",
-					Description: `(Optional; Required if not using ` + "`" + `ondemand_count` + "`" + `) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number. <a id="auto-scaler"></a> ## Auto Scaler`,
+					Description: `(Optional; Required if not using ` + "`" + `ondemand_count` + "`" + `) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number.`,
+				},
+				resource.Attribute{
+					Name:        "instance_metadata_options",
+					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
+				},
+				resource.Attribute{
+					Name:        "http_tokens",
+					Description: `(Required) Determines if a signed token is required or not. Valid values: ` + "`" + `optional` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_put_response_hop_limit",
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel. <a id="auto-scaler"></a> ## Auto Scaler`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -3872,7 +4037,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_name",
-					Description: `(Optional) String. Set device name. (Example: ` + "`" + `/dev/xvda1` + "`" + `).`,
+					Description: `(Optional) String. Set device name. (Example: ` + "`" + `/dev/xvda` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_termination",
@@ -4067,7 +4232,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_optimized",
-					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored. <a id="block-devices"></a> ## Block Devices`,
+					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored.`,
+				},
+				resource.Attribute{
+					Name:        "spot_percentage",
+					Description: `(Optional) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number.`,
+				},
+				resource.Attribute{
+					Name:        "instance_metadata_options",
+					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
+				},
+				resource.Attribute{
+					Name:        "http_tokens",
+					Description: `(Required) Determines if a signed token is required or not. Valid values: ` + "`" + `optional` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_put_response_hop_limit",
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel. <a id="block-devices"></a> ## Block Devices`,
 				},
 				resource.Attribute{
 					Name:        "block_device_mappings",
@@ -4404,7 +4585,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Required) A list of ports. <a id="scheduled-task"></a> ## Scheduled task`,
+					Description: `(Required) A list of ports.`,
+				},
+				resource.Attribute{
+					Name:        "root_volume_type",
+					Description: `(Optional) The root volume disk type. <a id="scheduled-task"></a> ## Scheduled task`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4625,7 +4810,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "preemptible_percentage",
-					Description: `(Optional) Defines the desired preemptible percentage for this launch specification. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Defines the desired preemptible percentage for this launch specification.`,
+				},
+				resource.Attribute{
+					Name:        "shielded_instance_config",
+					Description: `(Optional) The Ocean shielded instance configuration object.`,
+				},
+				resource.Attribute{
+					Name:        "enable_integrity_monitoring",
+					Description: `(Optional) Boolean. Enable the integrity monitoring parameter on the GCP instances.`,
+				},
+				resource.Attribute{
+					Name:        "enable_secure_boot",
+					Description: `(Optional) Boolean. Enable the secure boot parameter on the GCP instances.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) The Ocean virtual node group storage object.`,
+				},
+				resource.Attribute{
+					Name:        "local_ssd_count",
+					Description: `(Optional) Defines the number of local SSDs to be attached per node for this VNG.`,
+				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional) The Ocean virtual node group resource limits object.`,
+				},
+				resource.Attribute{
+					Name:        "max_instance_count",
+					Description: `(Optional) Option to set a maximum number of instances per virtual node group. Can be null. If set, the value must be greater than or equal to 0.`,
+				},
+				resource.Attribute{
+					Name:        "service_account",
+					Description: `(Optional) The account used by applications running on the VM to call GCP APIs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",

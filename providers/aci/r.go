@@ -382,7 +382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) qos priority class id. Allowed values are "unspecified", "level1", "level2", "level3", "level4", "level5" and "level6". Default is "unspecified.`,
+					Description: `(Optional) qos priority class id. Allowed values are "unspecified", "level1", "level2", "level3", "level4", "level5" and "level6". Default is "unspecified".`,
 				},
 				resource.Attribute{
 					Name:        "shutdown",
@@ -2709,7 +2709,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tcp_rules",
-					Description: `(Optional) TCP Session Rules. Allowed values are "unspecified", "est", "syn", "ack", "fin" and "rst". Default is "unspecified". ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Filter Entry. ## Importing ## An existing Filter Entry can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_filter_entry.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) TCP Rules. TCP Session Rules Allowed values are "ack", "est", "fin", "rst", "syn", "unspecified", and default value is "unspecified". Type: List. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Filter Entry. ## Importing ## An existing Filter Entry can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import aci_filter_entry.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4875,7 +4875,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alloc_mode",
-					Description: `(Optional) alloc_mode for object ranges. Allowed values: "dynamic", "static", "inherit".`,
+					Description: `(Optional) allocation modes for object ranges. Allowed values: "dynamic", "static", "inherit".`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
@@ -4887,7 +4887,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) system role type. Allowed values: "external", "internal". Default is "external". ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Ranges. ## Importing ## An existing Ranges can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_ranges.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) system role type. Allowed values: "external", "internal". Default is "external".`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) description for object ranges. ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the Ranges. ## Importing ## An existing Ranges can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_ranges.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6006,15 +6010,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_mcast_to",
-					Description: `(Optional) Relation to class vzFilter. Cardinality - N_TO_M. Type - [Set of String].`,
+					Description: `(Optional) Relation to class vzFilter. Cardinality - N_TO_M. Type - List.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_to_eigrp_ctx_af_pol",
-					Description: `(Optional) Relation to class eigrpCtxAfPol. Cardinality - N_TO_M. Type - [Set of Map].`,
+					Description: `(Optional) Relation to class eigrpCtxAfPol. Cardinality - N_TO_M. Type - Block.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_to_ospf_ctx_pol",
-					Description: `(Optional) Relation to class ospfCtxPol. Cardinality - N_TO_M. Type - [Set of Map].`,
+					Description: `(Optional) Relation to class ospfCtxPol. Cardinality - N_TO_M. Type - Block.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_to_ep_ret",
@@ -6034,7 +6038,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_ctx_to_bgp_ctx_af_pol",
-					Description: `(Optional) Relation to class bgpCtxAfPol. Cardinality - N_TO_M. Type - [Set of Map]. Note: In the APIC GUI,a VRF (fvCtx) was called a "Context"or "PrivateNetwork." ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VRF. ## Importing ## An existing VRF can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_vrf.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Relation to class bgpCtxAfPol. Cardinality - N_TO_M. Type - Block. Note: In the APIC GUI,a VRF (fvCtx) was called a "Context"or "PrivateNetwork." ## Attribute Reference ## The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VRF. ## Importing ## An existing VRF can be [imported][docs-import] into this resource via its Dn, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import aci_vrf.example <Dn> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

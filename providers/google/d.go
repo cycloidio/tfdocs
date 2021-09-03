@@ -1864,7 +1864,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If ` + "`" + `project` + "`" + ` is not provideded, the provider project is used. ## Attributes Reference`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If ` + "`" + `project` + "`" + ` is not provided, the provider project is used. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "disk",
@@ -3801,7 +3801,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "crypto_key",
-					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs.`,
+					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs. This is also the ` + "`" + `id` + "`" + ` field of the ` + "`" + `google_kms_crypto_key` + "`" + ` resource/datasource.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -3810,6 +3810,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `an identifier for the resource with format ` + "`" + `//cloudkms.googleapis.com/v1/{{crypto_key}}/cryptoKeyVersions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name for this CryptoKeyVersion in the format ` + "`" + `projects/`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -3840,6 +3844,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `an identifier for the resource with format ` + "`" + `//cloudkms.googleapis.com/v1/{{crypto_key}}/cryptoKeyVersions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name for this CryptoKeyVersion in the format ` + "`" + `projects/`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -4575,7 +4583,7 @@ var (
 			Name:             "",
 			Type:             "google_runtimeconfig_variable",
 			Category:         "Data Sources",
-			ShortDescription: `Get information about a Google Cloud RuntimeConfig varialbe.`,
+			ShortDescription: `Get information about a Google Cloud RuntimeConfig variable.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -5032,6 +5040,10 @@ var (
 					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
 				},
 				resource.Attribute{
+					Name:        "collation",
+					Description: `The name of server instance collation.`,
+				},
+				resource.Attribute{
 					Name:        "crash_safe_replication",
 					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
 				},
@@ -5288,6 +5300,10 @@ var (
 				resource.Attribute{
 					Name:        "availability_type",
 					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "collation",
+					Description: `The name of server instance collation.`,
 				},
 				resource.Attribute{
 					Name:        "crash_safe_replication",

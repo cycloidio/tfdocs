@@ -433,7 +433,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "checksum",
-					Description: `Hash of the source archive for verifying its integrity, auto-generated when ` + "`" + `source.path` + "`" + ` is set, ` + "`" + `SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` + "`" + ``,
+					Description: `SHA256 hash of the tarball archive to verify its integrity, example: ` + "`" + `SHA256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "path",

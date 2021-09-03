@@ -221,6 +221,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_user_security_questions",
+			Category:         "Data Sources",
+			ShortDescription: `Get a list of user's security questions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_user_type",
 			Category:         "Data Sources",
 			ShortDescription: `Get a user type from Okta.`,
@@ -264,8 +274,9 @@ var (
 		"okta_policy":                      18,
 		"okta_user":                        19,
 		"okta_user_profile_mapping_source": 20,
-		"okta_user_type":                   21,
-		"okta_users":                       22,
+		"okta_user_security_questions":     21,
+		"okta_user_type":                   22,
+		"okta_users":                       23,
 	}
 )
 

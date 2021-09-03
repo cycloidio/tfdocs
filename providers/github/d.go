@@ -166,6 +166,14 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "actions",
+					Description: `An array of IP addresses in CIDR format specifying the addresses that incoming requests from GitHub actions will originate from.`,
+				},
+				resource.Attribute{
+					Name:        "dependabot",
+					Description: `An array of IP addresses in CIDR format specifying the A records for dependabot.`,
+				},
+				resource.Attribute{
 					Name:        "hooks",
 					Description: `An Array of IP addresses in CIDR format specifying the addresses that incoming service hooks will originate from.`,
 				},
@@ -237,12 +245,28 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the organization account`,
+				},
+				resource.Attribute{
+					Name:        "login",
+					Description: `The login of the organization account`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description the organization account`,
+				},
+				resource.Attribute{
 					Name:        "plan",
 					Description: `The plan name for the organization account`,
 				},
 				resource.Attribute{
 					Name:        "repositories",
 					Description: `(` + "`" + `list` + "`" + `) A list with the repositories on the organization`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(` + "`" + `list` + "`" + `) A list with the members of the organization`,
 				},
 			},
 		},

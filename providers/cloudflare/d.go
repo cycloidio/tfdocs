@@ -31,6 +31,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_origin_ca_root_certificate",
+			Category:         "Data Sources",
+			ShortDescription: `Get Cloudflare Origin CA root certificate.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_waf_groups",
 			Category:         "Data Sources",
 			ShortDescription: `List available Cloudflare WAF Groups.`,
@@ -75,10 +85,11 @@ var (
 
 		"cloudflare_api_token_permission_groups": 0,
 		"cloudflare_ip_ranges":                   1,
-		"cloudflare_waf_groups":                  2,
-		"cloudflare_waf_packages":                3,
-		"cloudflare_waf_rules":                   4,
-		"cloudflare_zones":                       5,
+		"cloudflare_origin_ca_root_certificate":  2,
+		"cloudflare_waf_groups":                  3,
+		"cloudflare_waf_packages":                4,
+		"cloudflare_waf_rules":                   5,
+		"cloudflare_zones":                       6,
 	}
 )
 
