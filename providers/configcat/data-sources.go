@@ -35,7 +35,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Config. ## Endpoints used [Get Configs](https://api.configcat.com/docs/index.html#operation/get-configs)`,
+					Description: `The name of the Config.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Config. ## Endpoints used [Get Configs](https://api.configcat.com/docs/index.html#operation/get-configs)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -49,7 +53,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Config. ## Endpoints used [Get Configs](https://api.configcat.com/docs/index.html#operation/get-configs)`,
+					Description: `The name of the Config.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Config. ## Endpoints used [Get Configs](https://api.configcat.com/docs/index.html#operation/get-configs)`,
 				},
 			},
 		},
@@ -79,7 +87,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Environment. ## Endpoints used - [Get Environments](https://api.configcat.com/docs/index.html#operation/get-environments)`,
+					Description: `The name of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `The color of the Environment. ## Endpoints used - [Get Environments](https://api.configcat.com/docs/index.html#operation/get-environments)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -93,7 +109,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Environment. ## Endpoints used - [Get Environments](https://api.configcat.com/docs/index.html#operation/get-environments)`,
+					Description: `The name of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `The color of the Environment. ## Endpoints used - [Get Environments](https://api.configcat.com/docs/index.html#operation/get-environments)`,
 				},
 			},
 		},
@@ -159,7 +183,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Product. ## Endpoints used - [Get Products](https://api.configcat.com/docs/index.html#operation/get-products)`,
+					Description: `The name of the Product.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Product. ## Endpoints used - [Get Products](https://api.configcat.com/docs/index.html#operation/get-products)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -173,7 +201,99 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the Product. ## Endpoints used - [Get Products](https://api.configcat.com/docs/index.html#operation/get-products)`,
+					Description: `The name of the Product.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Product. ## Endpoints used - [Get Products](https://api.configcat.com/docs/index.html#operation/get-products)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "configcat_sdkkeys",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) The ID of the Config.`,
+				},
+				resource.Attribute{
+					Name:        "environment_id",
+					Description: `(Required) The ID of the Environment. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `The primary SDK Key associated with your`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `The secondary SDK Key associated with your`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "primary",
+					Description: `The primary SDK Key associated with your`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `The secondary SDK Key associated with your`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "configcat_segments",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `(Required) The ID of the Product.`,
+				},
+				resource.Attribute{
+					Name:        "name_filter_regex",
+					Description: `(Optional) Filter the Segments by name. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "segments",
+					Description: `A segment [list](https://www.terraform.io/docs/configuration/types.html#list-) block defined as below. ### The ` + "`" + `segments` + "`" + ` [list](https://www.terraform.io/docs/configuration/types.html#list-) block`,
+				},
+				resource.Attribute{
+					Name:        "segment_id",
+					Description: `The unique Segment ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Segment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Segment. ## Endpoints used - [Get Segments](https://api.configcat.com/docs/index.html#operation/get-segments)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "segments",
+					Description: `A segment [list](https://www.terraform.io/docs/configuration/types.html#list-) block defined as below. ### The ` + "`" + `segments` + "`" + ` [list](https://www.terraform.io/docs/configuration/types.html#list-) block`,
+				},
+				resource.Attribute{
+					Name:        "segment_id",
+					Description: `The unique Segment ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Segment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Segment. ## Endpoints used - [Get Segments](https://api.configcat.com/docs/index.html#operation/get-segments)`,
 				},
 			},
 		},
@@ -305,8 +425,10 @@ var (
 		"configcat_environments":  1,
 		"configcat_organizations": 2,
 		"configcat_products":      3,
-		"configcat_settings":      4,
-		"configcat_tags":          5,
+		"configcat_sdkkeys":       4,
+		"configcat_segments":      5,
+		"configcat_settings":      6,
+		"configcat_tags":          7,
 	}
 )
 

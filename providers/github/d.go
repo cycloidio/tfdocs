@@ -170,24 +170,72 @@ var (
 					Description: `An array of IP addresses in CIDR format specifying the addresses that incoming requests from GitHub actions will originate from.`,
 				},
 				resource.Attribute{
+					Name:        "actions_ipv4",
+					Description: `A subset of the ` + "`" + `actions` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "actions_ipv6",
+					Description: `A subset of the ` + "`" + `actions` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
+				},
+				resource.Attribute{
 					Name:        "dependabot",
 					Description: `An array of IP addresses in CIDR format specifying the A records for dependabot.`,
+				},
+				resource.Attribute{
+					Name:        "dependabot_ipv4",
+					Description: `A subset of the ` + "`" + `dependabot` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "dependabot_ipv6",
+					Description: `A subset of the ` + "`" + `dependabot` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
 				},
 				resource.Attribute{
 					Name:        "hooks",
 					Description: `An Array of IP addresses in CIDR format specifying the addresses that incoming service hooks will originate from.`,
 				},
 				resource.Attribute{
+					Name:        "hooks_ipv4",
+					Description: `A subset of the ` + "`" + `hooks` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "hooks_ipv6",
+					Description: `A subset of the ` + "`" + `hooks` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
+				},
+				resource.Attribute{
 					Name:        "git",
 					Description: `An Array of IP addresses in CIDR format specifying the Git servers.`,
+				},
+				resource.Attribute{
+					Name:        "git_ipv4",
+					Description: `A subset of the ` + "`" + `git` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "git_ipv6",
+					Description: `A subset of the ` + "`" + `git` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
 				},
 				resource.Attribute{
 					Name:        "pages",
 					Description: `An Array of IP addresses in CIDR format specifying the A records for GitHub Pages.`,
 				},
 				resource.Attribute{
+					Name:        "pages_ipv4",
+					Description: `A subset of the ` + "`" + `pages` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "pages_ipv6",
+					Description: `A subset of the ` + "`" + `pages` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
+				},
+				resource.Attribute{
 					Name:        "importer",
 					Description: `An Array of IP addresses in CIDR format specifying the A records for GitHub Importer.`,
+				},
+				resource.Attribute{
+					Name:        "importer_ipv4",
+					Description: `A subset of the ` + "`" + `importer` + "`" + ` array that contains IP addresses in IPv4 CIDR format.`,
+				},
+				resource.Attribute{
+					Name:        "importer_ipv6",
+					Description: `A subset of the ` + "`" + `importer` + "`" + ` array that contains IP addresses in IPv6 CIDR format.`,
 				},
 			},
 		},
@@ -345,6 +393,42 @@ var (
 				resource.Attribute{
 					Name:        "repositories",
 					Description: `List of team repositories.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_ref",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a repository ref.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The GitHub repository name.`,
+				},
+				resource.Attribute{
+					Name:        "ref",
+					Description: `(Required) The repository ref to look up. Must be formatted ` + "`" + `heads/<ref>` + "`" + ` for branches, and ` + "`" + `tags/<ref>` + "`" + ` for tags. ## Attribute Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the ref.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `A string storing the reference's ` + "`" + `HEAD` + "`" + ` commit's SHA1.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `An etag representing the ref.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `A string storing the reference's ` + "`" + `HEAD` + "`" + ` commit's SHA1.`,
 				},
 			},
 		},
@@ -577,6 +661,10 @@ var (
 					Description: `Whether the repository allows rebase merges.`,
 				},
 				resource.Attribute{
+					Name:        "allow_auto_merge",
+					Description: `Whether the repository allows auto-merging pull requests.`,
+				},
+				resource.Attribute{
 					Name:        "has_downloads",
 					Description: `Whether the repository has Downloads feature enabled.`,
 				},
@@ -623,6 +711,18 @@ var (
 				resource.Attribute{
 					Name:        "repo_id",
 					Description: `GitHub ID for the repository`,
+				},
+				resource.Attribute{
+					Name:        "branches",
+					Description: `The list of this repository's branches. Each element of ` + "`" + `branches` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the branch.`,
+				},
+				resource.Attribute{
+					Name:        "protected",
+					Description: `Whether the branch is protected.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -671,6 +771,10 @@ var (
 					Description: `Whether the repository allows rebase merges.`,
 				},
 				resource.Attribute{
+					Name:        "allow_auto_merge",
+					Description: `Whether the repository allows auto-merging pull requests.`,
+				},
+				resource.Attribute{
 					Name:        "has_downloads",
 					Description: `Whether the repository has Downloads feature enabled.`,
 				},
@@ -717,6 +821,90 @@ var (
 				resource.Attribute{
 					Name:        "repo_id",
 					Description: `GitHub ID for the repository`,
+				},
+				resource.Attribute{
+					Name:        "branches",
+					Description: `The list of this repository's branches. Each element of ` + "`" + `branches` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the branch.`,
+				},
+				resource.Attribute{
+					Name:        "protected",
+					Description: `Whether the branch is protected.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_repository_file",
+			Category:         "Data Sources",
+			ShortDescription: `Reads files within a GitHub repository`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The repository to create the file in.`,
+				},
+				resource.Attribute{
+					Name:        "file",
+					Description: `(Required) The path of the file to manage.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Optional) Git branch (defaults to ` + "`" + `main` + "`" + `). The branch must already exist, it will not be created if it does not already exist. ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `The file content.`,
+				},
+				resource.Attribute{
+					Name:        "commit_sha",
+					Description: `The SHA of the commit that modified the file.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `The SHA blob of the file.`,
+				},
+				resource.Attribute{
+					Name:        "commit_author",
+					Description: `Committer author name.`,
+				},
+				resource.Attribute{
+					Name:        "commit_email",
+					Description: `Committer email address.`,
+				},
+				resource.Attribute{
+					Name:        "commit_message",
+					Description: `Commit message when file was last updated.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "content",
+					Description: `The file content.`,
+				},
+				resource.Attribute{
+					Name:        "commit_sha",
+					Description: `The SHA of the commit that modified the file.`,
+				},
+				resource.Attribute{
+					Name:        "sha",
+					Description: `The SHA blob of the file.`,
+				},
+				resource.Attribute{
+					Name:        "commit_author",
+					Description: `Committer author name.`,
+				},
+				resource.Attribute{
+					Name:        "commit_email",
+					Description: `Committer email address.`,
+				},
+				resource.Attribute{
+					Name:        "commit_message",
+					Description: `Commit message when file was last updated.`,
 				},
 			},
 		},
@@ -846,6 +1034,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "github_tree",
+			Category:         "Data Sources",
+			ShortDescription: `Returns a single tree using the SHA1 value for that tree.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "github_user",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a GitHub user.`,
@@ -857,6 +1055,10 @@ var (
 					Description: `(Required) The username. Use an empty string ` + "`" + `""` + "`" + ` to retrieve information about the currently authenticated user. ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `the ID of the user.`,
+				},
+				resource.Attribute{
 					Name:        "node_id",
 					Description: `the Node ID of the user.`,
 				},
@@ -931,10 +1133,18 @@ var (
 				resource.Attribute{
 					Name:        "updated_at",
 					Description: `the update date.`,
+				},
+				resource.Attribute{
+					Name:        "suspended_at",
+					Description: `the suspended date if the user is suspended.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `the ID of the user.`,
+				},
+				resource.Attribute{
 					Name:        "node_id",
 					Description: `the Node ID of the user.`,
 				},
@@ -1009,6 +1219,50 @@ var (
 				resource.Attribute{
 					Name:        "updated_at",
 					Description: `the update date.`,
+				},
+				resource.Attribute{
+					Name:        "suspended_at",
+					Description: `the suspended date if the user is suspended.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "github_users",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about multiple GitHub users.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "usernames",
+					Description: `(Required) List of usernames. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "node_ids",
+					Description: `list of Node IDs of users that could be found.`,
+				},
+				resource.Attribute{
+					Name:        "logins",
+					Description: `list of logins of users that could be found.`,
+				},
+				resource.Attribute{
+					Name:        "unknown_logins",
+					Description: `list of logins without matching user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_ids",
+					Description: `list of Node IDs of users that could be found.`,
+				},
+				resource.Attribute{
+					Name:        "logins",
+					Description: `list of logins of users that could be found.`,
+				},
+				resource.Attribute{
+					Name:        "unknown_logins",
+					Description: `list of logins without matching user.`,
 				},
 			},
 		},
@@ -1024,12 +1278,16 @@ var (
 		"github_organization":                  5,
 		"github_organization_team_sync_groups": 6,
 		"github_organization_teams":            7,
-		"github_release":                       8,
-		"github_repositories":                  9,
-		"github_repository":                    10,
-		"github_repository_milestone":          11,
-		"github_team":                          12,
-		"github_user":                          13,
+		"github_ref":                           8,
+		"github_release":                       9,
+		"github_repositories":                  10,
+		"github_repository":                    11,
+		"github_repository_file":               12,
+		"github_repository_milestone":          13,
+		"github_team":                          14,
+		"github_tree":                          15,
+		"github_user":                          16,
+		"github_users":                         17,
 	}
 )
 

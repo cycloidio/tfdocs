@@ -58,6 +58,10 @@ var (
 					Description: `(Optional, Enterprise Only) The namespace in which to create the auth method.`,
 				},
 				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the ACL auth method is associated with.`,
+				},
+				resource.Attribute{
 					Name:        "namespace_rule",
 					Description: `(Optional, Enterprise Only) A set of rules that control which namespace tokens created via this auth method will be created within. Each ` + "`" + `namespace_rule` + "`" + ` can have the following attributes:`,
 				},
@@ -195,7 +199,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the binding rule within. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the binding rule within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the ACL binding rule is associated with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -278,7 +286,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the policy within. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the policy within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the ACL policy is associated with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -352,8 +364,16 @@ var (
 					Description: `(Optional) The list of service identities that should be applied to the role.`,
 				},
 				resource.Attribute{
+					Name:        "node_identities",
+					Description: `(Optional) The list of node identities that should be applied to the role.`,
+				},
+				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the role within. The ` + "`" + `service_identities` + "`" + ` supports:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the role within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the ACL role is associated with. The ` + "`" + `service_identities` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -361,7 +381,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datacenters",
-					Description: `(Optional) The datacenters the effective policy is valid within. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The datacenters the effective policy is valid within. The ` + "`" + `node_identities` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "node_name",
+					Description: `(Required) The name of the node.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Required) The datacenter of the node. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -381,7 +409,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_identities",
-					Description: `The list of service identities that should be applied to the role. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of service identities that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the role within. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -403,7 +439,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_identities",
-					Description: `The list of service identities that should be applied to the role. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of service identities that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the role within. ## Import ` + "`" + `consul_acl_role` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_role.read 816a195f-6cb1-2e8d-92af-3011ae706318 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -435,12 +479,44 @@ var (
 					Description: `(Optional) The list of roles attached to the token.`,
 				},
 				resource.Attribute{
+					Name:        "service_identities",
+					Description: `(Optional) The list of service identities that should be applied to the token.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `(Optional) The list of node identities that should be applied to the token.`,
+				},
+				resource.Attribute{
 					Name:        "local",
 					Description: `(Optional) The flag to set the token local to the current datacenter.`,
 				},
 				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `(Optional) If set this represents the point after which a token should be considered revoked and is eligible for destruction.`,
+				},
+				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the token within. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the token within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the ACL token is associated with. The ` + "`" + `service_identities` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "datacenters",
+					Description: `(Required) The list of datacenters the policy is valid within. The ` + "`" + `node_identities` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "node_name",
+					Description: `(Optional) The name of the node.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The datacenter of the node. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -463,8 +539,24 @@ var (
 					Description: `The list of roles attached to the token.`,
 				},
 				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities that should be applied to the token.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities that should be applied to the token.`,
+				},
+				resource.Attribute{
 					Name:        "local",
-					Description: `The flag to set the token local to the current datacenter. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The flag to set the token local to the current datacenter.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `If set this represents the point after which a token should be considered revoked and is eligible for destruction.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the token within. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -489,8 +581,24 @@ var (
 					Description: `The list of roles attached to the token.`,
 				},
 				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities that should be applied to the token.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities that should be applied to the token.`,
+				},
+				resource.Attribute{
 					Name:        "local",
-					Description: `The flag to set the token local to the current datacenter. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The flag to set the token local to the current datacenter.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `If set this represents the point after which a token should be considered revoked and is eligible for destruction.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the token within. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -540,6 +648,45 @@ var (
 				resource.Attribute{
 					Name:        "policy",
 					Description: `The name of the policy attached to the token. ## Import ` + "`" + `consul_acl_token_policy_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the anonymous and the master tokens with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token_policy_attachment.anonymous 00000000-0000-0000-0000-000000000002:policy_name $ terraform import consul_acl_token_policy_attachment.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be:policy_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_admin_partition",
+			Category:         "Resources",
+			ShortDescription: `Manage a Consul Admin Partition.`,
+			Description:      ``,
+			Keywords: []string{
+				"admin",
+				"partition",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The partition name. This must be a valid DNS hostname label.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Free form partition description. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The partition name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The partition description. ## Import ` + "`" + `consul_admin_partition` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_admin_partition.na_west na-west ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The partition name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The partition description. ## Import ` + "`" + `consul_admin_partition` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_admin_partition.na_west na-west ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -855,6 +1002,10 @@ var (
 					Description: `(Required) The name of the configuration entry being registered.`,
 				},
 				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the config entry is associated with.`,
+				},
+				resource.Attribute{
 					Name:        "namespace",
 					Description: `(Optional, Enterprise Only) The namespace to create the config entry within.`,
 				},
@@ -875,6 +1026,14 @@ var (
 					Description: `The name of the configuration entry.`,
 				},
 				resource.Attribute{
+					Name:        "partition",
+					Description: `The partition the config entry is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the config entry within.`,
+				},
+				resource.Attribute{
 					Name:        "config_json",
 					Description: `A map of configuration values.`,
 				},
@@ -891,6 +1050,14 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `The partition the config entry is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to create the config entry within.`,
 				},
 				resource.Attribute{
 					Name:        "config_json",
@@ -1049,7 +1216,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the keys within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The admin partition to create the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -1099,7 +1270,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `key` + "`" + ` block supports the following:`,
+					Description: `(Optional, Enterprise Only) The namespace to create the keys within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to create the keys within. The ` + "`" + `key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -1259,7 +1434,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `(Optional) Specifies arbitrary KV metadata to associate with the namespace. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies arbitrary KV metadata to associate with the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to create the namespace within. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1492,7 +1671,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `(Optional, map) Key/value pairs that are associated with the node. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, map) Key/value pairs that are associated with the node.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition the node is associated with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "address",
@@ -1817,22 +2000,23 @@ var (
 		"consul_acl_role":                    3,
 		"consul_acl_token":                   4,
 		"consul_acl_token_policy_attachment": 5,
-		"consul_agent_service":               6,
-		"consul_autopilot_config":            7,
-		"consul_catalog_entry":               8,
-		"consul_certificate_authority":       9,
-		"consul_config_entry":                10,
-		"consul_intention":                   11,
-		"consul_key_prefix":                  12,
-		"consul_keys":                        13,
-		"consul_license":                     14,
-		"consul_namespace":                   15,
-		"namespace_policy_attachment":        16,
-		"namespace_role_attachment":          17,
-		"consul_network_area":                18,
-		"consul_node":                        19,
-		"consul_prepared_query":              20,
-		"consul_service":                     21,
+		"consul_admin_partition":             6,
+		"consul_agent_service":               7,
+		"consul_autopilot_config":            8,
+		"consul_catalog_entry":               9,
+		"consul_certificate_authority":       10,
+		"consul_config_entry":                11,
+		"consul_intention":                   12,
+		"consul_key_prefix":                  13,
+		"consul_keys":                        14,
+		"consul_license":                     15,
+		"consul_namespace":                   16,
+		"namespace_policy_attachment":        17,
+		"namespace_role_attachment":          18,
+		"consul_network_area":                19,
+		"consul_node":                        20,
+		"consul_prepared_query":              21,
+		"consul_service":                     22,
 	}
 )
 

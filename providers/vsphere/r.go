@@ -37,7 +37,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ~>`,
+					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource`,
 				},
 				resource.Attribute{
 					Name:        "custom_attributes",
@@ -53,7 +53,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_cluster_exit_timeout",
-					Description: `The timeout for each host maintenance mode operation when removing hosts from a cluster. The value is specified in seconds. Default: ` + "`" + `3600` + "`" + ` (1 hour).`,
+					Description: `The timeout, in seconds, for each host maintenance mode operation when removing hosts from a cluster. Default: ` + "`" + `3600` + "`" + ` seconds (1 hour).`,
 				},
 				resource.Attribute{
 					Name:        "force_evacuate_on_destroy",
@@ -73,11 +73,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "drs_enable_predictive_drs",
-					Description: `(Optional) When ` + "`" + `true` + "`" + `, enables DRS to use data from [vRealize Operations Manager][ref-vsphere-vro] to make proactive DRS recommendations. <sup>[\`,
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, enables DRS to use data from [vRealize Operations Manager][ref-vsphere-vrops] to make proactive DRS recommendations. <sup>[\`,
+				},
+				resource.Attribute{
+					Name:        "drs_scale_descendants_shares",
+					Description: `(Optional) Enable scalable shares for all resource pools in the cluster. Can be one of ` + "`" + `disabled` + "`" + ` or ` + "`" + `scaleCpuAndMemoryShares` + "`" + `. Default: ` + "`" + `disabled` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "drs_advanced_options",
-					Description: `(Optional) A key/value map that specifies advanced options for DRS and [DPM](#dpm-options). #### DPM options The following settings control the [Distributed Power Management][ref-vsphere-dpm] (DPM) settings for the cluster. DPM allows the cluster to manage host capacity on-demand depending on the needs of the cluster, powering on hosts when capacity is needed, and placing hosts in standby when there is excess capacity in the cluster. [ref-vsphere-dpm]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.resmgmt.doc/GUID-5E5E349A-4644-4C9C-B434-1C0243EBDC80.html#GUID-5E5E349A-4644-4C9C-B434-1C0243EBDC80`,
+					Description: `(Optional) A key/value map that specifies advanced options for DRS and [DPM](#dpm-options). #### DPM Options The following settings control the [Distributed Power Management][ref-vsphere-dpm] (DPM) settings for the cluster. DPM allows the cluster to manage host capacity on-demand depending on the needs of the cluster, powering on hosts when capacity is needed, and placing hosts in standby when there is excess capacity in the cluster. [ref-vsphere-dpm]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-5E5E349A-4644-4C9C-B434-1C0243EBDC80.html`,
 				},
 				resource.Attribute{
 					Name:        "dpm_enabled",
@@ -109,11 +113,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_vm_restart_additional_delay",
-					Description: `(Optional) Additional delay in seconds after ready condition is met. A VM is considered ready at this point. Default: ` + "`" + `0` + "`" + ` (no delay). <sup>[\`,
+					Description: `(Optional) Additional delay, in seconds, after ready condition is met. A VM is considered ready at this point. Default: ` + "`" + `0` + "`" + ` seconds (no delay). <sup>[\`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_restart_timeout",
-					Description: `(Optional) The maximum time, in seconds, that vSphere HA will wait for virtual machines in one priority to be ready before proceeding with the next priority. Default: ` + "`" + `600` + "`" + ` (10 minutes). <sup>[\`,
+					Description: `(Optional) The maximum time, in seconds, that vSphere HA will wait for virtual machines in one priority to be ready before proceeding with the next priority. Default: ` + "`" + `600` + "`" + ` seconds (10 minutes). <sup>[\`,
 				},
 				resource.Attribute{
 					Name:        "ha_host_isolation_response",
@@ -121,7 +125,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_advanced_options",
-					Description: `(Optional) A key/value map that specifies advanced options for vSphere HA. #### HA Virtual Machine Component Protection settings The following settings control Virtual Machine Component Protection (VMCP) in vSphere HA. VMCP gives vSphere HA the ability to monitor a host for datastore accessibility failures, and automate recovery for affected virtual machines. ->`,
+					Description: `(Optional) A key/value map that specifies advanced options for vSphere HA. #### HA Virtual Machine Component Protection Settings The following settings control Virtual Machine Component Protection (VMCP) in vSphere HA. VMCP gives vSphere HA the ability to monitor a host for datastore accessibility failures, and automate recovery for affected virtual machines. ->`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_component_protection",
@@ -141,7 +145,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_datastore_apd_response_delay",
-					Description: `(Optional) Controls the delay in minutes to wait after an APD timeout event to execute the response action defined in [` + "`" + `ha_datastore_apd_response` + "`" + `](#ha_datastore_apd_response). Default: ` + "`" + `3` + "`" + ` minutes. <sup>[\`,
+					Description: `(Optional) The time, in seconds, to wait after an APD timeout event to run the response action defined in [` + "`" + `ha_datastore_apd_response` + "`" + `](#ha_datastore_apd_response). Default: ` + "`" + `180` + "`" + ` seconds (3 minutes). <sup>[\`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_monitoring",
@@ -149,11 +153,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_vm_failure_interval",
-					Description: `(Optional) If a heartbeat from a virtual machine is not received within this configured interval, the virtual machine is marked as failed. The value is in seconds. Default: ` + "`" + `30` + "`" + `.`,
+					Description: `(Optional) The time interval, in seconds, a heartbeat from a virtual machine is not received within this configured interval, the virtual machine is marked as failed. Default: ` + "`" + `30` + "`" + ` seconds.`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_minimum_uptime",
-					Description: `(Optional) The time, in seconds, that HA waits after powering on a virtual machine before monitoring for heartbeats. Default: ` + "`" + `120` + "`" + ` (2 minutes).`,
+					Description: `(Optional) The time, in seconds, that HA waits after powering on a virtual machine before monitoring for heartbeats. Default: ` + "`" + `120` + "`" + ` seconds (2 minutes).`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_maximum_resets",
@@ -161,11 +165,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_vm_maximum_failure_window",
-					Description: `(Optional) The length of the reset window in which [` + "`" + `ha_vm_maximum_resets` + "`" + `](#ha_vm_maximum_resets) can operate. When this window expires, no more resets are attempted regardless of the setting configured in ` + "`" + `ha_vm_maximum_resets` + "`" + `. ` + "`" + `-1` + "`" + ` means no window, meaning an unlimited reset time is allotted. The value is specified in seconds. Default: ` + "`" + `-1` + "`" + ` (no window). #### vSphere HA Admission Control settings The following settings control vSphere HA Admission Control, which controls whether or not specific VM operations are permitted in the cluster in order to protect the reliability of the cluster. Based on the constraints defined in these settings, operations such as power on or migration operations may be blocked to ensure that enough capacity remains to react to host failures. #### Admission control modes The [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy) parameter controls the specific mode that Admission Control uses. What settings are available depends on the admission control mode:`,
+					Description: `(Optional) The time, in seconds, for the reset window in which [` + "`" + `ha_vm_maximum_resets` + "`" + `](#ha_vm_maximum_resets) can operate. When this window expires, no more resets are attempted regardless of the setting configured in ` + "`" + `ha_vm_maximum_resets` + "`" + `. ` + "`" + `-1` + "`" + ` means no window, meaning an unlimited reset time is allotted. Default: ` + "`" + `-1` + "`" + ` (no window). #### vSphere HA Admission Control Settings The following settings control vSphere HA Admission Control, which controls whether or not specific VM operations are permitted in the cluster in order to protect the reliability of the cluster. Based on the constraints defined in these settings, operations such as power on or migration operations may be blocked to ensure that enough capacity remains to react to host failures. #### Admission Control Modes The [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy) parameter controls the specific mode that Admission Control uses. What settings are available depends on the admission control mode:`,
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_policy",
-					Description: `(Optional) The type of admission control policy to use with vSphere HA. Can be one of ` + "`" + `resourcePercentage` + "`" + `, ` + "`" + `slotPolicy` + "`" + `, ` + "`" + `failoverHosts` + "`" + `, or ` + "`" + `disabled` + "`" + `. Default: ` + "`" + `resourcePercentage` + "`" + `. #### Common Admission Control settings The following settings are available for all Admission Control modes, but will infer different meanings in each mode.`,
+					Description: `(Optional) The type of admission control policy to use with vSphere HA. Can be one of ` + "`" + `resourcePercentage` + "`" + `, ` + "`" + `slotPolicy` + "`" + `, ` + "`" + `failoverHosts` + "`" + `, or ` + "`" + `disabled` + "`" + `. Default: ` + "`" + `resourcePercentage` + "`" + `. #### Common Admission Control Settings The following settings are available for all Admission Control modes, but will infer different meanings in each mode.`,
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_host_failure_tolerance",
@@ -173,7 +177,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_performance_tolerance",
-					Description: `(Optional) The percentage of resource reduction that a cluster of virtual machines can tolerate in case of a failover. A value of 0 produces warnings only, whereas a value of 100 disables the setting. Default: ` + "`" + `100` + "`" + ` (disabled). #### Admission Control settings for resource percentage mode The following settings control specific settings for Admission Control when ` + "`" + `resourcePercentage` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
+					Description: `(Optional) The percentage of resource reduction that a cluster of virtual machines can tolerate in case of a failover. A value of 0 produces warnings only, whereas a value of 100 disables the setting. Default: ` + "`" + `100` + "`" + ` (disabled). #### Admission Control Settings for Resource Percentage Mode The following settings control specific settings for Admission Control when ` + "`" + `resourcePercentage` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_resource_percentage_auto_compute",
@@ -185,7 +189,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_resource_percentage_memory",
-					Description: `(Optional) Controls the user-defined percentage of memory resources in the cluster to reserve for failover. Default: ` + "`" + `100` + "`" + `. #### Admission Control settings for slot policy mode The following settings control specific settings for Admission Control when ` + "`" + `slotPolicy` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
+					Description: `(Optional) Controls the user-defined percentage of memory resources in the cluster to reserve for failover. Default: ` + "`" + `100` + "`" + `. #### Admission Control Settings for Slot Policy Mode The following settings control specific settings for Admission Control when ` + "`" + `slotPolicy` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_slot_policy_use_explicit_size",
@@ -197,11 +201,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_slot_policy_explicit_memory",
-					Description: `(Optional) Controls the user-defined memory slot size, in MB. Default: ` + "`" + `100` + "`" + `. #### Admission Control settings for dedicated failover host mode The following settings control specific settings for Admission Control when ` + "`" + `failoverHosts` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
+					Description: `(Optional) Controls the user-defined memory slot size, in MB. Default: ` + "`" + `100` + "`" + `. #### Admission Control Settings for Dedicated Failover Hosts Mode The following settings control specific settings for Admission Control when ` + "`" + `failoverHosts` + "`" + ` is selected in [` + "`" + `ha_admission_control_policy` + "`" + `](#ha_admission_control_policy).`,
 				},
 				resource.Attribute{
 					Name:        "ha_admission_control_failover_host_system_ids",
-					Description: `(Optional) Defines the [managed object IDs][docs-about-morefs] of hosts to use as dedicated failover hosts. These hosts are kept as available as possible - admission control will block access to the host, and DRS will ignore the host when making recommendations. #### vSphere HA datastore settings vSphere HA uses datastore heartbeating to determine the health of a particular host. Depending on how your datastores are configured, the settings below may need to be altered to ensure that specific datastores are used over others. If you require a user-defined list of datastores, ensure you select either ` + "`" + `userSelectedDs` + "`" + ` (for user selected only) or ` + "`" + `allFeasibleDsWithUserPreference` + "`" + ` (for automatic selection with preferred overrides) for the [` + "`" + `ha_heartbeat_datastore_policy` + "`" + `](#ha_heartbeat_datastore_policy) setting.`,
+					Description: `(Optional) Defines the [managed object IDs][docs-about-morefs] of hosts to use as dedicated failover hosts. These hosts are kept as available as possible - admission control will block access to the host, and DRS will ignore the host when making recommendations. #### vSphere HA Datastore Settings vSphere HA uses datastore heartbeating to determine the health of a particular host. Depending on how your datastores are configured, the settings below may need to be altered to ensure that specific datastores are used over others. If you require a user-defined list of datastores, ensure you select either ` + "`" + `userSelectedDs` + "`" + ` (for user selected only) or ` + "`" + `allFeasibleDsWithUserPreference` + "`" + ` (for automatic selection with preferred overrides) for the [` + "`" + `ha_heartbeat_datastore_policy` + "`" + `](#ha_heartbeat_datastore_policy) setting.`,
 				},
 				resource.Attribute{
 					Name:        "ha_heartbeat_datastore_policy",
@@ -209,7 +213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_heartbeat_datastore_ids",
-					Description: `(Optional) The list of managed object IDs for preferred datastores to use for HA heartbeating. This setting is only useful when [` + "`" + `ha_heartbeat_datastore_policy` + "`" + `](#ha_heartbeat_datastore_policy) is set to either ` + "`" + `userSelectedDs` + "`" + ` or ` + "`" + `allFeasibleDsWithUserPreference` + "`" + `. #### Proactive HA settings The following settings pertain to [Proactive HA][ref-vsphere-proactive-ha], an advanced feature of vSphere HA that allows the cluster to get data from external providers and make decisions based on the data reported. Working with Proactive HA is outside the scope of this document. For more details, see the referenced link in the above paragraph. [ref-vsphere-proactive-ha]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.avail.doc/GUID-3E3B18CC-8574-46FA-9170-CF549B8E55B8.html`,
+					Description: `(Optional) The list of managed object IDs for preferred datastores to use for HA heartbeating. This setting is only useful when [` + "`" + `ha_heartbeat_datastore_policy` + "`" + `](#ha_heartbeat_datastore_policy) is set to either ` + "`" + `userSelectedDs` + "`" + ` or ` + "`" + `allFeasibleDsWithUserPreference` + "`" + `. #### Proactive HA Settings The following settings pertain to [Proactive HA][ref-vsphere-proactive-ha], an advanced feature of vSphere HA that allows the cluster to get data from external providers and make decisions based on the data reported. Working with Proactive HA is outside the scope of this document. For more details, see the referenced link in the above paragraph. [ref-vsphere-proactive-ha]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-3E3B18CC-8574-46FA-9170-CF549B8E55B8.html`,
 				},
 				resource.Attribute{
 					Name:        "proactive_ha_enabled",
@@ -284,7 +288,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_affinity_rule",
 			Category:         "Host and Cluster Management Resources",
-			ShortDescription: `Provides a VMware vSphere cluster virtual machine affinity rule. This can be used to manage rules to tell virtual machines to run on the same host.`,
+			ShortDescription: `Provides the VMware vSphere Distributed Resource Scheduler affinity rule resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"host",
@@ -324,7 +328,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_anti_affinity_rule",
 			Category:         "Host and Cluster Management Resources",
-			ShortDescription: `Provides a VMware vSphere cluster virtual machine anti-affinity rule. This can be used to manage rules to tell virtual machines to run on separate hosts.`,
+			ShortDescription: `Provides the VMware vSphere Distributed Resource Scheduler anti-affinity rule resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"host",
@@ -487,7 +491,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_custom_attribute",
 			Category:         "Inventory Resources",
-			ShortDescription: `Provides a vSphere custom attribute resource. This can be used to manage custom attributes in vSphere.`,
+			ShortDescription: `Provides a VMware vSphere custom attribute resource. This can be used to manage custom attributes in vSphere.`,
 			Description:      ``,
 			Keywords: []string{
 				"inventory",
@@ -501,7 +505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "managed_object_type",
-					Description: `(Optional) The object type that this attribute may be applied to. If not set, the custom attribute may be applied to any object type. For a full list, click [here](#managed-object-types). Forces a new resource if changed. ## Managed Object Types The following table will help you determine what value you need to enter for the managed object type you want the attribute to apply to. Note that if you want a attribute to apply to all objects, leave the type unspecified. <table> <tr><th>Type</th><th>Value</th></tr> <tr><td>Folders</td><td>` + "`" + `Folder` + "`" + `</td></tr> <tr><td>Clusters</td><td>` + "`" + `ClusterComputeResource` + "`" + `</td></tr> <tr><td>Datacenters</td><td>` + "`" + `Datacenter` + "`" + `</td></tr> <tr><td>Datastores</td><td>` + "`" + `Datastore` + "`" + `</td></tr> <tr><td>Datastore Clusters</td><td>` + "`" + `StoragePod` + "`" + `</td></tr> <tr><td>DVS Portgroups</td><td>` + "`" + `DistributedVirtualPortgroup` + "`" + `</td></tr> <tr><td>Distributed vSwitches</td><td>` + "`" + `DistributedVirtualSwitch` + "`" + `<br>` + "`" + `VmwareDistributedVirtualSwitch` + "`" + `</td></tr> <tr><td>Hosts</td><td>` + "`" + `HostSystem` + "`" + `</td></tr> <tr><td>Content Libraries</td><td>` + "`" + `com.vmware.content.Library` + "`" + `</td></tr> <tr><td>Content Library Items</td><td>` + "`" + `com.vmware.content.library.Item` + "`" + `</td></tr> <tr><td>Networks</td><td>` + "`" + `HostNetwork` + "`" + `<br>` + "`" + `Network` + "`" + `<br>` + "`" + `OpaqueNetwork` + "`" + `</td></tr> <tr><td>Resource Pools</td><td>` + "`" + `ResourcePool` + "`" + `</td></tr> <tr><td>vApps</td><td>` + "`" + `VirtualApp` + "`" + `</td></tr> <tr><td>Virtual Machines</td><td>` + "`" + `VirtualMachine` + "`" + `</td></tr> </table> ## Attribute Reference This resource only exports the ` + "`" + `id` + "`" + ` attribute for the vSphere custom attribute. ## Importing An existing custom attribute can be [imported][docs-import] into this resource via its name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_custom_attribute.attribute terraform-test-attribute ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The object type that this attribute may be applied to. If not set, the custom attribute may be applied to any object type. For a full list, review the [Managed Object Types](#managed-object-types). Forces a new resource if changed. ## Managed Object Types The following table provides the managed object values for which an attribute may apply. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -711,7 +715,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_distributed_port_group",
 			Category:         "Networking Resources",
-			ShortDescription: `Provides a vSphere distributed virtual portgroup resource. This can be used to create and manage portgroups on a distributed virtual switch.`,
+			ShortDescription: `Provides a vSphere distributed port group resource. This can be used to create and manage port groups on a vSphere Distributed Switch.`,
 			Description:      ``,
 			Keywords: []string{
 				"networking",
@@ -726,7 +730,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "distributed_virtual_switch_uuid",
-					Description: `(Required) The ID of the DVS to add the port group to. Forces a new resource if changed.`,
+					Description: `(Required) The ID of the VDS to add the port group to. Forces a new resource if changed.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -746,7 +750,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_name_format",
-					Description: `(Optional) An optional formatting policy for naming of the ports in this port group. See the ` + "`" + `portNameFormat` + "`" + ` attribute listed [here][ext-vsphere-portname-format] for details on the format syntax. [ext-vsphere-portname-format]: https://code.vmware.com/apis/196/vsphere#/doc/vim.dvs.DistributedVirtualPortgroup.ConfigInfo.html#portNameFormat`,
+					Description: `(Optional) An optional formatting policy for naming of the ports in this port group. See the ` + "`" + `portNameFormat` + "`" + ` attribute listed [here][ext-vsphere-portname-format] for details on the format syntax. [ext-vsphere-portname-format]: https://vdc-download.vmware.com/vmwb-repository/dcr-public/b50dcbbf-051d-4204-a3e7-e1b618c1e384/538cf2ec-b34f-4bae-a332-3820ef9e7773/vim.dvs.DistributedVirtualPortgroup.ConfigInfo.html#portNameFormat`,
 				},
 				resource.Attribute{
 					Name:        "network_resource_pool_key",
@@ -799,7 +803,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_distributed_virtual_switch",
 			Category:         "Networking Resources",
-			ShortDescription: `Provides a vSphere distributed virtual switch resource. This can be used to create and manage DVS resources in vCenter.`,
+			ShortDescription: `Provides a vSphere Distributed Switch resource. This can be used to create and manage the vSphere Distributed Switch resources in vCenter Server.`,
 			Description:      ``,
 			Keywords: []string{
 				"networking",
@@ -807,260 +811,7 @@ var (
 				"virtual",
 				"switch",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the distributed virtual switch.`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_id",
-					Description: `(Required) The ID of the datacenter where the distributed virtual switch will be created. Forces a new resource if changed.`,
-				},
-				resource.Attribute{
-					Name:        "folder",
-					Description: `(Optional) The folder to create the DVS in. Forces a new resource if changed.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A detailed description for the DVS.`,
-				},
-				resource.Attribute{
-					Name:        "contact_name",
-					Description: `(Optional) The name of the person who is responsible for the DVS.`,
-				},
-				resource.Attribute{
-					Name:        "contact_detail",
-					Description: `(Optional) The detailed contact information for the person who is responsible for the DVS.`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `(Optional) An IPv4 address to identify the switch. This is mostly useful when used with the [Netflow arguments](#netflow-arguments) found below.`,
-				},
-				resource.Attribute{
-					Name:        "lacp_api_version",
-					Description: `(Optional) The Link Aggregation Control Protocol group version to use with the switch. Possible values are ` + "`" + `singleLag` + "`" + ` and ` + "`" + `multipleLag` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "link_discovery_operation",
-					Description: `(Optional) Whether to ` + "`" + `advertise` + "`" + ` or ` + "`" + `listen` + "`" + ` for link discovery traffic.`,
-				},
-				resource.Attribute{
-					Name:        "link_discovery_protocol",
-					Description: `(Optional) The discovery protocol type. Valid types are ` + "`" + `cdp` + "`" + ` and ` + "`" + `lldp` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "max_mtu",
-					Description: `(Optional) The maximum transmission unit (MTU) for the virtual switch.`,
-				},
-				resource.Attribute{
-					Name:        "multicast_filtering_mode",
-					Description: `(Optional) The multicast filtering mode to use with the switch. Can be one of ` + "`" + `legacyFiltering` + "`" + ` or ` + "`" + `snooping` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) - The version of the DVS to create. The default is to create the DVS at the latest version supported by the version of vSphere being used. A DVS can be upgraded to another version, but cannot be downgraded.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ~>`,
-				},
-				resource.Attribute{
-					Name:        "custom_attributes",
-					Description: `(Optional) Map of custom attribute ids to attribute value strings to set for virtual switch. See [here][docs-setting-custom-attributes] for a reference on how to set values for custom attributes. [docs-setting-custom-attributes]: /docs/providers/vsphere/r/custom_attribute.html#using-custom-attributes-in-a-supported-resource ~>`,
-				},
-				resource.Attribute{
-					Name:        "uplinks",
-					Description: `(Optional) A list of strings that uniquely identifies the names of the uplinks on the DVS across hosts. The number of items in this list controls the number of uplinks that exist on the DVS, in addition to the names. See [here](#uplink-name-and-count-control) for an example on how to use this option. ### Host management arguments`,
-				},
-				resource.Attribute{
-					Name:        "host",
-					Description: `(Optional) Use the ` + "`" + `host` + "`" + ` block to declare a host specification. The options are:`,
-				},
-				resource.Attribute{
-					Name:        "host_system_id",
-					Description: `(Required) The host system ID of the host to add to the DVS.`,
-				},
-				resource.Attribute{
-					Name:        "devices",
-					Description: `(Required) The list of NIC devices to map to uplinks on the DVS, added in order they are specified. ### Private VLAN mapping arguments`,
-				},
-				resource.Attribute{
-					Name:        "ignore_other_pvlan_mappings",
-					Description: `(Optional) Whether to ignore existing PVLAN mappings not managed by this resource. Defaults to false.`,
-				},
-				resource.Attribute{
-					Name:        "pvlan_mapping",
-					Description: `(Optional) Use the ` + "`" + `pvlan_mapping` + "`" + ` block to declare a private VLAN mapping. The options are:`,
-				},
-				resource.Attribute{
-					Name:        "primary_vlan_id",
-					Description: `(Required) The primary VLAN ID. The VLAN IDs of 0 and 4095 are reserved and cannot be used in this property.`,
-				},
-				resource.Attribute{
-					Name:        "secondary_vlan_id",
-					Description: `(Required) The secondary VLAN ID. The VLAN IDs of 0 and 4095 are reserved and cannot be used in this property.`,
-				},
-				resource.Attribute{
-					Name:        "pvlan_type",
-					Description: `(Required) The private VLAN type. Valid values are promiscuous, community and isolated. ### Netflow arguments The following options control settings that you can use to configure Netflow on the DVS:`,
-				},
-				resource.Attribute{
-					Name:        "netflow_active_flow_timeout",
-					Description: `(Optional) The number of seconds after which active flows are forced to be exported to the collector. Allowed range is ` + "`" + `60` + "`" + ` to ` + "`" + `3600` + "`" + `. Default: ` + "`" + `60` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_collector_ip_address",
-					Description: `(Optional) IP address for the Netflow collector, using IPv4 or IPv6. IPv6 is supported in vSphere Distributed Switch Version 6.0 or later. Must be set before Netflow can be enabled.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_collector_port",
-					Description: `(Optional) Port for the Netflow collector. This must be set before Netflow can be enabled.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_idle_flow_timeout",
-					Description: `(Optional) The number of seconds after which idle flows are forced to be exported to the collector. Allowed range is ` + "`" + `10` + "`" + ` to ` + "`" + `600` + "`" + `. Default: ` + "`" + `15` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_internal_flows_only",
-					Description: `(Optional) Whether to limit analysis to traffic that has both source and destination served by the same host. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_observation_domain_id",
-					Description: `(Optional) The observation domain ID for the Netflow collector.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_sampling_rate",
-					Description: `(Optional) The ratio of total number of packets to the number of packets analyzed. The default is ` + "`" + `0` + "`" + `, which indicates that the switch should analyze all packets. The maximum value is ` + "`" + `1000` + "`" + `, which indicates an analysis rate of 0.001%. ### Network I/O control arguments The following arguments manage network I/O control. Network I/O control (also known as network resource control) can be used to set up advanced traffic shaping for the DVS, allowing control of various classes of traffic in a fashion similar to how resource pools work for virtual machines. Configuration of network I/O control is also a requirement for the use of network resource pools, if their use is so desired. #### General network I/O control arguments`,
-				},
-				resource.Attribute{
-					Name:        "network_resource_control_enabled",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable network I/O control. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "network_resource_control_version",
-					Description: `(Optional) The version of network I/O control to use. Can be one of ` + "`" + `version2` + "`" + ` or ` + "`" + `version3` + "`" + `. Default: ` + "`" + `version2` + "`" + `. #### Network I/O control traffic classes There are currently 9 traffic classes that can be used for network I/O control - they are below. Each of these classes has 4 options that can be tuned that are discussed in the next section. <table> <tr><th>Type</th><th>Class Name</th></tr> <tr><td>Fault Tolerance (FT) Traffic</td><td>` + "`" + `faulttolerance` + "`" + `</td></tr> <tr><td>vSphere Replication (VR) Traffic</td><td>` + "`" + `hbr` + "`" + `</td></tr> <tr><td>iSCSI Traffic</td><td>` + "`" + `iscsi` + "`" + `</td></tr> <tr><td>Management Traffic</td><td>` + "`" + `management` + "`" + `</td></tr> <tr><td>NFS Traffic</td><td>` + "`" + `nfs` + "`" + `</td></tr> <tr><td>vSphere Data Protection</td><td>` + "`" + `vdp` + "`" + `</td></tr> <tr><td>Virtual Machine Traffic</td><td>` + "`" + `virtualmachine` + "`" + `</td></tr> <tr><td>vMotion Traffic</td><td>` + "`" + `vmotion` + "`" + `</td></tr> <tr><td>VSAN Traffic</td><td>` + "`" + `vsan` + "`" + `</td></tr> </table> #### Traffic class resource options There are 4 traffic resource options for each class, prefixed with the name of the traffic classes seen above. For example, to set the traffic class resource options for virtual machine traffic, see the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { # ... other configuration ... virtualmachine_share_level = "custom" virtualmachine_share_count = 150 virtualmachine_maximum_mbit = 200 virtualmachine_reservation_mbit = 20 } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
-				},
-				resource.Attribute{
-					Name:        "share_level",
-					Description: `(Optional) A pre-defined share level that can be assigned to this resource class. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "share_count",
-					Description: `(Optional) The number of shares for a custom level. This is ignored if ` + "`" + `share_level` + "`" + ` is not ` + "`" + `custom` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "maximum_mbit",
-					Description: `(Optional) The maximum amount of bandwidth allowed for this traffic class in Mbits/sec.`,
-				},
-				resource.Attribute{
-					Name:        "reservation_mbit",
-					Description: `(Optional) The guaranteed amount of bandwidth for this traffic class in Mbits/sec. ### Default port group policy arguments The following arguments are shared with the [` + "`" + `vsphere_distributed_port_group` + "`" + `][distributed-port-group] resource. Setting them here defines a default policy here that will be inherited by other port groups on this switch that do not have these values otherwise overridden. Not defining these options in a DVS will infer defaults that can be seen in the Terraform state after the initial apply. Of particular note to a DVS are the [HA policy options](#ha-policy-options), which is where the ` + "`" + `active_uplinks` + "`" + ` and ` + "`" + `standby_uplinks` + "`" + ` options are controlled, allowing the ability to create a NIC failover policy that applies to the entire DVS and all portgroups within it that don't override the policy. #### VLAN options The following options control the VLAN behaviour of the port groups the port policy applies to. One one of these 3 options may be set:`,
-				},
-				resource.Attribute{
-					Name:        "vlan",
-					Description: `(Optional) The member VLAN for the ports this policy applies to. A value of ` + "`" + `0` + "`" + ` means no VLAN.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_range",
-					Description: `(Optional) Used to denote VLAN trunking. Use the ` + "`" + `min_vlan` + "`" + ` and ` + "`" + `max_vlan` + "`" + ` sub-arguments to define the tagged VLAN range. Multiple ` + "`" + `vlan_range` + "`" + ` definitions are allowed, but they must not overlap. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_distributed_virtual_switch" "dvs" { # ... other configuration ... vlan_range { min_vlan = 1 max_vlan = 1000 } vlan_range { min_vlan = 2000 max_vlan = 4094 } } ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "port_private_secondary_vlan_id",
-					Description: `(Optional) Used to define a secondary VLAN ID when using private VLANs. #### HA policy options The following options control HA policy for ports that this policy applies to:`,
-				},
-				resource.Attribute{
-					Name:        "active_uplinks",
-					Description: `(Optional) A list of active uplinks to be used in load balancing. These uplinks need to match the definitions in the [` + "`" + `uplinks` + "`" + `](#uplinks) DVS argument. See [here](#uplink-name-and-count-control) for more details.`,
-				},
-				resource.Attribute{
-					Name:        "standby_uplinks",
-					Description: `(Optional) A list of standby uplinks to be used in failover. These uplinks need to match the definitions in the [` + "`" + `uplinks` + "`" + `](#uplinks) DVS argument. See [here](#uplink-name-and-count-control) for more details.`,
-				},
-				resource.Attribute{
-					Name:        "check_beacon",
-					Description: `(Optional) Enables beacon probing as an additional measure to detect NIC failure. ~>`,
-				},
-				resource.Attribute{
-					Name:        "failback",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the teaming policy will re-activate failed uplinks higher in precedence when they come back up.`,
-				},
-				resource.Attribute{
-					Name:        "notify_switches",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, the teaming policy will notify the broadcast network of an uplink failover, triggering cache updates.`,
-				},
-				resource.Attribute{
-					Name:        "teaming_policy",
-					Description: `(Optional) The uplink teaming policy. Can be one of ` + "`" + `loadbalance_ip` + "`" + `, ` + "`" + `loadbalance_srcmac` + "`" + `, ` + "`" + `loadbalance_srcid` + "`" + `, or ` + "`" + `failover_explicit` + "`" + `. #### LACP options The following options allow the use of LACP for NIC teaming for ports that this policy applies to. ~>`,
-				},
-				resource.Attribute{
-					Name:        "lacp_enabled",
-					Description: `(Optional) Enables LACP for the ports that this policy applies to.`,
-				},
-				resource.Attribute{
-					Name:        "lacp_mode",
-					Description: `(Optional) The LACP mode. Can be one of ` + "`" + `active` + "`" + ` or ` + "`" + `passive` + "`" + `. #### Security options The following options control security settings for the ports that this policy applies to:`,
-				},
-				resource.Attribute{
-					Name:        "allow_forged_transmits",
-					Description: `(Optional) Controls whether or not a virtual network adapter is allowed to send network traffic with a different MAC address than that of its own.`,
-				},
-				resource.Attribute{
-					Name:        "allow_mac_changes",
-					Description: `(Optional) Controls whether or not the Media Access Control (MAC) address can be changed.`,
-				},
-				resource.Attribute{
-					Name:        "allow_promiscuous",
-					Description: `(Optional) Enable promiscuous mode on the network. This flag indicates whether or not all traffic is seen on a given port. #### Traffic shaping options The following options control traffic shaping settings for the ports that this policy applies to:`,
-				},
-				resource.Attribute{
-					Name:        "ingress_shaping_enabled",
-					Description: `(Optional) ` + "`" + `true` + "`" + ` if the traffic shaper is enabled on the port for ingress traffic.`,
-				},
-				resource.Attribute{
-					Name:        "ingress_shaping_average_bandwidth",
-					Description: `(Optional) The average bandwidth in bits per second if ingress traffic shaping is enabled on the port.`,
-				},
-				resource.Attribute{
-					Name:        "ingress_shaping_peak_bandwidth",
-					Description: `(Optional) The peak bandwidth during bursts in bits per second if ingress traffic shaping is enabled on the port.`,
-				},
-				resource.Attribute{
-					Name:        "ingress_shaping_burst_size",
-					Description: `(Optional) The maximum burst size allowed in bytes if ingress traffic shaping is enabled on the port.`,
-				},
-				resource.Attribute{
-					Name:        "egress_shaping_enabled",
-					Description: `(Optional) ` + "`" + `true` + "`" + ` if the traffic shaper is enabled on the port for egress traffic.`,
-				},
-				resource.Attribute{
-					Name:        "egress_shaping_average_bandwidth",
-					Description: `(Optional) The average bandwidth in bits per second if egress traffic shaping is enabled on the port.`,
-				},
-				resource.Attribute{
-					Name:        "egress_shaping_peak_bandwidth",
-					Description: `(Optional) The peak bandwidth during bursts in bits per second if egress traffic shaping is enabled on the port.`,
-				},
-				resource.Attribute{
-					Name:        "egress_shaping_burst_size",
-					Description: `(Optional) The maximum burst size allowed in bytes if egress traffic shaping is enabled on the port. #### Miscellaneous options The following are some general options that also affect ports that this policy applies to:`,
-				},
-				resource.Attribute{
-					Name:        "block_all_ports",
-					Description: `(Optional) Shuts down all ports in the port groups that this policy applies to, effectively blocking all network access to connected virtual devices.`,
-				},
-				resource.Attribute{
-					Name:        "netflow_enabled",
-					Description: `(Optional) Enables Netflow on all ports that this policy applies to.`,
-				},
-				resource.Attribute{
-					Name:        "tx_uplink",
-					Description: `(Optional) Forward all traffic transmitted by ports for which this policy applies to its DVS uplinks.`,
-				},
-				resource.Attribute{
-					Name:        "directpath_gen2_allowed",
-					Description: `(Optional) Allow VMDirectPath Gen2 for the ports for which this policy applies to. ## Attribute Reference The following attributes are exported:`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -1136,7 +887,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_file",
 			Category:         "Storage Resources",
-			ShortDescription: `Provides a VMware vSphere virtual machine file resource. This can be used to upload files (e.g. vmdk disks) from the Terraform host machine to a remote vSphere or copy fields within vSphere.`,
+			ShortDescription: `Provides a VMware vSphere file resource. This can be used to upload files (e.g. .iso and .vmdk) from the Terraform host machine to a remote vSphere or copy files within vSphere.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -1145,31 +896,31 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_file",
-					Description: `(Required) The path to the file being uploaded from the Terraform host to vSphere or copied within vSphere. Forces a new resource if changed.`,
+					Description: `(Required) The path to the file being uploaded from the Terraform host to the vSphere environment or copied within vSphere environment. Forces a new resource if changed.`,
 				},
 				resource.Attribute{
 					Name:        "destination_file",
-					Description: `(Required) The path to where the file should be uploaded or copied to on vSphere.`,
+					Description: `(Required) The path to where the file should be uploaded or copied to on the destination ` + "`" + `datastore` + "`" + ` in vSphere.`,
 				},
 				resource.Attribute{
 					Name:        "source_datacenter",
-					Description: `(Optional) The name of a datacenter in which the file will be copied from. Forces a new resource if changed.`,
+					Description: `(Optional) The name of a datacenter from which the file will be copied. Forces a new resource if changed.`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
-					Description: `(Optional) The name of a datacenter in which the file will be uploaded to.`,
+					Description: `(Optional) The name of a datacenter to which the file will be uploaded.`,
 				},
 				resource.Attribute{
 					Name:        "source_datastore",
-					Description: `(Optional) The name of the datastore in which file will be copied from. Forces a new resource if changed.`,
+					Description: `(Optional) The name of the datastore from which file will be copied. Forces a new resource if changed.`,
 				},
 				resource.Attribute{
 					Name:        "datastore",
-					Description: `(Required) The name of the datastore in which to upload the file to.`,
+					Description: `(Required) The name of the datastore to which to upload the file.`,
 				},
 				resource.Attribute{
 					Name:        "create_directories",
-					Description: `(Optional) Create directories in ` + "`" + `destination_file` + "`" + ` path parameter if any missing for copy operation. ~>`,
+					Description: `(Optional) Create directories in ` + "`" + `destination_file` + "`" + ` path parameter on first apply if any are missing for copy operation. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1234,7 +985,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_vm_restart_priority",
-					Description: `(Optional) The restart priority for the virtual machine when vSphere detects a host failure. Can be one of ` + "`" + `clusterRestartPriority` + "`" + `, ` + "`" + `lowest` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `highest` + "`" + `. Default: ` + "`" + `clusterRestartPriority` + "`" + `.`,
+					Description: `(Optional) The restart priority for the virtual machine when vSphere detects a host failure. Can be one of ` + "`" + `clusterRestartPriority` + "`" + `, ` + "`" + `lowest` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `highest` + "`" + `, or ` + "`" + `disabled` + "`" + `. Default: ` + "`" + `clusterRestartPriority` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_restart_timeout",
@@ -1258,7 +1009,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ha_datastore_apd_response_delay",
-					Description: `(Optional) Controls the delay in minutes to wait after an APD timeout event to execute the response action defined in [` + "`" + `ha_datastore_apd_response` + "`" + `](#ha_datastore_apd_response). Use ` + "`" + `-1` + "`" + ` to use the cluster default. Default: ` + "`" + `-1` + "`" + `. <sup>[\`,
+					Description: `(Optional) Controls the delay in seconds to wait after an APD timeout event to execute the response action defined in [` + "`" + `ha_datastore_apd_response` + "`" + `](#ha_datastore_apd_response). Use ` + "`" + `-1` + "`" + ` to use the cluster default. Default: ` + "`" + `-1` + "`" + `. <sup>[\`,
 				},
 				resource.Attribute{
 					Name:        "ha_vm_monitoring_use_cluster_defaults",
@@ -1291,7 +1042,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_host",
 			Category:         "Host and Cluster Management Resources",
-			ShortDescription: `Provides a VMware vSphere host resource. This represents an ESXi host that can be used either as part of a Compute Cluster or Standalone.`,
+			ShortDescription: `Provides a VMware vSphere host resource. This represents an ESXi host that can be used as a member of a cluster or as a standalone host.`,
 			Description:      ``,
 			Keywords: []string{
 				"host",
@@ -1326,7 +1077,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `(Optional) Host's certificate SHA-1 thumbprint. If not set the the CA that signed the host's certificate should be trusted. If the CA is not trusted and no thumbprint is set then the operation will fail.`,
+					Description: `(Optional) Host's certificate SHA-1 thumbprint. If not set the CA that signed the host's certificate should be trusted. If the CA is not trusted and no thumbprint is set then the operation will fail.`,
 				},
 				resource.Attribute{
 					Name:        "license",
@@ -1334,7 +1085,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force",
-					Description: `(Optional) If set to true then it will force the host to be added, even if the host is already connected to a different vSphere instance. Default is ` + "`" + `false` + "`" + ``,
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + ` then it will force the host to be added, even if the host is already connected to a different vCenter Server instance. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "connected",
@@ -1346,17 +1097,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lockdown",
-					Description: `(Optional) Set the lockdown state of the host. Valid options are ` + "`" + `disabled` + "`" + `, ` + "`" + `normal` + "`" + `, and ` + "`" + `strict` + "`" + `. Default is ` + "`" + `disabled` + "`" + `. ## Attribute Reference`,
+					Description: `(Optional) Set the lockdown state of the host. Valid options are ` + "`" + `disabled` + "`" + `, ` + "`" + `normal` + "`" + `, and ` + "`" + `strict` + "`" + `. Default is ` + "`" + `disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The IDs of any tags to attach to this resource. Please refer to the ` + "`" + `vsphere_tag` + "`" + ` resource for more information on applying tags to resources. ~>`,
+				},
+				resource.Attribute{
+					Name:        "custom_attributes",
+					Description: `(Optional) A map of custom attribute IDs and string values to apply to the resource. Please refer to the ` + "`" + `vsphere_custom_attributes` + "`" + ` resource for more information on applying tags to resources. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource via supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.vm host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource by supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.esx-01 host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource via supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.vm host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource by supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.esx-01 host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 		},
@@ -1716,7 +1475,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_resource_pool",
 			Category:         "Host and Cluster Management Resources",
-			ShortDescription: `Provides a vSphere resource pool resource. This can be used to create and manage resource pools.`,
+			ShortDescription: `Provides a resource for VMware vSphere resource pools. This can be used to create and manage resource pools.`,
 			Description:      ``,
 			Keywords: []string{
 				"host",
@@ -1733,7 +1492,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent_resource_pool_id",
-					Description: `(Required) The [managed object ID][docs-about-morefs] of the parent resource pool. This can be the root resource pool for a cluster or standalone host, or a resource pool itself. When moving a resource pool from one parent resource pool to another, both must share a common root resource pool or the move will fail.`,
+					Description: `(Required) The [managed object ID][docs-about-morefs] of the parent resource pool. This can be the root resource pool for a cluster or standalone host, or a resource pool itself. When moving a resource pool from one parent resource pool to another, both must share a common root resource pool.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_share_level",
@@ -1776,8 +1535,12 @@ var (
 					Description: `(Optional) The CPU utilization of a resource pool will not exceed this limit, even if there are available resources. Set to ` + "`" + `-1` + "`" + ` for unlimited. Default: ` + "`" + `-1` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "scale_descendants_shares",
+					Description: `(Optional) Determines if the shares of all descendants of the resource pool are scaled up or down when the shares of the resource pool are scaled up or down. Can be one of ` + "`" + `disabled` + "`" + ` or ` + "`" + `scaleCpuAndMemoryShares` + "`" + `. Default: ` + "`" + `disabled` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing resource pool can be [imported][docs-import] into this resource via the path to the resource pool, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_resource_pool.resource_pool /dc1/host/compute-cluster1/Resources/resource-pool1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the resource pool named ` + "`" + `resource-pool1` + "`" + ` that is located in the compute cluster ` + "`" + `compute-cluster1` + "`" + ` in the ` + "`" + `dc1` + "`" + ` datacenter.`,
+					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing resource pool can be [imported][docs-import] into this resource via the path to the resource pool, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_resource_pool.resource_pool /dc-01/host/cluster-01/Resources/resource-pool-01 ` + "`" + `` + "`" + `` + "`" + ` The above would import the resource pool named ` + "`" + `resource-pool-01` + "`" + ` that is located in the compute cluster ` + "`" + `cluster-01` + "`" + ` in the ` + "`" + `dc-01` + "`" + ` datacenter. ### Settings that Require vSphere 7.0 or higher These settings require vSphere 7.0 or higher:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1879,7 +1642,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_vapp_container",
 			Category:         "Virtual Machine Resources",
-			ShortDescription: `Provides a vSphere vApp container resource. This can be used to create and manage vApp container.`,
+			ShortDescription: `Provides a VMware vSphere vApp container resource. This can be used to create and manage vApp container.`,
 			Description:      ``,
 			Keywords: []string{
 				"virtual",
@@ -1942,7 +1705,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing vApp container can be [imported][docs-import] into this resource via the path to the vApp container, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vapp_container.vapp_container /default-dc/host/cluster1/Resources/resource_pool1/vapp_container1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the vApp container named ` + "`" + `vapp-container1` + "`" + ` that is located in the resource pool ` + "`" + `resource-pool1` + "`" + ` that is part of the host cluster ` + "`" + `cluster1` + "`" + ` in the ` + "`" + `dc1` + "`" + ` datacenter.`,
+					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing vApp container can be [imported][docs-import] into this resource via the path to the vApp container, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html Example: ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vapp_container.vapp_container /dc-01/host/cluster-01/Resources/resource-pool-01/vapp-01 ` + "`" + `` + "`" + `` + "`" + ` The example above would import the vApp container named ` + "`" + `vapp-01` + "`" + ` that is located in the resource pool ` + "`" + `resource-pool-01` + "`" + ` that is part of the host cluster ` + "`" + `cluster-01` + "`" + ` in the ` + "`" + `dc-01` + "`" + ` datacenter.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1999,7 +1762,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_virtual_disk",
 			Category:         "Virtual Machine Resources",
-			ShortDescription: `Provides a VMware virtual disk resource. This can be used to create and delete virtual disks.`,
+			ShortDescription: `Provides a vSphere virtual disk resource. This can be used to create and delete virtual disks.`,
 			Description:      ``,
 			Keywords: []string{
 				"virtual",
@@ -2025,7 +1788,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The type of disk to create. Can be one of ` + "`" + `eagerZeroedThick` + "`" + `, ` + "`" + `lazy` + "`" + `, or ` + "`" + `thin` + "`" + `. Default: ` + "`" + `eagerZeroedThick` + "`" + `. For information on what each kind of disk provisioning policy means, click [here][docs-vmware-vm-disk-provisioning]. [docs-vmware-vm-disk-provisioning]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.vm_admin.doc/GUID-4C0F4D73-82F2-4B81-8AA7-1DD752A8A5AC.html`,
+					Description: `(Optional) The type of disk to create. Can be one of ` + "`" + `eagerZeroedThick` + "`" + `, ` + "`" + `lazy` + "`" + `, or ` + "`" + `thin` + "`" + `. Default: ` + "`" + `eagerZeroedThick` + "`" + `. For information on what each kind of disk provisioning policy means, click [here][docs-vmware-vm-disk-provisioning]. [docs-vmware-vm-disk-provisioning]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-4C0F4D73-82F2-4B81-8AA7-1DD752A8A5AC.html`,
 				},
 				resource.Attribute{
 					Name:        "adapter_type",
@@ -2042,7 +1805,7 @@ var (
 			Name:             "",
 			Type:             "vsphere_virtual_machine",
 			Category:         "Virtual Machine Resources",
-			ShortDescription: `Provides a VMware vSphere virtual machine resource. This can be used to create, modify, and delete virtual machines.`,
+			ShortDescription: `Provides a resource for VMware vSphere virtual machines. This resource can be used to create, modify, and delete virtual machines.`,
 			Description:      ``,
 			Keywords: []string{
 				"virtual",
@@ -2050,188 +1813,192 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "alternate_guest_name",
+					Description: `(Optional) The guest name for the operating system when ` + "`" + `guest_id` + "`" + ` is ` + "`" + `otherGuest` + "`" + ` or ` + "`" + `otherGuest64` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) A user-provided description of the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "cdrom",
+					Description: `(Optional) A specification for a CD-ROM device on the virtual machine. See [CD-ROM options](#cd-rom-options) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "clone",
+					Description: `(Optional) When specified, the virtual machine will be created as a clone of a specified template. Optional customization options can be submitted for the resource. See [creating a virtual machine from a template](#creating-a-virtual-machine-from-a-template) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "custom_attributes",
+					Description: `(Optional) Map of custom attribute ids to attribute value strings to set for virtual machine. Please refer to the [` + "`" + `vsphere_custom_attributes` + "`" + `][docs-setting-custom-attributes] resource for more information on setting custom attributes. [docs-setting-custom-attributes]: /docs/providers/vsphere/r/custom_attribute.html#using-custom-attributes-in-a-supported-resource ~>`,
+				},
+				resource.Attribute{
+					Name:        "datastore_id",
+					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datastore in which to place the virtual machine. The virtual machine configuration files is placed here, along with any virtual disks that are created where a datastore is not explicitly specified. See the section on [virtual machine migration](#virtual-machine-migration) for more information on modifying this value.`,
+				},
+				resource.Attribute{
+					Name:        "datastore_cluster_id",
+					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datastore cluster in which to place the virtual machine. This setting applies to entire virtual machine and implies that you wish to use vSphere Storage DRS with the virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for more information on modifying this value. ~>`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Optional) The datacenter ID. Required only when deploying an OVF/OVA template.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `(Required) A specification for a virtual disk device on the virtual machine. See [disk options](#disk-options) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "extra_config",
+					Description: `(Optional) Extra configuration data for the virtual machine. Can be used to supply advanced parameters not normally in configuration, such as instance metadata and userdata. ~>`,
+				},
+				resource.Attribute{
+					Name:        "firmware",
+					Description: `(Optional) The firmware for the virtual machine. One of ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "folder",
+					Description: `(Optional) The path to the virtual machine folder in which to place the virtual machine, relative to the datacenter path (` + "`" + `/<datacenter-name>/vm` + "`" + `). For example, ` + "`" + `/dc-01/vm/foo` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "guest_id",
+					Description: `(Optional) The guest ID for the operating system type. For a full list of possible values, see [here][vmware-docs-guest-ids]. Default: ` + "`" + `otherGuest64` + "`" + `. [vmware-docs-guest-ids]: https://vdc-download.vmware.com/vmwb-repository/dcr-public/b50dcbbf-051d-4204-a3e7-e1b618c1e384/538cf2ec-b34f-4bae-a332-3820ef9e7773/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html`,
+				},
+				resource.Attribute{
+					Name:        "hardware_version",
+					Description: `(Optional) The hardware version number. Valid range is from 4 to 19. The hardware version cannot be downgraded. See [virtual machine hardware compatibility][virtual-machine-hardware-compatibility] for more information. [virtual-machine-hardware-compatibility]: https://kb.vmware.com/s/article/2007240`,
+				},
+				resource.Attribute{
+					Name:        "host_system_id",
+					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of a host on which to place the virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for more information on modifying this value. When using a vSphere cluster, if a ` + "`" + `host_system_id` + "`" + ` is not supplied, vSphere will select a host in the cluster to place the virtual machine, according to any defaults or vSphere DRS placement policies.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual machine.`,
 				},
 				resource.Attribute{
-					Name:        "resource_pool_id",
-					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the resource pool to put this virtual machine in. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ~>`,
-				},
-				resource.Attribute{
-					Name:        "datastore_id",
-					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the virtual machine's datastore. The virtual machine configuration is placed here, along with any virtual disks that are created where a datastore is not explicitly specified. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value.`,
-				},
-				resource.Attribute{
-					Name:        "datastore_cluster_id",
-					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datastore cluster ID to use. This setting applies to entire virtual machine and implies that you wish to use Storage DRS with this virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value. ~>`,
-				},
-				resource.Attribute{
-					Name:        "datacenter_id",
-					Description: `(Optional) The datacenter id. Required only when deploying an ovf template.`,
-				},
-				resource.Attribute{
-					Name:        "folder",
-					Description: `(Optional) The path to the folder to put this virtual machine in, relative to the datacenter that the resource pool is in.`,
-				},
-				resource.Attribute{
-					Name:        "host_system_id",
-					Description: `(Optional) An optional [managed object reference ID][docs-about-morefs] of a host to put this virtual machine on. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value. If a ` + "`" + `host_system_id` + "`" + ` is not supplied, vSphere will select a host in the resource pool to place the virtual machine, according to any defaults or DRS policies in place.`,
-				},
-				resource.Attribute{
-					Name:        "disk",
-					Description: `(Required) A specification for a virtual disk device on this virtual machine. See [disk options](#disk-options) below.`,
-				},
-				resource.Attribute{
 					Name:        "network_interface",
-					Description: `(Required) A specification for a virtual NIC on this virtual machine. See [network interface options](#network-interface-options) below.`,
-				},
-				resource.Attribute{
-					Name:        "cdrom",
-					Description: `(Optional) A specification for a CDROM device on this virtual machine. See [CDROM options](#cdrom-options) below.`,
-				},
-				resource.Attribute{
-					Name:        "clone",
-					Description: `(Optional) When specified, the VM will be created as a clone of a specified template. Optional customization options can be submitted as well. See [creating a virtual machine from a template](#creating-a-virtual-machine-from-a-template) for more details.`,
-				},
-				resource.Attribute{
-					Name:        "hardware_version",
-					Description: `(Optional) The hardware version number. Valid range is from 4 to 15. The hardware version cannot be downgraded. See [virtual machine hardware compatibility][virtual-machine-hardware-compatibility] for more details.`,
+					Description: `(Required) A specification for a virtual NIC on the virtual machine. See [network interface options](#network-interface-options) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "pci_device_id",
-					Description: `(Optional) List of host PCI device IDs to create PCI passthroughs for. [virtual-machine-hardware-compatibility]: https://kb.vmware.com/s/article/2007240 ~>`,
+					Description: `(Optional) List of host PCI device IDs in which to create PCI passthroughs. ~>`,
 				},
 				resource.Attribute{
 					Name:        "ovf_deploy",
-					Description: `(Optional) When specified, the VM will be deployed from the provided ovf/ova template. See [creating a virtual machine from a ovf/ova template](#creating-vm-from-deploying-a-ovf-ova-template) for more details.`,
-				},
-				resource.Attribute{
-					Name:        "vapp",
-					Description: `(Optional) Optional vApp configuration. The only sub-key available is ` + "`" + `properties` + "`" + `, which is a key/value map of properties for virtual machines imported from OVF or OVA files. See [Using vApp properties to supply OVF/OVA configuration](#using-vapp-properties-to-supply-ovf-ova-configuration) for more details.`,
-				},
-				resource.Attribute{
-					Name:        "guest_id",
-					Description: `(Optional) The guest ID for the operating system type. For a full list of possible values, see [here][vmware-docs-guest-ids]. Default: ` + "`" + `other-64` + "`" + `. [vmware-docs-guest-ids]: https://code.vmware.com/apis/358/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html`,
-				},
-				resource.Attribute{
-					Name:        "alternate_guest_name",
-					Description: `(Optional) The guest name for the operating system when ` + "`" + `guest_id` + "`" + ` is ` + "`" + `other` + "`" + ` or ` + "`" + `other-64` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) A user-provided description of the virtual machine. The default is no annotation.`,
-				},
-				resource.Attribute{
-					Name:        "firmware",
-					Description: `(Optional) The firmware interface to use on the virtual machine. Can be one of ` + "`" + `bios` + "`" + ` or ` + "`" + `EFI` + "`" + `. Default: ` + "`" + `bios` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "extra_config",
-					Description: `(Optional) Extra configuration data for this virtual machine. Can be used to supply advanced parameters not normally in configuration, such as instance metadata. ~>`,
+					Description: `(Optional) When specified, the virtual machine will be deployed from the provided OVF/OVA template. See [creating a virtual machine from an OVF/OVA template](#creating-a-virtual-machine-from-an-ovf-ova-template) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "replace_trigger",
-					Description: `(Optional) Triggers replacement of resource whenever it changes. ` + "`" + `replace_trigger = sha256(format("%s-%s",data.template_file.cloud_init_metadata.rendered,data.template_file.cloud_init_userdata.rendered))` + "`" + ` will fingerprint the changes in cloud_init metadata and userdata templates. This will enable a replacement of the resource whenever the dependant template renders a new configuration. (Forces a replacement)`,
+					Description: `(Optional) Triggers replacement of resource whenever it changes. For example, ` + "`" + `replace_trigger = sha256(format("%s-%s",data.template_file.cloud_init_metadata.rendered,data.template_file.cloud_init_userdata.rendered))` + "`" + ` will fingerprint the changes in cloud-init metadata and userdata templates. This will enable a replacement of the resource whenever the dependant template renders a new configuration. (Forces a replacement.)`,
+				},
+				resource.Attribute{
+					Name:        "resource_pool_id",
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the resource pool in which to place the virtual machine. See the [Virtual Machine Migration](#virtual-machine-migration) section for more information on modifying this value. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ~>`,
 				},
 				resource.Attribute{
 					Name:        "scsi_type",
-					Description: `(Optional) The type of SCSI bus this virtual machine will have. Can be one of lsilogic (LSI Logic Parallel), lsilogic-sas (LSI Logic SAS) or pvscsi (VMware Paravirtual). Defualt: ` + "`" + `pvscsi` + "`" + `.`,
+					Description: `(Optional) The SCSI controller type for the virtual machine. One of ` + "`" + `lsilogic` + "`" + ` (LSI Logic Parallel), ` + "`" + `lsilogic-sas` + "`" + ` (LSI Logic SAS) or ` + "`" + `pvscsi` + "`" + ` (VMware Paravirtual). Default: ` + "`" + `pvscsi` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "scsi_bus_sharing",
-					Description: `(Optional) Mode for sharing the SCSI bus. The modes are physicalSharing, virtualSharing, and noSharing. Default: ` + "`" + `noSharing` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ~>`,
-				},
-				resource.Attribute{
-					Name:        "custom_attributes",
-					Description: `(Optional) Map of custom attribute ids to attribute value strings to set for virtual machine. See [here][docs-setting-custom-attributes] for a reference on how to set values for custom attributes. [docs-setting-custom-attributes]: /docs/providers/vsphere/r/custom_attribute.html#using-custom-attributes-in-a-supported-resource ~>`,
+					Description: `(Optional) The type of SCSI bus sharing for the virtual machine SCSI controller. One of ` + "`" + `physicalSharing` + "`" + `, ` + "`" + `virtualSharing` + "`" + `, and ` + "`" + `noSharing` + "`" + `. Default: ` + "`" + `noSharing` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "storage_policy_id",
-					Description: `(Optional) The UUID of the storage policy to assign to VM home directory. ### CPU and memory options The following options control CPU and memory settings on the virtual machine:`,
+					Description: `(Optional) The ID of the storage policy to assign to the home directory of a virtual machine.`,
 				},
 				resource.Attribute{
-					Name:        "num_cpus",
-					Description: `(Optional) The total number of virtual processor cores to assign to this virtual machine. Default: ` + "`" + `1` + "`" + `.`,
+					Name:        "tags",
+					Description: `(Optional) The IDs of any tags to attach to this resource. Please refer to the [` + "`" + `vsphere_tag` + "`" + `][docs-applying-tags] resource for more information on applying tags to virtual machine resources. [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ~>`,
 				},
 				resource.Attribute{
-					Name:        "num_cores_per_socket",
-					Description: `(Optional) The number of cores per socket in this virtual machine. The number of vCPUs on the virtual machine will be ` + "`" + `num_cpus` + "`" + ` divided by ` + "`" + `num_cores_per_socket` + "`" + `. If specified, the value supplied to ` + "`" + `num_cpus` + "`" + ` must be evenly divisible by this value. Default: ` + "`" + `1` + "`" + `.`,
+					Name:        "vapp",
+					Description: `(Optional) Used for vApp configurations. The only sub-key available is ` + "`" + `properties` + "`" + `, which is a key/value map of properties for virtual machines imported from and OVF/OVA. See [Using vApp Properties for OVF/OVA Configuration](#using-vapp-properties-for-ovf-ova-configuration) for more information. ### CPU and Memory Options The following options control CPU and memory settings on a virtual machine:`,
 				},
 				resource.Attribute{
 					Name:        "cpu_hot_add_enabled",
-					Description: `(Optional) Allow CPUs to be added to this virtual machine while it is running.`,
+					Description: `(Optional) Allow CPUs to be added to the virtual machine while it is powered on.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_hot_remove_enabled",
-					Description: `(Optional) Allow CPUs to be removed to this virtual machine while it is running.`,
+					Description: `(Optional) Allow CPUs to be removed to the virtual machine while it is powered on.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional) The size of the virtual machine's memory, in MB. Default: ` + "`" + `1024` + "`" + ` (1 GB).`,
+					Description: `(Optional) The memory size to assign to the virtual machine, in MB. Default: ` + "`" + `1024` + "`" + ` (1 GB).`,
 				},
 				resource.Attribute{
 					Name:        "memory_hot_add_enabled",
-					Description: `(Optional) Allow memory to be added to this virtual machine while it is running. ~>`,
+					Description: `(Optional) Allow memory to be added to the virtual machine while it is powered on. ~>`,
+				},
+				resource.Attribute{
+					Name:        "num_cores_per_socket",
+					Description: `(Optional) The number of cores per socket in the virtual machine. The number of vCPUs on the virtual machine will be ` + "`" + `num_cpus` + "`" + ` divided by ` + "`" + `num_cores_per_socket` + "`" + `. If specified, the value supplied to ` + "`" + `num_cpus` + "`" + ` must be evenly divisible by this value. Default: ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "num_cpus",
+					Description: `(Optional) The total number of virtual processor cores to assign to the virtual machine. Default: ` + "`" + `1` + "`" + `. ### Boot Options The following options control boot settings on a virtual machine:`,
 				},
 				resource.Attribute{
 					Name:        "boot_delay",
 					Description: `(Optional) The number of milliseconds to wait before starting the boot sequence. The default is no delay.`,
 				},
 				resource.Attribute{
-					Name:        "efi_secure_boot_enabled",
-					Description: `(Optional) When the ` + "`" + `firmware` + "`" + ` type is set to is ` + "`" + `efi` + "`" + `, this enables EFI secure boot. Default: ` + "`" + `false` + "`" + `. ~>`,
-				},
-				resource.Attribute{
 					Name:        "boot_retry_delay",
-					Description: `(Optional) The number of milliseconds to wait before retrying the boot sequence. This only valid if ` + "`" + `boot_retry_enabled` + "`" + ` is true. Default: ` + "`" + `10000` + "`" + ` (10 seconds).`,
+					Description: `(Optional) The number of milliseconds to wait before retrying the boot sequence. This option is only valid if ` + "`" + `boot_retry_enabled` + "`" + ` is ` + "`" + `true` + "`" + `. Default: ` + "`" + `10000` + "`" + ` (10 seconds).`,
 				},
 				resource.Attribute{
 					Name:        "boot_retry_enabled",
-					Description: `(Optional) If set to true, a virtual machine that fails to boot will try again after the delay defined in ` + "`" + `boot_retry_delay` + "`" + `. Default: ` + "`" + `false` + "`" + `. ### VMware Tools options The following options control VMware tools options on the virtual machine:`,
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, a virtual machine that fails to boot will try again after the delay defined in ` + "`" + `boot_retry_delay` + "`" + `. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "sync_time_with_host",
-					Description: `(Optional) Enable guest clock synchronization with the host. On vSphere 7 U1 and above, with only this setting the clock is synchronized on startup and resume so consider also setting ` + "`" + `sync_time_with_host_periodically` + "`" + `. Requires VMware tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "sync_time_with_host_periodically",
-					Description: `(Optional) Enable periodic clock synchronization with the host. Supported only on vSphere 7 U1 and above. On older versions setting ` + "`" + `sync_time_with_host` + "`" + ` is enough for periodic synchronization. Requires VMware tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
+					Name:        "efi_secure_boot_enabled",
+					Description: `(Optional) Use this option to enable EFI secure boot when the ` + "`" + `firmware` + "`" + ` type is set to is ` + "`" + `efi` + "`" + `. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_after_power_on",
-					Description: `(Optional) Enable the execution of post-power-on scripts when VMware tools is installed. Default: ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Enable post-power-on scripts to run when VMware Tools is installed. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_after_resume",
-					Description: `(Optional) Enable the execution of post-resume scripts when VMware tools is installed. Default: ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Enable ost-resume scripts to run when VMware Tools is installed. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_before_guest_reboot",
-					Description: `(Optional) Enable the execution of pre-reboot scripts when VMware tools is installed. Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Enable pre-reboot scripts to run when VMware Tools is installed. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_before_guest_shutdown",
-					Description: `(Optional) Enable the execution of pre-shutdown scripts when VMware tools is installed. Default: ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) Enable pre-shutdown scripts to run when VMware Tools is installed. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "run_tools_scripts_before_guest_standby",
-					Description: `(Optional) Enable the execution of pre-standby scripts when VMware tools is installed. Default: ` + "`" + `true` + "`" + `. ### Resource allocation options The following options allow control over CPU and memory allocation on the virtual machine. Note that the resource pool that this VM is in may affect these options.`,
+					Description: `(Optional) Enable pre-standby scripts to run when VMware Tools is installed. Default: ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_time_with_host",
+					Description: `(Optional) Enable the guest operating system to synchronization its clock with the host when the virtual machine is powered on or resumed. Requires vSphere 7.0 Update 1 and later. Requires VMware Tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_time_with_host_periodically",
+					Description: `(Optional) Enable the guest operating system to periodically synchronize its clock with the host. Requires vSphere 7.0 Update 1 and later. On previous versions, setting ` + "`" + `sync_time_with_host` + "`" + ` is will enable periodic synchronization. Requires VMware Tools to be installed. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tools_upgrade_policy",
+					Description: `(Optional) Enable automatic upgrade of the VMware Tools version when the virtual machine is rebooted. If necessary, VMware Tools is upgraded to the latest version supported by the host on which the virtual machine is running. Requires VMware Tools to be installed. One of ` + "`" + `manual` + "`" + ` or ` + "`" + `upgradeAtPowerCycle` + "`" + `. Default: ` + "`" + `manual` + "`" + `. ### Resource Allocation Options The following options control CPU and memory allocation on the virtual machine. Please note that the resource pool in which a virtual machine is placed may affect these options. The options are:`,
 				},
 				resource.Attribute{
 					Name:        "cpu_limit",
-					Description: `(Optional) The maximum amount of CPU (in MHz) that this virtual machine can consume, regardless of available resources. The default is no limit.`,
+					Description: `(Optional) The maximum amount of CPU (in MHz) that the virtual machine can consume, regardless of available resources. The default is no limit.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_reservation",
-					Description: `(Optional) The amount of CPU (in MHz) that this virtual machine is guaranteed. The default is no reservation.`,
+					Description: `(Optional) The amount of CPU (in MHz) that the virtual machine is guaranteed. The default is no reservation.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_share_level",
-					Description: `(Optional) The allocation level for CPU resources. Can be one of ` + "`" + `high` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `custom` + "`" + `.`,
+					Description: `(Optional) The allocation level for the virtual machine CPU resources. One of ` + "`" + `high` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `custom` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_share_count",
@@ -2239,115 +2006,107 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_limit",
-					Description: `(Optional) The maximum amount of memory (in MB) that this virtual machine can consume, regardless of available resources. The default is no limit.`,
+					Description: `(Optional) The maximum amount of memory (in MB) that th virtual machine can consume, regardless of available resources. The default is no limit.`,
 				},
 				resource.Attribute{
 					Name:        "memory_reservation",
-					Description: `(Optional) The amount of memory (in MB) that this virtual machine is guaranteed. The default is no reservation.`,
+					Description: `(Optional) The amount of memory (in MB) that the virtual machine is guaranteed. The default is no reservation.`,
 				},
 				resource.Attribute{
 					Name:        "memory_share_level",
-					Description: `(Optional) The allocation level for memory resources. Can be one of ` + "`" + `high` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `custom` + "`" + `.`,
+					Description: `(Optional) The allocation level for the virtual machine memory resources. One of ` + "`" + `high` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `custom` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "memory_share_count",
-					Description: `(Optional) The number of memory shares allocated to the virtual machine when the ` + "`" + `memory_share_level` + "`" + ` is ` + "`" + `custom` + "`" + `. ### Advanced options The following options control advanced operation of the virtual machine, or control various parts of Terraform workflow, and should not need to be modified during basic operation of the resource. Only change these options if they are explicitly required, or if you are having trouble with Terraform's default behavior.`,
+					Description: `(Optional) The number of memory shares allocated to the virtual machine when the ` + "`" + `memory_share_level` + "`" + ` is ` + "`" + `custom` + "`" + `. ### Advanced Options The following options control advanced operation of the virtual machine, or control various parts of Terraform workflow, and should not need to be modified during basic operation of the resource. Only change these options if they are explicitly required, or if you are having trouble with Terraform's default behavior. The options are:`,
+				},
+				resource.Attribute{
+					Name:        "cpu_performance_counters_enabled",
+					Description: `(Optional) Enable CPU performance counters on the virtual machine. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enable_disk_uuid",
 					Description: `(Optional) Expose the UUIDs of attached virtual disks to the virtual machine, allowing access to them in the guest. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "vbs_enabled",
-					Description: `(Optional) Enable Virtualization Based Security. Requires ` + "`" + `firmware` + "`" + ` to be ` + "`" + `efi` + "`" + `, and ` + "`" + `vvtd_enabled` + "`" + `, ` + "`" + `nested_hv_enabled` + "`" + ` and ` + "`" + `efi_secure_boot_enabled` + "`" + ` must all have a value of ` + "`" + `true` + "`" + `. Supported on vSphere 6.7 and higher. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "vvtd_enabled",
-					Description: `(Optional) Flag to specify if Intel Virtualization Technology for Directed I/O is enabled for this virtual machine (_I/O MMU_ in the vSphere Client). Supported on vSphere 6.7 and higher. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "hv_mode",
-					Description: `(Optional) The (non-nested) hardware virtualization setting for this virtual machine. Can be one of ` + "`" + `hvAuto` + "`" + `, ` + "`" + `hvOn` + "`" + `, or ` + "`" + `hvOff` + "`" + `. Default: ` + "`" + `hvAuto` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "ept_rvi_mode",
-					Description: `(Optional) The EPT/RVI (hardware memory virtualization) setting for this virtual machine. Can be one of ` + "`" + `automatic` + "`" + `, ` + "`" + `on` + "`" + `, or ` + "`" + `off` + "`" + `. Default: ` + "`" + `automatic` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "nested_hv_enabled",
-					Description: `(Optional) Enable nested hardware virtualization on this virtual machine, facilitating nested virtualization in the guest. Default: ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "enable_logging",
 					Description: `(Optional) Enable logging of virtual machine events to a log file stored in the virtual machine directory. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "cpu_performance_counters_enabled",
-					Description: `(Optional) Enable CPU performance counters on this virtual machine. Default: ` + "`" + `false` + "`" + `.`,
+					Name:        "ept_rvi_mode",
+					Description: `(Optional) The EPT/RVI (hardware memory virtualization) setting for the virtual machine. One of ` + "`" + `automatic` + "`" + `, ` + "`" + `on` + "`" + `, or ` + "`" + `off` + "`" + `. Default: ` + "`" + `automatic` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "swap_placement_policy",
-					Description: `(Optional) The swap file placement policy for this virtual machine. Can be one of ` + "`" + `inherit` + "`" + `, ` + "`" + `hostLocal` + "`" + `, or ` + "`" + `vmDirectory` + "`" + `. Default: ` + "`" + `inherit` + "`" + `.`,
+					Name:        "force_power_off",
+					Description: `(Optional) If a guest shutdown failed or times out while updating or destroying (see [` + "`" + `shutdown_wait_timeout` + "`" + `](#shutdown_wait_timeout)), force the power-off of the virtual machine. Default: ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hv_mode",
+					Description: `(Optional) The hardware virtualization (non-nested) setting for the virtual machine. One of ` + "`" + `hvAuto` + "`" + `, ` + "`" + `hvOn` + "`" + `, or ` + "`" + `hvOff` + "`" + `. Default: ` + "`" + `hvAuto` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ide_controller_count",
+					Description: `(Optional) The number of IDE controllers that the virtual machine. This directly affects the number of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ignored_guest_ips",
+					Description: `(Optional) List of IP addresses and CIDR networks to ignore while waiting for an available IP address using either of the waiters. Any IP addresses in this list will be ignored so that the waiter will continue to wait for a valid IP address. Default: ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "latency_sensitivity",
-					Description: `(Optional) Controls the scheduling delay of the virtual machine. Use a higher sensitivity for applications that require lower latency, such as VOIP, media player applications, or applications that require frequent access to mouse or keyboard devices. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `medium` + "`" + `, or ` + "`" + `high` + "`" + `. ~>`,
+					Description: `(Optional) Controls the scheduling delay of the virtual machine. Use a higher sensitivity for applications that require lower latency, such as VOIP, media player applications, or applications that require frequent access to mouse or keyboard devices. One of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `medium` + "`" + `, or ` + "`" + `high` + "`" + `. ~>`,
 				},
 				resource.Attribute{
-					Name:        "wait_for_guest_net_timeout",
-					Description: `(Optional) The amount of time, in minutes, to wait for an available IP address on this virtual machine's NICs. Older versions of VMware Tools do not populate this property. In those cases, this waiter can be disabled and the [` + "`" + `wait_for_guest_ip_timeout` + "`" + `](#wait_for_guest_ip_timeout) waiter can be used instead. A value less than 1 disables the waiter. Default: 5 minutes.`,
+					Name:        "migrate_wait_timeout",
+					Description: `(Optional) The amount of time, in minutes, to wait for a virtual machine migration to complete before failing. Default: ` + "`" + `10` + "`" + ` minutes. See the section on [virtual machine migration](#virtual-machine-migration) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "nested_hv_enabled",
+					Description: `(Optional) Enable nested hardware virtualization on the virtual machine, facilitating nested virtualization in the guest operating system. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "shutdown_wait_timeout",
+					Description: `(Optional) The amount of time, in minutes, to wait for a graceful guest shutdown when making necessary updates to the virtual machine. If ` + "`" + `force_power_off` + "`" + ` is set to ` + "`" + `true` + "`" + `, the virtual machine will be forced to power-off after the timeout, otherwise an error is returned. Default: ` + "`" + `3` + "`" + ` minutes.`,
+				},
+				resource.Attribute{
+					Name:        "swap_placement_policy",
+					Description: `(Optional) The swap file placement policy for the virtual machine. One of ` + "`" + `inherit` + "`" + `, ` + "`" + `hostLocal` + "`" + `, or ` + "`" + `vmDirectory` + "`" + `. Default: ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vbs_enabled",
+					Description: `(Optional) Enable Virtualization Based Security. Requires ` + "`" + `firmware` + "`" + ` to be ` + "`" + `efi` + "`" + `. In addition, ` + "`" + `vvtd_enabled` + "`" + `, ` + "`" + `nested_hv_enabled` + "`" + `, and ` + "`" + `efi_secure_boot_enabled` + "`" + ` must all have a value of ` + "`" + `true` + "`" + `. Supported on vSphere 6.7 and later. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vvtd_enabled",
+					Description: `(Optional) Enable Intel Virtualization Technology for Directed I/O for the virtual machine (_I/O MMU_ in the vSphere Client). Supported on vSphere 6.7 and later. Default: ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_guest_ip_timeout",
+					Description: `(Optional) The amount of time, in minutes, to wait for an available guest IP address on the virtual machine. This should only be used if the version VMware Tools does not allow the [` + "`" + `wait_for_guest_net_timeout` + "`" + `](#wait_for_guest_net_timeout) waiter to be used. A value less than ` + "`" + `1` + "`" + ` disables the waiter. Default: ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_guest_net_routable",
 					Description: `(Optional) Controls whether or not the guest network waiter waits for a routable address. When ` + "`" + `false` + "`" + `, the waiter does not wait for a default gateway, nor are IP addresses checked against any discovered default gateways as part of its success criteria. This property is ignored if the [` + "`" + `wait_for_guest_ip_timeout` + "`" + `](#wait_for_guest_ip_timeout) waiter is used. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "wait_for_guest_ip_timeout",
-					Description: `(Optional) The amount of time, in minutes, to wait for an available guest IP address on this virtual machine. This should only be used if your version of VMware Tools does not allow the [` + "`" + `wait_for_guest_net_timeout` + "`" + `](#wait_for_guest_net_timeout) waiter to be used. A value less than 1 disables the waiter. Default: 0.`,
-				},
-				resource.Attribute{
-					Name:        "ignored_guest_ips",
-					Description: `(Optional) List of IP addresses and CIDR networks to ignore while waiting for an available IP address using either of the waiters. Any IP addresses in this list will be ignored if they show up so that the waiter will continue to wait for a real IP address. Default: [].`,
-				},
-				resource.Attribute{
-					Name:        "shutdown_wait_timeout",
-					Description: `(Optional) The amount of time, in minutes, to wait for a graceful guest shutdown when making necessary updates to the virtual machine. If ` + "`" + `force_power_off` + "`" + ` is set to true, the VM will be force powered-off after this timeout, otherwise an error is returned. Default: 3 minutes.`,
-				},
-				resource.Attribute{
-					Name:        "migrate_wait_timeout",
-					Description: `(Optional) The amount of time, in minutes, to wait for a virtual machine migration to complete before failing. Default: 10 minutes. Also see the section on [virtual machine migration](#virtual-machine-migration).`,
-				},
-				resource.Attribute{
-					Name:        "force_power_off",
-					Description: `(Optional) If a guest shutdown failed or timed out while updating or destroying (see [` + "`" + `shutdown_wait_timeout` + "`" + `](#shutdown_wait_timeout)), force the power-off of the virtual machine. Default: ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "scsi_controller_count",
-					Description: `(Optional) The number of SCSI controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `1` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "sata_controller_count",
-					Description: `(Optional) The number of SATA controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `0` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "ide_controller_count",
-					Description: `(Optional) The number of IDE controllers that Terraform manages on this virtual machine. This directly affects the amount of disks you can add to the virtual machine and the maximum disk unit number. Note that lowering this value does not remove controllers. Default: ` + "`" + `2` + "`" + `. ### Disk options Virtual disks are managed by adding an instance of the ` + "`" + `disk` + "`" + ` block. At the very least, there must be ` + "`" + `name` + "`" + ` and ` + "`" + `size` + "`" + ` attributes. ` + "`" + `unit_number` + "`" + ` is required for any disk other than the first, and there must be at least one resource with the implicit number of 0. An abridged multi-disk example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... disk { label = "disk0" size = "10" } disk { label = "disk1" size = "100" unit_number = 1 } # ... other configuration ... } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Name:        "wait_for_guest_net_timeout",
+					Description: `(Optional) The amount of time, in minutes, to wait for an available guest IP address on the virtual machine. Older versions of VMware Tools do not populate this property. In those cases, this waiter can be disabled and the [` + "`" + `wait_for_guest_ip_timeout` + "`" + `](#wait_for_guest_ip_timeout) waiter can be used instead. A value less than ` + "`" + `1` + "`" + ` disables the waiter. Default: ` + "`" + `5` + "`" + ` minutes. ### Disk Options Virtual disks are managed by adding one or more instance of the ` + "`" + `disk` + "`" + ` block. At a minimum, both the ` + "`" + `label` + "`" + ` and ` + "`" + `size` + "`" + ` attributes must be provided. The ` + "`" + `unit_number` + "`" + ` is required for any disk other than the first, and there must be at least one resource with the implicit number of ` + "`" + `0` + "`" + `. The following example demonstrates and abridged multi-disk configuration:`,
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Required) A label for the disk. Forces a new disk if changed. ~>`,
+					Description: `(Required) A label for the virtual disk. Forces a new disk, if changed. ~>`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The size of the disk, in GB.`,
+					Description: `(Required) The size of the disk, in GB. Must be a whole number.`,
 				},
 				resource.Attribute{
 					Name:        "unit_number",
-					Description: `(Optional) The disk number on the storage bus. The maximum value for this setting is the value of the controller count times the controller capacity (15 for SCSI, 30 for SATA, and 2 for IDE). The default is ` + "`" + `0` + "`" + `, for which one disk must be set to. Duplicate unit numbers are not allowed.`,
+					Description: `(Optional) The disk number on the storage bus. The maximum value for this setting is the value of the controller count times the controller capacity (15 for SCSI, 30 for SATA, and 2 for IDE). Duplicate unit numbers are not allowed. Default ` + "`" + `0` + "`" + `, for which one disk must be set to.`,
 				},
 				resource.Attribute{
 					Name:        "datastore_id",
-					Description: `(Optional) A [managed object reference ID][docs-about-morefs] to the datastore for this virtual disk. The default is to use the datastore of the virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for details on changing this value. ~>`,
+					Description: `(Optional) The [managed object reference ID][docs-about-morefs] for the datastore on which the virtual disk is placed. The default is to use the datastore of the virtual machine. See the section on [virtual machine migration](#virtual-machine-migration) for information on modifying this value. ~>`,
 				},
 				resource.Attribute{
 					Name:        "attach",
@@ -2355,7 +2114,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) When using ` + "`" + `attach` + "`" + `, this parameter controls the path of a virtual disk to attach externally. Otherwise, it is a computed attribute that contains the virtual disk's current filename.`,
+					Description: `(Optional) When using ` + "`" + `attach` + "`" + `, this parameter controls the path of a virtual disk to attach externally. Otherwise, it is a computed attribute that contains the virtual disk filename.`,
 				},
 				resource.Attribute{
 					Name:        "keep_on_remove",
@@ -2363,19 +2122,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_mode",
-					Description: `(Optional) The mode of this this virtual disk for purposes of writes and snapshotting. Can be one of ` + "`" + `append` + "`" + `, ` + "`" + `independent_nonpersistent` + "`" + `, ` + "`" + `independent_persistent` + "`" + `, ` + "`" + `nonpersistent` + "`" + `, ` + "`" + `persistent` + "`" + `, or ` + "`" + `undoable` + "`" + `. Default: ` + "`" + `persistent` + "`" + `. For an explanation of options, click [here][vmware-docs-disk-mode]. [vmware-docs-disk-mode]: https://pubs.vmware.com/vsphere-6-5/topic/com.vmware.wssdk.apiref.doc/vim.vm.device.VirtualDiskOption.DiskMode.html`,
+					Description: `(Optional) The mode of this this virtual disk for purposes of writes and snapshots. One of ` + "`" + `append` + "`" + `, ` + "`" + `independent_nonpersistent` + "`" + `, ` + "`" + `independent_persistent` + "`" + `, ` + "`" + `nonpersistent` + "`" + `, ` + "`" + `persistent` + "`" + `, or ` + "`" + `undoable` + "`" + `. Default: ` + "`" + `persistent` + "`" + `. For more information on these option, please refer to the [product documentation][vmware-docs-disk-mode]. [vmware-docs-disk-mode]: https://vdc-download.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.device.VirtualDiskOption.DiskMode.html`,
 				},
 				resource.Attribute{
 					Name:        "eagerly_scrub",
-					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, the disk space is zeroed out on VM creation. This will delay the creation of the disk or virtual machine. Cannot be set to ` + "`" + `true` + "`" + ` when ` + "`" + `thin_provisioned` + "`" + ` is ` + "`" + `true` + "`" + `. See the section on [picking a disk type](#picking-a-disk-type). Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, the disk space is zeroed out when the virtual machine is created. This will delay the creation of the virtual disk. Cannot be set to ` + "`" + `true` + "`" + ` when ` + "`" + `thin_provisioned` + "`" + ` is ` + "`" + `true` + "`" + `. See the section on [picking a disk type](#picking-a-disk-type) for more information. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "thin_provisioned",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, this disk is thin provisioned, with space for the file being allocated on an as-needed basis. Cannot be set to ` + "`" + `true` + "`" + ` when ` + "`" + `eagerly_scrub` + "`" + ` is ` + "`" + `true` + "`" + `. See the section on [picking a disk type](#picking-a-disk-type). Default: ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, the disk is thin provisioned, with space for the file being allocated on an as-needed basis. Cannot be set to ` + "`" + `true` + "`" + ` when ` + "`" + `eagerly_scrub` + "`" + ` is ` + "`" + `true` + "`" + `. See the section on [selecting a disk type](#selecting-a-disk-type) for more information. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_sharing",
-					Description: `(Optional) The sharing mode of this virtual disk. Can be one of ` + "`" + `sharingMultiWriter` + "`" + ` or ` + "`" + `sharingNone` + "`" + `. Default: ` + "`" + `sharingNone` + "`" + `. ~>`,
+					Description: `(Optional) The sharing mode of this virtual disk. One of ` + "`" + `sharingMultiWriter` + "`" + ` or ` + "`" + `sharingNone` + "`" + `. Default: ` + "`" + `sharingNone` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "write_through",
@@ -2387,35 +2146,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "io_reservation",
-					Description: `(Optional) The I/O reservation (guarantee) that this disk has, in IOPS. The default is no reservation.`,
+					Description: `(Optional) The I/O reservation (guarantee) for the virtual disk has, in IOPS. The default is no reservation.`,
 				},
 				resource.Attribute{
 					Name:        "io_share_level",
-					Description: `(Optional) The share allocation level for this disk. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `normal` + "`" + `.`,
+					Description: `(Optional) The share allocation level for the virtual disk. One of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `normal` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "io_share_count",
-					Description: `(Optional) The share count for this disk when the share level is ` + "`" + `custom` + "`" + `.`,
+					Description: `(Optional) The share count for the virtual disk when the share level is ` + "`" + `custom` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "storage_policy_id",
-					Description: `(Optional) The UUID of the storage policy to assign to this disk.`,
+					Description: `(Optional) The UUID of the storage policy to assign to the virtual disk.`,
 				},
 				resource.Attribute{
 					Name:        "controller_type",
-					Description: `(Optional) The type of storage controller to attach the disk to. Can be ` + "`" + `scsi` + "`" + `, ` + "`" + `sata` + "`" + `, or ` + "`" + `ide` + "`" + `. You must have the appropriate number of controllers enabled for the selected type. Default ` + "`" + `scsi` + "`" + `. #### Computed disk attributes`,
+					Description: `(Optional) The type of storage controller to attach the disk to. Can be ` + "`" + `scsi` + "`" + `, ` + "`" + `sata` + "`" + `, or ` + "`" + `ide` + "`" + `. You must have the appropriate number of controllers enabled for the selected type. Default ` + "`" + `scsi` + "`" + `. #### Computed Disk Attributes`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `The UUID of the virtual disk's VMDK file. This is used to track the virtual disk on the virtual machine. #### Picking a disk type The ` + "`" + `eagerly_scrub` + "`" + ` and ` + "`" + `thin_provisioned` + "`" + ` options control the space allocation type of a virtual disk. These show up in the vSphere console as a unified enumeration of options, the equivalents of which are explained below. The defaults in Terraform are the equivalent of thin provisioning.`,
+					Description: `The UUID of the virtual disk VMDK file. This is used to track the virtual disk on the virtual machine. #### Virtual Disk Provisioning Policies The ` + "`" + `eagerly_scrub` + "`" + ` and ` + "`" + `thin_provisioned` + "`" + ` options control the virtual disk space allocation type. These appear in vSphere as a unified enumeration of options, the equivalents of which are explained below. The provider configuration defaults to thin provision. The options are:`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
-					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the network to connect this interface to.`,
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the network on which to connect the virtual machine network interface.`,
 				},
 				resource.Attribute{
 					Name:        "adapter_type",
-					Description: `(Optional) The network interface type. Can be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `. Default: ` + "`" + `vmxnet3` + "`" + `.`,
+					Description: `(Optional) The network interface type. One of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `. Default: ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "use_static_mac",
@@ -2423,27 +2182,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mac_address",
-					Description: `(Optional) The MAC address of this network interface. Can only be manually set if ` + "`" + `use_static_mac` + "`" + ` is true, otherwise this is a computed value that gives the current MAC address of this interface.`,
+					Description: `(Optional) The MAC address of the network interface. Can only be manually set if ` + "`" + `use_static_mac` + "`" + ` is ` + "`" + `true` + "`" + `. Otherwise, the value is computed and presents the assigned MAC address for the interface.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
-					Description: `(Optional) The upper bandwidth limit of this network interface, in Mbits/sec. The default is no limit.`,
+					Description: `(Optional) The upper bandwidth limit of the network interface, in Mbits/sec. The default is no limit.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_reservation",
-					Description: `(Optional) The bandwidth reservation of this network interface, in Mbits/sec. The default is no reservation.`,
+					Description: `(Optional) The bandwidth reservation of the network interface, in Mbits/sec. The default is no reservation.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_share_level",
-					Description: `(Optional) The bandwidth share allocation level for this interface. Can be one of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `normal` + "`" + `.`,
+					Description: `(Optional) The bandwidth share allocation level for the network interface. One of ` + "`" + `low` + "`" + `, ` + "`" + `normal` + "`" + `, ` + "`" + `high` + "`" + `, or ` + "`" + `custom` + "`" + `. Default: ` + "`" + `normal` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_share_count",
-					Description: `(Optional) The share count for this network interface when the share level is ` + "`" + `custom` + "`" + `.`,
+					Description: `(Optional) The share count for the network interface when the share level is ` + "`" + `custom` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ovf_mapping",
-					Description: `(Optional) Specifies which OVF NIC the ` + "`" + `network_interface` + "`" + ` should be associated with. Only applies at creation and only when deploying from an OVF source. ### CDROM options A single virtual CDROM device can be created and attached to the virtual machine. The resource supports attaching a CDROM from a datastore ISO or using a remote client device. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... cdrom { datastore_id = "${data.vsphere_datastore.iso_datastore.id}" path = "ISOs/os-livecd.iso" } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) Specifies which NIC in an OVF/OVA the ` + "`" + `network_interface` + "`" + ` should be associated. Only applies at creation when deploying from an OVF/OVA. ### CD-ROM Options A CD-ROM device is managed by adding an instance of the ` + "`" + `cdrom` + "`" + ` block. A single virtual CD-ROM device can be created and attached to the virtual machine. The resource supports attaching a CD-ROM from either a datastore ISO or using a remote client device.`,
 				},
 				resource.Attribute{
 					Name:        "client_device",
@@ -2451,7 +2210,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datastore_id",
-					Description: `(Optional) The datastore ID that the ISO is located in. Requried for using a datastore ISO. Conflicts with ` + "`" + `client_device` + "`" + `.`,
+					Description: `(Optional) The datastore ID that on which the ISO is located. Required for using a datastore ISO. Conflicts with ` + "`" + `client_device` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -2463,7 +2222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_address",
-					Description: `An address internal to Terraform that helps locate the device when ` + "`" + `key` + "`" + ` is unavailable. This follows a convention of ` + "`" + `CONTROLLER_TYPE:BUS_NUMBER:UNIT_NUMBER` + "`" + `. Example: ` + "`" + `scsi:0:1` + "`" + ` means device unit 1 on SCSI bus 0. ## Creating a Virtual Machine from a Template The ` + "`" + `clone` + "`" + ` block can be used to create a new virtual machine from an existing virtual machine or template. The resource supports both making a complete copy of a virtual machine, or cloning from a snapshot (otherwise known as a linked clone). See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. ~>`,
+					Description: `An address internal to Terraform that helps locate the device when ` + "`" + `key` + "`" + ` is unavailable. This follows a convention of ` + "`" + `CONTROLLER_TYPE:BUS_NUMBER:UNIT_NUMBER` + "`" + `. Example: ` + "`" + `scsi:0:1` + "`" + ` means device unit ` + "`" + `1` + "`" + ` on SCSI bus ` + "`" + `0` + "`" + `. ## Creating a Virtual Machine from a Template The ` + "`" + `clone` + "`" + ` block can be used to create a new virtual machine from an existing virtual machine or template. The resource supports both making a complete copy of a virtual machine, or cloning from a snapshot (also known as a linked clone). See the section on [cloning and customization example](#cloning-and-customization-example) for more information. ~>`,
 				},
 				resource.Attribute{
 					Name:        "template_uuid",
@@ -2471,7 +2230,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "linked_clone",
-					Description: `(Optional) Clone this virtual machine from a snapshot or a template. Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Clone the virtual machine from a snapshot or a template. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -2479,31 +2238,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customize",
-					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customization](#virtual-machine-customization). ### Virtual machine customization As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. Windows guests are customized using Sysprep, which will result in the machine SID being reset. Before using customization, check is that your source VM meets the [requirements](https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc_50%2FGUID-80F3F5B5-F795-45F1-B0FA-3709978113D5.html) for guest OS customization on vSphere. See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization timeout settings`,
+					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customizations](#virtual-machine-customizations). ### Virtual Machine Customizations As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. Windows guests are customized using Sysprep, which will result in the machine SID being reset. Before using customization, check is that your source virtual machine meets the [requirements](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html) for guest OS customization on vSphere. See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization Timeout Settings`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) The time, in minutes that Terraform waits for customization to complete before failing. The default is 10 minutes, and setting the value to 0 or a negative value disables the waiter altogether. #### Network interface settings These settings, which should be specified in nested ` + "`" + `network_interface` + "`" + ` blocks within [` + "`" + `customize` + "`" + `](#virtual-machine-customization), configure network interfaces on a per-interface basis and are matched up to [` + "`" + `network_interface` + "`" + `](#network-interface-options) devices in the order they are declared. Given the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { # ... other configuration ... customize { # ... other configuration ... network_interface { ipv4_address = "10.0.0.10" ipv4_netmask = 24 } network_interface { ipv4_address = "172.16.0.10" ipv4_netmask = 24 } ipv4_gateway = "10.0.0.1" } } } ` + "`" + `` + "`" + `` + "`" + ` The first set of ` + "`" + `network_interface` + "`" + ` data would be assigned to the ` + "`" + `public` + "`" + ` interface, and the second to the ` + "`" + `private` + "`" + ` interface. To use DHCP, declare an empty ` + "`" + `network_interface` + "`" + ` block for each interface being configured. So the above example would look like: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... network_interface { network_id = "${data.vsphere_network.public.id}" } network_interface { network_id = "${data.vsphere_network.private.id}" } clone { # ... other configuration ... customize { # ... other configuration ... network_interface {} network_interface {} } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) The time, in minutes, that the provider waits for customization to complete before failing. The default is ` + "`" + `10` + "`" + ` minutes. Setting the value to ` + "`" + `0` + "`" + ` or a negative value disables the waiter. #### Network Interface Settings These settings, which should be specified in nested ` + "`" + `network_interface` + "`" + ` blocks within [` + "`" + `customize` + "`" + `](#virtual-machine-customization) block, configure network interfaces on a per-interface basis and are matched up to [` + "`" + `network_interface` + "`" + `](#network-interface-options) devices in the order declared. Static IP Address Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... network_interface { network_id = data.vsphere_network.public.id } network_interface { network_id = data.vsphere_network.private.id } clone { # ... other configuration ... customize { # ... other configuration ... network_interface { ipv4_address = "10.0.0.10" ipv4_netmask = 24 } network_interface { ipv4_address = "172.16.0.10" ipv4_netmask = 24 } ipv4_gateway = "10.0.0.1" } } } ` + "`" + `` + "`" + `` + "`" + ` The first ` + "`" + `network_interface` + "`" + ` would be assigned to the ` + "`" + `public` + "`" + ` interface, and the second to the ` + "`" + `private` + "`" + ` interface. To use DHCP, declare an empty ` + "`" + `network_interface` + "`" + ` block for each interface.`,
 				},
 				resource.Attribute{
 					Name:        "dns_server_list",
-					Description: `(Optional) Network interface-specific DNS server settings for Windows operating systems. Ignored on Linux and possibly other operating systems - for those systems, please see the [global DNS settings](#global-dns-settings) section.`,
+					Description: `(Optional) DNS servers for the network interface. Used by Windows guest operating systems, but ignored by Linux distribution guest operating systems. For Linux, please refer to the section on the [global DNS settings](#global-dns-settings).`,
 				},
 				resource.Attribute{
 					Name:        "dns_domain",
-					Description: `(Optional) Network interface-specific DNS search domain for Windows operating systems. Ignored on Linux and possibly other operating systems - for those systems, please see the [global DNS settings](#global-dns-settings) section.`,
+					Description: `(Optional) DNS search domain for the network interface. Used by Windows guest operating systems, but ignored by Linux distribution guest operating systems. For Linux, please refer to the section on the [global DNS settings](#global-dns-settings).`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
-					Description: `(Optional) The IPv4 address assigned to this network adapter. If left blank or not included, DHCP is used.`,
+					Description: `(Optional) The IPv4 address assigned to the network adapter. If blank or not included, DHCP is used.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_address",
-					Description: `(Optional) The IPv6 address assigned to this network adapter. If left blank or not included, auto-configuration is used.`,
+					Description: `(Optional) The IPv6 address assigned to the network adapter. If blank or not included, auto-configuration is used.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_netmask",
-					Description: `(Optional) The IPv6 subnet mask, in bits (example: ` + "`" + `32` + "`" + `). ~>`,
+					Description: `(Optional) The IPv6 subnet mask, in bits (_e.g._ ` + "`" + `32` + "`" + `). ~>`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_gateway",
@@ -2511,91 +2270,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6_gateway",
-					Description: `(Optional) The IPv6 default gateway when using ` + "`" + `network_interface` + "`" + ` customization on the virtual machine. #### Global DNS settings The following settings configure DNS globally, generally for Linux systems. For Windows systems, this is done per-interface, see [network interface settings](#network-interface-settings).`,
+					Description: `(Optional) The IPv6 default gateway when using ` + "`" + `network_interface` + "`" + ` customization on the virtual machine. #### Global DNS Settings The following settings configure DNS globally, generally for Linux distribution guest operating systems. For Windows guest operating systems, this is performer per-interface. See the section on [network interface settings](#network-interface-settings) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "dns_server_list",
-					Description: `The list of DNS servers to configure on a virtual machine.`,
+					Description: `The list of DNS servers to configure on the virtual machine.`,
 				},
 				resource.Attribute{
 					Name:        "dns_suffix_list",
-					Description: `A list of DNS search domains to add to the DNS configuration on the virtual machine. #### Linux customization options The settings in the ` + "`" + `linux_options` + "`" + ` block pertain to Linux guest OS customization. If you are customizing a Linux operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... linux_options { host_name = "terraform-test" domain = "test.internal" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `A list of DNS search domains to add to the DNS configuration on the virtual machine. #### Linux Customization Options The settings in the ` + "`" + `linux_options` + "`" + ` block pertain to Linux distribution guest operating system customization. If you are customizing a Linux guest operating system, this section must be included.`,
 				},
 				resource.Attribute{
 					Name:        "host_name",
-					Description: `(Required) The host name for this machine. This, along with ` + "`" + `domain` + "`" + `, make up the FQDN of this virtual machine.`,
+					Description: `(Required) The host name for this machine. This, along with ` + "`" + `domain` + "`" + `, make up the FQDN of the virtual machine.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `(Required) The domain name for this machine. This, along with ` + "`" + `host_name` + "`" + `, make up the FQDN of this virtual machine.`,
+					Description: `(Required) The domain name for this machine. This, along with ` + "`" + `host_name` + "`" + `, make up the FQDN of the virtual machine.`,
 				},
 				resource.Attribute{
 					Name:        "hw_clock_utc",
 					Description: `(Optional) Tells the operating system that the hardware clock is set to UTC. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "script_text",
+					Description: `(Optional) The customization script for the virtual machine that will be applied before and / or after guest customization. For more information on enabling and using a customization script, please refer to [VMware KB 74880][vmware-kb-74880]. The [Heredoc style][tf-heredoc-strings] of string literal is recommended. [vmware-kb-74880]: https://kb.vmware.com/s/article/74880 [tf-heredoc-strings]: https://www.terraform.io/language/expressions/strings#heredoc-strings`,
+				},
+				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Optional) Sets the time zone. For a list of possible combinations, click [here][vmware-docs-valid-linux-tzs]. The default is UTC. [vmware-docs-valid-linux-tzs]: https://pubs.vmware.com/vsphere-6-5/topic/com.vmware.wssdk.apiref.doc/timezone.html #### Windows customization options The settings in the ` + "`" + `windows_options` + "`" + ` block pertain to Windows guest OS customization. If you are customizing a Windows operating system, this section must be included. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... windows_options { computer_name = "terraform-test" workgroup = "test" admin_password = "VMw4re" } } } } ` + "`" + `` + "`" + `` + "`" + ` The options are:`,
+					Description: `(Optional) Sets the time zone. For a list of possible combinations, please refer to [VMware KB 2145518][vmware-kb-2145518]. The default is UTC. [vmware-kb-2145518]: https://kb.vmware.com/s/article/2145518 #### Windows Customization Options The settings in the ` + "`" + `windows_options` + "`" + ` block pertain to Windows guest OS customization. If you are customizing a Windows operating system, this section must be included.`,
 				},
 				resource.Attribute{
 					Name:        "computer_name",
-					Description: `(Required) The computer name of this virtual machine.`,
+					Description: `(Required) The computer name of the virtual machine.`,
 				},
 				resource.Attribute{
 					Name:        "admin_password",
-					Description: `(Optional) The administrator password for this virtual machine. ~>`,
+					Description: `(Optional) The administrator password for the virtual machine. ~>`,
 				},
 				resource.Attribute{
 					Name:        "workgroup",
-					Description: `(Optional) The workgroup name for this virtual machine. One of this or ` + "`" + `join_domain` + "`" + ` must be included.`,
+					Description: `(Optional) The workgroup name for the virtual machine. One of this or ` + "`" + `join_domain` + "`" + ` must be included.`,
 				},
 				resource.Attribute{
 					Name:        "join_domain",
-					Description: `(Optional) The domain to join for this virtual machine. One of this or ` + "`" + `workgroup` + "`" + ` must be included.`,
+					Description: `(Optional) The domain name in which to join the virtual machine. One of this or ` + "`" + `workgroup` + "`" + ` must be included.`,
 				},
 				resource.Attribute{
 					Name:        "domain_admin_user",
-					Description: `(Optional) The user of the domain administrator used to join this virtual machine to the domain. Required if you are setting ` + "`" + `join_domain` + "`" + `.`,
+					Description: `(Optional) The user account with administrative privileges to use to join the guest operating system to the domain. Required if setting ` + "`" + `join_domain` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "domain_admin_password",
-					Description: `(Optional) The password of the domain administrator used to join this virtual machine to the domain. Required if you are setting ` + "`" + `join_domain` + "`" + `. ~>`,
+					Description: `(Optional) The password user account with administrative privileges used to join the virtual machine to the domain. Required if setting ` + "`" + `join_domain` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "full_name",
-					Description: `(Optional) The full name of the user of this virtual machine. This populates the "user" field in the general Windows system information. Default: ` + "`" + `Administrator` + "`" + `.`,
+					Description: `(Optional) The full name of the organization owner of the virtual machine. This populates the "user" field in the general Windows system information. Default: ` + "`" + `Administrator` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "organization_name",
-					Description: `(Optional) The organization name this virtual machine is being installed for. This populates the "organization" field in the general Windows system information. Default: ` + "`" + `Managed by Terraform` + "`" + `.`,
+					Description: `(Optional) The name of the organization for the virtual machine. This option populates the "organization" field in the general Windows system information. Default: ` + "`" + `Managed by Terraform` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "product_key",
-					Description: `(Optional) The product key for this virtual machine. The default is no key.`,
+					Description: `(Optional) The product key for the virtual machine Windows guest operating system. The default is no key.`,
 				},
 				resource.Attribute{
 					Name:        "run_once_command_list",
-					Description: `(Optional) A list of commands to run at first user logon, after guest customization. Each command is limited by the API to 260 characters.`,
+					Description: `(Optional) A list of commands to run at first user logon, after guest customization. Each run once command is limited by the API to 260 characters.`,
 				},
 				resource.Attribute{
 					Name:        "auto_logon",
-					Description: `(Optional) Specifies whether or not the VM automatically logs on as Administrator. Default: ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Specifies whether or not the virtual machine automatically logs on as Administrator. Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "auto_logon_count",
-					Description: `(Optional) Specifies how many times the VM should auto-logon the Administrator account when ` + "`" + `auto_logon` + "`" + ` is true. This should be set accordingly to ensure that all of your commands that run in ` + "`" + `run_once_command_list` + "`" + ` can log in to run. Default: ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) Specifies how many times the virtual machine should auto-logon the Administrator account when ` + "`" + `auto_logon` + "`" + ` is ` + "`" + `true` + "`" + `. This option should be set accordingly to ensure that all of your commands that run in ` + "`" + `run_once_command_list` + "`" + ` can log in to run. Default: ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Optional) The new time zone for the virtual machine. This is a numeric, sysprep-dictated, timezone code. For a list of codes, click [here][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx #### Supplying your own SysPrep file Alternative to the ` + "`" + `windows_options` + "`" + ` supplied above, you can instead supply your own ` + "`" + `sysprep.xml` + "`" + ` file contents via the ` + "`" + `windows_sysprep_text` + "`" + ` option. This allows full control of the customization process out-of-band of vSphere. Example below: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vsphere_virtual_machine" "vm" { # ... other configuration ... clone { # ... other configuration ... customize { # ... other configuration ... windows_sysprep_text = "${file("${path.module}/sysprep.xml")}" } } } ` + "`" + `` + "`" + `` + "`" + ` Note this option is mutually exclusive to ` + "`" + `windows_options` + "`" + ` - one must not be included if the other is specified. ### Creating VM from deploying a OVF/OVA template The ` + "`" + `ovf_deploy` + "`" + ` block can be used to create a new virtual machine from an ovf/ova template either from local system or remote URL. While deploying, the VM properties are taken from ovf and setting them in configuration file is not necessary. See the [Deploying from OVF example](#deploying-vm-from-an-ovf-ova-template) for a usage synopsis. ~>`,
+					Description: `(Optional) The time zone for the virtual machine. For a list of supported codes, please refer to the [MIcrosoft documentation][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx ##### Using a Windows SysPrep Configuration An alternative to the ` + "`" + `windows_options` + "`" + ` demonstrated above, you can provide a SysPrep ` + "`" + `.XML` + "`" + ` file using the ` + "`" + `windows_sysprep_text` + "`" + ` option. This option allows full control of the Windows guest operating system customization process.`,
 				},
 				resource.Attribute{
 					Name:        "local_ovf_path",
-					Description: `(Optional) The absolute path to the ovf/ova file in the local system. While deploying from ovf, make sure the other necessary files like the .vmdk files are also in the same directory as the given ovf file.`,
+					Description: `(Optional) The absolute path to the OVF/OVA file on the local system. When deploying from an OVF, ensure the necessary files, such as ` + "`" + `.vmdk` + "`" + ` and ` + "`" + `.mf` + "`" + ` files are also in the same directory as the ` + "`" + `.ovf` + "`" + ` file.`,
 				},
 				resource.Attribute{
 					Name:        "remote_ovf_url",
-					Description: `(Optional) URL to the remote ovf/ova file to be deployed. ~>`,
+					Description: `(Optional) URL to the OVF/OVA file. ~>`,
 				},
 				resource.Attribute{
 					Name:        "ip_allocation_policy",
@@ -2607,19 +2370,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_provisioning",
-					Description: `(Optional) The disk provisioning. If set, all the disks in the deployed OVF will have the same specified disk type (accepted values {thin, flat, thick, sameAsSource}).`,
+					Description: `(Optional) The disk provisioning policy. If set, all the disks included in the OVF/OVA will have the same specified policy. One of ` + "`" + `thin` + "`" + `, ` + "`" + `flat` + "`" + `, ` + "`" + `thick` + "`" + `, or ` + "`" + `sameAsSource` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "deployment_option",
-					Description: `(Optional) The key of the chosen deployment option. If empty, the default option is chosen.`,
+					Description: `(Optional) The key for the deployment option. If empty, the default option is selected.`,
 				},
 				resource.Attribute{
 					Name:        "ovf_network_map",
-					Description: `(Optional) The mapping of name of network identifiers from the ovf descriptor to network UUID in the VI infrastructure.`,
+					Description: `(Optional) The mapping of network identifiers from the OVF descriptor to a network UUID.`,
 				},
 				resource.Attribute{
 					Name:        "allow_unverified_ssl_cert",
-					Description: `(Optional) Allow unverified ssl certificates while deploying ovf/ova from url. Defaults true. ### Using vApp properties to supply OVF/OVA configuration Alternative to the settings in ` + "`" + `customize` + "`" + `, one can use the settings in the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that came from an imported OVF or OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CDROM backed by client device is required. See [CDROM options](#cdrom-options) for details. ~>`,
+					Description: `(Optional) Allow unverified SSL certificates while deploying OVF/OVA from a URL. Defaults ` + "`" + `false` + "`" + `. ### Using vApp Properties for OVF/OVA Configuration You can use the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that originated from an imported OVF/OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CD-ROM backed by a client device must be included.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `When reducing the memory size, or when increasing the memory size and ` + "`" + `memory_hot_add_enabled` + "`" + ` is set to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "network_interface",
+					Description: `When deleting a network interface and VMware Tools is not running.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface.adapter_type",
+					Description: `When VMware Tools is not running.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2627,23 +2402,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reboot_required",
-					Description: `Value internal to Terraform used to determine if a configuration set change requires a reboot. This value is only useful during an update process and gets reset on refresh.`,
+					Description: `Value internal to Terraform used to determine if a configuration set change requires a reboot. This value is most useful during an update process and gets reset on refresh.`,
 				},
 				resource.Attribute{
 					Name:        "vmware_tools_status",
-					Description: `The state of VMware tools in the guest. This will determine the proper course of action for some device operations.`,
+					Description: `The state of VMware Tools in the guest. This will determine the proper course of action for some device operations.`,
 				},
 				resource.Attribute{
 					Name:        "vmx_path",
-					Description: `The path of the virtual machine's configuration file in the VM's datastore.`,
+					Description: `The path of the virtual machine configuration file on the datastore in which the virtual machine is placed.`,
 				},
 				resource.Attribute{
 					Name:        "imported",
-					Description: `This is flagged if the virtual machine has been imported, or the state has been migrated from a previous version of the resource. It influences the behavior of the first post-import apply operation. See the section on [importing](#importing) below.`,
+					Description: `Indicates if the virtual machine resource has been imported, or if the state has been migrated from a previous version of the resource. It influences the behavior of the first post-import apply operation. See the section on [importing](#importing) below.`,
 				},
 				resource.Attribute{
 					Name:        "change_version",
-					Description: `A unique identifier for a given version of the last configuration applied, such the timestamp of the last update to the configuration.`,
+					Description: `A unique identifier for a given version of the last configuration was applied.`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -2651,15 +2426,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_ip_address",
-					Description: `The IP address selected by Terraform to be used with any [provisioners][tf-docs-provisioners] configured on this resource. Whenever possible, this is the first IPv4 address that is reachable through the default gateway configured on the machine, then the first reachable IPv6 address, and then the first general discovered address if neither exist. If VMware tools is not running on the virtual machine, or if the VM is powered off, this value will be blank.`,
+					Description: `The IP address selected by Terraform to be used with any [provisioners][tf-docs-provisioners] configured on this resource. When possible, this is the first IPv4 address that is reachable through the default gateway configured on the machine, then the first reachable IPv6 address, and then the first general discovered address if neither exists. If VMware Tools is not running on the virtual machine, or if the virtual machine is powered off, this value will be blank.`,
 				},
 				resource.Attribute{
 					Name:        "guest_ip_addresses",
-					Description: `The current list of IP addresses on this machine, including the value of ` + "`" + `default_ip_address` + "`" + `. If VMware tools is not running on the virtual machine, or if the VM is powered off, this list will be empty.`,
+					Description: `The current list of IP addresses on this machine, including the value of ` + "`" + `default_ip_address` + "`" + `. If VMware Tools is not running on the virtual machine, or if the virtul machine is powered off, this list will be empty.`,
 				},
 				resource.Attribute{
 					Name:        "vapp_transport",
-					Description: `Computed value which is only valid for cloned virtual machines. A list of vApp transport methods supported by the source virtual machine or template. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing virtual machine can be [imported][docs-import] into this resource via supplying the full path to the virtual machine. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_virtual_machine.vm /dc1/vm/srv1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the virtual machine named ` + "`" + `srv1` + "`" + ` that is located in the ` + "`" + `dc1` + "`" + ` datacenter. ### Additional requirements and notes for importing Many of the same requirements for [cloning](#additional-requirements-and-notes-for-cloning) apply to importing, although since importing writes directly to state, a lot of these rules cannot be enforced at import time, so every effort should be made to ensure the correctness of the configuration before the import. In addition to these rules, the following extra rules apply to importing:`,
+					Description: `Computed value which is only valid for cloned virtual machines. A list of vApp transport methods supported by the source virtual machine or template.`,
+				},
+				resource.Attribute{
+					Name:        "power_state",
+					Description: `A computed value for the current power state of the virtual machine. One of ` + "`" + `on` + "`" + `, ` + "`" + `off` + "`" + `, or ` + "`" + `suspended` + "`" + `. [docs-about-morefs]: https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing virtual machine can be [imported][docs-import] into the Terraform state by providing the full path to the virtual machine. [docs-import]: /docs/import/index.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2669,23 +2448,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reboot_required",
-					Description: `Value internal to Terraform used to determine if a configuration set change requires a reboot. This value is only useful during an update process and gets reset on refresh.`,
+					Description: `Value internal to Terraform used to determine if a configuration set change requires a reboot. This value is most useful during an update process and gets reset on refresh.`,
 				},
 				resource.Attribute{
 					Name:        "vmware_tools_status",
-					Description: `The state of VMware tools in the guest. This will determine the proper course of action for some device operations.`,
+					Description: `The state of VMware Tools in the guest. This will determine the proper course of action for some device operations.`,
 				},
 				resource.Attribute{
 					Name:        "vmx_path",
-					Description: `The path of the virtual machine's configuration file in the VM's datastore.`,
+					Description: `The path of the virtual machine configuration file on the datastore in which the virtual machine is placed.`,
 				},
 				resource.Attribute{
 					Name:        "imported",
-					Description: `This is flagged if the virtual machine has been imported, or the state has been migrated from a previous version of the resource. It influences the behavior of the first post-import apply operation. See the section on [importing](#importing) below.`,
+					Description: `Indicates if the virtual machine resource has been imported, or if the state has been migrated from a previous version of the resource. It influences the behavior of the first post-import apply operation. See the section on [importing](#importing) below.`,
 				},
 				resource.Attribute{
 					Name:        "change_version",
-					Description: `A unique identifier for a given version of the last configuration applied, such the timestamp of the last update to the configuration.`,
+					Description: `A unique identifier for a given version of the last configuration was applied.`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -2693,15 +2472,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_ip_address",
-					Description: `The IP address selected by Terraform to be used with any [provisioners][tf-docs-provisioners] configured on this resource. Whenever possible, this is the first IPv4 address that is reachable through the default gateway configured on the machine, then the first reachable IPv6 address, and then the first general discovered address if neither exist. If VMware tools is not running on the virtual machine, or if the VM is powered off, this value will be blank.`,
+					Description: `The IP address selected by Terraform to be used with any [provisioners][tf-docs-provisioners] configured on this resource. When possible, this is the first IPv4 address that is reachable through the default gateway configured on the machine, then the first reachable IPv6 address, and then the first general discovered address if neither exists. If VMware Tools is not running on the virtual machine, or if the virtual machine is powered off, this value will be blank.`,
 				},
 				resource.Attribute{
 					Name:        "guest_ip_addresses",
-					Description: `The current list of IP addresses on this machine, including the value of ` + "`" + `default_ip_address` + "`" + `. If VMware tools is not running on the virtual machine, or if the VM is powered off, this list will be empty.`,
+					Description: `The current list of IP addresses on this machine, including the value of ` + "`" + `default_ip_address` + "`" + `. If VMware Tools is not running on the virtual machine, or if the virtul machine is powered off, this list will be empty.`,
 				},
 				resource.Attribute{
 					Name:        "vapp_transport",
-					Description: `Computed value which is only valid for cloned virtual machines. A list of vApp transport methods supported by the source virtual machine or template. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing virtual machine can be [imported][docs-import] into this resource via supplying the full path to the virtual machine. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_virtual_machine.vm /dc1/vm/srv1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the virtual machine named ` + "`" + `srv1` + "`" + ` that is located in the ` + "`" + `dc1` + "`" + ` datacenter. ### Additional requirements and notes for importing Many of the same requirements for [cloning](#additional-requirements-and-notes-for-cloning) apply to importing, although since importing writes directly to state, a lot of these rules cannot be enforced at import time, so every effort should be made to ensure the correctness of the configuration before the import. In addition to these rules, the following extra rules apply to importing:`,
+					Description: `Computed value which is only valid for cloned virtual machines. A list of vApp transport methods supported by the source virtual machine or template.`,
+				},
+				resource.Attribute{
+					Name:        "power_state",
+					Description: `A computed value for the current power state of the virtual machine. One of ` + "`" + `on` + "`" + `, ` + "`" + `off` + "`" + `, or ` + "`" + `suspended` + "`" + `. [docs-about-morefs]: https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing virtual machine can be [imported][docs-import] into the Terraform state by providing the full path to the virtual machine. [docs-import]: /docs/import/index.html`,
 				},
 			},
 		},
@@ -2752,7 +2535,7 @@ var (
 			Name:             "",
 			Type:             "vm_storage_policy",
 			Category:         "Storage Resources",
-			ShortDescription: `Provides CRUD operations on vm storage policy profiles. These policies help create tag based rules for placement of a VM on datastores. While placing a VM, compatible datastores can be filtered using these profiles.`,
+			ShortDescription: `Storage policies can select the most appropriate datastore for the virtual machine and enforce the required level of service.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -2782,7 +2565,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_datastores_with_tags",
-					Description: `(Optional) Whether to include datastores with the given tags or exclude. Default value is true i.e. include datastores with the given tags.`,
+					Description: `(Optional) Include datastores with the given tags or exclude. Default ` + "`" + `true` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2995,7 +2778,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "entity_type",
-					Description: `(Required) The managed object type, types can be found in the managed object type section [here](https://code.vmware.com/apis/968/vsphere).`,
+					Description: `(Required) The managed object type, types can be found in the managed object type section [here](https://developer.vmware.com/apis/968/vsphere).`,
 				},
 				resource.Attribute{
 					Name:        "user_or_group",

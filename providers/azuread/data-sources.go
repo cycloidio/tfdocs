@@ -11,6 +11,74 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_administrative_unit",
+			Category:         "Administrative Units",
+			ShortDescription: ``,
+			Description: `
+
+Gets information about an adminisrative unit in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"administrative",
+				"units",
+				"unit",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies the display name of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Optional) Specifies the object ID of the administrative unit. ~> One of ` + "`" + `display_name` + "`" + ` or ` + "`" + `object_id` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `A list of object IDs of members who are present in this administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the administrative unit _and_ its members are hidden or publicly viewable in the directory. One of: ` + "`" + `Hiddenmembership` + "`" + ` or ` + "`" + `Public` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `A list of object IDs of members who are present in this administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the administrative unit.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the administrative unit _and_ its members are hidden or publicly viewable in the directory. One of: ` + "`" + `Hiddenmembership` + "`" + ` or ` + "`" + `Public` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_application",
 			Category:         "Applications",
 			ShortDescription: ``,
@@ -67,6 +135,10 @@ Use this data source to access information about an existing Application within 
 				resource.Attribute{
 					Name:        "fallback_public_client_enabled",
 					Description: `The fallback application type as public client, such as an installed application running on a mobile device.`,
+				},
+				resource.Attribute{
+					Name:        "feature_tags",
+					Description: `A ` + "`" + `features` + "`" + ` block as described below.`,
 				},
 				resource.Attribute{
 					Name:        "group_membership_claims",
@@ -133,6 +205,10 @@ Use this data source to access information about an existing Application within 
 					Description: `URL of the application's support page.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the application.`,
+				},
+				resource.Attribute{
 					Name:        "terms_of_service_url",
 					Description: `URL of the application's terms of service statement.`,
 				},
@@ -149,7 +225,7 @@ Use this data source to access information about an existing Application within 
 					Description: `Allows an application to use claims mapping without specifying a custom signing key.`,
 				},
 				resource.Attribute{
-					Name:        "oauth2_permission_scope",
+					Name:        "oauth2_permission_scopes",
 					Description: `One or more ` + "`" + `oauth2_permission_scope` + "`" + ` blocks as documented below, to describe delegated permissions exposed by the web API represented by this application.`,
 				},
 				resource.Attribute{
@@ -210,7 +286,23 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `optional_claims` + "`" + ` block exports the following:`,
+					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `features` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_single_sign_on",
+					Description: `Whether this application represents a custom SAML application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise",
+					Description: `Whether this application represents an Enterprise Application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "gallery",
+					Description: `Whether this application represents a gallery application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "hide",
+					Description: `Whether this app is visible to users in My Apps and Office 365 Launcher. --- ` + "`" + `optional_claims` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "access_token",
@@ -323,6 +415,10 @@ Use this data source to access information about an existing Application within 
 					Description: `The fallback application type as public client, such as an installed application running on a mobile device.`,
 				},
 				resource.Attribute{
+					Name:        "feature_tags",
+					Description: `A ` + "`" + `features` + "`" + ` block as described below.`,
+				},
+				resource.Attribute{
 					Name:        "group_membership_claims",
 					Description: `The ` + "`" + `groups` + "`" + ` claim issued in a user or OAuth 2.0 access token that the app expects.`,
 				},
@@ -387,6 +483,10 @@ Use this data source to access information about an existing Application within 
 					Description: `URL of the application's support page.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the application.`,
+				},
+				resource.Attribute{
 					Name:        "terms_of_service_url",
 					Description: `URL of the application's terms of service statement.`,
 				},
@@ -403,7 +503,7 @@ Use this data source to access information about an existing Application within 
 					Description: `Allows an application to use claims mapping without specifying a custom signing key.`,
 				},
 				resource.Attribute{
-					Name:        "oauth2_permission_scope",
+					Name:        "oauth2_permission_scopes",
 					Description: `One or more ` + "`" + `oauth2_permission_scope` + "`" + ` blocks as documented below, to describe delegated permissions exposed by the web API represented by this application.`,
 				},
 				resource.Attribute{
@@ -464,7 +564,23 @@ Use this data source to access information about an existing Application within 
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `optional_claims` + "`" + ` block exports the following:`,
+					Description: `The value that is used for the ` + "`" + `roles` + "`" + ` claim in ID tokens and OAuth 2.0 access tokens that are authenticating an assigned service or user principal. --- ` + "`" + `features` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_single_sign_on",
+					Description: `Whether this application represents a custom SAML application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise",
+					Description: `Whether this application represents an Enterprise Application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "gallery",
+					Description: `Whether this application represents a gallery application for linked service principals.`,
+				},
+				resource.Attribute{
+					Name:        "hide",
+					Description: `Whether this app is visible to users in My Apps and Office 365 Launcher. --- ` + "`" + `optional_claims` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "access_token",
@@ -575,6 +691,98 @@ The app IDs returned by this data source are sourced from the Azure Global (Publ
 				resource.Attribute{
 					Name:        "result",
 					Description: `A map of application names to application IDs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_application_template",
+			Category:         "Applications",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to access information about an Application Template from the [Azure AD App Gallery](https://azuremarketplace.microsoft.com/en-US/marketplace/apps/category/azure-active-directory-apps).
+
+`,
+			Keywords: []string{
+				"applications",
+				"application",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies the display name of the templated application.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Optional) Specifies the ID of the templated application. ~> One of ` + "`" + `template_id` + "`" + ` or ` + "`" + `display_name` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `List of categories for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the templated application.`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `Home page URL of the templated application.`,
+				},
+				resource.Attribute{
+					Name:        "logo_url",
+					Description: `URL to retrieve the logo for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `Name of the publisher for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "supported_provisioning_types",
+					Description: `List of provisioning modes supported by this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "supported_single_sign_on_modes",
+					Description: `List of single sign on modes supported by this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The ID of the templated application.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "categories",
+					Description: `List of categories for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name for the templated application.`,
+				},
+				resource.Attribute{
+					Name:        "homepage_url",
+					Description: `Home page URL of the templated application.`,
+				},
+				resource.Attribute{
+					Name:        "logo_url",
+					Description: `URL to retrieve the logo for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `Name of the publisher for this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "supported_provisioning_types",
+					Description: `List of provisioning modes supported by this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "supported_single_sign_on_modes",
+					Description: `List of single sign on modes supported by this templated application.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The ID of the templated application.`,
 				},
 			},
 		},
@@ -772,6 +980,10 @@ Gets information about an Azure Active Directory group.
 					Description: `Indicates whether this group can be assigned to an Azure Active Directory role.`,
 				},
 				resource.Attribute{
+					Name:        "auto_subscribe_new_members",
+					Description: `Indicates whether new members added to the group will be auto-subscribed to receive email notifications. Only set for Unified groups.`,
+				},
+				resource.Attribute{
 					Name:        "behaviors",
 					Description: `A list of behaviors for a Microsoft 365 group, such as ` + "`" + `AllowOnlyMembersToPost` + "`" + `, ` + "`" + `HideGroupInOutlook` + "`" + `, ` + "`" + `SubscribeNewGroupMembers` + "`" + ` and ` + "`" + `WelcomeEmailDisabled` + "`" + `. See [official documentation](https://docs.microsoft.com/en-us/graph/group-set-options) for more details.`,
 				},
@@ -782,6 +994,22 @@ Gets information about an Azure Active Directory group.
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name for the group.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_membership",
+					Description: `A ` + "`" + `dynamic_membership` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "external_senders_allowed",
+					Description: `Indicates whether people external to the organization can send messages to the group. Only set for Unified groups.`,
+				},
+				resource.Attribute{
+					Name:        "hide_from_address_lists",
+					Description: `Indicates whether the group is displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups. Only set for Unified groups.`,
+				},
+				resource.Attribute{
+					Name:        "hide_from_outlook_clients",
+					Description: `Indicates whether the group is displayed in Outlook clients, such as Outlook for Windows and Outlook on the web. Only set for Unified groups.`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
@@ -849,11 +1077,19 @@ Gets information about an Azure Active Directory group.
 				},
 				resource.Attribute{
 					Name:        "types",
-					Description: `A list of group types configured for the group. The only supported type is ` + "`" + `Unified` + "`" + `, which specifies a Microsoft 365 group.`,
+					Description: `A list of group types configured for the group. Supported values are ` + "`" + `DynamicMembership` + "`" + `, which denotes a group with dynamic membership, and ` + "`" + `Unified` + "`" + `, which specifies a Microsoft 365 group.`,
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility.`,
+					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether rule processing is "On" (true) or "Paused" (false).`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule that determines membership of this group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -862,6 +1098,10 @@ Gets information about an Azure Active Directory group.
 					Description: `Indicates whether this group can be assigned to an Azure Active Directory role.`,
 				},
 				resource.Attribute{
+					Name:        "auto_subscribe_new_members",
+					Description: `Indicates whether new members added to the group will be auto-subscribed to receive email notifications. Only set for Unified groups.`,
+				},
+				resource.Attribute{
 					Name:        "behaviors",
 					Description: `A list of behaviors for a Microsoft 365 group, such as ` + "`" + `AllowOnlyMembersToPost` + "`" + `, ` + "`" + `HideGroupInOutlook` + "`" + `, ` + "`" + `SubscribeNewGroupMembers` + "`" + ` and ` + "`" + `WelcomeEmailDisabled` + "`" + `. See [official documentation](https://docs.microsoft.com/en-us/graph/group-set-options) for more details.`,
 				},
@@ -872,6 +1112,22 @@ Gets information about an Azure Active Directory group.
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name for the group.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_membership",
+					Description: `A ` + "`" + `dynamic_membership` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "external_senders_allowed",
+					Description: `Indicates whether people external to the organization can send messages to the group. Only set for Unified groups.`,
+				},
+				resource.Attribute{
+					Name:        "hide_from_address_lists",
+					Description: `Indicates whether the group is displayed in certain parts of the Outlook user interface: in the Address Book, in address lists for selecting message recipients, and in the Browse Groups dialog for searching groups. Only set for Unified groups.`,
+				},
+				resource.Attribute{
+					Name:        "hide_from_outlook_clients",
+					Description: `Indicates whether the group is displayed in Outlook clients, such as Outlook for Windows and Outlook on the web. Only set for Unified groups.`,
 				},
 				resource.Attribute{
 					Name:        "object_id",
@@ -939,11 +1195,19 @@ Gets information about an Azure Active Directory group.
 				},
 				resource.Attribute{
 					Name:        "types",
-					Description: `A list of group types configured for the group. The only supported type is ` + "`" + `Unified` + "`" + `, which specifies a Microsoft 365 group.`,
+					Description: `A list of group types configured for the group. Supported values are ` + "`" + `DynamicMembership` + "`" + `, which denotes a group with dynamic membership, and ` + "`" + `Unified` + "`" + `, which specifies a Microsoft 365 group.`,
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility.`,
+					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether rule processing is "On" (true) or "Paused" (false).`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule that determines membership of this group.`,
 				},
 			},
 		},
@@ -966,12 +1230,28 @@ Gets Object IDs or Display Names for multiple Azure Active Directory groups.
 					Description: `(Optional) The display names of the groups.`,
 				},
 				resource.Attribute{
+					Name:        "display_name_prefix",
+					Description: `(Optional) A common display name prefix to match when returning groups.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_missing",
+					Description: `(Optional) Ignore missing groups and return groups that were found. The data source will still fail if no groups are found. Cannot be specified with ` + "`" + `return_all` + "`" + `. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mail_enabled",
+					Description: `(Optional) Whether the returned groups should be mail-enabled. By itself this does not exclude security-enabled groups. Setting this to ` + "`" + `true` + "`" + ` ensures all groups are mail-enabled, and setting to ` + "`" + `false` + "`" + ` ensures that all groups are _not_ mail-enabled. To ignore this filter, omit the property or set it to null. Cannot be specified together with ` + "`" + `object_ids` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "object_ids",
 					Description: `(Optional) The object IDs of the groups.`,
 				},
 				resource.Attribute{
 					Name:        "return_all",
-					Description: `(Optional) A flag to denote if all groups should be fetched and returned. ~> One of ` + "`" + `display_names` + "`" + `, ` + "`" + `object_ids` + "`" + ` or ` + "`" + `return_all` + "`" + ` should be specified. Either of the first two _may_ be specified as an empty list, in which case no results will be returned. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A flag to denote if all groups should be fetched and returned. Cannot be specified wth ` + "`" + `ignore_missing` + "`" + `. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "security_enabled",
+					Description: `(Optional) Whether the returned groups should be security-enabled. By itself this does not exclude mail-enabled groups. Setting this to ` + "`" + `true` + "`" + ` ensures all groups are security-enabled, and setting to ` + "`" + `false` + "`" + ` ensures that all groups are _not_ security-enabled. To ignore this filter, omit the property or set it to null. Cannot be specified together with ` + "`" + `object_ids` + "`" + `. ~> One of ` + "`" + `display_names` + "`" + `, ` + "`" + `display_name_prefix` + "`" + `, ` + "`" + `object_ids` + "`" + ` or ` + "`" + `return_all` + "`" + ` should be specified. Either ` + "`" + `display_name` + "`" + ` or ` + "`" + `object_ids` + "`" + ` _may_ be specified as an empty list, in which case no results will be returned. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "display_names",
@@ -1023,7 +1303,7 @@ Gets information about an existing service principal associated with an applicat
 				},
 				resource.Attribute{
 					Name:        "account_enabled",
-					Description: `- Whether or not the service principal account is enabled.`,
+					Description: `Whether or not the service principal account is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "alternative_names",
@@ -1056,6 +1336,10 @@ Gets information about an existing service principal associated with an applicat
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `A ` + "`" + `features` + "`" + ` block as described below.`,
 				},
 				resource.Attribute{
 					Name:        "homepage_url",
@@ -1102,6 +1386,10 @@ Gets information about an existing service principal associated with an applicat
 					Description: `The URL where the service exposes SAML metadata for federation.`,
 				},
 				resource.Attribute{
+					Name:        "saml_single_sign_on",
+					Description: `A ` + "`" + `saml_single_sign_on` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "service_principal_names",
 					Description: `A list of identifier URI(s), copied over from the associated application.`,
 				},
@@ -1139,7 +1427,23 @@ Gets information about an existing service principal associated with an applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `features` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_single_sign_on_app",
+					Description: `Whether this service principal represents a custom SAML application.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_application",
+					Description: `Whether this service principal represents an Enterprise Application.`,
+				},
+				resource.Attribute{
+					Name:        "gallery_application",
+					Description: `Whether this service principal represents a gallery application.`,
+				},
+				resource.Attribute{
+					Name:        "visible_to_users",
+					Description: `Whether this app is visible to users in My Apps and Office 365 Launcher. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -1171,13 +1475,17 @@ Gets information about an existing service principal associated with an applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens.`,
+					Description: `The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. --- ` + "`" + `saml_single_sign_on` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "relay_state",
+					Description: `The relative URI the service provider would redirect to after completion of the single sign-on flow.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_enabled",
-					Description: `- Whether or not the service principal account is enabled.`,
+					Description: `Whether or not the service principal account is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "alternative_names",
@@ -1210,6 +1518,10 @@ Gets information about an existing service principal associated with an applicat
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `A ` + "`" + `features` + "`" + ` block as described below.`,
 				},
 				resource.Attribute{
 					Name:        "homepage_url",
@@ -1256,6 +1568,10 @@ Gets information about an existing service principal associated with an applicat
 					Description: `The URL where the service exposes SAML metadata for federation.`,
 				},
 				resource.Attribute{
+					Name:        "saml_single_sign_on",
+					Description: `A ` + "`" + `saml_single_sign_on` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "service_principal_names",
 					Description: `A list of identifier URI(s), copied over from the associated application.`,
 				},
@@ -1293,7 +1609,23 @@ Gets information about an existing service principal associated with an applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
+					Description: `Specifies the value of the roles claim that the application should expect in the authentication and access tokens. --- ` + "`" + `features` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_single_sign_on_app",
+					Description: `Whether this service principal represents a custom SAML application.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_application",
+					Description: `Whether this service principal represents an Enterprise Application.`,
+				},
+				resource.Attribute{
+					Name:        "gallery_application",
+					Description: `Whether this service principal represents a gallery application.`,
+				},
+				resource.Attribute{
+					Name:        "visible_to_users",
+					Description: `Whether this app is visible to users in My Apps and Office 365 Launcher. --- ` + "`" + `oauth2_permission_scopes` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_consent_description",
@@ -1325,7 +1657,178 @@ Gets information about an existing service principal associated with an applicat
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens.`,
+					Description: `The value that is used for the ` + "`" + `scp` + "`" + ` claim in OAuth 2.0 access tokens. --- ` + "`" + `saml_single_sign_on` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "relay_state",
+					Description: `The relative URI the service provider would redirect to after completion of the single sign-on flow.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_service_principals",
+			Category:         "Service Principals",
+			ShortDescription: ``,
+			Description: `
+
+Gets basic information for multiple Azure Active Directory service principals.
+
+`,
+			Keywords: []string{
+				"service",
+				"principals",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_ids",
+					Description: `(Optional) A list of application IDs (client IDs) of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "display_names",
+					Description: `(Optional) A list of display names of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_missing",
+					Description: `(Optional) Ignore missing service principals and return all service principals that are found. The data source will still fail if no service principals are found. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `(Optional) The object IDs of the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "return_all",
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, the data source will return all service principals. Cannot be used with ` + "`" + `ignore_missing` + "`" + `. Defaults to false. ~> Either ` + "`" + `return_all` + "`" + `, or one of ` + "`" + `application_ids` + "`" + `, ` + "`" + `display_names` + "`" + ` or ` + "`" + `object_ids` + "`" + ` must be specified. These _may_ be specified as an empty list, in which case no results will be returned. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "application_ids",
+					Description: `A list of application IDs (client IDs) of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "display_names",
+					Description: `A list of display names of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The object IDs of the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "service_principals",
+					Description: `A list of service principals. Each ` + "`" + `service_principal` + "`" + ` object provides the attributes documented below. --- ` + "`" + `service_principal` + "`" + ` object exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "account_enabled",
+					Description: `Whether or not the service principal account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "app_role_assignment_required",
+					Description: `Whether this service principal requires an app role assignment to a user or group before Azure AD will issue a user or access token to the application.`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID (client ID) of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "application_tenant_id",
+					Description: `The tenant ID where the associated application is registered.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the service principal.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_single_sign_on_mode",
+					Description: `The single sign-on mode configured for this application. Azure AD uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Azure AD My Apps.`,
+				},
+				resource.Attribute{
+					Name:        "saml_metadata_url",
+					Description: `The URL where the service exposes SAML metadata for federation.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_names",
+					Description: `A list of identifier URI(s), copied over from the associated application.`,
+				},
+				resource.Attribute{
+					Name:        "sign_in_audience",
+					Description: `The Microsoft account types that are supported for the associated application. Possible values include ` + "`" + `AzureADMyOrg` + "`" + `, ` + "`" + `AzureADMultipleOrgs` + "`" + `, ` + "`" + `AzureADandPersonalMicrosoftAccount` + "`" + ` or ` + "`" + `PersonalMicrosoftAccount` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the service principal.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Identifies whether the service principal represents an application or a managed identity. Possible values include ` + "`" + `Application` + "`" + ` or ` + "`" + `ManagedIdentity` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_ids",
+					Description: `A list of application IDs (client IDs) of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "display_names",
+					Description: `A list of display names of the applications associated with the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The object IDs of the service principals.`,
+				},
+				resource.Attribute{
+					Name:        "service_principals",
+					Description: `A list of service principals. Each ` + "`" + `service_principal` + "`" + ` object provides the attributes documented below. --- ` + "`" + `service_principal` + "`" + ` object exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "account_enabled",
+					Description: `Whether or not the service principal account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "app_role_assignment_required",
+					Description: `Whether this service principal requires an app role assignment to a user or group before Azure AD will issue a user or access token to the application.`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID (client ID) of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "application_tenant_id",
+					Description: `The tenant ID where the associated application is registered.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the application associated with this service principal.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the service principal.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_single_sign_on_mode",
+					Description: `The single sign-on mode configured for this application. Azure AD uses the preferred single sign-on mode to launch the application from Microsoft 365 or the Azure AD My Apps.`,
+				},
+				resource.Attribute{
+					Name:        "saml_metadata_url",
+					Description: `The URL where the service exposes SAML metadata for federation.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_names",
+					Description: `A list of identifier URI(s), copied over from the associated application.`,
+				},
+				resource.Attribute{
+					Name:        "sign_in_audience",
+					Description: `The Microsoft account types that are supported for the associated application. Possible values include ` + "`" + `AzureADMyOrg` + "`" + `, ` + "`" + `AzureADMultipleOrgs` + "`" + `, ` + "`" + `AzureADandPersonalMicrosoftAccount` + "`" + ` or ` + "`" + `PersonalMicrosoftAccount` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the service principal.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Identifies whether the service principal represents an application or a managed identity. Possible values include ` + "`" + `Application` + "`" + ` or ` + "`" + `ManagedIdentity` + "`" + `.`,
 				},
 			},
 		},
@@ -1385,6 +1888,10 @@ Gets information about an Azure Active Directory user.
 					Description: `The country/region in which the user is located, e.g. ` + "`" + `US` + "`" + ` or ` + "`" + `UK` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "cost_center",
+					Description: `The cost center associated with the user.`,
+				},
+				resource.Attribute{
 					Name:        "creation_type",
 					Description: `Indicates whether the user account was created as a regular school or work account (` + "`" + `null` + "`" + `), an external account (` + "`" + `Invitation` + "`" + `), a local account for an Azure Active Directory B2C tenant (` + "`" + `LocalAccount` + "`" + `) or self-service sign-up using email verification (` + "`" + `EmailVerified` + "`" + `).`,
 				},
@@ -1397,8 +1904,16 @@ Gets information about an Azure Active Directory user.
 					Description: `The display name of the user.`,
 				},
 				resource.Attribute{
+					Name:        "division",
+					Description: `The name of the division in which the user works.`,
+				},
+				resource.Attribute{
 					Name:        "employee_id",
 					Description: `The employee identifier assigned to the user by the organisation.`,
+				},
+				resource.Attribute{
+					Name:        "employee_type",
+					Description: `Captures enterprise worker type. For example, Employee, Contractor, Consultant, or Vendor.`,
 				},
 				resource.Attribute{
 					Name:        "external_user_state",
@@ -1427,6 +1942,10 @@ Gets information about an Azure Active Directory user.
 				resource.Attribute{
 					Name:        "mail_nickname",
 					Description: `The email alias of the user.`,
+				},
+				resource.Attribute{
+					Name:        "manager_id",
+					Description: `The object ID of the user's manager.`,
 				},
 				resource.Attribute{
 					Name:        "mobile_phone",
@@ -1543,6 +2062,10 @@ Gets information about an Azure Active Directory user.
 					Description: `The country/region in which the user is located, e.g. ` + "`" + `US` + "`" + ` or ` + "`" + `UK` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "cost_center",
+					Description: `The cost center associated with the user.`,
+				},
+				resource.Attribute{
 					Name:        "creation_type",
 					Description: `Indicates whether the user account was created as a regular school or work account (` + "`" + `null` + "`" + `), an external account (` + "`" + `Invitation` + "`" + `), a local account for an Azure Active Directory B2C tenant (` + "`" + `LocalAccount` + "`" + `) or self-service sign-up using email verification (` + "`" + `EmailVerified` + "`" + `).`,
 				},
@@ -1555,8 +2078,16 @@ Gets information about an Azure Active Directory user.
 					Description: `The display name of the user.`,
 				},
 				resource.Attribute{
+					Name:        "division",
+					Description: `The name of the division in which the user works.`,
+				},
+				resource.Attribute{
 					Name:        "employee_id",
 					Description: `The employee identifier assigned to the user by the organisation.`,
+				},
+				resource.Attribute{
+					Name:        "employee_type",
+					Description: `Captures enterprise worker type. For example, Employee, Contractor, Consultant, or Vendor.`,
 				},
 				resource.Attribute{
 					Name:        "external_user_state",
@@ -1585,6 +2116,10 @@ Gets information about an Azure Active Directory user.
 				resource.Attribute{
 					Name:        "mail_nickname",
 					Description: `The email alias of the user.`,
+				},
+				resource.Attribute{
+					Name:        "manager_id",
+					Description: `The object ID of the user's manager.`,
 				},
 				resource.Attribute{
 					Name:        "mobile_phone",
@@ -1679,7 +2214,7 @@ Gets information about an Azure Active Directory user.
 			ShortDescription: ``,
 			Description: `
 
-Gets object IDs or user principal names for multiple Azure Active Directory users.
+Gets basic information for multiple Azure Active Directory users.
 
 `,
 			Keywords: []string{
@@ -1688,7 +2223,7 @@ Gets object IDs or user principal names for multiple Azure Active Directory user
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ignore_missing",
-					Description: `(Optional) Ignore missing users and return users that were found. The data source will still fail if no users are found. Defaults to false.`,
+					Description: `(Optional) Ignore missing users and return users that were found. The data source will still fail if no users are found. Cannot be specified with ` + "`" + `return_all` + "`" + `. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "mail_nicknames",
@@ -1700,7 +2235,7 @@ Gets object IDs or user principal names for multiple Azure Active Directory user
 				},
 				resource.Attribute{
 					Name:        "return_all",
-					Description: `(Optional) When ` + "`" + `true` + "`" + `, the data source will return all users. Cannot be used with ` + "`" + `ignore_missing` + "`" + `. Defaults to false.`,
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, the data source will return all users. Cannot be used with ` + "`" + `ignore_missing` + "`" + `. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "user_principal_names",
@@ -1720,7 +2255,7 @@ Gets object IDs or user principal names for multiple Azure Active Directory user
 				},
 				resource.Attribute{
 					Name:        "users",
-					Description: `A list of users. Each ` + "`" + `user` + "`" + ` object provides the attributes documented below. ___ ` + "`" + `user` + "`" + ` object exports the following:`,
+					Description: `A list of users. Each ` + "`" + `user` + "`" + ` object provides the attributes documented below. --- ` + "`" + `user` + "`" + ` object exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_enabled",
@@ -1778,7 +2313,7 @@ Gets object IDs or user principal names for multiple Azure Active Directory user
 				},
 				resource.Attribute{
 					Name:        "users",
-					Description: `A list of users. Each ` + "`" + `user` + "`" + ` object provides the attributes documented below. ___ ` + "`" + `user` + "`" + ` object exports the following:`,
+					Description: `A list of users. Each ` + "`" + `user` + "`" + ` object provides the attributes documented below. --- ` + "`" + `user` + "`" + ` object exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_enabled",
@@ -1826,15 +2361,18 @@ Gets object IDs or user principal names for multiple Azure Active Directory user
 
 	dataSourcesMap = map[string]int{
 
-		"azuread_application":                   0,
-		"azuread_application_published_app_ids": 1,
-		"azuread_client_config":                 2,
-		"azuread_domains":                       3,
-		"azuread_group":                         4,
-		"azuread_groups":                        5,
-		"azuread_service_principal":             6,
-		"azuread_user":                          7,
-		"azuread_users":                         8,
+		"azuread_administrative_unit":           0,
+		"azuread_application":                   1,
+		"azuread_application_published_app_ids": 2,
+		"azuread_application_template":          3,
+		"azuread_client_config":                 4,
+		"azuread_domains":                       5,
+		"azuread_group":                         6,
+		"azuread_groups":                        7,
+		"azuread_service_principal":             8,
+		"azuread_service_principals":            9,
+		"azuread_user":                          10,
+		"azuread_users":                         11,
 	}
 )
 

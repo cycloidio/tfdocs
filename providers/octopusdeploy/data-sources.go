@@ -14,7 +14,11 @@ var (
 			Type:             "octopusdeploy_accounts",
 			Category:         "Accounts",
 			ShortDescription: `Provides information about existing accounts.`,
-			Description:      ``,
+			Description: `
+
+Provides information about existing accounts.
+
+`,
 			Keywords: []string{
 				"accounts",
 			},
@@ -106,7 +110,11 @@ var (
 			Type:             "octopusdeploy_feeds",
 			Category:         "Feeds",
 			ShortDescription: `Provides information about existing feeds.`,
-			Description:      ``,
+			Description: `
+
+Provides information about existing feeds.
+
+`,
 			Keywords: []string{
 				"feeds",
 			},
@@ -215,6 +223,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "octopusdeploy_script_modules",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about existing script modules.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "octopusdeploy_space",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about an existing space.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "octopusdeploy_spaces",
 			Category:         "Data Sources",
 			ShortDescription: `Provides information about existing spaces.`,
@@ -293,6 +321,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "octopusdeploy_worker_pools",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about existing worker pools.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -317,14 +355,17 @@ var (
 		"octopusdeploy_polling_tentacle_deployment_targets":             17,
 		"octopusdeploy_project_groups":                                  18,
 		"octopusdeploy_projects":                                        19,
-		"octopusdeploy_spaces":                                          20,
-		"octopusdeploy_ssh_connection_deployment_targets":               21,
-		"octopusdeploy_tag_sets":                                        22,
-		"octopusdeploy_teams":                                           23,
-		"octopusdeploy_tenants":                                         24,
-		"octopusdeploy_user_roles":                                      25,
-		"octopusdeploy_users":                                           26,
-		"octopusdeploy_variables":                                       27,
+		"octopusdeploy_script_modules":                                  20,
+		"octopusdeploy_space":                                           21,
+		"octopusdeploy_spaces":                                          22,
+		"octopusdeploy_ssh_connection_deployment_targets":               23,
+		"octopusdeploy_tag_sets":                                        24,
+		"octopusdeploy_teams":                                           25,
+		"octopusdeploy_tenants":                                         26,
+		"octopusdeploy_user_roles":                                      27,
+		"octopusdeploy_users":                                           28,
+		"octopusdeploy_variables":                                       29,
+		"octopusdeploy_worker_pools":                                    30,
 	}
 )
 

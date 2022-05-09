@@ -63,10 +63,6 @@ var (
 					Description: `(Optional) The owner of the business service.`,
 				},
 				resource.Attribute{
-					Name:        "type",
-					Description: `(Optional) Default value is ` + "`" + `business_service` + "`" + `. Can also be set as ` + "`" + `business_service_reference` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "team",
 					Description: `(Optional) ID of the team that owns the business service. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -123,7 +119,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Can be ` + "`" + `user` + "`" + `, ` + "`" + `schedule` + "`" + `, ` + "`" + `user_reference` + "`" + ` or ` + "`" + `schedule_reference` + "`" + `. Defaults to ` + "`" + `user_reference` + "`" + `. For multiple users as example, repeat the target.`,
+					Description: `(Optional) Can be ` + "`" + `user_reference` + "`" + ` or ` + "`" + `schedule_reference` + "`" + `. Defaults to ` + "`" + `user_reference` + "`" + `. For multiple users as example, repeat the target.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -174,7 +170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A boolean that indicates whether the rule is a catch-all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -184,7 +180,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A boolean that indicates whether the rule is a catch-all for the account. This field is read-only through the PagerDuty API. ## Import Event rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -275,7 +271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required) Target Webhook URL`,
+					Description: `(Required) Target Webhook URL.`,
 				},
 				resource.Attribute{
 					Name:        "task_type",
@@ -291,7 +287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app. ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -301,7 +297,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app. ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension_servicenow.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -437,7 +433,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Type of object of the target. Supported types are ` + "`" + `user` + "`" + `, ` + "`" + `schedule` + "`" + `, ` + "`" + `user_reference` + "`" + `, ` + "`" + `schedule_reference` + "`" + `.`,
+					Description: `Type of object of the target. Supported types are ` + "`" + `user_reference` + "`" + `, ` + "`" + `schedule_reference` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "service",
@@ -487,7 +483,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Type of ruleset. Currently only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Type of ruleset. Currently, only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -501,7 +497,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Type of ruleset. Currently only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Type of ruleset. Currently, only sets to ` + "`" + `global` + "`" + `. ## Import Rulesets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -522,11 +518,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "conditions",
-					Description: `(Required) Conditions evaluated to check if an event matches this event rule. Is always empty for the catch all rule, though.`,
+					Description: `(Required) Conditions evaluated to check if an event matches this event rule. Is always empty for the catch-all rule, though.`,
 				},
 				resource.Attribute{
 					Name:        "position",
 					Description: `(Optional) Position/index of the rule within the ruleset.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `(Optional) Indicates whether the Event Rule is the last Event Rule of the Ruleset that serves as a catch-all. It has limited functionality compared to other rules and always matches.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
@@ -550,7 +550,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subconditions",
-					Description: `List of sub-conditions that define the the condition. ### Sub-Conditions (` + "`" + `subconditions` + "`" + `) supports the following:`,
+					Description: `List of sub-conditions that define the condition. ### Sub-Conditions (` + "`" + `subconditions` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -601,20 +601,12 @@ var (
 					Description: `Length of time the schedule will be active in milliseconds. For example ` + "`" + `duration = 2`,
 				},
 				resource.Attribute{
-					Name:        "start_time",
-					Description: `Beginning of the scheduled time when the rule should execute. Unix timestamp in milliseconds.`,
-				},
-				resource.Attribute{
-					Name:        "end_time",
-					Description: `Ending of the scheduled time when the rule should execute. Unix timestamp in milliseconds. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the rule.`,
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using using the related ` + "`" + `ruleset` + "`" + ` id and the ` + "`" + `ruleset_rule` + "`" + ` id separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using the related ` + "`" + `ruleset` + "`" + ` ID and the ` + "`" + `ruleset_rule` + "`" + ` ID separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -624,7 +616,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using using the related ` + "`" + `ruleset` + "`" + ` id and the ` + "`" + `ruleset_rule` + "`" + ` id separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Indicates whether the rule is the last rule of the ruleset that serves as a catch-all. It has limited functionality compared to other rules. ## Import Ruleset rules can be imported using the related ` + "`" + `ruleset` + "`" + ` ID and the ` + "`" + `ruleset_rule` + "`" + ` ID separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_ruleset_rule.main a19cdca1-3d5e-4b52-bfea-8c8de04da243.19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -644,11 +636,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `(Required) The time zone of the schedule (e.g Europe/Berlin).`,
+					Description: `(Required) The time zone of the schedule (e.g. ` + "`" + `Europe/Berlin` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) The description of the schedule`,
+					Description: `(Optional) The description of the schedule.`,
 				},
 				resource.Attribute{
 					Name:        "layer",
@@ -692,7 +684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Can be ` + "`" + `daily_restriction` + "`" + ` or ` + "`" + `weekly_restriction` + "`" + ``,
+					Description: `(Required) Can be ` + "`" + `daily_restriction` + "`" + ` or ` + "`" + `weekly_restriction` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "start_time_of_day",
@@ -708,13 +700,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the schedule ## Import Schedules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_schedule.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the schedule. ## Import Schedules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_schedule.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the schedule ## Import Schedules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_schedule.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the schedule. ## Import Schedules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_schedule.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -742,7 +734,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acknowledgement_timeout",
-					Description: `(Optional) Time in seconds that an incident changes to the Triggered State after being Acknowledged. Disabled if set to the ` + "`" + `"null"` + "`" + ` string.`,
+					Description: `(Optional) Time in seconds that an incident changes to the Triggered State after being Acknowledged. Disabled if set to the ` + "`" + `"null"` + "`" + ` string. If not passed in, will default to '"1800"'.`,
 				},
 				resource.Attribute{
 					Name:        "escalation_policy",
@@ -754,11 +746,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_grouping",
-					Description: `(Optional) (Deprecated) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to ` + "`" + `intelligent` + "`" + ` - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
+					Description: `(Optional) (Deprecated) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to ` + "`" + `intelligent` + "`" + ` - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan. This field is deprecated, use ` + "`" + `alert_grouping_parameters.type` + "`" + ` instead,`,
 				},
 				resource.Attribute{
 					Name:        "alert_grouping_timeout",
-					Description: `(Optional) (Deprecated) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `alert_grouping` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) (Deprecated) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `alert_grouping` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `. This field is deprecated, use ` + "`" + `alert_grouping_parameters.config.timeout` + "`" + ` instead,`,
 				},
 				resource.Attribute{
 					Name:        "alert_grouping_parameters",
@@ -790,7 +782,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "outside_support_hours",
-					Description: `(Optional) Incidents' urgency outside of support hours. When using ` + "`" + `type = "use_support_hours"` + "`" + ` in ` + "`" + `incident_urgency_rule` + "`" + ` you must specify exactly one (otherwise optional) ` + "`" + `support_hours` + "`" + ` block. Your PagerDuty account must have the ` + "`" + `service_support_hours` + "`" + ` ability to assign support hours. The block contains the following arguments:`,
+					Description: `(Optional) Incidents' urgency outside support hours. When using ` + "`" + `type = "use_support_hours"` + "`" + ` in ` + "`" + `incident_urgency_rule` + "`" + ` you must specify exactly one (otherwise optional) ` + "`" + `support_hours` + "`" + ` block. Your PagerDuty account must have the ` + "`" + `service_support_hours` + "`" + ` ability to assign support hours. The block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -836,11 +828,19 @@ var (
 					Name:        "id",
 					Description: `The ID of the service.`,
 				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -857,7 +857,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dependency",
-					Description: `(Required) The relationship between the ` + "`" + `supporting_service` + "`" + ` and ` + "`" + `dependent_service` + "`" + `.`,
+					Description: `(Required) The relationship between the ` + "`" + `supporting_service` + "`" + ` and ` + "`" + `dependent_service` + "`" + `. One and only one dependency block must be defined.`,
 				},
 				resource.Attribute{
 					Name:        "supporting_service",
@@ -865,7 +865,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dependent_service",
-					Description: `(Required) The service that id dependent on the supporting service. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The service that dependents on the supporting service. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -904,7 +904,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vendor",
-					Description: `(Optional) The ID of the vendor the integration should integrate with (e.g Datadog or Amazon Cloudwatch).`,
+					Description: `(Optional) The ID of the vendor the integration should integrate with (e.g. Datadog or Amazon Cloudwatch).`,
 				},
 				resource.Attribute{
 					Name:        "integration_key",
@@ -913,6 +913,86 @@ var (
 				resource.Attribute{
 					Name:        "integration_email",
 					Description: `(Optional) This is the unique fully-qualified email address used for routing emails to this integration for processing.`,
+				},
+				resource.Attribute{
+					Name:        "email_incident_creation",
+					Description: `(Optional) This is the unique fully-qualified email address used for routing emails to this integration for processing.`,
+				},
+				resource.Attribute{
+					Name:        "email_filter_mode",
+					Description: `(Optional) This is the unique fully-qualified email address used for routing emails to this integration for processing.`,
+				},
+				resource.Attribute{
+					Name:        "email_parsing_fallback",
+					Description: `(Optional) Can be ` + "`" + `open_new_incident` + "`" + ` or ` + "`" + `discard` + "`" + `. Email filters (` + "`" + `email_filter` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "body_mode",
+					Description: `(Required) Can be ` + "`" + `always` + "`" + ` or ` + "`" + `match` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "body_regex",
+					Description: `(Optional) Should be a valid regex or ` + "`" + `null` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "from_email_mode",
+					Description: `(Required) Can be ` + "`" + `always` + "`" + ` or ` + "`" + `match` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "from_email_regex",
+					Description: `(Optional) Should be a valid regex or ` + "`" + `null` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "subject_mode",
+					Description: `(Required) Can be ` + "`" + `always` + "`" + ` or ` + "`" + `match` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subject_regex",
+					Description: `(Optional) Should be a valid regex or ` + "`" + `null` + "`" + ` Email parsers (` + "`" + `email_parser` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Can be ` + "`" + `resolve` + "`" + ` or ` + "`" + `trigger` + "`" + `. Match predicate (` + "`" + `match_predicate` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Can be ` + "`" + `any` + "`" + ` or ` + "`" + `all` + "`" + `. Predicates (` + "`" + `predicate` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Can be ` + "`" + `contains` + "`" + `, ` + "`" + `exactly` + "`" + `, ` + "`" + `regex` + "`" + ` or ` + "`" + `not` + "`" + `. If type is ` + "`" + `not` + "`" + ` predicate should contain child predicate with all parameters.`,
+				},
+				resource.Attribute{
+					Name:        "matcher",
+					Description: `(Optional) Predicate value or valid regex.`,
+				},
+				resource.Attribute{
+					Name:        "part",
+					Description: `(Optional) Can be ` + "`" + `subject` + "`" + `, ` + "`" + `body` + "`" + ` or ` + "`" + `from_addresses` + "`" + `. Value extractors (` + "`" + `value_extractor` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Can be ` + "`" + `between` + "`" + `, ` + "`" + `entire` + "`" + ` or ` + "`" + `regex` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "part",
+					Description: `(Required) Can be ` + "`" + `subject` + "`" + ` or ` + "`" + `body` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value_name",
+					Description: `(Required) First value extractor should have name ` + "`" + `incident_key` + "`" + ` other value extractors should contain custom names.`,
+				},
+				resource.Attribute{
+					Name:        "ends_before",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "starts_after",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) If ` + "`" + `type` + "`" + ` has value ` + "`" + `regex` + "`" + ` this value should contain valid regex.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -928,7 +1008,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `URL at which the entity is uniquely displayed in the Web app To configure an event, please use the ` + "`" + `integration_key` + "`" + ` in the following interpolation: ` + "`" + `` + "`" + `` + "`" + `hcl https://events.pagerduty.com/integration/${pagerduty_service_integration.slack.integration_key}/enqueue ` + "`" + `` + "`" + `` + "`" + ` ## Import Services can be imported using their related ` + "`" + `service` + "`" + ` id and service integration ` + "`" + `id` + "`" + ` separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service_integration.main PLSSSSS.PLIIIII ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app. To configure an event, please use the ` + "`" + `integration_key` + "`" + ` in the following interpolation: ` + "`" + `` + "`" + `` + "`" + `hcl https://events.pagerduty.com/integration/${pagerduty_service_integration.slack.integration_key}/enqueue ` + "`" + `` + "`" + `` + "`" + ` ## Import Services can be imported using their related ` + "`" + `service` + "`" + ` id and service integration ` + "`" + `id` + "`" + ` separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service_integration.main PLSSSSS.PLIIIII ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -946,7 +1026,135 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `URL at which the entity is uniquely displayed in the Web app To configure an event, please use the ` + "`" + `integration_key` + "`" + ` in the following interpolation: ` + "`" + `` + "`" + `` + "`" + `hcl https://events.pagerduty.com/integration/${pagerduty_service_integration.slack.integration_key}/enqueue ` + "`" + `` + "`" + `` + "`" + ` ## Import Services can be imported using their related ` + "`" + `service` + "`" + ` id and service integration ` + "`" + `id` + "`" + ` separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service_integration.main PLSSSSS.PLIIIII ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app. To configure an event, please use the ` + "`" + `integration_key` + "`" + ` in the following interpolation: ` + "`" + `` + "`" + `` + "`" + `hcl https://events.pagerduty.com/integration/${pagerduty_service_integration.slack.integration_key}/enqueue ` + "`" + `` + "`" + `` + "`" + ` ## Import Services can be imported using their related ` + "`" + `service` + "`" + ` id and service integration ` + "`" + `id` + "`" + ` separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_service_integration.main PLSSSSS.PLIIIII ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_slack_connection",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a slack connection in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"slack",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "source_id",
+					Description: `(Required) The ID of the source in PagerDuty. Valid sources are services or teams.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `(Required) The type of the source. Either ` + "`" + `team_reference` + "`" + ` or ` + "`" + `service_reference` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `(Required) The ID of the connected Slack workspace. Can also be defined by the ` + "`" + `SLACK_CONNECTION_WORKSPACE_ID` + "`" + ` environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "channel_id",
+					Description: `(Required) The ID of a Slack channel in the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Configuration options for the Slack connection that provide options to filter events.`,
+				},
+				resource.Attribute{
+					Name:        "notification_type",
+					Description: `(Required) Type of notification. Either ` + "`" + `responder` + "`" + ` or ` + "`" + `stakeholder` + "`" + `. ### Connection Config (` + "`" + `config` + "`" + `) Supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `(Required) A list of strings to filter events by PagerDuty event type. ` + "`" + `"incident.triggered"` + "`" + ` is required. The follow event types are also possible: - ` + "`" + `incident.acknowledged` + "`" + ` - ` + "`" + `incident.escalated` + "`" + ` - ` + "`" + `incident.resolved` + "`" + ` - ` + "`" + `incident.reassigned` + "`" + ` - ` + "`" + `incident.annotated` + "`" + ` - ` + "`" + `incident.unacknowledged` + "`" + ` - ` + "`" + `incident.delegated` + "`" + ` - ` + "`" + `incident.priority_updated` + "`" + ` - ` + "`" + `incident.responder.added` + "`" + ` - ` + "`" + `incident.responder.replied` + "`" + ` - ` + "`" + `incident.status_update_published` + "`" + ` - ` + "`" + `incident.reopened` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "priorities",
+					Description: `(Optional) Allows you to filter events by priority. Needs to be an array of PagerDuty priority IDs. Available through [pagerduty_priority](https://registry.terraform.io/providers/PagerDuty/pagerduty/latest/docs/data-sources/priority) data source.`,
+				},
+				resource.Attribute{
+					Name:        "urgency",
+					Description: `(Optional) Allows you to filter events by urgency. Either ` + "`" + `high` + "`" + ` or ` + "`" + `low` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the slack connection.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the slack connection.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_tag",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a tag in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"tag",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label of the tag. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app. ## Import Tags can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_tag.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app. ## Import Tags can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_tag.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_tag_assignment",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a tag assignment in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"tag",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tag_id",
+					Description: `(Required) The ID of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "entity_type",
+					Description: `(Required) Type of entity in the tag assignment. Possible values can be ` + "`" + `users` + "`" + `, ` + "`" + `teams` + "`" + `, and ` + "`" + `escalation_policies` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Required) The ID of the entity. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the tag assignment. ## Import Tag assignments can be imported using the ` + "`" + `id` + "`" + ` which is constructed by taking the ` + "`" + `entity` + "`" + ` Type, ` + "`" + `entity` + "`" + ` ID and the ` + "`" + `tag` + "`" + ` ID separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_tag_assignment.main users.P7HHMVK.PYC7IQQ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the tag assignment. ## Import Tag assignments can be imported using the ` + "`" + `id` + "`" + ` which is constructed by taking the ` + "`" + `entity` + "`" + ` Type, ` + "`" + `entity` + "`" + ` ID and the ` + "`" + `tag` + "`" + ` ID separated by a dot, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_tag_assignment.main users.P7HHMVK.PYC7IQQ ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1083,7 +1291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `The timezone of the user`,
+					Description: `The timezone of the user.`,
 				},
 				resource.Attribute{
 					Name:        "html_url",
@@ -1105,7 +1313,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_zone",
-					Description: `The timezone of the user`,
+					Description: `The timezone of the user.`,
 				},
 				resource.Attribute{
 					Name:        "html_url",
@@ -1229,6 +1437,73 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_webhook_subscription",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a webhook subscription in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"webhook",
+				"subscription",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type indicating the schema of the object. The provider sets this as ` + "`" + `webhook_subscription` + "`" + `, which is currently the only acceptable value.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Required) Determines whether the subscription will produce webhook events.`,
+				},
+				resource.Attribute{
+					Name:        "delivery_method",
+					Description: `(Required) The object describing where to send the webhooks.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A short description of the webhook subscription`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `(Required) A set of outbound event types the webhook will receive. The follow event types are possible:`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) determines which events will match and produce a webhook. There are currently three types of filters that can be applied to webhook subscriptions: ` + "`" + `service_reference` + "`" + `, ` + "`" + `team_reference` + "`" + ` and ` + "`" + `account_reference` + "`" + `. ### Webhook delivery method (` + "`" + `delivery_method` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "temporarily_disabled",
+					Description: `(Required) Whether this webhook subscription is temporarily disabled. Becomes true if the delivery method URL is repeatedly rejected by the server.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Indicates the type of the delivery method. Allowed and default value: ` + "`" + `http_delivery_method` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The destination URL for webhook delivery. ### Webhook filter (` + "`" + `filter` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the object being used as the filter. This field is required for all filter types except account_reference.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of object being used as the filter. Allowed values are ` + "`" + `account_reference` + "`" + `, ` + "`" + `service_reference` + "`" + `, and ` + "`" + `team_reference` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the slack connection.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the slack connection.`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1247,11 +1522,15 @@ var (
 		"pagerduty_service":                11,
 		"pagerduty_service_dependency":     12,
 		"pagerduty_service_integration":    13,
-		"pagerduty_team":                   14,
-		"pagerduty_team_membership":        15,
-		"pagerduty_user":                   16,
-		"pagerduty_user_contact_method":    17,
-		"pagerduty_user_notification_rule": 18,
+		"pagerduty_slack_connection":       14,
+		"pagerduty_tag":                    15,
+		"pagerduty_tag_assignment":         16,
+		"pagerduty_team":                   17,
+		"pagerduty_team_membership":        18,
+		"pagerduty_user":                   19,
+		"pagerduty_user_contact_method":    20,
+		"pagerduty_user_notification_rule": 21,
+		"pagerduty_webhook_subscription":   22,
 	}
 )
 

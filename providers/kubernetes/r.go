@@ -1093,7 +1093,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "optional",
-					Description: `(Optional) Specify whether the ConfigMap or its key must be defined ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specify whether the ConfigMap or its key must be defined ### ` + "`" + `csi` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "driver",
+					Description: `(Required) the name of the volume driver to use. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi).`,
+				},
+				resource.Attribute{
+					Name:        "volume_attributes",
+					Description: `(Optional) Attributes of the volume to publish.`,
+				},
+				resource.Attribute{
+					Name:        "fs_type",
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. ` + "`" + `ext4` + "`" + `, ` + "`" + `xfs` + "`" + `, ` + "`" + `ntfs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `(Optional) Whether to set the read-only property in VolumeMounts to ` + "`" + `true` + "`" + `. If omitted, the default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_publish_secret_ref",
+					Description: `(Optional) A reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. see [secret_ref](#secret_ref) for more details. ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "nameservers",
@@ -1549,7 +1569,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "divisor",
-					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `seccomp_profile` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates which kind of seccomp profile will be applied. Valid options are:`,
+				},
+				resource.Attribute{
+					Name:        "Localhost",
+					Description: `a profile defined in a file on the node should be used.`,
+				},
+				resource.Attribute{
+					Name:        "RuntimeDefault",
+					Description: `the container runtime default profile should be used.`,
+				},
+				resource.Attribute{
+					Name:        "Unconfined",
+					Description: `(Default) no profile should be applied.`,
+				},
+				resource.Attribute{
+					Name:        "localhost_profile",
+					Description: `Indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if ` + "`" + `type` + "`" + ` is ` + "`" + `Localhost` + "`" + `. ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -1644,6 +1684,10 @@ var (
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
 				},
 				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
+				},
+				resource.Attribute{
 					Name:        "se_linux_options",
 					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
 				},
@@ -1666,6 +1710,10 @@ var (
 				resource.Attribute{
 					Name:        "run_as_user",
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.`,
+				},
+				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
@@ -1786,6 +1834,10 @@ var (
 				resource.Attribute{
 					Name:        "config_map",
 					Description: `(Optional) ConfigMap represents a configMap that should populate this volume`,
+				},
+				resource.Attribute{
+					Name:        "csi",
+					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi)`,
 				},
 				resource.Attribute{
 					Name:        "downward_api",
@@ -2434,7 +2486,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "optional",
-					Description: `(Optional) Specify whether the ConfigMap or its key must be defined ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specify whether the ConfigMap or its key must be defined ### ` + "`" + `csi` + "`" + ` #### Arguments - ` + "`" + `driver` + "`" + ` - (Required) the name of the volume driver to use. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi). - ` + "`" + `volume_attributes` + "`" + ` - (Optional) Attributes of the volume to publish. - ` + "`" + `fs_type` + "`" + ` - (Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. ` + "`" + `ext4` + "`" + `, ` + "`" + `xfs` + "`" + `, ` + "`" + `ntfs` + "`" + `. - ` + "`" + `read_only` + "`" + ` - (Optional) Whether to set the read-only property in VolumeMounts to ` + "`" + `true` + "`" + `. If omitted, the default is ` + "`" + `false` + "`" + `. - ` + "`" + `node_publish_secret_ref` + "`" + ` - (Optional) A reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. see [secret_ref](#secret_ref) for more details. ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "nameservers",
@@ -2890,7 +2942,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "divisor",
-					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `seccomp_profile` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates which kind of seccomp profile will be applied. Valid options are:`,
+				},
+				resource.Attribute{
+					Name:        "Localhost",
+					Description: `a profile defined in a file on the node should be used.`,
+				},
+				resource.Attribute{
+					Name:        "RuntimeDefault",
+					Description: `the container runtime default profile should be used.`,
+				},
+				resource.Attribute{
+					Name:        "Unconfined",
+					Description: `(Default) no profile should be applied.`,
+				},
+				resource.Attribute{
+					Name:        "localhost_profile",
+					Description: `Indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if ` + "`" + `type` + "`" + ` is ` + "`" + `Localhost` + "`" + `. ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -2989,6 +3061,10 @@ var (
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
 				},
 				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
+				},
+				resource.Attribute{
 					Name:        "se_linux_options",
 					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
 				},
@@ -3015,6 +3091,10 @@ var (
 				resource.Attribute{
 					Name:        "run_as_user",
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.`,
+				},
+				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
@@ -3135,6 +3215,10 @@ var (
 				resource.Attribute{
 					Name:        "config_map",
 					Description: `(Optional) ConfigMap represents a configMap that should populate this volume`,
+				},
+				resource.Attribute{
+					Name:        "csi",
+					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi)`,
 				},
 				resource.Attribute{
 					Name:        "downward_api",
@@ -3422,7 +3506,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric",
-					Description: `(Optional) A metric on which to scale. ### ` + "`" + `metric` + "`" + ` #### Arguments`,
+					Description: `(Optional) A metric on which to scale.`,
+				},
+				resource.Attribute{
+					Name:        "behavior",
+					Description: `(Optional) Behavior configures the scaling behavior of the target in both Up and Down directions (scale_up and scale_down fields respectively) ### ` + "`" + `metric` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -3502,15 +3590,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) value is the target value of the metric (as a quantity). #### Quantities See [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#quantity-resource-core) for documentation on quantities. ### ` + "`" + `described_object` + "`" + ` #### Arguments`,
+					Description: `(Optional) value is the target value of the metric (as a quantity). #### Quantities See [here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for documentation on resource management for pods and containers. ### ` + "`" + `described_object` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "api_version",
-					Description: `(Optional) API version of the referent`,
+					Description: `(Optional) API version of the referent. This argument is optional for the ` + "`" + `v1` + "`" + ` API version referents and mandatory for the rest.`,
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Required) Kind of the referent. e.g. ` + "`" + `ReplicationController` + "`" + `. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#types-kinds`,
+					Description: `(Required) Kind of the referent. e.g. ` + "`" + `ReplicationController` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#types-kinds)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3518,15 +3606,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_version",
-					Description: `(Optional) API version of the referent`,
+					Description: `(Optional) API version of the referent. This argument is optional for the ` + "`" + `v1` + "`" + ` API version referents and mandatory for the rest.`,
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Required) Kind of the referent. e.g. ` + "`" + `ReplicationController` + "`" + `. For more info see https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#types-kinds`,
+					Description: `(Required) Kind of the referent. e.g. ` + "`" + `ReplicationController` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#types-kinds)`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the referent. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ## Import Horizontal Pod Autoscaler can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_horizontal_pod_autoscaler.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Name of the referent. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `behavior` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "scale_up",
+					Description: `(Optional) Scaling policy for scaling Up`,
+				},
+				resource.Attribute{
+					Name:        "scale_down",
+					Description: `(Optional) Scaling policy for scaling Down ### ` + "`" + `scale_up` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) List of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the scaling rule will be discarded as invalid.`,
+				},
+				resource.Attribute{
+					Name:        "select_policy",
+					Description: `(Optional) Used to specify which policy should be used. If not set, the default value Max is used.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_window_seconds",
+					Description: `(Optional) Number of seconds for which past recommendations should be considered while scaling up or scaling down. This value must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long). ### ` + "`" + `policy` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "period_seconds",
+					Description: `(Required) Period specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type is used to specify the scaling policy: Percent or Pods`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value contains the amount of change which is permitted by the policy. It must be greater than zero. ## Import Horizontal Pod Autoscaler can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_horizontal_pod_autoscaler.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3595,7 +3715,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tls",
-					Description: `(Optional) TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below. ### ` + "`" + `backend` + "`" + ` #### Arguments`,
+					Description: `(Optional) TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_class_name",
+					Description: `(Optional) The ingress class name references an IngressClass resource that contains additional configuration including the name of the controller that should implement the class. ### ` + "`" + `backend` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -3744,15 +3868,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "match_labels",
-					Description: `(Optional) A map of ` + "`" + `{key,value}` + "`" + ` pairs. A single ` + "`" + `{key,value}` + "`" + ` in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ### ` + "`" + `template` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Timeouts The following [Timeout](/docs/configuration/resources.html#operation-timeouts) configuration options are available for the ` + "`" + `kubernetes_job` + "`" + ` resource when used with ` + "`" + `wait_for_completion = true` + "`" + `:`,
+					Description: `(Optional) A map of ` + "`" + `{key,value}` + "`" + ` pairs. A single ` + "`" + `{key,value}` + "`" + ` in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ### ` + "`" + `template` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Timeouts The following [Timeout](/docs/language/resources/syntax.html#operation-timeouts) configuration options are available for the ` + "`" + `kubernetes_job` + "`" + ` resource when used with ` + "`" + `wait_for_completion = true` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Default ` + "`" + `1 minute` + "`" + `) Used for creating a new job and waiting for a successful job completion.`,
+					Description: `(Default ` + "`" + `1m` + "`" + `) Used for creating a new job and waiting for a successful job completion.`,
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Default ` + "`" + `1 minute` + "`" + `) Used for updating an existing job and waiting for a successful job completion. Note: - Kubernetes provider will treat update operations that change the Job spec resulting in the job re-run as "# forces replacement". In such cases, the ` + "`" + `create` + "`" + ` timeout value is used for both Create and Update operations. - ` + "`" + `wait_for_completion` + "`" + ` is not applicable during Delete operations; thus, there is no "delete" timeout value for Delete operation.`,
+					Description: `(Default ` + "`" + `1m` + "`" + `) Used for updating an existing job and waiting for a successful job completion. Note: - Kubernetes provider will treat update operations that change the Job spec resulting in the job re-run as "# forces replacement". In such cases, the ` + "`" + `create` + "`" + ` timeout value is used for both Create and Update operations. - ` + "`" + `wait_for_completion` + "`" + ` is not applicable during Delete operations; thus, there is no "delete" timeout value for Delete operation.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5111,7 +5235,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "optional",
-					Description: `(Optional) Specify whether the Secret or its key must be defined ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specify whether the Secret or its key must be defined ### ` + "`" + `csi` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "driver",
+					Description: `(Required) the name of the volume driver to use. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi).`,
+				},
+				resource.Attribute{
+					Name:        "volume_attributes",
+					Description: `(Optional) Attributes of the volume to publish.`,
+				},
+				resource.Attribute{
+					Name:        "fs_type",
+					Description: `(Optional) Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. ` + "`" + `ext4` + "`" + `, ` + "`" + `xfs` + "`" + `, ` + "`" + `ntfs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `(Optional) Whether to set the read-only property in VolumeMounts to ` + "`" + `true` + "`" + `. If omitted, the default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_publish_secret_ref",
+					Description: `(Optional) A reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. see [secret_ref](#secret_ref) for more details. ### ` + "`" + `dns_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "nameservers",
@@ -5567,7 +5711,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "divisor",
-					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
+					Description: `(Optional) Specifies the output format of the exposed resources, defaults to "1". ### ` + "`" + `seccomp_profile` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates which kind of seccomp profile will be applied. Valid options are:`,
+				},
+				resource.Attribute{
+					Name:        "Localhost",
+					Description: `a profile defined in a file on the node should be used.`,
+				},
+				resource.Attribute{
+					Name:        "RuntimeDefault",
+					Description: `the container runtime default profile should be used.`,
+				},
+				resource.Attribute{
+					Name:        "Unconfined",
+					Description: `(Default) no profile should be applied.`,
+				},
+				resource.Attribute{
+					Name:        "localhost_profile",
+					Description: `Indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if ` + "`" + `type` + "`" + ` is ` + "`" + `Localhost` + "`" + `. ### ` + "`" + `se_linux_options` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -5666,6 +5830,10 @@ var (
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
 				},
 				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
+				},
+				resource.Attribute{
 					Name:        "se_linux_options",
 					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
 				},
@@ -5704,6 +5872,10 @@ var (
 				resource.Attribute{
 					Name:        "run_as_user",
 					Description: `(Optional) The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.`,
+				},
+				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
@@ -5828,6 +6000,10 @@ var (
 				resource.Attribute{
 					Name:        "config_map",
 					Description: `(Optional) ConfigMap represents a configMap that should populate this volume`,
+				},
+				resource.Attribute{
+					Name:        "csi",
+					Description: `(Optional) CSI represents storage that is handled by an external CSI driver. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#csi)`,
 				},
 				resource.Attribute{
 					Name:        "downward_api",
@@ -6575,7 +6751,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design)`,
+				},
+				resource.Attribute{
+					Name:        "immutable",
+					Description: `(Optional) Ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -6680,7 +6860,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_traffic_policy",
-					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
+					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info see [Kubernetes reference](https://kubernetes.io/docs/tutorials/services/source-ip/)`,
+				},
+				resource.Attribute{
+					Name:        "ip_families",
+					Description: `(Optional) A list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ` + "`" + `ip_family_policy` + "`" + ` field. If this field is specified manually, the requested family is available in the cluster, and ` + "`" + `ip_family_policy` + "`" + ` allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/dual-stack/)`,
+				},
+				resource.Attribute{
+					Name:        "ip_family_policy",
+					Description: `(Optional) Represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to ` + "`" + `SingleStack` + "`" + `. Services can be ` + "`" + `SingleStack` + "`" + `(a single IP family), ` + "`" + `PreferDualStack` + "`" + `(two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or ` + "`" + `RequireDualStack` + "`" + `(two IP families on dual-stack configured clusters, otherwise fail). The ` + "`" + `ip_families` + "`" + ` and ` + "`" + `cluster_ip` + "`" + ` fields depend on the value of this field.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ip",
@@ -6713,6 +6901,10 @@ var (
 				resource.Attribute{
 					Name:        "health_check_node_port",
 					Description: `(Optional) Specifies the Healthcheck NodePort for the service. Only effects when type is set to ` + "`" + `LoadBalancer` + "`" + ` and external_traffic_policy is set to ` + "`" + `Local` + "`" + `. ### ` + "`" + `port` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "app_protocol",
+					Description: `(Optional) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per [RFC-6335](https://datatracker.ietf.org/doc/html/rfc6335) and [IANA standard service names](http://www.iana.org/assignments/service-names)). Non-standard protocols should use prefixed names such as ` + "`" + `mycompany.com/my-custom-protocol` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6826,13 +7018,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

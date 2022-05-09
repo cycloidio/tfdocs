@@ -450,24 +450,28 @@ var (
 					Description: `(Required) Name of the topology.`,
 				},
 				resource.Attribute{
+					Name:        "deploy_mode",
+					Description: `(Optional) Deployment mode for the topology. Valid values are "" (empty) - deploy and configure a fabric OR "provision" - Deploy the routers and onboard them to Cvaas, but do not create a fabric by configuring them. When not specified, deploy_mode defaults to "". See examples/ multicloud_tworegion_provisionmode for an example deployment using provision deploy mode.`,
+				},
+				resource.Attribute{
 					Name:        "bgp_asn",
-					Description: `(Required) A range of BGP ASN’s which would be used to configure CloudEOS instances, based on the role and region in which they are being deployed. For example, a CloudEdge and CloudLeaf instance in the same region and CLOS will use iBGP and will have the same ASN. Whereas 2 CloudEdge’s in different regions use eBGP and will have different ASNs.`,
+					Description: `(Optional) A range of BGP ASN’s which would be used to configure CloudEOS instances, based on the role and region in which they are being deployed. For example, a CloudEdge and CloudLeaf instance in the same region and CLOS will use iBGP and will have the same ASN. Whereas 2 CloudEdge’s in different regions use eBGP and will have different ASNs. Required when deploy_mode is empty; Not needed when deploy_mode is provision.`,
 				},
 				resource.Attribute{
 					Name:        "vtep_ip_cidr",
-					Description: `(Required) CIDR block for VTEP IPs for CloudEOS Routers`,
+					Description: `(Optional) CIDR block for VTEP IPs for CloudEOS Routers. Required when deploy_mode is empty; Not needed when deploy_mode is provision.`,
 				},
 				resource.Attribute{
 					Name:        "terminattr_ip_cidr",
-					Description: `(Required) TerminAttr is used by Arista devices to stream Telemetry to CVaaS. Every CloudEOS Router needs a unique TerminAttr local IP.`,
+					Description: `(Optional) TerminAttr is used by Arista devices to stream Telemetry to CVaaS. Every CloudEOS Router needs a unique TerminAttr local IP. Required when deploy_mode is empty; Not needed when deploy_mode is provision.`,
 				},
 				resource.Attribute{
 					Name:        "dps_controlplane_cidr",
-					Description: `(Required) Each CloudEOS router needs a unique IP for Dynamic Path Selection.`,
+					Description: `(Optional) Each CloudEOS router needs a unique IP for Dynamic Path Selection. Required when deploy_mode is empty; Not needed when deploy_mode is provision.`,
 				},
 				resource.Attribute{
 					Name:        "eos_managed",
-					Description: `(Optional) List of CloudEOS devices already deployed. ## Attributes Reference In addition to the Arguments listed above - the following Attributes are exported:`,
+					Description: `(Optional) List of CloudEOS devices already deployed. CVaaS reserves ip and asn from the ranges specified in the arguments above to deploy the fabric. The VNI range - 101 to 116 is reserved by CVaaS and any vni's needed to deploy the fabric are handed out from this range. Furthermore, a loopback10 interface is created and assigned an ip from the 198.18.0.0/16 range for each router. This allows configuration changes to be pushed out from CVaaS. ## Attributes Reference In addition to the Arguments listed above - the following Attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "ID",

@@ -51,7 +51,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A spec can contain multiple components. A ` + "`" + `service` + "`" + ` can contain:`,
+					Description: `The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. - ` + "`" + `alert` + "`" + ` - Describes an alert policy for the app.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The type of the alert to configure. Top-level app alert policies can be: ` + "`" + `DEPLOYMENT_FAILED` + "`" + `, ` + "`" + `DEPLOYMENT_LIVE` + "`" + `, ` + "`" + `DOMAIN_FAILED` + "`" + `, or ` + "`" + `DOMAIN_LIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `). A spec can contain multiple components. A ` + "`" + `service` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -79,7 +87,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_size_slug",
-					Description: `The instance size to use for this component.`,
+					Description: `The instance size to use for this component. This determines the plan (basic or professional) and the available CPU and memory. The list of available instance sizes can be [found with the API](https://docs.digitalocean.com/reference/api/api-reference/#operation/list_instance_sizes) or using the [doctl CLI](https://docs.digitalocean.com/reference/doctl/) (` + "`" + `doctl apps tier instance-size list` + "`" + `). Default: ` + "`" + `basic-xxs` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "instance_count",
@@ -115,11 +123,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app.`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
 				},
 				resource.Attribute{
 					Name:        "health_check",
-					Description: `A health check to determine the availability of this component. - ` + "`" + `http_path` + "`" + ` - The route path used for the HTTP health check ping. - ` + "`" + `initial_delay_seconds` + "`" + ` - The number of seconds to wait before beginning health checks. - ` + "`" + `period_seconds` + "`" + ` - The number of seconds to wait between health checks. - ` + "`" + `timeout_seconds` + "`" + ` - The number of seconds after which the check times out. - ` + "`" + `success_threshold` + "`" + ` - The number of successful health checks before considered healthy. - ` + "`" + `failure_threshold` + "`" + ` - The number of failed health checks before considered unhealthy. A ` + "`" + `static_site` + "`" + ` can contain:`,
+					Description: `A health check to determine the availability of this component. - ` + "`" + `http_path` + "`" + ` - The route path used for the HTTP health check ping. - ` + "`" + `initial_delay_seconds` + "`" + ` - The number of seconds to wait before beginning health checks. - ` + "`" + `period_seconds` + "`" + ` - The number of seconds to wait between health checks. - ` + "`" + `timeout_seconds` + "`" + ` - The number of seconds after which the check times out. - ` + "`" + `success_threshold` + "`" + ` - The number of successful health checks before considered healthy. - ` + "`" + `failure_threshold` + "`" + ` - The number of failed health checks before considered unhealthy.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies of the app. - ` + "`" + `allow_origins` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` can be - ` + "`" + `exact` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin only if the client's origin exactly matches the value you provide. - ` + "`" + `prefix` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the beginning of the client's origin matches the value you provide. - ` + "`" + `regex` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the client’s origin matches the regex you provide, in [RE2 style syntax](https://github.com/google/re2/wiki/Syntax). - ` + "`" + `allow_headers` + "`" + ` - The set of allowed HTTP request headers. This configures the ` + "`" + `Access-Control-Allow-Headers` + "`" + ` header. - ` + "`" + `max_age` + "`" + ` - An optional duration specifying how long browsers can cache the results of a preflight request. This configures the Access-Control-Max-Age header. Example: ` + "`" + `5h30m` + "`" + `. - ` + "`" + `expose_headers` + "`" + ` - The set of HTTP response headers that browsers are allowed to access. This configures the ` + "`" + `Access-Control-Expose-Headers` + "`" + ` header. - ` + "`" + `allow_methods` + "`" + ` - The set of allowed HTTP methods. This configures the ` + "`" + `Access-Control-Allow-Methods` + "`" + ` header. - ` + "`" + `allow_credentials` + "`" + ` - Whether browsers should expose the response to the client-side JavaScript code when the request's credentials mode is ` + "`" + `include` + "`" + `. This configures the ` + "`" + `Access-Control-Allow-Credentials` + "`" + ` header.`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Describes an alert policy for the component. - ` + "`" + `rule` + "`" + ` - The type of the alert to configure. Component app alert policies can be: ` + "`" + `CPU_UTILIZATION` + "`" + `, ` + "`" + `MEM_UTILIZATION` + "`" + `, or ` + "`" + `RESTART_COUNT` + "`" + `. - ` + "`" + `value` + "`" + ` - The threshold for the type of the warning. - ` + "`" + `operator` + "`" + ` - The operator to use. This is either of ` + "`" + `GREATER_THAN` + "`" + ` or ` + "`" + `LESS_THAN` + "`" + `. - ` + "`" + `window` + "`" + ` - The time before alerts should be triggered. This is may be one of: ` + "`" + `FIVE_MINUTES` + "`" + `, ` + "`" + `TEN_MINUTES` + "`" + `, ` + "`" + `THIRTY_MINUTES` + "`" + `, ` + "`" + `ONE_HOUR` + "`" + `. - ` + "`" + `disabled` + "`" + ` - Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "log_destination",
+					Description: `Describes a log forwarding destination. - ` + "`" + `name` + "`" + ` - Name of the log destination. Minimum length: 2. Maximum length: 42. - ` + "`" + `papertrail` + "`" + ` - Papertrail configuration. - ` + "`" + `endpoint` + "`" + ` - Papertrail syslog endpoint. - ` + "`" + `datadog` + "`" + ` - Datadog configuration. - ` + "`" + `endpoint` + "`" + ` - Datadog HTTP log intake endpoint. - ` + "`" + `api_key` + "`" + ` - Datadog API key. - ` + "`" + `logtail` + "`" + ` - Logtail configuration. - ` + "`" + `token` + "`" + ` - Logtail token. A ` + "`" + `static_site` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -175,7 +195,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. A ` + "`" + `worker` + "`" + ` can contain:`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies of the app. - ` + "`" + `allow_origins` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` can be - ` + "`" + `exact` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin only if the client's origin exactly matches the value you provide. - ` + "`" + `prefix` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the beginning of the client's origin matches the value you provide. - ` + "`" + `regex` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the client’s origin matches the regex you provide, in [RE2 style syntax](https://github.com/google/re2/wiki/Syntax). - ` + "`" + `allow_headers` + "`" + ` - The set of allowed HTTP request headers. This configures the ` + "`" + `Access-Control-Allow-Headers` + "`" + ` header. - ` + "`" + `max_age` + "`" + ` - An optional duration specifying how long browsers can cache the results of a preflight request. This configures the Access-Control-Max-Age header. Example: ` + "`" + `5h30m` + "`" + `. - ` + "`" + `expose_headers` + "`" + ` - The set of HTTP response headers that browsers are allowed to access. This configures the ` + "`" + `Access-Control-Expose-Headers` + "`" + ` header. - ` + "`" + `allow_methods` + "`" + ` - The set of allowed HTTP methods. This configures the ` + "`" + `Access-Control-Allow-Methods` + "`" + ` header. - ` + "`" + `allow_credentials` + "`" + ` - Whether browsers should expose the response to the client-side JavaScript code when the request's credentials mode is ` + "`" + `include` + "`" + `. This configures the ` + "`" + `Access-Control-Allow-Credentials` + "`" + ` header. A ` + "`" + `worker` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -203,7 +227,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_size_slug",
-					Description: `The instance size to use for this component.`,
+					Description: `The instance size to use for this component. This determines the plan (basic or professional) and the available CPU and memory. The list of available instance sizes can be [found with the API](https://docs.digitalocean.com/reference/api/api-reference/#operation/list_instance_sizes) or using the [doctl CLI](https://docs.digitalocean.com/reference/doctl/) (` + "`" + `doctl apps tier instance-size list` + "`" + `). Default: ` + "`" + `basic-xxs` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "instance_count",
@@ -227,7 +251,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "env",
-					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `job` + "`" + ` can contain:`,
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Describes an alert policy for the component. - ` + "`" + `rule` + "`" + ` - The type of the alert to configure. Component app alert policies can be: ` + "`" + `CPU_UTILIZATION` + "`" + `, ` + "`" + `MEM_UTILIZATION` + "`" + `, or ` + "`" + `RESTART_COUNT` + "`" + `. - ` + "`" + `value` + "`" + ` - The threshold for the type of the warning. - ` + "`" + `operator` + "`" + ` - The operator to use. This is either of ` + "`" + `GREATER_THAN` + "`" + ` or ` + "`" + `LESS_THAN` + "`" + `. - ` + "`" + `window` + "`" + ` - The time before alerts should be triggered. This is may be one of: ` + "`" + `FIVE_MINUTES` + "`" + `, ` + "`" + `TEN_MINUTES` + "`" + `, ` + "`" + `THIRTY_MINUTES` + "`" + `, ` + "`" + `ONE_HOUR` + "`" + `. - ` + "`" + `disabled` + "`" + ` - Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "log_destination",
+					Description: `Describes a log forwarding destination. - ` + "`" + `name` + "`" + ` - Name of the log destination. Minimum length: 2. Maximum length: 42. - ` + "`" + `papertrail` + "`" + ` - Papertrail configuration. - ` + "`" + `endpoint` + "`" + ` - Papertrail syslog endpoint. - ` + "`" + `datadog` + "`" + ` - Datadog configuration. - ` + "`" + `endpoint` + "`" + ` - Datadog HTTP log intake endpoint. - ` + "`" + `api_key` + "`" + ` - Datadog API key. - ` + "`" + `logtail` + "`" + ` - Logtail configuration. - ` + "`" + `token` + "`" + ` - Logtail token. A ` + "`" + `job` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -259,7 +291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_size_slug",
-					Description: `The instance size to use for this component.`,
+					Description: `The instance size to use for this component. This determines the plan (basic or professional) and the available CPU and memory. The list of available instance sizes can be [found with the API](https://docs.digitalocean.com/reference/api/api-reference/#operation/list_instance_sizes) or using the [doctl CLI](https://docs.digitalocean.com/reference/doctl/) (` + "`" + `doctl apps tier instance-size list` + "`" + `). Default: ` + "`" + `basic-xxs` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "instance_count",
@@ -283,7 +315,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "env",
-					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `database` + "`" + ` can contain:`,
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Describes an alert policy for the component. - ` + "`" + `rule` + "`" + ` - The type of the alert to configure. Component app alert policies can be: ` + "`" + `CPU_UTILIZATION` + "`" + `, ` + "`" + `MEM_UTILIZATION` + "`" + `, or ` + "`" + `RESTART_COUNT` + "`" + `. - ` + "`" + `value` + "`" + ` - The threshold for the type of the warning. - ` + "`" + `operator` + "`" + ` - The operator to use. This is either of ` + "`" + `GREATER_THAN` + "`" + ` or ` + "`" + `LESS_THAN` + "`" + `. - ` + "`" + `window` + "`" + ` - The time before alerts should be triggered. This is may be one of: ` + "`" + `FIVE_MINUTES` + "`" + `, ` + "`" + `TEN_MINUTES` + "`" + `, ` + "`" + `THIRTY_MINUTES` + "`" + `, ` + "`" + `ONE_HOUR` + "`" + `. - ` + "`" + `disabled` + "`" + ` - Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "log_destination",
+					Description: `Describes a log forwarding destination. - ` + "`" + `name` + "`" + ` - Name of the log destination. Minimum length: 2. Maximum length: 42. - ` + "`" + `papertrail` + "`" + ` - Papertrail configuration. - ` + "`" + `endpoint` + "`" + ` - Papertrail syslog endpoint. - ` + "`" + `datadog` + "`" + ` - Datadog configuration. - ` + "`" + `endpoint` + "`" + ` - Datadog HTTP log intake endpoint. - ` + "`" + `api_key` + "`" + ` - Datadog API key. - ` + "`" + `logtail` + "`" + ` - Logtail configuration. - ` + "`" + `token` + "`" + ` - Logtail token. A ` + "`" + `database` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -291,7 +331,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, or ` + "`" + `REDIS` + "`" + `).`,
+					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, ` + "`" + `REDIS` + "`" + `, or ` + "`" + `MONGODB` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -311,7 +351,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db_user",
-					Description: `The name of the MySQL or PostgreSQL user to configure. ## Attributes Reference In addition to the above attributes, the following are exported:`,
+					Description: `The name of the MySQL or PostgreSQL user to configure. This resource supports [customized create timeouts](https://www.terraform.io/docs/language/resources/syntax.html#operation-timeouts). The default timeout is 30 minutes. ## Attributes Reference In addition to the above attributes, the following are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the app.`,
 				},
 				resource.Attribute{
 					Name:        "default_ingress",
@@ -335,6 +379,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the app.`,
+				},
 				resource.Attribute{
 					Name:        "default_ingress",
 					Description: `The default URL to access the app.`,
@@ -519,7 +567,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subscription_tier_slug",
-					Description: `(Required) The slug identifier for the subscription tier to use (` + "`" + `starter` + "`" + `, ` + "`" + `basic` + "`" + `, or ` + "`" + `professional` + "`" + `) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The slug identifier for the subscription tier to use (` + "`" + `starter` + "`" + `, ` + "`" + `basic` + "`" + `, or ` + "`" + `professional` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The slug identifier of for region where registry data will be stored. When not provided, a region will be selected automatically. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -532,6 +584,26 @@ var (
 				resource.Attribute{
 					Name:        "subscription_tier_slug",
 					Description: `The slug identifier for the subscription tier`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug identifier for the region`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The URL endpoint of the container registry. Ex: ` + "`" + `registry.digitalocean.com/my_registry` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "server_url",
+					Description: `The domain of the container registry. Ex: ` + "`" + `registry.digitalocean.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_usage_bytes",
+					Description: `The amount of storage used in the registry in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the registry was created ## Import Container Registries can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_container_registry.myregistry registryname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -546,6 +618,26 @@ var (
 				resource.Attribute{
 					Name:        "subscription_tier_slug",
 					Description: `The slug identifier for the subscription tier`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug identifier for the region`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The URL endpoint of the container registry. Ex: ` + "`" + `registry.digitalocean.com/my_registry` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "server_url",
+					Description: `The domain of the container registry. Ex: ` + "`" + `registry.digitalocean.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_usage_bytes",
+					Description: `The amount of storage used in the registry in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the registry was created ## Import Container Registries can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_container_registry.myregistry registryname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -674,7 +766,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hour",
-					Description: `(Required) The hour in UTC at which maintenance updates will be applied in 24 hour format. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+					Description: `(Required) The hour in UTC at which maintenance updates will be applied in 24 hour format. This resource supports [customized create timeouts](https://www.terraform.io/docs/language/resources/syntax.html#operation-timeouts). The default timeout is 30 minutes. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1041,7 +1133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1051,7 +1143,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 		},
@@ -1077,7 +1169,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "urn",
-					Description: `The uniform resource name of the domain ## Import Domains can be imported using the ` + "`" + `domain name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_domain.mydomain mytestdomain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The uniform resource name of the domain`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL value of the domain ## Import Domains can be imported using the ` + "`" + `domain name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_domain.mydomain mytestdomain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1087,7 +1183,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "urn",
-					Description: `The uniform resource name of the domain ## Import Domains can be imported using the ` + "`" + `domain name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_domain.mydomain mytestdomain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The uniform resource name of the domain`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL value of the domain ## Import Domains can be imported using the ` + "`" + `domain name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_domain.mydomain mytestdomain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1121,7 +1221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring",
-					Description: `(Optional) Boolean controlling whether monitoring agent is installed. Defaults to false.`,
+					Description: `(Optional) Boolean controlling whether monitoring agent is installed. Defaults to false. If set to ` + "`" + `true` + "`" + `, you can configure monitor alert policies [monitor alert resource](/providers/digitalocean/digitalocean/latest/docs/resources/monitor_alert)`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
@@ -1389,7 +1489,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_load_balancer_uids",
-					Description: `(Optional) An array containing the IDs of the Load Balancers from which the inbound traffic will be accepted. ` + "`" + `outbound_rule` + "`" + ` supports the following:`,
+					Description: `(Optional) An array containing the IDs of the Load Balancers from which the inbound traffic will be accepted.`,
+				},
+				resource.Attribute{
+					Name:        "source_kubernetes_ids",
+					Description: `(Optional) An array containing the IDs of the Kubernetes clusters from which the inbound traffic will be accepted. ` + "`" + `outbound_rule` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1408,8 +1512,12 @@ var (
 					Description: `(Optional) An array containing the IDs of the Droplets to which the outbound traffic will be allowed.`,
 				},
 				resource.Attribute{
+					Name:        "destination_kubernetes_ids",
+					Description: `(Optional) An array containing the IDs of the Kubernetes clusters to which the outbound traffic will be allowed.`,
+				},
+				resource.Attribute{
 					Name:        "destination_tags",
-					Description: `(Optional) An array containing the names of Tags corresponding to groups of Droplets to which the outbound traffic will be allowed. traffic.`,
+					Description: `(Optional) An array containing the names of Tags corresponding to groups of Droplets to which the outbound traffic will be allowed.`,
 				},
 				resource.Attribute{
 					Name:        "destination_load_balancer_uids",
@@ -1541,7 +1649,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "droplet_id",
-					Description: `(Optional) The ID of Droplet that the Floating IP will be assigned to.`,
+					Description: `(Optional) The ID of Droplet that the Floating IP will be assigned to. ## Import Floating IP assignments can be imported using the Floating IP itself and the ` + "`" + `id` + "`" + ` of the Droplet joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_floating_ip_assignment.foobar 192.0.2.1,123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1579,8 +1687,12 @@ var (
 					Description: `(Optional) Enable/disable surge upgrades for a cluster. Default: false`,
 				},
 				resource.Attribute{
+					Name:        "ha",
+					Description: `(Optional) Enable/disable the high availability control plane for a cluster. High availability can only be set when creating a cluster. Any update will create a new cluster. Default: false`,
+				},
+				resource.Attribute{
 					Name:        "node_pool",
-					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value. - ` + "`" + `auto_scale` + "`" + ` - (Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range. - ` + "`" + `min_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names to be applied to the Kubernetes cluster. - ` + "`" + `labels` + "`" + ` - (Optional) A map of key/value pairs to apply to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/).`,
+					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value. - ` + "`" + `auto_scale` + "`" + ` - (Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range. - ` + "`" + `min_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names applied to the node pool. - ` + "`" + `labels` + "`" + ` - (Optional) A map of key/value pairs to apply to nodes in the pool. The labels are exposed in the Kubernetes API as labels in the metadata of the corresponding [Node resources](https://kubernetes.io/docs/concepts/architecture/nodes/).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1588,7 +1700,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maintenance_policy",
-					Description: `(Optional) A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. ` + "`" + `auto_upgrade` + "`" + ` must be set to ` + "`" + `true` + "`" + ` for this to have an effect. - ` + "`" + `day` + "`" + ` - (Required) The day of the maintenance window policy. May be one of "monday" through "sunday", or "any" to indicate an arbitrary week day. - ` + "`" + `start_time` + "`" + ` (Required) The start time in UTC of the maintenance window policy in 24-hour clock format / HH:MM notation (e.g., 15:00). ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) A block representing the cluster's maintenance window. Updates will be applied within this window. If not specified, a default maintenance window will be chosen. ` + "`" + `auto_upgrade` + "`" + ` must be set to ` + "`" + `true` + "`" + ` for this to have an effect. - ` + "`" + `day` + "`" + ` - (Required) The day of the maintenance window policy. May be one of "monday" through "sunday", or "any" to indicate an arbitrary week day. - ` + "`" + `start_time` + "`" + ` (Required) The start time in UTC of the maintenance window policy in 24-hour clock format / HH:MM notation (e.g., 15:00). This resource supports [customized create timeouts](https://www.terraform.io/docs/language/resources/syntax.html#operation-timeouts). The default timeout is 30 minutes. ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1604,7 +1716,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
-					Description: `The public IPv4 address of the Kubernetes master node.`,
+					Description: `The public IPv4 address of the Kubernetes master node. This will not be set if high availability is configured on the cluster (v1.21+)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -1658,7 +1770,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
-					Description: `The public IPv4 address of the Kubernetes master node.`,
+					Description: `The public IPv4 address of the Kubernetes master node. This will not be set if high availability is configured on the cluster (v1.21+)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -1744,7 +1856,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taint",
-					Description: `(Optional) A list of taints applied to all nodes in the pool. ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
+					Description: `(Optional) A list of taints applied to all nodes in the pool. This resource supports [customized create timeouts](https://www.terraform.io/docs/language/resources/syntax.html#operation-timeouts). The default timeout is 30 minutes. ## Attributes Reference In addition to the arguments listed above, the following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1800,7 +1912,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Optional) The size of the Load Balancer. It must be either ` + "`" + `lb-small` + "`" + `, ` + "`" + `lb-medium` + "`" + `, or ` + "`" + `lb-large` + "`" + `. Defaults to ` + "`" + `lb-small` + "`" + `.`,
+					Description: `(Optional) The size of the Load Balancer. It must be either ` + "`" + `lb-small` + "`" + `, ` + "`" + `lb-medium` + "`" + `, or ` + "`" + `lb-large` + "`" + `. Defaults to ` + "`" + `lb-small` + "`" + `. Only one of ` + "`" + `size` + "`" + ` or ` + "`" + `size_unit` + "`" + ` may be provided.`,
+				},
+				resource.Attribute{
+					Name:        "size_unit",
+					Description: `(Optional) The size of the Load Balancer. It must be in the range (1, 100). Defaults to ` + "`" + `1` + "`" + `. Only one of ` + "`" + `size` + "`" + ` or ` + "`" + `size_unit` + "`" + ` may be provided.`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -1829,6 +1945,10 @@ var (
 				resource.Attribute{
 					Name:        "enable_backend_keepalive",
 					Description: `(Optional) A boolean value indicating whether HTTP keepalive connections are maintained to target Droplets. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_lets_encrypt_dns_records",
+					Description: `(Optional) A boolean value indicating whether to disable automatic DNS record creation for Let's Encrypt certificates that are added to the load balancer. Default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_uuid",
@@ -1919,6 +2039,134 @@ var (
 				resource.Attribute{
 					Name:        "urn",
 					Description: `The uniform resource name for the Load Balancer ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_loadbalancer.myloadbalancer 4de7ac8b-495b-4884-9a69-1050c6793cd6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_monitor_alert",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alerts",
+					Description: `(Required) How to send notifications about the alerts. This is a list with one element, . Note that for Slack, the DigitalOcean app needs to have permissions for your workspace. You can read more in [Slack's documentation](https://slack.com/intl/en-dk/help/articles/222386767-Manage-app-installation-settings-for-your-workspace)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "compare",
+					Description: `(Required) The comparison for ` + "`" + `value` + "`" + `. This may be either ` + "`" + `GreaterThan` + "`" + ` or ` + "`" + `LessThan` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the alert. This may be one of ` + "`" + `v1/insights/droplet/load_1` + "`" + `, ` + "`" + `v1/insights/droplet/load_5` + "`" + `, ` + "`" + `v1/insights/droplet/load_15` + "`" + `, ` + "`" + `v1/insights/droplet/memory_utilization_percent` + "`" + `, ` + "`" + `v1/insights/droplet/disk_utilization_percent` + "`" + `, ` + "`" + `v1/insights/droplet/cpu` + "`" + `, ` + "`" + `v1/insights/droplet/disk_read` + "`" + `, ` + "`" + `v1/insights/droplet/disk_write` + "`" + `, ` + "`" + `v1/insights/droplet/public_outbound_bandwidth` + "`" + `, ` + "`" + `v1/insights/droplet/public_inbound_bandwidth` + "`" + `, ` + "`" + `v1/insights/droplet/private_outbound_bandwidth` + "`" + `, ` + "`" + `v1/insights/droplet/private_inbound_bandwidth` + "`" + `, ` + "`" + `v1/insights/lbaas/avg_cpu_utilization_percent` + "`" + `, ` + "`" + `v1/insights/lbaas/connection_utilization_percent` + "`" + `, ` + "`" + `v1/insights/lbaas/droplet_health` + "`" + `, or ` + "`" + `v1/insights/lbaas/tls_connections_per_second_utilization_percent` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) The status of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "entities",
+					Description: `A list of IDs for the resources to which the alert policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags. When an included tag is added to a resource, the alert policy will apply to it.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value to start alerting at, e.g., 90% or 85Mbps. This is a floating-point number. DigitalOcean will show the correct unit in the web panel.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `(Required) The time frame of the alert. Either ` + "`" + `5m` + "`" + `, ` + "`" + `10m` + "`" + `, ` + "`" + `30m` + "`" + `, or ` + "`" + `1h` + "`" + `. ## Attributes Reference The following attributes are exported.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The uuid of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `The time frame of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `The status of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "entities",
+					Description: `The resources for which the alert policy applies`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The percentage to start alerting at.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for the alert.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The percentage to start alerting at, e.g., 90.`,
+				},
+				resource.Attribute{
+					Name:        "alerts",
+					Description: `The notification policies of the alert policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the alert. ## Import Monitor alerts can be imported using the monitor alert ` + "`" + `uuid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import digitalocean_monitor_alert.cpu_alert b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The uuid of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `The time frame of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `The status of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "entities",
+					Description: `The resources for which the alert policy applies`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the alert.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The percentage to start alerting at.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for the alert.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The percentage to start alerting at, e.g., 90.`,
+				},
+				resource.Attribute{
+					Name:        "alerts",
+					Description: `The notification policies of the alert policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the alert. ## Import Monitor alerts can be imported using the monitor alert ` + "`" + `uuid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import digitalocean_monitor_alert.cpu_alert b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2051,7 +2299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional) The time to live for the record, in seconds. Must be at least 0.`,
+					Description: `(Optional) The time to live for the record, in seconds. Must be at least 0. Defaults to 1800.`,
 				},
 				resource.Attribute{
 					Name:        "flags",
@@ -2300,6 +2548,29 @@ var (
 					Description: `A unique version ID value for the object, if bucket versioning is enabled. ## Import Importing this resource is not supported.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_spaces_bucket_policy",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region where the bucket resides.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to which to apply the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The text of the policy. ## Attributes Reference No additional attributes are exported. ## Import Bucket policies can be imported using the ` + "`" + `region` + "`" + ` and ` + "`" + `bucket` + "`" + ` attributes (delimited by a comma): ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_spaces_bucket_policy.foobar ` + "`" + `region` + "`" + `,` + "`" + `bucket` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2742,17 +3013,19 @@ var (
 		"digitalocean_kubernetes_cluster":                    18,
 		"digitalocean_kubernetes_node_pool":                  19,
 		"digitalocean_loadbalancer":                          20,
-		"digitalocean_project":                               21,
-		"digitalocean_project_resources":                     22,
-		"digitalocean_record":                                23,
-		"digitalocean_spaces_bucket":                         24,
-		"digitalocean_spaces_bucket_object":                  25,
-		"digitalocean_ssh_key":                               26,
-		"digitalocean_tag":                                   27,
-		"digitalocean_volume":                                28,
-		"digitalocean_volume_attachment":                     29,
-		"digitalocean_volume_snapshot":                       30,
-		"digitalocean_vpc":                                   31,
+		"digitalocean_monitor_alert":                         21,
+		"digitalocean_project":                               22,
+		"digitalocean_project_resources":                     23,
+		"digitalocean_record":                                24,
+		"digitalocean_spaces_bucket":                         25,
+		"digitalocean_spaces_bucket_object":                  26,
+		"digitalocean_spaces_bucket_policy":                  27,
+		"digitalocean_ssh_key":                               28,
+		"digitalocean_tag":                                   29,
+		"digitalocean_volume":                                30,
+		"digitalocean_volume_attachment":                     31,
+		"digitalocean_volume_snapshot":                       32,
+		"digitalocean_vpc":                                   33,
 	}
 )
 

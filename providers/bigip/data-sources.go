@@ -323,6 +323,68 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_bigip_ltm_policy",
+			Category:         "Local Traffic Manager(LTM)",
+			ShortDescription: `Provides details about bigip_ltm_policy data source`,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"traffic",
+				"manager",
+				"ltm",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the policy which includes partion ( /partition/policy-name ) ## Attributes Reference Additionally, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `Specifies the match strategy.`,
+				},
+				resource.Attribute{
+					Name:        "requires",
+					Description: `Specifies the protocol.`,
+				},
+				resource.Attribute{
+					Name:        "controls",
+					Description: `Specifies the controls.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `Rules defined in the policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `Specifies the match strategy.`,
+				},
+				resource.Attribute{
+					Name:        "requires",
+					Description: `Specifies the protocol.`,
+				},
+				resource.Attribute{
+					Name:        "controls",
+					Description: `Specifies the controls.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `Rules defined in the policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_bigip_ltm_pool",
 			Category:         "Local Traffic Manager(LTM)",
 			ShortDescription: `Provides details about bigip_ltm_pool data source`,
@@ -494,9 +556,10 @@ var (
 		"bigip_bigip_ltm_irule":       1,
 		"bigip_bigip_ltm_monitor":     2,
 		"bigip_bigip_ltm_node":        3,
-		"bigip_bigip_ltm_pool":        4,
-		"bigip_bigip_ssl_certificate": 5,
-		"bigip_bigip_vwan_config":     6,
+		"bigip_bigip_ltm_policy":      4,
+		"bigip_bigip_ltm_pool":        5,
+		"bigip_bigip_ssl_certificate": 6,
+		"bigip_bigip_vwan_config":     7,
 	}
 )
 

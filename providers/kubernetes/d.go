@@ -121,7 +121,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tls",
-					Description: `TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below. ### ` + "`" + `backend` + "`" + ` #### Attributes`,
+					Description: `TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_class_name",
+					Description: `The name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated ` + "`" + `kubernetes.io/ingress.class` + "`" + ` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. ### ` + "`" + `backend` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -187,7 +191,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tls",
-					Description: `TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below. ### ` + "`" + `backend` + "`" + ` #### Attributes`,
+					Description: `TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. See ` + "`" + `tls` + "`" + ` block attributes below.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_class_name",
+					Description: `The name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated ` + "`" + `kubernetes.io/ingress.class` + "`" + ` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. ### ` + "`" + `backend` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
@@ -875,7 +883,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource",
-					Description: `Resource to select ### ` + "`" + `se_linux_options` + "`" + ` #### Attributes`,
+					Description: `Resource to select ### ` + "`" + `seccomp_profile` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates which kind of seccomp profile will be applied. Valid options are:`,
+				},
+				resource.Attribute{
+					Name:        "Localhost",
+					Description: `a profile defined in a file on the node should be used.`,
+				},
+				resource.Attribute{
+					Name:        "RuntimeDefault",
+					Description: `the container runtime default profile should be used.`,
+				},
+				resource.Attribute{
+					Name:        "Unconfined",
+					Description: `(Default) no profile should be applied.`,
+				},
+				resource.Attribute{
+					Name:        "localhost_profile",
+					Description: `Indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if ` + "`" + `type` + "`" + ` is ` + "`" + `Localhost` + "`" + `. ### ` + "`" + `se_linux_options` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -970,6 +998,10 @@ var (
 					Description: `The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
 				},
 				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
+				},
+				resource.Attribute{
 					Name:        "se_linux_options",
 					Description: `The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Attributes`,
 				},
@@ -996,6 +1028,10 @@ var (
 				resource.Attribute{
 					Name:        "run_as_user",
 					Description: `The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.`,
+				},
+				resource.Attribute{
+					Name:        "seccomp_profile",
+					Description: `The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows.`,
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
@@ -1096,6 +1132,10 @@ var (
 					Name:        "type",
 					Description: `The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design)`,
 				},
+				resource.Attribute{
+					Name:        "immutable",
+					Description: `Ensures that data stored in the Secret cannot be updated (only object metadata can be modified).`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1109,6 +1149,10 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design)`,
+				},
+				resource.Attribute{
+					Name:        "immutable",
+					Description: `Ensures that data stored in the Secret cannot be updated (only object metadata can be modified).`,
 				},
 			},
 		},
@@ -1157,6 +1201,10 @@ var (
 					Description: `The unique in time and space value for this service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `port` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
+					Name:        "app_protocol",
+					Description: `(Optional) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per [RFC-6335](https://datatracker.ietf.org/doc/html/rfc6335) and [IANA standard service names](http://www.iana.org/assignments/service-names)). Non-standard protocols should use prefixed names such as ` + "`" + `mycompany.com/my-custom-protocol` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol)`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The name of this port within the service. All ports within the service must have unique names. Optional if only one ServicePort is defined on this service.`,
 				},
@@ -1190,7 +1238,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_traffic_policy",
-					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info: https://kubernetes.io/docs/tutorials/services/source-ip/`,
+					Description: `(Optional) Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. ` + "`" + `Local` + "`" + ` preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. ` + "`" + `Cluster` + "`" + ` obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading. For more info see [Kubernetes reference](https://kubernetes.io/docs/tutorials/services/source-ip/)`,
+				},
+				resource.Attribute{
+					Name:        "ip_families",
+					Description: `(Optional) A list of IP families (e.g. IPv4, IPv6) assigned to this service. This field is usually assigned automatically based on cluster configuration and the ` + "`" + `ip_family_policy` + "`" + ` field. If this field is specified manually, the requested family is available in the cluster, and ` + "`" + `ip_family_policy` + "`" + ` allows it, it will be used; otherwise creation of the service will fail. This field is conditionally mutable: it allows for adding or removing a secondary IP family, but it does not allow changing the primary IP family of the Service. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/dual-stack/)`,
+				},
+				resource.Attribute{
+					Name:        "ip_family_policy",
+					Description: `(Optional) Represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to ` + "`" + `SingleStack` + "`" + `. Services can be ` + "`" + `SingleStack` + "`" + `(a single IP family), ` + "`" + `PreferDualStack` + "`" + `(two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or ` + "`" + `RequireDualStack` + "`" + `(two IP families on dual-stack configured clusters, otherwise fail). The ` + "`" + `ip_families` + "`" + ` and ` + "`" + `cluster_ip` + "`" + ` fields depend on the value of this field.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ip",
@@ -1281,7 +1337,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
+					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1303,7 +1359,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
+					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",

@@ -89,6 +89,10 @@ var (
 					Name:        "ram",
 					Description: `The memory size of the database server for this type`,
 				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default database type?`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -98,6 +102,10 @@ var (
 				resource.Attribute{
 					Name:        "ram",
 					Description: `The memory size of the database server for this type`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Is this the default database type?`,
 				},
 			},
 		},
@@ -124,6 +132,14 @@ var (
 				resource.Attribute{
 					Name:        "source_type",
 					Description: `(Optional) Either ` + "`" + `upload` + "`" + ` or ` + "`" + `snapshot` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Name of the source for this image. Matches exactly.`,
+				},
+				resource.Attribute{
+					Name:        "source_trigger",
+					Description: `(Optional) Either ` + "`" + `manual` + "`" + ` or ` + "`" + `schedule` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
@@ -155,7 +171,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "licence_name",
-					Description: `(Optional) The name of the licence for the image. Matches exactly. ~>`,
+					Description: `(Optional) The name of the licence for the image. Matches exactly.`,
+				},
+				resource.Attribute{
+					Name:        "min_ram",
+					Description: `(Optional) The actual size of the data within the image in megabytes. Matches exactly. ~>`,
 				},
 				resource.Attribute{
 					Name:        "status",

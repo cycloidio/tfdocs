@@ -21,6 +21,36 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "instaclustr_clusters",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "instaclustr_kafka_acl",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "instaclustr_kafka_topic",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "instaclustr_kafka_user",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -34,7 +64,10 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"instaclustr_cluster_credentials": 0,
-		"instaclustr_kafka_user":          1,
+		"instaclustr_clusters":            1,
+		"instaclustr_kafka_acl":           2,
+		"instaclustr_kafka_topic":         3,
+		"instaclustr_kafka_user":          4,
 	}
 )
 

@@ -243,11 +243,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dn",
-					Description: `(Required) The domain profile name.`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "domain_dn",
+					Description: `(Optional) The dn of domain. This is required when ` + "`" + `domain_name` + "`" + ` and ` + "`" + `domain_type` + "`" + ` are not specified.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Optional) The domain profile name. This is required when ` + "`" + `domain_dn` + "`" + ` is not used. This attribute requires ` + "`" + `domain_type` + "`" + ` and ` + "`" + `vmm_domain_type` + "`" + ` (when it is applicable) to be set.`,
 				},
 				resource.Attribute{
 					Name:        "domain_type",
-					Description: `(Required) The type of domain to associate. choices: [ vmmDomain, l3ExtDomain, l2ExtDomain, physicalDomain, fibreChannelDomain ] ## Attribute Reference ##`,
+					Description: `(Optional) The type of domain to associate. This is required when ` + "`" + `domain_dn` + "`" + ` is not used. Choices: [ vmmDomain, l3ExtDomain, l2ExtDomain, physicalDomain, fibreChannelDomain ]`,
+				},
+				resource.Attribute{
+					Name:        "vmm_domain_type",
+					Description: `(Optional) The vmm domain type. This is required when ` + "`" + `domain_type` + "`" + ` is vmmDomain and ` + "`" + `domain_dn` + "`" + ` is not used. Choices: [ VMware, Microsoft, Redhat ] ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "template_name",
@@ -1530,6 +1542,142 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_template_bd",
+			Category:         "Data Sources",
+			ShortDescription: `MSO Schema Template Bridge Domain Data Source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID of Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template name of Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Bridge Domain. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_name",
+					Description: `(Required) Name of VRF attached with Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_schema_id",
+					Description: `(Optional) SchemaID of VRF.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_template_name",
+					Description: `(Optional) Template Name of VRF.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_unknown_unicast",
+					Description: `(Optional) Type of layer 2 unknown unicast.`,
+				},
+				resource.Attribute{
+					Name:        "intersite_bum_traffic",
+					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "optimize_wan_bandwidth",
+					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_stretch",
+					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch.`,
+				},
+				resource.Attribute{
+					Name:        "layer3_multicast",
+					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy",
+					Description: `(Optional) Map to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.name",
+					Description: `(Optional) dhcp_policy name.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.version",
+					Description: `(Optional) Version of dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_name",
+					Description: `(Required) Name of VRF attached with Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_schema_id",
+					Description: `(Optional) SchemaID of VRF.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_template_name",
+					Description: `(Optional) Template Name of VRF.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_unknown_unicast",
+					Description: `(Optional) Type of layer 2 unknown unicast.`,
+				},
+				resource.Attribute{
+					Name:        "intersite_bum_traffic",
+					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "optimize_wan_bandwidth",
+					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_stretch",
+					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch.`,
+				},
+				resource.Attribute{
+					Name:        "layer3_multicast",
+					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy",
+					Description: `(Optional) Map to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.name",
+					Description: `(Optional) dhcp_policy name.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.version",
+					Description: `(Optional) Version of dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_template_bd_subnet",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for MSO Schema Template Bridge Domain Subnet.`,
@@ -1629,10 +1777,6 @@ var (
 					Description: `(Optional) The scope of the contract.`,
 				},
 				resource.Attribute{
-					Name:        "filter_relationships",
-					Description: `(Optional) Map to provide Filter Relationships.`,
-				},
-				resource.Attribute{
 					Name:        "filter_relationships.filter_schema_id",
 					Description: `(Optional) The schemaId in which the filter is located.`,
 				},
@@ -1642,6 +1786,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter_relationships.filter_name",
+					Description: `(Required) The filter to associate with this contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship",
+					Description: `(Required if filter_relationships is not used) Map to provide Filter Relationships.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_schema_id",
+					Description: `(Optional) The schemaId in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_template_name",
+					Description: `(Optional) The template name in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_name",
 					Description: `(Required) The filter to associate with this contract.`,
 				},
 				resource.Attribute{
@@ -1663,10 +1823,6 @@ var (
 					Description: `(Optional) The scope of the contract.`,
 				},
 				resource.Attribute{
-					Name:        "filter_relationships",
-					Description: `(Optional) Map to provide Filter Relationships.`,
-				},
-				resource.Attribute{
 					Name:        "filter_relationships.filter_schema_id",
 					Description: `(Optional) The schemaId in which the filter is located.`,
 				},
@@ -1676,6 +1832,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter_relationships.filter_name",
+					Description: `(Required) The filter to associate with this contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship",
+					Description: `(Required if filter_relationships is not used) Map to provide Filter Relationships.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_schema_id",
+					Description: `(Optional) The schemaId in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_template_name",
+					Description: `(Optional) The template name in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_name",
 					Description: `(Required) The filter to associate with this contract.`,
 				},
 				resource.Attribute{
@@ -2102,7 +2274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `.`,
+					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `, ` + "`" + `import-security` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "aggregate",
@@ -2116,7 +2288,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `.`,
+					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `, ` + "`" + `import-security` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "aggregate",
@@ -2338,7 +2510,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_node_type",
-					Description: `(Optional) Type of Service Node attached to this Graph at index provided by ` + "`" + `node_index` + "`" + `.`,
+					Description: `(Optional) Type of Service Node attached to this Graph at index provided by ` + "`" + `node_index` + "`" + `. Allowed values are ` + "`" + `firewall` + "`" + `, ` + "`" + `load-balancer` + "`" + ` , ` + "`" + `other` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "site_nodes",
@@ -2360,7 +2532,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_node_type",
-					Description: `(Optional) Type of Service Node attached to this Graph at index provided by ` + "`" + `node_index` + "`" + `.`,
+					Description: `(Optional) Type of Service Node attached to this Graph at index provided by ` + "`" + `node_index` + "`" + `. Allowed values are ` + "`" + `firewall` + "`" + `, ` + "`" + `load-balancer` + "`" + ` , ` + "`" + `other` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "site_nodes",
@@ -2566,142 +2738,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mso_schema_template_bd",
-			Category:         "Data Sources",
-			ShortDescription: `MSO Schema Template Bridge Domain Data Source..`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "schema_id",
-					Description: `(Required) SchemaID of Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Required) Template name of Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of Bridge Domain. ## Attribute Reference ##`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_name",
-					Description: `(Required) Name of VRF attached with Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_schema_id",
-					Description: `(Optional) SchemaID of VRF.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_template_name",
-					Description: `(Optional) Template Name of VRF.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_unknown_unicast",
-					Description: `(Optional) Type of layer 2 unknown unicast.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_bum_traffic",
-					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic.`,
-				},
-				resource.Attribute{
-					Name:        "optimize_wan_bandwidth",
-					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_stretch",
-					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch.`,
-				},
-				resource.Attribute{
-					Name:        "layer3_multicast",
-					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy",
-					Description: `(Optional) Map to provide dhcp_policy configurations.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.name",
-					Description: `(Optional) dhcp_policy name.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.version",
-					Description: `(Optional) Version of dhcp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_name",
-					Description: `(Optional) Name of dhcp_option_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_version",
-					Description: `(Optional) Version of dhcp_option_policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_name",
-					Description: `(Required) Name of VRF attached with Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_schema_id",
-					Description: `(Optional) SchemaID of VRF.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_template_name",
-					Description: `(Optional) Template Name of VRF.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_unknown_unicast",
-					Description: `(Optional) Type of layer 2 unknown unicast.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_bum_traffic",
-					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic.`,
-				},
-				resource.Attribute{
-					Name:        "optimize_wan_bandwidth",
-					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_stretch",
-					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch.`,
-				},
-				resource.Attribute{
-					Name:        "layer3_multicast",
-					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy",
-					Description: `(Optional) Map to provide dhcp_policy configurations.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.name",
-					Description: `(Optional) dhcp_policy name.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.version",
-					Description: `(Optional) Version of dhcp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_name",
-					Description: `(Optional) Name of dhcp_option_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_version",
-					Description: `(Optional) Version of dhcp_option_policy.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "mso_tenant",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for MSO Tenant`,
@@ -2761,12 +2797,24 @@ var (
 					Description: `(Optional) password of the user. It must contain at least 8 characters in length.`,
 				},
 				resource.Attribute{
-					Name:        "roles",
+					Name:        "roles.roleid",
+					Description: `(Optional) id of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "roles.access_type",
+					Description: `(Optional) access_type of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac",
 					Description: `(Optional) roles given to the user.`,
 				},
 				resource.Attribute{
-					Name:        "roles.roleid",
-					Description: `(Optional) id of roles given to the user.`,
+					Name:        "user_rbac.name",
+					Description: `(Optional) name of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac.user_priv",
+					Description: `(Optional) Privilege access given to users (WritePriv, ReadPriv)`,
 				},
 				resource.Attribute{
 					Name:        "first_name",
@@ -2791,10 +2839,6 @@ var (
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Optional) domain status of the user.`,
-				},
-				resource.Attribute{
-					Name:        "roles.access_type",
-					Description: `(Optional) access_type of roles given to the user.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2803,12 +2847,24 @@ var (
 					Description: `(Optional) password of the user. It must contain at least 8 characters in length.`,
 				},
 				resource.Attribute{
-					Name:        "roles",
+					Name:        "roles.roleid",
+					Description: `(Optional) id of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "roles.access_type",
+					Description: `(Optional) access_type of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac",
 					Description: `(Optional) roles given to the user.`,
 				},
 				resource.Attribute{
-					Name:        "roles.roleid",
-					Description: `(Optional) id of roles given to the user.`,
+					Name:        "user_rbac.name",
+					Description: `(Optional) name of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac.user_priv",
+					Description: `(Optional) Privilege access given to users (WritePriv, ReadPriv)`,
 				},
 				resource.Attribute{
 					Name:        "first_name",
@@ -2833,10 +2889,6 @@ var (
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Optional) domain status of the user.`,
-				},
-				resource.Attribute{
-					Name:        "roles.access_type",
-					Description: `(Optional) access_type of roles given to the user.`,
 				},
 			},
 		},
@@ -2870,22 +2922,22 @@ var (
 		"mso_schema_template_anp_epg_selector":       23,
 		"mso_schema_template_anp_epg_subnet":         24,
 		"mso_schema_template_anp_epg_useg_attr":      25,
-		"mso_schema_template_bd_subnet":              26,
-		"mso_schema_template_contract":               27,
-		"mso_schema_template_contract_filter":        28,
-		"mso_schema_template_contract_service_graph": 29,
-		"mso_schema_template_external_epg":           30,
-		"mso_schema_template_external_epg_contract":  31,
-		"mso_schema_template_external_epg_selector":  32,
-		"mso_schema_template_external_epg_subnet":    33,
-		"mso_schema_template_filter_entry":           34,
-		"mso_schema_template_l3out":                  35,
-		"mso_schema_template_service_graph":          36,
-		"mso_schema_template_vrf":                    37,
-		"mso_schema_template_vrf_contract":           38,
-		"mso_service_node_type":                      39,
-		"mso_site":                                   40,
-		"mso_schema_template_bd":                     41,
+		"mso_schema_template_bd":                     26,
+		"mso_schema_template_bd_subnet":              27,
+		"mso_schema_template_contract":               28,
+		"mso_schema_template_contract_filter":        29,
+		"mso_schema_template_contract_service_graph": 30,
+		"mso_schema_template_external_epg":           31,
+		"mso_schema_template_external_epg_contract":  32,
+		"mso_schema_template_external_epg_selector":  33,
+		"mso_schema_template_external_epg_subnet":    34,
+		"mso_schema_template_filter_entry":           35,
+		"mso_schema_template_l3out":                  36,
+		"mso_schema_template_service_graph":          37,
+		"mso_schema_template_vrf":                    38,
+		"mso_schema_template_vrf_contract":           39,
+		"mso_service_node_type":                      40,
+		"mso_site":                                   41,
 		"mso_tenant":                                 42,
 		"mso_user":                                   43,
 	}

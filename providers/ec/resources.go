@@ -175,7 +175,39 @@ Provides an Elastic Cloud deployment resource, which allows deployments to be cr
 				},
 				resource.Attribute{
 					Name:        "user_settings_override_yaml",
-					Description: `(Optional) YAML-formatted admin (ECE) level ` + "`" + `kibana.yml` + "`" + ` setting overrides. #### APM The optional ` + "`" + `apm` + "`" + ` block supports the following arguments:`,
+					Description: `(Optional) YAML-formatted admin (ECE) level ` + "`" + `kibana.yml` + "`" + ` setting overrides. #### Integrations Server The optional ` + "`" + `integrations_server` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "topology",
+					Description: `(Optional) Can be set multiple times to compose complex topologies.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_cluster_ref_id",
+					Description: `(Optional) This field references the ` + "`" + `ref_id` + "`" + ` of the deployment Elasticsearch cluster. The default value ` + "`" + `main-elasticsearch` + "`" + ` is recommended.`,
+				},
+				resource.Attribute{
+					Name:        "ref_id",
+					Description: `(Optional) Can be set on the Integrations Server resource. The default value ` + "`" + `main-integrations_server` + "`" + ` is recommended.`,
+				},
+				resource.Attribute{
+					Name:        "instance_configuration_id",
+					Description: `(Optional) Default instance configuration of the deployment template. No need to change this value since Integrations Server has only one _instance type_.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Amount of memory (RAM) per topology element in the "<size in GB>g" notation. When omitted, it defaults to the deployment template value.`,
+				},
+				resource.Attribute{
+					Name:        "size_resource",
+					Description: `(Optional) Type of resource to which the size is assigned. Defaults to ` + "`" + `"memory"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_count",
+					Description: `(Optional) Number of zones that the Integrations Server deployment will span. This is used to set HA. When omitted, it defaults to the deployment template value. ##### Config The optional ` + "`" + `integrations_server.config` + "`" + ` block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "debug_enabled",
+					Description: `(Optional) Enable debug mode for the component. Defaults to ` + "`" + `false` + "`" + `. #### APM The optional ` + "`" + `apm` + "`" + ` block supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "topology",
@@ -358,6 +390,22 @@ Provides an Elastic Cloud deployment resource, which allows deployments to be cr
 					Description: `Kibana resource HTTPs endpoint.`,
 				},
 				resource.Attribute{
+					Name:        "integrations_server.#.resource_id",
+					Description: `Integrations Server resource unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.region",
+					Description: `Integrations Server region.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.http_endpoint",
+					Description: `Integrations Server resource HTTP endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.https_endpoint",
+					Description: `Integrations Server resource HTTPs endpoint.`,
+				},
+				resource.Attribute{
 					Name:        "apm.#.resource_id",
 					Description: `APM resource unique identifier.`,
 				},
@@ -508,6 +556,22 @@ Provides an Elastic Cloud deployment resource, which allows deployments to be cr
 					Description: `Kibana resource HTTPs endpoint.`,
 				},
 				resource.Attribute{
+					Name:        "integrations_server.#.resource_id",
+					Description: `Integrations Server resource unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.region",
+					Description: `Integrations Server region.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.http_endpoint",
+					Description: `Integrations Server resource HTTP endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.https_endpoint",
+					Description: `Integrations Server resource HTTPs endpoint.`,
+				},
+				resource.Attribute{
 					Name:        "apm.#.resource_id",
 					Description: `APM resource unique identifier.`,
 				},
@@ -568,6 +632,29 @@ Provides an Elastic Cloud deployment resource, which allows deployments to be cr
 					Description: `Enables or disables shipping metrics. Defaults to true. ## Import ~>`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ec_ec_deployment_elasticsearch_keystore",
+			Category:         "Resources",
+			ShortDescription: `Provides an Elastic Cloud Deployment Elasticsearch keystore resource, which allows creating and updating Elasticsearch Keystore settings.`,
+			Description: `
+Provides an Elastic Cloud Deployment Elasticsearch keystore resource, which allows you to create and update Elasticsearch keystore settings.
+
+Elasticsearch keystore settings can be created and updated through this resource, **each resource represents a single Elasticsearch Keystore setting**. After adding a key and its secret value to the keystore, you can use the key in place of the secret value when you configure sensitive settings.
+
+~> **Note on Elastic keystore settings** This resource offers weaker consistency guarantees and will not detect and update keystore setting values that have been modified outside of the scope of Terraform, usually referred to as _drift_. For example, consider the following scenario:
+    1. A keystore setting is created using this resource.
+    2. The keystore setting's value is modified to a different value using the Elasticsearch Service API.
+    3. Running ` + "`" + `terraform apply` + "`" + ` fails to detect the changes and does not update the keystore setting to the value defined in the terraform configuration.
+  To force the keystore setting to the value it is configured to hold, you may want to taint the resource and force its recreation.
+
+Before you create Elasticsearch keystore settings, check the [official Elasticsearch keystore documentation](https://www.elastic.co/guide/en/elasticsearch/reference/master/elasticsearch-keystore.html) and the [Elastic Cloud specific documentation](https://www.elastic.co/guide/en/cloud/current/ec-configuring-keystore.html).
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -746,9 +833,10 @@ Provides an Elastic Cloud traffic filter association resource, which allows traf
 	resourcesMap = map[string]int{
 
 		"ec_ec_deployment":                            0,
-		"ec_ec_deployment_extension":                  1,
-		"ec_ec_deployment_traffic_filter":             2,
-		"ec_ec_deployment_traffic_filter_association": 3,
+		"ec_ec_deployment_elasticsearch_keystore":     1,
+		"ec_ec_deployment_extension":                  2,
+		"ec_ec_deployment_traffic_filter":             3,
+		"ec_ec_deployment_traffic_filter_association": 4,
 	}
 )
 

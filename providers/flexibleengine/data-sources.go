@@ -104,6 +104,85 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_cce_addon_template",
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"addon",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required, String) Specifies the ID of CCE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the add-on name. The supported addons are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required, String) Specifies the add-on version. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource id of the addon template.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the add-on.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `The detail configuration of the add-on template.`,
+				},
+				resource.Attribute{
+					Name:        "stable",
+					Description: `Whether the add-on template is a stable version.`,
+				},
+				resource.Attribute{
+					Name:        "support_version/virtual_machine",
+					Description: `The cluster (Virtual Machine) version that the add-on template supported.`,
+				},
+				resource.Attribute{
+					Name:        "support_version/bare_metal",
+					Description: `The cluster (Bare Metal) version that the add-on template supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource id of the addon template.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the add-on.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `The detail configuration of the add-on template.`,
+				},
+				resource.Attribute{
+					Name:        "stable",
+					Description: `Whether the add-on template is a stable version.`,
+				},
+				resource.Attribute{
+					Name:        "support_version/virtual_machine",
+					Description: `The cluster (Virtual Machine) version that the add-on template supported.`,
+				},
+				resource.Attribute{
+					Name:        "support_version/bare_metal",
+					Description: `The cluster (Bare Metal) version that the add-on template supported.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_cce_cluster_v3",
 			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: ``,
@@ -161,6 +240,10 @@ var (
 				resource.Attribute{
 					Name:        "container_network_type",
 					Description: `The container network type: overlay_l2 , underlay_ipvlan or vpc-router.`,
+				},
+				resource.Attribute{
+					Name:        "service_network_cidr",
+					Description: `The service network segment.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -223,6 +306,10 @@ var (
 				resource.Attribute{
 					Name:        "container_network_type",
 					Description: `The container network type: overlay_l2 , underlay_ipvlan or vpc-router.`,
+				},
+				resource.Attribute{
+					Name:        "service_network_cidr",
+					Description: `The service network segment.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -497,7 +584,7 @@ var (
 			ShortDescription: ``,
 			Description: `
 
-` + "`" + `flexibleengine_compute_bms_flavors_v2` + "`" + ` used to query flavors of BMSs.
+Use this data source to get an available BMS Flavor.
 
 `,
 			Keywords: []string{
@@ -511,20 +598,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) - The name of the BMS flavor.`,
+					Name:        "id",
+					Description: `The BMS flavor id.`,
 				},
 				resource.Attribute{
 					Name:        "ram",
-					Description: `It is the memory size (in MB) of the flavor.`,
-				},
-				resource.Attribute{
-					Name:        "vcpus",
-					Description: `It is the number of CPU cores in the BMS flavor.`,
+					Description: `The memory size (in MB) of the BMS flavor.`,
 				},
 				resource.Attribute{
 					Name:        "disk",
-					Description: `Specifies the disk size (GB) in the BMS flavor.`,
+					Description: `The disk size (GB) in the BMS flavor.`,
 				},
 				resource.Attribute{
 					Name:        "swap",
@@ -537,16 +620,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "ram",
-					Description: `It is the memory size (in MB) of the flavor.`,
+					Name:        "id",
+					Description: `The BMS flavor id.`,
 				},
 				resource.Attribute{
-					Name:        "vcpus",
-					Description: `It is the number of CPU cores in the BMS flavor.`,
+					Name:        "ram",
+					Description: `The memory size (in MB) of the BMS flavor.`,
 				},
 				resource.Attribute{
 					Name:        "disk",
-					Description: `Specifies the disk size (GB) in the BMS flavor.`,
+					Description: `The disk size (GB) in the BMS flavor.`,
 				},
 				resource.Attribute{
 					Name:        "swap",
@@ -813,6 +896,66 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_compute_flavors_v2",
+			Category:         "Elastic Cloud Server (ECS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
+				"compute",
+				"flavors",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to obtain the flavors. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional, String) Specifies the AZ name.`,
+				},
+				resource.Attribute{
+					Name:        "performance_type",
+					Description: `(Optional, String) Specifies the ECS flavor type.`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `(Optional, String) Specifies the generation of an ECS type.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_core",
+					Description: `(Optional, Int) Specifies the number of vCPUs in the ECS flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `(Optional, Int) Specifies the memory size(GB) in the ECS flavor. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `A list of flavors.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `A list of flavors.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_compute_instance_v2",
 			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: ``,
@@ -1057,6 +1200,277 @@ var (
 				resource.Attribute{
 					Name:        "pci_address",
 					Description: `The volume pci address on that attachment. The ` + "`" + `scheduler_hints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `The UUID of a Server Group where the instance will be placed into.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_compute_instances",
+			Category:         "Elastic Cloud Server (ECS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
+				"compute",
+				"instances",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the server instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Specifies the server name, which can be queried with a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip_v4",
+					Description: `(Optional) Specifies the IPv4 addresses of the server.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `(Optional) Specifies the flavor ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Specifies the status of the instance. The valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "flavor_name",
+					Description: `(Optional) Specifies the flavor name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Optional) Specifies the image ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) Specifies the availability zone where the instance is located.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `(Optional) Specifies the key pair that is used to authenticate the instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `List of ECS instance details. The object structure of each ECS instance is documented below. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The instance name.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone where the instance is located.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The image ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `The image name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The flavor ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_name",
+					Description: `The flavor name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `The key pair that is used to authenticate the instance.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `The EIP address that is associted to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `The user data (information after encoding) configured during instance creation.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `An array of one or more security group names to associate with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `An array of one or more networks to attach to the instance. The network object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "volume_attached",
+					Description: `An array of one or more disks to attach to the instance. The object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_hints",
+					Description: `The scheduler with hints on how the instance should be launched. The available hints are described below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of the instance in key/value format.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The metadata of the instance in key/value format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the instance. The ` + "`" + `network` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The network UUID to attach to the server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port ID corresponding to the IP address on that network.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `The MAC address of the NIC on that network.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip_v4",
+					Description: `The fixed IPv4 address of the instance on this network.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip_v6",
+					Description: `The Fixed IPv6 address of the instance on that network. The ` + "`" + `volume_attached` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `The volume id on that attachment.`,
+				},
+				resource.Attribute{
+					Name:        "is_sys_volume",
+					Description: `Whether the volume is the system disk. The ` + "`" + `scheduler_hints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `The UUID of a Server Group where the instance will be placed into.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `List of ECS instance details. The object structure of each ECS instance is documented below. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The instance name.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone where the instance is located.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The image ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `The image name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The flavor ID of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_name",
+					Description: `The flavor name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `The key pair that is used to authenticate the instance.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `The EIP address that is associted to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `The user data (information after encoding) configured during instance creation.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `An array of one or more security group names to associate with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `An array of one or more networks to attach to the instance. The network object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "volume_attached",
+					Description: `An array of one or more disks to attach to the instance. The object structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_hints",
+					Description: `The scheduler with hints on how the instance should be launched. The available hints are described below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of the instance in key/value format.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The metadata of the instance in key/value format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the instance. The ` + "`" + `network` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The network UUID to attach to the server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port ID corresponding to the IP address on that network.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `The MAC address of the NIC on that network.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip_v4",
+					Description: `The fixed IPv4 address of the instance on this network.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip_v6",
+					Description: `The Fixed IPv6 address of the instance on that network. The ` + "`" + `volume_attached` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `The volume id on that attachment.`,
+				},
+				resource.Attribute{
+					Name:        "is_sys_volume",
+					Description: `Whether the volume is the system disk. The ` + "`" + `scheduler_hints` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "group",
@@ -1555,13 +1969,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_dcs_az_v1",
-			Category:         "Distributed Cache Service (DCS)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"distributed",
-				"cache",
-				"service",
+				"deprecated",
 				"dcs",
 				"az",
 				"v1",
@@ -1569,7 +1981,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Indicates the name of an AZ.`,
+					Description: `(Optional) Indicates the name of an AZ.`,
 				},
 				resource.Attribute{
 					Name:        "code",
@@ -1577,7 +1989,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Required) Indicates the port number of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
+					Description: `(Optional) Indicates the port number of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1623,20 +2035,20 @@ CTS Tracker data source allows access of Cloud Tracker.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Specifies whether a maintenance time window is set to the default time segment.`,
+				},
+				resource.Attribute{
 					Name:        "seq",
-					Description: `(Required) Indicates the sequential number of a maintenance time window.`,
+					Description: `(Optional) Specifies the sequential number of a maintenance time window.`,
 				},
 				resource.Attribute{
 					Name:        "begin",
-					Description: `(Optional) Indicates the time at which a maintenance time window starts.`,
+					Description: `(Optional) Specifies the time at which a maintenance time window starts.`,
 				},
 				resource.Attribute{
 					Name:        "end",
-					Description: `(Required) Indicates the time at which a maintenance time window ends.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `(Required) Indicates whether a maintenance time window is set to the default time segment. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found maintainwindow. In addition, the following attributes are exported:`,
+					Description: `(Optional) Specifies the time at which a maintenance time window ends. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found maintainwindow. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "begin",
@@ -1683,78 +2095,34 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
-					Description: `(Required) Indicates the name of a message engine.`,
+					Description: `(Optional, String) The engine of the cache instance. Valid values are`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) Indicates the version of a message engine.`,
+					Name:        "engine_version",
+					Description: `(Optional, String) The version of a cache engine. It is valid when the engine is`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required) Indicates an instance type. Options: "single" and "cluster"`,
+					Name:        "spec_code",
+					Description: `(Optional, String) Specifies the DCS instance specification code. You can log in to the DCS console, click`,
 				},
 				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `(Optional) Indicates VM specifications.`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Optional) Indicates the message storage space.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `(Optional) Indicates the baseline bandwidth of a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `(Optional) Indicates the maximum number of topics that can be created for a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `(Optional) Indicates an I/O specification.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `(Optional) Indicates an I/O type.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
-					Description: `(Optional) Indicates the number of nodes in a cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
+					Name:        "cache_mode",
+					Description: `(Optional, String) The mode of a cache engine. The valid values are as follows: + ` + "`" + `single` + "`" + ` - Single-node. + ` + "`" + `ha` + "`" + ` - Master/Standby. + ` + "`" + `cluster` + "`" + ` - Redis Cluster. + ` + "`" + `proxy` + "`" + ` - Proxy Cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "engine",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "version",
+					Name:        "engine_version",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
+					Name:        "spec_code",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
+					Name:        "cache_mode",
 					Description: `See Argument Reference above.`,
 				},
 			},
@@ -1764,42 +2132,22 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "version",
+					Name:        "engine_version",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
+					Name:        "spec_code",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
+					Name:        "cache_mode",
 					Description: `See Argument Reference above.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_dds_flavors_v3",
+			Type:             "flexibleengine_dds_flavor_v3",
 			Category:         "Document Database Service (DDS)",
 			ShortDescription: ``,
 			Description:      ``,
@@ -1808,7 +2156,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				"database",
 				"service",
 				"dds",
-				"flavors",
+				"flavor",
 				"v3",
 			},
 			Arguments: []resource.Attribute{
@@ -1873,6 +2221,195 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "ram",
 					Description: `The ram of the dds flavor.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dds_flavors_v3",
+			Category:         "Document Database Service (DDS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"document",
+				"database",
+				"service",
+				"dds",
+				"flavors",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine_name",
+					Description: `(Optional, String) Specifies the engine name of the dds, the default value is "DDS-Community".`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, String) Specifies the type of the dds falvor. "mongos", "shard", "config", "replica" and "single" are supported.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `(Optional, String) Specifies the vcpus of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional, String) Specifies the ram of the dds flavor in GB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The name of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See ` + "`" + `type` + "`" + ` above.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `See ` + "`" + `vcpus` + "`" + ` above.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `See ` + "`" + `memory` + "`" + ` above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The name of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See ` + "`" + `type` + "`" + ` above.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `See ` + "`" + `vcpus` + "`" + ` above.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `See ` + "`" + `memory` + "`" + ` above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dms_product",
+			Category:         "Distributed Message Service (DMS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
+				"dms",
+				"product",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the DMS products. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Required, String) Specifies the bandwidth of a DMS instance. The valid values are`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional, String) Specifies the name of a message engine. Only`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, String) Specifies the version of a message engine. The default value is`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The DMS product ID.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The list of availability zones where there are available resources.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The DMS product specification, for example, dms.instance.kafka.cluster.c3.small.2.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_arch",
+					Description: `The CPU architecture of a DMS instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_flavor_id",
+					Description: `The flavor of the corresponding ECS.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `The maximum number of topics in a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `The minimum storage capacity of the DMS product.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_codes",
+					Description: `The list of supported storage specification. The item of the list can be one of`,
+				},
+				resource.Attribute{
+					Name:        "max_tps",
+					Description: `The maximum number of messages per unit time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The DMS product ID.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The list of availability zones where there are available resources.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The DMS product specification, for example, dms.instance.kafka.cluster.c3.small.2.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_arch",
+					Description: `The CPU architecture of a DMS instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_flavor_id",
+					Description: `The flavor of the corresponding ECS.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `The maximum number of topics in a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `The minimum storage capacity of the DMS product.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_codes",
+					Description: `The list of supported storage specification. The item of the list can be one of`,
+				},
+				resource.Attribute{
+					Name:        "max_tps",
+					Description: `The maximum number of messages per unit time.`,
 				},
 			},
 		},
@@ -2009,6 +2546,54 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `The project ID that owns the zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_fgs_dependencies",
+			Category:         "FunctionGraph",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"functiongraph",
+				"fgs",
+				"dependencies",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the dependent packages. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, String) Specifies the dependent package type to match. Valid values:`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `(Optional, String) Specifies the dependent package runtime to match. Valid values:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the dependent package runtime to match. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `A data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "packages",
+					Description: `All dependent packages that match. + ` + "`" + `id` + "`" + ` - Dependent package ID. + ` + "`" + `name` + "`" + ` - Dependent package name. + ` + "`" + `owner` + "`" + ` - Dependent package owner. + ` + "`" + `link` + "`" + ` - URL of the dependent package in the OBS console. + ` + "`" + `etag` + "`" + ` - Unique ID of the dependent package. + ` + "`" + `size` + "`" + ` - Dependent package size. + ` + "`" + `file_name` + "`" + ` - File name of the Dependent package. + ` + "`" + `runtime` + "`" + ` - Dependent package runtime.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "packages",
+					Description: `All dependent packages that match. + ` + "`" + `id` + "`" + ` - Dependent package ID. + ` + "`" + `name` + "`" + ` - Dependent package name. + ` + "`" + `owner` + "`" + ` - Dependent package owner. + ` + "`" + `link` + "`" + ` - URL of the dependent package in the OBS console. + ` + "`" + `etag` + "`" + ` - Unique ID of the dependent package. + ` + "`" + `size` + "`" + ` - Dependent package size. + ` + "`" + `file_name` + "`" + ` - File name of the Dependent package. + ` + "`" + `runtime` + "`" + ` - Dependent package runtime.`,
 				},
 			},
 		},
@@ -2289,10 +2874,6 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The checksum of the data associated with the image.`,
 				},
 				resource.Attribute{
-					Name:        "created_at",
-					Description: `The date the image was created.`,
-				},
-				resource.Attribute{
 					Name:        "file",
 					Description: `The URL for uploading and downloading the image file.`,
 				},
@@ -2313,11 +2894,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The size of the image (in bytes).`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `See Argument Reference above.`,
+					Name:        "created_at",
+					Description: `The date the image was created.`,
 				},
 				resource.Attribute{
-					Name:        "update_at",
+					Name:        "updated_at",
 					Description: `The date the image was last updated.`,
 				},
 			},
@@ -2327,10 +2908,6 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The checksum of the data associated with the image.`,
 				},
 				resource.Attribute{
-					Name:        "created_at",
-					Description: `The date the image was created.`,
-				},
-				resource.Attribute{
 					Name:        "file",
 					Description: `The URL for uploading and downloading the image file.`,
 				},
@@ -2351,11 +2928,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The size of the image (in bytes).`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `See Argument Reference above.`,
+					Name:        "created_at",
+					Description: `The date the image was created.`,
 				},
 				resource.Attribute{
-					Name:        "update_at",
+					Name:        "updated_at",
 					Description: `The date the image was last updated.`,
 				},
 			},
@@ -2633,6 +3210,50 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_nat_gateway_v2",
+			Category:         "NAT Gateway (NAT)",
+			ShortDescription: ``,
+			Description:      ``,
+			Icon:             "nat-gateway.svg",
+			Keywords: []string{
+				"nat",
+				"gateway",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) Specifies the ID of the NAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the NAT gateway name. The name can contain only digits, letters, underscores (_), and hyphens(-).`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, String) Specifies the ID of the VPC this NAT gateway belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, String) Specifies the subnet ID of the downstream interface (the next hop of the DVR) of the NAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `(Optional, String) The NAT gateway type. The value can be: + ` + "`" + `1` + "`" + `: small type, which supports up to 10,000 SNAT connections. + ` + "`" + `2` + "`" + `: medium type, which supports up to 50,000 SNAT connections. + ` + "`" + `3` + "`" + `: large type, which supports up to 200,000 SNAT connections. + ` + "`" + `4` + "`" + `: extra-large type, which supports up to 1,000,000 SNAT connections.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the NAT gateway. The value contains 0 to 255 characters, and angle brackets (<) and (>) are not allowed.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the status of the NAT gateway.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_networking_network_v2",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
@@ -2738,21 +3359,21 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `(Optional) The owner of the security group. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found security group. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
+					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "region",
+					Name:        "name",
 					Description: `See Argument Reference above.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
+					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "region",
+					Name:        "name",
 					Description: `See Argument Reference above.`,
 				},
 			},
@@ -2855,15 +3476,23 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_type",
-					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
+					Description: `(Required, String) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
 				},
 				resource.Attribute{
 					Name:        "db_version",
-					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014_SE, 2016_SE, and 2016_EE.`,
+					Description: `(Required, String) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014_SE, 2016_SE, and 2016_EE.`,
 				},
 				resource.Attribute{
 					Name:        "instance_mode",
-					Description: `(Required) The mode of instance. Value: ha(indicates primary/standby instance), single(indicates single instance) ## Attributes Reference In addition, the following attributes are exported:`,
+					Description: `(Required, String) The mode of instance. Value: ha(indicates primary/standby instance), single(indicates single instance)`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `(Optional, Int) Specifies the number of vCPUs in the RDS flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional, Int) Specifies the memory size(GB) in the RDS flavor. ## Attributes Reference In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "flavors",
@@ -3714,6 +4343,89 @@ The VBS Backup data source provides details about a specific VBS Backup.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_vpc_eip_v1",
+			Category:         "Elastic IP (EIP)",
+			ShortDescription: ``,
+			Description:      ``,
+			Icon:             "Network-EIP.svg",
+			Keywords: []string{
+				"elastic",
+				"ip",
+				"eip",
+				"vpc",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `(Optional, String) The public ip address of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional, String) The port id of the EIP. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `The private ip of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_id",
+					Description: `The bandwidth id of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_size",
+					Description: `The bandwidth size of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_type",
+					Description: `The bandwidth share type of the EIP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `The private ip of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_id",
+					Description: `The bandwidth id of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_size",
+					Description: `The bandwidth size of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_share_type",
+					Description: `The bandwidth share type of the EIP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_vpc_peering_v2",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
@@ -4249,51 +4961,59 @@ VPC that the subnet belongs to.
 
 		"flexibleengine_blockstorage_availability_zones_v3": 0,
 		"flexibleengine_blockstorage_volume_v2":             1,
-		"flexibleengine_cce_cluster_v3":                     2,
-		"flexibleengine_cce_node_ids_v3":                    3,
-		"flexibleengine_cce_node_v3":                        4,
-		"flexibleengine_compute_availability_zones_v2":      5,
-		"flexibleengine_compute_bms_flavors_v2":             6,
-		"flexibleengine_compute_bms_keypairs_v2":            7,
-		"flexibleengine_compute_bms_nic_v2":                 8,
-		"flexibleengine_compute_bms_server_v2":              9,
-		"flexibleengine_compute_instance_v2":                10,
-		"flexibleengine_csbs_backup_policy_v1":              11,
-		"flexibleengine_csbs_backup_v1":                     12,
-		"flexibleengine_cts_tracker_v1":                     13,
-		"flexibleengine_dcs_az_v1":                          14,
-		"flexibleengine_dcs_maintainwindow_v1":              15,
-		"flexibleengine_dcs_product_v1":                     16,
-		"flexibleengine_dds_flavors_v3":                     17,
-		"flexibleengine_dns_zone_v2":                        18,
-		"flexibleengine_identity_custom_role_v3":            19,
-		"flexibleengine_identity_project_v3":                20,
-		"flexibleengine_identity_role_v3":                   21,
-		"flexibleengine_images_image_v2":                    22,
-		"flexibleengine_kms_data_key_v1":                    23,
-		"flexibleengine_kms_key_v1":                         24,
-		"flexibleengine_lb_certificate_v2":                  25,
-		"flexibleengine_lb_loadbalancer_v2":                 26,
-		"flexibleengine_networking_network_v2":              27,
-		"flexibleengine_networking_secgroup_v2":             28,
-		"flexibleengine_rds_flavors_v1":                     29,
-		"flexibleengine_rds_flavors_v3":                     30,
-		"flexibleengine_rts_software_config":                31,
-		"flexibleengine_rts_stack_resource_v1":              32,
-		"flexibleengine_rts_stack_v1":                       33,
-		"flexibleengine_s3_bucket_object":                   34,
-		"flexibleengine_sdrs_domain_v1":                     35,
-		"flexibleengine_sfs_file_system_v2":                 36,
-		"flexibleengine_vbs_backup_policy_v2":               37,
-		"flexibleengine_vbs_backup_v2":                      38,
-		"flexibleengine_vpc_peering_v2":                     39,
-		"flexibleengine_vpc_route_ids_v2":                   40,
-		"flexibleengine_vpc_route_v2":                       41,
-		"flexibleengine_vpc_subnet_ids_v1":                  42,
-		"flexibleengine_vpc_subnet_v1":                      43,
-		"flexibleengine_vpc_v1":                             44,
-		"flexibleengine_vpcep_endpoints":                    45,
-		"flexibleengine_vpcep_public_services":              46,
+		"flexibleengine_cce_addon_template":                 2,
+		"flexibleengine_cce_cluster_v3":                     3,
+		"flexibleengine_cce_node_ids_v3":                    4,
+		"flexibleengine_cce_node_v3":                        5,
+		"flexibleengine_compute_availability_zones_v2":      6,
+		"flexibleengine_compute_bms_flavors_v2":             7,
+		"flexibleengine_compute_bms_keypairs_v2":            8,
+		"flexibleengine_compute_bms_nic_v2":                 9,
+		"flexibleengine_compute_bms_server_v2":              10,
+		"flexibleengine_compute_flavors_v2":                 11,
+		"flexibleengine_compute_instance_v2":                12,
+		"flexibleengine_compute_instances":                  13,
+		"flexibleengine_csbs_backup_policy_v1":              14,
+		"flexibleengine_csbs_backup_v1":                     15,
+		"flexibleengine_cts_tracker_v1":                     16,
+		"flexibleengine_dcs_az_v1":                          17,
+		"flexibleengine_dcs_maintainwindow_v1":              18,
+		"flexibleengine_dcs_product_v1":                     19,
+		"flexibleengine_dds_flavor_v3":                      20,
+		"flexibleengine_dds_flavors_v3":                     21,
+		"flexibleengine_dms_product":                        22,
+		"flexibleengine_dns_zone_v2":                        23,
+		"flexibleengine_fgs_dependencies":                   24,
+		"flexibleengine_identity_custom_role_v3":            25,
+		"flexibleengine_identity_project_v3":                26,
+		"flexibleengine_identity_role_v3":                   27,
+		"flexibleengine_images_image_v2":                    28,
+		"flexibleengine_kms_data_key_v1":                    29,
+		"flexibleengine_kms_key_v1":                         30,
+		"flexibleengine_lb_certificate_v2":                  31,
+		"flexibleengine_lb_loadbalancer_v2":                 32,
+		"flexibleengine_nat_gateway_v2":                     33,
+		"flexibleengine_networking_network_v2":              34,
+		"flexibleengine_networking_secgroup_v2":             35,
+		"flexibleengine_rds_flavors_v1":                     36,
+		"flexibleengine_rds_flavors_v3":                     37,
+		"flexibleengine_rts_software_config":                38,
+		"flexibleengine_rts_stack_resource_v1":              39,
+		"flexibleengine_rts_stack_v1":                       40,
+		"flexibleengine_s3_bucket_object":                   41,
+		"flexibleengine_sdrs_domain_v1":                     42,
+		"flexibleengine_sfs_file_system_v2":                 43,
+		"flexibleengine_vbs_backup_policy_v2":               44,
+		"flexibleengine_vbs_backup_v2":                      45,
+		"flexibleengine_vpc_eip_v1":                         46,
+		"flexibleengine_vpc_peering_v2":                     47,
+		"flexibleengine_vpc_route_ids_v2":                   48,
+		"flexibleengine_vpc_route_v2":                       49,
+		"flexibleengine_vpc_subnet_ids_v1":                  50,
+		"flexibleengine_vpc_subnet_v1":                      51,
+		"flexibleengine_vpc_v1":                             52,
+		"flexibleengine_vpcep_endpoints":                    53,
+		"flexibleengine_vpcep_public_services":              54,
 	}
 )
 

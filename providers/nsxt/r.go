@@ -57,7 +57,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Algorithm type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_algorithm_type_ns_service.ns_service_alg UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the algorithm based networking and security service named ` + "`" + `ns_service_alg` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Algorithm type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_algorithm_type_ns_service.ns_service_alg UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the algorithm based networking and security service named ` + "`" + `ns_service_alg` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -71,7 +71,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Algorithm type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_algorithm_type_ns_service.ns_service_alg UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the algorithm based networking and security service named ` + "`" + `ns_service_alg` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Algorithm type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_algorithm_type_ns_service.ns_service_alg UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the algorithm based networking and security service named ` + "`" + `ns_service_alg` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -110,7 +110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_profile.dr_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay profile named ` + "`" + `dr_profile` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_profile.dr_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay profile named ` + "`" + `dr_profile` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -120,7 +120,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_profile.dr_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay profile named ` + "`" + `dr_profile` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_profile.dr_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay profile named ` + "`" + `dr_profile` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -159,7 +159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_service.dr_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay service named ` + "`" + `dr_service` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_service.dr_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay service named ` + "`" + `dr_service` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -169,7 +169,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_service.dr_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay service named ` + "`" + `dr_service` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Relay service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_relay_service.dr_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the DHCP relay service named ` + "`" + `dr_service` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -261,7 +261,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP server IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_ip_pool.ip_pool DHCP_SERVER_UUID POOL_UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip pool` + "`" + ` for dhcp server with nsx ID ` + "`" + `DHCP_SERVER_UUID` + "`" + ` and pool nsx id ` + "`" + `POOL_UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP server IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_ip_pool.ip_pool DHCP_SERVER_UUID POOL_UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip pool` + "`" + ` for dhcp server with nsx ID ` + "`" + `DHCP_SERVER_UUID` + "`" + ` and pool nsx id ` + "`" + `POOL_UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -271,7 +271,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP server IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_ip_pool.ip_pool DHCP_SERVER_UUID POOL_UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip pool` + "`" + ` for dhcp server with nsx ID ` + "`" + `DHCP_SERVER_UUID` + "`" + ` and pool nsx id ` + "`" + `POOL_UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP server IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_ip_pool.ip_pool DHCP_SERVER_UUID POOL_UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip pool` + "`" + ` for dhcp server with nsx ID ` + "`" + `DHCP_SERVER_UUID` + "`" + ` and pool nsx id ` + "`" + `POOL_UUID` + "`" + ``,
 				},
 			},
 		},
@@ -314,7 +314,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_profile.dhcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the DHCP server profile named ` + "`" + `dhcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_profile.dhcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the DHCP server profile named ` + "`" + `dhcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -324,7 +324,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_profile.dhcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the DHCP server profile named ` + "`" + `dhcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_dhcp_server_profile.dhcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the DHCP server profile named ` + "`" + `dhcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -368,7 +368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Ethernet type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ether_type_ns_service.etns UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the ethernet type networking and security service named ` + "`" + `etns` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Ethernet type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ether_type_ns_service.etns UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the ethernet type networking and security service named ` + "`" + `etns` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -382,7 +382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Ethernet type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ether_type_ns_service.etns UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the ethernet type networking and security service named ` + "`" + `etns` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Ethernet type NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ether_type_ns_service.etns UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the ethernet type networking and security service named ` + "`" + `etns` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -500,7 +500,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `A boolean flag which reflects whether a firewall section is default section or not. Each Layer 3 and Layer 2 section will have at least and at most one default section. ## Importing An existing Firewall section can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_firewall_section.firewall_sect UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the firewall section named ` + "`" + `firewall_sect` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `A boolean flag which reflects whether a firewall section is default section or not. Each Layer 3 and Layer 2 section will have at least and at most one default section. ## Importing An existing Firewall section can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_firewall_section.firewall_sect UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the firewall section named ` + "`" + `firewall_sect` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -514,7 +514,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `A boolean flag which reflects whether a firewall section is default section or not. Each Layer 3 and Layer 2 section will have at least and at most one default section. ## Importing An existing Firewall section can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_firewall_section.firewall_sect UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the firewall section named ` + "`" + `firewall_sect` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `A boolean flag which reflects whether a firewall section is default section or not. Each Layer 3 and Layer 2 section will have at least and at most one default section. ## Importing An existing Firewall section can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_firewall_section.firewall_sect UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the firewall section named ` + "`" + `firewall_sect` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -566,7 +566,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ICMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_icmp_type_ns_service.x id ` + "`" + `` + "`" + `` + "`" + ` The above service imports the ICMP type network and security service named ` + "`" + `x` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ICMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_icmp_type_ns_service.x id ` + "`" + `` + "`" + `` + "`" + ` The above service imports the ICMP type network and security service named ` + "`" + `x` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -580,7 +580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ICMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_icmp_type_ns_service.x id ` + "`" + `` + "`" + `` + "`" + ` The above service imports the ICMP type network and security service named ` + "`" + `x` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ICMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_icmp_type_ns_service.x id ` + "`" + `` + "`" + `` + "`" + ` The above service imports the ICMP type network and security service named ` + "`" + `x` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `.`,
 				},
 			},
 		},
@@ -620,7 +620,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IGMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_igmp_type_ns_service.ns_service_igmp UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IGMP based networking and security service named ` + "`" + `ns_service_igmp` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IGMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_igmp_type_ns_service.ns_service_igmp UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IGMP based networking and security service named ` + "`" + `ns_service_igmp` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -634,7 +634,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IGMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_igmp_type_ns_service.ns_service_igmp UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IGMP based networking and security service named ` + "`" + `ns_service_igmp` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IGMP type NS Service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_igmp_type_ns_service.ns_service_igmp UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IGMP based networking and security service named ` + "`" + `ns_service_igmp` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -672,7 +672,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block.ip_block UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block named ` + "`" + `ip_block` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block.ip_block UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block named ` + "`" + `ip_block` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -682,7 +682,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block.ip_block UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block named ` + "`" + `ip_block` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block.ip_block UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block named ` + "`" + `ip_block` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -733,7 +733,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr",
-					Description: `Represents the size or number of IP addresses in the subnet. All subnets of the same block must have the same size, which must be a power of 2. ## Importing An existing IP block subnet can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block_subnet.ip_block_subnet UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block subnet named ` + "`" + `ip_block_subnet` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Represents the size or number of IP addresses in the subnet. All subnets of the same block must have the same size, which must be a power of 2. ## Importing An existing IP block subnet can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block_subnet.ip_block_subnet UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block subnet named ` + "`" + `ip_block_subnet` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -751,7 +751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr",
-					Description: `Represents the size or number of IP addresses in the subnet. All subnets of the same block must have the same size, which must be a power of 2. ## Importing An existing IP block subnet can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block_subnet.ip_block_subnet UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block subnet named ` + "`" + `ip_block_subnet` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Represents the size or number of IP addresses in the subnet. All subnets of the same block must have the same size, which must be a power of 2. ## Importing An existing IP block subnet can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_block_subnet.ip_block_subnet UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP block subnet named ` + "`" + `ip_block_subnet` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -803,7 +803,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP discovery switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_discovery_switching_profile.ip_discovery_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP discovery switching profile named ` + "`" + `ip_discovery_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP discovery switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_discovery_switching_profile.ip_discovery_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP discovery switching profile named ` + "`" + `ip_discovery_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -813,7 +813,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP discovery switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_discovery_switching_profile.ip_discovery_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP discovery switching profile named ` + "`" + `ip_discovery_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP discovery switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_discovery_switching_profile.ip_discovery_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP discovery switching profile named ` + "`" + `ip_discovery_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -871,7 +871,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool.ip_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool.ip_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -881,7 +881,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool.ip_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool.ip_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool named ` + "`" + `ip_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -909,7 +909,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_ip",
-					Description: `Allocation IP address. ## Importing An existing IP pool allocation address can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool_allocation_ip_address.ip1 POOL-UUID/UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool allocation address named ` + "`" + `ip_pool` + "`" + ` with the nsx ID ` + "`" + `UUID` + "`" + `, from IP Pool with nsx ID ` + "`" + `POOL-UUID` + "`" + `.`,
+					Description: `Allocation IP address. ## Importing An existing IP pool allocation address can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool_allocation_ip_address.ip1 POOL-UUID/UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool allocation address named ` + "`" + `ip_pool` + "`" + ` with the nsx ID ` + "`" + `UUID` + "`" + `, from IP Pool with nsx ID ` + "`" + `POOL-UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -919,7 +919,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_ip",
-					Description: `Allocation IP address. ## Importing An existing IP pool allocation address can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool_allocation_ip_address.ip1 POOL-UUID/UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool allocation address named ` + "`" + `ip_pool` + "`" + ` with the nsx ID ` + "`" + `UUID` + "`" + `, from IP Pool with nsx ID ` + "`" + `POOL-UUID` + "`" + `.`,
+					Description: `Allocation IP address. ## Importing An existing IP pool allocation address can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_pool_allocation_ip_address.ip1 POOL-UUID/UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the IP pool allocation address named ` + "`" + `ip_pool` + "`" + ` with the nsx ID ` + "`" + `UUID` + "`" + `, from IP Pool with nsx ID ` + "`" + `POOL-UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -963,7 +963,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP protocol NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_protocol_ns_service.ns_service_ip UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP protocol based networking and security service named ` + "`" + `ns_service_ip` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP protocol NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_protocol_ns_service.ns_service_ip UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP protocol based networking and security service named ` + "`" + `ns_service_ip` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -977,7 +977,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP protocol NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_protocol_ns_service.ns_service_ip UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP protocol based networking and security service named ` + "`" + `ns_service_ip` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP protocol NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_protocol_ns_service.ns_service_ip UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP protocol based networking and security service named ` + "`" + `ns_service_ip` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -1015,7 +1015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP set can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_set.ip_set1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP set named ` + "`" + `ip_set1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP set can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_set.ip_set1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP set named ` + "`" + `ip_set1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1025,7 +1025,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP set can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_set.ip_set1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP set named ` + "`" + `ip_set1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing IP set can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ip_set.ip_set1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP set named ` + "`" + `ip_set1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -1078,7 +1078,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing L4 port set NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_l4_port_set_ns_service.ns_service_l4 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the layer 4 port based networking and security service named ` + "`" + `ns_service_l4` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing L4 port set NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_l4_port_set_ns_service.ns_service_l4 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the layer 4 port based networking and security service named ` + "`" + `ns_service_l4` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1092,7 +1092,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing L4 port set NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_l4_port_set_ns_service.ns_service_l4 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the layer 4 port based networking and security service named ` + "`" + `ns_service_l4` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing L4 port set NS service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_l4_port_set_ns_service.ns_service_l4 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the layer 4 port based networking and security service named ` + "`" + `ns_service_l4` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -1156,7 +1156,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb client ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_client_ssl_profile.lb_client_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb client ssl profile named ` + "`" + `lb_client_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb client ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_client_ssl_profile.lb_client_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb client ssl profile named ` + "`" + `lb_client_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1170,7 +1170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb client ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_client_ssl_profile.lb_client_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb client ssl profile named ` + "`" + `lb_client_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb client ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_client_ssl_profile.lb_client_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb client ssl profile named ` + "`" + `lb_client_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1250,7 +1250,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb cookie persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_cookie_persistence_profile.lb_cookie_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb cookie persistence profile named ` + "`" + `lb_cookie_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb cookie persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_cookie_persistence_profile.lb_cookie_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb cookie persistence profile named ` + "`" + `lb_cookie_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1260,7 +1260,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb cookie persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_cookie_persistence_profile.lb_cookie_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb cookie persistence profile named ` + "`" + `lb_cookie_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb cookie persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_cookie_persistence_profile.lb_cookie_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb cookie persistence profile named ` + "`" + `lb_cookie_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1309,7 +1309,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast tcp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_tcp_application_profile.lb_fast_tcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast TCP application profile named ` + "`" + `lb_fast_tcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast tcp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_tcp_application_profile.lb_fast_tcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast TCP application profile named ` + "`" + `lb_fast_tcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1319,7 +1319,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast tcp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_tcp_application_profile.lb_fast_tcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast TCP application profile named ` + "`" + `lb_fast_tcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast tcp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_tcp_application_profile.lb_fast_tcp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast TCP application profile named ` + "`" + `lb_fast_tcp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1364,7 +1364,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast udp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_udp_application_profile.lb_fast_udp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast UDP application profile named ` + "`" + `lb_fast_udp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast udp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_udp_application_profile.lb_fast_udp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast UDP application profile named ` + "`" + `lb_fast_udp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1374,7 +1374,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast udp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_udp_application_profile.lb_fast_udp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast UDP application profile named ` + "`" + `lb_fast_udp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb fast udp profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_fast_udp_application_profile.lb_fast_udp_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB fast UDP application profile named ` + "`" + `lb_fast_udp_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1442,7 +1442,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_application_profile.lb_http_application_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB HTTP application profile named ` + "`" + `lb_http_application_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_application_profile.lb_http_application_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB HTTP application profile named ` + "`" + `lb_http_application_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1452,7 +1452,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_application_profile.lb_http_application_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB HTTP application profile named ` + "`" + `lb_http_application_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_application_profile.lb_http_application_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the LB HTTP application profile named ` + "`" + `lb_http_application_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1648,7 +1648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_forwarding_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_forwarding_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1658,7 +1658,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_forwarding_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_forwarding_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1741,7 +1741,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_monitor.lb_http_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http monitor named ` + "`" + `lb_http_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_monitor.lb_http_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http monitor named ` + "`" + `lb_http_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1751,7 +1751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_monitor.lb_http_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http monitor named ` + "`" + `lb_http_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_monitor.lb_http_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http monitor named ` + "`" + `lb_http_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -1960,7 +1960,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_request_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_request_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1970,7 +1970,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_request_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_request_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2171,7 +2171,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_response_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_response_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2181,7 +2181,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_response_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb rule can be [imported][docs-import] into this resource, via the following command: } } [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_response_rewrite_rule.lb_rule UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb rule named ` + "`" + `lb_rule` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2325,7 +2325,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_virtual_server.lb_http_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http virtual server named ` + "`" + `lb_http_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_virtual_server.lb_http_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http virtual server named ` + "`" + `lb_http_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2335,7 +2335,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_virtual_server.lb_http_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http virtual server named ` + "`" + `lb_http_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb http virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_http_virtual_server.lb_http_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb http virtual server named ` + "`" + `lb_http_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2450,7 +2450,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb https monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_https_monitor.lb_https_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb https monitor named ` + "`" + `lb_https_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb https monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_https_monitor.lb_https_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb https monitor named ` + "`" + `lb_https_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2464,7 +2464,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb https monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_https_monitor.lb_https_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb https monitor named ` + "`" + `lb_https_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb https monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_https_monitor.lb_https_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb https monitor named ` + "`" + `lb_https_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2523,7 +2523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb icmp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_icmp_monitor.lb_icmp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb icmp monitor named ` + "`" + `lb_icmp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb icmp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_icmp_monitor.lb_icmp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb icmp monitor named ` + "`" + `lb_icmp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2533,7 +2533,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb icmp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_icmp_monitor.lb_icmp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb icmp monitor named ` + "`" + `lb_icmp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb icmp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_icmp_monitor.lb_icmp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb icmp monitor named ` + "`" + `lb_icmp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2576,7 +2576,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb passive monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_passive_monitor.lb_passive_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb passive monitor named ` + "`" + `lb_passive_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb passive monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_passive_monitor.lb_passive_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb passive monitor named ` + "`" + `lb_passive_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2586,7 +2586,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb passive monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_passive_monitor.lb_passive_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb passive monitor named ` + "`" + `lb_passive_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb passive monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_passive_monitor.lb_passive_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb passive monitor named ` + "`" + `lb_passive_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2708,7 +2708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_pool.lb_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb pool named ` + "`" + `lb_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_pool.lb_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb pool named ` + "`" + `lb_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2718,7 +2718,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_pool.lb_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb pool named ` + "`" + `lb_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_pool.lb_pool UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb pool named ` + "`" + `lb_pool` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2774,7 +2774,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb server ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_server_ssl_profile.lb_server_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb server ssl profile named ` + "`" + `lb_server_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb server ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_server_ssl_profile.lb_server_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb server ssl profile named ` + "`" + `lb_server_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2788,7 +2788,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_secure",
-					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb server ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_server_ssl_profile.lb_server_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb server ssl profile named ` + "`" + `lb_server_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `This flag is set to true when all the ciphers and protocols are secure. It is set to false when one of the ciphers or protocols is insecure. ## Importing An existing lb server ssl profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_server_ssl_profile.lb_server_ssl_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb server ssl profile named ` + "`" + `lb_server_ssl_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2842,7 +2842,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_service.lb_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb service named ` + "`" + `lb_service` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_service.lb_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb service named ` + "`" + `lb_service` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2852,7 +2852,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_service.lb_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb service named ` + "`" + `lb_service` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_service.lb_service UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb service named ` + "`" + `lb_service` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2905,7 +2905,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb source ip persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_source_ip_persistence_profile.lb_source_ip_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb source ip persistence profile named ` + "`" + `lb_source_ip_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb source ip persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_source_ip_persistence_profile.lb_source_ip_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb source ip persistence profile named ` + "`" + `lb_source_ip_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2915,7 +2915,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb source ip persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_source_ip_persistence_profile.lb_source_ip_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb source ip persistence profile named ` + "`" + `lb_source_ip_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb source ip persistence profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_source_ip_persistence_profile.lb_source_ip_persistence_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb source ip persistence profile named ` + "`" + `lb_source_ip_persistence_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -2978,7 +2978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_monitor.lb_tcp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp monitor named ` + "`" + `lb_tcp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_monitor.lb_tcp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp monitor named ` + "`" + `lb_tcp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2988,7 +2988,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_monitor.lb_tcp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp monitor named ` + "`" + `lb_tcp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_monitor.lb_tcp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp monitor named ` + "`" + `lb_tcp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -3068,7 +3068,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_virtual_server.lb_tcp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp virtual server named ` + "`" + `lb_tcp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_virtual_server.lb_tcp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp virtual server named ` + "`" + `lb_tcp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3078,7 +3078,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_virtual_server.lb_tcp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp virtual server named ` + "`" + `lb_tcp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb tcp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_tcp_virtual_server.lb_tcp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb tcp virtual server named ` + "`" + `lb_tcp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -3141,7 +3141,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_monitor.lb_udp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp monitor named ` + "`" + `lb_udp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_monitor.lb_udp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp monitor named ` + "`" + `lb_udp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3151,7 +3151,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_monitor.lb_udp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp monitor named ` + "`" + `lb_udp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp monitor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_monitor.lb_udp_monitor UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp monitor named ` + "`" + `lb_udp_monitor` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -3231,7 +3231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_virtual_server.lb_udp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp virtual server named ` + "`" + `lb_udp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_virtual_server.lb_udp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp virtual server named ` + "`" + `lb_udp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3241,7 +3241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_virtual_server.lb_udp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp virtual server named ` + "`" + `lb_udp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing lb udp virtual server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_lb_udp_virtual_server.lb_udp_virtual_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the lb udp virtual server named ` + "`" + `lb_udp_virtual_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -3288,7 +3288,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_port.dhcp_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical DHCP port named ` + "`" + `dhcp_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_port.dhcp_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical DHCP port named ` + "`" + `dhcp_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3298,7 +3298,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_port.dhcp_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical DHCP port named ` + "`" + `dhcp_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing DHCP Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_port.dhcp_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical DHCP port named ` + "`" + `dhcp_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3381,7 +3381,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attached_logical_port_id",
-					Description: `ID of the attached logical port. ## Importing An existing logical DHCP server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_server.logical_dhcp_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the logical DHCP server named ` + "`" + `logical_dhcp_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `ID of the attached logical port. ## Importing An existing logical DHCP server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_server.logical_dhcp_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the logical DHCP server named ` + "`" + `logical_dhcp_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3395,7 +3395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attached_logical_port_id",
-					Description: `ID of the attached logical port. ## Importing An existing logical DHCP server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_server.logical_dhcp_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the logical DHCP server named ` + "`" + `logical_dhcp_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `ID of the attached logical port. ## Importing An existing logical DHCP server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_dhcp_server.logical_dhcp_server UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the logical DHCP server named ` + "`" + `logical_dhcp_server` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -3441,7 +3441,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_port.logical_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical port named ` + "`" + `logical_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_port.logical_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical port named ` + "`" + `logical_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3451,7 +3451,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_port.logical_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical port named ` + "`" + `logical_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing Logical Port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_port.logical_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical port named ` + "`" + `logical_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3504,7 +3504,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router centralized service port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_centralized_service_port.cs_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router centralized service port named ` + "`" + `cs_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router centralized service port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_centralized_service_port.cs_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router centralized service port named ` + "`" + `cs_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3514,7 +3514,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router centralized service port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_centralized_service_port.cs_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router centralized service port named ` + "`" + `cs_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router centralized service port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_centralized_service_port.cs_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router centralized service port named ` + "`" + `cs_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3574,7 +3574,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mac_address",
-					Description: `The MAC address assigned to this port ## Importing An existing logical router downlink port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_downlink_port.downlink_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router downlink port named ` + "`" + `downlink_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `The MAC address assigned to this port ## Importing An existing logical router downlink port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_downlink_port.downlink_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router downlink port named ` + "`" + `downlink_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3588,7 +3588,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mac_address",
-					Description: `The MAC address assigned to this port ## Importing An existing logical router downlink port can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_downlink_port.downlink_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router downlink port named ` + "`" + `downlink_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `The MAC address assigned to this port ## Importing An existing logical router downlink port can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_downlink_port.downlink_port UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router downlink port named ` + "`" + `downlink_port` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3634,7 +3634,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-0 can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier0.link_port_tier0 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 0 logical router named ` + "`" + `link_port_tier0` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-0 can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier0.link_port_tier0 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 0 logical router named ` + "`" + `link_port_tier0` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3648,7 +3648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-0 can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier0.link_port_tier0 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 0 logical router named ` + "`" + `link_port_tier0` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-0 can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier0.link_port_tier0 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 0 logical router named ` + "`" + `link_port_tier0` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3694,7 +3694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-1 can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier1.link_port_tier1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 1 router named ` + "`" + `link_port_tier1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-1 can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier1.link_port_tier1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 1 router named ` + "`" + `link_port_tier1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3704,7 +3704,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-1 can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier1.link_port_tier1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 1 router named ` + "`" + `link_port_tier1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing logical router link port on Tier-1 can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_router_link_port_on_tier1.link_port_tier1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical router link port on the tier 1 router named ` + "`" + `link_port_tier1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3790,7 +3790,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3800,7 +3800,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3851,7 +3851,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_sections",
-					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier0 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier0_router.tier0_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 0 router named ` + "`" + `tier0_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier0 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier0_router.tier0_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 0 router named ` + "`" + `tier0_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3865,7 +3865,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_sections",
-					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier0 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier0_router.tier0_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 0 router named ` + "`" + `tier0_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier0 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier0_router.tier0_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 0 router named ` + "`" + `tier0_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -3940,7 +3940,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_sections",
-					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier1 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier1_router.tier1_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 1 router named ` + "`" + `tier1_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier1 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier1_router.tier1_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 1 router named ` + "`" + `tier1_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3958,7 +3958,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firewall_sections",
-					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier1 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier1_router.tier1_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 1 router named ` + "`" + `tier1_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `(Optional) The list of firewall sections for this router ## Importing An existing logical tier1 router can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_logical_tier1_router.tier1_router UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical tier 1 router named ` + "`" + `tier1_router` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -4018,7 +4018,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing MAC management switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_mac_management_switching_profile.mac_management_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the MAC management switching profile named ` + "`" + `mac_management_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing MAC management switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_mac_management_switching_profile.mac_management_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the MAC management switching profile named ` + "`" + `mac_management_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4028,7 +4028,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing MAC management switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_mac_management_switching_profile.mac_management_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the MAC management switching profile named ` + "`" + `mac_management_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing MAC management switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_mac_management_switching_profile.mac_management_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the MAC management switching profile named ` + "`" + `mac_management_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -4102,7 +4102,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4112,7 +4112,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 		},
@@ -4174,7 +4174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing networking and security group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_group.group2 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the networking and security group named ` + "`" + `group2` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing networking and security group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_group.group2 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the networking and security group named ` + "`" + `group2` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4184,7 +4184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing networking and security group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_group.group2 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the networking and security group named ` + "`" + `group2` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing networking and security group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_group.group2 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the networking and security group named ` + "`" + `group2` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -4223,7 +4223,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ns service group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_service_group.ns_service_group UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the NS service group named ` + "`" + `ns_service_group` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ns service group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_service_group.ns_service_group UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the NS service group named ` + "`" + `ns_service_group` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4233,7 +4233,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ns service group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_service_group.ns_service_group UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the NS service group named ` + "`" + `ns_service_group` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing ns service group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_ns_service_group.ns_service_group UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the NS service group named ` + "`" + `ns_service_group` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -4437,7 +4437,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing BGP Neighbor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_bgp_neighbor.test T0_ID/LOCALE_SERVICE_ID/NEIGHBOR_ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports BGP Neighbor named ` + "`" + `test` + "`" + ` with the NSX BGP Neighbor ID ` + "`" + `NEIGHBOR_ID` + "`" + ` from the Tier-0 ` + "`" + `T0_ID` + "`" + ` and Locale Service ` + "`" + `LOCALE_SERVICE_ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing BGP Neighbor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_bgp_neighbor.test T0_ID/LOCALE_SERVICE_ID/NEIGHBOR_ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports BGP Neighbor named ` + "`" + `test` + "`" + ` with the NSX BGP Neighbor ID ` + "`" + `NEIGHBOR_ID` + "`" + ` from the Tier-0 ` + "`" + `T0_ID` + "`" + ` and Locale Service ` + "`" + `LOCALE_SERVICE_ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4451,7 +4451,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing BGP Neighbor can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_bgp_neighbor.test T0_ID/LOCALE_SERVICE_ID/NEIGHBOR_ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports BGP Neighbor named ` + "`" + `test` + "`" + ` with the NSX BGP Neighbor ID ` + "`" + `NEIGHBOR_ID` + "`" + ` from the Tier-0 ` + "`" + `T0_ID` + "`" + ` and Locale Service ` + "`" + `LOCALE_SERVICE_ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing BGP Neighbor can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_bgp_neighbor.test T0_ID/LOCALE_SERVICE_ID/NEIGHBOR_ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports BGP Neighbor named ` + "`" + `test` + "`" + ` with the NSX BGP Neighbor ID ` + "`" + `NEIGHBOR_ID` + "`" + ` from the Tier-0 ` + "`" + `T0_ID` + "`" + ` and Locale Service ` + "`" + `LOCALE_SERVICE_ID` + "`" + `.`,
 				},
 			},
 		},
@@ -4550,7 +4550,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_alg_type",
-					Description: `Describes whether the APP_ID value is ALG type or not. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile named ` + "`" + `test` + "`" + ` with the NSX Context Profile ID ` + "`" + `UUID` + "`" + `.`,
+					Description: `Describes whether the APP_ID value is ALG type or not. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile named ` + "`" + `test` + "`" + ` with the NSX Context Profile ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4568,7 +4568,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_alg_type",
-					Description: `Describes whether the APP_ID value is ALG type or not. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile named ` + "`" + `test` + "`" + ` with the NSX Context Profile ID ` + "`" + `UUID` + "`" + `.`,
+					Description: `Describes whether the APP_ID value is ALG type or not. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile named ` + "`" + `test` + "`" + ` with the NSX Context Profile ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -4614,7 +4614,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_relay.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dhcp Relay named ` + "`" + `test` + "`" + ` with the NSX Dhcp Relay ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_relay.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dhcp Relay named ` + "`" + `test` + "`" + ` with the NSX Dhcp Relay ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4628,7 +4628,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_relay.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dhcp Relay named ` + "`" + `test` + "`" + ` with the NSX Dhcp Relay ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_relay.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dhcp Relay named ` + "`" + `test` + "`" + ` with the NSX Dhcp Relay ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -4686,7 +4686,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing DHCP Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_server.dhcp1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports a DHCP Server named ` + "`" + `dhcp1` + "`" + ` with the NSX DHCP Server ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing DHCP Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_server.dhcp1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports a DHCP Server named ` + "`" + `dhcp1` + "`" + ` with the NSX DHCP Server ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4700,7 +4700,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing DHCP Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_server.dhcp1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports a DHCP Server named ` + "`" + `dhcp1` + "`" + ` with the NSX DHCP Server ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing DHCP Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_server.dhcp1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports a DHCP Server named ` + "`" + `dhcp1` + "`" + ` with the NSX DHCP Server ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -4792,7 +4792,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v4_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V4 static binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` on segment ` + "`" + `SEG-ID` + "`" + `. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v4_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V4 static binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` on segment ` + "`" + `SEG-ID` + "`" + `. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4806,7 +4806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v4_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V4 static binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` on segment ` + "`" + `SEG-ID` + "`" + `. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v4_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V4 static binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` on segment ` + "`" + `SEG-ID` + "`" + `. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
 				},
 			},
 		},
@@ -4882,7 +4882,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v6_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V6 Static Binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` under segment SEG-ID. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v6_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V6 Static Binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` under segment SEG-ID. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4896,7 +4896,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v6_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V6 Static Binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` under segment SEG-ID. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dhcp_v6_static_binding.test [GW-ID]/SEG-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports DHCP V6 Static Binding named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + ` under segment SEG-ID. For fixed segments (VMC), ` + "`" + `GW-ID` + "`" + ` needs to be specified. Otherwise, ` + "`" + `GW-ID` + "`" + ` should be omitted.`,
 				},
 			},
 		},
@@ -4951,7 +4951,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports PolicyDnsForwarderZone named ` + "`" + `test` + "`" + ` with the NSX Dns Forwarder Zone ID ` + "`" + `UUID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports PolicyDnsForwarderZone named ` + "`" + `test` + "`" + ` with the NSX Dns Forwarder Zone ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4965,7 +4965,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports PolicyDnsForwarderZone named ` + "`" + `test` + "`" + ` with the NSX Dns Forwarder Zone ID ` + "`" + `UUID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports PolicyDnsForwarderZone named ` + "`" + `test` + "`" + ` with the NSX Dns Forwarder Zone ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -5013,7 +5013,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Domain can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_domain.domain1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Domain named ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Domain can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_domain.domain1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Domain named ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5027,7 +5027,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Domain can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_domain.domain1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Domain named ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Domain can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_domain.domain1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Domain named ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -5077,7 +5077,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5091,7 +5091,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_config.config1 gwPath ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Config named ` + "`" + `config1` + "`" + ` for NSX Policy Tier0 Gateway with full Policy Path ` + "`" + `gwPath` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -5149,7 +5149,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Tenant can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tenant.tenant1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tenant named ` + "`" + `tenant1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Tenant can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tenant.tenant1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tenant named ` + "`" + `tenant1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5159,7 +5159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Tenant can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tenant.tenant1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tenant named ` + "`" + `tenant1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing EVPN Tenant can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tenant.tenant1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tenant named ` + "`" + `tenant1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -5222,7 +5222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `Tier0 Gateway Locale Service ID on which EVPN Tunnel is configured. ## Importing An existing EVPN Tunnel Endpoint can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tunnel_endpoint.endpoint1 GW-ID/LOCALE-SERVICE-ID/INTERFACE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tunnel Endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `, on Tier0 Gateway GW-ID and Locale Service LOCALE-SERVICE-ID with external interface INTERFACE-ID.`,
+					Description: `Tier0 Gateway Locale Service ID on which EVPN Tunnel is configured. ## Importing An existing EVPN Tunnel Endpoint can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tunnel_endpoint.endpoint1 GW-ID/LOCALE-SERVICE-ID/INTERFACE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tunnel Endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `, on Tier0 Gateway GW-ID and Locale Service LOCALE-SERVICE-ID with external interface INTERFACE-ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5240,7 +5240,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `Tier0 Gateway Locale Service ID on which EVPN Tunnel is configured. ## Importing An existing EVPN Tunnel Endpoint can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tunnel_endpoint.endpoint1 GW-ID/LOCALE-SERVICE-ID/INTERFACE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tunnel Endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `, on Tier0 Gateway GW-ID and Locale Service LOCALE-SERVICE-ID with external interface INTERFACE-ID.`,
+					Description: `Tier0 Gateway Locale Service ID on which EVPN Tunnel is configured. ## Importing An existing EVPN Tunnel Endpoint can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_evpn_tunnel_endpoint.endpoint1 GW-ID/LOCALE-SERVICE-ID/INTERFACE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports EVPN Tunnel Endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `, on Tier0 Gateway GW-ID and Locale Service LOCALE-SERVICE-ID with external interface INTERFACE-ID.`,
 				},
 			},
 		},
@@ -5491,7 +5491,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_community_list.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Community List named ` + "`" + `test` + "`" + ` with the NSX Community List ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_community_list.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Community List named ` + "`" + `test` + "`" + ` with the NSX Community List ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5505,7 +5505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_community_list.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Community List named ` + "`" + `test` + "`" + ` with the NSX Community List ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_community_list.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Community List named ` + "`" + `test` + "`" + ` with the NSX Community List ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -5568,7 +5568,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test GATEWAY-PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dns Forwarder named ` + "`" + `test` + "`" + ` for NSX Gateway ` + "`" + `GATEWAY-PATH` + "`" + `. Note that in order to support both Tier0 and Tier1 Gateways, a full Gateway path is expected here, rather than the usual ID.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_dns_forwarder.test GATEWAY-PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dns Forwarder named ` + "`" + `test` + "`" + ` for NSX Gateway ` + "`" + `GATEWAY-PATH` + "`" + `. Note that in order to support both Tier0 and Tier1 Gateways, a full Gateway path is expected here, rather than the usual ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5582,7 +5582,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_dns_forwarder_zone.test GATEWAY-PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dns Forwarder named ` + "`" + `test` + "`" + ` for NSX Gateway ` + "`" + `GATEWAY-PATH` + "`" + `. Note that in order to support both Tier0 and Tier1 Gateways, a full Gateway path is expected here, rather than the usual ID.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_dns_forwarder.test GATEWAY-PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports Dns Forwarder named ` + "`" + `test` + "`" + ` for NSX Gateway ` + "`" + `GATEWAY-PATH` + "`" + `. Note that in order to support both Tier0 and Tier1 Gateways, a full Gateway path is expected here, rather than the usual ID.`,
 				},
 			},
 		},
@@ -5736,7 +5736,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `gwpolicy1` + "`" + ` with the NSX Policy id ` + "`" + `ID` + "`" + `. If the Policy to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `gwpolicy1` + "`" + ` with the NSX Policy id ` + "`" + `ID` + "`" + `. If the Policy to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5766,7 +5766,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `gwpolicy1` + "`" + ` with the NSX Policy id ` + "`" + `ID` + "`" + `. If the Policy to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `gwpolicy1` + "`" + ` with the NSX Policy id ` + "`" + `ID` + "`" + `. If the Policy to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.gwpolicy1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5836,7 +5836,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 Gateway prefix list can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_prefix_list.pf1 GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway prefix list named ` + "`" + `pf1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 Gateway prefix list can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_prefix_list.pf1 GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway prefix list named ` + "`" + `pf1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5850,7 +5850,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 Gateway prefix list can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_prefix_list.pf1 GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway prefix list named ` + "`" + `pf1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 Gateway prefix list can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_prefix_list.pf1 GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway prefix list named ` + "`" + `pf1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -5912,7 +5912,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5926,7 +5926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway Redistribution config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_redistribution_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway Redistribution config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -5976,7 +5976,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "match_operator",
-					Description: `(Required) Match operator for the criteria, one of ` + "`" + `ANY` + "`" + `, ` + "`" + `ALL` + "`" + `, ` + "`" + `EXACT` + "`" + `, ` + "`" + `COMMUNITY_REGEX` + "`" + `, ` + "`" + `LARGE_COMMUNITY_REGEX` + "`" + `. Only last two operators can be used together with regular expression criteria.`,
+					Description: `(Required) Match operator for the criteria, one of ` + "`" + `MATCH_ANY` + "`" + `, ` + "`" + `MATCH_ALL` + "`" + `, ` + "`" + `MATCH_EXACT` + "`" + `, ` + "`" + `MATCH_COMMUNITY_REGEX` + "`" + `, ` + "`" + `MATCH_LARGE_COMMUNITY_REGEX` + "`" + `. Only last two operators can be used together with regular expression criteria.`,
 				},
 				resource.Attribute{
 					Name:        "prefix_list_matches",
@@ -6028,7 +6028,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_route_map.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Route Map named ` + "`" + `test` + "`" + ` with the NSX Route Map ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_route_map.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Route Map named ` + "`" + `test` + "`" + ` with the NSX Route Map ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6042,7 +6042,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_route_map.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Route Map named ` + "`" + `test` + "`" + ` with the NSX Route Map ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_route_map.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Route Map named ` + "`" + `test` + "`" + ` with the NSX Route Map ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -6110,7 +6110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route_bfd_peer.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Static Route BFD Peer named ` + "`" + `test` + "`" + ` with ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route_bfd_peer.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Static Route BFD Peer named ` + "`" + `test` + "`" + ` with ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6124,7 +6124,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route_bfd_peer.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Static Route BFD Peer named ` + "`" + `test` + "`" + ` with ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route_bfd_peer.test GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Tier0 Gateway Static Route BFD Peer named ` + "`" + `test` + "`" + ` with ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -6200,7 +6200,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Group named ` + "`" + `group` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. If the Group to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Group named ` + "`" + `group` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. If the Group to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6214,7 +6214,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Group can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Group named ` + "`" + `group` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. If the Group to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Group can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Group named ` + "`" + `group` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. If the Group to import isn't in the ` + "`" + `default` + "`" + ` domain, the domain name can be added to the ` + "`" + `ID` + "`" + ` before a slash. For example to import a Group with ` + "`" + `ID` + "`" + ` in the ` + "`" + `MyDomain` + "`" + ` domain: ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_group.group1 MyDomain/ID ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6361,7 +6361,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6391,7 +6391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -6475,7 +6475,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX policy path of the resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_profile.profile1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the profile named ` + "`" + `profile1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX policy path of the resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_profile.profile1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the profile named ` + "`" + `profile1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6489,7 +6489,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX policy path of the resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_profile.profile1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the profile named ` + "`" + `profile1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX policy path of the resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_intrusion_service_profile.profile1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the profile named ` + "`" + `profile1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -6545,7 +6545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_ip",
-					Description: `If the ` + "`" + `allocation_ip` + "`" + ` is not specified in the resource, any free IP is allocated and its value is exported on this attribute. ## Importing An existing IP Allocation can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_address_allocation.test POOL-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IpAddressAllocation named ` + "`" + `test` + "`" + ` with the NSX IpAddressAllocation ID ` + "`" + `ID` + "`" + ` in IP Pool ` + "`" + `POOL-ID` + "`" + `.`,
+					Description: `If the ` + "`" + `allocation_ip` + "`" + ` is not specified in the resource, any free IP is allocated and its value is exported on this attribute. ## Importing An existing IP Allocation can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_address_allocation.test POOL-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IpAddressAllocation named ` + "`" + `test` + "`" + ` with the NSX IpAddressAllocation ID ` + "`" + `ID` + "`" + ` in IP Pool ` + "`" + `POOL-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6563,7 +6563,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allocation_ip",
-					Description: `If the ` + "`" + `allocation_ip` + "`" + ` is not specified in the resource, any free IP is allocated and its value is exported on this attribute. ## Importing An existing IP Allocation can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_address_allocation.test POOL-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IpAddressAllocation named ` + "`" + `test` + "`" + ` with the NSX IpAddressAllocation ID ` + "`" + `ID` + "`" + ` in IP Pool ` + "`" + `POOL-ID` + "`" + `.`,
+					Description: `If the ` + "`" + `allocation_ip` + "`" + ` is not specified in the resource, any free IP is allocated and its value is exported on this attribute. ## Importing An existing IP Allocation can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_address_allocation.test POOL-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IpAddressAllocation named ` + "`" + `test` + "`" + ` with the NSX IpAddressAllocation ID ` + "`" + `ID` + "`" + ` in IP Pool ` + "`" + `POOL-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -6610,7 +6610,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing IP Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_block.block1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Block as a resource named ` + "`" + `block1` + "`" + ` with the NSX id ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Block.`,
+					Description: `The NSX path of the resource. ## Importing An existing IP Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_block.block1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Block as a resource named ` + "`" + `block1` + "`" + ` with the NSX id ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Block.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6624,7 +6624,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing IP Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_block.block1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Block as a resource named ` + "`" + `block1` + "`" + ` with the NSX id ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Block.`,
+					Description: `The NSX path of the resource. ## Importing An existing IP Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_block.block1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Block as a resource named ` + "`" + `block1` + "`" + ` with the NSX id ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Block.`,
 				},
 			},
 		},
@@ -6667,7 +6667,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool.pool1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Pool as a resource named ` + "`" + `pool1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Pool.`,
+					Description: `The NSX path of the resource. ## Importing An existing IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool.pool1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Pool as a resource named ` + "`" + `pool1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Pool.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6681,7 +6681,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool.pool1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Pool as a resource named ` + "`" + `pool1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Pool.`,
+					Description: `The NSX path of the resource. ## Importing An existing IP Pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool.pool1 ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX IP Pool as a resource named ` + "`" + `pool1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ` + "`" + `ID` + "`" + ` is NSX ID of the IP Pool.`,
 				},
 			},
 		},
@@ -6742,7 +6742,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_block_subnet.block_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Block Subnet as a resource named ` + "`" + `block_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is NSX ID of Block Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
+					Description: `The NSX path of the resource. ## Importing An existing Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_block_subnet.block_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Block Subnet as a resource named ` + "`" + `block_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is NSX ID of Block Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6756,7 +6756,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_block_subnet.block_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Block Subnet as a resource named ` + "`" + `block_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is NSX ID of Block Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
+					Description: `The NSX path of the resource. ## Importing An existing Block can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_block_subnet.block_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Block Subnet as a resource named ` + "`" + `block_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is NSX ID of Block Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
 				},
 			},
 		},
@@ -6833,7 +6833,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing Static can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_static_subnet.static_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Static Subnet as a resource named ` + "`" + `static_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is ID of Static Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
+					Description: `The NSX path of the resource. ## Importing An existing Static can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_static_subnet.static_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Static Subnet as a resource named ` + "`" + `static_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is ID of Static Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6847,7 +6847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the resource. ## Importing An existing Static can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_static_subnet.static_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Static Subnet as a resource named ` + "`" + `static_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is ID of Static Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
+					Description: `The NSX path of the resource. ## Importing An existing Static can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_static_subnet.static_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Static Subnet as a resource named ` + "`" + `static_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is ID of Static Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
 				},
 			},
 		},
@@ -6979,7 +6979,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_pool.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBPool named ` + "`" + `test` + "`" + ` with the NSX LBPool ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_pool.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBPool named ` + "`" + `test` + "`" + ` with the NSX LBPool ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6993,7 +6993,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_pool.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBPool named ` + "`" + `test` + "`" + ` with the NSX LBPool ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing pool can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_pool.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBPool named ` + "`" + `test` + "`" + ` with the NSX LBPool ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -7053,7 +7053,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_service.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBService named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Service ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_service.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBService named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Service ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7067,7 +7067,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_service.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBService named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Service ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_service.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports LBService named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Service ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -7104,7 +7104,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "application_profile_path",
-					Description: `(Required) Application profile path for this virtual server.`,
+					Description: `(Required) Application profile path for this virtual server. Note that this also differentiates between Layer 4 TCP/UDP and Layer 7 HTTP virtual servers.`,
 				},
 				resource.Attribute{
 					Name:        "access_log_enabled",
@@ -7228,7 +7228,471 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Indicates whether to enable access list control option. Default is true. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Indicates whether to enable access list control option. Default is true.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Specifies one or more rules to manipulate traffic passing through HTTP or HTTPS virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Display name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "match_strategy",
+					Description: `(Optional) Match strategy for determining match of multiple conditions, one of ` + "`" + `ALL` + "`" + `, ` + "`" + `ANY` + "`" + `. Default is ` + "`" + `ANY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "phase",
+					Description: `(Optional) Load balancer processing phase, one of ` + "`" + `HTTP_REQUEST_REWRITE` + "`" + `, ` + "`" + `HTTP_FORWARDING` + "`" + `, ` + "`" + `HTTP_RESPONSE_REWRITE` + "`" + `, ` + "`" + `HTTP_ACCESS` + "`" + ` or ` + "`" + `TRANSPORT` + "`" + `. Default is ` + "`" + `HTTP_FORWARDING` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) A list of actions to be executed at specified phase when load balancer rule matches.`,
+				},
+				resource.Attribute{
+					Name:        "connection_drop",
+					Description: `(Optional) Action to drop the connections. (There is no argument to this action)`,
+				},
+				resource.Attribute{
+					Name:        "http_redirect_acion",
+					Description: `(Optional) Action to redirect HTTP request message toto a new URL.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_status",
+					Description: `(Required) HTTP response status code.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_url",
+					Description: `(Required) The URL that the HTTP request is redirected to.`,
+				},
+				resource.Attribute{
+					Name:        "http_reject",
+					Description: `(Optional) Action to reject HTTP request message.`,
+				},
+				resource.Attribute{
+					Name:        "reply_message",
+					Description: `(Optional) Response message.`,
+				},
+				resource.Attribute{
+					Name:        "reply_status",
+					Description: `(Required) HTTP response status code.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_header_delete",
+					Description: `(Optional) Action to delete header fields of HTTP request messages.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_header_rewrite",
+					Description: `(Optional) Action to rewrite header fields of matched HTTP request messages to specified new values.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) Name of HTTP request header.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_uri_rewrite",
+					Description: `(Optional) Action to rewrite URIs in matched HTTP request messages.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) URI of HTTP request.`,
+				},
+				resource.Attribute{
+					Name:        "uri_arguments",
+					Description: `(Optional) URI arguments.`,
+				},
+				resource.Attribute{
+					Name:        "http_response_header_delete",
+					Description: `(Optional) Action to delete header fields of HTTP response messages.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) Name of a header field of HTTP response messages.`,
+				},
+				resource.Attribute{
+					Name:        "http_response_header_rewrite",
+					Description: `(Optional) Action to rewrite header fields of matched HTTP request message to specified new values.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) Name of HTTP request header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) Value of HTTp request header.`,
+				},
+				resource.Attribute{
+					Name:        "jwt_auth",
+					Description: `(Optional) Action to control access to backend server resources using JSON Web Token (JWT) authentication.`,
+				},
+				resource.Attribute{
+					Name:        "pass_jwt_to_pool",
+					Description: `(Optional) Whether to pass JWT to backend server or remove it, Boolean, Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) JWT realm.`,
+				},
+				resource.Attribute{
+					Name:        "tokens",
+					Description: `(Optional) List of JWT tokens.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Key to verify signature of JWT token, specify exactly one of the arguments.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_path",
+					Description: `(Optional) Use certficate to verify signature of JWT token.`,
+				},
+				resource.Attribute{
+					Name:        "public_key_content",
+					Description: `(Optional) Use public key to verify signature of JWT token.`,
+				},
+				resource.Attribute{
+					Name:        "symmetric_key",
+					Description: `(Optional) Use symmetric key to verify signature of JWT token, this argument indicates presence only, the value is discarded.`,
+				},
+				resource.Attribute{
+					Name:        "select_pool",
+					Description: `(Optional) Action used to select a pool for matched HTTP request messages.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) Path of load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_mode_selection",
+					Description: `(Optional) Action to select SSL mode.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_mode",
+					Description: `(Required) Type of SSL mode, one of ` + "`" + `SSL_PASSTHROUGH` + "`" + `, ` + "`" + `SSL_END_TO_END` + "`" + ` or ` + "`" + `SSL_OFFLOAD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "variable_assignment",
+					Description: `(Optional) Action to create new variable and assign value to it.`,
+				},
+				resource.Attribute{
+					Name:        "variable_name",
+					Description: `(Required) Name of the variable to be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "variable_value",
+					Description: `(Required) Value of variable.`,
+				},
+				resource.Attribute{
+					Name:        "variable_persistence_learn",
+					Description: `(Optional) Action to learn the value of variable from the HTTP response.`,
+				},
+				resource.Attribute{
+					Name:        "persistence_profile_path",
+					Description: `(Optional) Path to nsxt_policy_persistence_profile.`,
+				},
+				resource.Attribute{
+					Name:        "variable_hash_enabled",
+					Description: `(Optional) Whether to enable a hash operation for variable value, Boolean, Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "variable_name",
+					Description: `(Required) Variable name.`,
+				},
+				resource.Attribute{
+					Name:        "variable_persistence_on",
+					Description: `(Optional) Action to inspect the variable of HTTP request.`,
+				},
+				resource.Attribute{
+					Name:        "persistence_profile_path",
+					Description: `(Optional) Path to nsxt_policy_persistence_profile.`,
+				},
+				resource.Attribute{
+					Name:        "variable_hash_enabled",
+					Description: `(Optional) Whether to enable a hash operation for variable value, Boolean, Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "variable_name",
+					Description: `(Required) Variable name.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) A list of match conditions used to match application traffic.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_body",
+					Description: `(Optional) Condition to match the message body of an HTTP request.`,
+				},
+				resource.Attribute{
+					Name:        "body_value",
+					Description: `(Required) HTTP request body.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for HTTP body comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of HTTP body, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_cookie",
+					Description: `(Optional) Condition to match HTTP request messages by cookie.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `(Required) Name of cookie.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_value",
+					Description: `(Required) Value of cookie.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for cookie comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of cookie, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_header",
+					Description: `(Optional) Condition to match HTTP request messages by HTTP header fields.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) Name of HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) Value of HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for HTTP header comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of HTTP header, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_method",
+					Description: `(Optional) Condition to match method of HTTP requests.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Required) Type of HTTP request method, one of ` + "`" + `GET` + "`" + `, ` + "`" + `OPTIONS` + "`" + `, ` + "`" + `POST` + "`" + `, ` + "`" + `HEAD` + "`" + ` or ` + "`" + `PUT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "http_request_uri_arguments",
+					Description: `(Optional) Condition to match URI arguments.`,
+				},
+				resource.Attribute{
+					Name:        "uri_arguments",
+					Description: `(Required) URI arguments.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for HTTP uri arguments comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of HTTP uri arguments, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_uri",
+					Description: `(Optional) Condition to match URIs of HTTP requests messages.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) A string used to identify resource.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for HTTP uri comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of HTTP uri, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_request_version",
+					Description: `(Optional) Condition to match the HTTP protocol version of the HTTP request messages.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "http_response_header",
+					Description: `(Optional) Condition to match HTTP response messages from backend servers by HTTP header fields.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) Name of HTTP header field.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) Value of HTTP header field.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for HTTP header comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of HTTP header, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_ssl",
+					Description: `(Optional) Condition to match SSL handshake and SSL connection.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_issuer_dn",
+					Description: `(Optional) The issuer DN match condition of the client certificate.`,
+				},
+				resource.Attribute{
+					Name:        "issuer_dn",
+					Description: `(Required) Value of issuer DN.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for issuer DN comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of issuer DN, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_subject_dn",
+					Description: `(Optional) The subject DN match condition of the client certificate.`,
+				},
+				resource.Attribute{
+					Name:        "subject_dn",
+					Description: `(Required) Value of subject DN.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for subject DN comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of subject DN, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "client_support_ssl_ciphers",
+					Description: `(Optional) List of ciphers supported by client (see documentation for possible values).`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "session_reused",
+					Description: `(Optional) The type of SSL session reused, one of ` + "`" + `IGNORE` + "`" + `, ` + "`" + `REUSED` + "`" + ` or ` + "`" + `NEW` + "`" + `. Default is ` + "`" + `IGNORE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "used_protocol",
+					Description: `(Optional) Protocol of an established SSL connection, one of ` + "`" + `SSL_V2` + "`" + `, ` + "`" + `SSL_V3` + "`" + `, ` + "`" + `TLS_V1` + "`" + `, ` + "`" + `TLS_V1_1` + "`" + ` or ` + "`" + `TLS_V1_2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "used_ssl_cipher",
+					Description: `(Optional) Cypher used for an established SSL connection (see documentation for possible values).`,
+				},
+				resource.Attribute{
+					Name:        "ip_header",
+					Description: `(Optional) Condition to match IP header fields.`,
+				},
+				resource.Attribute{
+					Name:        "group_path",
+					Description: `(Optional) Grouping object path.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ssl_sni",
+					Description: `(Optional) Condition to match SSL SNI in client hello.`,
+				},
+				resource.Attribute{
+					Name:        "sni",
+					Description: `(Required) The server name indication.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for SNI comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of SNI, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_header",
+					Description: `(Optional) Condition to match TCP header fields.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `(Required) TCP source port or port range of HTTP message.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Condition to match variable's name and value.`,
+				},
+				resource.Attribute{
+					Name:        "variable_name",
+					Description: `(Required) Name of the variable to be matched.`,
+				},
+				resource.Attribute{
+					Name:        "variable_value",
+					Description: `(Required) Value of the variable to be matched.`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive",
+					Description: `(Optional) A case sensitive flag for variable comparison, Boolean, Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "inverse",
+					Description: `(Optional) A flag to indicate whether to reverse the match result of this condition, Boolean, Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `(Optional) Match type of variable, one of ` + "`" + `REGEX` + "`" + `, ` + "`" + `STARTS_WITH` + "`" + `, ` + "`" + `ENDS_WITH` + "`" + `. ` + "`" + `EQUALS` + "`" + ` or ` + "`" + `CONTAINS` + "`" + `. Default is ` + "`" + `REGEX` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7240,7 +7704,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing Virtual Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_virtual_server.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Load Balancer Virtual Server named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Virtual Server ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing Virtual Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_virtual_server.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Load Balancer Virtual Server named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Virtual Server ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7254,7 +7718,89 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing Virtual Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_virtual_server.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Load Balancer Virtual Server named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Virtual Server ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing Virtual Server can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_lb_virtual_server.test ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Load Balancer Virtual Server named ` + "`" + `test` + "`" + ` with the NSX Load Balancer Virtual Server ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_mac_discovery_profile",
+			Category:         "Beta",
+			ShortDescription: `A resource to configure a MAC Discovery Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"beta",
+				"policy",
+				"mac",
+				"discovery",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "mac_change_enabled",
+					Description: `(Optional) MAC address change feature.`,
+				},
+				resource.Attribute{
+					Name:        "mac_learning_enabled",
+					Description: `(Optional) MAC learning feature.`,
+				},
+				resource.Attribute{
+					Name:        "mac_limit",
+					Description: `(Optional) The maximum number of MAC addresses that can be learned on this port.`,
+				},
+				resource.Attribute{
+					Name:        "mac_limit_policy",
+					Description: `(Optional) The policy after MAC Limit is exceeded. Possible values are ` + "`" + `ALLOW` + "`" + ` and ` + "`" + `DROP` + "`" + `, with default being ` + "`" + `ALLOW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remote_overlay_mac_limit",
+					Description: `(Optional) The maximum number of MAC addresses learned on an overlay Logical Switch.`,
+				},
+				resource.Attribute{
+					Name:        "unknown_unicast_flooding_enabled",
+					Description: `(Optional) Allowing flooding for unlearned MAC for ingress traffic. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_mac_discovery_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports MAC Discovery Profile named ` + "`" + `test` + "`" + ` with ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_mac_discovery_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports MAC Discovery Profile named ` + "`" + `test` + "`" + ` with ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -7343,7 +7889,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy NAT Rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_nat_rule.rule1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy NAT Rule named ` + "`" + `rule1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy NAT Rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_nat_rule.rule1 GWID/ID/[NAT64] ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy NAT Rule named ` + "`" + `rule1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ` + "`" + `NAT64` + "`" + ` as nat type should be specified only for NAT64 case, otherwise it should be omitted.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7353,7 +7899,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy NAT Rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_nat_rule.rule1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy NAT Rule named ` + "`" + `rule1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy NAT Rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_nat_rule.rule1 GWID/ID/[NAT64] ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy NAT Rule named ` + "`" + `rule1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ` + "`" + `NAT64` + "`" + ` as nat type should be specified only for NAT64 case, otherwise it should be omitted.`,
 				},
 			},
 		},
@@ -7415,7 +7961,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7429,7 +7975,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing OSPF Area can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ospf_area.test GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports OSPF Area named ` + "`" + `test` + "`" + ` with NSX ID ` + "`" + `ID` + "`" + ` on Tier-0 Gateway ` + "`" + `GW-ID` + "`" + ` and Locale Service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -7667,7 +8213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7689,7 +8235,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing Gateway Policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_policy.default policy-path ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Gateway Policy named ` + "`" + `default` + "`" + ` with the NSX Path ` + "`" + `policy-path` + "`" + `. The import command is recommended in case the NSX policy in question already has rules configured, and you wish to reconfigure the policy from scratch. If your terraform configuration copies existing rules, like in VMC example above, import step can be skipped.`,
 				},
 			},
 		},
@@ -7961,7 +8507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_qos_profile.qos_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the qos profile named ` + "`" + `qos_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_qos_profile.qos_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the qos profile named ` + "`" + `qos_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7975,7 +8521,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_qos_profile.qos_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the qos profile named ` + "`" + `qos_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_qos_profile.qos_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the qos profile named ` + "`" + `qos_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -8137,7 +8683,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing security policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_security_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the security policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing security policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_security_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the security policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8167,7 +8713,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_id",
-					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing security policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_security_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the security policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `Unique positive number that is assigned by the system and is useful for debugging. ## Importing An existing security policy can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_security_policy.policy1 domain/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the security policy named ` + "`" + `policy1` + "`" + ` under NSX domain ` + "`" + `domain` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -8557,7 +9103,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_service.service_icmp ID ` + "`" + `` + "`" + `` + "`" + ` The above service imports the service named ` + "`" + `service_icmp` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_service.service_icmp ID ` + "`" + `` + "`" + `` + "`" + ` The above service imports the service named ` + "`" + `service_icmp` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8571,7 +9117,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_service.service_icmp ID ` + "`" + `` + "`" + `` + "`" + ` The above service imports the service named ` + "`" + `service_icmp` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_service.service_icmp ID ` + "`" + `` + "`" + `` + "`" + ` The above service imports the service named ` + "`" + `service_icmp` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -8632,7 +9178,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Static Route can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route.route1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Static Route named ` + "`" + `route1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Static Route can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route.route1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Static Route named ` + "`" + `route1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8642,7 +9188,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Static Route can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route.route1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Static Route named ` + "`" + `route1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Static Route can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_static_route.route1 GWID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Static Route named ` + "`" + `route1` + "`" + ` for the NSX Tier0 or Tier1 Gateway ` + "`" + `GWID` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -8887,7 +9433,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8913,7 +9459,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway.tier0_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway named ` + "`" + `tier0_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -8961,7 +9507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway HA Vip config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_ha_vip_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway HA Vip config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway HA Vip config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_ha_vip_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway HA Vip config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8975,7 +9521,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "locale_service_id",
-					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway HA Vip config can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_ha_vip_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway HA Vip config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `ID of the Tier-0 Gateway locale service. ## Importing An existing policy Tier-0 Gateway HA Vip config can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_ha_vip_config.havip GW-ID/LOCALE-SERVICE-ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway HA Vip config named ` + "`" + `havip` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -9097,7 +9643,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_addresses",
-					Description: `list of Ip Addresses picked from each subnet in ` + "`" + `subnets` + "`" + ` field. This attribute can serve as ` + "`" + `source_addresses` + "`" + ` field of ` + "`" + `nsxt_policy_bgp_neighbor` + "`" + ` resource. ## Importing An existing policy Tier-0 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `list of Ip Addresses picked from each subnet in ` + "`" + `subnets` + "`" + ` field. This attribute can serve as ` + "`" + `source_addresses` + "`" + ` field of ` + "`" + `nsxt_policy_bgp_neighbor` + "`" + ` resource. ## Importing An existing policy Tier-0 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9115,7 +9661,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_addresses",
-					Description: `list of Ip Addresses picked from each subnet in ` + "`" + `subnets` + "`" + ` field. This attribute can serve as ` + "`" + `source_addresses` + "`" + ` field of ` + "`" + `nsxt_policy_bgp_neighbor` + "`" + ` resource. ## Importing An existing policy Tier-0 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `list of Ip Addresses picked from each subnet in ` + "`" + `subnets` + "`" + ` field. This attribute can serve as ` + "`" + `source_addresses` + "`" + ` field of ` + "`" + `nsxt_policy_bgp_neighbor` + "`" + ` resource. ## Importing An existing policy Tier-0 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier0_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -9264,7 +9810,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9278,7 +9824,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
 				},
 			},
 		},
@@ -9352,7 +9898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier1 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier1 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9366,7 +9912,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier1 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 Gateway Interface can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway_interface.interface1 GW-ID/LOCALE-SERVICE-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway interface named ` + "`" + `interface1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier1 Gateway ` + "`" + `GW-ID` + "`" + `, under locale service ` + "`" + `LOCALE-SERVICE-ID` + "`" + `.`,
 				},
 			},
 		},
@@ -9577,7 +10123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vlan_segment.segment1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the VLAN backed segment named ` + "`" + `segment1` + "`" + ` with the NSX Segment ID ` + "`" + `ID` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vlan_segment.segment1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the VLAN backed segment named ` + "`" + `segment1` + "`" + ` with the NSX Segment ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9591,7 +10137,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vlan_segment.segment1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the VLAN backed segment named ` + "`" + `segment1` + "`" + ` with the NSX Segment ID ` + "`" + `ID` + "`" + `. ~>`,
+					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vlan_segment.segment1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the VLAN backed segment named ` + "`" + `segment1` + "`" + ` with the NSX Segment ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -9628,7 +10174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A list of scope + tag pairs to associate with this segment port. ## Importing An existing VM Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vm_tags.vm1_tags ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Virtual Machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ID is external ID of the Virtual Machine. Note that import of port tags is not supported.`,
+					Description: `(Optional) A list of scope + tag pairs to associate with this segment port. ## Importing An existing VM Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_vm_tags.vm1_tags ID ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Virtual Machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `, where ID is external ID of the Virtual Machine. Note that import of port tags is not supported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9736,7 +10282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing qos switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_qos_switching_profile.qos_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the Qos switching profile named ` + "`" + `qos_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing qos switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_qos_switching_profile.qos_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the Qos switching profile named ` + "`" + `qos_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9746,7 +10292,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing qos switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_qos_switching_profile.qos_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the Qos switching profile named ` + "`" + `qos_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing qos switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_qos_switching_profile.qos_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the Qos switching profile named ` + "`" + `qos_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -9786,7 +10332,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9796,7 +10342,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -9835,7 +10381,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9845,7 +10391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -9911,7 +10457,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "blackhole_action",
-					Description: `Action to be taken on matching packets for NULL routes. ## Importing An existing static route can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_static_route.static_route logical-router-uuid/static-route-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the static route named ` + "`" + `static_route` + "`" + ` with the number ` + "`" + `static-route-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Action to be taken on matching packets for NULL routes. ## Importing An existing static route can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_static_route.static_route logical-router-uuid/static-route-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the static route named ` + "`" + `static_route` + "`" + ` with the number ` + "`" + `static-route-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9929,7 +10475,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "blackhole_action",
-					Description: `Action to be taken on matching packets for NULL routes. ## Importing An existing static route can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_static_route.static_route logical-router-uuid/static-route-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the static route named ` + "`" + `static_route` + "`" + ` with the number ` + "`" + `static-route-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Action to be taken on matching packets for NULL routes. ## Importing An existing static route can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_static_route.static_route logical-router-uuid/static-route-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the static route named ` + "`" + `static_route` + "`" + ` with the number ` + "`" + `static-route-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 		},
@@ -10009,7 +10555,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing switch security switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_switch_security_switching_profile.switch_security_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import switching profile named ` + "`" + `switch_security_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing switch security switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_switch_security_switching_profile.switch_security_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import switching profile named ` + "`" + `switch_security_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10019,7 +10565,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing switch security switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_switch_security_switching_profile.switch_security_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import switching profile named ` + "`" + `switch_security_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing switch security switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_switch_security_switching_profile.switch_security_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import switching profile named ` + "`" + `switch_security_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
 				},
 			},
 		},
@@ -10082,7 +10628,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vlan_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/docs/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vlan_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10092,7 +10638,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vlan_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing X can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/docs/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vlan_logical_switch.switch1 UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the logical switch named ` + "`" + `switch1` + "`" + ` with the NSX id ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -10118,7 +10664,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "logical_port_tag",
-					Description: `(Optional) A list of scope + tag pairs to associate with all logical ports that are automatically created for this VM. ## Importing An existing Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vm_tags.vm1_tags id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX virtual machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `, where id is external ID (not the BIOS id) of the virtual machine.`,
+					Description: `(Optional) A list of scope + tag pairs to associate with all logical ports that are automatically created for this VM. ## Importing An existing Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vm_tags.vm1_tags id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX virtual machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `, where id is external ID (not the BIOS id) of the virtual machine.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10210,30 +10756,31 @@ var (
 		"nsxt_policy_lb_pool":                          80,
 		"nsxt_policy_lb_service":                       81,
 		"nsxt_policy_lb_virtual_server":                82,
-		"nsxt_policy_nat_rule":                         83,
-		"nsxt_policy_ospf_area":                        84,
-		"nsxt_policy_ospf_config":                      85,
-		"nsxt_policy_predefined_gateway_policy":        86,
-		"nsxt_policy_predefined_security_policy":       87,
-		"nsxt_policy_qos_profile":                      88,
-		"nsxt_policy_security_policy":                  89,
-		"nsxt_policy_segment":                          90,
-		"nsxt_policy_service":                          91,
-		"nsxt_policy_static_route":                     92,
-		"nsxt_policy_tier0_gateway":                    93,
-		"nsxt_policy_tier0_gateway_ha_vip_config":      94,
-		"nsxt_policy_tier0_gateway_interface":          95,
-		"nsxt_policy_tier1_gateway":                    96,
-		"nsxt_policy_tier1_gateway_interface":          97,
-		"nsxt_policy_vlan_segment":                     98,
-		"nsxt_policy_vm_tags":                          99,
-		"nsxt_qos_switching_profile":                   100,
-		"nsxt_spoof_guard_switching_profile":           101,
-		"nsxt_spoofguard_switching_profile":            102,
-		"nsxt_static_route":                            103,
-		"nsxt_switch_security_switching_profile":       104,
-		"nsxt_vlan_logical_switch":                     105,
-		"nsxt_vm_tags":                                 106,
+		"nsxt_policy_mac_discovery_profile":            83,
+		"nsxt_policy_nat_rule":                         84,
+		"nsxt_policy_ospf_area":                        85,
+		"nsxt_policy_ospf_config":                      86,
+		"nsxt_policy_predefined_gateway_policy":        87,
+		"nsxt_policy_predefined_security_policy":       88,
+		"nsxt_policy_qos_profile":                      89,
+		"nsxt_policy_security_policy":                  90,
+		"nsxt_policy_segment":                          91,
+		"nsxt_policy_service":                          92,
+		"nsxt_policy_static_route":                     93,
+		"nsxt_policy_tier0_gateway":                    94,
+		"nsxt_policy_tier0_gateway_ha_vip_config":      95,
+		"nsxt_policy_tier0_gateway_interface":          96,
+		"nsxt_policy_tier1_gateway":                    97,
+		"nsxt_policy_tier1_gateway_interface":          98,
+		"nsxt_policy_vlan_segment":                     99,
+		"nsxt_policy_vm_tags":                          100,
+		"nsxt_qos_switching_profile":                   101,
+		"nsxt_spoof_guard_switching_profile":           102,
+		"nsxt_spoofguard_switching_profile":            103,
+		"nsxt_static_route":                            104,
+		"nsxt_switch_security_switching_profile":       105,
+		"nsxt_vlan_logical_switch":                     106,
+		"nsxt_vm_tags":                                 107,
 	}
 )
 

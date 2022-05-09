@@ -21,12 +21,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "state",
-					Description: `(Optional) The state for the access key (` + "`" + `ACTIVE` + "`" + ` \| ` + "`" + `INACTIVE` + "`" + `). ## Attribute Reference The following attributes are exported:`,
+					Name:        "expiration_date",
+					Description: `(Optional) The date and time at which you want the access key to expire, in ISO 8601 format (for example, ` + "`" + `2017-06-14` + "`" + ` or ` + "`" + `2017-06-14T00:00:00Z` + "`" + `). If not specified, the access key has no expiration date.`,
 				},
 				resource.Attribute{
-					Name:        "access_key",
-					Description: `Information about the secret access key.`,
+					Name:        "state",
+					Description: `(Optional) The state for the access key (` + "`" + `ACTIVE` + "`" + ` | ` + "`" + `INACTIVE` + "`" + `). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_key_id",
@@ -35,6 +35,10 @@ var (
 				resource.Attribute{
 					Name:        "creation_date",
 					Description: `The date and time of creation of the secret access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
@@ -46,21 +50,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the secret access key (` + "`" + `ACTIVE` + "`" + ` if the key is valid for API calls, or ` + "`" + `INACTIVE` + "`" + ` if not). ## Import An access key can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_access_key.ImportedAccessKey ABCDEFGHIJ0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The state of the secret access key (` + "`" + `ACTIVE` + "`" + ` if the key is valid for API calls, or ` + "`" + `INACTIVE` + "`" + ` if not). ## Import An access key can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_access_key.ImportedAccessKey ABCDEFGHIJ0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "access_key",
-					Description: `Information about the secret access key.`,
-				},
-				resource.Attribute{
 					Name:        "access_key_id",
 					Description: `The ID of the secret access key.`,
 				},
 				resource.Attribute{
 					Name:        "creation_date",
 					Description: `The date and time of creation of the secret access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
@@ -72,7 +76,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the secret access key (` + "`" + `ACTIVE` + "`" + ` if the key is valid for API calls, or ` + "`" + `INACTIVE` + "`" + ` if not). ## Import An access key can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_access_key.ImportedAccessKey ABCDEFGHIJ0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The state of the secret access key (` + "`" + `ACTIVE` + "`" + ` if the key is valid for API calls, or ` + "`" + `INACTIVE` + "`" + ` if not). ## Import An access key can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_access_key.ImportedAccessKey ABCDEFGHIJ0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -101,19 +105,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "client_gateway",
-					Description: `Information about the client gateway.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "bgp_asn",
@@ -145,15 +145,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A client gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_client_gateway.ImportedClientGateway cgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A client gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_client_gateway.ImportedClientGateway cgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "client_gateway",
-					Description: `Information about the client gateway.`,
-				},
-				resource.Attribute{
 					Name:        "bgp_asn",
 					Description: `An Autonomous System Number (ASN) used by the Border Gateway Protocol (BGP) to find the path to your client gateway through the Internet.`,
 				},
@@ -183,7 +179,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A client gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_client_gateway.ImportedClientGateway cgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A client gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_client_gateway.ImportedClientGateway cgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -200,7 +196,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name_servers",
-					Description: `(Optional) The IP addresses of domain name servers. If no IP addresses are specified, the ` + "`" + `OutscaleProvidedDNS` + "`" + ` value is set by default.`,
+					Description: `(Optional) The IPs of domain name servers. If no IPs are specified, the ` + "`" + `OutscaleProvidedDNS` + "`" + ` value is set by default.`,
 				},
 				resource.Attribute{
 					Name:        "domain_name",
@@ -208,47 +204,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `(Optional) The IP addresses of the Network Time Protocol (NTP) servers.`,
+					Description: `(Optional) The IPs of the Network Time Protocol (NTP) servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_options_set",
-					Description: `Information about the DHCP options set.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "default",
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `One or more IPs for the domain name servers.`,
 				},
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `The domain name.`,
 				},
 				resource.Attribute{
-					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
-				},
-				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -260,37 +248,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import DHCP options can be imported using the DHCP option ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_dhcp_option.ImportedDhcpSet dopt-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import DHCP options can be imported using the DHCP option ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_dhcp_option.ImportedDhcpSet dopt-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "dhcp_options_set",
-					Description: `Information about the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "default",
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
 				},
 				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `One or more IPs for the domain name servers.`,
+				},
+				resource.Attribute{
 					Name:        "domain_name",
 					Description: `The domain name.`,
 				},
 				resource.Attribute{
-					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
-				},
-				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -302,7 +282,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import DHCP options can be imported using the DHCP option ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_dhcp_option.ImportedDhcpSet dopt-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import DHCP options can be imported using the DHCP option ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_dhcp_option.ImportedDhcpSet dopt-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -327,17 +307,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `(Required) The model of fGPU you want to allocate. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `(Required) The model of fGPU you want to allocate. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "subregion_name",
 					Description: `(Required) The Subregion in which you want to create the fGPU. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "flexible_gpu",
-					Description: `Information about the flexible GPU (fGPU).`,
-				},
-				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
 					Description: `If true, the fGPU is deleted when the VM is terminated.`,
 				},
@@ -351,7 +327,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -363,15 +339,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the fGPU is attached to, if any. ## Import A flexible GPU can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import outscale_flexible_gpu.imported_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VM the fGPU is attached to, if any. ## Import A flexible GPU can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_flexible_gpu.imported_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "flexible_gpu",
-					Description: `Information about the flexible GPU (fGPU).`,
-				},
-				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
 					Description: `If true, the fGPU is deleted when the VM is terminated.`,
 				},
@@ -385,7 +357,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -397,7 +369,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the fGPU is attached to, if any. ## Import A flexible GPU can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import outscale_flexible_gpu.imported_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VM the fGPU is attached to, if any. ## Import A flexible GPU can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_flexible_gpu.imported_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -419,7 +391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `(Required) The ID of the VM you want to attach the fGPU to. ## Attribute Reference No attribute is exported. ## Import A flexible GPU link can be imported using the flexible GPU ID. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import outscale_flexible_gpu_link.imported_link_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID of the VM you want to attach the fGPU to. ## Attribute Reference No attribute is exported. ## Import A flexible GPU link can be imported using the flexible GPU ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_flexible_gpu_link.imported_link_fgpu fgpu-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -464,7 +436,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional) The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `(Optional) The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -504,7 +476,371 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `(Optional) The ID of the VM from which you want to create the OMI. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "account_alias",
+					Description: `The account alias of the owner of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The account ID of the owner of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "architecture",
+					Description: `The architecture of the OMI (by default, ` + "`" + `i386` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "block_device_mappings",
+					Description: `One or more block device mappings.`,
+				},
+				resource.Attribute{
+					Name:        "bsu",
+					Description: `Information about the BSU volume to create.`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_vm_deletion",
+					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `The number of I/O operations per second (IOPS). This parameter must be specified only if you create an ` + "`" + `io1` + "`" + ` volume. The maximum number of IOPS allowed for ` + "`" + `io1` + "`" + ` volumes is ` + "`" + `13000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot used to create the volume.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `The size of the volume, in gibibytes (GiB).<br /> If you specify a snapshot ID, the volume size must be at least equal to the snapshot size.<br /> If you specify a snapshot ID but no volume size, the volume is created with a size similar to the snapshot one.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `The name of the device.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_device_name",
+					Description: `The name of the virtual device (ephemeralN).`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date and time at which the OMI was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "file_location",
+					Description: `The location of the bucket where the OMI files are stored.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `The name of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `The type of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "permissions_to_launch",
+					Description: `Information about the users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `The account ID of one or more users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "global_permission",
+					Description: `If true, the resource is public. If false, the resource is private.`,
+				},
+				resource.Attribute{
+					Name:        "product_codes",
+					Description: `The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
+				},
+				resource.Attribute{
+					Name:        "root_device_name",
+					Description: `The name of the root device.`,
+				},
+				resource.Attribute{
+					Name:        "root_device_type",
+					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "state_comment",
+					Description: `Information about the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state_code",
+					Description: `The code of the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state_message",
+					Description: `A message explaining the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An image can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_image.ImportedImage ami-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_alias",
+					Description: `The account alias of the owner of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The account ID of the owner of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "architecture",
+					Description: `The architecture of the OMI (by default, ` + "`" + `i386` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "block_device_mappings",
+					Description: `One or more block device mappings.`,
+				},
+				resource.Attribute{
+					Name:        "bsu",
+					Description: `Information about the BSU volume to create.`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_vm_deletion",
+					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `The number of I/O operations per second (IOPS). This parameter must be specified only if you create an ` + "`" + `io1` + "`" + ` volume. The maximum number of IOPS allowed for ` + "`" + `io1` + "`" + ` volumes is ` + "`" + `13000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot used to create the volume.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `The size of the volume, in gibibytes (GiB).<br /> If you specify a snapshot ID, the volume size must be at least equal to the snapshot size.<br /> If you specify a snapshot ID but no volume size, the volume is created with a size similar to the snapshot one.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `The name of the device.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_device_name",
+					Description: `The name of the virtual device (ephemeralN).`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date and time at which the OMI was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "file_location",
+					Description: `The location of the bucket where the OMI files are stored.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `The name of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `The type of the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "permissions_to_launch",
+					Description: `Information about the users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `The account ID of one or more users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "global_permission",
+					Description: `If true, the resource is public. If false, the resource is private.`,
+				},
+				resource.Attribute{
+					Name:        "product_codes",
+					Description: `The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
+				},
+				resource.Attribute{
+					Name:        "root_device_name",
+					Description: `The name of the root device.`,
+				},
+				resource.Attribute{
+					Name:        "root_device_type",
+					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "state_comment",
+					Description: `Information about the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state_code",
+					Description: `The code of the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state_message",
+					Description: `A message explaining the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the OMI.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An image can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_image.ImportedImage ami-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "image_export_task",
+			Category:         "Resources",
+			ShortDescription: `[Manages an image export task.]`,
+			Description:      ``,
+			Keywords: []string{
+				"image",
+				"export",
+				"task",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The ID of the OMI to export.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OOS export task to create.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `(Optional) The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_api_key",
+					Description: `Information about the OOS API key.`,
+				},
+				resource.Attribute{
+					Name:        "api_key_id",
+					Description: `(Optional) The API key of the OOS account that enables you to access the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Optional) The secret key of the OOS account that enables you to access the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `(Optional) The name of the OOS bucket where you want to export the object.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `(Optional) The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `(Optional) The prefix for the key of the OOS object.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the image export task.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -515,258 +851,50 @@ var (
 					Description: `The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
-					Name:        "vm_id",
-					Description: `(Optional) The ID of the VM from which you want to create the OMI. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "image",
-					Description: `Information about the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "account_alias",
-					Description: `The account alias of the owner of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "account_id",
-					Description: `The account ID of the owner of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "architecture",
-					Description: `The architecture of the OMI (by default, ` + "`" + `i386` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "block_device_mappings",
-					Description: `One or more block device mappings.`,
-				},
-				resource.Attribute{
-					Name:        "bsu",
-					Description: `Information about the BSU volume to create.`,
-				},
-				resource.Attribute{
-					Name:        "delete_on_vm_deletion",
-					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
-				},
-				resource.Attribute{
-					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS). This parameter must be specified only if you create an ` + "`" + `io1` + "`" + ` volume. The maximum number of IOPS allowed for ` + "`" + `io1` + "`" + ` volumes is ` + "`" + `13000` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `The ID of the snapshot used to create the volume.`,
-				},
-				resource.Attribute{
-					Name:        "volume_size",
-					Description: `The size of the volume, in gibibytes (GiB).<br /> If you specify a snapshot ID, the volume size must be at least equal to the snapshot size.<br /> If you specify a snapshot ID but no volume size, the volume is created with a size similar to the snapshot one.`,
-				},
-				resource.Attribute{
-					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
-				},
-				resource.Attribute{
-					Name:        "device_name",
-					Description: `The name of the device.`,
-				},
-				resource.Attribute{
-					Name:        "virtual_device_name",
-					Description: `The name of the virtual device (ephemeralN).`,
-				},
-				resource.Attribute{
-					Name:        "creation_date",
-					Description: `The date and time at which the OMI was created.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `The description of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "file_location",
-					Description: `The location of the bucket where the OMI files are stored.`,
-				},
-				resource.Attribute{
-					Name:        "image_id",
-					Description: `The ID of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "image_name",
-					Description: `The name of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "image_type",
-					Description: `The type of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "permissions_to_launch",
-					Description: `Information about the users who have permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "account_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "global_permission",
-					Description: `If true, the resource is public. If false, the resource is private.`,
-				},
-				resource.Attribute{
-					Name:        "product_codes",
-					Description: `The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
-				},
-				resource.Attribute{
-					Name:        "root_device_name",
-					Description: `The name of the root device.`,
-				},
-				resource.Attribute{
-					Name:        "root_device_type",
-					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "state_comment",
-					Description: `Information about the change of state.`,
-				},
-				resource.Attribute{
-					Name:        "state_code",
-					Description: `The code of the change of state.`,
-				},
-				resource.Attribute{
-					Name:        "state_message",
-					Description: `A message explaining the change of state.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `One or more tags associated with the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import An image can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_image.ImportedImage ami-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "image",
-					Description: `Information about the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "account_alias",
-					Description: `The account alias of the owner of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "account_id",
-					Description: `The account ID of the owner of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "architecture",
-					Description: `The architecture of the OMI (by default, ` + "`" + `i386` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "block_device_mappings",
-					Description: `One or more block device mappings.`,
-				},
-				resource.Attribute{
-					Name:        "bsu",
-					Description: `Information about the BSU volume to create.`,
-				},
-				resource.Attribute{
-					Name:        "delete_on_vm_deletion",
-					Description: `By default or if set to true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
-				},
-				resource.Attribute{
-					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS). This parameter must be specified only if you create an ` + "`" + `io1` + "`" + ` volume. The maximum number of IOPS allowed for ` + "`" + `io1` + "`" + ` volumes is ` + "`" + `13000` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `The ID of the snapshot used to create the volume.`,
-				},
-				resource.Attribute{
-					Name:        "volume_size",
-					Description: `The size of the volume, in gibibytes (GiB).<br /> If you specify a snapshot ID, the volume size must be at least equal to the snapshot size.<br /> If you specify a snapshot ID but no volume size, the volume is created with a size similar to the snapshot one.`,
-				},
-				resource.Attribute{
-					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
-				},
-				resource.Attribute{
-					Name:        "device_name",
-					Description: `The name of the device.`,
-				},
-				resource.Attribute{
-					Name:        "virtual_device_name",
-					Description: `The name of the virtual device (ephemeralN).`,
-				},
-				resource.Attribute{
-					Name:        "creation_date",
-					Description: `The date and time at which the OMI was created.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `The description of the OMI.`,
-				},
-				resource.Attribute{
-					Name:        "file_location",
-					Description: `The location of the bucket where the OMI files are stored.`,
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `The ID of the OMI.`,
+					Description: `The ID of the OMI to be exported.`,
 				},
 				resource.Attribute{
-					Name:        "image_name",
-					Description: `The name of the OMI.`,
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
 				},
 				resource.Attribute{
-					Name:        "image_type",
-					Description: `The type of the OMI.`,
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "permissions_to_launch",
-					Description: `Information about the users who have permissions for the resource.`,
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
 				},
 				resource.Attribute{
-					Name:        "account_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
 				},
 				resource.Attribute{
-					Name:        "global_permission",
-					Description: `If true, the resource is public. If false, the resource is private.`,
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
 				},
 				resource.Attribute{
-					Name:        "product_codes",
-					Description: `The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
-				},
-				resource.Attribute{
-					Name:        "root_device_name",
-					Description: `The name of the root device.`,
-				},
-				resource.Attribute{
-					Name:        "root_device_type",
-					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "state_comment",
-					Description: `Information about the change of state.`,
-				},
-				resource.Attribute{
-					Name:        "state_code",
-					Description: `The code of the change of state.`,
-				},
-				resource.Attribute{
-					Name:        "state_message",
-					Description: `A message explaining the change of state.`,
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the OMI.`,
+					Description: `One or more tags associated with the image export task.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -774,7 +902,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import An image can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_image.ImportedImage ami-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
 				},
 			},
 		},
@@ -796,69 +928,69 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permission_additions",
-					Description: `(Optional) Information about the users you want to give permissions for the resource.`,
+					Description: `(Optional) Information about the users to whom you want to give permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `(Optional) The account ID of one or more users to whom you want to give permissions.`,
 				},
 				resource.Attribute{
 					Name:        "global_permission",
 					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
-				},
-				resource.Attribute{
-					Name:        "account_ids",
-					Description: `(Optional) The account ID of one or more users you want to give permissions to.`,
 				},
 				resource.Attribute{
 					Name:        "permission_removals",
-					Description: `(Optional) Information about the users you want to remove permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "global_permission",
-					Description: `(Optional) If true, the resource is public. If false, the resource is private.`,
+					Description: `(Optional) Information about the users from whom you want to remove permissions for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
-					Description: `(Optional) The account ID of one or more users you want to remove permissions from. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The account ID of one or more users from whom you want to remove permissions.`,
+				},
+				resource.Attribute{
+					Name:        "global_permission",
+					Description: `(Optional) If true, the resource is public. If false, the resource is private. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the OMI.`,
+					Description: `The description of the OMI.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `The ID of the OMI you want to modify.`,
+					Description: `The ID of the OMI.`,
 				},
 				resource.Attribute{
-					Name:        "permission",
-					Description: `Information about the permissions for the resource.`,
+					Name:        "permissions_to_launch",
+					Description: `Information about the users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `The account ID of one or more users who have permissions for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "global_permission",
 					Description: `If true, the resource is public. If false, the resource is private.`,
-				},
-				resource.Attribute{
-					Name:        "accounts_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the OMI.`,
+					Description: `The description of the OMI.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `The ID of the OMI you want to modify.`,
+					Description: `The ID of the OMI.`,
 				},
 				resource.Attribute{
-					Name:        "permission",
-					Description: `Information about the permissions for the resource.`,
+					Name:        "permissions_to_launch",
+					Description: `Information about the users who have permissions for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `The account ID of one or more users who have permissions for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "global_permission",
 					Description: `If true, the resource is public. If false, the resource is private.`,
-				},
-				resource.Attribute{
-					Name:        "accounts_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
 				},
 			},
 		},
@@ -875,19 +1007,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "internet_service",
-					Description: `Information about the Internet service.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "internet_service_id",
@@ -899,7 +1027,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -911,15 +1039,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_internet_service.ImportedInternetService igw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_internet_service.ImportedInternetService igw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "internet_service",
-					Description: `Information about the Internet service.`,
-				},
-				resource.Attribute{
 					Name:        "internet_service_id",
 					Description: `The ID of the Internet service.`,
 				},
@@ -929,7 +1053,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -941,7 +1065,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_internet_service.ImportedInternetService igw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_internet_service.ImportedInternetService igw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -967,29 +1091,45 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_service_id",
-					Description: `The ID of the Internet service you want to attach.`,
+					Description: `The ID of the Internet service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the Internet service. ## Import An internet service link can be imported using the internet service ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_internet_service_link.ImportedInternetServiceLink igw-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `One or more tags associated with the Internet service.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service link can be imported using the internet service ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_internet_service_link.ImportedInternetServiceLink igw-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_service_id",
-					Description: `The ID of the Internet service you want to attach.`,
+					Description: `The ID of the Internet service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the Internet service. ## Import An internet service link can be imported using the internet service ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_internet_service_link.ImportedInternetServiceLink igw-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `One or more tags associated with the Internet service.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters. ## Import An internet service link can be imported using the internet service ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_internet_service_link.ImportedInternetServiceLink igw-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1009,11 +1149,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `(Optional) The public key. It must be base64-encoded. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "keypair",
-					Description: `Information about the created keypair.`,
+					Description: `(Optional) The public key. It must be Base64-encoded. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprint",
@@ -1025,15 +1161,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_key",
-					Description: `The private key. ## Import A keypair can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_keypair.ImportedKeypair Name-of-the-Keypair ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The private key. When saving the private key in a .rsa file, replace the ` + "`" + `\n` + "`" + ` escape sequences with line breaks. ## Import A keypair can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_keypair.ImportedKeypair Name-of-the-Keypair ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "keypair",
-					Description: `Information about the created keypair.`,
-				},
-				resource.Attribute{
 					Name:        "keypair_fingerprint",
 					Description: `The MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
 				},
@@ -1043,7 +1175,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_key",
-					Description: `The private key. ## Import A keypair can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_keypair.ImportedKeypair Name-of-the-Keypair ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The private key. When saving the private key in a .rsa file, replace the ` + "`" + `\n` + "`" + ` escape sequences with line breaks. ## Import A keypair can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_keypair.ImportedKeypair Name-of-the-Keypair ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1080,7 +1212,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `(Optional) The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `(Optional) The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1096,27 +1228,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `(Optional) One or more IDs of Subnets in your Net that you want to attach to the load balancer.`,
+					Description: `(Optional) (Net only) The ID of the Subnet in which you want to create the load balancer. Regardless of this Subnet, the load balancer can distribute traffic to all Subnets. This parameter is required in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `(Optional) One or more names of Subregions (currently, only one Subregion is supported). This parameter is not required if you create a load balancer in a Net. To create an internal load balancer, use the ` + "`" + `load_balancer_type` + "`" + ` parameter.`,
+					Description: `(Optional) (public Cloud only) The Subregion in which you want to create the load balancer. Regardless of this Subregion, the load balancer can distribute traffic to all Subregions. This parameter is required in the public Cloud.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) One or more tags assigned to the load balancer.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Optional) The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_log",
@@ -1216,7 +1344,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1232,7 +1360,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -1256,11 +1384,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1272,15 +1400,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A load balancer can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_load_balancer.ImportedLbu Name-of-the-Lbu ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A load balancer can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_load_balancer.ImportedLbu Name-of-the-Lbu ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
-				},
-				resource.Attribute{
 					Name:        "access_log",
 					Description: `Information about access logs.`,
 				},
@@ -1378,7 +1502,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1394,7 +1518,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -1418,11 +1542,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1434,7 +1558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A load balancer can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_load_balancer.ImportedLbu Name-of-the-Lbu ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A load balancer can be imported using its name. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_load_balancer.ImportedLbu Name-of-the-Lbu ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1516,11 +1640,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `(Optional) The Outscale Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > Outscale Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat). If this parameter is specified, you must also specify the ` + "`" + `load_balancer_port` + "`" + ` parameter. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
+					Description: `(Optional) The Outscale Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > Outscale Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns). If this parameter is specified, you must also specify the ` + "`" + `load_balancer_port` + "`" + ` parameter. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_log",
@@ -1620,7 +1740,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1636,7 +1756,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -1660,11 +1780,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1681,10 +1801,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
-				},
-				resource.Attribute{
 					Name:        "access_log",
 					Description: `Information about access logs.`,
 				},
@@ -1782,7 +1898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -1798,7 +1914,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -1822,11 +1938,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1896,10 +2012,6 @@ var (
 					Description: `(Required) The IDs of the backend VMs. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "listener_rule",
-					Description: `Information about the listener rule.`,
-				},
-				resource.Attribute{
 					Name:        "action",
 					Description: `The type of action for the rule (always ` + "`" + `forward` + "`" + `).`,
 				},
@@ -1933,10 +2045,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "listener_rule",
-					Description: `Information about the listener rule.`,
-				},
 				resource.Attribute{
 					Name:        "action",
 					Description: `The type of action for the rule (always ` + "`" + `forward` + "`" + `).`,
@@ -2000,10 +2108,6 @@ var (
 					Description: `(Required) The type of stickiness policy you want to create: ` + "`" + `app` + "`" + ` or ` + "`" + `load_balancer` + "`" + `. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
-				},
-				resource.Attribute{
 					Name:        "access_log",
 					Description: `Information about access logs.`,
 				},
@@ -2101,7 +2205,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2117,7 +2221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2141,11 +2245,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2162,10 +2266,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "load_balancer",
-					Description: `Information about the load balancer.`,
-				},
-				resource.Attribute{
 					Name:        "access_log",
 					Description: `Information about access logs.`,
 				},
@@ -2263,7 +2363,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2279,7 +2379,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2303,11 +2403,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2359,7 +2459,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `(Required) The allocation ID of the EIP to associate with the NAT service.<br /> If the EIP is already associated with another resource, you must first disassociate it.`,
+					Description: `(Required) The allocation ID of the public IP to associate with the NAT service.<br /> If the public IP is already associated with another resource, you must first disassociate it.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -2367,19 +2467,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "nat_service",
-					Description: `Information about the NAT service.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "nat_service_id",
@@ -2391,15 +2487,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -2419,15 +2515,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A NAT service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nat_service.ImportedNatService nat-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A NAT service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nat_service.ImportedNatService nat-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "nat_service",
-					Description: `Information about the NAT service.`,
-				},
-				resource.Attribute{
 					Name:        "nat_service_id",
 					Description: `The ID of the NAT service.`,
 				},
@@ -2437,15 +2529,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -2465,7 +2557,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A NAT service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nat_service.ImportedNatService nat-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A NAT service can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nat_service.ImportedNatService nat-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2485,25 +2577,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
 					Name:        "tenancy",
 					Description: `(Optional) The tenancy options for the VMs (` + "`" + `default` + "`" + ` if a VM created in a Net can be launched with any tenancy, ` + "`" + `dedicated` + "`" + ` if it can be launched with dedicated tenancy VMs running on single-tenant hardware). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "net",
-					Description: `Information about the Net.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set (or ` + "`" + `default` + "`" + ` if you want to associate the default one).`,
 				},
@@ -2533,15 +2621,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net. ## Import A Net can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net.ImportedNet vpc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net.ImportedNet vpc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "net",
-					Description: `Information about the Net.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set (or ` + "`" + `default` + "`" + ` if you want to associate the default one).`,
 				},
@@ -2571,7 +2655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net. ## Import A Net can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net.ImportedNet vpc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net.ImportedNet vpc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2601,19 +2685,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A tag to add to this resource. You can specify this argument several times.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "net_access_point",
-					Description: `Information about the Net access point.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "net_access_point_id",
@@ -2645,15 +2725,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net access point can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_access_point.ImportedNetAccessPoint vpce-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net access point can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_access_point.ImportedNetAccessPoint vpce-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "net_access_point",
-					Description: `Information about the Net access point.`,
-				},
-				resource.Attribute{
 					Name:        "net_access_point_id",
 					Description: `The ID of the Net access point.`,
 				},
@@ -2683,7 +2759,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net access point can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_access_point.ImportedNetAccessPoint vpce-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net access point can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_access_point.ImportedNetAccessPoint vpce-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2691,7 +2767,7 @@ var (
 			Name:             "",
 			Type:             "net_attributes",
 			Category:         "Resources",
-			ShortDescription: `[Manages a Net attribute.]`,
+			ShortDescription: `[Manages Net attributes.]`,
 			Description:      ``,
 			Keywords: []string{
 				"net",
@@ -2736,7 +2812,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2770,7 +2846,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenancy",
-					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The VM tenancy in a Net. ## Import A Net attribute can be imported using the Net ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_attributes.ImportedNet vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2795,19 +2871,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "net_peering",
-					Description: `Information about the Net peering connection.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "accepter_net",
@@ -2867,15 +2939,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net peering can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_peering.ImportedNetPeering pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net peering can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_peering.ImportedNetPeering pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "net_peering",
-					Description: `Information about the Net peering connection.`,
-				},
-				resource.Attribute{
 					Name:        "accepter_net",
 					Description: `Information about the accepter Net.`,
 				},
@@ -2933,7 +3001,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net peering can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_net_peering.ImportedNetPeering pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A Net peering can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_net_peering.ImportedNetPeering pcx-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2952,10 +3020,6 @@ var (
 				resource.Attribute{
 					Name:        "net_peering_id",
 					Description: `(Required) The ID of the Net peering connection you want to accept. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "net_peering",
-					Description: `Information about the Net peering connection.`,
 				},
 				resource.Attribute{
 					Name:        "accepter_net",
@@ -3019,10 +3083,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "net_peering",
-					Description: `Information about the Net peering connection.`,
-				},
 				resource.Attribute{
 					Name:        "accepter_net",
 					Description: `Information about the accepter Net.`,
@@ -3101,15 +3161,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) The primary private IP address for the NIC.<br /> This IP address must be within the IP address range of the Subnet that you specify with the ` + "`" + `subnet_id` + "`" + ` attribute.<br /> If you do not specify this attribute, a random private IP address is selected within the IP address range of the Subnet.`,
+					Description: `(Optional) The primary private IP for the NIC.<br /> This IP must be within the IP range of the Subnet that you specify with the ` + "`" + `subnet_id` + "`" + ` attribute.<br /> If you do not specify this attribute, a random private IP is selected within the IP range of the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `(Optional) If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `(Optional) If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) The private IP address of the NIC.`,
+					Description: `(Optional) The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -3121,19 +3181,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "nic",
-					Description: `Information about the NIC.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
@@ -3177,11 +3233,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -3189,15 +3245,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -3217,19 +3273,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -3237,15 +3293,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -3253,7 +3309,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -3289,15 +3345,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A NIC can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nic.ImportedNic eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A NIC can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nic.ImportedNic eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "nic",
-					Description: `Information about the NIC.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of the owner of the NIC.`,
 				},
@@ -3339,11 +3391,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -3351,15 +3403,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -3379,19 +3431,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -3399,15 +3451,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -3415,7 +3467,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -3451,7 +3503,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A NIC can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nic.ImportedNic eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A NIC can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nic.ImportedNic eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3480,13 +3532,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_nic_id",
-					Description: `The ID of the NIC attachment. ## Import A NIC link can be imported using the NIC ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nic_link.ImportedNicLink eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the NIC attachment. ## Import A NIC link can be imported using the NIC ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nic_link.ImportedNicLink eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "link_nic_id",
-					Description: `The ID of the NIC attachment. ## Import A NIC link can be imported using the NIC ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_nic_link.ImportedNicLink eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the NIC attachment. ## Import A NIC link can be imported using the NIC ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_nic_link.ImportedNicLink eni-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3494,7 +3546,7 @@ var (
 			Name:             "",
 			Type:             "nic_private_ip",
 			Category:         "Resources",
-			ShortDescription: `[Manages a NIC private IP.]`,
+			ShortDescription: `[Manages a NIC's private IPs.]`,
 			Description:      ``,
 			Keywords: []string{
 				"nic",
@@ -3504,7 +3556,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_relink",
-					Description: `(Optional) If true, allows an IP address that is already assigned to another NIC in the same Subnet to be assigned to the NIC you specified.`,
+					Description: `(Optional) If true, allows an IP that is already assigned to another NIC in the same Subnet to be assigned to the NIC you specified.`,
 				},
 				resource.Attribute{
 					Name:        "nic_id",
@@ -3512,11 +3564,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) The secondary private IP address or addresses you want to assign to the NIC within the IP address range of the Subnet.`,
+					Description: `(Optional) The secondary private IP or IPs you want to assign to the NIC within the IP range of the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_private_ip_count",
-					Description: `(Optional) The number of secondary private IP addresses to assign to the NIC. ## Attribute Reference No attribute is exported.`,
+					Description: `(Optional) The number of secondary private IPs to assign to the NIC. ## Attribute Reference No attribute is exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3534,23 +3586,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Information about the public IP.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -3558,23 +3606,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3586,17 +3634,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any). ## Import A public IP can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_public_ip.ImportedPublicIp eipalloc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VM the public IP is associated with (if any). ## Import A public IP can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_public_ip.ImportedPublicIp eipalloc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "public_ip",
-					Description: `Information about the public IP.`,
-				},
-				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -3604,23 +3648,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3632,7 +3676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any). ## Import A public IP can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_public_ip.ImportedPublicIp eipalloc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VM the public IP is associated with (if any). ## Import A public IP can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_public_ip.ImportedPublicIp eipalloc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3650,7 +3694,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_relink",
-					Description: `(Optional) If true, allows the EIP to be associated with the VM or NIC that you specify even if it is already associated with another VM or NIC.<br /> If false, prevents the EIP from being associated with the VM or NIC that you specify if it is already associated with another VM or NIC.<br /> (By default, true in the public Cloud, false in a Net.)`,
+					Description: `(Optional) If true, allows the public IP to be associated with the VM or NIC that you specify even if it is already associated with another VM or NIC. If false, prevents the EIP from being associated with the VM or NIC that you specify if it is already associated with another VM or NIC. (By default, true in the public Cloud, false in a Net.)`,
 				},
 				resource.Attribute{
 					Name:        "nic_id",
@@ -3658,29 +3702,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) (Net only) The primary or secondary private IP address of the specified NIC. By default, the primary private IP address.`,
+					Description: `(Optional) (Net only) The primary or secondary private IP of the specified NIC. By default, the primary private IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `(Optional) The allocation ID of the EIP. In a Net, this parameter is required.`,
+					Description: `(Optional) The allocation ID of the public IP. This parameter is required unless you use the ` + "`" + `public_ip` + "`" + ` parameter.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `(Optional) The EIP. In the public Cloud, this parameter is required.`,
+					Description: `(Optional) The public IP. This parameter is required unless you use the ` + "`" + `public_ip_id` + "`" + ` parameter.`,
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `(Optional) The ID of the VM.<br /> In the public Cloud, this parameter is required.<br /> In a Net, this parameter is required if the VM has only one NIC. Otherwise, you need to specify the ` + "`" + `nic_id` + "`" + ` parameter instead. You cannot specify both parameters at the same time. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The ID of the VM.<br />- In the public Cloud, this parameter is required.<br />- In a Net, this parameter is required if the VM has only one NIC. Otherwise, you need to specify the ` + "`" + `nic_id` + "`" + ` parameter instead. You cannot specify both parameters at the same time. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Net only) The ID representing the association of the EIP with the VM or the NIC. ## Import A public IP link can be imported using the public IP or the public IP link ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_public_ip_link.ImportedPublicIpLink eipassoc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Net only) The ID representing the association of the public IP with the VM or the NIC. ## Import A public IP link can be imported using the public IP or the public IP link ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_public_ip_link.ImportedPublicIpLink eipassoc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Net only) The ID representing the association of the EIP with the VM or the NIC. ## Import A public IP link can be imported using the public IP or the public IP link ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_public_ip_link.ImportedPublicIpLink eipassoc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Net only) The ID representing the association of the public IP with the VM or the NIC. ## Import A public IP link can be imported using the public IP or the public IP link ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_public_ip_link.ImportedPublicIpLink eipassoc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3694,6 +3738,10 @@ var (
 				"route",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "await_active_state",
+					Description: `(Optional) By default or if set to true, waits for the route to be in the ` + "`" + `active` + "`" + ` state to declare its successful creation.<br />If false, the created route is in the ` + "`" + `active` + "`" + ` state if available, or the ` + "`" + `blackhole` + "`" + ` state if not available.`,
+				},
 				resource.Attribute{
 					Name:        "destination_ip_range",
 					Description: `(Required) The IP range used for the destination match, in CIDR notation (for example, 10.0.0.0/24).`,
@@ -3723,8 +3771,8 @@ var (
 					Description: `(Optional) The ID of a NAT VM in your Net (attached to exactly one NIC). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
+					Name:        "await_active_state",
+					Description: `If true, the route is declared created when in the ` + "`" + `active` + "`" + ` state. If false, the route is created in the ` + "`" + `active` + "`" + ` state if available, or in the ` + "`" + `blackhole` + "`" + ` state if not available.`,
 				},
 				resource.Attribute{
 					Name:        "link_route_tables",
@@ -3820,13 +3868,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A route can be imported using the route table ID and the destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_routeImportedRoute rtb-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A route can be imported using the route table ID and the destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_routeImportedRoute rtb-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
+					Name:        "await_active_state",
+					Description: `If true, the route is declared created when in the ` + "`" + `active` + "`" + ` state. If false, the route is created in the ` + "`" + `active` + "`" + ` state if available, or in the ` + "`" + `blackhole` + "`" + ` state if not available.`,
 				},
 				resource.Attribute{
 					Name:        "link_route_tables",
@@ -3922,7 +3970,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A route can be imported using the route table ID and the destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_routeImportedRoute rtb-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A route can be imported using the route table ID and the destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_routeImportedRoute rtb-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3943,19 +3991,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "link_route_tables",
@@ -4051,15 +4095,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A route table can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_route_table.ImportedRouteTable rtb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A route table can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_route_table.ImportedRouteTable rtb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
-				},
-				resource.Attribute{
 					Name:        "link_route_tables",
 					Description: `One or more associations between the route table and Subnets.`,
 				},
@@ -4153,7 +4193,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A route table can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_route_table.ImportedRouteTable rtb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A route table can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_route_table.ImportedRouteTable rtb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4191,7 +4231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The ID of the subnet. ## Import A route table link can be imported using the route table ID and the route table link ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_route_table_link.ImportedRouteTableLink rtb-12345678_rtbassoc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Subnet. ## Import A route table link can be imported using the route table ID and the route table link ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_route_table_link.ImportedRouteTableLink rtb-12345678_rtbassoc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4209,7 +4249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The ID of the subnet. ## Import A route table link can be imported using the route table ID and the route table link ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_route_table_link.ImportedRouteTableLink rtb-12345678_rtbassoc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Subnet. ## Import A route table link can be imported using the route table ID and the route table link ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_route_table_link.ImportedRouteTableLink rtb-12345678_rtbassoc-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4238,19 +4278,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "security_group",
-					Description: `Information about the security group.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
@@ -4270,7 +4306,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4314,7 +4350,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4362,15 +4398,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_security_group.ImportedSecurityGroup sg-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_security_group.ImportedSecurityGroup sg-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "security_group",
-					Description: `Information about the security group.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of a user that has been granted permission.`,
 				},
@@ -4388,7 +4420,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4432,7 +4464,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4480,7 +4512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_security_group.ImportedSecurityGroup sg-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_security_group.ImportedSecurityGroup sg-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4506,7 +4538,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `(Optional) The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `(Optional) The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -4522,7 +4554,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `(Optional) The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `(Optional) The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4569,10 +4601,6 @@ var (
 					Description: `(Optional) The end of the port range for the TCP and UDP protocols, or an ICMP type number. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "security_group",
-					Description: `Information about the security group.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of a user that has been granted permission.`,
 				},
@@ -4590,7 +4618,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4634,7 +4662,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4682,15 +4710,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group rule can be imported using the following format: ` + "`" + `SecurityGroupId_Flow_IpProtocol_FromPortRange_ToPortRange_IpRange` + "`" + `. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_security_group_rule.ImportedRule sg-87654321_outbound_-1_-1_-1_10.0.0.0/16 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "security_group",
-					Description: `Information about the security group.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of a user that has been granted permission.`,
 				},
@@ -4708,7 +4732,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4752,7 +4776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -4800,7 +4824,82 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A security group rule can be imported using the following format: ` + "`" + `SecurityGroupId_Flow_IpProtocol_FromPortRange_ToPortRange_IpRange` + "`" + `. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_security_group_rule.ImportedRule sg-87654321_outbound_-1_-1_-1_10.0.0.0/16 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "server_certificate",
+			Category:         "Resources",
+			ShortDescription: `[Manages a server certificate.]`,
+			Description:      ``,
+			Keywords: []string{
+				"server",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "body",
+					Description: `(Required) The PEM-encoded X509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "chain",
+					Description: `(Optional) The PEM-encoded intermediate certification authorities.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the certificate. Constraints: 1-128 alphanumeric characters, pluses (+), equals (=), commas (,), periods (.), at signs (@), minuses (-), or underscores (_).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The path to the server certificate, set to a slash (/) if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The PEM-encoded private key matching the certificate. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded. ## Import A server certificate can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_server_certificate.ImportedServerCertificate 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded. ## Import A server certificate can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_server_certificate.ImportedServerCertificate 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4836,25 +4935,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
 					Name:        "volume_id",
 					Description: `(Optional) The ID of the volume you want to create a snapshot of. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "snapshot",
-					Description: `Information about the snapshot.`,
-				},
-				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the snapshot.`,
 				},
@@ -4908,15 +5003,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_size",
-					Description: `The size of the volume used to create the snapshot, in gibibytes (GiB).`,
+					Description: `The size of the volume used to create the snapshot, in gibibytes (GiB). ## Import A snapshot can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import terraform import outscale_snapshot.ImportedSnapshot snap-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "snapshot",
-					Description: `Information about the snapshot.`,
-				},
-				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the snapshot.`,
 				},
@@ -4970,7 +5061,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_size",
-					Description: `The size of the volume used to create the snapshot, in gibibytes (GiB).`,
+					Description: `The size of the volume used to create the snapshot, in gibibytes (GiB). ## Import A snapshot can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import terraform import outscale_snapshot.ImportedSnapshot snap-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4987,11 +5078,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "permissions_to_create_volume_additions",
-					Description: `(Optional) Information about the users you want to give permissions for the resource.`,
+					Description: `(Optional) Information about the users to whom you want to give permissions for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
-					Description: `(Optional) The account ID of one or more users you want to give permissions to.`,
+					Description: `(Optional) The account ID of one or more users to whom you want to give permissions.`,
 				},
 				resource.Attribute{
 					Name:        "global_permission",
@@ -4999,11 +5090,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions_to_create_volume_removals",
-					Description: `(Optional) Information about the users you want to remove permissions for the resource.`,
+					Description: `(Optional) Information about the users from whom you want to remove permissions for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
-					Description: `(Optional) The account ID of one or more users you want to remove permissions from.`,
+					Description: `(Optional) The account ID of one or more users from whom you want to remove permissions.`,
 				},
 				resource.Attribute{
 					Name:        "global_permission",
@@ -5014,16 +5105,8 @@ var (
 					Description: `(Required) The ID of the snapshot. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "permissions_to_create_volume_additions",
-					Description: `Information about the permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "account_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "global_permission",
-					Description: `If true, the resource is public. If false, the resource is private.`,
+					Name:        "account_id",
+					Description: `The account ID of the owner of the snapshot.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -5032,20 +5115,172 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "permissions_to_create_volume_additions",
-					Description: `Information about the permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "account_ids",
-					Description: `The account ID of one or more users who have permissions for the resource.`,
-				},
-				resource.Attribute{
-					Name:        "global_permission",
-					Description: `If true, the resource is public. If false, the resource is private.`,
+					Name:        "account_id",
+					Description: `The account ID of the owner of the snapshot.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `The ID of the snapshot.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "snapshot_export_task",
+			Category:         "Resources",
+			ShortDescription: `[Manages a snapshot export task.]`,
+			Description:      ``,
+			Keywords: []string{
+				"snapshot",
+				"export",
+				"task",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OOS export task to create.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `(Optional) The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_api_key",
+					Description: `Information about the OOS API key.`,
+				},
+				resource.Attribute{
+					Name:        "api_key_id",
+					Description: `(Optional) The API key of the OOS account that enables you to access the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Optional) The secret key of the OOS account that enables you to access the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `(Optional) The name of the OOS bucket where you want to export the object.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `(Optional) The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `(Optional) The prefix for the key of the OOS object.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Required) The ID of the snapshot to export.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
 				},
 			},
 		},
@@ -5073,23 +5308,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "subnet",
-					Description: `Information about the Subnet.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -5097,7 +5328,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -5125,17 +5356,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A subnet can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_subnet.ImportedSubnet subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A subnet can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_subnet.ImportedSubnet subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "subnet",
-					Description: `Information about the Subnet.`,
-				},
-				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -5143,7 +5370,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -5171,7 +5398,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Import A subnet can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_subnet.ImportedSubnet subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The value of the tag, between 0 and 255 characters. ## Import A subnet can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_subnet.ImportedSubnet subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5192,19 +5419,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "virtual_gateway",
-					Description: `Information about the virtual gateway.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "connection_type",
@@ -5240,15 +5463,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
-					Description: `The ID of the virtual gateway. ## Import A virtual gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_virtual_gateway.ImportedVirtualGateway vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the virtual gateway. ## Import A virtual gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_virtual_gateway.ImportedVirtualGateway vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "virtual_gateway",
-					Description: `Information about the virtual gateway.`,
-				},
-				resource.Attribute{
 					Name:        "connection_type",
 					Description: `The type of VPN connection supported by the virtual gateway (only ` + "`" + `ipsec.1` + "`" + ` is supported).`,
 				},
@@ -5282,7 +5501,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
-					Description: `The ID of the virtual gateway. ## Import A virtual gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_virtual_gateway.ImportedVirtualGateway vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the virtual gateway. ## Import A virtual gateway can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_virtual_gateway.ImportedVirtualGateway vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5307,30 +5526,22 @@ var (
 					Description: `(Required) The ID of the virtual gateway. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "net_to_virtual_gateway_link",
-					Description: `Information about the attachment.`,
-				},
-				resource.Attribute{
 					Name:        "net_id",
 					Description: `The ID of the Net to which the virtual gateway is attached.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment (` + "`" + `attaching` + "`" + ` \| ` + "`" + `attached` + "`" + ` \| ` + "`" + `detaching` + "`" + ` \| ` + "`" + `detached` + "`" + `). ## Import A virtual gateway link can be imported using its virtual gateway ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_virtual_gateway_link.ImportedVirtualGatewayLink vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The state of the attachment (` + "`" + `attaching` + "`" + ` \| ` + "`" + `attached` + "`" + ` \| ` + "`" + `detaching` + "`" + ` \| ` + "`" + `detached` + "`" + `). ## Import A virtual gateway link can be imported using its virtual gateway ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_virtual_gateway_link.ImportedVirtualGatewayLink vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "net_to_virtual_gateway_link",
-					Description: `Information about the attachment.`,
-				},
-				resource.Attribute{
 					Name:        "net_id",
 					Description: `The ID of the Net to which the virtual gateway is attached.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment (` + "`" + `attaching` + "`" + ` \| ` + "`" + `attached` + "`" + ` \| ` + "`" + `detaching` + "`" + ` \| ` + "`" + `detached` + "`" + `). ## Import A virtual gateway link can be imported using its virtual gateway ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_virtual_gateway_link.ImportedVirtualGatewayLink vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The state of the attachment (` + "`" + `attaching` + "`" + ` \| ` + "`" + `attached` + "`" + ` \| ` + "`" + `detaching` + "`" + ` \| ` + "`" + `detached` + "`" + `). ## Import A virtual gateway link can be imported using its virtual gateway ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_virtual_gateway_link.ImportedVirtualGatewayLink vgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5358,10 +5569,6 @@ var (
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
 					Description: `(Required) The ID of the virtual gateway. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
 				},
 				resource.Attribute{
 					Name:        "link_route_tables",
@@ -5461,10 +5668,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "route_table",
-					Description: `Information about the route table.`,
-				},
 				resource.Attribute{
 					Name:        "link_route_tables",
 					Description: `One or more associations between the route table and Subnets.`,
@@ -5599,7 +5802,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional) The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `(Optional) The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -5624,6 +5827,10 @@ var (
 				resource.Attribute{
 					Name:        "deletion_protection",
 					Description: `(Optional) If true, you cannot terminate the VM using Cockpit, the CLI or the API. If false, you can.`,
+				},
+				resource.Attribute{
+					Name:        "get_admin_password",
+					Description: `(Optional) (Windows VM only) If true, waits for the administrator password of the VM to become available in order to retrieve the VM. The password is exported to the ` + "`" + `admin_password` + "`" + ` attribute.`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -5655,19 +5862,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) One or more private IP addresses to assign to the NIC, if you create a NIC when creating a VM. Only one private IP address can be the primary private IP address.`,
+					Description: `(Optional) One or more private IPs to assign to the NIC, if you create a NIC when creating a VM. Only one private IP can be the primary private IP.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `(Optional) If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `(Optional) If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) The private IP address of the NIC.`,
+					Description: `(Optional) The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_private_ip_count",
-					Description: `(Optional) The number of secondary private IP addresses, if you create a NIC when creating a VM. This parameter cannot be specified if you specified more than one private IP address in the ` + "`" + `private_ips` + "`" + ` parameter.`,
+					Description: `(Optional) The number of secondary private IPs, if you create a NIC when creating a VM. This parameter cannot be specified if you specified more than one private IP in the ` + "`" + `private_ips` + "`" + ` parameter.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -5679,7 +5886,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "performance",
-					Description: `(Optional) The performance of the VM (` + "`" + `medium` + "`" + ` \| ` + "`" + `high` + "`" + ` \| ` + "`" + `highest` + "`" + `). Updating this parameter will trigger a stop/start of the VM.`,
+					Description: `(Optional) The performance of the VM (` + "`" + `medium` + "`" + ` | ` + "`" + `high` + "`" + ` | ` + "`" + `highest` + "`" + `). Updating this parameter will trigger a stop/start of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "placement_subregion_name",
@@ -5691,7 +5898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) One or more private IP addresses of the VM.`,
+					Description: `(Optional) One or more private IPs of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -5702,24 +5909,28 @@ var (
 					Description: `(Optional) One or more names of security groups for the VMs.`,
 				},
 				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VM (` + "`" + `running` + "`" + ` | ` + "`" + `stopped` + "`" + `). If set to ` + "`" + `stopped` + "`" + `, the VM is stopped regardless of the value of the ` + "`" + `vm_initiated_shutdown_behavior` + "`" + ` argument.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Optional) The ID of the Subnet in which you want to create the VM.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A tag to add to this resource. You can specify this argument several times.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional) Data or script used to add a specific configuration to the VM. It must be base64-encoded, either directly or using the [base64encode](https://www.terraform.io/docs/configuration/functions/base64encode.html) Terraform function. For multiline strings, use a [heredoc syntax](https://www.terraform.io/docs/configuration/expressions.html#string-literals). Updating this parameter will trigger a stop/start of the VM.`,
+					Description: `(Optional) Data or script used to add a specific configuration to the VM. It must be Base64-encoded, either directly or using the [base64encode](https://www.terraform.io/docs/configuration/functions/base64encode.html) Terraform function. For multiline strings, use a [heredoc syntax](https://www.terraform.io/docs/configuration/expressions.html#string-literals). Updating this parameter will trigger a stop/start of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "vm_initiated_shutdown_behavior",
@@ -5730,12 +5941,8 @@ var (
 					Description: `(Optional) The type of VM (` + "`" + `t2.small` + "`" + ` by default). Updating this parameter will trigger a stop/start of the VM.<br /> For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "vms",
-					Description: `Information about one or more created VMs.`,
-				},
-				resource.Attribute{
 					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br /> If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
+					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br />If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
 				},
 				resource.Attribute{
 					Name:        "architecture",
@@ -5843,7 +6050,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -5851,11 +6058,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -5875,15 +6082,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -5891,11 +6098,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -5903,7 +6110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -5934,16 +6141,12 @@ var (
 					Description: `The performance of the VM (` + "`" + `medium` + "`" + ` \| ` + "`" + `high` + "`" + ` \| ` + "`" + `highest` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "placement",
-					Description: `Information about the placement of the VM.`,
+					Name:        "placement_subregion_name",
+					Description: `The name of the Subregion where the VM is placed.`,
 				},
 				resource.Attribute{
-					Name:        "subregion_name",
-					Description: `The name of the Subregion.`,
-				},
-				resource.Attribute{
-					Name:        "tenancy",
-					Description: `The tenancy of the VM (` + "`" + `default` + "`" + ` \| ` + "`" + `dedicated` + "`" + `).`,
+					Name:        "placement_tenancy",
+					Description: `The tenancy of the VM (` + "`" + `default` + "`" + ` | ` + "`" + `dedicated` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -5951,7 +6154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -5963,7 +6166,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -5990,12 +6193,12 @@ var (
 					Description: `The name of the security group.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_reason",
 					Description: `The reason explaining the current state of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -6027,17 +6230,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types). ## Import A VM can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_vm.ImportedVm i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html). ## Import A VM can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_vm.ImportedVm i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vms",
-					Description: `Information about one or more created VMs.`,
-				},
-				resource.Attribute{
 					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br /> If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
+					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair you specified when launching the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this password.<br />If ` + "`" + `get_admin_password` + "`" + ` is false or not specified, the VM resource is created without the ` + "`" + `admin_password` + "`" + ` attribute. Once ` + "`" + `admin_password` + "`" + ` is available, it will appear in the Terraform state after the next`,
 				},
 				resource.Attribute{
 					Name:        "architecture",
@@ -6145,7 +6344,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -6153,11 +6352,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -6177,15 +6376,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -6193,11 +6392,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -6205,7 +6404,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -6236,16 +6435,12 @@ var (
 					Description: `The performance of the VM (` + "`" + `medium` + "`" + ` \| ` + "`" + `high` + "`" + ` \| ` + "`" + `highest` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "placement",
-					Description: `Information about the placement of the VM.`,
+					Name:        "placement_subregion_name",
+					Description: `The name of the Subregion where the VM is placed.`,
 				},
 				resource.Attribute{
-					Name:        "subregion_name",
-					Description: `The name of the Subregion.`,
-				},
-				resource.Attribute{
-					Name:        "tenancy",
-					Description: `The tenancy of the VM (` + "`" + `default` + "`" + ` \| ` + "`" + `dedicated` + "`" + `).`,
+					Name:        "placement_tenancy",
+					Description: `The tenancy of the VM (` + "`" + `default` + "`" + ` | ` + "`" + `dedicated` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -6253,7 +6448,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -6265,7 +6460,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -6292,12 +6487,12 @@ var (
 					Description: `The name of the security group.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_reason",
 					Description: `The reason explaining the current state of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -6329,7 +6524,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types). ## Import A VM can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_vm.ImportedVm i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html). ## Import A VM can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_vm.ImportedVm i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6361,27 +6556,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional) The type of volume you want to create (` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `standard` + "`" + `). If not specified, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS). ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "volume",
-					Description: `Information about the volume.`,
+					Description: `(Optional) The type of volume you want to create (` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `standard` + "`" + `). If not specified, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -6441,17 +6632,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `io1` + "`" + `). ## Import A volume can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_volume.ImportedVolume vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `io1` + "`" + `). ## Import A volume can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_volume.ImportedVolume vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "volume",
-					Description: `Information about the volume.`,
-				},
-				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -6511,7 +6698,74 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `io1` + "`" + `). ## Import A volume can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_volume.ImportedVolume vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `io1` + "`" + `). ## Import A volume can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_volume.ImportedVolume vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "volumes_link",
+			Category:         "Resources",
+			ShortDescription: `[Manages a volume link.]`,
+			Description:      ``,
+			Keywords: []string{
+				"volumes",
+				"link",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `(Required) The name of the device.`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `(Required) The ID of the VM you want to attach the volume to.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `(Required) The ID of the volume you want to attach. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_vm_deletion",
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `The name of the device.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the attachment of the volume (` + "`" + `attaching` + "`" + ` | ` + "`" + `detaching` + "`" + ` | ` + "`" + `attached` + "`" + ` | ` + "`" + `detached` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `The ID of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `The ID of the volume. ## Import A volume link can be imported using a volume ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_volumes_link.ImportedVolumeLink vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "delete_on_vm_deletion",
+					Description: `If true, the volume is deleted when terminating the VM. If false, the volume is not deleted when terminating the VM.`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `The name of the device.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the attachment of the volume (` + "`" + `attaching` + "`" + ` | ` + "`" + `detaching` + "`" + ` | ` + "`" + `attached` + "`" + ` | ` + "`" + `detached` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "vm_id",
+					Description: `The ID of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `The ID of the volume. ## Import A volume link can be imported using a volume ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_volumes_link.ImportedVolumeLink vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6540,25 +6794,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags to add to this resource.`,
+					Description: `(Optional) A tag to add to this resource. You can specify this argument several times.`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `The key of the tag, with a minimum of 1 character.`,
+					Description: `(Required) The key of the tag, with a minimum of 1 character.`,
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the tag, between 0 and 255 characters.`,
+					Description: `(Required) The value of the tag, between 0 and 255 characters.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_id",
 					Description: `(Required) The ID of the virtual gateway. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "vpn_connection",
-					Description: `Information about a VPN connection.`,
-				},
-				resource.Attribute{
 					Name:        "client_gateway_configuration",
 					Description: `Example configuration for the client gateway.`,
 				},
@@ -6612,15 +6862,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_connection_id",
-					Description: `The ID of the VPN connection. ## Import A VPN connection can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_vpn_connection.ImportedVPN vpn-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VPN connection. ## Import A VPN connection can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_vpn_connection.ImportedVPN vpn-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vpn_connection",
-					Description: `Information about a VPN connection.`,
-				},
-				resource.Attribute{
 					Name:        "client_gateway_configuration",
 					Description: `Example configuration for the client gateway.`,
 				},
@@ -6674,7 +6920,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_connection_id",
-					Description: `The ID of the VPN connection. ## Import A VPN connection can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_vpn_connection.ImportedVPN vpn-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the VPN connection. ## Import A VPN connection can be imported using its ID. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_vpn_connection.ImportedVPN vpn-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6696,7 +6942,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_connection_id",
-					Description: `(Required) The ID of the target VPN connection of the static route. ## Attribute Reference No attribute is exported. ## Import A VPN connection route can be imported using the VPN connection ID and the route destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import outscale_vpn_connection_route.ImportedRoute vpn-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID of the target VPN connection of the static route. ## Attribute Reference No attribute is exported. ## Import A VPN connection route can be imported using the VPN connection ID and the route destination IP range. For example: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import outscale_vpn_connection_route.ImportedRoute vpn-12345678_10.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6711,41 +6957,45 @@ var (
 		"flexible_gpu":                      3,
 		"flexible_gpu_link":                 4,
 		"image":                             5,
-		"image_launch_permission":           6,
-		"internet_service":                  7,
-		"internet_service_link":             8,
-		"keypair":                           9,
-		"load_balancer":                     10,
-		"load_balancer_attributes":          11,
-		"load_balancer_listener_rule":       12,
-		"load_balancer_policy":              13,
-		"load_balancer_vms":                 14,
-		"nat_service":                       15,
-		"net":                               16,
-		"net_access_point":                  17,
-		"net_attributes":                    18,
-		"net_peering":                       19,
-		"net_peering_acceptation":           20,
-		"nic":                               21,
-		"nic_link":                          22,
-		"nic_private_ip":                    23,
-		"public_ip":                         24,
-		"public_ip_link":                    25,
-		"route":                             26,
-		"route_table":                       27,
-		"route_table_link":                  28,
-		"security_group":                    29,
-		"security_group_rule":               30,
-		"snapshot":                          31,
-		"snapshot_attributes":               32,
-		"subnet":                            33,
-		"virtual_gateway":                   34,
-		"virtual_gateway_link":              35,
-		"virtual_gateway_route_propagation": 36,
-		"vm":                                37,
-		"volume":                            38,
-		"vpn_connection":                    39,
-		"vpn_connection_route":              40,
+		"image_export_task":                 6,
+		"image_launch_permission":           7,
+		"internet_service":                  8,
+		"internet_service_link":             9,
+		"keypair":                           10,
+		"load_balancer":                     11,
+		"load_balancer_attributes":          12,
+		"load_balancer_listener_rule":       13,
+		"load_balancer_policy":              14,
+		"load_balancer_vms":                 15,
+		"nat_service":                       16,
+		"net":                               17,
+		"net_access_point":                  18,
+		"net_attributes":                    19,
+		"net_peering":                       20,
+		"net_peering_acceptation":           21,
+		"nic":                               22,
+		"nic_link":                          23,
+		"nic_private_ip":                    24,
+		"public_ip":                         25,
+		"public_ip_link":                    26,
+		"route":                             27,
+		"route_table":                       28,
+		"route_table_link":                  29,
+		"security_group":                    30,
+		"security_group_rule":               31,
+		"server_certificate":                32,
+		"snapshot":                          33,
+		"snapshot_attributes":               34,
+		"snapshot_export_task":              35,
+		"subnet":                            36,
+		"virtual_gateway":                   37,
+		"virtual_gateway_link":              38,
+		"virtual_gateway_route_propagation": 39,
+		"vm":                                40,
+		"volume":                            41,
+		"volumes_link":                      42,
+		"vpn_connection":                    43,
+		"vpn_connection_route":              44,
 	}
 )
 

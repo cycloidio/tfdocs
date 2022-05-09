@@ -13,12 +13,14 @@ var (
 			Name:             "",
 			Type:             "signalfx_alert_muting_rule",
 			Category:         "Resources",
-			ShortDescription: `Allows Terraform to create and manage SignalFx Alert Muting Rules`,
+			ShortDescription: `Allows Terraform to create and manage Observability Cloud Alert Muting Rules`,
 			Description: `
 
-Provides a SignalFx resource for managing alert muting rules. See [Mute Notifications](https://docs.signalfx.com/en/latest/detect-alert/mute-notifications.html) for more information.
+Provides an Observability Cloud resource for managing alert muting rules. See [Mute Notifications](https://docs.splunk.com/Observability/alerts-detectors-notifications/mute-notifications.html) for more information.
 
-~> **WARNING** SignalFx does not allow the start time of a **currently active** muting rule to be modified. As such, attempting to modify a currently active rule will destroy the existing rule and create a new rule. This may result in the emission of notifications.
+~> **WARNING** Observability Cloud does not allow the start time of a **currently active** muting rule to be modified. As such, attempting to modify a currently active rule will destroy the existing rule and create a new rule. This may result in the emission of notifications.
+
+~> **WARNING** Observability Cloud currently allows linking alert muting rule with only one detector ID. Specifying multiple detector IDs will make the muting rule obsolete.
 
 `,
 			Keywords: []string{
@@ -37,15 +39,15 @@ Provides a SignalFx resource for managing alert muting rules. See [Mute Notifica
 				},
 				resource.Attribute{
 					Name:        "stop_time",
-					Description: `(Optional) Starting time of an alert muting rule as a Unix time stamp in seconds.`,
+					Description: `(Optional) Stop time of an alert muting rule as a Unix time stamp in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "detectors",
-					Description: `(Optional) A convenience attribute that associated this muting rule with specific detector ids.`,
+					Description: `(Optional) A convenience attribute that associated this muting rule with specific detector IDs. Currently, only one ID is supported.`,
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filters for this rule. See [Creating muting rules from scratch](https://docs.signalfx.com/en/latest/detect-alert/mute-notifications.html#rule-from-scratch) for more information.`,
+					Description: `(Optional) Filters for this rule. See [Creating muting rules from scratch](https://docs.splunk.com/Observability/alerts-detectors-notifications/mute-notifications.html#rule-from-scratch) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "property",
@@ -80,7 +82,7 @@ Provides a SignalFx resource for managing alert muting rules. See [Mute Notifica
 
 SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator).
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `. Check with SignalFx support for your realm's AWS account id.
 
@@ -132,7 +134,7 @@ SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integra
 
 SignalFx AWS CloudWatch integrations. For help with this integration see [Monitoring Amazon Web Services](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#monitor-amazon-web-services).
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator).
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.
 
@@ -143,12 +145,20 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Whether the integration is enabled.`,
+					Name:        "enable_aws_usage",
+					Description: `(Optional) Flag that controls how SignalFx imports usage metrics from AWS to use with AWS Cost Optimizer. If ` + "`" + `true` + "`" + `, SignalFx imports the metrics.`,
 				},
 				resource.Attribute{
-					Name:        "integration_id",
-					Description: `(Required) The id of one of a ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.`,
+					Name:        "enable_check_large_volume",
+					Description: `(Optional) Controls how SignalFx checks for large amounts of data for this AWS integration. If ` + "`" + `true` + "`" + `, SignalFx monitors the amount of data coming in from the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enable_logs_sync",
+					Description: `(Optional) Enable the AWS logs synchronization. Note that this requires the inclusion of ` + "`" + `"logs:DescribeLogGroups"` + "`" + `, ` + "`" + `"logs:DeleteSubscriptionFilter"` + "`" + `, ` + "`" + `"logs:DescribeSubscriptionFilters"` + "`" + `, ` + "`" + `"logs:PutSubscriptionFilter"` + "`" + `, and ` + "`" + `"s3:GetBucketLogging"` + "`" + `, ` + "`" + `"s3:GetBucketNotification"` + "`" + `, ` + "`" + `"s3:PutBucketNotification"` + "`" + ` permissions. Additional permissions may be required to capture logs from specific AWS services.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
@@ -179,6 +189,42 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 					Description: `(Required) An AWS custom namespace having custom AWS metrics that you want to sync with SignalFx. See the AWS documentation on publishing metrics for more information.`,
 				},
 				resource.Attribute{
+					Name:        "import_cloud_watch",
+					Description: `(Optional) Flag that controls how SignalFx imports Cloud Watch metrics. If true, SignalFx imports Cloud Watch metrics from AWS.`,
+				},
+				resource.Attribute{
+					Name:        "integration_id",
+					Description: `(Required) The id of one of a ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) If you specify ` + "`" + `auth_method = \"SecurityToken\"` + "`" + ` in your request to create an AWS integration object, use this property to specify the key (this is typically equivalent to the ` + "`" + `AWS_SECRET_ACCESS_KEY` + "`" + ` environment variable).`,
+				},
+				resource.Attribute{
+					Name:        "metric_stats_to_sync",
+					Description: `(Optional) Each element in the array is an object that contains an AWS namespace name, AWS metric name and a list of statistics that SignalFx collects for this metric. If you specify this property, SignalFx retrieves only specified AWS statistics when AWS metric streams are not used. When AWS metric streams are used this property specifies additional extended statistics to collect (please note that AWS metric streams API supports percentile stats only; other stats are ignored). If you don't specify this property, SignalFx retrieves the AWS standard set of statistics.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) AWS metric that you want to pick statistics for`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) An AWS namespace having AWS metric that you want to pick statistics for`,
+				},
+				resource.Attribute{
+					Name:        "stats",
+					Description: `(Required) AWS statistics you want to collect`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "named_token",
+					Description: `(Optional) Name of the org token to be used for data ingestion. If not specified then default access token is used.`,
+				},
+				resource.Attribute{
 					Name:        "namespace_sync_rule",
 					Description: `(Optional) Each element in the array is an object that contains an AWS namespace name and a filter that controls the data that SignalFx collects for the namespace. Conflicts with the ` + "`" + `services` + "`" + ` property. If you don't specify either property, SignalFx syncs all data in all AWS namespaces.`,
 				},
@@ -199,16 +245,8 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 					Description: `(Required) An AWS custom namespace having custom AWS metrics that you want to sync with SignalFx. See the AWS documentation on publishing metrics for more information.`,
 				},
 				resource.Attribute{
-					Name:        "enable_aws_usage",
-					Description: `(Optional) Flag that controls how SignalFx imports usage metrics from AWS to use with AWS Cost Optimizer. If ` + "`" + `true` + "`" + `, SignalFx imports the metrics.`,
-				},
-				resource.Attribute{
-					Name:        "import_cloud_watch",
-					Description: `(Optional) Flag that controls how SignalFx imports Cloud Watch metrics. If true, SignalFx imports Cloud Watch metrics from AWS.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Optional) If you specify ` + "`" + `auth_method = \"SecurityToken\"` + "`" + ` in your request to create an AWS integration object, use this property to specify the key.`,
+					Name:        "poll_rate",
+					Description: `(Optional) AWS poll rate (in seconds). Value between ` + "`" + `60` + "`" + ` and ` + "`" + `600` + "`" + `. Default: ` + "`" + `300` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "regions",
@@ -223,16 +261,20 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 					Description: `(Optional) List of AWS services that you want SignalFx to monitor. Each element is a string designating an AWS service. Conflicts with ` + "`" + `namespace_sync_rule` + "`" + `. See the documentation for [Creating Integrations](https://developers.signalfx.com/integrations_reference.html#operation/Create%20Integration) for valida values.`,
 				},
 				resource.Attribute{
-					Name:        "poll_rate",
-					Description: `(Optional) AWS poll rate (in seconds). Value between ` + "`" + `60` + "`" + ` and ` + "`" + `300` + "`" + `.`,
+					Name:        "sync_custom_namespaces_only",
+					Description: `(Optional) Indicates that SignalFx should sync metrics and metadata from custom AWS namespaces only (see the ` + "`" + `custom_namespace_sync_rule` + "`" + ` above). Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional) If you specify ` + "`" + `auth_method = \"SecurityToken\"` + "`" + ` in your request to create an AWS integration object, use this property to specify the token (this is typically equivalent to the ` + "`" + `AWS_ACCESS_KEY_ID` + "`" + ` environment variable).`,
 				},
 				resource.Attribute{
 					Name:        "use_get_metric_data_method",
 					Description: `(Optional) Enable the use of Amazon's ` + "`" + `GetMetricData` + "`" + ` for collecting metrics. Note that this requires the inclusion of the ` + "`" + `"cloudwatch:GetMetricData"` + "`" + ` permission.`,
 				},
 				resource.Attribute{
-					Name:        "enable_check_large_volume",
-					Description: `(Optional) Controls how SignalFx checks for large amounts of data for this AWS integration. If ` + "`" + `true` + "`" + `, SignalFx monitors the amount of data coming in from the integration.`,
+					Name:        "use_metric_streams_sync",
+					Description: `(Optional) Enable the use of Amazon Cloudwatch Metric Streams for ingesting metrics. Note that this requires the inclusion of ` + "`" + `"cloudwatch:ListMetricStreams"` + "`" + `,` + "`" + `"cloudwatch:GetMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:PutMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:DeleteMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:StartMetricStreams"` + "`" + `, ` + "`" + `"cloudwatch:StopMetricStreams"` + "`" + ` and ` + "`" + `"iam:PassRole"` + "`" + ` permissions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -246,7 +288,7 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 
 SignalFx AWS CloudWatch integrations using security tokens. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator).
 
 ~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `.
 
@@ -290,7 +332,7 @@ SignalFx AWS CloudWatch integrations using security tokens. For help with this i
 
 SignalFx Azure integrations. For help with this integration see [Monitoring Microsoft Azure](https://docs.signalfx.com/en/latest/integrations/azure-info.html#connect-to-azure).
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -299,32 +341,36 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
+					Name:        "app_id",
+					Description: `(Required) Azure application ID for the SignalFx app. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Whether the integration is enabled.`,
 				},
 				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Required) Azure application ID for the SignalFx app. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
-				},
-				resource.Attribute{
 					Name:        "custom_namespaces_per_service",
 					Description: `(Optional) Allows for more fine-grained control of syncing of custom namespaces, should the boolean convenience parameter ` + "`" + `sync_guest_os_namespaces` + "`" + ` be not enough. The customer may specify a map of services to custom namespaces. If they do so, for each service which is a key in this map, we will attempt to sync metrics from namespaces in the value list in addition to the default namespaces.`,
-				},
-				resource.Attribute{
-					Name:        "service",
-					Description: `(Required) The name of the service.`,
 				},
 				resource.Attribute{
 					Name:        "namespaces",
 					Description: `(Required) The additional namespaces.`,
 				},
 				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "named_token",
+					Description: `(Optional) Name of the org token to be used for data ingestion. If not specified then default access token is used.`,
+				},
+				resource.Attribute{
 					Name:        "poll_rate",
-					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
+					Description: `(Optional) Azure poll rate (in seconds). Value between ` + "`" + `60` + "`" + ` and ` + "`" + `600` + "`" + `. Default: ` + "`" + `300` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
@@ -383,12 +429,40 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 					Description: `(Optional) Description of the dashboard.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the dashboard.`,
+				},
+				resource.Attribute{
 					Name:        "authorized_writer_teams",
 					Description: `(Optional) Team IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's team (or user id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "authorized_writer_users",
 					Description: `(Optional) User IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's user id (or team id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) [Permissions](https://docs.splunk.com/Observability/infrastructure/terms-concepts/permissions.html) Controls who can view and/or edit your dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Optional) ID of the dashboard group you want your dashboard to inherit permissions from. Use the ` + "`" + `permissions.acl` + "`" + ` instead if you want to specify various read and write permission configurations.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) List of read and write permission configurations to specify which user, team, and organization can view and/or edit your dashboard. Use the ` + "`" + `permissions.parent` + "`" + ` instead if you want to inherit permissions.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `(Required) ID of the user, team, or organization for which you're granting permissions.`,
+				},
+				resource.Attribute{
+					Name:        "principal_type",
+					Description: `(Required) Clarify whether this permission configuration is for a user, a team, or an organization. Value can be one of "USER", "TEAM", or "ORG".`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Required) Action the user, team, or organization can take with the dashboard. List of values (value can be "READ" or "WRITE").`,
 				},
 				resource.Attribute{
 					Name:        "charts_resolution",
@@ -650,6 +724,22 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/dash
 				resource.Attribute{
 					Name:        "authorized_writer_users",
 					Description: `(Optional) User IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's user id (or team id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) [Permissions](https://docs.splunk.com/Observability/infrastructure/terms-concepts/permissions.html) List of read and write permission configuration to specify which user, team, and organization can view and/or edit your dashboard group.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `(Required) ID of the user, team, or organization for which you're granting permissions.`,
+				},
+				resource.Attribute{
+					Name:        "principal_type",
+					Description: `(Required) Clarify whether this permission configuration is for a user, a team, or an organization. Value can be one of "USER", "TEAM", or "ORG".`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Required) Action the user, team, or organization can take with the dashboard group. List of values (value can be "READ" or "WRITE").`,
 				},
 				resource.Attribute{
 					Name:        "dashboard",
@@ -931,6 +1021,10 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 					Description: `The ID of the detector.`,
 				},
 				resource.Attribute{
+					Name:        "label_resolutions",
+					Description: `The resolutions of the detector alerts in milliseconds that indicate how often data is analyzed to determine if an alert should be triggered.`,
+				},
+				resource.Attribute{
 					Name:        "url",
 					Description: `The URL of the detector. ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
@@ -939,6 +1033,10 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the detector.`,
+				},
+				resource.Attribute{
+					Name:        "label_resolutions",
+					Description: `The resolutions of the detector alerts in milliseconds that indicate how often data is analyzed to determine if an alert should be triggered.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -1015,7 +1113,7 @@ Displays a listing of events as a widget in a dashboard.
 
 SignalFx GCP Integration
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1024,28 +1122,32 @@ SignalFx GCP Integration
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Whether the integration is enabled.`,
 				},
 				resource.Attribute{
-					Name:        "poll_rate",
-					Description: `(Required) GCP integration poll rate in seconds. Can be set to either 60 or 300 (1 minute or 5 minutes).`,
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
 				},
 				resource.Attribute{
-					Name:        "services",
-					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'. See the documentation for [Creating Integrations](https://developers.signalfx.com/integrations_reference.html#operation/Create%20Integration) for valid values.`,
+					Name:        "named_token",
+					Description: `(Optional) Name of the org token to be used for data ingestion. If not specified then default access token is used.`,
+				},
+				resource.Attribute{
+					Name:        "poll_rate",
+					Description: `(Optional) GCP integration poll rate (in seconds). Value between ` + "`" + `60` + "`" + ` and ` + "`" + `600` + "`" + `. Default: ` + "`" + `300` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_service_keys",
 					Description: `(Required) GCP projects to add.`,
 				},
 				resource.Attribute{
-					Name:        "whilelist",
-					Description: `(Optional) [Compute Metadata Whitelist](https://docs.signalfx.com/en/latest/integrations/google-cloud-platform.html#compute-engine-instance). ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+					Name:        "services",
+					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'. See the documentation for [Creating Integrations](https://dev.splunk.com/observability/reference/api/integrations/latest#endpoint-create-integration) for valid values.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) [Compute Metadata Whitelist](https://docs.splunk.com/Observability/infrastructure/navigators/gcp.html#compute-engine-instance). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1191,7 +1293,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 
 SignalFx Jira integrations. For help with this integration see [Integration with Jira](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-jira).
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1421,7 +1523,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 
 SignalFx Opsgenie integration.
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1565,7 +1667,7 @@ Manage SignalFx org tokens.
 
 SignalFx PagerDuty integrations
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1584,6 +1686,68 @@ SignalFx PagerDuty integrations
 				resource.Attribute{
 					Name:        "api_key",
 					Description: `(Required) PagerDuty API key. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_service_now_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage Observability Cloud ServiceNow Integrations`,
+			Description: `
+
+Observability Cloud ServiceNow integrations. For help with this integration see [Integration with ServiceNow](https://docs.splunk.com/Observability/admin/notif-services/servicenow.html).
+
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the Observability Cloud provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"service",
+				"now",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) User name used to authenticate the ServiceNow integration.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Password used to authenticate the ServiceNow integration.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Required) Name of the ServiceNow instance, for example ` + "`" + `myinst.service-now.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "issue_type",
+					Description: `(Required) The type of issue in standard ITIL terminology. The allowed values are ` + "`" + `Incident` + "`" + ` and ` + "`" + `Problem` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alert_triggered_payload_template",
+					Description: `(Optional) A template that Observability Cloud uses to create the ServiceNow POST JSON payloads when an alert sends a notification to ServiceNow. Use this optional field to send the values of Observability Cloud alert properties to specific fields in ServiceNow. See [API reference](https://dev.splunk.com/observability/reference/api/integrations/latest) for details.`,
+				},
+				resource.Attribute{
+					Name:        "alert_resolved_payload_template",
+					Description: `(Optional) A template that Observability Cloud uses to create the ServiceNow PUT JSON payloads when an alert is cleared in ServiceNow. Use this optional field to send the values of Observability Cloud alert properties to specific fields in ServiceNow. See [API reference](https://dev.splunk.com/observability/reference/api/integrations/latest) for details. ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1732,7 +1896,7 @@ If the time period is in the past, the number represents the value of the metric
 
 SignalFx Slack integration.
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -1774,6 +1938,8 @@ SignalFx Slack integration.
 Handles management of SignalFx teams.
 
 You can configure [team notification policies](https://docs.signalfx.com/en/latest/managing/teams/team-notifications.html) using this resource and the various ` + "`" + `notifications_*` + "`" + ` properties.
+
+~> **NOTE** When managing teams use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator).
 
 `,
 			Keywords: []string{
@@ -2125,7 +2291,7 @@ Time charts display data points over a period of time.
 
 SignalFx VictorOps integration.
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -2167,7 +2333,7 @@ SignalFx VictorOps integration.
 
 SignalFx Webhook integration.
 
-~> **NOTE** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+~> **NOTE** When managing integrations use a session token for an administrator to authenticate the SignalFx provider. See [Operations that require a session token for an administrator](https://dev.splunk.com/observability/docs/administration/authtokens#Operations-that-require-a-session-token-for-an-administrator). Otherwise you'll receive a 4xx error.
 
 `,
 			Keywords: []string{
@@ -2236,13 +2402,14 @@ SignalFx Webhook integration.
 		"signalfx_opsgenie_integration":     14,
 		"signalfx_org_token":                15,
 		"signalfx_pagerduty_integration":    16,
-		"signalfx_single_value_chart":       17,
-		"signalfx_slack_integration":        18,
-		"signalfx_team":                     19,
-		"signalfx_text_chart":               20,
-		"signalfx_time_chart":               21,
-		"signalfx_victor_ops_integration":   22,
-		"signalfx_webhook_integration":      23,
+		"signalfx_service_now_integration":  17,
+		"signalfx_single_value_chart":       18,
+		"signalfx_slack_integration":        19,
+		"signalfx_team":                     20,
+		"signalfx_text_chart":               21,
+		"signalfx_time_chart":               22,
+		"signalfx_victor_ops_integration":   23,
+		"signalfx_webhook_integration":      24,
 	}
 )
 

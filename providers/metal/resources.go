@@ -45,8 +45,12 @@ var (
 					Description: `(Required) Name of the connection resource`,
 				},
 				resource.Attribute{
-					Name:        "organization_id",
-					Description: `(Required) ID of the organization responsible for the connection`,
+					Name:        "metro",
+					Description: `(Optional) Metro where the connection will be created`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `(Optional) Facility where the connection will be created`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
@@ -57,62 +61,66 @@ var (
 					Description: `(Required) Connection type - dedicated or shared`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
-				},
-				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional) ID of the project where the connection is scoped to, must be set for shared connection`,
+					Description: `(Required) ID of the project where the connection is scoped to, must be set for shared connection`,
 				},
 				resource.Attribute{
-					Name:        "metro",
-					Description: `(Optional) Metro where the connection will be created`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `(Optional) Facility where the connection will be created`,
+					Name:        "speed",
+					Description: `(Required) Connection speed - one of 50Mbps, 200Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description for the connection resource`,
 				},
 				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Mode for connections in IBX facilities with the dedicated type - standard or tunnel. Default is standard`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) String list of tags ## Attributes Reference`,
+					Description: `(Optional) String list of tags`,
+				},
+				resource.Attribute{
+					Name:        "vlans",
+					Description: `(Optional) Only used with shared connection. Vlans to attach. Pass one vlan for Primary/Single connection and two vlans for Redundant connection`,
+				},
+				resource.Attribute{
+					Name:        "service_token_type",
+					Description: `(Optional) Only used with shared connection. Type of service token to use for the connection, a_side or z_side ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to`,
 				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection resource`,
 				},
 				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
-				},
-				resource.Attribute{
-					Name:        "speed",
-					Description: `Port speed in bits per second`,
-				},
-				resource.Attribute{
 					Name:        "ports",
 					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes. Scehma of service_token is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection resource`,
 				},
 				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
-				},
-				resource.Attribute{
-					Name:        "speed",
-					Description: `Port speed in bits per second`,
-				},
-				resource.Attribute{
 					Name:        "ports",
 					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes. Scehma of service_token is described in documentation of the [metal_connection datasource](../data-sources/connection.md).`,
 				},
 			},
 		},
@@ -125,84 +133,88 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required) The device name`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) The ID of the project in which to create the device`,
-				},
-				resource.Attribute{
-					Name:        "operating_system",
-					Description: `(Required) The operating system slug. To find the slug, or visit [Operating Systems API docs](https://metal.equinix.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.`,
-				},
-				resource.Attribute{
-					Name:        "facilities",
-					Description: `List of facility codes with deployment preferences. Equinix Metal API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://metal.equinix.com/developers/api/facilities/), set your API auth token in the top of the page and see JSON from the API response. Conflicts with ` + "`" + `metro` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "metro",
-					Description: `Metro area for the new device. Conflicts with ` + "`" + `facilities` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "plan",
-					Description: `(Required) The device plan slug. To find the plan slug, visit [Device plans API docs](https://metal.equinix.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.`,
+					Name:        "always_pxe",
+					Description: `(Optional) If true, a device with OS ` + "`" + `custom_ipxe` + "`" + ` will continue to boot via iPXE on reboots.`,
 				},
 				resource.Attribute{
 					Name:        "billing_cycle",
-					Description: `(Required) monthly or hourly`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `(Optional) A string of the desired User Data for the device.`,
+					Description: `(Optional) monthly or hourly`,
 				},
 				resource.Attribute{
 					Name:        "custom_data",
 					Description: `(Optional) A string of the desired Custom Data for the device.`,
 				},
 				resource.Attribute{
-					Name:        "ipxe_script_url",
-					Description: `(Optional) URL pointing to a hosted iPXE script. More information is in the [Custom iPXE](https://metal.equinix.com/developers/docs/servers/custom-ipxe/) doc.`,
-				},
-				resource.Attribute{
-					Name:        "always_pxe",
-					Description: `(Optional) If true, a device with OS ` + "`" + `custom_ipxe` + "`" + ` will continue to boot via iPXE on reboots.`,
-				},
-				resource.Attribute{
-					Name:        "hardware_reservation_id",
-					Description: `(Optional) The UUID of the hardware reservation where you want this device deployed, or ` + "`" + `next-available` + "`" + ` if you want to pick your next available reservation automatically. Changing this from a reservation UUID to ` + "`" + `next-available` + "`" + ` will re-create the device in another reservation. Please be careful when using hardware reservation UUID and ` + "`" + `next-available` + "`" + ` together for the same pool of reservations. It might happen that the reservation which Equinix Metal API will pick as ` + "`" + `next-available` + "`" + ` is the reservation which you refer with UUID in another metal_device resource. If that happens, and the metal_device with the UUID is created later, resource creation will fail because the reservation is already in use (by the resource created with ` + "`" + `next-available` + "`" + `). To workaround this, have the ` + "`" + `next-available` + "`" + ` resource [explicitly depend_on](https://learn.hashicorp.com/terraform/getting-started/dependencies.html#implicit-and-explicit-dependencies) the resource with hardware reservation UUID, so that the latter is created first. For more details, see [issue #176](https://github.com/packethost/terraform-provider-packet/issues/176).`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Optional) JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://metal.equinix.com/developers/docs/servers/custom-partitioning-raid/) doc.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Tags attached to the device`,
-				},
-				resource.Attribute{
 					Name:        "description",
-					Description: `Description string for the device`,
+					Description: `(Optional) The device description.`,
 				},
 				resource.Attribute{
-					Name:        "project_ssh_key_ids",
-					Description: `Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [metal_project_ssh_key](project_ssh_key.md) resource.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `(Optional) A list of IP address types for the device (structure is documented below).`,
-				},
-				resource.Attribute{
-					Name:        "wait_for_reservation_deprovision",
-					Description: `(Optional) Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019).`,
+					Name:        "facilities",
+					Description: `List of facility codes with deployment preferences. Equinix Metal API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://metal.equinix.com/developers/api/facilities/), set your API auth token in the top of the page and see JSON from the API response. Conflicts with ` + "`" + `metro` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "force_detach_volumes",
 					Description: `(Optional) Delete device even if it has volumes attached. Only applies for destroy action.`,
 				},
 				resource.Attribute{
+					Name:        "hardware_reservation_id",
+					Description: `(Optional) The UUID of the hardware reservation where you want this device deployed, or ` + "`" + `next-available` + "`" + ` if you want to pick your next available reservation automatically. Changing this from a reservation UUID to ` + "`" + `next-available` + "`" + ` will re-create the device in another reservation. Please be careful when using hardware reservation UUID and ` + "`" + `next-available` + "`" + ` together for the same pool of reservations. It might happen that the reservation which Equinix Metal API will pick as ` + "`" + `next-available` + "`" + ` is the reservation which you refer with UUID in another metal_device resource. If that happens, and the metal_device with the UUID is created later, resource creation will fail because the reservation is already in use (by the resource created with ` + "`" + `next-available` + "`" + `). To workaround this, have the ` + "`" + `next-available` + "`" + ` resource [explicitly depend_on](https://learn.hashicorp.com/terraform/getting-started/dependencies.html#implicit-and-explicit-dependencies) the resource with hardware reservation UUID, so that the latter is created first. For more details, see [issue #176](https://github.com/packethost/terraform-provider-packet/issues/176).`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Optional) The device hostname used in deployments taking advantage of Layer3 DHCP or metadata service configuration.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) A list of IP address types for the device (structure is documented below).`,
+				},
+				resource.Attribute{
+					Name:        "ipxe_script_url",
+					Description: `(Optional) URL pointing to a hosted iPXE script. More information is in the [Custom iPXE](https://metal.equinix.com/developers/docs/servers/custom-ipxe/) doc.`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro area for the new device. Conflicts with ` + "`" + `facilities` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "operating_system",
+					Description: `(Required) The operating system slug. To find the slug, or visit [Operating Systems API docs](https://metal.equinix.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) The device plan slug. To find the plan slug, visit [Device plans API docs](https://metal.equinix.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the project in which to create the device`,
+				},
+				resource.Attribute{
+					Name:        "project_ssh_key_ids",
+					Description: `Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [metal_project_ssh_key](project_ssh_key.md) resource.`,
+				},
+				resource.Attribute{
 					Name:        "reinstall",
-					Description: `(Optional) Whether the device should be reinstalled instead of destroyed when modifying user_data, custom_data, or operating system. The ` + "`" + `ip_address` + "`" + ` block has 3 fields:`,
+					Description: `(Optional) Whether the device should be reinstalled instead of destroyed when modifying user_data, custom_data, or operating system.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) JSON for custom partitioning. Only usable on reserved hardware. More information in in the [Custom Partitioning and RAID](https://metal.equinix.com/developers/docs/servers/custom-partitioning-raid/) doc. Please note that the disks.partitions.size attribute must be a string, not an integer. It can be a number string, or size notation string, e.g. "4G" or "8M" (for gigabytes and megabytes).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags attached to the device`,
+				},
+				resource.Attribute{
+					Name:        "termination_time",
+					Description: `Timestamp for device termination. For example ` + "`" + `2021-09-03T16:32:00+03:00` + "`" + `. If you don't supply timezone info, timestamp is assumed to be in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) A string of the desired User Data for the device.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_reservation_deprovision",
+					Description: `(Optional) Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019). The ` + "`" + `ip_address` + "`" + ` block has 3 fields:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -226,7 +238,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deprovision_fast",
-					Description: `(Optional) Whether the OS disk should be filled with ` + "`" + `00h` + "`" + ` bytes before reinstall. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Whether the OS disk should be filled with ` + "`" + `00h` + "`" + ` bytes before reinstall. Defaults to ` + "`" + `false` + "`" + `. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/configuration/resources#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 20 mins) Used when creating the Device. This includes the time to provision the OS.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the Device. This includes the time needed to reprovision instances when ` + "`" + `reinstall` + "`" + ` arguments are used.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 20 mins) Used when deleting the Device. This includes the time to deprovision a hardware reservation when ` + "`" + `wait_for_reservation_deprovision` + "`" + ` is enabled. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_private_ipv4",
@@ -746,7 +770,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan_ids",
-					Description: `(Optional) List off VLAN UUIDs to attach to the port`,
+					Description: `(Optional) List of VLAN UUIDs to attach to the port, valid only for L2 and Hybrid ports`,
+				},
+				resource.Attribute{
+					Name:        "vxlan_ids",
+					Description: `(Optional) List of VXLAN IDs to attach to the port, valid only for L2 and Hybrid ports`,
 				},
 				resource.Attribute{
 					Name:        "native_vlan_id",
@@ -788,6 +816,14 @@ var (
 					Name:        "disbond_supported",
 					Description: `Flag indicating whether the port can be removed from a bond`,
 				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `List of VLAN UUIDs to attach to the port`,
+				},
+				resource.Attribute{
+					Name:        "vxlan_ids",
+					Description: `List of VXLAN IDs to attach to the port`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -821,6 +857,14 @@ var (
 				resource.Attribute{
 					Name:        "disbond_supported",
 					Description: `Flag indicating whether the port can be removed from a bond`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `List of VLAN UUIDs to attach to the port`,
+				},
+				resource.Attribute{
+					Name:        "vxlan_ids",
+					Description: `List of VXLAN IDs to attach to the port`,
 				},
 			},
 		},
@@ -1129,7 +1173,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) String list of tags ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) String list of tags`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_state",
+					Description: `(Optional) Wait for the IP reservation block to reach a desired state on resource creation. One of: ` + "`" + `pending` + "`" + `, ` + "`" + `created` + "`" + `. The ` + "`" + `created` + "`" + ` state is default and recommended if the addresses are needed within the configuration. An error will be returned if a timeout or the ` + "`" + `denied` + "`" + ` state is encountered.`,
+				},
+				resource.Attribute{
+					Name:        "custom_data",
+					Description: `(Optional) Custom Data is an arbitrary object (submitted in Terraform as serialized JSON) to assign to the IP Reservation. This may be helpful for self-managed IPAM. The object must be valid JSON. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "facility",

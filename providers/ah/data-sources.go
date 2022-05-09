@@ -99,7 +99,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ah_ah_cloud_server_products",
+			Type:             "ah_ah_cloud_server_plans",
 			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -126,24 +126,24 @@ var (
 					Description: `(Optional) Sort direction of the results. Can be one of: ` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `. Default option is ` + "`" + `desc` + "`" + `. --- ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "products",
-					Description: `A list of Products that satisfy the search criteria.`,
+					Name:        "plans",
+					Description: `A list of Plans that satisfy the search criteria.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Product.`,
+					Description: `ID of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the Product.`,
+					Description: `Name of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
-					Description: `Slug of the Product.`,
+					Description: `Slug of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "price",
-					Description: `Monthly price of the Product.`,
+					Description: `Monthly price of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "currency",
@@ -163,29 +163,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_on_trial",
-					Description: `Boolean flag indicating whether the Product is available on trial.`,
+					Description: `Boolean flag indicating whether the Plan is available on trial.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "products",
-					Description: `A list of Products that satisfy the search criteria.`,
+					Name:        "plans",
+					Description: `A list of Plans that satisfy the search criteria.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Product.`,
+					Description: `ID of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the Product.`,
+					Description: `Name of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
-					Description: `Slug of the Product.`,
+					Description: `Slug of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "price",
-					Description: `Monthly price of the Product.`,
+					Description: `Monthly price of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "currency",
@@ -205,7 +205,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_on_trial",
-					Description: `Boolean flag indicating whether the Product is available on trial.`,
+					Description: `Boolean flag indicating whether the Plan is available on trial.`,
 				},
 			},
 		},
@@ -923,7 +923,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ah_ah_volume_products",
+			Type:             "ah_ah_volume_plans",
 			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -950,24 +950,24 @@ var (
 					Description: `(Optional) Sort direction of the results. Can be one of: ` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `. Default option is ` + "`" + `desc` + "`" + `. --- ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "products",
+					Name:        "plans",
 					Description: `A list of Products that satisfy the search criteria.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Product.`,
+					Description: `ID of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the Product.`,
+					Description: `Name of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
-					Description: `Slug of the Product.`,
+					Description: `Slug of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "price",
-					Description: `Price of the Product (per GB/month).`,
+					Description: `Price of the Plan (per GB/month).`,
 				},
 				resource.Attribute{
 					Name:        "currency",
@@ -980,44 +980,28 @@ var (
 				resource.Attribute{
 					Name:        "max_size",
 					Description: `Maximum size available for Volume creation in GB.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the Datacenter.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Datacenter name.`,
-				},
-				resource.Attribute{
-					Name:        "slug",
-					Description: `Datacenter slug.`,
-				},
-				resource.Attribute{
-					Name:        "full_name",
-					Description: `Datacenter full name.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "products",
+					Name:        "plans",
 					Description: `A list of Products that satisfy the search criteria.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Product.`,
+					Description: `ID of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the Product.`,
+					Description: `Name of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "slug",
-					Description: `Slug of the Product.`,
+					Description: `Slug of the Plan.`,
 				},
 				resource.Attribute{
 					Name:        "price",
-					Description: `Price of the Product (per GB/month).`,
+					Description: `Price of the Plan (per GB/month).`,
 				},
 				resource.Attribute{
 					Name:        "currency",
@@ -1030,22 +1014,6 @@ var (
 				resource.Attribute{
 					Name:        "max_size",
 					Description: `Maximum size available for Volume creation in GB.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the Datacenter.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Datacenter name.`,
-				},
-				resource.Attribute{
-					Name:        "slug",
-					Description: `Datacenter slug.`,
-				},
-				resource.Attribute{
-					Name:        "full_name",
-					Description: `Datacenter full name.`,
 				},
 			},
 		},
@@ -1158,14 +1126,14 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"ah_ah_cloud_images":                       0,
-		"ah_ah_cloud_server_products":              1,
+		"ah_ah_cloud_server_plans":                 1,
 		"ah_ah_cloud_server_snapshots_and_backups": 2,
 		"ah_ah_cloud_servers":                      3,
 		"ah_ah_datacenters":                        4,
 		"ah_ah_ips":                                5,
 		"ah_ah_private_networks":                   6,
 		"ah_ah_ssh_keys":                           7,
-		"ah_ah_volume_products":                    8,
+		"ah_ah_volume_plans":                       8,
 		"ah_ah_volumes":                            9,
 	}
 )

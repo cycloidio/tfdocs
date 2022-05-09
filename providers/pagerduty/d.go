@@ -27,7 +27,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found business service. [1]: https://api-reference.pagerduty.com/#!/Business_Services/get_business_services`,
+					Description: `The short name of the found business service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -37,7 +41,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found business service. [1]: https://api-reference.pagerduty.com/#!/Business_Services/get_business_services`,
+					Description: `The short name of the found business service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency.`,
 				},
 			},
 		},
@@ -45,7 +53,7 @@ var (
 			Name:             "",
 			Type:             "pagerduty_escalation_policy",
 			Category:         "Data Sources",
-			ShortDescription: `Provides information about a Escalation Policy. This data source can be helpful when an escalation policy is handled outside Terraform but you still want to reference it in other resources.`,
+			ShortDescription: `Provides information about a Escalation Policy. This data source can be helpful when an escalation policy is handled outside Terraform, but you still want to reference it in other resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -59,7 +67,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get`,
+					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODEyNA-list-escalation-policies`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -69,7 +77,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1escalation_policies/get`,
+					Description: `The short name of the found escalation policy. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODEyNA-list-escalation-policies`,
 				},
 			},
 		},
@@ -95,7 +103,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this extension vendor. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Extension_Schemas/get_extension_schemas`,
+					Description: `The generic service type for this extension vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODEzMA-list-extension-schemas`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -109,7 +117,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this extension vendor. [1]: https://v2.developer.pagerduty.com/v2/page/api-reference#!/Extension_Schemas/get_extension_schemas`,
+					Description: `The generic service type for this extension vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODEzMA-list-extension-schemas`,
 				},
 			},
 		},
@@ -135,7 +143,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1priorities/get`,
+					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE2NA-list-priorities`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -149,7 +157,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1priorities/get`,
+					Description: `A description of the found priority. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE2NA-list-priorities`,
 				},
 			},
 		},
@@ -175,7 +183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "routing_keys",
-					Description: `Routing keys routed to this ruleset. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/get`,
+					Description: `Routing keys routed to this ruleset. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE3MQ-list-rulesets [2]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE3Ng-list-event-rules`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -189,7 +197,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "routing_keys",
-					Description: `Routing keys routed to this ruleset. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1rulesets~1%7Bid%7D~1rules/get`,
+					Description: `Routing keys routed to this ruleset. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE3MQ-list-rulesets [2]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE3Ng-list-event-rules`,
 				},
 			},
 		},
@@ -197,7 +205,7 @@ var (
 			Name:             "",
 			Type:             "pagerduty_schedule",
 			Category:         "Data Sources",
-			ShortDescription: `Provides information about a Schedule. This data source can be helpful when a schedule is handled outside Terraform but you still want to reference it in other resources.`,
+			ShortDescription: `Provides information about a Schedule. This data source can be helpful when a schedule is handled outside Terraform, but you still want to reference it in other resources.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -211,7 +219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1schedules~1%7Bid%7D/get`,
+					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE4MQ-list-schedules`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -221,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1schedules~1%7Bid%7D/get`,
+					Description: `The short name of the found schedule. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODE4MQ-list-schedules`,
 				},
 			},
 		},
@@ -243,7 +251,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+					Description: `The short name of the found service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -253,7 +265,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+					Description: `The short name of the found service.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
 				},
 			},
 		},
@@ -271,7 +287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "integration_summary",
-					Description: `(Required) The integration summary used to find the desired integration on the service ## Attributes Reference`,
+					Description: `(Required) The integration summary used to find the desired integration on the service. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "integration_key",
@@ -282,6 +298,30 @@ var (
 				resource.Attribute{
 					Name:        "integration_key",
 					Description: `The integration key for the integration. This can be used to configure alerts.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pagerduty_tag",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a tag that you can use to assign to users, teams, and escalation_policies.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label of the tag to find in the PagerDuty API. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found team. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIxNw-list-tags`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found team. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIxNw-list-tags`,
 				},
 			},
 		},
@@ -311,7 +351,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent",
-					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
+					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIyMw-list-teams`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -329,7 +369,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent",
-					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://v1.developer.pagerduty.com/documentation/rest/teams/list`,
+					Description: `ID of the parent team. This is available to accounts with the Team Hierarchy feature enabled. Please contact your account manager for more information. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIyMw-list-teams`,
 				},
 			},
 		},
@@ -351,7 +391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users/get`,
+					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzMw-list-users`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -361,7 +401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users/get`,
+					Description: `The short name of the found user. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzMw-list-users`,
 				},
 			},
 		},
@@ -419,7 +459,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_type",
-					Description: `Either ` + "`" + `ios` + "`" + ` or ` + "`" + `android` + "`" + `, depending on the type of the device receiving notifications. (Push notification contact method only.) [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users~1%7Bid%7D~1contact_methods~1%7Bcontact_method_id%7D/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users~1%7Bid%7D/get`,
+					Description: `Either ` + "`" + `ios` + "`" + ` or ` + "`" + `android` + "`" + `, depending on the type of the device receiving notifications. (Push notification contact method only.) [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzOQ-list-a-user-s-contact-methods [2]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzMw-list-users`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -457,7 +497,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_type",
-					Description: `Either ` + "`" + `ios` + "`" + ` or ` + "`" + `android` + "`" + `, depending on the type of the device receiving notifications. (Push notification contact method only.) [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users~1%7Bid%7D~1contact_methods~1%7Bcontact_method_id%7D/get [2]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1users~1%7Bid%7D/get`,
+					Description: `Either ` + "`" + `ios` + "`" + ` or ` + "`" + `android` + "`" + `, depending on the type of the device receiving notifications. (Push notification contact method only.) [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzOQ-list-a-user-s-contact-methods [2]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzMw-list-users`,
 				},
 			},
 		},
@@ -465,7 +505,7 @@ var (
 			Name:             "",
 			Type:             "pagerduty_vendor",
 			Category:         "Data Sources",
-			ShortDescription: `Get information about a vendor that you can use for a service integration (e.g Amazon Cloudwatch, Splunk, Datadog).`,
+			ShortDescription: `Get information about a vendor that you can use for a service integration (e.g. Amazon Cloudwatch, Splunk, Datadog).`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -483,7 +523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1vendors/get`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -497,7 +537,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/reference/REST/openapiv3.json/paths/~1vendors/get`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors`,
 				},
 			},
 		},
@@ -513,10 +553,11 @@ var (
 		"pagerduty_schedule":            5,
 		"pagerduty_service":             6,
 		"pagerduty_service_integration": 7,
-		"pagerduty_team":                8,
-		"pagerduty_user":                9,
-		"pagerduty_user_contact_method": 10,
-		"pagerduty_vendor":              11,
+		"pagerduty_tag":                 8,
+		"pagerduty_team":                9,
+		"pagerduty_user":                10,
+		"pagerduty_user_contact_method": 11,
+		"pagerduty_vendor":              12,
 	}
 )
 

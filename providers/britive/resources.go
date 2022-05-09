@@ -11,6 +11,106 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "britive_permission",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the permission.`,
+				},
+				resource.Attribute{
+					Name:        "consumer",
+					Description: `(Required) A component/entity that will use the policy engine for access decisions.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) A resource in the definition of the corresponding consumer, or '`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `(Required) A set of pre-defined actions for each consumer. ## Attribute Reference In addition to the above arguments, the following attribute is exported.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the resource with format ` + "`" + `permissions/{{permissionID}}` + "`" + ` ## Import You can import a permission using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_permission.new permissions/{{name}} terraform import britive_permission.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the resource with format ` + "`" + `permissions/{{permissionID}}` + "`" + ` ## Import You can import a permission using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_permission.new permissions/{{name}} terraform import britive_permission.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "britive_policy",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Type of access the policy provides. This can have two values "Allow"/"Deny". Defaults to "Allow".`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Optional) Set of members under this policy. This is a JSON formatted string. Includes the usernames of ` + "`" + `serviceIdentities` + "`" + `, ` + "`" + `tags` + "`" + `, ` + "`" + `tokens` + "`" + ` and ` + "`" + `users` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Optional) Permissions associated to the policy. Either a role/permission is to be assigned to a policy.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Optional) Roles associated to the policy. Either a role/permission is to be assigned to a policy.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Set of conditions applied to this policy. This is a JSON formatted string. Includes the username for ` + "`" + `tags` + "`" + ` and ` + "`" + `userIds` + "`" + ` under ` + "`" + `approvers` + "`" + `. The ` + "`" + `approval` + "`" + ` block also includes the ` + "`" + `notificationMedium` + "`" + `. The ` + "`" + `timeToApprove` + "`" + ` and ` + "`" + `validFor` + "`" + ` are provided in minutes. The condition based on ` + "`" + `ipAddress` + "`" + ` should be specified as comma separated IP addresses in CIDR or dotted decimal format. The ` + "`" + `timeOfAccess` + "`" + ` can be a range in format of "YYYY-MM-DD HH:MM:SS" or scheduled daily by passing the range in "HH:MM:SS".`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `(Optional) Indicates if a policy is active. Boolean value accepts true/false. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "is_draft",
+					Description: `(Optional) Indicates if a policy is a draft. Boolean value accepts true/false. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "is_read_only",
+					Description: `(Optional) Indicates if a policy is read only. Boolean value accepts true/false. Defaults to false. ## Attribute Reference In addition to the above arguments, the following attribute is exported.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the policy with format ` + "`" + `policies/{{name}}` + "`" + ` ## Import You can import a policy using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_policy.new policies/{{name}} terraform import britive_policy.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the policy with format ` + "`" + `policies/{{name}}` + "`" + ` ## Import You can import a policy using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_policy.new policies/{{name}} terraform import britive_policy.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "britive_profile",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -54,6 +154,10 @@ var (
 					Description: `(Optional) The Britive profile expiry extension limit. For example: ` + "`" + `2` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "destination_url",
+					Description: `(Optional) The console URL where the user will be redirected upon checking out the profile. For example: ` + "`" + `https://console.aws.amazon.com` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "associations",
 					Description: `(Required) The list of associations for the Britive profile. The format of ` + "`" + `associations` + "`" + ` is documented below. ### ` + "`" + `associations` + "`" + ` block supports`,
 				},
@@ -78,46 +182,6 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identity of the Britive profile. ## Import You can import a profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `sh terraform import britive_profile.new apps/{{app_name}}/paps/{{name}} terraform import britive_profile.new {{app_name}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "britive_profile_identity",
-			Category:         "Resources",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "profile_id",
-					Description: `(Required, Forces new resource) The identifier of the profile.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Required, Forces new resource) The name of the identity.`,
-				},
-				resource.Attribute{
-					Name:        "access_period",
-					Description: `(Optional) The access period of the identity in a profile. The format of an ` + "`" + `access_period` + "`" + ` is documented below. ### ` + "`" + `access_period` + "`" + ` block supports`,
-				},
-				resource.Attribute{
-					Name:        "start",
-					Description: `(Required) The start of the access period for the associated identity.`,
-				},
-				resource.Attribute{
-					Name:        "end",
-					Description: `(Required) The end of the access period for the associated identity. ## Attribute Reference In addition to the above argument, the following attribute is exported.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `An identifier of the resource with the format ` + "`" + `paps/{{profileID}}/users/{{userID}}` + "`" + ` ## Import You can import a Britive profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `sh terraform import britive_profile_identity.new apps/{{app_name}}/paps/{{profile_name}}/users/{{username}} terraform import britive_profile_identity.new {{app_name}}/{{profile_name}}/{{username}} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `An identifier of the resource with the format ` + "`" + `paps/{{profileID}}/users/{{userID}}` + "`" + ` ## Import You can import a Britive profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `sh terraform import britive_profile_identity.new apps/{{app_name}}/paps/{{profile_name}}/users/{{username}} terraform import britive_profile_identity.new {{app_name}}/{{profile_name}}/{{username}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -150,6 +214,66 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `An identifier of the resource with the format ` + "`" + `paps/{{profileID}}/permissions/{{permission_name}}/type/{{permission_type}}` + "`" + ` ## Import You can import a Britive profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `sh terraform import britive_profile_permission.new apps/{{app_name}}/paps/{{profile_name}}/permissions/{{permission_name}}/type/{{permission_type}} terraform import britive_profile_permission.new {{app_name}}/{{profile_name}}/{{permission_name}}/{{permission_type}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "britive_profile_policy",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profile_id",
+					Description: `(Required, Forces new resource) The identifier of the profile.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `(Required) The name of the profile-policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the profile-policy.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Optional) Set of members under this policy. This is a JSON formatted string. Includes the usernames of ` + "`" + `serviceIdentities` + "`" + `, ` + "`" + `tags` + "`" + ` and ` + "`" + `users` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Set of conditions applied to this policy. This is a JSON formatted string. Includes the username for ` + "`" + `tags` + "`" + ` and ` + "`" + `userIds` + "`" + ` under ` + "`" + `approvers` + "`" + `. The ` + "`" + `approval` + "`" + ` block also includes the ` + "`" + `notificationMedium` + "`" + ` and ` + "`" + `timeToApprove` + "`" + ` in minutes. The condition based on ` + "`" + `ipAddress` + "`" + ` should be specified as comma separated IP addresses in CIDR or dotted decimal format. The ` + "`" + `timeOfAccess` + "`" + ` can be a range in format of "YYYY-MM-DD HH:MM:SS" or scheduled daily by passing the range in "HH:MM:SS".`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Type of access the policy provides. This can have two values "Allow"/"Deny". Defaults to "Allow".`,
+				},
+				resource.Attribute{
+					Name:        "consumer",
+					Description: `(Optional) A component/entity that will use the policy engine for access decisions. Defaults to "papservice". Do not provide any other value.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `(Optional) Indicates if a policy is active. Boolean value accepts true/false. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "is_draft",
+					Description: `(Optional) Indicates if a policy is a draft. Boolean value accepts true/false. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "is_read_only",
+					Description: `(Optional) Indicates if a policy is read only. Boolean value accepts true/false. Defaults to false. ## Attribute Reference In addition to the above arguments, the following attribute is exported.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the policy for the profile with format ` + "`" + `paps/{{profile_id}}/policies/{{policy_name}}` + "`" + ` ## Import You can import a policy for the profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_profile_policy.new paps/{{profile_id}}/policies/{{policy_name}} terraform import britive_role.new {{profile_id}}/{{policy_name}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `An identifier of the policy for the profile with format ` + "`" + `paps/{{profile_id}}/policies/{{policy_name}}` + "`" + ` ## Import You can import a policy for the profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_profile_policy.new paps/{{profile_id}}/policies/{{policy_name}} terraform import britive_role.new {{profile_id}}/{{policy_name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -199,41 +323,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "britive_profile_tag",
+			Type:             "britive_role",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "profile_id",
-					Description: `(Required, Forces new resource) The identifier of the profile.`,
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
 				},
 				resource.Attribute{
-					Name:        "tag_name",
-					Description: `(Required, Forces new resource) The name of the tag.`,
+					Name:        "description",
+					Description: `(Optional) A description of the role.`,
 				},
 				resource.Attribute{
-					Name:        "access_period",
-					Description: `(Optional) The access period of the tag in the Britive profile. The format of ` + "`" + `access_period` + "`" + ` is documented below. ### ` + "`" + `access_period` + "`" + ` block supports`,
-				},
-				resource.Attribute{
-					Name:        "start",
-					Description: `(Required) The start of the access period for the associated tag.`,
-				},
-				resource.Attribute{
-					Name:        "end",
-					Description: `(Required) The end of the access period for the associated tag. ## Attribute Reference In addition to the above arguments, the following attribute is exported.`,
+					Name:        "permissions",
+					Description: `(Required) Names of the permissions associated to the role. This is a JSON formatted string. Mimimum of 1 permission is required to create a role. ` + "`" + `name` + "`" + ` corresponds to the name of the permission ## Attribute Reference In addition to the above arguments, the following attribute is exported.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `An identifier of the resource with format ` + "`" + `paps/{{profileID}}/tags/{{tagID}}` + "`" + ` ## Import You can import a Britive profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_profile_tag.new apps/{{app_name}}/paps/{{profile_name}}/tags/{{tag_name}} terraform import britive_profile_tag.new {{app_name}}/{{profile_name}}/{{tag_name}} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `An identifier of the resource with format ` + "`" + `roles/{{roleID}}` + "`" + ` ## Import You can import a role using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_role.new roles/{{name}} terraform import britive_role.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `An identifier of the resource with format ` + "`" + `paps/{{profileID}}/tags/{{tagID}}` + "`" + ` ## Import You can import a Britive profile using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_profile_tag.new apps/{{app_name}}/paps/{{profile_name}}/tags/{{tag_name}} terraform import britive_profile_tag.new {{app_name}}/{{profile_name}}/{{tag_name}} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `An identifier of the resource with format ` + "`" + `roles/{{roleID}}` + "`" + ` ## Import You can import a role using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + `SH terraform import britive_role.new roles/{{name}} terraform import britive_role.new {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -313,13 +429,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"britive_profile":                   0,
-		"britive_profile_identity":          1,
-		"britive_profile_permission":        2,
-		"britive_profile_session_attribute": 3,
-		"britive_profile_tag":               4,
-		"britive_tag":                       5,
-		"britive_tag_member":                6,
+		"britive_permission":                0,
+		"britive_policy":                    1,
+		"britive_profile":                   2,
+		"britive_profile_permission":        3,
+		"britive_profile_policy":            4,
+		"britive_profile_session_attribute": 5,
+		"britive_role":                      6,
+		"britive_tag":                       7,
+		"britive_tag_member":                8,
 	}
 )
 

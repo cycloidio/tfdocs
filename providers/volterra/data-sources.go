@@ -52,39 +52,32 @@ volterra_address_allocator is used to get mode of the allocator object and alloc
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "volterra_volterra_http_loadbalancer_state",
+			Category:         "Data Sources",
+			ShortDescription: `"Data source for volterra_http_loadbalancer_state resource"`,
+			Description: `
+
+volterra_http_loadbalancer_state is used to get the state information related to a http loadbalancer. This includes cname, ip_address and auto_cert info related state
+
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "volterra_volterra_namespace",
 			Category:         "Data Sources",
-			ShortDescription: `"Data source for namespace resource"`,
+			ShortDescription: `'Data source for namespace resource'`,
 			Description: `
 
 Namespace creates logical independent workspace within a tenant. Data Source reads the namespace object and gets values like tenant_name, id of the namespace object.
 
 `,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the namespace to be queried ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the namespace returned`,
-				},
-				resource.Attribute{
-					Name:        "tenant_name",
-					Description: `Tenant name configured in volterra`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the namespace returned`,
-				},
-				resource.Attribute{
-					Name:        "tenant_name",
-					Description: `Tenant name configured in volterra`,
-				},
-			},
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -205,10 +198,11 @@ volterra_virtual_host_dns_info is a way to get DNS information like dns cname or
 	dataSourcesMap = map[string]int{
 
 		"volterra_volterra_address_allocator":           0,
-		"volterra_volterra_namespace":                   1,
-		"volterra_volterra_parse_aws_cgw_configuration": 2,
-		"volterra_volterra_tunnel":                      3,
-		"volterra_volterra_virtual_host_dns_info":       4,
+		"volterra_volterra_http_loadbalancer_state":     1,
+		"volterra_volterra_namespace":                   2,
+		"volterra_volterra_parse_aws_cgw_configuration": 3,
+		"volterra_volterra_tunnel":                      4,
+		"volterra_volterra_virtual_host_dns_info":       5,
 	}
 )
 

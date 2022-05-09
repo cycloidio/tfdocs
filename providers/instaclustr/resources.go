@@ -41,6 +41,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "instaclustr_kafka_acl",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "instaclustr_kafka_topic",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "instaclustr_kafka_user",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -66,8 +86,10 @@ var (
 		"instaclustr_cluster":        0,
 		"instaclustr_encryption_key": 1,
 		"instaclustr_firewall_rule":  2,
-		"instaclustr_kafka_user":     3,
-		"instaclustr_vpc_peering":    4,
+		"instaclustr_kafka_acl":      3,
+		"instaclustr_kafka_topic":    4,
+		"instaclustr_kafka_user":     5,
+		"instaclustr_vpc_peering":    6,
 	}
 )
 

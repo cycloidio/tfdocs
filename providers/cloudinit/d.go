@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "cloudinit_config",
+			Type:             "cloudinit_cloudinit_config",
 			Category:         "Data Sources",
 			ShortDescription: `Renders a multi-part cloud-init config from source files.`,
 			Description:      ``,
@@ -65,7 +65,7 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"cloudinit_config": 0,
+		"cloudinit_cloudinit_config": 0,
 	}
 )
 

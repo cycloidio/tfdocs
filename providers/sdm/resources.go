@@ -23,6 +23,18 @@ Accounts are users that have access to strongDM. There are two types of accounts
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Service.`,
+				},
+				resource.Attribute{
+					Name:        "suspended",
+					Description: `(Optional) The Service's suspended state.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
 					Name:        "email",
 					Description: `(Required) The User's email address. Must be unique.`,
 				},
@@ -39,22 +51,18 @@ Accounts are users that have access to strongDM. There are two types of accounts
 					Description: `(Optional) The User's suspended state.`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Service.`,
-				},
-				resource.Attribute{
-					Name:        "suspended",
-					Description: `(Optional) The Service's suspended state. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Account resource:`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Account resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Account resource.`,
+					Description: `A unique identifier for the Account resource. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Account resource.`,
+					Description: `A unique identifier for the Account resource. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -65,7 +73,7 @@ Accounts are users that have access to strongDM. There are two types of accounts
 			ShortDescription: `Provides settings for AccountAttachment. layout: “sdm” sidebar_current: “docs-sdm-resource-account-attachment"`,
 			Description: `
 
-AccountAttachments assign an account to a role or composite role.
+AccountAttachments assign an account to a role.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -79,13 +87,13 @@ AccountAttachments assign an account to a role or composite role.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountAttachment resource.`,
+					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountAttachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountAttachment resource.`,
+					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountAttachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -97,26 +105,27 @@ AccountAttachments assign an account to a role or composite role.
 			Description: `
 
 AccountGrants connect a resource directly to an account, giving the account the permission to connect to that resource.
+This resource is deprecated.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "resource_id",
-					Description: `(Required) The id of the composite role of this AccountGrant.`,
+					Name:        "account_id",
+					Description: `(Required) The id of the attached role of this AccountGrant.`,
 				},
 				resource.Attribute{
-					Name:        "account_id",
-					Description: `(Required) The id of the attached role of this AccountGrant. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the AccountGrant resource:`,
+					Name:        "resource_id",
+					Description: `(Required) The id of the composite role of this AccountGrant. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the AccountGrant resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountGrant resource.`,
+					Description: `A unique identifier for the AccountGrant resource. ## Import AccountGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountGrant.example ag-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountGrant resource.`,
+					Description: `A unique identifier for the AccountGrant resource. ## Import AccountGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountGrant.example ag-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -135,8 +144,24 @@ Nodes make up the strongDM network, and allow your users to connect securely to 
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "bind_address",
+					Description: `(Optional) The hostname/port tuple which the gateway daemon will bind to. If not provided on create, set to "0.0.0.0:listen_address_port".`,
+				},
+				resource.Attribute{
+					Name:        "gateway_filter",
+					Description: `(Optional) GatewayFilter can be used to restrict the peering between relays and gateways.`,
+				},
+				resource.Attribute{
+					Name:        "listen_address",
+					Description: `(Required) The public hostname/port tuple at which the gateway will be accessible to clients.`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Unique human-readable name of the Relay. Node names must include only letters, numbers, and hyphens (no spaces, underscores, or other special characters). Generated if not provided on create.`,
+					Description: `(Optional) Unique human-readable name of the Gateway. Node names must include only letters, numbers, and hyphens (no spaces, underscores, or other special characters). Generated if not provided on create.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_filter",
@@ -144,29 +169,21 @@ Nodes make up the strongDM network, and allow your users to connect securely to 
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Unique human-readable name of the Gateway. Node names must include only letters, numbers, and hyphens (no spaces, underscores, or other special characters). Generated if not provided on create.`,
+					Description: `(Optional) Unique human-readable name of the Relay. Node names must include only letters, numbers, and hyphens (no spaces, underscores, or other special characters). Generated if not provided on create.`,
 				},
 				resource.Attribute{
-					Name:        "listen_address",
-					Description: `(Required) The public hostname/port tuple at which the gateway will be accessible to clients.`,
-				},
-				resource.Attribute{
-					Name:        "bind_address",
-					Description: `(Optional) The hostname/port tuple which the gateway daemon will bind to. If not provided on create, set to "0.0.0.0:<listen_address_port>".`,
-				},
-				resource.Attribute{
-					Name:        "gateway_filter",
-					Description: `(Optional) GatewayFilter can be used to restrict the peering between relays and gateways. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Node resource:`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Node resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Node resource.`,
+					Description: `A unique identifier for the Node resource. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Node resource.`,
+					Description: `A unique identifier for the Node resource. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -177,117 +194,454 @@ Nodes make up the strongDM network, and allow your users to connect securely to 
 			ShortDescription: `Provides settings for Resource. layout: “sdm” sidebar_current: “docs-sdm-resource-resource"`,
 			Description: `
 
-A Resource is a database or server for which strongDM manages access.
+A Resource is a database, server, cluster, website, or cloud that strongDM
+ delegates access to.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "port",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -302,6 +656,46 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_access_key",
 					Description: `(Optional)`,
 				},
@@ -312,6 +706,86 @@ A Resource is a database or server for which strongDM manages access.
 				resource.Attribute{
 					Name:        "secret_store_secret_access_key_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "output",
@@ -346,44 +820,156 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "secret_access_key",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_secret_access_key_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_secret_access_key_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
 					Name:        "healthcheck_region",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
@@ -410,6 +996,106 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_app_id_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_app_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_tenant_id_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_tenant_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_app_id_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_app_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
@@ -418,16 +1104,96 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_tenant_id_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_tenant_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
-					Name:        "private_key",
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_private_key_path",
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_private_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_private_key_key",
@@ -438,20 +1204,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -462,24 +1224,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -490,95 +1244,27 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -586,18 +1272,6 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -606,24 +1280,20 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
+					Name:        "override_database",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -634,148 +1304,28 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
-					Name:        "access_key",
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_access_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "region",
+					Name:        "database",
 					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "role_arn",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "role_external_id",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "secret_access_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "role_arn",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "role_external_id",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -786,24 +1336,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -812,42 +1354,202 @@ A Resource is a database or server for which strongDM manages access.
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
-					Name:        "url",
+					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_path",
-					Description: `(Required)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -862,16 +1564,352 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "headers_blacklist",
+					Name:        "port",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "default_path",
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "subdomain",
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "connect_to_replica",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) Hostname must contain the hostname/port pairs of all instances in the replica set separated by commas.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "replica_set",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "keyfile",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_keyfile_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_keyfile_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -882,28 +1920,44 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "service_account_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
-					Name:        "url",
+					Name:        "endpoint",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_path",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "headers_blacklist",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "default_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "subdomain",
-					Description: `(Required)`,
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -914,31 +1968,183 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "service_account_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
-					Name:        "url",
+					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_path",
-					Description: `(Required)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "auth_header",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_auth_header_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_auth_header_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "default_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
 					Name:        "headers_blacklist",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_path",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "default_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "headers_blacklist",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_path",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -946,27 +2152,35 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "headers_blacklist",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_path",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
 					Name:        "subdomain",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
+					Name:        "url",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
@@ -1006,100 +2220,372 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_certificate",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1114,16 +2600,36 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_namespace",
+					Name:        "port",
 					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1134,32 +2640,60 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "replica_set",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "connect_to_replica",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1170,63 +2704,167 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "replica_set",
+					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "connect_to_replica",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
-					Name:        "endpoint",
+					Name:        "hostname",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "access_key",
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_access_key_path",
+					Name:        "secret_store_password_path",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_access_key_key",
+					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_access_key",
+					Name:        "port",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_secret_access_key_path",
+					Name:        "replica_set",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_secret_access_key_key",
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "auth_database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -1242,11 +2880,287 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "region",
+					Name:        "client_certificate",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "cluster_name",
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_certificate_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_client_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "region",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
@@ -1274,192 +3188,28 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "secret_access_key",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_secret_access_key_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_secret_access_key_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "cluster_name",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "role_arn",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "role_external_id",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
-					Name:        "endpoint",
+					Name:        "database",
 					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "service_account_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "service_account_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1470,288 +3220,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_certificate",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_certificate",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_certificate_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "client_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_client_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "auth_database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -1759,226 +3237,30 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional)`,
+					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "replica_set",
-					Description: `(Optional)`,
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "auth_database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "replica_set",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "connect_to_replica",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "auth_database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "auth_database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "replica_set",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "connect_to_replica",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -1986,18 +3268,6 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2006,392 +3276,52 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "tls_required",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "override_database",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "database",
 					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "override_database",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2402,16 +3332,8 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -2426,290 +3348,26 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "override_database",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "override_database",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "override_database",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "override_database",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "database",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2718,12 +3376,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -2732,50 +3394,30 @@ A Resource is a database or server for which strongDM manages access.
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2786,16 +3428,84 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "secret_store_username_path",
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "downgrade_nla_connections",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -2810,51 +3520,175 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
 					Name:        "database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "schema",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -2862,7 +3696,31 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "schema",
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "override_database",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -2870,16 +3728,32 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "override_database",
+					Name:        "schema",
 					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "allow_deprecated_key_exchanges",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2890,16 +3764,8 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2910,16 +3776,28 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "allow_deprecated_key_exchanges",
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "allow_deprecated_key_exchanges",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2930,16 +3808,8 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -2950,16 +3820,28 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "allow_deprecated_key_exchanges",
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "allow_deprecated_key_exchanges",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2970,20 +3852,16 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_forwarding",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
@@ -2998,20 +3876,24 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "port_forwarding",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "allow_deprecated_key_exchanges",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -3022,104 +3904,8 @@ A Resource is a database or server for which strongDM manages access.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_password_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_username_key",
-					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -3135,6 +3921,122 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
 					Description: `(Optional) ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Resource resource:`,
 				},
 				resource.Attribute{
@@ -3286,6 +4188,38 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "public_key",
 					Description: ``,
 				},
@@ -3299,7 +4233,7 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port_override",
-					Description: ``,
+					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3452,6 +4386,38 @@ A Resource is a database or server for which strongDM manages access.
 					Description: ``,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: ``,
+				},
+				resource.Attribute{
 					Name:        "public_key",
 					Description: ``,
 				},
@@ -3465,7 +4431,7 @@ A Resource is a database or server for which strongDM manages access.
 				},
 				resource.Attribute{
 					Name:        "port_override",
-					Description: ``,
+					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3476,31 +4442,33 @@ A Resource is a database or server for which strongDM manages access.
 			ShortDescription: `Provides settings for Role. layout: “sdm” sidebar_current: “docs-sdm-resource-role"`,
 			Description: `
 
-A Role is a collection of access grants, and typically corresponds to a team, Active Directory OU, or other organizational unit. Users are granted access to resources by assigning them to roles.
+A Role has a list of access rules which determine which Resources the members
+ of the Role have access to. An Account can be a member of multiple Roles via
+ AccountAttachments.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Role.`,
-				},
-				resource.Attribute{
 					Name:        "access_rules",
-					Description: `(Optional) AccessRules JSON encoded access rules data.`,
+					Description: `(Optional) AccessRules is a list of access rules defining the resources this Role has access to.`,
 				},
 				resource.Attribute{
 					Name:        "composite",
-					Description: `(Optional) True if the Role is a composite role. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Role resource:`,
+					Description: `(Optional) Composite is true if the Role is a composite role. Deprecated: composite roles are deprecated, use multi-role via AccountAttachments instead.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Role. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Role resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Role resource.`,
+					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Role resource.`,
+					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3512,26 +4480,29 @@ A Role is a collection of access grants, and typically corresponds to a team, Ac
 			Description: `
 
 A RoleAttachment assigns a role to a composite role.
+ 
+ Deprecated: use multi-role via AccountAttachments instead.
+This resource is deprecated.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "composite_role_id",
-					Description: `(Required) The id of the composite role of this RoleAttachment.`,
+					Name:        "attached_role_id",
+					Description: `(Required) The id of the attached role of this RoleAttachment.`,
 				},
 				resource.Attribute{
-					Name:        "attached_role_id",
-					Description: `(Required) The id of the attached role of this RoleAttachment. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the RoleAttachment resource:`,
+					Name:        "composite_role_id",
+					Description: `(Required) The id of the composite role of this RoleAttachment. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the RoleAttachment resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the RoleAttachment resource.`,
+					Description: `A unique identifier for the RoleAttachment resource. ## Import RoleAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleAttachment.example ra-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the RoleAttachment resource.`,
+					Description: `A unique identifier for the RoleAttachment resource. ## Import RoleAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleAttachment.example ra-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3543,6 +4514,9 @@ A RoleAttachment assigns a role to a composite role.
 			Description: `
 
 A RoleGrant connects a resource to a role, granting members of the role access to that resource.
+
+ Deprecated: use Role access rules instead.
+This resource is deprecated.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -3556,13 +4530,13 @@ A RoleGrant connects a resource to a role, granting members of the role access t
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the RoleGrant resource.`,
+					Description: `A unique identifier for the RoleGrant resource. ## Import RoleGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleGrant.example rg-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the RoleGrant resource.`,
+					Description: `A unique identifier for the RoleGrant resource. ## Import RoleGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleGrant.example rg-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3573,8 +4547,10 @@ A RoleGrant connects a resource to a role, granting members of the role access t
 			ShortDescription: `Provides settings for SecretStore. layout: “sdm” sidebar_current: “docs-sdm-resource-secret-store"`,
 			Description: `
 
-A SecretStore is a server where resource secrets (passwords, keys) are stored. 
+A SecretStore is a server where resource secrets (passwords, keys) are stored.
  Coming soon support for HashiCorp Vault and AWS Secret Store. Contact support@strongdm.com to request access to the beta.
+This resource can be imported using the [import](https://www.terraform.io/docs/cli/commands/import.html) command.
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -3587,12 +4563,48 @@ A SecretStore is a server where resource secrets (passwords, keys) are stored.
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the SecretStore.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "vault_uri",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "server_address",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "ca_cert_path",
@@ -3611,18 +4623,42 @@ A SecretStore is a server where resource secrets (passwords, keys) are stored.
 					Description: `(Required) Unique human-readable name of the SecretStore.`,
 				},
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "server_address",
-					Description: `(Required) ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the SecretStore resource:`,
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "server_address",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the SecretStore resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the SecretStore resource.`,
+					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import SecretStore.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the SecretStore resource.`,
+					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import SecretStore.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

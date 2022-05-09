@@ -31,7 +31,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "product",
-					Description: `(Required) Cloud Server Product ID or Slug that indentifies the desired product type of the Cloud Server. Changing this resizes the existing server. See the [list of available products](https://websa.advancedhosting.com/slugs).`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Optional) Cloud Server Plan ID or Slug that indentifies the desired plan type of the Cloud Server. Changing this resizes the existing server. See the [list of available products](https://websa.advancedhosting.com/slugs).`,
 				},
 				resource.Attribute{
 					Name:        "backups",
@@ -431,7 +435,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "product",
-					Description: `(Required) Volume Product ID or Slug that indentifies the desired product type of Volume. Changing this erases and recreates the volume. See the [list of available volume products](https://websa.advancedhosting.com/slugs).`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Optional) Volume Plan ID or Slug that indentifies the desired plan type of Volume. Changing this erases and recreates the volume. See the [list of available volume products](https://websa.advancedhosting.com/slugs).`,
 				},
 				resource.Attribute{
 					Name:        "size",

@@ -197,6 +197,10 @@ var (
 					Description: `(Optional) A frontend ip configuration block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "sku",
+					Description: `(Optional) The SKU of the Azure Load Balancer. Accepted values are ` + "`" + `Basic` + "`" + ` and ` + "`" + `Standard` + "`" + `. Defaults to ` + "`" + `Basic` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. ` + "`" + `frontend_ip_configuration` + "`" + ` supports the following:`,
 				},
@@ -230,7 +234,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rules_ids",
+					Description: `The list of IDs outbound rules that use this frontend IP. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -244,7 +252,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rules_ids",
+					Description: `The list of IDs outbound rules that use this frontend IP. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -538,7 +550,11 @@ var (
 			Type:             "azurestack_local_network_gateway",
 			Category:         "Network Resources",
 			ShortDescription: `Manages a local network gateway connection over which specific connections can be configured.`,
-			Description:      ``,
+			Description: `
+
+Manages a local network gateway connection over which specific connections can be configured.
+
+`,
 			Keywords: []string{
 				"network",
 				"local",
@@ -666,8 +682,28 @@ var (
 					Description: `(Optional, Required for a new managed disk) Specifies the size of the managed disk to create in gigabytes. If ` + "`" + `create_option` + "`" + ` is ` + "`" + `Copy` + "`" + ` or ` + "`" + `FromImage` + "`" + `, then the value must be equal to or greater than the source's size.`,
 				},
 				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional) A ` + "`" + `encryption` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "hyper_v_generation",
+					Description: `(Optional) The HyperV Generation of the Disk when the source of an ` + "`" + `Import` + "`" + ` or ` + "`" + `Copy` + "`" + ` operation targets a source that contains an operating system. Possible values are ` + "`" + `V1` + "`" + ` and ` + "`" + `V2` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. For more information on managed disks, such as sizing options and pricing, please check out the [azure documentation](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- The ` + "`" + `encryption` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is Encryption enabled on this Managed Disk? Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_key",
+					Description: `(Optional) A ` + "`" + `disk_encryption_key` + "`" + ` block as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "key_encryption_key",
+					Description: `(Optional) A ` + "`" + `key_encryption_key` + "`" + ` block as defined below. --- For more information on managed disks, such as sizing options and pricing, please check out the [azure documentation](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -703,14 +739,6 @@ var (
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) The location/region where the network interface is created. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "network_security_group_id",
-					Description: `(Optional) The ID of the Network Security Group to associate with the network interface.`,
-				},
-				resource.Attribute{
-					Name:        "internal_dns_name_label",
-					Description: `(Optional) Relative DNS name for this NIC used for internal communications between VMs in the same VNet`,
 				},
 				resource.Attribute{
 					Name:        "enable_ip_forwarding",
@@ -749,16 +777,8 @@ var (
 					Description: `(Optional) Reference to a Public IP Address to associate with this NIC`,
 				},
 				resource.Attribute{
-					Name:        "load_balancer_backend_address_pools_ids",
-					Description: `(Optional) List of Load Balancer Backend Address Pool IDs references to which this NIC belongs`,
-				},
-				resource.Attribute{
-					Name:        "load_balancer_inbound_nat_rules_ids",
-					Description: `(Optional) List of Load Balancer Inbound Nat Rules IDs involving this NIC`,
-				},
-				resource.Attribute{
-					Name:        "application_security_group_ids",
-					Description: `(Optional) List of Application Security Group IDs which should be attached to this NIC ->`,
+					Name:        "private_ip_address_version",
+					Description: `(Optional) The IP Version to use. Possible values are ` + "`" + `IPv4` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -782,11 +802,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_dns_servers",
-					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set`,
-				},
-				resource.Attribute{
-					Name:        "internal_fqdn",
-					Description: `Fully qualified DNS name supporting internal communications between VMs in the same VNet ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -808,11 +824,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_dns_servers",
-					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set`,
-				},
-				resource.Attribute{
-					Name:        "internal_fqdn",
-					Description: `Fully qualified DNS name supporting internal communications between VMs in the same VNet ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -998,7 +1010,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_address_allocation",
-					Description: `(Required) Defines whether the IP address is static or dynamic. Options are Static or Dynamic. ~>`,
+					Description: `(Optional) Defines whether the IP address is static or dynamic. Options are Static or Dynamic.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_method",
+					Description: `(Optional) Defines the allocation method for this IP address. Possible values are ` + "`" + `Static` + "`" + ` or ` + "`" + `Dynamic` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout_in_minutes",
@@ -1231,10 +1247,6 @@ var (
 					Description: `(Required) Defines the type of replication to use for this storage account. Valid option is ` + "`" + `LRS` + "`" + ` currently as per [Azure Stack Storage Differences](https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-acs-differences)`,
 				},
 				resource.Attribute{
-					Name:        "access_tier",
-					Description: `(Required for ` + "`" + `BlobStorage` + "`" + ` accounts) Defines the access tier for ` + "`" + `BlobStorage` + "`" + ` accounts. Valid options are ` + "`" + `Hot` + "`" + ` and ` + "`" + `Cold` + "`" + `, defaults to ` + "`" + `Hot` + "`" + `. -`,
-				},
-				resource.Attribute{
 					Name:        "account_encryption_source",
 					Description: `(Optional) The Encryption Source for this Storage Account. Possible values are ` + "`" + `Microsoft.Keyvault` + "`" + ` and ` + "`" + `Microsoft.Storage` + "`" + `. Defaults to ` + "`" + `Microsoft.Storage` + "`" + `.`,
 				},
@@ -1244,7 +1256,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. ---`,
+					Description: `(Optional) A mapping of tags to assign to the resource.\`,
+				},
+				resource.Attribute{
+					Name:        "enable_https_traffic_only",
+					Description: `(Optional) Boolean flag which forces HTTPS if enabled, see [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information. Defaults to ` + "`" + `true` + "`" + `. ---`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1402,10 +1418,6 @@ var (
 					Description: `(Required) The name of the storage blob. Must be unique within the storage container the blob is located.`,
 				},
 				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage container. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
 					Name:        "storage_account_name",
 					Description: `(Required) Specifies the storage account in which to create the storage container. Changing this forces a new resource to be created.`,
 				},
@@ -1422,20 +1434,36 @@ var (
 					Description: `(Optional) Used only for ` + "`" + `page` + "`" + ` blobs to specify the size in bytes of the blob to be created. Must be a multiple of 512. Defaults to 0.`,
 				},
 				resource.Attribute{
+					Name:        "cache_control",
+					Description: `(Optional) Controls the [cache control header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) content of the response when blob is requested .`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) The content type of the storage blob. Cannot be defined if ` + "`" + `source_uri` + "`" + ` is defined. Defaults to ` + "`" + `application/octet-stream` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "source",
 					Description: `(Optional) An absolute path to a file on the local system. Cannot be defined if ` + "`" + `source_uri` + "`" + ` is defined.`,
+				},
+				resource.Attribute{
+					Name:        "source_content",
+					Description: `(Optional) The content for this blob which should be defined inline. This field can only be specified for Block blobs and cannot be specified if ` + "`" + `source` + "`" + ` or ` + "`" + `source_uri` + "`" + ` is specified.`,
 				},
 				resource.Attribute{
 					Name:        "source_uri",
 					Description: `(Optional) The URI of an existing blob, or a file in the Azure File service, to use as the source contents for the blob to be created. Changing this forces a new resource to be created. Cannot be defined if ` + "`" + `source` + "`" + ` is defined.`,
 				},
 				resource.Attribute{
+					Name:        "content_md5",
+					Description: `(Optional) The MD5 sum of the blob contents. Cannot be defined if ` + "`" + `source_uri` + "`" + ` is defined, or if blob type is Append or Page. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
 					Name:        "parallelism",
 					Description: `(Optional) The number of workers per CPU core to run for concurrent uploads. Defaults to ` + "`" + `8` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "attempts",
-					Description: `(Optional) The number of attempts to make per page or block when uploading. Defaults to ` + "`" + `1` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Name:        "metadata",
+					Description: `(Optional) A map of custom blob metadata. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1473,24 +1501,28 @@ var (
 					Description: `(Required) The name of the storage container. Must be unique within the storage service the container is located.`,
 				},
 				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage container. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
 					Name:        "storage_account_name",
 					Description: `(Required) Specifies the storage account in which to create the storage container. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "container_access_type",
-					Description: `(Optional) The 'interface' for access the container provides. Can be either ` + "`" + `blob` + "`" + `, ` + "`" + `container` + "`" + ` or ` + "`" + `private` + "`" + `. Defaults to ` + "`" + `private` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) The 'interface' for access the container provides. Can be either ` + "`" + `blob` + "`" + `, ` + "`" + `container` + "`" + ` or ` + "`" + `private` + "`" + `. Defaults to ` + "`" + `private` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of MetaData for this Container. All metadata keys should be lowercase. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage container Resource ID.`,
 				},
 				resource.Attribute{
-					Name:        "properties",
-					Description: `Key-value definition of additional properties associated to the storage container`,
+					Name:        "has_immutability_policy",
+					Description: `Is there an Immutability Policy configured on this Storage Container?`,
+				},
+				resource.Attribute{
+					Name:        "has_legal_hold",
+					Description: `Is there a Legal Hold configured on this Storage Container?`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1499,8 +1531,12 @@ var (
 					Description: `The storage container Resource ID.`,
 				},
 				resource.Attribute{
-					Name:        "properties",
-					Description: `Key-value definition of additional properties associated to the storage container`,
+					Name:        "has_immutability_policy",
+					Description: `Is there an Immutability Policy configured on this Storage Container?`,
+				},
+				resource.Attribute{
+					Name:        "has_legal_hold",
+					Description: `Is there a Legal Hold configured on this Storage Container?`,
 				},
 			},
 		},
@@ -2086,10 +2122,6 @@ var (
 					Description: `(Optional) A plan block as documented below.`,
 				},
 				resource.Attribute{
-					Name:        "priority",
-					Description: `(Optional) Specifies the priority for the virtual machines in the scale set, defaults to ` + "`" + `Regular` + "`" + `. Possible values are ` + "`" + `Low` + "`" + ` and ` + "`" + `Regular` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. ->`,
 				},
@@ -2103,7 +2135,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `(Required) Specifies the number of virtual machines in the scale set. ` + "`" + `identity` + "`" + ` supports the following:`,
+					Description: `(Required) Specifies the number of virtual machines in the scale set.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2494,7 +2526,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_address_id",
-					Description: `(Optional) The ID of the public ip address to associate with the Virtual Network Gateway. The ` + "`" + `bgp_settings` + "`" + ` block supports:`,
+					Description: `(Optional) The ID of the public ip address to associate with the Virtual Network Gateway. The ` + "`" + `vpn_client_configuration` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "address_space",
+					Description: `(Required) The address space out of which ip addresses for vpn clients will be taken. You can provide more than one address space, e.g. in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "root_certificate",
+					Description: `(Optional) One or more ` + "`" + `root_certificate` + "`" + ` blocks which are defined below. These root certificates are used to sign the client certificate used by the VPN clients to connect to the gateway.`,
+				},
+				resource.Attribute{
+					Name:        "revoked_certificate",
+					Description: `(Optional) One or more ` + "`" + `revoked_certificate` + "`" + ` blocks which are defined below.`,
+				},
+				resource.Attribute{
+					Name:        "radius_server_address",
+					Description: `(Optional) The address of the Radius server.`,
+				},
+				resource.Attribute{
+					Name:        "radius_server_secret",
+					Description: `(Optional) The secret used by the Radius server.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_client_protocols",
+					Description: `(Optional) List of the protocols supported by the vpn client. The supported values are ` + "`" + `SSTP` + "`" + `, ` + "`" + `IkeV2` + "`" + ` and ` + "`" + `OpenVPN` + "`" + `. The ` + "`" + `bgp_settings` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -2502,7 +2558,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peering_address",
-					Description: `(Optional) The BGP peer IP address of the virtual network gateway. This address is needed to configure the created gateway as a BGP Peer on the on-premises VPN devices. The IP address must be part of the subnet of the Virtual Network Gateway. Changing this forces a new resource to be created ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The BGP peer IP address of the virtual network gateway. This address is needed to configure the created gateway as a BGP Peer on the on-premises VPN devices. The IP address must be part of the subnet of the Virtual Network Gateway. Changing this forces a new resource to be created The ` + "`" + `root_certificate` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A user-defined name of the root certificate.`,
+				},
+				resource.Attribute{
+					Name:        "public_cert_data",
+					Description: `(Required) The public certificate of the root certificate authority. The certificate must be provided in Base-64 encoded X.509 format (PEM). In particular, this argument`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A user-defined name of the revoked certificate.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `(Required) The SHA1 thumbprint of the certificate to be revoked. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2543,7 +2615,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of connection. Valid options are ` + "`" + `IPsec` + "`" + ` (Site-to-Site), ` + "`" + `ExpressRoute` + "`" + ` (ExpressRoute), and ` + "`" + `Vnet2Vnet` + "`" + ` (VNet-to-VNet). Each connection type requires different mandatory arguments (refer to the examples above). Changing the connection type will force a new connection to be created.`,
+					Description: `(Required) The type of connection. Valid options are ` + "`" + `IPsec` + "`" + ` (Site-to-Site), ` + "`" + `ExpressRoute` + "`" + ` (ExpressRoute). Each connection type requires different mandatory arguments (refer to the examples above). Changing the connection type will force a new connection to be created.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_network_gateway_id",

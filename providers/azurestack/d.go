@@ -350,6 +350,14 @@ Use this data source to access the properties of an existing Azure Public IP Add
 					Description: `(Required) Specifies the name of the resource group. ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_method",
+					Description: `The allocation method for this IP address..`,
+				},
+				resource.Attribute{
 					Name:        "domain_name_label",
 					Description: `The label for the Domain Name.`,
 				},
@@ -362,8 +370,16 @@ Use this data source to access the properties of an existing Azure Public IP Add
 					Description: `Fully qualified domain name of the A DNS record associated with the public IP. This is the concatenation of the domainNameLabel and the regionalized DNS zone.`,
 				},
 				resource.Attribute{
+					Name:        "reverse_fqdn",
+					Description: `A fully qualified domain name that resolves to this public IP address.`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP address value that was allocated.`,
+				},
+				resource.Attribute{
+					Name:        "ip_version",
+					Description: `The IP version being used, for example ` + "`" + `IPv4` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -372,6 +388,14 @@ Use this data source to access the properties of an existing Azure Public IP Add
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_method",
+					Description: `The allocation method for this IP address..`,
+				},
+				resource.Attribute{
 					Name:        "domain_name_label",
 					Description: `The label for the Domain Name.`,
 				},
@@ -384,8 +408,16 @@ Use this data source to access the properties of an existing Azure Public IP Add
 					Description: `Fully qualified domain name of the A DNS record associated with the public IP. This is the concatenation of the domainNameLabel and the regionalized DNS zone.`,
 				},
 				resource.Attribute{
+					Name:        "reverse_fqdn",
+					Description: `A fully qualified domain name that resolves to this public IP address.`,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP address value that was allocated.`,
+				},
+				resource.Attribute{
+					Name:        "ip_version",
+					Description: `The IP version being used, for example ` + "`" + `IPv4` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -566,10 +598,6 @@ Gets information about the specified Storage Account.
 					Description: `Defines the type of replication used for this storage account.`,
 				},
 				resource.Attribute{
-					Name:        "access_tier",
-					Description: `(Required for ` + "`" + `BlobStorage` + "`" + ` accounts) Defines the access tier for ` + "`" + `BlobStorage` + "`" + ` accounts. Valid options are ` + "`" + `Hot` + "`" + ` and ` + "`" + `Cold` + "`" + `, defaults to ` + "`" + `Hot` + "`" + `. -`,
-				},
-				resource.Attribute{
 					Name:        "account_encryption_source",
 					Description: `The Encryption Source for this Storage Account.`,
 				},
@@ -580,6 +608,10 @@ Gets information about the specified Storage Account.
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "enable_https_traffic_only",
+					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "primary_location",
@@ -668,10 +700,6 @@ Gets information about the specified Storage Account.
 					Description: `Defines the type of replication used for this storage account.`,
 				},
 				resource.Attribute{
-					Name:        "access_tier",
-					Description: `(Required for ` + "`" + `BlobStorage` + "`" + ` accounts) Defines the access tier for ` + "`" + `BlobStorage` + "`" + ` accounts. Valid options are ` + "`" + `Hot` + "`" + ` and ` + "`" + `Cold` + "`" + `, defaults to ` + "`" + `Hot` + "`" + `. -`,
-				},
-				resource.Attribute{
 					Name:        "account_encryption_source",
 					Description: `The Encryption Source for this Storage Account.`,
 				},
@@ -682,6 +710,10 @@ Gets information about the specified Storage Account.
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "enable_https_traffic_only",
+					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "primary_location",
@@ -789,10 +821,6 @@ Use this data source to access the properties of an Azure Subnet located within 
 					Name:        "route_table_id",
 					Description: `The ID of the Route Table associated with this subnet.`,
 				},
-				resource.Attribute{
-					Name:        "ip_configurations",
-					Description: `The collection of IP Configurations with IPs within this subnet.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -810,10 +838,6 @@ Use this data source to access the properties of an Azure Subnet located within 
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `The ID of the Route Table associated with this subnet.`,
-				},
-				resource.Attribute{
-					Name:        "ip_configurations",
-					Description: `The collection of IP Configurations with IPs within this subnet.`,
 				},
 			},
 		},
@@ -842,7 +866,11 @@ Use this data source to access the properties of an Azure Virtual Network.
 					Description: `The ID of the virtual network.`,
 				},
 				resource.Attribute{
-					Name:        "address_spaces",
+					Name:        "location",
+					Description: `Location of the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "address_space",
 					Description: `The list of address spaces used by the virtual network.`,
 				},
 				resource.Attribute{
@@ -850,8 +878,16 @@ Use this data source to access the properties of an Azure Virtual Network.
 					Description: `The list of DNS servers used by the virtual network.`,
 				},
 				resource.Attribute{
+					Name:        "guid",
+					Description: `The GUID of the virtual network.`,
+				},
+				resource.Attribute{
 					Name:        "subnets",
 					Description: `The list of name of the subnets that are attached to this virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_peerings",
+					Description: `A mapping of name - virtual network id of the virtual network peerings.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -860,7 +896,11 @@ Use this data source to access the properties of an Azure Virtual Network.
 					Description: `The ID of the virtual network.`,
 				},
 				resource.Attribute{
-					Name:        "address_spaces",
+					Name:        "location",
+					Description: `Location of the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "address_space",
 					Description: `The list of address spaces used by the virtual network.`,
 				},
 				resource.Attribute{
@@ -868,8 +908,16 @@ Use this data source to access the properties of an Azure Virtual Network.
 					Description: `The list of DNS servers used by the virtual network.`,
 				},
 				resource.Attribute{
+					Name:        "guid",
+					Description: `The GUID of the virtual network.`,
+				},
+				resource.Attribute{
 					Name:        "subnets",
 					Description: `The list of name of the subnets that are attached to this virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_peerings",
+					Description: `A mapping of name - virtual network id of the virtual network peerings.`,
 				},
 			},
 		},

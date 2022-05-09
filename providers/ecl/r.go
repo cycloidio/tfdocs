@@ -394,7 +394,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform.`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Import Compute instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_compute_instance_v2.instance_1 f42dbc37-4642-4628-8b47-50bf95d8fdd5 ` + "`" + `` + "`" + `` + "`" + ` Following arguments are not supported, empty characters or default values are output.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -456,7 +456,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform.`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Import Compute instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ecl_compute_instance_v2.instance_1 f42dbc37-4642-4628-8b47-50bf95d8fdd5 ` + "`" + `` + "`" + `` + "`" + ` Following arguments are not supported, empty characters or default values are output.`,
 				},
 			},
 		},

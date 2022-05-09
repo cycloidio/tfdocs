@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "splunkconfig_app_auto_version",
+			Category:         "Resources",
+			ShortDescription: `Generate an App's version based on content changes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "splunkconfig_app_package",
 			Category:         "Resources",
 			ShortDescription: `Create a tarball for an app. Generated app.conf's version will be automatically incremented when app content changes.`,
@@ -23,7 +33,8 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"splunkconfig_app_package": 0,
+		"splunkconfig_app_auto_version": 0,
+		"splunkconfig_app_package":      1,
 	}
 )
 

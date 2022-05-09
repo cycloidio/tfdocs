@@ -34,6 +34,10 @@ Use this data source to get information about a Heroku Addon.
 					Description: `The add-on name`,
 				},
 				resource.Attribute{
+					Name:        "app_id",
+					Description: `Heroku app ID`,
+				},
+				resource.Attribute{
 					Name:        "plan",
 					Description: `The plan name`,
 				},
@@ -54,6 +58,10 @@ Use this data source to get information about a Heroku Addon.
 				resource.Attribute{
 					Name:        "name",
 					Description: `The add-on name`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `Heroku app ID`,
 				},
 				resource.Attribute{
 					Name:        "plan",

@@ -1919,6 +1919,106 @@ This module can provide useful for get detail of NAT Gateway created before.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_network_acl_deny_allow_groups",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+This resource is useful for look up the list of Network ACL Deny-Allow Group in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_group_no_list",
+					Description: `(Optional) List of Deny-Allow Group ID to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `(Optional) The ID of the specific VPC to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) name of the specific Deny-Allow Group to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_groups",
+					Description: `The list of Deny-Allow Group ### Network ACL Deny Allow Group Reference ` + "`" + `network_acl_deny_allow_groups` + "`" + ` are also exported with the following attributes, where are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_group_no",
+					Description: `The ID of Deny-Allow Group. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `The ID of the associated VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `list of IP address that registered in the Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of Deny-Allow Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_groups",
+					Description: `The list of Deny-Allow Group ### Network ACL Deny Allow Group Reference ` + "`" + `network_acl_deny_allow_groups` + "`" + ` are also exported with the following attributes, where are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_group_no",
+					Description: `The ID of Deny-Allow Group. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `The ID of the associated VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `list of IP address that registered in the Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of Deny-Allow Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_network_acls",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -2133,6 +2233,393 @@ This module can be useful for getting detail of Network Interface created before
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_nks_cluster",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Kubernetes Service cluster data.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Required) Cluster uuid. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Control Plane API address.`,
+				},
+				resource.Attribute{
+					Name:        "lb_private_subnet_no",
+					Description: `Subnet No. for private loadbalancer only.`,
+				},
+				resource.Attribute{
+					Name:        "lb_public_subnet_no",
+					Description: `Subnet No. for public loadbalancer only. (Available only ` + "`" + `SGN` + "`" + ` region` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no_list",
+					Description: `Subnet No. list.`,
+				},
+				resource.Attribute{
+					Name:        "kube_network_plugin",
+					Description: `Kubernetes network plugin.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `Cluster type. ` + "`" + `Maximum number of nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `Login key name.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `zone Code.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC No.`,
+				},
+				resource.Attribute{
+					Name:        "audit",
+					Description: `Audit log availability.`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `Kubenretes version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Control Plane API address.`,
+				},
+				resource.Attribute{
+					Name:        "lb_private_subnet_no",
+					Description: `Subnet No. for private loadbalancer only.`,
+				},
+				resource.Attribute{
+					Name:        "lb_public_subnet_no",
+					Description: `Subnet No. for public loadbalancer only. (Available only ` + "`" + `SGN` + "`" + ` region` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no_list",
+					Description: `Subnet No. list.`,
+				},
+				resource.Attribute{
+					Name:        "kube_network_plugin",
+					Description: `Kubernetes network plugin.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `Cluster type. ` + "`" + `Maximum number of nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `Login key name.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `zone Code.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC No.`,
+				},
+				resource.Attribute{
+					Name:        "audit",
+					Description: `Audit log availability.`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `Kubenretes version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_clusters",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of Kubernetes Service cluster uuid.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Ncloud Region.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuids",
+					Description: `Set of NKS Clusters uuids`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_kube_config",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a kubeconfig from Kubernetes Service cluster.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required) Cluster uuid. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `Client certificate on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `Client key on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `Cluster CA certificate on kubeconfig.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `Client certificate on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `Client key on kubeconfig.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `Cluster CA certificate on kubeconfig.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_node_pool",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Kubernetes Service nodepool data.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_pool_name",
+					Description: `(Required) The name of nodepool.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required) Cluster uuid. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of nodepool.` + "`" + `CusterUuid:NodePoolName` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of nodes.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `Product code.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Auto scaling availability.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `Maximum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `Minimum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet No.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `Instance No.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of nodepool.` + "`" + `CusterUuid:NodePoolName` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of nodes.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `Product code.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Auto scaling availability.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `Maximum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `Minimum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet No.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `Instance No.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_node_pools",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of Kubernetes Service nodepool name.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required) Cluster uuid. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "node_pool_names",
+					Description: `Set of all node pool names in NKS Clusters.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "node_pool_names",
+					Description: `Set of all node pool names in NKS Clusters.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_versions",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of available Kubernetes Service versions.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of verions`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Version label`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Version value`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A list of verions`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Version label`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Version value`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_placement_group",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -2180,10 +2667,6 @@ When a server is created for the first time, a public IP address for port forwar
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "internet_line_type_code",
-					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
-				},
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Region code. Get available values using the data source ` + "`" + `ncloud_regions` + "`" + `. Default: KR region.`,
@@ -2237,10 +2720,6 @@ When a server is created for the first time, a public IP address for port forwar
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "internet_line_type_code",
-					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
-				},
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Region code. Get available values using the data source ` + "`" + `ncloud_regions` + "`" + `. Default: KR region.`,
@@ -2328,10 +2807,6 @@ Get public IP instance.
 				resource.Attribute{
 					Name:        "is_associated",
 					Description: `(Optional) Indicates whether the public IP address is associated or not. ~>`,
-				},
-				resource.Attribute{
-					Name:        "internet_line_type",
-					Description: `(Optional) Internet line type code. ` + "`" + `PUBLC` + "`" + ` (Public), ` + "`" + `GLBL` + "`" + ` (Global)`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -2739,11 +3214,7 @@ This module can be useful for getting detail of Server instance created before.
 				},
 				resource.Attribute{
 					Name:        "port_forwarding_internal_port",
-					Description: `Port forwarding internal port`,
-				},
-				resource.Attribute{
-					Name:        "internet_line_type",
-					Description: `Internet line identification code. PUBLC(Public), GLBL(Global). ~>`,
+					Description: `Port forwarding internal port ~>`,
 				},
 				resource.Attribute{
 					Name:        "vpc_no",
@@ -3057,10 +3528,6 @@ To this end, we provide data source by which you can search a server product.
 					Description: `(Optional) Zone code. You can decide a zone where servers are created. You can decide which zone the product list will be requested in. default : Select the first Zone in the specific region. Get available values using the data source ` + "`" + `ncloud_zones` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "internet_line_type_code",
-					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
-				},
-				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Custom filter block as described below.`,
 				},
@@ -3184,10 +3651,6 @@ To this end, we provide data source by which you can search a server product.
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) Zone code. You can decide a zone where servers are created. You can decide which zone the product list will be requested in. default : Select the first Zone in the specific region. Get available values using the data source ` + "`" + `ncloud_zones` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "internet_line_type_code",
-					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -3853,46 +4316,53 @@ Gets a list of available zones.
 
 	dataSourcesMap = map[string]int{
 
-		"ncloud_access_control_group":   0,
-		"ncloud_access_control_groups":  1,
-		"ncloud_access_control_rule":    2,
-		"ncloud_access_control_rules":   3,
-		"ncloud_auto_scaling_group":     4,
-		"ncloud_auto_scaling_policy":    5,
-		"ncloud_auto_scaling_schedule":  6,
-		"ncloud_block_storage":          7,
-		"ncloud_block_storage_snapshot": 8,
-		"ncloud_init_script":            9,
-		"ncloud_launch_configuration":   10,
-		"ncloud_lb":                     11,
-		"ncloud_lb_listener":            12,
-		"ncloud_lb_target_group":        13,
-		"ncloud_member_server_image":    14,
-		"ncloud_member_server_images":   15,
-		"ncloud_nas_volume":             16,
-		"ncloud_nas_volumes":            17,
-		"ncloud_nat_gateway":            18,
-		"ncloud_network_acls":           19,
-		"ncloud_network_interface":      20,
-		"ncloud_placement_group":        21,
-		"ncloud_port_forwarding_rule":   22,
-		"ncloud_port_forwarding_rules":  23,
-		"ncloud_public_ip":              24,
-		"ncloud_regions":                25,
-		"ncloud_root_password":          26,
-		"ncloud_route_table":            27,
-		"ncloud_route_tables":           28,
-		"ncloud_server":                 29,
-		"ncloud_server_image":           30,
-		"ncloud_server_images":          31,
-		"ncloud_server_product":         32,
-		"ncloud_server_products":        33,
-		"ncloud_subnet":                 34,
-		"ncloud_subnets":                35,
-		"ncloud_vpc":                    36,
-		"ncloud_vpc_peering":            37,
-		"ncloud_vpcs":                   38,
-		"ncloud_zones":                  39,
+		"ncloud_access_control_group":          0,
+		"ncloud_access_control_groups":         1,
+		"ncloud_access_control_rule":           2,
+		"ncloud_access_control_rules":          3,
+		"ncloud_auto_scaling_group":            4,
+		"ncloud_auto_scaling_policy":           5,
+		"ncloud_auto_scaling_schedule":         6,
+		"ncloud_block_storage":                 7,
+		"ncloud_block_storage_snapshot":        8,
+		"ncloud_init_script":                   9,
+		"ncloud_launch_configuration":          10,
+		"ncloud_lb":                            11,
+		"ncloud_lb_listener":                   12,
+		"ncloud_lb_target_group":               13,
+		"ncloud_member_server_image":           14,
+		"ncloud_member_server_images":          15,
+		"ncloud_nas_volume":                    16,
+		"ncloud_nas_volumes":                   17,
+		"ncloud_nat_gateway":                   18,
+		"ncloud_network_acl_deny_allow_groups": 19,
+		"ncloud_network_acls":                  20,
+		"ncloud_network_interface":             21,
+		"ncloud_nks_cluster":                   22,
+		"ncloud_nks_clusters":                  23,
+		"ncloud_nks_kube_config":               24,
+		"ncloud_nks_node_pool":                 25,
+		"ncloud_nks_node_pools":                26,
+		"ncloud_nks_versions":                  27,
+		"ncloud_placement_group":               28,
+		"ncloud_port_forwarding_rule":          29,
+		"ncloud_port_forwarding_rules":         30,
+		"ncloud_public_ip":                     31,
+		"ncloud_regions":                       32,
+		"ncloud_root_password":                 33,
+		"ncloud_route_table":                   34,
+		"ncloud_route_tables":                  35,
+		"ncloud_server":                        36,
+		"ncloud_server_image":                  37,
+		"ncloud_server_images":                 38,
+		"ncloud_server_product":                39,
+		"ncloud_server_products":               40,
+		"ncloud_subnet":                        41,
+		"ncloud_subnets":                       42,
+		"ncloud_vpc":                           43,
+		"ncloud_vpc_peering":                   44,
+		"ncloud_vpcs":                          45,
+		"ncloud_zones":                         46,
 	}
 )
 

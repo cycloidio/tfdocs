@@ -11,6 +11,20 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_audit_log_subscription",
+			Category:         "Resources",
+			ShortDescription: `Create and manage LaunchDarkly integration audit log subscriptions.`,
+			Description:      ``,
+			Keywords: []string{
+				"audit",
+				"log",
+				"subscription",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_custom_role",
 			Category:         "Resources",
 			ShortDescription: `Create and manage LaunchDarkly custom roles.`,
@@ -75,6 +89,31 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_flag_trigger",
+			Category:         "Resources",
+			ShortDescription: `Create and manage LaunchDarkly flag triggers.`,
+			Description:      ``,
+			Keywords: []string{
+				"flag",
+				"trigger",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "launchdarkly_metric",
+			Category:         "Resources",
+			ShortDescription: `Create and manage LaunchDarkly metrics.`,
+			Description:      ``,
+			Keywords: []string{
+				"metric",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_project",
 			Category:         "Resources",
 			ShortDescription: `Create and manage LaunchDarkly projects.`,
@@ -126,15 +165,18 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"launchdarkly_custom_role":              0,
-		"launchdarkly_destination":              1,
-		"launchdarkly_environment":              2,
-		"launchdarkly_feature_flag":             3,
-		"launchdarkly_feature_flag_environment": 4,
-		"launchdarkly_project":                  5,
-		"launchdarkly_segment":                  6,
-		"launchdarkly_team_member":              7,
-		"launchdarkly_webhook":                  8,
+		"launchdarkly_audit_log_subscription":   0,
+		"launchdarkly_custom_role":              1,
+		"launchdarkly_destination":              2,
+		"launchdarkly_environment":              3,
+		"launchdarkly_feature_flag":             4,
+		"launchdarkly_feature_flag_environment": 5,
+		"launchdarkly_flag_trigger":             6,
+		"launchdarkly_metric":                   7,
+		"launchdarkly_project":                  8,
+		"launchdarkly_segment":                  9,
+		"launchdarkly_team_member":              10,
+		"launchdarkly_webhook":                  11,
 	}
 )
 

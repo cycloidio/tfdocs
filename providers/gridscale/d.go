@@ -106,6 +106,14 @@ var (
 					Description: `The status of the schedule active or not.`,
 				},
 				resource.Attribute{
+					Name:        "backup_location_uuid",
+					Description: `UUID of the location where your backup is stored.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_name",
+					Description: `The human-readable name of backup location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The human-readable name of the backup schedule.`,
 				},
@@ -162,6 +170,14 @@ var (
 				resource.Attribute{
 					Name:        "active",
 					Description: `The status of the schedule active or not.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_uuid",
+					Description: `UUID of the location where your backup is stored.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_name",
+					Description: `The human-readable name of backup location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1370,6 +1386,50 @@ var (
 					Description: `Defines information about MAC spoofing protection.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_active",
+					Description: `Tell if DHCP is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_gateway",
+					Description: `The general IP Range configured for this network (/24 for private networks).`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_dns",
+					Description: `The IP address reserved and communicated by the dhcp service to be the default gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_range",
+					Description: `DHCP DNS.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_reserved_subnet",
+					Description: `Subrange within the IP range.`,
+				},
+				resource.Attribute{
+					Name:        "auto_assigned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the DHCP server.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "pinned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the user.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the network.`,
 				},
@@ -1422,6 +1482,50 @@ var (
 				resource.Attribute{
 					Name:        "l2security",
 					Description: `Defines information about MAC spoofing protection.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_active",
+					Description: `Tell if DHCP is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_gateway",
+					Description: `The general IP Range configured for this network (/24 for private networks).`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_dns",
+					Description: `The IP address reserved and communicated by the dhcp service to be the default gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_range",
+					Description: `DHCP DNS.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_reserved_subnet",
+					Description: `Subrange within the IP range.`,
+				},
+				resource.Attribute{
+					Name:        "auto_assigned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the DHCP server.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "pinned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the user.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -2014,12 +2118,16 @@ var (
 					Description: `Make this network the boot device. This can only be set for one network.`,
 				},
 				resource.Attribute{
-					Name:        "object_name",
-					Description: `Name of the network.`,
+					Name:        "ip",
+					Description: `DHCP IP which is manually assigned to the server (if applicable).`,
 				},
 				resource.Attribute{
-					Name:        "ordering",
-					Description: `Defines the ordering of the network interfaces. Lower numbers have lower PCI-IDs.`,
+					Name:        "auto_assigned_ip",
+					Description: `DHCP IP which is automatically assigned to the server (if applicable).`,
+				},
+				resource.Attribute{
+					Name:        "object_name",
+					Description: `Name of the network.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -2332,12 +2440,16 @@ var (
 					Description: `Make this network the boot device. This can only be set for one network.`,
 				},
 				resource.Attribute{
-					Name:        "object_name",
-					Description: `Name of the network.`,
+					Name:        "ip",
+					Description: `DHCP IP which is manually assigned to the server (if applicable).`,
 				},
 				resource.Attribute{
-					Name:        "ordering",
-					Description: `Defines the ordering of the network interfaces. Lower numbers have lower PCI-IDs.`,
+					Name:        "auto_assigned_ip",
+					Description: `DHCP IP which is automatically assigned to the server (if applicable).`,
+				},
+				resource.Attribute{
+					Name:        "object_name",
+					Description: `Name of the network.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",

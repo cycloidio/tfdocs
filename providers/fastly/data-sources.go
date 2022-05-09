@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "fastly_datacenters",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on Fastly datacenters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "fastly_ip_ranges",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on Fastly IP ranges.`,
@@ -209,21 +219,22 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"fastly_ip_ranges":                    0,
-		"fastly_tls_activation":               1,
-		"fastly_tls_activation_ids":           2,
-		"fastly_tls_certificate":              3,
-		"fastly_tls_certificate_ids":          4,
-		"fastly_tls_configuration":            5,
-		"fastly_tls_configuration_ids":        6,
-		"fastly_tls_domain":                   7,
-		"fastly_tls_platform_certificate":     8,
-		"fastly_tls_platform_certificate_ids": 9,
-		"fastly_tls_private_key":              10,
-		"fastly_tls_private_key_ids":          11,
-		"fastly_tls_subscription":             12,
-		"fastly_tls_subscription_ids":         13,
-		"fastly_waf_rules":                    14,
+		"fastly_datacenters":                  0,
+		"fastly_ip_ranges":                    1,
+		"fastly_tls_activation":               2,
+		"fastly_tls_activation_ids":           3,
+		"fastly_tls_certificate":              4,
+		"fastly_tls_certificate_ids":          5,
+		"fastly_tls_configuration":            6,
+		"fastly_tls_configuration_ids":        7,
+		"fastly_tls_domain":                   8,
+		"fastly_tls_platform_certificate":     9,
+		"fastly_tls_platform_certificate_ids": 10,
+		"fastly_tls_private_key":              11,
+		"fastly_tls_private_key_ids":          12,
+		"fastly_tls_subscription":             13,
+		"fastly_tls_subscription_ids":         14,
+		"fastly_waf_rules":                    15,
 	}
 )
 

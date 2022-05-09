@@ -19,7 +19,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "access_key_ids",
@@ -35,11 +35,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time of creation of the access key.`,
+					Description: `The date and time (UTC) of creation of the access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date (UTC) at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
-					Description: `The date and time of the last modification of the access key.`,
+					Description: `The date and time (UTC) of the last modification of the access key.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -53,11 +57,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time of creation of the access key.`,
+					Description: `The date and time (UTC) of creation of the access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date (UTC) at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
-					Description: `The date and time of the last modification of the access key.`,
+					Description: `The date and time (UTC) of the last modification of the access key.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -75,7 +83,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "access_key_ids",
@@ -95,11 +103,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time of creation of the access key.`,
+					Description: `The date and time (UTC) of creation of the access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date (UTC) at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
-					Description: `The date and time of the last modification of the access key.`,
+					Description: `The date and time (UTC) of the last modification of the access key.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -117,11 +129,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `The date and time of creation of the access key.`,
+					Description: `The date and time (UTC) of creation of the access key.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date (UTC) at which the access key expires.`,
 				},
 				resource.Attribute{
 					Name:        "last_modification_date",
-					Description: `The date and time of the last modification of the access key.`,
+					Description: `The date and time (UTC) of the last modification of the access key.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -139,7 +155,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "bgp_asns",
@@ -251,7 +267,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "bgp_asns",
@@ -371,7 +387,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "default",
@@ -410,24 +426,20 @@ var (
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `One or more IPs for the domain name servers.`,
 				},
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `The domain name.`,
 				},
 				resource.Attribute{
-					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
-				},
-				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -448,24 +460,20 @@ var (
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name_servers",
+					Description: `One or more IPs for the domain name servers.`,
 				},
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `The domain name.`,
 				},
 				resource.Attribute{
-					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
-				},
-				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -491,7 +499,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "default",
@@ -534,10 +542,6 @@ var (
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
 				},
@@ -547,11 +551,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
+					Description: `One or more IPs for the domain name servers.`,
 				},
 				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -576,10 +580,6 @@ var (
 					Description: `If true, the DHCP options set is a default one. If false, it is not.`,
 				},
 				resource.Attribute{
-					Name:        "dhcp_options_name",
-					Description: `The name of the DHCP options set.`,
-				},
-				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set.`,
 				},
@@ -589,11 +589,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "domain_name_servers",
-					Description: `One or more IP addresses for the domain name servers.`,
+					Description: `One or more IPs for the domain name servers.`,
 				},
 				resource.Attribute{
 					Name:        "ntp_servers",
-					Description: `One or more IP addresses for the NTP servers.`,
+					Description: `One or more IPs for the NTP servers.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -619,7 +619,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
@@ -635,7 +635,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_names",
-					Description: `(Optional) One or more models of fGPUs. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `(Optional) One or more models of fGPUs. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "states",
@@ -648,10 +648,6 @@ var (
 				resource.Attribute{
 					Name:        "vm_ids",
 					Description: `(Optional) One or more IDs of VMs. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "flexible_gpus",
-					Description: `Information about one or more fGPUs.`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
@@ -667,7 +663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -684,10 +680,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "flexible_gpus",
-					Description: `Information about one or more fGPUs.`,
-				},
-				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
 					Description: `If true, the fGPU is deleted when the VM is terminated.`,
 				},
@@ -701,7 +693,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -721,7 +713,7 @@ var (
 			Name:             "",
 			Type:             "flexible_gpu_catalog",
 			Category:         "Data Sources",
-			ShortDescription: `[Provides information about a specific flexible GPU catalog.]`,
+			ShortDescription: `[Provides information about the flexible GPU catalog.]`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -787,7 +779,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_vm_deletion",
@@ -803,7 +795,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_names",
-					Description: `(Optional) One or more models of fGPUs. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `(Optional) One or more models of fGPUs. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "states",
@@ -835,7 +827,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -869,7 +861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "model_name",
-					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://wiki.outscale.net/display/EN/About+Flexible+GPUs).`,
+					Description: `The model of fGPU. For more information, see [About Flexible GPUs](https://docs.outscale.com/en/userguide/About-Flexible-GPUs.html).`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -895,7 +887,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_aliases",
@@ -938,6 +930,10 @@ var (
 					Description: `(Optional) The locations of the buckets where the OMI files are stored.`,
 				},
 				resource.Attribute{
+					Name:        "hypervisors",
+					Description: `(Optional) The hypervisor type of the OMI (always ` + "`" + `xen` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "image_ids",
 					Description: `(Optional) The IDs of the OMIs.`,
 				},
@@ -952,6 +948,10 @@ var (
 				resource.Attribute{
 					Name:        "permissions_to_launch_global_permission",
 					Description: `(Optional) If true, lists all public OMIs. If false, lists all private OMIs.`,
+				},
+				resource.Attribute{
+					Name:        "product_codes",
+					Description: `(Optional) The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
 				},
 				resource.Attribute{
 					Name:        "root_device_names",
@@ -982,10 +982,6 @@ var (
 					Description: `(Optional) The virtualization types (always ` + "`" + `hvm` + "`" + `). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "images",
-					Description: `Information about one or more OMIs.`,
-				},
-				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the OMI.`,
 				},
@@ -1023,7 +1019,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1082,10 +1078,6 @@ var (
 					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_comment",
 					Description: `Information about the change of state.`,
 				},
@@ -1096,6 +1088,10 @@ var (
 				resource.Attribute{
 					Name:        "state_message",
 					Description: `A message explaining the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1112,10 +1108,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "images",
-					Description: `Information about one or more OMIs.`,
-				},
-				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the OMI.`,
 				},
@@ -1153,7 +1145,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1212,10 +1204,6 @@ var (
 					Description: `The type of root device used by the OMI (always ` + "`" + `bsu` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_comment",
 					Description: `Information about the change of state.`,
 				},
@@ -1226,6 +1214,10 @@ var (
 				resource.Attribute{
 					Name:        "state_message",
 					Description: `A message explaining the change of state.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI (` + "`" + `pending` + "`" + ` \| ` + "`" + `available` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1243,6 +1235,262 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "image_export_task",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about a specific image export task.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_ids",
+					Description: `(Optional) The IDs of the export tasks. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the image export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the image export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "image_export_tasks",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about image export tasks.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_ids",
+					Description: `(Optional) The IDs of the export tasks. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "image_export_tasks",
+					Description: `Information about one or more image export tasks.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the image export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "image_export_tasks",
+					Description: `Information about one or more image export tasks.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the OMI export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `The ID of the OMI to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the OMI export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the OMI is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_manifest_url",
+					Description: `The URL of the manifest file.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the image.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the OMI export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the OMI export task (` + "`" + `pending/queued` + "`" + ` \| ` + "`" + `pending` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + ` \| ` + "`" + `cancelled` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the image export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the OMI export task.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "images",
 			Category:         "Data Sources",
 			ShortDescription: `[Provides information about images.]`,
@@ -1251,7 +1499,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_aliases",
@@ -1294,6 +1542,10 @@ var (
 					Description: `(Optional) The locations of the buckets where the OMI files are stored.`,
 				},
 				resource.Attribute{
+					Name:        "hypervisors",
+					Description: `(Optional) The hypervisor type of the OMI (always ` + "`" + `xen` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "image_ids",
 					Description: `(Optional) The IDs of the OMIs.`,
 				},
@@ -1308,6 +1560,10 @@ var (
 				resource.Attribute{
 					Name:        "permissions_to_launch_global_permission",
 					Description: `(Optional) If true, lists all public OMIs. If false, lists all private OMIs.`,
+				},
+				resource.Attribute{
+					Name:        "product_codes",
+					Description: `(Optional) The product code associated with the OMI (` + "`" + `0001` + "`" + ` Linux/Unix \| ` + "`" + `0002` + "`" + ` Windows \| ` + "`" + `0004` + "`" + ` Linux/Oracle \| ` + "`" + `0005` + "`" + ` Windows 10).`,
 				},
 				resource.Attribute{
 					Name:        "root_device_names",
@@ -1379,7 +1635,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1509,7 +1765,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [Volume Types and IOPS](https://wiki.outscale.net/display/EN/About+Volumes#AboutVolumes-VolumeTypesVolumeTypesandIOPS).`,
+					Description: `The type of the volume (` + "`" + `standard` + "`" + ` \| ` + "`" + `io1` + "`" + ` \| ` + "`" + `gp2` + "`" + `). If not specified in the request, a ` + "`" + `standard` + "`" + ` volume is created.<br /> For more information about volume types, see [About Volumes > Volume Types and IOPS](https://docs.outscale.com/en/userguide/About-Volumes.html#_volume_types_and_iops).`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1607,7 +1863,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "internet_service_ids",
@@ -1634,10 +1890,6 @@ var (
 					Description: `(Optional) The key/value combination of the tags associated with the Internet services, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "internet_services",
-					Description: `Information about one or more Internet services.`,
-				},
-				resource.Attribute{
 					Name:        "internet_service_id",
 					Description: `The ID of the Internet service.`,
 				},
@@ -1647,7 +1899,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1664,10 +1916,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "internet_services",
-					Description: `Information about one or more Internet services.`,
-				},
-				resource.Attribute{
 					Name:        "internet_service_id",
 					Description: `The ID of the Internet service.`,
 				},
@@ -1677,7 +1925,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1703,7 +1951,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "internet_service_ids",
@@ -1743,7 +1991,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1773,7 +2021,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The state of the attachment of the Net to the Internet service (always ` + "`" + `available` + "`" + `).`,
+					Description: `The state of the attachment of the Internet service to the Net (always ` + "`" + `available` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1799,7 +2047,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprints",
@@ -1808,10 +2056,6 @@ var (
 				resource.Attribute{
 					Name:        "keypair_names",
 					Description: `(Optional) The names of the keypairs. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "keypairs",
-					Description: `Information about one or more keypairs.`,
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprint",
@@ -1823,10 +2067,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "keypairs",
-					Description: `Information about one or more keypairs.`,
-				},
 				resource.Attribute{
 					Name:        "keypair_fingerprint",
 					Description: `The MD5 public key fingerprint as specified in section 4 of RFC 4716.`,
@@ -1847,7 +2087,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "keypair_fingerprints",
@@ -1895,15 +2135,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_names",
 					Description: `(Optional) The names of the load balancers. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "load_balancers",
-					Description: `Information about one or more load balancers.`,
 				},
 				resource.Attribute{
 					Name:        "access_log",
@@ -2003,7 +2239,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2019,7 +2255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2043,11 +2279,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2064,10 +2300,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "load_balancers",
-					Description: `Information about one or more load balancers.`,
-				},
-				resource.Attribute{
 					Name:        "access_log",
 					Description: `Information about access logs.`,
 				},
@@ -2165,7 +2397,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2181,7 +2413,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2205,11 +2437,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2235,15 +2467,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "listener_rule_names",
 					Description: `(Optional) The names of the listener rules. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "listener_rules",
-					Description: `The list of the rules to describe.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -2279,10 +2507,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "listener_rules",
-					Description: `The list of the rules to describe.`,
-				},
 				resource.Attribute{
 					Name:        "action",
 					Description: `The type of action for the rule (always ` + "`" + `forward` + "`" + `).`,
@@ -2327,7 +2551,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "listener_rule_names",
@@ -2413,7 +2637,7 @@ var (
 			Name:             "",
 			Type:             "load_balancer_vm_health",
 			Category:         "Data Sources",
-			ShortDescription: `[Provides information about VM health of a specific load balancer.]`,
+			ShortDescription: `[Provides information about the health of one or more back-end VMs registered with a specific load balancer.]`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -2479,7 +2703,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_names",
@@ -2587,7 +2811,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2603,7 +2827,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2627,11 +2851,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2749,7 +2973,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_certificate_id",
-					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://wiki.outscale.net/display/EN/Resource+Identifiers#ResourceIdentifiers-ORNFormat).`,
+					Description: `The OUTSCALE Resource Name (ORN) of the server certificate. For more information, see [Resource Identifiers > OUTSCALE Resource Names (ORNs)](https://docs.outscale.com/en/userguide/Resource-Identifiers.html#_outscale_resource_names_orns).`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_name",
@@ -2765,7 +2989,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_type",
-					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP address.<br /> If ` + "`" + `LoadBalancerType` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP address.`,
+					Description: `The type of load balancer. Valid only for load balancers in a Net.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internet-facing` + "`" + `, the load balancer has a public DNS name that resolves to a public IP.<br /> If ` + "`" + `load_balancer_type` + "`" + ` is ` + "`" + `internal` + "`" + `, the load balancer has a public DNS name that resolves to a private IP.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -2789,11 +3013,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The IDs of the Subnets for the load balancer.`,
+					Description: `The ID of the Subnet in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `One or more names of Subregions for the load balancer.`,
+					Description: `The ID of the Subregion in which the load balancer was created.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2819,7 +3043,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "nat_service_ids",
@@ -2850,10 +3074,6 @@ var (
 					Description: `(Optional) The key/value combination of the tags associated with the NAT services, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "nat_services",
-					Description: `Information about one or more NAT services.`,
-				},
-				resource.Attribute{
 					Name:        "nat_service_id",
 					Description: `The ID of the NAT service.`,
 				},
@@ -2863,15 +3083,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -2896,10 +3116,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "nat_services",
-					Description: `Information about one or more NAT services.`,
-				},
-				resource.Attribute{
 					Name:        "nat_service_id",
 					Description: `The ID of the NAT service.`,
 				},
@@ -2909,15 +3125,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -2951,7 +3167,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "nat_service_ids",
@@ -2995,15 +3211,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -3041,15 +3257,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about the External IP address or addresses (EIPs) associated with the NAT service.`,
+					Description: `Information about the public IP or IPs associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP associated with the NAT service.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -3083,7 +3299,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_set_ids",
@@ -3112,10 +3328,6 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The key/value combination of the tags associated with the Nets, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "nets",
-					Description: `Information about the described Nets.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_set_id",
@@ -3151,10 +3363,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "nets",
-					Description: `Information about the described Nets.`,
-				},
 				resource.Attribute{
 					Name:        "dhcp_options_set_id",
 					Description: `The ID of the DHCP options set (or ` + "`" + `default` + "`" + ` if you want to associate the default one).`,
@@ -3199,7 +3407,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "net_access_point_ids",
@@ -3228,10 +3436,6 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The key/value combination of the tags associated with the Net access points, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "net_access_points",
-					Description: `One or more Net access points.`,
 				},
 				resource.Attribute{
 					Name:        "net_access_point_id",
@@ -3267,10 +3471,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "net_access_points",
-					Description: `One or more Net access points.`,
-				},
 				resource.Attribute{
 					Name:        "net_access_point_id",
 					Description: `The ID of the Net access point.`,
@@ -3315,7 +3515,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "service_ids",
@@ -3371,7 +3571,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "net_access_point_ids",
@@ -3481,7 +3681,7 @@ var (
 			Name:             "",
 			Type:             "net_attributes",
 			Category:         "Data Sources",
-			ShortDescription: `[Provides information about Net attributes.]`,
+			ShortDescription: `[Provides information about a specific Net attributes.]`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -3567,7 +3767,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "accepter_net_account_ids",
@@ -3616,10 +3816,6 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The key/value combination of the tags associated with the Net peering connections, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "net_peerings",
-					Description: `Information about one or more Net peering connections.`,
 				},
 				resource.Attribute{
 					Name:        "accepter_net",
@@ -3683,10 +3879,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "net_peerings",
-					Description: `Information about one or more Net peering connections.`,
-				},
 				resource.Attribute{
 					Name:        "accepter_net",
 					Description: `Information about the accepter Net.`,
@@ -3759,7 +3951,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "accepter_net_account_ids",
@@ -3951,7 +4143,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_options_set_ids",
@@ -4067,27 +4259,119 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `(Optional) The descriptions of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "is_source_dest_check",
+					Description: `(Optional) Whether the source/destination checking is enabled (true) or disabled (false).`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_delete_on_vm_deletion",
+					Description: `(Optional) Whether the NICs are deleted when the VMs they are attached to are terminated.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_device_numbers",
+					Description: `(Optional) The device numbers the NICs are attached to.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_link_nic_ids",
+					Description: `(Optional) The attachment IDs of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_states",
+					Description: `(Optional) The states of the attachments.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_vm_account_ids",
+					Description: `(Optional) The account IDs of the owners of the VMs the NICs are attached to.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic_vm_ids",
 					Description: `(Optional) The IDs of the VMs the NICs are attached to.`,
 				},
 				resource.Attribute{
+					Name:        "link_public_ip_account_ids",
+					Description: `(Optional) The account IDs of the owners of the public IPs associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_link_public_ip_ids",
+					Description: `(Optional) The association IDs returned when the public IPs were associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_public_ip_ids",
+					Description: `(Optional) The allocation IDs returned when the public IPs were allocated to their accounts.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_public_ips",
+					Description: `(Optional) The public IPs associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "mac_addresses",
+					Description: `(Optional) The Media Access Control (MAC) addresses of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "net_ids",
+					Description: `(Optional) The IDs of the Nets where the NICs are located.`,
+				},
+				resource.Attribute{
 					Name:        "nic_ids",
 					Description: `(Optional) The IDs of the NICs.`,
 				},
 				resource.Attribute{
+					Name:        "private_dns_names",
+					Description: `(Optional) The private DNS names associated with the primary private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_link_public_ip_account_ids",
+					Description: `(Optional) The account IDs of the owner of the public IPs associated with the private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_link_public_ip_public_ips",
+					Description: `(Optional) The public IPs associated with the private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_primary_ip",
+					Description: `(Optional) Whether the private IP is the primary IP associated with the NIC.`,
+				},
+				resource.Attribute{
 					Name:        "private_ips_private_ips",
-					Description: `(Optional) The private IP addresses of the NICs.`,
+					Description: `(Optional) The private IPs of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) The IDs of the security groups associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_names",
+					Description: `(Optional) The names of the security groups associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "states",
+					Description: `(Optional) The states of the NICs.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Optional) The IDs of the Subnets for the NICs. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The IDs of the Subnets for the NICs.`,
 				},
 				resource.Attribute{
-					Name:        "nics",
-					Description: `Information about one or more NICs.`,
+					Name:        "subregion_names",
+					Description: `(Optional) The Subregions where the NICs are located.`,
+				},
+				resource.Attribute{
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the NICs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
@@ -4131,11 +4415,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4143,15 +4427,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -4171,19 +4455,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4191,15 +4475,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -4207,7 +4491,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -4248,10 +4532,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "nics",
-					Description: `Information about one or more NICs.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of the owner of the NIC.`,
 				},
@@ -4293,11 +4573,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4305,15 +4585,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -4333,19 +4613,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4353,15 +4633,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -4369,7 +4649,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -4419,23 +4699,119 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `(Optional) The descriptions of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "is_source_dest_check",
+					Description: `(Optional) Whether the source/destination checking is enabled (true) or disabled (false).`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_delete_on_vm_deletion",
+					Description: `(Optional) Whether the NICs are deleted when the VMs they are attached to are terminated.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_device_numbers",
+					Description: `(Optional) The device numbers the NICs are attached to.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_link_nic_ids",
+					Description: `(Optional) The attachment IDs of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_states",
+					Description: `(Optional) The states of the attachments.`,
+				},
+				resource.Attribute{
+					Name:        "link_nic_vm_account_ids",
+					Description: `(Optional) The account IDs of the owners of the VMs the NICs are attached to.`,
 				},
 				resource.Attribute{
 					Name:        "link_nic_vm_ids",
 					Description: `(Optional) The IDs of the VMs the NICs are attached to.`,
 				},
 				resource.Attribute{
+					Name:        "link_public_ip_account_ids",
+					Description: `(Optional) The account IDs of the owners of the public IPs associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_link_public_ip_ids",
+					Description: `(Optional) The association IDs returned when the public IPs were associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_public_ip_ids",
+					Description: `(Optional) The allocation IDs returned when the public IPs were allocated to their accounts.`,
+				},
+				resource.Attribute{
+					Name:        "link_public_ip_public_ips",
+					Description: `(Optional) The public IPs associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "mac_addresses",
+					Description: `(Optional) The Media Access Control (MAC) addresses of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "net_ids",
+					Description: `(Optional) The IDs of the Nets where the NICs are located.`,
+				},
+				resource.Attribute{
 					Name:        "nic_ids",
 					Description: `(Optional) The IDs of the NICs.`,
 				},
 				resource.Attribute{
+					Name:        "private_dns_names",
+					Description: `(Optional) The private DNS names associated with the primary private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_link_public_ip_account_ids",
+					Description: `(Optional) The account IDs of the owner of the public IPs associated with the private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_link_public_ip_public_ips",
+					Description: `(Optional) The public IPs associated with the private IPs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips_primary_ip",
+					Description: `(Optional) Whether the private IP is the primary IP associated with the NIC.`,
+				},
+				resource.Attribute{
 					Name:        "private_ips_private_ips",
-					Description: `(Optional) The private IP addresses of the NICs.`,
+					Description: `(Optional) The private IPs of the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) The IDs of the security groups associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_names",
+					Description: `(Optional) The names of the security groups associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "states",
+					Description: `(Optional) The states of the NICs.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_ids",
-					Description: `(Optional) The IDs of the Subnets for the NICs. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The IDs of the Subnets for the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "subregion_names",
+					Description: `(Optional) The Subregions where the NICs are located.`,
+				},
+				resource.Attribute{
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the NICs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the NICs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "nics",
@@ -4483,11 +4859,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4495,15 +4871,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -4523,19 +4899,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4543,15 +4919,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -4559,7 +4935,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -4645,11 +5021,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4657,15 +5033,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -4685,19 +5061,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP addresses of the NIC.`,
+					Description: `The private IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP association.`,
+					Description: `Information about the public IP association.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -4705,15 +5081,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -4721,7 +5097,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address of the NIC.`,
+					Description: `The private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -4778,10 +5154,6 @@ var (
 					Description: `(Optional) The IDs of the product types. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "product_types",
-					Description: `Information about one or more product types.`,
-				},
-				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the product type.`,
 				},
@@ -4795,10 +5167,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "product_types",
-					Description: `Information about one or more product types.`,
-				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the product type.`,
@@ -4875,11 +5243,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_ids",
-					Description: `(Optional) The IDs representing the associations of EIPs with VMs or NICs.`,
+					Description: `(Optional) The IDs representing the associations of public IPs with VMs or NICs.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_ids",
@@ -4891,43 +5259,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "placements",
-					Description: `(Optional) Whether the EIPs are for use in the public Cloud or in a Net.`,
+					Description: `(Optional) Whether the public IPs are for use in the public Cloud or in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) The private IP addresses associated with the EIPs.`,
+					Description: `(Optional) The private IPs associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_ids",
-					Description: `(Optional) The IDs of the External IP addresses (EIPs).`,
+					Description: `(Optional) The IDs of the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `(Optional) The External IP addresses (EIPs).`,
+					Description: `(Optional) The public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tag_keys",
-					Description: `(Optional) The keys of the tags associated with the EIPs.`,
+					Description: `(Optional) The keys of the tags associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tag_values",
-					Description: `(Optional) The values of the tags associated with the EIPs.`,
+					Description: `(Optional) The values of the tags associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) The key/value combination of the tags associated with the EIPs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
+					Description: `(Optional) The key/value combination of the tags associated with the public IPs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
 				},
 				resource.Attribute{
 					Name:        "vm_ids",
 					Description: `(Optional) The IDs of the VMs. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "public_ips",
-					Description: `Information about one or more EIPs.`,
-				},
-				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -4935,23 +5299,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -4963,17 +5327,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any).`,
+					Description: `The ID of the VM the public IP is associated with (if any).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "public_ips",
-					Description: `Information about one or more EIPs.`,
-				},
-				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -4981,23 +5341,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -5009,7 +5369,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any).`,
+					Description: `The ID of the VM the public IP is associated with (if any).`,
 				},
 			},
 		},
@@ -5023,11 +5383,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_ids",
-					Description: `(Optional) The IDs representing the associations of EIPs with VMs or NICs.`,
+					Description: `(Optional) The IDs representing the associations of public IPs with VMs or NICs.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_ids",
@@ -5039,31 +5399,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "placements",
-					Description: `(Optional) Whether the EIPs are for use in the public Cloud or in a Net.`,
+					Description: `(Optional) Whether the public IPs are for use in the public Cloud or in a Net.`,
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `(Optional) The private IP addresses associated with the EIPs.`,
+					Description: `(Optional) The private IPs associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_ids",
-					Description: `(Optional) The IDs of the External IP addresses (EIPs).`,
+					Description: `(Optional) The IDs of the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `(Optional) The External IP addresses (EIPs).`,
+					Description: `(Optional) The public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tag_keys",
-					Description: `(Optional) The keys of the tags associated with the EIPs.`,
+					Description: `(Optional) The keys of the tags associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tag_values",
-					Description: `(Optional) The values of the tags associated with the EIPs.`,
+					Description: `(Optional) The values of the tags associated with the public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) The key/value combination of the tags associated with the EIPs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
+					Description: `(Optional) The key/value combination of the tags associated with the public IPs, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
 				},
 				resource.Attribute{
 					Name:        "vm_ids",
@@ -5071,11 +5431,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about one or more EIPs.`,
+					Description: `Information about one or more public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -5083,23 +5443,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -5111,17 +5471,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any).`,
+					Description: `The ID of the VM the public IP is associated with (if any).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Information about one or more EIPs.`,
+					Description: `Information about one or more public IPs.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip_id",
-					Description: `(Required in a Net) The ID representing the association of the EIP with the VM or the NIC.`,
+					Description: `(Required in a Net) The ID representing the association of the public IP with the VM or the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "nic_account_id",
@@ -5129,23 +5489,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nic_id",
-					Description: `The ID of the NIC the EIP is associated with (if any).`,
+					Description: `The ID of the NIC the public IP is associated with (if any).`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address associated with the EIP.`,
+					Description: `The private IP associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NAT service.`,
+					Description: `The public IP.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_id",
-					Description: `The allocation ID of the EIP associated with the NAT service.`,
+					Description: `The allocation ID of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `One or more tags associated with the EIP.`,
+					Description: `One or more tags associated with the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -5157,7 +5517,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_id",
-					Description: `The ID of the VM the External IP (EIP) is associated with (if any).`,
+					Description: `The ID of the VM the public IP is associated with (if any).`,
 				},
 			},
 		},
@@ -5190,18 +5550,6 @@ var (
 					Description: `(Optional) The description of the quotas. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "quota_types",
-					Description: `Information about one or more quotas.`,
-				},
-				resource.Attribute{
-					Name:        "quota_type",
-					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
-				},
-				resource.Attribute{
-					Name:        "quotas",
-					Description: `One or more quotas associated with the user.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of the owner of the quotas.`,
 				},
@@ -5220,6 +5568,10 @@ var (
 				resource.Attribute{
 					Name:        "quota_collection",
 					Description: `The group name of the quota.`,
+				},
+				resource.Attribute{
+					Name:        "quota_type",
+					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
 				},
 				resource.Attribute{
 					Name:        "short_description",
@@ -5232,18 +5584,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "quota_types",
-					Description: `Information about one or more quotas.`,
-				},
-				resource.Attribute{
-					Name:        "quota_type",
-					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
-				},
-				resource.Attribute{
-					Name:        "quotas",
-					Description: `One or more quotas associated with the user.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of the owner of the quotas.`,
 				},
@@ -5262,6 +5602,10 @@ var (
 				resource.Attribute{
 					Name:        "quota_collection",
 					Description: `The group name of the quota.`,
+				},
+				resource.Attribute{
+					Name:        "quota_type",
+					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
 				},
 				resource.Attribute{
 					Name:        "short_description",
@@ -5302,14 +5646,6 @@ var (
 					Description: `(Optional) The description of the quotas. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "quota_types",
-					Description: `Information about one or more quotas.`,
-				},
-				resource.Attribute{
-					Name:        "quota_type",
-					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
-				},
-				resource.Attribute{
 					Name:        "quotas",
 					Description: `One or more quotas associated with the user.`,
 				},
@@ -5332,6 +5668,10 @@ var (
 				resource.Attribute{
 					Name:        "quota_collection",
 					Description: `The group name of the quota.`,
+				},
+				resource.Attribute{
+					Name:        "quota_type",
+					Description: `The ressource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
 				},
 				resource.Attribute{
 					Name:        "short_description",
@@ -5344,14 +5684,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "quota_types",
-					Description: `Information about one or more quotas.`,
-				},
-				resource.Attribute{
-					Name:        "quota_type",
-					Description: `The resource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
-				},
-				resource.Attribute{
 					Name:        "quotas",
 					Description: `One or more quotas associated with the user.`,
 				},
@@ -5374,6 +5706,10 @@ var (
 				resource.Attribute{
 					Name:        "quota_collection",
 					Description: `The group name of the quota.`,
+				},
+				resource.Attribute{
+					Name:        "quota_type",
+					Description: `The ressource ID if it is a resource-specific quota, ` + "`" + `global` + "`" + ` if it is not.`,
 				},
 				resource.Attribute{
 					Name:        "short_description",
@@ -5431,7 +5767,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "link_route_table_ids",
@@ -5500,10 +5836,6 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) The key/value combination of the tags associated with the route tables, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "route_tables",
-					Description: `Information about one or more route tables.`,
 				},
 				resource.Attribute{
 					Name:        "link_route_tables",
@@ -5603,10 +5935,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "route_tables",
-					Description: `Information about one or more route tables.`,
-				},
 				resource.Attribute{
 					Name:        "link_route_tables",
 					Description: `One or more associations between the route table and Subnets.`,
@@ -5715,7 +6043,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "link_route_table_ids",
@@ -5999,11 +6327,75 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
 					Description: `(Optional) The account IDs of the owners of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `(Optional) The descriptions of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_account_ids",
+					Description: `(Optional) The account IDs that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_from_port_ranges",
+					Description: `(Optional) The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_ip_ranges",
+					Description: `(Optional) The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_protocols",
+					Description: `(Optional) The IP protocols for the permissions (` + "`" + `tcp` + "`" + ` \| ` + "`" + `udp` + "`" + ` \| ` + "`" + `icmp` + "`" + `, or a protocol number, or ` + "`" + `-1` + "`" + ` for all protocols).`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_security_group_ids",
+					Description: `(Optional) The IDs of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_security_group_names",
+					Description: `(Optional) The names of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_to_port_ranges",
+					Description: `(Optional) The ends of the port ranges for the TCP and UDP protocols, or the ICMP codes.`,
+				},
+				resource.Attribute{
+					Name:        "net_ids",
+					Description: `(Optional) The IDs of the Nets specified when the security groups were created.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_account_ids",
+					Description: `(Optional) The account IDs that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_from_port_ranges",
+					Description: `(Optional) The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_ip_ranges",
+					Description: `(Optional) The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_protocols",
+					Description: `(Optional) The IP protocols for the permissions (` + "`" + `tcp` + "`" + ` \| ` + "`" + `udp` + "`" + ` \| ` + "`" + `icmp` + "`" + `, or a protocol number, or ` + "`" + `-1` + "`" + ` for all protocols).`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_security_group_ids",
+					Description: `(Optional) The IDs of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_security_group_names",
+					Description: `(Optional) The names of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_to_port_ranges",
+					Description: `(Optional) The ends of the port ranges for the TCP and UDP protocols, or the ICMP codes.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -6026,10 +6418,6 @@ var (
 					Description: `(Optional) The key/value combination of the tags associated with the security groups, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "security_groups",
-					Description: `Information about one or more security groups.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of a user that has been granted permission.`,
 				},
@@ -6047,7 +6435,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6091,7 +6479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6144,10 +6532,6 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "security_groups",
-					Description: `Information about one or more security groups.`,
-				},
-				resource.Attribute{
 					Name:        "account_id",
 					Description: `The account ID of a user that has been granted permission.`,
 				},
@@ -6165,7 +6549,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6209,7 +6593,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6271,11 +6655,75 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_ids",
 					Description: `(Optional) The account IDs of the owners of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `(Optional) The descriptions of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_account_ids",
+					Description: `(Optional) The account IDs that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_from_port_ranges",
+					Description: `(Optional) The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_ip_ranges",
+					Description: `(Optional) The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_protocols",
+					Description: `(Optional) The IP protocols for the permissions (` + "`" + `tcp` + "`" + ` \| ` + "`" + `udp` + "`" + ` \| ` + "`" + `icmp` + "`" + `, or a protocol number, or ` + "`" + `-1` + "`" + ` for all protocols).`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_security_group_ids",
+					Description: `(Optional) The IDs of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_security_group_names",
+					Description: `(Optional) The names of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_rule_to_port_ranges",
+					Description: `(Optional) The ends of the port ranges for the TCP and UDP protocols, or the ICMP codes.`,
+				},
+				resource.Attribute{
+					Name:        "net_ids",
+					Description: `(Optional) The IDs of the Nets specified when the security groups were created.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_account_ids",
+					Description: `(Optional) The account IDs that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_from_port_ranges",
+					Description: `(Optional) The beginnings of the port ranges for the TCP and UDP protocols, or the ICMP type numbers.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_ip_ranges",
+					Description: `(Optional) The IP ranges that have been granted permissions, in CIDR notation (for example, 10.0.0.0/24).`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_protocols",
+					Description: `(Optional) The IP protocols for the permissions (` + "`" + `tcp` + "`" + ` \| ` + "`" + `udp` + "`" + ` \| ` + "`" + `icmp` + "`" + `, or a protocol number, or ` + "`" + `-1` + "`" + ` for all protocols).`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_security_group_ids",
+					Description: `(Optional) The IDs of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_security_group_names",
+					Description: `(Optional) The names of the security groups that have been granted permissions.`,
+				},
+				resource.Attribute{
+					Name:        "outbound_rule_to_port_ranges",
+					Description: `(Optional) The ends of the port ranges for the TCP and UDP protocols, or the ICMP codes.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -6319,7 +6767,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6363,7 +6811,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6437,7 +6885,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6481,7 +6929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_protocol",
-					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `) or protocol number. By default, ` + "`" + `-1` + "`" + `, which means all protocols.`,
+					Description: `The IP protocol name (` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `-1` + "`" + ` for all protocols). By default, ` + "`" + `-1` + "`" + `. In a Net, this can also be an IP protocol number. For more information, see the [IANA.org website](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).`,
 				},
 				resource.Attribute{
 					Name:        "ip_ranges",
@@ -6535,6 +6983,134 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "server_certificate",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about a specific server certificate.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "paths",
+					Description: `(Optional) The paths to the server certificates. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "server_certificates",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about server certificates.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "paths",
+					Description: `(Optional) The paths to the server certificates. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "server_certificates",
+					Description: `Information about one or more server certificates.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "server_certificates",
+					Description: `Information about one or more server certificates.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The date at which the server certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the server certificate.`,
+				},
+				resource.Attribute{
+					Name:        "upload_date",
+					Description: `The date at which the server certificate has been uploaded.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "snapshot",
 			Category:         "Data Sources",
 			ShortDescription: `[Provides information about a specific snapshot.]`,
@@ -6543,7 +7119,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_aliases",
@@ -6598,10 +7174,6 @@ var (
 					Description: `(Optional) The sizes of the volumes used to create the snapshots, in gibibytes (GiB). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "snapshots",
-					Description: `Information about one or more snapshots and their permissions.`,
-				},
-				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the snapshot.`,
 				},
@@ -6659,10 +7231,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "snapshots",
-					Description: `Information about one or more snapshots and their permissions.`,
-				},
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias of the owner of the snapshot.`,
@@ -6723,6 +7291,246 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "snapshot_export_task",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about a specific snapshot export task.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_ids",
+					Description: `(Optional) The IDs of the export tasks. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "snapshot_export_tasks",
+			Category:         "Data Sources",
+			ShortDescription: `[Provides information about snapshot export tasks.]`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_ids",
+					Description: `(Optional) The IDs of the export tasks. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_export_tasks",
+					Description: `Information about one or more snapshot export tasks.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "snapshot_export_tasks",
+					Description: `Information about one or more snapshot export tasks.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `If the snapshot export task fails, an error message appears.`,
+				},
+				resource.Attribute{
+					Name:        "osu_export",
+					Description: `Information about the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_format",
+					Description: `The format of the export disk (` + "`" + `qcow2` + "`" + ` \| ` + "`" + `raw` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "osu_bucket",
+					Description: `The name of the OOS bucket the snapshot is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "osu_prefix",
+					Description: `The prefix for the key of the OOS object corresponding to the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `The progress of the snapshot export task, as a percentage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `The ID of the snapshot to be exported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the snapshot export task (` + "`" + `pending` + "`" + ` \| ` + "`" + `active` + "`" + ` \| ` + "`" + `completed` + "`" + ` \| ` + "`" + `failed` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `One or more tags associated with the snapshot export task.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the tag, with a minimum of 1 character.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag, between 0 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `The ID of the snapshot export task.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "snapshots",
 			Category:         "Data Sources",
 			ShortDescription: `[Provides information about snapshots.]`,
@@ -6731,7 +7539,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "account_aliases",
@@ -6919,7 +7727,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "available_ips_counts",
@@ -6943,15 +7751,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `(Optional) The names of the Subregions in which the Subnets are located. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The names of the Subregions in which the Subnets are located.`,
 				},
 				resource.Attribute{
-					Name:        "subnets",
-					Description: `Information about one or more Subnets.`,
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the Subnets.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the Subnets.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the Subnets, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -6959,7 +7775,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -6992,12 +7808,8 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "subnets",
-					Description: `Information about one or more Subnets.`,
-				},
-				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -7005,7 +7817,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -7047,7 +7859,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "available_ips_counts",
@@ -7071,7 +7883,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
-					Description: `(Optional) The names of the Subregions in which the Subnets are located. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Optional) The names of the Subregions in which the Subnets are located.`,
+				},
+				resource.Attribute{
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the Subnets.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the Subnets.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the Subnets, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "subnets",
@@ -7079,7 +7903,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -7087,7 +7911,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -7125,7 +7949,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "available_ips_count",
-					Description: `The number of available IP addresses in the Subnets.`,
+					Description: `The number of available IPs in the Subnets.`,
 				},
 				resource.Attribute{
 					Name:        "ip_range",
@@ -7133,7 +7957,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
-					Description: `If true, a public IP address is assigned to the network interface cards (NICs) created in the specified Subnet.`,
+					Description: `If true, a public IP is assigned to the network interface cards (NICs) created in the specified Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "net_id",
@@ -7175,7 +7999,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
@@ -7227,7 +8051,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "connection_types",
@@ -7347,7 +8171,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "connection_types",
@@ -7475,7 +8299,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "tag_keys",
@@ -7494,14 +8318,6 @@ var (
 					Description: `(Optional) One or more IDs of VMs. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "vms",
-					Description: `Information about one or more VMs.`,
-				},
-				resource.Attribute{
-					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
-				},
-				resource.Attribute{
 					Name:        "architecture",
 					Description: `The architecture of the VM (` + "`" + `i386` + "`" + ` \| ` + "`" + `x86_64` + "`" + `).`,
 				},
@@ -7607,7 +8423,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -7615,11 +8431,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -7639,15 +8455,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -7655,11 +8471,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -7667,7 +8483,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -7715,7 +8531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -7727,7 +8543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -7754,12 +8570,12 @@ var (
 					Description: `The name of the security group.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_reason",
 					Description: `The reason explaining the current state of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -7791,19 +8607,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vms",
-					Description: `Information about one or more VMs.`,
-				},
-				resource.Attribute{
-					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
-				},
-				resource.Attribute{
 					Name:        "architecture",
 					Description: `The architecture of the VM (` + "`" + `i386` + "`" + ` \| ` + "`" + `x86_64` + "`" + `).`,
 				},
@@ -7909,7 +8717,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -7917,11 +8725,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -7941,15 +8749,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -7957,11 +8765,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -7969,7 +8777,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -8017,7 +8825,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -8029,7 +8837,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -8056,12 +8864,12 @@ var (
 					Description: `The name of the security group.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
-				},
-				resource.Attribute{
 					Name:        "state_reason",
 					Description: `The reason explaining the current state of the VM.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VM (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -8093,7 +8901,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html).`,
 				},
 			},
 		},
@@ -8111,7 +8919,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_event_codes",
+					Description: `(Optional) The code for the scheduled event (` + "`" + `system-reboot` + "`" + ` \| ` + "`" + `system-maintenance` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_event_descriptions",
+					Description: `(Optional) The description of the scheduled event.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_events_not_after",
+					Description: `(Optional) The latest time the event can end.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_events_not_before",
+					Description: `(Optional) The earliest time the event can start.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
@@ -8124,10 +8948,6 @@ var (
 				resource.Attribute{
 					Name:        "vm_states",
 					Description: `(Optional) The states of the VMs (` + "`" + `pending` + "`" + ` \| ` + "`" + `running` + "`" + ` \| ` + "`" + `stopping` + "`" + ` \| ` + "`" + `stopped` + "`" + ` \| ` + "`" + `shutting-down` + "`" + ` \| ` + "`" + `terminated` + "`" + ` \| ` + "`" + `quarantine` + "`" + `). ## Attribute Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "vm_states",
-					Description: `Information about one or more VM states.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_events",
@@ -8163,10 +8983,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vm_states",
-					Description: `Information about one or more VM states.`,
-				},
 				resource.Attribute{
 					Name:        "maintenance_events",
 					Description: `One or more scheduled events associated with the VM.`,
@@ -8215,7 +9031,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_event_codes",
+					Description: `(Optional) The code for the scheduled event (` + "`" + `system-reboot` + "`" + ` \| ` + "`" + `system-maintenance` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_event_descriptions",
+					Description: `(Optional) The description of the scheduled event.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_events_not_after",
+					Description: `(Optional) The latest time the event can end.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_events_not_before",
+					Description: `(Optional) The earliest time the event can start.`,
 				},
 				resource.Attribute{
 					Name:        "subregion_names",
@@ -8331,7 +9163,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type_names",
-					Description: `(Optional) The names of the VM types. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
+					Description: `(Optional) The names of the VM types. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html).`,
 				},
 				resource.Attribute{
 					Name:        "volume_counts",
@@ -8351,7 +9183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_private_ips",
-					Description: `The maximum number of private IP addresses per network interface card (NIC).`,
+					Description: `The maximum number of private IPs per network interface card (NIC).`,
 				},
 				resource.Attribute{
 					Name:        "memory_size",
@@ -8385,7 +9217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_private_ips",
-					Description: `The maximum number of private IP addresses per network interface card (NIC).`,
+					Description: `The maximum number of private IPs per network interface card (NIC).`,
 				},
 				resource.Attribute{
 					Name:        "memory_size",
@@ -8419,7 +9251,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "tag_keys",
@@ -8442,10 +9274,6 @@ var (
 					Description: `Information about one or more VMs.`,
 				},
 				resource.Attribute{
-					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
-				},
-				resource.Attribute{
 					Name:        "architecture",
 					Description: `The architecture of the VM (` + "`" + `i386` + "`" + ` \| ` + "`" + `x86_64` + "`" + `).`,
 				},
@@ -8551,7 +9379,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -8559,11 +9387,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -8583,15 +9411,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -8599,11 +9427,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -8611,7 +9439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -8659,7 +9487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -8671,7 +9499,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -8735,7 +9563,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8744,10 +9572,6 @@ var (
 					Description: `Information about one or more VMs.`,
 				},
 				resource.Attribute{
-					Name:        "admin_password",
-					Description: `(Windows VM only) The administrator password of the VM. This password is encrypted with the keypair of the VM and encoded in Base64. You need to wait about 10 minutes after launching the VM to be able to retrieve this attribute. Once the password is ready, this attribute will appear in the Terraform state after the next refresh or apply command. Note also that after the first reboot of the VM, this attribute can no longer be retrieved. For more information on how to use this password to connect to the VM, see [Accessing a Windows Instance](https://wiki.outscale.net/display/EN/Accessing+a+Windows+Instance).`,
-				},
-				resource.Attribute{
 					Name:        "architecture",
 					Description: `The architecture of the VM (` + "`" + `i386` + "`" + ` \| ` + "`" + `x86_64` + "`" + `).`,
 				},
@@ -8853,7 +9677,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -8861,11 +9685,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -8885,15 +9709,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ips",
-					Description: `The private IP address or addresses of the NIC.`,
+					Description: `The private IP or IPs of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "is_primary",
-					Description: `If true, the IP address is the primary private IP address of the NIC.`,
+					Description: `If true, the IP is the primary private IP of the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "link_public_ip",
-					Description: `Information about the EIP associated with the NIC.`,
+					Description: `Information about the public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_dns_name",
@@ -8901,11 +9725,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The External IP address (EIP) associated with the NIC.`,
+					Description: `The public IP associated with the NIC.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_account_id",
-					Description: `The account ID of the owner of the EIP.`,
+					Description: `The account ID of the owner of the public IP.`,
 				},
 				resource.Attribute{
 					Name:        "private_dns_name",
@@ -8913,7 +9737,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The private IP address.`,
+					Description: `The private IP.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -8961,7 +9785,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `The primary private IP address of the VM.`,
+					Description: `The primary private IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "product_codes",
@@ -8973,7 +9797,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public IP address of the VM.`,
+					Description: `The public IP of the VM.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_id",
@@ -9037,7 +9861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vm_type",
-					Description: `The type of VM. For more information, see [Instance Types](https://wiki.outscale.net/display/EN/Instance+Types).`,
+					Description: `The type of VM. For more information, see [Instance Types](https://docs.outscale.com/en/userguide/Instance-Types.html).`,
 				},
 			},
 		},
@@ -9051,7 +9875,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "creation_dates",
@@ -9114,12 +9938,8 @@ var (
 					Description: `(Optional) The types of the volumes (` + "`" + `standard` + "`" + ` \| ` + "`" + `gp2` + "`" + ` \| ` + "`" + `io1` + "`" + `). ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "volumes",
-					Description: `Information about one or more volumes.`,
-				},
-				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -9184,12 +10004,8 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "volumes",
-					Description: `Information about one or more volumes.`,
-				},
-				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -9263,7 +10079,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "creation_dates",
@@ -9331,7 +10147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -9401,7 +10217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "iops",
-					Description: `The number of I/O operations per second (IOPS): For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS. For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
+					Description: `The number of I/O operations per second (IOPS):<br />- For ` + "`" + `io1` + "`" + ` volumes, the number of provisioned IOPS.<br />- For ` + "`" + `gp2` + "`" + ` volumes, the baseline performance of the volume.`,
 				},
 				resource.Attribute{
 					Name:        "linked_volumes",
@@ -9475,7 +10291,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "bgp_asns",
@@ -9500,6 +10316,18 @@ var (
 				resource.Attribute{
 					Name:        "static_routes_only",
 					Description: `(Optional) If false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If true, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
+				},
+				resource.Attribute{
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the VPN connections.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the VPN connections.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the VPN connections, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_ids",
@@ -9635,7 +10463,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `One or more filters.`,
+					Description: `(Optional) A combination of a filter name and one or more filter values. You can specify this argument for as many filter names as you need. The filter name can be any of the following:`,
 				},
 				resource.Attribute{
 					Name:        "bgp_asns",
@@ -9660,6 +10488,18 @@ var (
 				resource.Attribute{
 					Name:        "static_routes_only",
 					Description: `(Optional) If false, the VPN connection uses dynamic routing with Border Gateway Protocol (BGP). If true, routing is controlled using static routes. For more information about how to create and delete static routes, see [CreateVpnConnectionRoute](https://docs.outscale.com/api#createvpnconnectionroute) and [DeleteVpnConnectionRoute](https://docs.outscale.com/api#deletevpnconnectionroute).`,
+				},
+				resource.Attribute{
+					Name:        "tag_keys",
+					Description: `(Optional) The keys of the tags associated with the VPN connections.`,
+				},
+				resource.Attribute{
+					Name:        "tag_values",
+					Description: `(Optional) The values of the tags associated with the VPN connections.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The key/value combination of the tags associated with the VPN connections, in the following format: &quot;Filters&quot;:{&quot;Tags&quot;:[&quot;TAGKEY=TAGVALUE&quot;]}.`,
 				},
 				resource.Attribute{
 					Name:        "virtual_gateway_ids",
@@ -9807,55 +10647,61 @@ var (
 		"flexible_gpu_catalog":         7,
 		"flexible_gpus":                8,
 		"image":                        9,
-		"images":                       10,
-		"internet_service":             11,
-		"internet_services":            12,
-		"keypair":                      13,
-		"keypairs":                     14,
-		"load_balancer":                15,
-		"load_balancer_listener_rule":  16,
-		"load_balancer_listener_rules": 17,
-		"load_balancer_vm_health":      18,
-		"load_balancers":               19,
-		"nat_service":                  20,
-		"nat_services":                 21,
-		"net":                          22,
-		"net_access_point":             23,
-		"net_access_point_services":    24,
-		"net_access_points":            25,
-		"net_attributes":               26,
-		"net_peering":                  27,
-		"net_peerings":                 28,
-		"nets":                         29,
-		"nic":                          30,
-		"nics":                         31,
-		"product_type":                 32,
-		"product_types":                33,
-		"public_ip":                    34,
-		"public_ips":                   35,
-		"quota":                        36,
-		"quotas":                       37,
-		"regions":                      38,
-		"route_table":                  39,
-		"route_tables":                 40,
-		"security_group":               41,
-		"security_groups":              42,
-		"snapshot":                     43,
-		"snapshots":                    44,
-		"subnet":                       45,
-		"subnets":                      46,
-		"subregions":                   47,
-		"virtual_gateway":              48,
-		"virtual_gateways":             49,
-		"vm":                           50,
-		"vm_state":                     51,
-		"vm_states":                    52,
-		"vm_types":                     53,
-		"vms":                          54,
-		"volume":                       55,
-		"volumes":                      56,
-		"vpn_connection":               57,
-		"vpn_connections":              58,
+		"image_export_task":            10,
+		"image_export_tasks":           11,
+		"images":                       12,
+		"internet_service":             13,
+		"internet_services":            14,
+		"keypair":                      15,
+		"keypairs":                     16,
+		"load_balancer":                17,
+		"load_balancer_listener_rule":  18,
+		"load_balancer_listener_rules": 19,
+		"load_balancer_vm_health":      20,
+		"load_balancers":               21,
+		"nat_service":                  22,
+		"nat_services":                 23,
+		"net":                          24,
+		"net_access_point":             25,
+		"net_access_point_services":    26,
+		"net_access_points":            27,
+		"net_attributes":               28,
+		"net_peering":                  29,
+		"net_peerings":                 30,
+		"nets":                         31,
+		"nic":                          32,
+		"nics":                         33,
+		"product_type":                 34,
+		"product_types":                35,
+		"public_ip":                    36,
+		"public_ips":                   37,
+		"quota":                        38,
+		"quotas":                       39,
+		"regions":                      40,
+		"route_table":                  41,
+		"route_tables":                 42,
+		"security_group":               43,
+		"security_groups":              44,
+		"server_certificate":           45,
+		"server_certificates":          46,
+		"snapshot":                     47,
+		"snapshot_export_task":         48,
+		"snapshot_export_tasks":        49,
+		"snapshots":                    50,
+		"subnet":                       51,
+		"subnets":                      52,
+		"subregions":                   53,
+		"virtual_gateway":              54,
+		"virtual_gateways":             55,
+		"vm":                           56,
+		"vm_state":                     57,
+		"vm_states":                    58,
+		"vm_types":                     59,
+		"vms":                          60,
+		"volume":                       61,
+		"volumes":                      62,
+		"vpn_connection":               63,
+		"vpn_connections":              64,
 	}
 )
 

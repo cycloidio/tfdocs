@@ -218,6 +218,58 @@ Use this data source to retrieve information about an existing Elastic Cloud dep
 					Description: `Number of zones in which nodes will be placed.`,
 				},
 				resource.Attribute{
+					Name:        "integrations_server",
+					Description: `Instance configuration of the Integrations Server type.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.elasticsearch_cluster_ref_id",
+					Description: `The user-specified ID of the Elasticsearch cluster to which this resource kind will link.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.healthy",
+					Description: `Resource kind health status.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.http_endpoint",
+					Description: `HTTP endpoint for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.https_endpoint",
+					Description: `HTTPS endpoint for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.ref_id",
+					Description: `User specified ref_id for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.resource_id",
+					Description: `The resource unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.status",
+					Description: `Resource kind status (for example, "started", "stopped", etc).`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.version",
+					Description: `Elastic stack version.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology",
+					Description: `Node topology element definition.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.instance_configuration_id",
+					Description: `Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.size",
+					Description: `Amount of memory (RAM) per topology element in the "<size in GB>g" notation.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.zone_count",
+					Description: `Number of zones in which nodes will be placed.`,
+				},
+				resource.Attribute{
 					Name:        "apm",
 					Description: `Instance configuration of the APM type.`,
 				},
@@ -528,6 +580,58 @@ Use this data source to retrieve information about an existing Elastic Cloud dep
 					Description: `Number of zones in which nodes will be placed.`,
 				},
 				resource.Attribute{
+					Name:        "integrations_server",
+					Description: `Instance configuration of the Integrations Server type.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.elasticsearch_cluster_ref_id",
+					Description: `The user-specified ID of the Elasticsearch cluster to which this resource kind will link.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.healthy",
+					Description: `Resource kind health status.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.http_endpoint",
+					Description: `HTTP endpoint for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.https_endpoint",
+					Description: `HTTPS endpoint for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.ref_id",
+					Description: `User specified ref_id for the resource kind.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.resource_id",
+					Description: `The resource unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.status",
+					Description: `Resource kind status (for example, "started", "stopped", etc).`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.version",
+					Description: `Elastic stack version.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology",
+					Description: `Node topology element definition.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.instance_configuration_id",
+					Description: `Controls the allocation of this topology element as well as allowed sizes and node_types. It needs to match the ID of an existing instance configuration.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.size",
+					Description: `Amount of memory (RAM) per topology element in the "<size in GB>g" notation.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.topology.#.zone_count",
+					Description: `Number of zones in which nodes will be placed.`,
+				},
+				resource.Attribute{
 					Name:        "apm",
 					Description: `Instance configuration of the APM type.`,
 				},
@@ -710,8 +814,20 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 					Description: `Overall health status of the Kibana instances.`,
 				},
 				resource.Attribute{
-					Name:        "apm",
-					Description: `Filter by APM resource kind status or configuration.`,
+					Name:        "integrations_server",
+					Description: `Filter by Integrations Server resource kind status or configuration.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.status",
+					Description: `Resource kind status (Available statuses are: initializing, stopping, stopped, rebooting, restarting, reconfiguring, and started).`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.version",
+					Description: `Elastic stack version.`,
+				},
+				resource.Attribute{
+					Name:        "integrations_server.#.healthy",
+					Description: `Overall health status of the Integrations Server instances.`,
 				},
 				resource.Attribute{
 					Name:        "apm.#.status",
@@ -739,7 +855,7 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 				},
 				resource.Attribute{
 					Name:        "enterprise_search.#.healthy",
-					Description: `Overall health status of the Enterprise Search instances. ## Attributes Reference ~>`,
+					Description: `Overall health status of the Enterprise Search instances. ~>`,
 				},
 				resource.Attribute{
 					Name:        "deployments",
@@ -762,16 +878,40 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 					Description: `The Elasticsearch resource unique ID.`,
 				},
 				resource.Attribute{
+					Name:        "deployments.#.elasticsearch_ref_id",
+					Description: `The Elasticsearch resource reference.`,
+				},
+				resource.Attribute{
 					Name:        "deployments.#.kibana_resource_id",
 					Description: `The Kibana resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.kibana_ref_id",
+					Description: `The Kibana resource reference.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.integrations_server_resource_id",
+					Description: `The Integrations Server resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.integrations_server_ref_id",
+					Description: `The Integrations Server resource reference.`,
 				},
 				resource.Attribute{
 					Name:        "deployments.#.apm_resource_id",
 					Description: `The APM resource unique ID.`,
 				},
 				resource.Attribute{
+					Name:        "deployments.#.apm_ref_id",
+					Description: `The APM resource reference.`,
+				},
+				resource.Attribute{
 					Name:        "deployments.#.enterprise_search_resource_id",
 					Description: `The Enterprise Search resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.enterprise_search_ref_id",
+					Description: `The Enterprise Search resource reference.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -796,16 +936,40 @@ Use this data source to retrieve a list of IDs for the deployment and resource k
 					Description: `The Elasticsearch resource unique ID.`,
 				},
 				resource.Attribute{
+					Name:        "deployments.#.elasticsearch_ref_id",
+					Description: `The Elasticsearch resource reference.`,
+				},
+				resource.Attribute{
 					Name:        "deployments.#.kibana_resource_id",
 					Description: `The Kibana resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.kibana_ref_id",
+					Description: `The Kibana resource reference.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.integrations_server_resource_id",
+					Description: `The Integrations Server resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.integrations_server_ref_id",
+					Description: `The Integrations Server resource reference.`,
 				},
 				resource.Attribute{
 					Name:        "deployments.#.apm_resource_id",
 					Description: `The APM resource unique ID.`,
 				},
 				resource.Attribute{
+					Name:        "deployments.#.apm_ref_id",
+					Description: `The APM resource reference.`,
+				},
+				resource.Attribute{
 					Name:        "deployments.#.enterprise_search_resource_id",
 					Description: `The Enterprise Search resource unique ID.`,
+				},
+				resource.Attribute{
+					Name:        "deployments.#.enterprise_search_ref_id",
+					Description: `The Enterprise Search resource reference.`,
 				},
 			},
 		},

@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "file",
+			Type:             "local_file",
 			Category:         "Data Sources",
 			ShortDescription: `Reads a file from the local filesystem.`,
 			Description:      ``,
@@ -19,15 +19,38 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filename",
-					Description: `(Required) The path to the file that will be read. The data source will return an error if the file does not exist. ## Attributes Exported The following attribute is exported:`,
+					Description: `(Required) Path to the file that will be read. The data source will return an error if the file does not exist. ## Attributes Exported The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `The raw content of the file that was read.`,
+					Description: `Raw content of the file that was read, assumed by Terraform to be UTF-8 encoded string. Files that do not contain UTF-8 text will have invalid UTF-8 sequences in ` + "`" + `content` + "`" + ` replaced with the Unicode replacement character.`,
 				},
 				resource.Attribute{
 					Name:        "content_base64",
-					Description: `The base64 encoded version of the file content (use this when dealing with binary data). The content of the file must be valid UTF-8 due to Terraform's assumptions about string encoding. Files that do not contain UTF-8 text will have invalid UTF-8 sequences replaced with the Unicode replacement character.`,
+					Description: `Base64 encoded version of the file content. Use this when dealing with binary data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "local_sensitive_file",
+			Category:         "Data Sources",
+			ShortDescription: `Reads a file that contains sensitive data, from the local filesystem.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filename",
+					Description: `(Required) Path to the file that will be read. The data source will return an error if the file does not exist. ## Attributes Exported The following attribute is exported:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `Raw content of the file that was read, assumed by Terraform to be UTF-8 encoded string. Files that do not contain UTF-8 text will have invalid UTF-8 sequences in ` + "`" + `content` + "`" + ` replaced with the Unicode replacement character.`,
+				},
+				resource.Attribute{
+					Name:        "content_base64",
+					Description: `Base64 encoded version of the file content. Use this when dealing with binary data.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -36,7 +59,8 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"file": 0,
+		"local_file":           0,
+		"local_sensitive_file": 1,
 	}
 )
 

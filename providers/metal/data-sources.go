@@ -22,56 +22,84 @@ var (
 					Description: `(Required) ID of the connection resource ## Attributes Reference`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the connection resource`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the connection resource`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `String list of tags`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `Slug of a facility to which the connection belongs`,
 				},
 				resource.Attribute{
 					Name:        "metro",
 					Description: `Slug of a metro to which the connection belongs`,
 				},
 				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization to which the connection belongs`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `ID of project to which the connection belongs`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the connection`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token for the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Connection type, dedicated or shared`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
+					Name:        "facility",
+					Description: `Slug of a facility to which the connection belongs`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
 					Description: `Connection redundancy, reduntant or primary`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the connection belongs`,
+				},
+				resource.Attribute{
 					Name:        "speed",
-					Description: `Connection speed in bits per second`,
+					Description: `Connection speed, one of 50Mbps, 200Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `String list of tags`,
+				},
+				resource.Attribute{
+					Name:        "vlans",
+					Description: `Attached VLANs. Only available in shared connection. One vlan for Primary/Single connection and two vlans for Redundant connection`,
+				},
+				resource.Attribute{
+					Name:        "service_token_type",
+					Description: `Type of service token, a_side or z_side. One available in shared connection.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `UUID of the service token`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `Expiration date of the service token`,
+				},
+				resource.Attribute{
+					Name:        "max_allowed_speed",
+					Description: `Maximum allowed speed for the service token, string like in the ` + "`" + `speed` + "`" + ` attribute`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Token type, ` + "`" + `a_side` + "`" + ` or ` + "`" + `z_side` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Token role, ` + "`" + `primary` + "`" + ` or ` + "`" + `secondary` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ports",
@@ -104,60 +132,92 @@ var (
 				resource.Attribute{
 					Name:        "virtual_circuit_ids",
 					Description: `List of IDs of virtual cicruits attached to this port`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Deprecated) Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the connection resource`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the connection resource`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `String list of tags`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `Slug of a facility to which the connection belongs`,
 				},
 				resource.Attribute{
 					Name:        "metro",
 					Description: `Slug of a metro to which the connection belongs`,
 				},
 				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization to which the connection belongs`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `ID of project to which the connection belongs`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the connection`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token for the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Connection type, dedicated or shared`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
+					Name:        "facility",
+					Description: `Slug of a facility to which the connection belongs`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
 					Description: `Connection redundancy, reduntant or primary`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `Connection type, dedicated or shared`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `ID of project to which the connection belongs`,
+				},
+				resource.Attribute{
 					Name:        "speed",
-					Description: `Connection speed in bits per second`,
+					Description: `Connection speed, one of 50Mbps, 200Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `String list of tags`,
+				},
+				resource.Attribute{
+					Name:        "vlans",
+					Description: `Attached VLANs. Only available in shared connection. One vlan for Primary/Single connection and two vlans for Redundant connection`,
+				},
+				resource.Attribute{
+					Name:        "service_token_type",
+					Description: `Type of service token, a_side or z_side. One available in shared connection.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection resource`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `UUID of the service token`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `Expiration date of the service token`,
+				},
+				resource.Attribute{
+					Name:        "max_allowed_speed",
+					Description: `Maximum allowed speed for the service token, string like in the ` + "`" + `speed` + "`" + ` attribute`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Token type, ` + "`" + `a_side` + "`" + ` or ` + "`" + `z_side` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Token role, ` + "`" + `primary` + "`" + ` or ` + "`" + `secondary` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ports",
@@ -190,6 +250,10 @@ var (
 				resource.Attribute{
 					Name:        "virtual_circuit_ids",
 					Description: `List of IDs of virtual cicruits attached to this port`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Deprecated) Fabric Token from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard)`,
 				},
 			},
 		},
@@ -571,7 +635,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "code",
-					Description: `The facility code Facilities can be looked up by ` + "`" + `code` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `The facility code`,
+				},
+				resource.Attribute{
+					Name:        "features_required",
+					Description: `Set of feature strings that the facility must have Facilities can be looked up by ` + "`" + `code` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -588,6 +656,10 @@ var (
 				resource.Attribute{
 					Name:        "metro",
 					Description: `The metro code the facility is part of`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) Ensure that queried facility has capacity for specified number of given plans - ` + "`" + `plan` + "`" + ` - device plan to check - ` + "`" + `quantity` + "`" + ` - number of device to check`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -606,6 +678,10 @@ var (
 				resource.Attribute{
 					Name:        "metro",
 					Description: `The metro code the facility is part of`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) Ensure that queried facility has capacity for specified number of given plans - ` + "`" + `plan` + "`" + ` - device plan to check - ` + "`" + `quantity` + "`" + ` - number of device to check`,
 				},
 			},
 		},
@@ -841,6 +917,10 @@ var (
 					Name:        "name",
 					Description: `The name of the metro`,
 				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) Ensure that queried metro has capacity for specified number of given plans - ` + "`" + `plan` + "`" + ` - device plan to check - ` + "`" + `quantity` + "`" + ` - number of device to check`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -858,6 +938,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the metro`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) Ensure that queried metro has capacity for specified number of given plans - ` + "`" + `plan` + "`" + ` - device plan to check - ` + "`" + `quantity` + "`" + ` - number of device to check`,
 				},
 			},
 		},
@@ -1021,6 +1105,10 @@ var (
 					Name:        "vlan_ids",
 					Description: `UUIDs of attached VLANs`,
 				},
+				resource.Attribute{
+					Name:        "vxlan_ids",
+					Description: `VXLAN ids of attached VLANs`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1058,6 +1146,10 @@ var (
 				resource.Attribute{
 					Name:        "vlan_ids",
 					Description: `UUIDs of attached VLANs`,
+				},
+				resource.Attribute{
+					Name:        "vxlan_ids",
+					Description: `VXLAN ids of attached VLANs`,
 				},
 			},
 		},

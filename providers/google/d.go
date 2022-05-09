@@ -11,6 +11,102 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_access_approval_folder_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of a folder's Access Approval service account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Required) The folder ID the service account was created for. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "folders/{folder_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "folders/{folder_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_access_approval_organization_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of an organization's Access Approval service account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Required) The organization ID the service account was created for. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "organizations/{organization_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "organizations/{organization_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_access_approval_project_service_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get the email address of a project's Access Approval service account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project ID the service account was created for. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "projects/{project_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The Access Approval service account resource name. Format is "projects/{project_id}/serviceAccount".`,
+				},
+				resource.Attribute{
+					Name:        "account_email",
+					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_active_folder",
 			Category:         "Data Sources",
 			ShortDescription: `Get a folder within GCP.`,
@@ -223,7 +319,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memberships",
-					Description: `The list of memberships under the given group. Structure is documented below. The ` + "`" + `memberships` + "`" + ` block contains:`,
+					Description: `The list of memberships under the given group. Structure is [documented below](#nested_memberships). <a name="nested_memberships"></a>The ` + "`" + `memberships` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -231,19 +327,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `The MembershipRoles that apply to the Membership. Structure is documented below.`,
+					Description: `The MembershipRoles that apply to the Membership. Structure is [documented below](#nested_roles).`,
 				},
 				resource.Attribute{
 					Name:        "member_key",
-					Description: `(Optional) EntityKey of the member. Structure is documented below.`,
+					Description: `(Optional) EntityKey of the member. Structure is [documented below](#nested_member_key).`,
 				},
 				resource.Attribute{
 					Name:        "preferred_member_key",
-					Description: `(Optional) EntityKey of the member. Structure is documented below. The ` + "`" + `roles` + "`" + ` block supports:`,
+					Description: `(Optional) EntityKey of the member. Structure is [documented below](#nested_preferred_member_key). <a name="nested_roles"></a>The ` + "`" + `roles` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. The ` + "`" + `member_key` + "`" + ` block supports:`,
+					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. <a name="nested_member_key"></a>The ` + "`" + `member_key` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -251,7 +347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. <a name="nested_preferred_member_key"></a>The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -265,7 +361,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "memberships",
-					Description: `The list of memberships under the given group. Structure is documented below. The ` + "`" + `memberships` + "`" + ` block contains:`,
+					Description: `The list of memberships under the given group. Structure is [documented below](#nested_memberships). <a name="nested_memberships"></a>The ` + "`" + `memberships` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -273,19 +369,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `The MembershipRoles that apply to the Membership. Structure is documented below.`,
+					Description: `The MembershipRoles that apply to the Membership. Structure is [documented below](#nested_roles).`,
 				},
 				resource.Attribute{
 					Name:        "member_key",
-					Description: `(Optional) EntityKey of the member. Structure is documented below.`,
+					Description: `(Optional) EntityKey of the member. Structure is [documented below](#nested_member_key).`,
 				},
 				resource.Attribute{
 					Name:        "preferred_member_key",
-					Description: `(Optional) EntityKey of the member. Structure is documented below. The ` + "`" + `roles` + "`" + ` block supports:`,
+					Description: `(Optional) EntityKey of the member. Structure is [documented below](#nested_preferred_member_key). <a name="nested_roles"></a>The ` + "`" + `roles` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. The ` + "`" + `member_key` + "`" + ` block supports:`,
+					Description: `The name of the MembershipRole. One of OWNER, MANAGER, MEMBER. <a name="nested_member_key"></a>The ` + "`" + `member_key` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -293,7 +389,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
+					Description: `The namespace in which the entity exists. If not populated, the EntityKey represents a Google-managed entity such as a Google user or a Google Group. If populated, the EntityKey represents an external-identity-mapped group. <a name="nested_preferred_member_key"></a>The ` + "`" + `preferred_member_key` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -319,7 +415,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "groups",
-					Description: `The list of groups under the provided customer or namespace. Structure is documented below. The ` + "`" + `groups` + "`" + ` block contains:`,
+					Description: `The list of groups under the provided customer or namespace. Structure is [documented below](#nested_groups). <a name="nested_groups"></a>The ` + "`" + `groups` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -327,7 +423,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_key",
-					Description: `EntityKey of the Group. Structure is documented below.`,
+					Description: `EntityKey of the Group. Structure is [documented below](#nested_group_key).`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -349,7 +445,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "groups",
-					Description: `The list of groups under the provided customer or namespace. Structure is documented below. The ` + "`" + `groups` + "`" + ` block contains:`,
+					Description: `The list of groups under the provided customer or namespace. Structure is [documented below](#nested_groups). <a name="nested_groups"></a>The ` + "`" + `groups` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -357,7 +453,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_key",
-					Description: `EntityKey of the Group. Structure is documented below.`,
+					Description: `EntityKey of the Group. Structure is [documented below](#nested_group_key).`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -484,7 +580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_trigger",
-					Description: `A source that fires events in response to a condition in another service. Structure is documented below.`,
+					Description: `A source that fires events in response to a condition in another service. Structure is [documented below](#nested_event_trigger).`,
 				},
 				resource.Attribute{
 					Name:        "https_trigger_url",
@@ -516,7 +612,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_repository",
-					Description: `The URL of the Cloud Source Repository that the function is deployed from. Structure is documented below. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `The URL of the Cloud Source Repository that the function is deployed from. Structure is [documented below](#nested_source_repository). <a name="nested_event_trigger"></a>The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -528,11 +624,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "failure_policy",
-					Description: `Policy for failed executions. Structure is documented below. The ` + "`" + `failure_policy` + "`" + ` block supports:`,
+					Description: `Policy for failed executions. Structure is [documented below](#nested_failure_policy). <a name="nested_failure_policy"></a>The ` + "`" + `failure_policy` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "retry",
-					Description: `Whether the function should be retried on failure. The ` + "`" + `source_repository` + "`" + ` block contains:`,
+					Description: `Whether the function should be retried on failure. <a name="nested_source_repository"></a>The ` + "`" + `source_repository` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -578,7 +674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_trigger",
-					Description: `A source that fires events in response to a condition in another service. Structure is documented below.`,
+					Description: `A source that fires events in response to a condition in another service. Structure is [documented below](#nested_event_trigger).`,
 				},
 				resource.Attribute{
 					Name:        "https_trigger_url",
@@ -610,7 +706,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_repository",
-					Description: `The URL of the Cloud Source Repository that the function is deployed from. Structure is documented below. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `The URL of the Cloud Source Repository that the function is deployed from. Structure is [documented below](#nested_source_repository). <a name="nested_event_trigger"></a>The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -622,11 +718,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "failure_policy",
-					Description: `Policy for failed executions. Structure is documented below. The ` + "`" + `failure_policy` + "`" + ` block supports:`,
+					Description: `Policy for failed executions. Structure is [documented below](#nested_failure_policy). <a name="nested_failure_policy"></a>The ` + "`" + `failure_policy` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "retry",
-					Description: `Whether the function should be retried on failure. The ` + "`" + `source_repository` + "`" + ` block contains:`,
+					Description: `Whether the function should be retried on failure. <a name="nested_source_repository"></a>The ` + "`" + `source_repository` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -720,7 +816,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_version_id",
-					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
+					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b.c"`,
 				},
 				resource.Attribute{
 					Name:        "supported_python_versions",
@@ -734,7 +830,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_version_id",
-					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b(.c)"`,
+					Description: `The string identifier of the image version, in the form: "composer-x.y.z-airflow-a.b.c"`,
 				},
 				resource.Attribute{
 					Name:        "supported_python_versions",
@@ -972,6 +1068,183 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name for the service account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_disk",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Compute Persistent disks.`,
+			Description:      ``,
+			Icon:             "Storage/Persistent_Disk.svg",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a specific disk. - - -`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) A reference to the zone where the disk resides.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/disks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "label_fingerprint",
+					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "last_attach_timestamp",
+					Description: `Last attach timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "last_detach_timestamp",
+					Description: `Last detach timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance`,
+				},
+				resource.Attribute{
+					Name:        "source_image_id",
+					Description: `The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.`,
+				},
+				resource.Attribute{
+					Name:        "source_snapshot_id",
+					Description: `The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels applied to this disk.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Size of the persistent disk, specified in GB.`,
+				},
+				resource.Attribute{
+					Name:        "physical_block_size_bytes",
+					Description: `Physical block size of the persistent disk, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `URL of the disk type resource describing which disk type to use to create the disk.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The image from which to initialize this disk.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `A reference to the zone where the disk resides.`,
+				},
+				resource.Attribute{
+					Name:        "source_image_encryption_key",
+					Description: `The customer-supplied encryption key of the source image.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot",
+					Description: `The source snapshot used to create this disk.`,
+				},
+				resource.Attribute{
+					Name:        "source_snapshot_encryption_key",
+					Description: `(Optional) The customer-supplied encryption key of the source snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/disks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "label_fingerprint",
+					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "last_attach_timestamp",
+					Description: `Last attach timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "last_detach_timestamp",
+					Description: `Last detach timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance`,
+				},
+				resource.Attribute{
+					Name:        "source_image_id",
+					Description: `The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.`,
+				},
+				resource.Attribute{
+					Name:        "source_snapshot_id",
+					Description: `The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels applied to this disk.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Size of the persistent disk, specified in GB.`,
+				},
+				resource.Attribute{
+					Name:        "physical_block_size_bytes",
+					Description: `Physical block size of the persistent disk, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `URL of the disk type resource describing which disk type to use to create the disk.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The image from which to initialize this disk.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `A reference to the zone where the disk resides.`,
+				},
+				resource.Attribute{
+					Name:        "source_image_encryption_key",
+					Description: `The customer-supplied encryption key of the source image.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot",
+					Description: `The source snapshot used to create this disk.`,
+				},
+				resource.Attribute{
+					Name:        "source_snapshot_encryption_key",
+					Description: `(Optional) The customer-supplied encryption key of the source snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource.`,
 				},
 			},
 		},
@@ -1292,7 +1565,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The boot disk for the instance. Structure is documented below.`,
+					Description: `The boot disk for the instance. Structure is [documented below](#nested_boot_disk).`,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -1300,11 +1573,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `The networks attached to the instance. Structure is documented below.`,
+					Description: `The networks attached to the instance. Structure is [documented below](#nested_network_interface).`,
 				},
 				resource.Attribute{
 					Name:        "attached_disk",
-					Description: `List of disks attached to the instance. Structure is documented below.`,
+					Description: `List of disks attached to the instance. Structure is [documented below](#nested_attached_disk).`,
 				},
 				resource.Attribute{
 					Name:        "can_ip_forward",
@@ -1320,7 +1593,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "guest_accelerator",
-					Description: `List of the type and count of accelerator cards attached to the instance. Structure is documented below.`,
+					Description: `List of the type and count of accelerator cards attached to the instance. Structure is [documented below](#nested_guest_accelerator).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1336,15 +1609,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduling",
-					Description: `The scheduling strategy being used by the instance.`,
+					Description: `The scheduling strategy being used by the instance. Structure is [documented below](#nested_scheduling)`,
 				},
 				resource.Attribute{
 					Name:        "scratch_disk",
-					Description: `The scratch disks attached to the instance. Structure is documented below.`,
+					Description: `The scratch disks attached to the instance. Structure is [documented below](#nested_scratch_disk).`,
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `The service account to attach to the instance. Structure is documented below.`,
+					Description: `The service account to attach to the instance. Structure is [documented below](#nested_service_account).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1376,7 +1649,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shielded_instance_config",
-					Description: `The shielded vm config being used by the instance. Structure is documented below.`,
+					Description: `The shielded vm config being used by the instance. Structure is [documented below](#nested_shielded_instance_config).`,
 				},
 				resource.Attribute{
 					Name:        "network_interface.0.network_ip",
@@ -1388,7 +1661,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_performance_config",
-					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+					Description: `The network performance configuration setting for the instance, if set. Structure is [documented below](#nested_network_performance_config).`,
 				},
 				resource.Attribute{
 					Name:        "attached_disk.0.disk_encryption_key_sha256",
@@ -1400,7 +1673,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk.0.disk_encryption_key_sha256",
-					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource. --- <a name="nested_boot_disk"></a>The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -1412,11 +1685,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initialize_params",
-					Description: `Parameters with which a disk was created alongside the instance. Structure is documented below.`,
+					Description: `Parameters with which a disk was created alongside the instance. Structure is [documented below](#nested_initialize_params).`,
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `The name or self_link of an existing disk (such as those managed by ` + "`" + `google_compute_disk` + "`" + `) that was attached to the instance. The ` + "`" + `initialize_params` + "`" + ` block supports:`,
+					Description: `The name or self_link of an existing disk (such as those managed by ` + "`" + `google_compute_disk` + "`" + `) that was attached to the instance. <a name="nested_initialize_params"></a>The ` + "`" + `initialize_params` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1428,11 +1701,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `The image from which this disk was initialised. The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
+					Description: `The image from which this disk was initialised. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interface",
-					Description: `The disk interface used for attaching this disk. One of ` + "`" + `SCSI` + "`" + ` or ` + "`" + `NVME` + "`" + `. The ` + "`" + `attached_disk` + "`" + ` block supports:`,
+					Description: `The disk interface used for attaching this disk. One of ` + "`" + `SCSI` + "`" + ` or ` + "`" + `NVME` + "`" + `. <a name="nested_attached_disk"></a>The ` + "`" + `attached_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "source",
@@ -1444,7 +1717,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `Read/write mode for the disk. One of ` + "`" + `"READ_ONLY"` + "`" + ` or ` + "`" + `"READ_WRITE"` + "`" + `. The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `Read/write mode for the disk. One of ` + "`" + `"READ_ONLY"` + "`" + ` or ` + "`" + `"READ_WRITE"` + "`" + `. <a name="nested_network_interface"></a>The ` + "`" + `network_interface` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1456,11 +1729,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_config",
-					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Structure documented below.`,
+					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Structure [documented below](#nested_access_config).`,
 				},
 				resource.Attribute{
 					Name:        "alias_ip_range",
-					Description: `An array of alias IP ranges for this network interface. Structure documented below. The ` + "`" + `access_config` + "`" + ` block supports:`,
+					Description: `An array of alias IP ranges for this network interface. Structure [documented below](#nested_alias_ip_range). <a name="nested_access_config"></a>The ` + "`" + `access_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -1472,7 +1745,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_tier",
-					Description: `The [networking tier][network-tier] used for configuring this instance. One of ` + "`" + `PREMIUM` + "`" + ` or ` + "`" + `STANDARD` + "`" + `. The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
+					Description: `The [networking tier][network-tier] used for configuring this instance. One of ` + "`" + `PREMIUM` + "`" + ` or ` + "`" + `STANDARD` + "`" + `. <a name="nested_alias_ip_range"></a>The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "ip_cidr_range",
@@ -1480,7 +1753,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnetwork_range_name",
-					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. The ` + "`" + `service_account` + "`" + ` block supports:`,
+					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. <a name="nested_service_account"></a>The ` + "`" + `service_account` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -1488,7 +1761,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `A list of service scopes. The ` + "`" + `scheduling` + "`" + ` block supports:`,
+					Description: `A list of service scopes. <a name="nested_scheduling"></a>The ` + "`" + `scheduling` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "preemptible",
@@ -1500,7 +1773,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automatic_restart",
-					Description: `Specifies if the instance should be restarted if it was terminated by Compute Engine (not a user). The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Specifies if the instance should be restarted if it was terminated by Compute Engine (not a user).`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1508,7 +1785,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview <a name="nested_shielded_instance_config"></a>The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "total_egress_bandwidth_tier",
@@ -1518,7 +1795,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The boot disk for the instance. Structure is documented below.`,
+					Description: `The boot disk for the instance. Structure is [documented below](#nested_boot_disk).`,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -1526,11 +1803,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `The networks attached to the instance. Structure is documented below.`,
+					Description: `The networks attached to the instance. Structure is [documented below](#nested_network_interface).`,
 				},
 				resource.Attribute{
 					Name:        "attached_disk",
-					Description: `List of disks attached to the instance. Structure is documented below.`,
+					Description: `List of disks attached to the instance. Structure is [documented below](#nested_attached_disk).`,
 				},
 				resource.Attribute{
 					Name:        "can_ip_forward",
@@ -1546,7 +1823,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "guest_accelerator",
-					Description: `List of the type and count of accelerator cards attached to the instance. Structure is documented below.`,
+					Description: `List of the type and count of accelerator cards attached to the instance. Structure is [documented below](#nested_guest_accelerator).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1562,15 +1839,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduling",
-					Description: `The scheduling strategy being used by the instance.`,
+					Description: `The scheduling strategy being used by the instance. Structure is [documented below](#nested_scheduling)`,
 				},
 				resource.Attribute{
 					Name:        "scratch_disk",
-					Description: `The scratch disks attached to the instance. Structure is documented below.`,
+					Description: `The scratch disks attached to the instance. Structure is [documented below](#nested_scratch_disk).`,
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `The service account to attach to the instance. Structure is documented below.`,
+					Description: `The service account to attach to the instance. Structure is [documented below](#nested_service_account).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1602,7 +1879,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shielded_instance_config",
-					Description: `The shielded vm config being used by the instance. Structure is documented below.`,
+					Description: `The shielded vm config being used by the instance. Structure is [documented below](#nested_shielded_instance_config).`,
 				},
 				resource.Attribute{
 					Name:        "network_interface.0.network_ip",
@@ -1614,7 +1891,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_performance_config",
-					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+					Description: `The network performance configuration setting for the instance, if set. Structure is [documented below](#nested_network_performance_config).`,
 				},
 				resource.Attribute{
 					Name:        "attached_disk.0.disk_encryption_key_sha256",
@@ -1626,7 +1903,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk.0.disk_encryption_key_sha256",
-					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource. --- <a name="nested_boot_disk"></a>The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -1638,11 +1915,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initialize_params",
-					Description: `Parameters with which a disk was created alongside the instance. Structure is documented below.`,
+					Description: `Parameters with which a disk was created alongside the instance. Structure is [documented below](#nested_initialize_params).`,
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `The name or self_link of an existing disk (such as those managed by ` + "`" + `google_compute_disk` + "`" + `) that was attached to the instance. The ` + "`" + `initialize_params` + "`" + ` block supports:`,
+					Description: `The name or self_link of an existing disk (such as those managed by ` + "`" + `google_compute_disk` + "`" + `) that was attached to the instance. <a name="nested_initialize_params"></a>The ` + "`" + `initialize_params` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1654,11 +1931,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `The image from which this disk was initialised. The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
+					Description: `The image from which this disk was initialised. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interface",
-					Description: `The disk interface used for attaching this disk. One of ` + "`" + `SCSI` + "`" + ` or ` + "`" + `NVME` + "`" + `. The ` + "`" + `attached_disk` + "`" + ` block supports:`,
+					Description: `The disk interface used for attaching this disk. One of ` + "`" + `SCSI` + "`" + ` or ` + "`" + `NVME` + "`" + `. <a name="nested_attached_disk"></a>The ` + "`" + `attached_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "source",
@@ -1670,7 +1947,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `Read/write mode for the disk. One of ` + "`" + `"READ_ONLY"` + "`" + ` or ` + "`" + `"READ_WRITE"` + "`" + `. The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `Read/write mode for the disk. One of ` + "`" + `"READ_ONLY"` + "`" + ` or ` + "`" + `"READ_WRITE"` + "`" + `. <a name="nested_network_interface"></a>The ` + "`" + `network_interface` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1682,11 +1959,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_config",
-					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Structure documented below.`,
+					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Structure [documented below](#nested_access_config).`,
 				},
 				resource.Attribute{
 					Name:        "alias_ip_range",
-					Description: `An array of alias IP ranges for this network interface. Structure documented below. The ` + "`" + `access_config` + "`" + ` block supports:`,
+					Description: `An array of alias IP ranges for this network interface. Structure [documented below](#nested_alias_ip_range). <a name="nested_access_config"></a>The ` + "`" + `access_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -1698,7 +1975,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_tier",
-					Description: `The [networking tier][network-tier] used for configuring this instance. One of ` + "`" + `PREMIUM` + "`" + ` or ` + "`" + `STANDARD` + "`" + `. The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
+					Description: `The [networking tier][network-tier] used for configuring this instance. One of ` + "`" + `PREMIUM` + "`" + ` or ` + "`" + `STANDARD` + "`" + `. <a name="nested_alias_ip_range"></a>The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "ip_cidr_range",
@@ -1706,7 +1983,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnetwork_range_name",
-					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. The ` + "`" + `service_account` + "`" + ` block supports:`,
+					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. <a name="nested_service_account"></a>The ` + "`" + `service_account` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -1714,7 +1991,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `A list of service scopes. The ` + "`" + `scheduling` + "`" + ` block supports:`,
+					Description: `A list of service scopes. <a name="nested_scheduling"></a>The ` + "`" + `scheduling` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "preemptible",
@@ -1726,7 +2003,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "automatic_restart",
-					Description: `Specifies if the instance should be restarted if it was terminated by Compute Engine (not a user). The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Specifies if the instance should be restarted if it was terminated by Compute Engine (not a user).`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1734,7 +2015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview <a name="nested_shielded_instance_config"></a>The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "total_egress_bandwidth_tier",
@@ -1868,7 +2149,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk",
-					Description: `Disks to attach to instances created from this template. This can be specified multiple times for multiple disks. Structure is documented below.`,
+					Description: `Disks to attach to instances created from this template. This can be specified multiple times for multiple disks. Structure is [documented below](#nested_disk).`,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -1908,11 +2189,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is documented below.`,
+					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is [documented below](#nested_network_interface).`,
 				},
 				resource.Attribute{
 					Name:        "network_performance_config",
-					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+					Description: `The network performance configuration setting for the instance, if set. Structure is [documented below](#nested_network_performance_config).`,
 				},
 				resource.Attribute{
 					Name:        "project",
@@ -1928,7 +2209,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `Service account to attach to the instance. Structure is documented below.`,
+					Description: `Service account to attach to the instance. Structure is [documented below](#nested_service_account).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1936,7 +2217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "guest_accelerator",
-					Description: `List of the type and count of accelerator cards attached to the instance. Structure documented below.`,
+					Description: `List of the type and count of accelerator cards attached to the instance. Structure [documented below](#nested_guest_accelerator).`,
 				},
 				resource.Attribute{
 					Name:        "min_cpu_platform",
@@ -1944,7 +2225,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shielded_instance_config",
-					Description: `Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is documented below.`,
+					Description: `Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is [documented below](#nested_shielded_instance_config).`,
 				},
 				resource.Attribute{
 					Name:        "enable_display",
@@ -1952,7 +2233,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "confidential_instance_config",
-					Description: `Enable [Confidential Mode](https://cloud.google.com/compute/confidential-vm/docs/about-cvm) on this VM. The ` + "`" + `disk` + "`" + ` block supports:`,
+					Description: `Enable [Confidential Mode](https://cloud.google.com/compute/confidential-vm/docs/about-cvm) on this VM. Structure is [documented below](#nested_confidential_instance_config) <a name="nested_disk"></a>The ` + "`" + `disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -1988,7 +2269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `The GCE disk type. Can be either ` + "`" + `"pd-ssd"` + "`" + `, ` + "`" + `"local-ssd"` + "`" + `, ` + "`" + `"pd-balanced"` + "`" + ` or ` + "`" + `"pd-standard"` + "`" + `.`,
+					Description: `The GCE disk type. Such as ` + "`" + `"pd-ssd"` + "`" + `, ` + "`" + `"local-ssd"` + "`" + `, ` + "`" + `"pd-balanced"` + "`" + ` or ` + "`" + `"pd-standard"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -2008,7 +2289,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_key_self_link",
-					Description: `The self link of the encryption key that is stored in Google Cloud KMS The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `The self link of the encryption key that is stored in Google Cloud KMS <a name="nested_network_interface"></a>The ` + "`" + `network_interface` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -2028,11 +2309,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_config",
-					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Omit to ensure that the instance is not accessible from the Internet (this means that ssh provisioners will not work unless you are running Terraform can send traffic to the instance's network (e.g. via tunnel or because it is running on another cloud instance on that network). This block can be repeated multiple times. Structure documented below.`,
+					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Omit to ensure that the instance is not accessible from the Internet (this means that ssh provisioners will not work unless you are running Terraform can send traffic to the instance's network (e.g. via tunnel or because it is running on another cloud instance on that network). This block can be repeated multiple times. Structure [documented below](#nested_access_config).`,
 				},
 				resource.Attribute{
 					Name:        "alias_ip_range",
-					Description: `An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure documented below. The ` + "`" + `access_config` + "`" + ` block supports:`,
+					Description: `An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure [documented below](#nested_alias_ip_range). <a name="nested_access_config"></a>The ` + "`" + `access_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -2040,7 +2321,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_tier",
-					Description: `The [networking tier][network-tier] used for configuring this instance template. This field can take the following values: PREMIUM or STANDARD. If this field is not specified, it is assumed to be PREMIUM. The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
+					Description: `The [networking tier][network-tier] used for configuring this instance template. This field can take the following values: PREMIUM or STANDARD. If this field is not specified, it is assumed to be PREMIUM. <a name="nested_alias_ip_range"></a>The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "ip_cidr_range",
@@ -2048,7 +2329,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnetwork_range_name",
-					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. The ` + "`" + `service_account` + "`" + ` block supports:`,
+					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. <a name="nested_service_account"></a>The ` + "`" + `service_account` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -2056,7 +2337,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the ` + "`" + `cloud-platform` + "`" + ` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes). The [service accounts documentation](https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam) explains that access scopes are the legacy method of specifying permissions for your instance. If you are following best practices and using IAM roles to grant permissions to service accounts, then you can define this field as an empty list. The ` + "`" + `scheduling` + "`" + ` block supports:`,
+					Description: `A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the ` + "`" + `cloud-platform` + "`" + ` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes). The [service accounts documentation](https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam) explains that access scopes are the legacy method of specifying permissions for your instance. If you are following best practices and using IAM roles to grant permissions to service accounts, then you can define this field as an empty list. <a name="nested_scheduling"></a>The ` + "`" + `scheduling` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "automatic_restart",
@@ -2072,7 +2353,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_affinities",
-					Description: `Specifies node affinities or anti-affinities to determine which sole-tenant nodes your instances and managed instance groups will use as host systems. Read more on sole-tenant node creation [here](https://cloud.google.com/compute/docs/nodes/create-nodes). Structure documented below. The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Specifies node affinities or anti-affinities to determine which sole-tenant nodes your instances and managed instance groups will use as host systems. Read more on sole-tenant node creation [here](https://cloud.google.com/compute/docs/nodes/create-nodes). Structure [documented below](#nested_node_affinities).`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2080,7 +2365,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `The number of the guest accelerator cards exposed to this instance. The ` + "`" + `node_affinities` + "`" + ` block supports:`,
+					Description: `The number of the guest accelerator cards exposed to this instance. <a name="nested_node_affinities"></a>The ` + "`" + `node_affinities` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2092,7 +2377,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The values for the node affinity label. The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+					Description: `The values for the node affinity label. <a name="nested_shielded_instance_config"></a>The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "total_egress_bandwidth_tier",
@@ -2118,7 +2403,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk",
-					Description: `Disks to attach to instances created from this template. This can be specified multiple times for multiple disks. Structure is documented below.`,
+					Description: `Disks to attach to instances created from this template. This can be specified multiple times for multiple disks. Structure is [documented below](#nested_disk).`,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -2158,11 +2443,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface",
-					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is documented below.`,
+					Description: `Networks to attach to instances created from this template. This can be specified multiple times for multiple networks. Structure is [documented below](#nested_network_interface).`,
 				},
 				resource.Attribute{
 					Name:        "network_performance_config",
-					Description: `The network performance configuration setting for the instance, if set. Structure is documented below.`,
+					Description: `The network performance configuration setting for the instance, if set. Structure is [documented below](#nested_network_performance_config).`,
 				},
 				resource.Attribute{
 					Name:        "project",
@@ -2178,7 +2463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `Service account to attach to the instance. Structure is documented below.`,
+					Description: `Service account to attach to the instance. Structure is [documented below](#nested_service_account).`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2186,7 +2471,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "guest_accelerator",
-					Description: `List of the type and count of accelerator cards attached to the instance. Structure documented below.`,
+					Description: `List of the type and count of accelerator cards attached to the instance. Structure [documented below](#nested_guest_accelerator).`,
 				},
 				resource.Attribute{
 					Name:        "min_cpu_platform",
@@ -2194,7 +2479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shielded_instance_config",
-					Description: `Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is documented below.`,
+					Description: `Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is [documented below](#nested_shielded_instance_config).`,
 				},
 				resource.Attribute{
 					Name:        "enable_display",
@@ -2202,7 +2487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "confidential_instance_config",
-					Description: `Enable [Confidential Mode](https://cloud.google.com/compute/confidential-vm/docs/about-cvm) on this VM. The ` + "`" + `disk` + "`" + ` block supports:`,
+					Description: `Enable [Confidential Mode](https://cloud.google.com/compute/confidential-vm/docs/about-cvm) on this VM. Structure is [documented below](#nested_confidential_instance_config) <a name="nested_disk"></a>The ` + "`" + `disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "auto_delete",
@@ -2238,7 +2523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `The GCE disk type. Can be either ` + "`" + `"pd-ssd"` + "`" + `, ` + "`" + `"local-ssd"` + "`" + `, ` + "`" + `"pd-balanced"` + "`" + ` or ` + "`" + `"pd-standard"` + "`" + `.`,
+					Description: `The GCE disk type. Such as ` + "`" + `"pd-ssd"` + "`" + `, ` + "`" + `"local-ssd"` + "`" + `, ` + "`" + `"pd-balanced"` + "`" + ` or ` + "`" + `"pd-standard"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -2258,7 +2543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_key_self_link",
-					Description: `The self link of the encryption key that is stored in Google Cloud KMS The ` + "`" + `network_interface` + "`" + ` block supports:`,
+					Description: `The self link of the encryption key that is stored in Google Cloud KMS <a name="nested_network_interface"></a>The ` + "`" + `network_interface` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -2278,11 +2563,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_config",
-					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Omit to ensure that the instance is not accessible from the Internet (this means that ssh provisioners will not work unless you are running Terraform can send traffic to the instance's network (e.g. via tunnel or because it is running on another cloud instance on that network). This block can be repeated multiple times. Structure documented below.`,
+					Description: `Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Omit to ensure that the instance is not accessible from the Internet (this means that ssh provisioners will not work unless you are running Terraform can send traffic to the instance's network (e.g. via tunnel or because it is running on another cloud instance on that network). This block can be repeated multiple times. Structure [documented below](#nested_access_config).`,
 				},
 				resource.Attribute{
 					Name:        "alias_ip_range",
-					Description: `An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure documented below. The ` + "`" + `access_config` + "`" + ` block supports:`,
+					Description: `An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks. Structure [documented below](#nested_alias_ip_range). <a name="nested_access_config"></a>The ` + "`" + `access_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "nat_ip",
@@ -2290,7 +2575,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_tier",
-					Description: `The [networking tier][network-tier] used for configuring this instance template. This field can take the following values: PREMIUM or STANDARD. If this field is not specified, it is assumed to be PREMIUM. The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
+					Description: `The [networking tier][network-tier] used for configuring this instance template. This field can take the following values: PREMIUM or STANDARD. If this field is not specified, it is assumed to be PREMIUM. <a name="nested_alias_ip_range"></a>The ` + "`" + `alias_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "ip_cidr_range",
@@ -2298,7 +2583,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnetwork_range_name",
-					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. The ` + "`" + `service_account` + "`" + ` block supports:`,
+					Description: `The subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used. <a name="nested_service_account"></a>The ` + "`" + `service_account` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -2306,7 +2591,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the ` + "`" + `cloud-platform` + "`" + ` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes). The [service accounts documentation](https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam) explains that access scopes are the legacy method of specifying permissions for your instance. If you are following best practices and using IAM roles to grant permissions to service accounts, then you can define this field as an empty list. The ` + "`" + `scheduling` + "`" + ` block supports:`,
+					Description: `A list of service scopes. Both OAuth2 URLs and gcloud short names are supported. To allow full access to all Cloud APIs, use the ` + "`" + `cloud-platform` + "`" + ` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes). The [service accounts documentation](https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam) explains that access scopes are the legacy method of specifying permissions for your instance. If you are following best practices and using IAM roles to grant permissions to service accounts, then you can define this field as an empty list. <a name="nested_scheduling"></a>The ` + "`" + `scheduling` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "automatic_restart",
@@ -2322,7 +2607,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_affinities",
-					Description: `Specifies node affinities or anti-affinities to determine which sole-tenant nodes your instances and managed instance groups will use as host systems. Read more on sole-tenant node creation [here](https://cloud.google.com/compute/docs/nodes/create-nodes). Structure documented below. The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Specifies node affinities or anti-affinities to determine which sole-tenant nodes your instances and managed instance groups will use as host systems. Read more on sole-tenant node creation [here](https://cloud.google.com/compute/docs/nodes/create-nodes). Structure [documented below](#nested_node_affinities).`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2330,7 +2619,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `The number of the guest accelerator cards exposed to this instance. The ` + "`" + `node_affinities` + "`" + ` block supports:`,
+					Description: `The number of the guest accelerator cards exposed to this instance. <a name="nested_node_affinities"></a>The ` + "`" + `node_affinities` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2342,7 +2631,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The values for the node affinity label. The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
+					Description: `The values for the node affinity label. <a name="nested_shielded_instance_config"></a>The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "total_egress_bandwidth_tier",
@@ -2731,6 +3020,54 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_compute_router_status",
+			Category:         "Data Sources",
+			ShortDescription: `Get a Cloud Router's Status.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the router.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region this router has been created in. If unspecified, this defaults to the region configured in the provider. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network name or resource link to the parent network of this subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "best_routes",
+					Description: `List of best ` + "`" + `compute#routes` + "`" + ` configurations for this router's network. See [google_compute_route](https://www.terraform.io/docs/providers/google/r/compute_route.html) resource for available attributes.`,
+				},
+				resource.Attribute{
+					Name:        "best_routes_for_router",
+					Description: `List of best ` + "`" + `compute#routes` + "`" + ` for this specific router. See [google_compute_route](https://www.terraform.io/docs/providers/google/r/compute_route.html) resource for available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network name or resource link to the parent network of this subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "best_routes",
+					Description: `List of best ` + "`" + `compute#routes` + "`" + ` configurations for this router's network. See [google_compute_route](https://www.terraform.io/docs/providers/google/r/compute_route.html) resource for available attributes.`,
+				},
+				resource.Attribute{
+					Name:        "best_routes_for_router",
+					Description: `List of best ` + "`" + `compute#routes` + "`" + ` for this specific router. See [google_compute_route](https://www.terraform.io/docs/providers/google/r/compute_route.html) resource for available attributes.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_compute_ssl_certificate",
 			Category:         "Data Sources",
 			ShortDescription: `Get info about a Google Compute SSL Certificate.`,
@@ -2867,7 +3204,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_ip_range",
-					Description: `An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is documented below. The ` + "`" + `secondary_ip_range` + "`" + ` block supports:`,
+					Description: `An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is [documented below](#nested_secondary_ip_range). <a name="nested_secondary_ip_range"></a>The ` + "`" + `secondary_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "range_name",
@@ -2901,7 +3238,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_ip_range",
-					Description: `An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is documented below. The ` + "`" + `secondary_ip_range` + "`" + ` block supports:`,
+					Description: `An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. Structure is [documented below](#nested_secondary_ip_range). <a name="nested_secondary_ip_range"></a>The ` + "`" + `secondary_ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "range_name",
@@ -2987,6 +3324,62 @@ var (
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of zones available in the given region`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_aws_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides lists of available Kubernetes versions for the Container AWS resources.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of versions available for use with this project and location.`,
+				},
+				resource.Attribute{
+					Name:        "supported_regions",
+					Description: `A list of AWS regions that are available for use with this project and GCP location.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of versions available for use with this project and location.`,
+				},
+				resource.Attribute{
+					Name:        "supported_regions",
+					Description: `A list of AWS regions that are available for use with this project and GCP location.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_azure_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Provides lists of available Kubernetes versions for the Container Azure resources.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of versions available for use with this project and location.`,
+				},
+				resource.Attribute{
+					Name:        "supported_regions",
+					Description: `A list of Azure regions that are available for use with this project and GCP location.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of versions available for use with this project and location.`,
+				},
+				resource.Attribute{
+					Name:        "supported_regions",
+					Description: `A list of Azure regions that are available for use with this project and GCP location.`,
 				},
 			},
 		},
@@ -3088,6 +3481,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_dataproc_metastore_service",
+			Category:         "Data Sources",
+			ShortDescription: `Get a Dataproc Metastore Service from Google Cloud`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) The ID of the metastore service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location where the metastore service resides. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_dataproc_metastore_service](https://www.terraform.io/docs/providers/google/r/dataproc_metastore_service.html) resource for details of all the available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_sourcerepo_repository",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Cloud Source Repository.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Resource name of the repository. The repo name may contain slashes. eg, ` + "`" + `name/with/slash` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_sourcerepo_repository](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sourcerepo_repository#argument-reference) resource for details of the available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_dns_keys",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNSKEY and DS records of DNSSEC-signed managed zones.`,
@@ -3104,7 +3539,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_signing_keys",
-					Description: `A list of Key-signing key (KSK) records. Structure is documented below. Additionally, the DS record is provided:`,
+					Description: `A list of Key-signing key (KSK) records. Structure is [documented below](#nested_key_signing_keys). Additionally, the DS record is provided:`,
 				},
 				resource.Attribute{
 					Name:        "ds_record",
@@ -3112,7 +3547,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_signing_keys",
-					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
+					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- <a name="nested_key_signing_keys"></a>The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -3154,7 +3589,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_signing_keys",
-					Description: `A list of Key-signing key (KSK) records. Structure is documented below. Additionally, the DS record is provided:`,
+					Description: `A list of Key-signing key (KSK) records. Structure is [documented below](#nested_key_signing_keys). Additionally, the DS record is provided:`,
 				},
 				resource.Attribute{
 					Name:        "ds_record",
@@ -3162,7 +3597,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_signing_keys",
-					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
+					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- <a name="nested_key_signing_keys"></a>The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "algorithm",
@@ -3252,6 +3687,47 @@ var (
 				resource.Attribute{
 					Name:        "visibility",
 					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_dns_record_set",
+			Category:         "Data Sources",
+			ShortDescription: `Get a DNS record set within Google Cloud DNS`,
+			Description:      ``,
+			Icon:             "Networking/Cloud_DNS.svg",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "managed_zone",
+					Description: `(Required) The Name of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The DNS name for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project for the Google Cloud. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "rrdatas",
+					Description: `The string data for the records in this record set.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The time-to-live of this record set (seconds).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rrdatas",
+					Description: `The string data for the records in this record set.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The time-to-live of this record set (seconds).`,
 				},
 			},
 		},
@@ -3464,6 +3940,94 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_folders",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve a set of folders based on a parent ID.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `(Required) A string parent as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v3/folders/list#query-parameters). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "folders",
+					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `folders` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The id of the folder`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `The parent id of the folder`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the folder`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The lifecycle state of the folder`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp of when the folder was created`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp of when the folder was last modified`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `The timestamp of when the folder was requested to be deleted (if applicable)`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `Entity tag identifier of the folder`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folders",
+					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `folders` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The id of the folder`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `The parent id of the folder`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the folder`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The lifecycle state of the folder`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp of when the folder was created`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp of when the folder was last modified`,
+				},
+				resource.Attribute{
+					Name:        "delete_time",
+					Description: `The timestamp of when the folder was requested to be deleted (if applicable)`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `Entity tag identifier of the folder`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_game_services_game_server_deployment_rollout",
 			Category:         "Data Sources",
 			ShortDescription: `Get the rollout state.`,
@@ -3480,19 +4044,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "game_server_config_overrides",
-					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is documented below.`,
+					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is [documented below](#nested_game_server_config_overrides).`,
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
+					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. <a name="nested_game_server_config_overrides"></a>The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "realms_selector",
-					Description: `Selection by realms. Structure is documented below.`,
+					Description: `Selection by realms. Structure is [documented below](#nested_realms_selector).`,
 				},
 				resource.Attribute{
 					Name:        "config_version",
-					Description: `Version of the configuration. The ` + "`" + `realms_selector` + "`" + ` block contains:`,
+					Description: `Version of the configuration. <a name="nested_realms_selector"></a>The ` + "`" + `realms_selector` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "realms",
@@ -3514,19 +4078,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "game_server_config_overrides",
-					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is documented below.`,
+					Description: `The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is [documented below](#nested_game_server_config_overrides).`,
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
+					Description: `The ID of the project in which the resource belongs. If it is not provided, the provider project is used. <a name="nested_game_server_config_overrides"></a>The ` + "`" + `game_server_config_overrides` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "realms_selector",
-					Description: `Selection by realms. Structure is documented below.`,
+					Description: `Selection by realms. Structure is [documented below](#nested_realms_selector).`,
 				},
 				resource.Attribute{
 					Name:        "config_version",
-					Description: `Version of the configuration. The ` + "`" + `realms_selector` + "`" + ` block contains:`,
+					Description: `Version of the configuration. <a name="nested_realms_selector"></a>The ` + "`" + `realms_selector` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "realms",
@@ -3552,7 +4116,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "condition",
-					Description: `(Optional) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding. Structure is documented below. The ` + "`" + `condition` + "`" + ` block supports:`,
+					Description: `(Optional) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding. Structure is [documented below](#nested_condition). <a name="nested_condition"></a>The ` + "`" + `condition` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "expression",
@@ -3636,7 +4200,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+					Description: `A list of permissions matching the provided input. Structure is [defined below](#nested_permissions). <a name="nested_permissions"></a>The ` + "`" + `permissions` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3662,7 +4226,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `A list of permissions matching the provided input. Structure is defined below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+					Description: `A list of permissions matching the provided input. Structure is [defined below](#nested_permissions). <a name="nested_permissions"></a>The ` + "`" + `permissions` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3761,7 +4325,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_ring",
-					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform KeyRing to which the key belongs. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The ` + "`" + `id` + "`" + ` of the Google Cloud Platform KeyRing to which the key belongs. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "rotation_period",
@@ -3772,8 +4336,8 @@ var (
 					Description: `Defines the cryptographic capabilities of the key.`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
+					Name:        "id",
+					Description: `The identifier of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3786,8 +4350,8 @@ var (
 					Description: `Defines the cryptographic capabilities of the key.`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
+					Name:        "id",
+					Description: `The identifier of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
 				},
 			},
 		},
@@ -3801,7 +4365,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "crypto_key",
-					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs. This is also the ` + "`" + `id` + "`" + ` field of the ` + "`" + `google_kms_crypto_key` + "`" + ` resource/datasource.`,
+					Description: `(Required) The ` + "`" + `id` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs. This is also the ` + "`" + `id` + "`" + ` field of the ` + "`" + `google_kms_crypto_key` + "`" + ` resource/datasource.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -3829,7 +4393,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is [documented below](#nested_public_key). <a name="nested_public_key"></a>The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
 				},
 				resource.Attribute{
 					Name:        "pem",
@@ -3863,7 +4427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is [documented below](#nested_public_key). <a name="nested_public_key"></a>The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
 				},
 				resource.Attribute{
 					Name:        "pem",
@@ -3897,14 +4461,14 @@ var (
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
+					Name:        "id",
+					Description: `The identifier of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "self_link",
-					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
+					Name:        "id",
+					Description: `The identifier of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
 				},
 			},
 		},
@@ -4443,6 +5007,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_privateca_certificate_authority",
+			Category:         "Data Sources",
+			ShortDescription: `Contains the data that describes a Certificate Authority`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location the certificate authority exists in.`,
+				},
+				resource.Attribute{
+					Name:        "pool",
+					Description: `(Required) The name of the pool the certificate authority belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority_id",
+					Description: `(Required) ID of the certificate authority. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_privateca_certificate_authority](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/privateca_certificate_authority) resource for details of the available attributes.`,
+				},
+				resource.Attribute{
+					Name:        "pem_csr",
+					Description: `The PEM-encoded signed certificate signing request (CSR). This is only set on subordinate certificate authorities.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pem_csr",
+					Description: `The PEM-encoded signed certificate signing request (CSR). This is only set on subordinate certificate authorities.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_project",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve project details`,
@@ -4498,7 +5098,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "projects",
-					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
+					Description: `A list of projects matching the provided filter. Structure is [defined below](#nested_projects). <a name="nested_projects"></a>The ` + "`" + `projects` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -4508,7 +5108,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "projects",
-					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
+					Description: `A list of projects matching the provided filter. Structure is [defined below](#nested_projects). <a name="nested_projects"></a>The ` + "`" + `projects` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -4598,6 +5198,25 @@ var (
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_runtimeconfig_variable](https://www.terraform.io/docs/providers/google/r/runtimeconfig_variable.html#argument-reference) resource for details of the available attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_secret_manager_secret",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Secret Manager Secret`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `(required) The name of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(optional) The ID of the project in which the resource belongs. ## Attributes Reference See [google_secret_manager_secret](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/secret_manager_secret) resource for details of all the available attributes.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4997,531 +5616,26 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(optional) The ID of the project in which the resource belongs. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "settings",
-					Description: `The settings to use for the database. The configuration is detailed below.`,
-				},
-				resource.Attribute{
-					Name:        "database_version",
-					Description: `The MySQL, PostgreSQL or SQL Server (beta) version to use.`,
-				},
-				resource.Attribute{
-					Name:        "master_instance_name",
-					Description: `The name of the existing instance that will act as the master in the replication setup.`,
-				},
-				resource.Attribute{
-					Name:        "replica_configuration",
-					Description: `The configuration for replication. The configuration is detailed below.`,
-				},
-				resource.Attribute{
-					Name:        "root_password",
-					Description: `Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_key_name",
-					Description: `[Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The full path to the encryption key used for the CMEK disk encryption. The ` + "`" + `settings` + "`" + ` block contains:`,
-				},
-				resource.Attribute{
-					Name:        "tier",
-					Description: `The machine type to use.`,
-				},
-				resource.Attribute{
-					Name:        "activation_policy",
-					Description: `This specifies when the instance should be active. Can be either ` + "`" + `ALWAYS` + "`" + ` or ` + "`" + `NEVER` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "authorized_gae_applications",
-					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
-				},
-				resource.Attribute{
-					Name:        "availability_type",
-					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "collation",
-					Description: `The name of server instance collation.`,
-				},
-				resource.Attribute{
-					Name:        "crash_safe_replication",
-					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
-				},
-				resource.Attribute{
-					Name:        "disk_autoresize",
-					Description: `Configuration to increase storage size automatically.`,
-				},
-				resource.Attribute{
-					Name:        "disk_autoresize_limit",
-					Description: `The maximum size, in GB, to which storage capacity can be automatically increased.`,
-				},
-				resource.Attribute{
-					Name:        "disk_size",
-					Description: `The size of data disk, in GB.`,
-				},
-				resource.Attribute{
-					Name:        "disk_type",
-					Description: `The type of data disk.`,
-				},
-				resource.Attribute{
-					Name:        "pricing_plan",
-					Description: `Pricing plan for this instance.`,
-				},
-				resource.Attribute{
-					Name:        "replication_type",
-					Description: `This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
-				},
-				resource.Attribute{
-					Name:        "user_labels",
-					Description: `A set of key/value user label pairs to assign to the instance. The ` + "`" + `settings.database_flags` + "`" + ` sublist contains:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the flag.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Value of the flag. The ` + "`" + `settings.backup_configuration` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "binary_log_enabled",
-					Description: `True if binary logging is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if backup configuration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "start_time",
-					Description: `` + "`" + `HH:MM` + "`" + ` format time indicating when backup configuration starts. The ` + "`" + `settings.ip_configuration` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_enabled",
-					Description: `Whether this Cloud SQL instance should be assigned a public IPV4 address.`,
-				},
-				resource.Attribute{
-					Name:        "private_network",
-					Description: `The VPC network from which the Cloud SQL instance is accessible for private IP.`,
-				},
-				resource.Attribute{
-					Name:        "require_ssl",
-					Description: `True if mysqld default to ` + "`" + `REQUIRE X509` + "`" + ` for users connecting over IP. The ` + "`" + `settings.ip_configuration.authorized_networks[]` + "`" + ` sublist contains:`,
-				},
-				resource.Attribute{
-					Name:        "expiration_time",
-					Description: `The [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date time string indicating when this whitelist expires.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A name for this whitelist entry.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `A CIDR notation IPv4 or IPv6 address that is allowed to access this instance. The ` + "`" + `settings.location_preference` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "follow_gae_application",
-					Description: `A GAE application whose zone to remain in.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `The preferred compute engine. The ` + "`" + `settings.maintenance_window` + "`" + ` subblock for instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It contains:`,
-				},
-				resource.Attribute{
-					Name:        "day",
-					Description: `Day of week (` + "`" + `1-7` + "`" + `), starting on Monday.`,
-				},
-				resource.Attribute{
-					Name:        "hour",
-					Description: `Hour of day (` + "`" + `0-23` + "`" + `), ignored if ` + "`" + `day` + "`" + ` not set.`,
-				},
-				resource.Attribute{
-					Name:        "update_track",
-					Description: `Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `). The ` + "`" + `settings.insights_config` + "`" + ` subblock for instances declares [Query Insights](https://cloud.google.com/sql/docs/postgres/insights-overview) configuration. It contains:`,
-				},
-				resource.Attribute{
-					Name:        "query_insights_enabled",
-					Description: `True if Query Insights feature is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "query_string_length",
-					Description: `Maximum query length stored in bytes. Between 256 and 4500. Default to 1024.`,
-				},
-				resource.Attribute{
-					Name:        "record_application_tags",
-					Description: `True if Query Insights will record application tags from query when enabled.`,
-				},
-				resource.Attribute{
-					Name:        "record_client_address",
-					Description: `True if Query Insights will record client address when enabled. The ` + "`" + `replica_configuration` + "`" + ` block contains:`,
-				},
-				resource.Attribute{
-					Name:        "ca_certificate",
-					Description: `PEM representation of the trusted CA's x509 certificate.`,
-				},
-				resource.Attribute{
-					Name:        "client_certificate",
-					Description: `PEM representation of the replica's x509 certificate.`,
-				},
-				resource.Attribute{
-					Name:        "client_key",
-					Description: `PEM representation of the replica's private key.`,
-				},
-				resource.Attribute{
-					Name:        "connect_retry_interval",
-					Description: `The number of seconds between connect retries.`,
-				},
-				resource.Attribute{
-					Name:        "dump_file_path",
-					Description: `Path to a SQL file in GCS from which replica instances are created.`,
-				},
-				resource.Attribute{
-					Name:        "failover_target",
-					Description: `Specifies if the replica is the failover target.`,
-				},
-				resource.Attribute{
-					Name:        "master_heartbeat_period",
-					Description: `Time in ms between replication heartbeats.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `Password for the replication connection.`,
-				},
-				resource.Attribute{
-					Name:        "sslCipher",
-					Description: `Permissible ciphers for use in SSL encryption.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username for replication connection.`,
-				},
-				resource.Attribute{
-					Name:        "verify_server_certificate",
-					Description: `True if the master's common name value is checked during the SSL handshake.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the created resource.`,
-				},
-				resource.Attribute{
-					Name:        "connection_name",
-					Description: `The connection name of the instance to be used in connection strings.`,
-				},
-				resource.Attribute{
-					Name:        "service_account_email_address",
-					Description: `The service account email address assigned to the instance.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.ip_address",
-					Description: `The IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.time_to_retire",
-					Description: `The time this IP address will be retired, in RFC 3339 format.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.type",
-					Description: `The type of this IP address.`,
-				},
-				resource.Attribute{
-					Name:        "first_ip_address",
-					Description: `The first IPv4 address of any type assigned.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip_address",
-					Description: `The first public (` + "`" + `PRIMARY` + "`" + `) IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip_address",
-					Description: `The first private (` + "`" + `PRIVATE` + "`" + `) IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "settings.version",
-					Description: `Used to make sure changes to the ` + "`" + `settings` + "`" + ` block are atomic.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.cert",
-					Description: `The CA Certificate used to connect to the SQL Instance via SSL.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.common_name",
-					Description: `The CN valid for the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.create_time",
-					Description: `Creation time of the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.expiration_time",
-					Description: `Expiration time of the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.sha1_fingerprint",
-					Description: `SHA Fingerprint of the CA Cert.`,
+					Description: `(optional) The ID of the project in which the resource belongs. ## Attributes Reference See [google_sql_database_instance](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance) resource for details of all the available attributes.`,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "settings",
-					Description: `The settings to use for the database. The configuration is detailed below.`,
-				},
-				resource.Attribute{
-					Name:        "database_version",
-					Description: `The MySQL, PostgreSQL or SQL Server (beta) version to use.`,
-				},
-				resource.Attribute{
-					Name:        "master_instance_name",
-					Description: `The name of the existing instance that will act as the master in the replication setup.`,
-				},
-				resource.Attribute{
-					Name:        "replica_configuration",
-					Description: `The configuration for replication. The configuration is detailed below.`,
-				},
-				resource.Attribute{
-					Name:        "root_password",
-					Description: `Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_key_name",
-					Description: `[Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The full path to the encryption key used for the CMEK disk encryption. The ` + "`" + `settings` + "`" + ` block contains:`,
-				},
-				resource.Attribute{
-					Name:        "tier",
-					Description: `The machine type to use.`,
-				},
-				resource.Attribute{
-					Name:        "activation_policy",
-					Description: `This specifies when the instance should be active. Can be either ` + "`" + `ALWAYS` + "`" + ` or ` + "`" + `NEVER` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "authorized_gae_applications",
-					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
-				},
-				resource.Attribute{
-					Name:        "availability_type",
-					Description: `The availability type of the Cloud SQL instance, high availability (` + "`" + `REGIONAL` + "`" + `) or single zone (` + "`" + `ZONAL` + "`" + `).`,
-				},
-				resource.Attribute{
-					Name:        "collation",
-					Description: `The name of server instance collation.`,
-				},
-				resource.Attribute{
-					Name:        "crash_safe_replication",
-					Description: `(Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
-				},
-				resource.Attribute{
-					Name:        "disk_autoresize",
-					Description: `Configuration to increase storage size automatically.`,
-				},
-				resource.Attribute{
-					Name:        "disk_autoresize_limit",
-					Description: `The maximum size, in GB, to which storage capacity can be automatically increased.`,
-				},
-				resource.Attribute{
-					Name:        "disk_size",
-					Description: `The size of data disk, in GB.`,
-				},
-				resource.Attribute{
-					Name:        "disk_type",
-					Description: `The type of data disk.`,
-				},
-				resource.Attribute{
-					Name:        "pricing_plan",
-					Description: `Pricing plan for this instance.`,
-				},
-				resource.Attribute{
-					Name:        "replication_type",
-					Description: `This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)`,
-				},
-				resource.Attribute{
-					Name:        "user_labels",
-					Description: `A set of key/value user label pairs to assign to the instance. The ` + "`" + `settings.database_flags` + "`" + ` sublist contains:`,
-				},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_storage_bucket",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Google Cloud Storage bucket.`,
+			Description:      ``,
+			Icon:             "Storage/Cloud_Storage.svg",
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the flag.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Value of the flag. The ` + "`" + `settings.backup_configuration` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "binary_log_enabled",
-					Description: `True if binary logging is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if backup configuration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "start_time",
-					Description: `` + "`" + `HH:MM` + "`" + ` format time indicating when backup configuration starts. The ` + "`" + `settings.ip_configuration` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "ipv4_enabled",
-					Description: `Whether this Cloud SQL instance should be assigned a public IPV4 address.`,
-				},
-				resource.Attribute{
-					Name:        "private_network",
-					Description: `The VPC network from which the Cloud SQL instance is accessible for private IP.`,
-				},
-				resource.Attribute{
-					Name:        "require_ssl",
-					Description: `True if mysqld default to ` + "`" + `REQUIRE X509` + "`" + ` for users connecting over IP. The ` + "`" + `settings.ip_configuration.authorized_networks[]` + "`" + ` sublist contains:`,
-				},
-				resource.Attribute{
-					Name:        "expiration_time",
-					Description: `The [RFC 3339](https://tools.ietf.org/html/rfc3339) formatted date time string indicating when this whitelist expires.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A name for this whitelist entry.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `A CIDR notation IPv4 or IPv6 address that is allowed to access this instance. The ` + "`" + `settings.location_preference` + "`" + ` subblock contains:`,
-				},
-				resource.Attribute{
-					Name:        "follow_gae_application",
-					Description: `A GAE application whose zone to remain in.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `The preferred compute engine. The ` + "`" + `settings.maintenance_window` + "`" + ` subblock for instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It contains:`,
-				},
-				resource.Attribute{
-					Name:        "day",
-					Description: `Day of week (` + "`" + `1-7` + "`" + `), starting on Monday.`,
-				},
-				resource.Attribute{
-					Name:        "hour",
-					Description: `Hour of day (` + "`" + `0-23` + "`" + `), ignored if ` + "`" + `day` + "`" + ` not set.`,
-				},
-				resource.Attribute{
-					Name:        "update_track",
-					Description: `Receive updates earlier (` + "`" + `canary` + "`" + `) or later (` + "`" + `stable` + "`" + `). The ` + "`" + `settings.insights_config` + "`" + ` subblock for instances declares [Query Insights](https://cloud.google.com/sql/docs/postgres/insights-overview) configuration. It contains:`,
-				},
-				resource.Attribute{
-					Name:        "query_insights_enabled",
-					Description: `True if Query Insights feature is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "query_string_length",
-					Description: `Maximum query length stored in bytes. Between 256 and 4500. Default to 1024.`,
-				},
-				resource.Attribute{
-					Name:        "record_application_tags",
-					Description: `True if Query Insights will record application tags from query when enabled.`,
-				},
-				resource.Attribute{
-					Name:        "record_client_address",
-					Description: `True if Query Insights will record client address when enabled. The ` + "`" + `replica_configuration` + "`" + ` block contains:`,
-				},
-				resource.Attribute{
-					Name:        "ca_certificate",
-					Description: `PEM representation of the trusted CA's x509 certificate.`,
-				},
-				resource.Attribute{
-					Name:        "client_certificate",
-					Description: `PEM representation of the replica's x509 certificate.`,
-				},
-				resource.Attribute{
-					Name:        "client_key",
-					Description: `PEM representation of the replica's private key.`,
-				},
-				resource.Attribute{
-					Name:        "connect_retry_interval",
-					Description: `The number of seconds between connect retries.`,
-				},
-				resource.Attribute{
-					Name:        "dump_file_path",
-					Description: `Path to a SQL file in GCS from which replica instances are created.`,
-				},
-				resource.Attribute{
-					Name:        "failover_target",
-					Description: `Specifies if the replica is the failover target.`,
-				},
-				resource.Attribute{
-					Name:        "master_heartbeat_period",
-					Description: `Time in ms between replication heartbeats.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `Password for the replication connection.`,
-				},
-				resource.Attribute{
-					Name:        "sslCipher",
-					Description: `Permissible ciphers for use in SSL encryption.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username for replication connection.`,
-				},
-				resource.Attribute{
-					Name:        "verify_server_certificate",
-					Description: `True if the master's common name value is checked during the SSL handshake.`,
-				},
-				resource.Attribute{
-					Name:        "self_link",
-					Description: `The URI of the created resource.`,
-				},
-				resource.Attribute{
-					Name:        "connection_name",
-					Description: `The connection name of the instance to be used in connection strings.`,
-				},
-				resource.Attribute{
-					Name:        "service_account_email_address",
-					Description: `The service account email address assigned to the instance.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.ip_address",
-					Description: `The IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.time_to_retire",
-					Description: `The time this IP address will be retired, in RFC 3339 format.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address.0.type",
-					Description: `The type of this IP address.`,
-				},
-				resource.Attribute{
-					Name:        "first_ip_address",
-					Description: `The first IPv4 address of any type assigned.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip_address",
-					Description: `The first public (` + "`" + `PRIMARY` + "`" + `) IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip_address",
-					Description: `The first private (` + "`" + `PRIVATE` + "`" + `) IPv4 address assigned.`,
-				},
-				resource.Attribute{
-					Name:        "settings.version",
-					Description: `Used to make sure changes to the ` + "`" + `settings` + "`" + ` block are atomic.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.cert",
-					Description: `The CA Certificate used to connect to the SQL Instance via SSL.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.common_name",
-					Description: `The CN valid for the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.create_time",
-					Description: `Creation time of the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.expiration_time",
-					Description: `Expiration time of the CA Cert.`,
-				},
-				resource.Attribute{
-					Name:        "server_ca_cert.0.sha1_fingerprint",
-					Description: `SHA Fingerprint of the CA Cert.`,
+					Description: `(Required) The name of the bucket. ## Attributes Reference See [google_storage_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket#argument-reference) resource for details of the available attributes.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5694,13 +5808,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email",
-					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
+					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project.`,
+				},
+				resource.Attribute{
+					Name:        "subject_id",
+					Description: `Unique identifier for the service account.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
-					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
+					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project.`,
+				},
+				resource.Attribute{
+					Name:        "subject_id",
+					Description: `Unique identifier for the service account.`,
 				},
 			},
 		},
@@ -5736,100 +5858,114 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"google_active_folder":                                0,
-		"google_app_engine_default_service_account":           1,
-		"google_bigquery_default_service_account":             2,
-		"google_billing_account":                              3,
-		"google_client_config":                                4,
-		"google_client_openid_userinfo":                       5,
-		"google_cloud_identity_group_memberships":             6,
-		"google_cloud_identity_groups":                        7,
-		"google_cloud_run_locations":                          8,
-		"google_cloud_run_service":                            9,
-		"google_cloudfunctions_function":                      10,
-		"google_composer_environment":                         11,
-		"google_composer_image_versions":                      12,
-		"google_compute_address":                              13,
-		"google_compute_backend_bucket":                       14,
-		"google_compute_backend_service":                      15,
-		"google_compute_default_service_account":              16,
-		"google_compute_forwarding_rule":                      17,
-		"google_compute_global_address":                       18,
-		"google_compute_global_forwarding_rule":               19,
-		"google_compute_ha_vpn_gateway":                       20,
-		"google_compute_health_check":                         21,
-		"google_compute_image":                                22,
-		"google_compute_instance":                             23,
-		"google_compute_instance_group":                       24,
-		"google_compute_instance_serial_port":                 25,
-		"google_compute_instance_template":                    26,
-		"google_compute_lb_ip_ranges":                         27,
-		"google_compute_network":                              28,
-		"google_compute_network_endpoint_group":               29,
-		"google_compute_node_types":                           30,
-		"google_compute_region_instance_group":                31,
-		"google_compute_region_ssl_certificate":               32,
-		"google_compute_regions":                              33,
-		"google_compute_resource_policy":                      34,
-		"google_compute_router":                               35,
-		"google_compute_ssl_certificate":                      36,
-		"google_compute_ssl_policy":                           37,
-		"google_compute_subnetwork":                           38,
-		"google_compute_vpn_gateway":                          39,
-		"google_compute_zones":                                40,
-		"google_container_cluster":                            41,
-		"google_container_engine_versions":                    42,
-		"google_container_registry_image":                     43,
-		"google_container_registry_repository":                44,
-		"google_dns_keys":                                     45,
-		"google_dns_managed_zone":                             46,
-		"google_firebase_web_app":                             47,
-		"google_firebase_web_app_config":                      48,
-		"google_folder":                                       49,
-		"google_folder_organization_policy":                   50,
-		"google_game_services_game_server_deployment_rollout": 51,
-		"google_iam_policy":                                   52,
-		"google_iam_role":                                     53,
-		"google_iam_testable_permissions":                     54,
-		"google_iam_workload_identity_pool":                   55,
-		"google_iam_workload_identity_pool_provider":          56,
-		"google_iap_client":                                   57,
-		"google_kms_crypto_key":                               58,
-		"google_kms_crypto_key_version":                       59,
-		"google_kms_key_ring":                                 60,
-		"google_kms_secret":                                   61,
-		"google_kms_secret_asymmetric":                        62,
-		"google_kms_secret_ciphertext":                        63,
-		"google_monitoring_app_engine_service":                64,
-		"google_monitoring_cluster_istio_service":             65,
-		"google_monitoring_istio_canonical_service":           66,
-		"google_monitoring_mesh_istio_service":                67,
-		"google_monitoring_notification_channel":              68,
-		"google_monitoring_uptime_check_ips":                  69,
-		"google_netblock_ip_ranges":                           70,
-		"google_organization":                                 71,
-		"google_project":                                      72,
-		"google_project_organization_policy":                  73,
-		"google_projects":                                     74,
-		"google_pubsub_topic":                                 75,
-		"google_redis_instance":                               76,
-		"google_runtimeconfig_config":                         77,
-		"google_runtimeconfig_variable":                       78,
-		"google_secret_manager_secret_version":                79,
-		"google_service_account":                              80,
-		"google_service_account_access_token":                 81,
-		"google_service_account_id_token":                     82,
-		"google_service_account_key":                          83,
-		"google_storage_object_signed_url":                    84,
-		"google_spanner_instance":                             85,
-		"google_sql_backup_run":                               86,
-		"google_sql_ca_certs":                                 87,
-		"google_sql_database_instance":                        88,
-		"google_storage_bucket_object":                        89,
-		"google_storage_bucket_object_content":                90,
-		"google_storage_project_service_account":              91,
-		"google_storage_transfer_project_service_account":     92,
-		"google_tpu_tensorflow_versions":                      93,
+		"google_access_approval_folder_service_account":       0,
+		"google_access_approval_organization_service_account": 1,
+		"google_access_approval_project_service_account":      2,
+		"google_active_folder":                                3,
+		"google_app_engine_default_service_account":           4,
+		"google_bigquery_default_service_account":             5,
+		"google_billing_account":                              6,
+		"google_client_config":                                7,
+		"google_client_openid_userinfo":                       8,
+		"google_cloud_identity_group_memberships":             9,
+		"google_cloud_identity_groups":                        10,
+		"google_cloud_run_locations":                          11,
+		"google_cloud_run_service":                            12,
+		"google_cloudfunctions_function":                      13,
+		"google_composer_environment":                         14,
+		"google_composer_image_versions":                      15,
+		"google_compute_address":                              16,
+		"google_compute_backend_bucket":                       17,
+		"google_compute_backend_service":                      18,
+		"google_compute_default_service_account":              19,
+		"google_compute_disk":                                 20,
+		"google_compute_forwarding_rule":                      21,
+		"google_compute_global_address":                       22,
+		"google_compute_global_forwarding_rule":               23,
+		"google_compute_ha_vpn_gateway":                       24,
+		"google_compute_health_check":                         25,
+		"google_compute_image":                                26,
+		"google_compute_instance":                             27,
+		"google_compute_instance_group":                       28,
+		"google_compute_instance_serial_port":                 29,
+		"google_compute_instance_template":                    30,
+		"google_compute_lb_ip_ranges":                         31,
+		"google_compute_network":                              32,
+		"google_compute_network_endpoint_group":               33,
+		"google_compute_node_types":                           34,
+		"google_compute_region_instance_group":                35,
+		"google_compute_region_ssl_certificate":               36,
+		"google_compute_regions":                              37,
+		"google_compute_resource_policy":                      38,
+		"google_compute_router":                               39,
+		"google_compute_router_status":                        40,
+		"google_compute_ssl_certificate":                      41,
+		"google_compute_ssl_policy":                           42,
+		"google_compute_subnetwork":                           43,
+		"google_compute_vpn_gateway":                          44,
+		"google_compute_zones":                                45,
+		"google_container_aws_versions":                       46,
+		"google_container_azure_versions":                     47,
+		"google_container_cluster":                            48,
+		"google_container_engine_versions":                    49,
+		"google_container_registry_image":                     50,
+		"google_container_registry_repository":                51,
+		"google_dataproc_metastore_service":                   52,
+		"google_sourcerepo_repository":                        53,
+		"google_dns_keys":                                     54,
+		"google_dns_managed_zone":                             55,
+		"google_dns_record_set":                               56,
+		"google_firebase_web_app":                             57,
+		"google_firebase_web_app_config":                      58,
+		"google_folder":                                       59,
+		"google_folder_organization_policy":                   60,
+		"google_folders":                                      61,
+		"google_game_services_game_server_deployment_rollout": 62,
+		"google_iam_policy":                                   63,
+		"google_iam_role":                                     64,
+		"google_iam_testable_permissions":                     65,
+		"google_iam_workload_identity_pool":                   66,
+		"google_iam_workload_identity_pool_provider":          67,
+		"google_iap_client":                                   68,
+		"google_kms_crypto_key":                               69,
+		"google_kms_crypto_key_version":                       70,
+		"google_kms_key_ring":                                 71,
+		"google_kms_secret":                                   72,
+		"google_kms_secret_asymmetric":                        73,
+		"google_kms_secret_ciphertext":                        74,
+		"google_monitoring_app_engine_service":                75,
+		"google_monitoring_cluster_istio_service":             76,
+		"google_monitoring_istio_canonical_service":           77,
+		"google_monitoring_mesh_istio_service":                78,
+		"google_monitoring_notification_channel":              79,
+		"google_monitoring_uptime_check_ips":                  80,
+		"google_netblock_ip_ranges":                           81,
+		"google_organization":                                 82,
+		"google_privateca_certificate_authority":              83,
+		"google_project":                                      84,
+		"google_project_organization_policy":                  85,
+		"google_projects":                                     86,
+		"google_pubsub_topic":                                 87,
+		"google_redis_instance":                               88,
+		"google_runtimeconfig_config":                         89,
+		"google_runtimeconfig_variable":                       90,
+		"google_secret_manager_secret":                        91,
+		"google_secret_manager_secret_version":                92,
+		"google_service_account":                              93,
+		"google_service_account_access_token":                 94,
+		"google_service_account_id_token":                     95,
+		"google_service_account_key":                          96,
+		"google_storage_object_signed_url":                    97,
+		"google_spanner_instance":                             98,
+		"google_sql_backup_run":                               99,
+		"google_sql_ca_certs":                                 100,
+		"google_sql_database_instance":                        101,
+		"google_storage_bucket":                               102,
+		"google_storage_bucket_object":                        103,
+		"google_storage_bucket_object_content":                104,
+		"google_storage_project_service_account":              105,
+		"google_storage_transfer_project_service_account":     106,
+		"google_tpu_tensorflow_versions":                      107,
 	}
 )
 

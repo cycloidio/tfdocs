@@ -177,7 +177,6 @@ Provides a CloudSigma Drive resource which can be attached to a Server.
 Provides a CloudSigma Server resource. This can be used to create, modify,
 and delete Servers.
 
-
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -206,8 +205,20 @@ and delete Servers.
 					Description: `(Optional) Network interface card attached to the server - ipv4_address - (Optional) The IP address reference. Only used with ` + "`" + `static` + "`" + ` type - type - (Optional) Configuration type. Valid values: ` + "`" + `dhcp` + "`" + `, ` + "`" + `static` + "`" + `, ` + "`" + `manual` + "`" + ` - vlan_uuid - (Optional) The UUID of the VLAN reference`,
 				},
 				resource.Attribute{
+					Name:        "ssh_keys",
+					Description: `(Optional) A list of the SSH key UUIDs to be applied to the server`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of the tags UUIDs to be applied to the server. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A list of the tags UUIDs to be applied to the server`,
+				},
+				resource.Attribute{
+					Name:        "smp",
+					Description: `(Optional) Symmetric Multiprocessing (SMP) i.e. number of CPU cores`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) The field can be used to store arbitrary information in key-value form. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cpu",

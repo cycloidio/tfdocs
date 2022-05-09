@@ -76,6 +76,225 @@ This data source should not be used in conjuction with the ` + "`" + `LINODE_DEB
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_database_engines",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode Managed Database engines.`,
+			Description: `\_database\_engines
+
+**NOTICE:** Managed Databases are currently in beta. Ensure ` + "`" + `api_version` + "`" + ` is set to ` + "`" + `v4beta` + "`" + ` in order to use this data source.
+
+Provides information about Linode Managed Database engines that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If true, only the latest engine version will be returned.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. (` + "`" + `version` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each engine will be stored in the ` + "`" + `engines` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine type.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Managed Database engine ID in engine/version format.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_database_mysql_backups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode MySQL Database Backups that match a set of filters.`,
+			Description: `\_database\_mysql\_backups
+
+**NOTICE:** Managed Databases are currently in beta. Ensure ` + "`" + `api_version` + "`" + ` is set to ` + "`" + `v4beta` + "`" + ` in order to use this data source.
+
+Provides information about Linode MySQL Database Backups that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "database_id",
+					Description: `(Required) The ID of the database to retrieve backups for.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If true, only the latest backup will be returned.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. (` + "`" + `created` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each backup will be stored in the ` + "`" + `backups` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `A time value given in a combined date and time format that represents when the database backup was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the database backup object.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The database backup’s label, for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of database backup, determined by how the backup was created.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_databases",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode Managed Databases.`,
+			Description: `\_databases
+
+**NOTICE:** Managed Databases are currently in beta. Ensure ` + "`" + `api_version` + "`" + ` is set to ` + "`" + `v4beta` + "`" + ` in order to use this data source.
+
+Provides information about Linode Managed Databases that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If true, only the latest create database will be returned.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. (` + "`" + `version` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each engine will be stored in the ` + "`" + `databases` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "allow_list",
+					Description: `A list of IP addresses that can access the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_size",
+					Description: `The number of Linode Instance nodes deployed to the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Managed Database was created.`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Whether the Managed Databases is encrypted.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine.`,
+				},
+				resource.Attribute{
+					Name:        "host_primary",
+					Description: `The primary host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "host_secondary",
+					Description: `The secondary/private network host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A unique, user-defined string referring to the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region to use for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "replication_type",
+					Description: `The replication method used for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_connection",
+					Description: `Whether to require SSL credentials to establish a connection to the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Linode Instance type used for the nodes of the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this Managed Database was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_domain",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode domain.`,
@@ -395,12 +614,28 @@ Provides information about Linode images that match a set of filters.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If true, only the latest image will be returned. Images without a valid ` + "`" + `created` + "`" + ` field are not included in the result.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. See the [Filterable Fields section](#filterable-fields) for a list of valid fields.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode image will be stored in the ` + "`" + `images` + "`" + ` attribute and will export the following attributes:`,
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each Linode image will be stored in the ` + "`" + `images` + "`" + ` attribute and will export the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -626,6 +861,89 @@ Provides information about a Linode instance type
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_instance_types",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode Instance types that match a set of filters.`,
+			Description: `\_instance_types
+
+Provides information about Linode Instance types that match a set of filters.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. See the [Filterable Fields section](#filterable-fields) for a list of valid fields.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each Linode Instance type will be stored in the ` + "`" + `types` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID representing the Linode Type.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The Linode Type's label is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "class",
+					Description: `The class of the Linode Type. See all classes [here](https://www.linode.com/docs/api/linode-types/#type-view__responses).`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The Disk size, in MB, of the Linode Type.`,
+				},
+				resource.Attribute{
+					Name:        "price.0.hourly",
+					Description: `Cost (in US dollars) per hour.`,
+				},
+				resource.Attribute{
+					Name:        "price.0.monthly",
+					Description: `Cost (in US dollars) per month.`,
+				},
+				resource.Attribute{
+					Name:        "addons.0.backups.0.price.0.hourly",
+					Description: `The cost (in US dollars) per hour to add Backups service.`,
+				},
+				resource.Attribute{
+					Name:        "addons.0.backups.0.price.0.monthly",
+					Description: `The cost (in US dollars) per month to add Backups service.`,
+				},
+				resource.Attribute{
+					Name:        "network_out",
+					Description: `The Mbits outbound bandwidth allocation.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The amount of RAM included in this Linode Type.`,
+				},
+				resource.Attribute{
+					Name:        "transfer",
+					Description: `The monthly outbound transfer amount, in MB.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of VCPU cores this Linode Type offers. ## Filterable Fields`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides information about Linode instances that match a set of filters.`,
@@ -637,12 +955,28 @@ Provides information about Linode instances that match a set of filters.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. See the [Filterable Fields section](#filterable-fields) for a list of valid fields.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a list of filterable fields.`,
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode instance will be stored in the ` + "`" + `instances` + "`" + ` attribute and will export the following attributes:`,
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each Linode instance will be stored in the ` + "`" + `instances` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Linode instance.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -845,6 +1179,41 @@ Provides information about Linode instances that match a set of filters.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_ipv6_range",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Linode IPv6 Range.`,
+			Description: `\_ipv6\_range
+
+Provides information about a Linode IPv6 Range.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "range",
+					Description: `(Required) The IPv6 range to retrieve information about. ## Attributes The ` + "`" + `linode_ipv6_range` + "`" + ` data source exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ip_bgp",
+					Description: `Whether this IPv6 range is shared.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `A set of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `The prefix length of the address, denoting how many addresses can be assigned from this range.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region for this range of IPv6 addresses.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_lke_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about an LKE Cluster.`,
@@ -884,6 +1253,10 @@ Provides details about an LKE Cluster.
 					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "dashboard_url",
+					Description: `The Kubernetes Dashboard access URL for this cluster.`,
+				},
+				resource.Attribute{
 					Name:        "pools",
 					Description: `Node pools associated with this cluster.`,
 				},
@@ -914,6 +1287,22 @@ Provides details about an LKE Cluster.
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "autoscaler",
+					Description: `The configuration options for the autoscaler. This field only contains an autoscaler configuration if autoscaling is enabled on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `The minimum number of nodes to autoscale to.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `The maximum number of nodes to autoscale to.`,
+				},
+				resource.Attribute{
+					Name:        "control_plane.0.high_availability",
+					Description: `Whether High Availability is enabled for the cluster Control Plane.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -942,6 +1331,10 @@ Provides details about an LKE Cluster.
 					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
 				},
 				resource.Attribute{
+					Name:        "dashboard_url",
+					Description: `The Kubernetes Dashboard access URL for this cluster.`,
+				},
+				resource.Attribute{
 					Name:        "pools",
 					Description: `Node pools associated with this cluster.`,
 				},
@@ -972,6 +1365,22 @@ Provides details about an LKE Cluster.
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the node. (` + "`" + `ready` + "`" + `, ` + "`" + `not_ready` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "autoscaler",
+					Description: `The configuration options for the autoscaler. This field only contains an autoscaler configuration if autoscaling is enabled on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `The minimum number of nodes to autoscale to.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `The maximum number of nodes to autoscale to.`,
+				},
+				resource.Attribute{
+					Name:        "control_plane.0.high_availability",
+					Description: `Whether High Availability is enabled for the cluster Control Plane.`,
 				},
 			},
 		},
@@ -1593,6 +2002,121 @@ Provides information about a Linode profile.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_stackscripts",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about Linode StackScripts that match a set of filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If true, only the latest StackScript will be returned. StackScripts without a valid ` + "`" + `created` + "`" + ` field are not included in the result.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. See the [Filterable Fields section](#filterable-fields) for a list of valid fields.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each Linode StackScript will be stored in the ` + "`" + `stackscripts` + "`" + ` attribute and will export the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The StackScript's label is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `The script to execute when provisioning a new Linode with this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description for the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "rev_note",
+					Description: `This field allows you to add notes for the set of revisions made to this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `An array of Image IDs representing the Images that this StackScript is compatible for deploying with.`,
+				},
+				resource.Attribute{
+					Name:        "deployments_active",
+					Description: `Count of currently active, deployed Linodes created from this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "user_gravatar_id",
+					Description: `The Gravatar ID for the User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "deployments_total",
+					Description: `The total number of times this StackScript has been deployed.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date this StackScript was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date this StackScript was updated.`,
+				},
+				resource.Attribute{
+					Name:        "user_defined_fields",
+					Description: `This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A human-readable label for the field that will serve as the input prompt for entering the value during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the field.`,
+				},
+				resource.Attribute{
+					Name:        "example",
+					Description: `An example value for the field.`,
+				},
+				resource.Attribute{
+					Name:        "one_of",
+					Description: `A list of acceptable single values for the field.`,
+				},
+				resource.Attribute{
+					Name:        "many_of",
+					Description: `A list of acceptable values for the field in any quantity, combination or order.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `The default value. If not specified, this value will be used. ## Filterable Fields`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_user",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode user.`,
@@ -1635,12 +2159,24 @@ Provides details about Linode VLANs.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) The attribute to order the results by. See the [Filterable Fields section](#filterable-fields) for a list of valid fields.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order in which results should be returned. (` + "`" + `asc` + "`" + `, ` + "`" + `desc` + "`" + `; default ` + "`" + `asc` + "`" + `) ### Filter`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the field to filter by. See the [Filterable Fields section](#filterable-fields) for a complete list of filterable fields.`,
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) A list of values for the filter to allow. These values should all be in string form. ## Attributes Each Linode VLAN will be stored in the ` + "`" + `vlans` + "`" + ` attribute and will export the following attributes:`,
+					Description: `(Required) A list of values for the filter to allow. These values should all be in string form.`,
+				},
+				resource.Attribute{
+					Name:        "match_by",
+					Description: `(Optional) The method to match the field by. (` + "`" + `exact` + "`" + `, ` + "`" + `regex` + "`" + `, ` + "`" + `substring` + "`" + `; default ` + "`" + `exact` + "`" + `) ## Attributes Each Linode VLAN will be stored in the ` + "`" + `vlans` + "`" + ` attribute and will export the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -1680,27 +2216,33 @@ Provides information about a Linode Volume.
 	dataSourcesMap = map[string]int{
 
 		"linode_account":                0,
-		"linode_domain":                 1,
-		"linode_domain_record":          2,
-		"linode_firewall":               3,
-		"linode_image":                  4,
-		"linode_images":                 5,
-		"linode_instance_backups":       6,
-		"linode_instance_type":          7,
-		"linode_instances":              8,
-		"linode_lke_cluster":            9,
-		"linode_networking_ip":          10,
-		"linode_nodebalancer":           11,
-		"linode_nodebalancer_config":    12,
-		"linode_nodebalancer_node":      13,
-		"linode_object_storage_cluster": 14,
-		"linode_profile":                15,
-		"linode_region":                 16,
-		"linode_sshkey":                 17,
-		"linode_stackscript":            18,
-		"linode_user":                   19,
-		"linode_vlans":                  20,
-		"linode_volume":                 21,
+		"linode_database_engines":       1,
+		"linode_database_mysql_backups": 2,
+		"linode_databases":              3,
+		"linode_domain":                 4,
+		"linode_domain_record":          5,
+		"linode_firewall":               6,
+		"linode_image":                  7,
+		"linode_images":                 8,
+		"linode_instance_backups":       9,
+		"linode_instance_type":          10,
+		"linode_instance_types":         11,
+		"linode_instances":              12,
+		"linode_ipv6_range":             13,
+		"linode_lke_cluster":            14,
+		"linode_networking_ip":          15,
+		"linode_nodebalancer":           16,
+		"linode_nodebalancer_config":    17,
+		"linode_nodebalancer_node":      18,
+		"linode_object_storage_cluster": 19,
+		"linode_profile":                20,
+		"linode_region":                 21,
+		"linode_sshkey":                 22,
+		"linode_stackscript":            23,
+		"linode_stackscripts":           24,
+		"linode_user":                   25,
+		"linode_vlans":                  26,
+		"linode_volume":                 27,
 	}
 )
 

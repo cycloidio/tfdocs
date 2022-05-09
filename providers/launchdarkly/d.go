@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_audit_log_subscription",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about LaunchDarkly audit log subscriptions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_environment",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about LaunchDarkly environments.`,
@@ -34,6 +44,26 @@ var (
 			Type:             "launchdarkly_feature_flag_environment",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about LaunchDarkly environment-specific feature flag configurations.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "launchdarkly_flag_trigger",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about LaunchDarkly flag trigers.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "launchdarkly_metric",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about LaunchDarkly metrics.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -71,6 +101,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_team_members",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about multiple LaunchDarkly team members.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_webhook",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about LaunchDarkly webhooks.`,
@@ -83,13 +123,17 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"launchdarkly_environment":              0,
-		"launchdarkly_feature_flag":             1,
-		"launchdarkly_feature_flag_environment": 2,
-		"launchdarkly_project":                  3,
-		"launchdarkly_segment":                  4,
-		"launchdarkly_team_member":              5,
-		"launchdarkly_webhook":                  6,
+		"launchdarkly_audit_log_subscription":   0,
+		"launchdarkly_environment":              1,
+		"launchdarkly_feature_flag":             2,
+		"launchdarkly_feature_flag_environment": 3,
+		"launchdarkly_flag_trigger":             4,
+		"launchdarkly_metric":                   5,
+		"launchdarkly_project":                  6,
+		"launchdarkly_segment":                  7,
+		"launchdarkly_team_member":              8,
+		"launchdarkly_team_members":             9,
+		"launchdarkly_webhook":                  10,
 	}
 )
 

@@ -11,37 +11,74 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "file",
+			Type:             "local_file",
 			Category:         "Resources",
 			ShortDescription: `Generates a local file from content.`,
 			Description:      ``,
-			Keywords: []string{
-				"file",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filename",
+					Description: `(Required) The path to the file that will be created. Missing parent directories will be created. If the file already exists, it will be overridden with the given content.`,
+				},
+				resource.Attribute{
 					Name:        "content",
-					Description: `(Optional) The content of file to create. Conflicts with ` + "`" + `sensitive_content` + "`" + ` and ` + "`" + `content_base64` + "`" + `.`,
+					Description: `(Optional) Content to store in the file, expected to be an UTF-8 encoded string. Conflicts with ` + "`" + `sensitive_content` + "`" + `, ` + "`" + `content_base64` + "`" + ` and ` + "`" + `source` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "sensitive_content",
-					Description: `(Optional) The content of file to create. Will not be displayed in diffs. Conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `content_base64` + "`" + `.`,
+					Description: `(Optional - Deprecated) Sensitive content to store in the file, expected to be an UTF-8 encoded string. Will not be displayed in diffs. Conflicts with ` + "`" + `content` + "`" + `, ` + "`" + `content_base64` + "`" + ` and ` + "`" + `source` + "`" + `. If in need to use _sensitive_ content, please use the [` + "`" + `local_sensitive_file` + "`" + `](./sensitive_file.html) resource instead.`,
 				},
 				resource.Attribute{
 					Name:        "content_base64",
-					Description: `(Optional) The base64 encoded content of the file to create. Use this when dealing with binary data. Conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `sensitive_content` + "`" + `.`,
+					Description: `(Optional) Content to store in the file, expected to be binary encoded as base64 string. Conflicts with ` + "`" + `content` + "`" + `, ` + "`" + `sensitive_content` + "`" + ` and ` + "`" + `source` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "filename",
-					Description: `(Required) The path of the file to create.`,
+					Name:        "source",
+					Description: `(Optional) Path to file to use as source for the one we are creating. Conflicts with ` + "`" + `content` + "`" + `, ` + "`" + `sensitive_content` + "`" + ` and ` + "`" + `content_base64` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "file_permission",
-					Description: `(Optional) The permission to set for the created file. Expects a string. The default value is ` + "`" + `"0777"` + "`" + `.`,
+					Description: `(Optional) Permissions to set for the output file, expressed as string in [numeric notation](https://en.wikipedia.org/wiki/File-system_permissions#Numeric_notation). Default value is ` + "`" + `"0777"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "directory_permission",
-					Description: `(Optional) The permission to set for any directories created. Expects a string. The default value is ` + "`" + `"0777"` + "`" + `. Any required parent directories will be created automatically, and any existing file with the given name will be overwritten.`,
+					Description: `(Optional) Permissions to set for directories created, expressed as string in [numeric notation](https://en.wikipedia.org/wiki/File-system_permissions#Numeric_notation). Default value is ` + "`" + `"0777"` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "local_sensitive_file",
+			Category:         "Resources",
+			ShortDescription: `Generates a local file with the given sensitive content.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filename",
+					Description: `(Required) The path to the file that will be created. Missing parent directories will be created. If the file already exists, it will be overridden with the given content.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) Sensitive content to store in the file, expected to be an UTF-8 encoded string. Conflicts with ` + "`" + `content_base64` + "`" + ` and ` + "`" + `source` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "content_base64",
+					Description: `(Optional) Sensitive content to store in the file, expected to be binary encoded as base64 string. Conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `source` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Path to file to use as source for the one we are creating. Conflicts with ` + "`" + `content` + "`" + ` and ` + "`" + `content_base64` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_permission",
+					Description: `(Optional) Permissions to set for the output file, expressed as string in [numeric notation](https://en.wikipedia.org/wiki/File-system_permissions#Numeric_notation). Default value is ` + "`" + `"0700"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "directory_permission",
+					Description: `(Optional) Permissions to set for directories created, expressed as string in [numeric notation](https://en.wikipedia.org/wiki/File-system_permissions#Numeric_notation). Default value is ` + "`" + `"0700"` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -50,7 +87,8 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"file": 0,
+		"local_file":           0,
+		"local_sensitive_file": 1,
 	}
 )
 

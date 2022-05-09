@@ -48,6 +48,10 @@ var (
 					Description: `(Optional, set of strings) List of IP addresses to use as alternative subjects of the certificate.`,
 				},
 				resource.Attribute{
+					Name:        "san_uri",
+					Description: `(Optional, set of strings) List of Uniform Resource Identifiers (URIs) to use as alternative subjects of the certificate.`,
+				},
+				resource.Attribute{
 					Name:        "key_password",
 					Description: `(Optional, string) The password used to encrypt the private key.`,
 				},
@@ -65,7 +69,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expiration_window",
-					Description: `(Optional, integer) Number of hours before certificate expiry to request a new certificate. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, integer) Number of hours before certificate expiry to request a new certificate. Defaults to ` + "`" + `168` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "csr_origin",
+					Description: `(Optional, string) Whether key-pair generation will be ` + "`" + `local` + "`" + ` or ` + "`" + `service` + "`" + ` generated. Default is ` + "`" + `local` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "private_key_pem",
@@ -81,7 +89,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pkcs12",
-					Description: `A base64-encoded PKCS#12 keystore secured by the ` + "`" + `key_password` + "`" + `. Useful when working with resources like [azurerm_key_vault_certificate](https://www.terraform.io/docs/providers/azurerm/r/key_vault_certificate.html). ## Certificate Renewal The ` + "`" + `venafi_certificate` + "`" + ` resource handles certificate renewals as long as a ` + "`" + `terraform apply` + "`" + ` is done within the ` + "`" + `expiration_window` + "`" + ` period. Keep in mind that the ` + "`" + `expiration_window` + "`" + ` in the Terraform configuration needs to align with the renewal window of the issuing CA to achieve the desired result.`,
+					Description: `A base64-encoded PKCS#12 keystore secured by the ` + "`" + `key_password` + "`" + `. Useful when working with resources like [azurerm_key_vault_certificate](https://www.terraform.io/docs/providers/azurerm/r/key_vault_certificate.html). ## Certificate Renewal The ` + "`" + `venafi_certificate` + "`" + ` resource handles certificate renewals as long as a ` + "`" + `terraform apply` + "`" + ` is done within the ` + "`" + `expiration_window` + "`" + ` period. Keep in mind that the ` + "`" + `expiration_window` + "`" + ` in the Terraform configuration needs to align with the renewal window of the issuing CA to achieve the desired result. ## Import ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -99,7 +107,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pkcs12",
-					Description: `A base64-encoded PKCS#12 keystore secured by the ` + "`" + `key_password` + "`" + `. Useful when working with resources like [azurerm_key_vault_certificate](https://www.terraform.io/docs/providers/azurerm/r/key_vault_certificate.html). ## Certificate Renewal The ` + "`" + `venafi_certificate` + "`" + ` resource handles certificate renewals as long as a ` + "`" + `terraform apply` + "`" + ` is done within the ` + "`" + `expiration_window` + "`" + ` period. Keep in mind that the ` + "`" + `expiration_window` + "`" + ` in the Terraform configuration needs to align with the renewal window of the issuing CA to achieve the desired result.`,
+					Description: `A base64-encoded PKCS#12 keystore secured by the ` + "`" + `key_password` + "`" + `. Useful when working with resources like [azurerm_key_vault_certificate](https://www.terraform.io/docs/providers/azurerm/r/key_vault_certificate.html). ## Certificate Renewal The ` + "`" + `venafi_certificate` + "`" + ` resource handles certificate renewals as long as a ` + "`" + `terraform apply` + "`" + ` is done within the ` + "`" + `expiration_window` + "`" + ` period. Keep in mind that the ` + "`" + `expiration_window` + "`" + ` in the Terraform configuration needs to align with the renewal window of the issuing CA to achieve the desired result. ## Import ~>`,
 				},
 			},
 		},

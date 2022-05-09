@@ -43,7 +43,7 @@ var (
 			Name:             "",
 			Type:             "sumologic_role",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a way to retrieve Sumo Logic role details (id, names, etc) for a role managed by another terraform stack.`,
+			ShortDescription: `Provides a way to retrieve Sumo Logic role details (id, names, etc) for a role managed outside of terraform.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},

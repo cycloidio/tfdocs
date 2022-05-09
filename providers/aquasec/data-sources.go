@@ -1,0 +1,223 @@
+package aquasec
+
+import (
+	"fmt"
+
+	"github.com/cycloidio/tfdocs/resource"
+)
+
+var (
+	DataSources = []*resource.Resource{
+
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_application_scope",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_container_runtime_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_enforcer_groups",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_firewall_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_function_assurance_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_function_runtime_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_gateways provides a method to query all gateways within the Aqua`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_groups",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_groups provides a method to query all groups within the Aqua CSPMgroup database. The fields returned from this query are detailed in the Schema section below.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_host_assurance_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_host_runtime_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_image",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_image_assurance_policy",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_integration_registries",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_permissions_sets",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_permissions_sets provides a method to query all permissions within the Aqua CSPMThe fields returned from this query are detailed in the Schema section below.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_roles",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_roles provides a method to query all roles within the Aqua account managementrole database. The fields returned from this query are detailed in the Schema section below.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_service",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_users",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_users provides a method to query all users within the Aqua users database. The fields returned from this query are detailed in the Schema section below.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aquasec_users_saas",
+			Category:         "Data Sources",
+			ShortDescription: `The data source aquasec_users_saas provides a method to query all saas users within the Aqua users management. The fields returned from this query are detailed in the Schema section below.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+	}
+
+	dataSourcesMap = map[string]int{
+
+		"aquasec_application_scope":         0,
+		"aquasec_container_runtime_policy":  1,
+		"aquasec_enforcer_groups":           2,
+		"aquasec_firewall_policy":           3,
+		"aquasec_function_assurance_policy": 4,
+		"aquasec_function_runtime_policy":   5,
+		"aquasec_gateways":                  6,
+		"aquasec_groups":                    7,
+		"aquasec_host_assurance_policy":     8,
+		"aquasec_host_runtime_policy":       9,
+		"aquasec_image":                     10,
+		"aquasec_image_assurance_policy":    11,
+		"aquasec_integration_registries":    12,
+		"aquasec_permissions_sets":          13,
+		"aquasec_roles":                     14,
+		"aquasec_service":                   15,
+		"aquasec_users":                     16,
+		"aquasec_users_saas":                17,
+	}
+)
+
+func GetDataSource(r string) (*resource.Resource, error) {
+	rs, ok := dataSourcesMap[r]
+	if !ok {
+		return nil, fmt.Errorf("datasource %q not found", r)
+	}
+	return DataSources[rs], nil
+}

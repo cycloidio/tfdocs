@@ -111,7 +111,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listing_visibility",
-					Description: `Speficies whether to show this mount in the UI-specific listing endpoint.`,
+					Description: `Specifies whether to show this mount in the UI-specific listing endpoint.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -141,7 +141,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listing_visibility",
-					Description: `Speficies whether to show this mount in the UI-specific listing endpoint.`,
+					Description: `Specifies whether to show this mount in the UI-specific listing endpoint.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -267,11 +267,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "num_seconds_between_tests",
-					Description: `(Optional) If 'validate_creds' is true, the number of seconds to wait between each test of generated credentials. Defaults to 7.`,
+					Description: `(Optional) If 'validate_creds' is true, the number of seconds to wait between each test of generated credentials. Defaults to 1.`,
 				},
 				resource.Attribute{
 					Name:        "max_cred_validation_seconds",
-					Description: `(Optional) If 'validate_creds' is true, the number of seconds after which to give up validating credentials. Defaults to 1,200 (20 minutes). ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Optional) If 'validate_creds' is true, the number of seconds after which to give up validating credentials. Defaults to 300.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `(Optional) The subscription ID to use during credential validation. Defaults to the subscription ID configured in the Vault ` + "`" + `backend` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The tenant ID to use during credential validation. Defaults to the tenant ID configured in the Vault ` + "`" + `backend` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Optional) The Azure environment to use during credential validation. Defaults to the environment configured in the Vault backend. Some possible values: ` + "`" + `AzurePublicCloud` + "`" + `, ` + "`" + `AzureGovernmentCloud` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -339,7 +351,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The version of the secret to read. This is used by the Vault KV secrets engine - version 2 to indicate which version of the secret to read. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+					Description: `The version of the secret to read. This is used by the Vault KV secrets engine - version 2 to indicate which version of the secret to read.`,
+				},
+				resource.Attribute{
+					Name:        "with_lease_start_time",
+					Description: `If set to true, stores ` + "`" + `lease_start_time` + "`" + ` in the TF state. Note that storing the ` + "`" + `lease_start_time` + "`" + ` in the TF state will cause a persistent drift on every ` + "`" + `terraform plan` + "`" + ` and will require a ` + "`" + `terraform apply` + "`" + `. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "data_json",
@@ -359,7 +375,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lease_start_time",
-					Description: `As a convenience, this records the current time on the computer where Terraform is running when the data is requested. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to to the Vault server.`,
+					Description: `The date and time of Terraform execution. It is derived from the local machine's clock, and is recorded in RFC3339 format UTC. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to the Vault server. _Provided only as a convenience_.`,
 				},
 				resource.Attribute{
 					Name:        "lease_renewable",
@@ -385,7 +401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lease_start_time",
-					Description: `As a convenience, this records the current time on the computer where Terraform is running when the data is requested. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to to the Vault server.`,
+					Description: `The date and time of Terraform execution. It is derived from the local machine's clock, and is recorded in RFC3339 format UTC. This can be used to approximate the absolute time represented by ` + "`" + `lease_duration` + "`" + `, though users must allow for any clock drift and response latency relative to the Vault server. _Provided only as a convenience_.`,
 				},
 				resource.Attribute{
 					Name:        "lease_renewable",
@@ -779,6 +795,174 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_oidc_client_creds",
+			Category:         "Data Sources",
+			ShortDescription: `Reads client credentials from an OIDC Client provisioned in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the OIDC Client in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `The Client ID returned by Vault.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The Client Secret Key returned by Vault.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `The Client ID returned by Vault.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The Client Secret Key returned by Vault.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_oidc_openid_config",
+			Category:         "Data Sources",
+			ShortDescription: `Reads OpenID Configuration from an OIDC Provider provisioned in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the OIDC Provider in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The URL of the issuer for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "jwks_uri",
+					Description: `The well known keys URI for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "authorization_endpoint",
+					Description: `The Authorization Endpoint for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "token_endpoint",
+					Description: `The Token Endpoint for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "userinfo_endpoint",
+					Description: `The User Info Endpoint for the provider`,
+				},
+				resource.Attribute{
+					Name:        "request_uri_parameter_supported",
+					Description: `Specifies whether Request URI Parameter is supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "id_token_signing_alg_values_supported",
+					Description: `The signing algorithms supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "response_types_supported",
+					Description: `The response types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "scopes_supported",
+					Description: `The scopes supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "grant_types_supported",
+					Description: `The grant types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "subject_types_supported",
+					Description: `The subject types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "token_endpoint_auth_methods_supported",
+					Description: `The token endpoint auth methods supported by the provider.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The URL of the issuer for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "jwks_uri",
+					Description: `The well known keys URI for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "authorization_endpoint",
+					Description: `The Authorization Endpoint for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "token_endpoint",
+					Description: `The Token Endpoint for the provider.`,
+				},
+				resource.Attribute{
+					Name:        "userinfo_endpoint",
+					Description: `The User Info Endpoint for the provider`,
+				},
+				resource.Attribute{
+					Name:        "request_uri_parameter_supported",
+					Description: `Specifies whether Request URI Parameter is supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "id_token_signing_alg_values_supported",
+					Description: `The signing algorithms supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "response_types_supported",
+					Description: `The response types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "scopes_supported",
+					Description: `The scopes supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "grant_types_supported",
+					Description: `The grant types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "subject_types_supported",
+					Description: `The subject types supported by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "token_endpoint_auth_methods_supported",
+					Description: `The token endpoint auth methods supported by the provider.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_oidc_public_keys",
+			Category:         "Data Sources",
+			ShortDescription: `Reads well known public keys from an OIDC Provider provisioned in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the OIDC Provider in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `The public portion of keys for an OIDC provider. Clients can use them to validate the authenticity of an identity token.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "keys",
+					Description: `The public portion of keys for an OIDC provider. Clients can use them to validate the authenticity of an identity token.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_kubernetes_auth_backend_config",
 			Category:         "Data Sources",
 			ShortDescription: `Manages Kubernetes auth backend configs in Vault.`,
@@ -851,7 +1035,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `(Optional) Audience claim to verify in the JWT. ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `Audience claim to verify in the JWT.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name_source",
+					Description: `Method used for generating identity aliases. (vault-1.9+) ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -901,7 +1089,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `(Optional) Audience claim to verify in the JWT. ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `Audience claim to verify in the JWT.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name_source",
+					Description: `Method used for generating identity aliases. (vault-1.9+) ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -1013,9 +1205,12 @@ var (
 		"vault_generic_secret":                 5,
 		"vault_identity_entity":                6,
 		"vault_identity_group":                 7,
-		"vault_kubernetes_auth_backend_config": 8,
-		"vault_kubernetes_auth_backend_role":   9,
-		"vault_policy_document":                10,
+		"vault_identity_oidc_client_creds":     8,
+		"vault_identity_oidc_openid_config":    9,
+		"vault_identity_oidc_public_keys":      10,
+		"vault_kubernetes_auth_backend_config": 11,
+		"vault_kubernetes_auth_backend_role":   12,
+		"vault_policy_document":                13,
 	}
 )
 

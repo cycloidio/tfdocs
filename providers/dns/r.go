@@ -11,15 +11,11 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_a_record_set",
+			Type:             "dns_dns_a_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates a A type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"a",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -75,15 +71,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_aaaa_record_set",
+			Type:             "dns_dns_aaaa_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates a AAAA type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"aaaa",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -139,14 +131,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_cname_record",
+			Type:             "dns_dns_cname_record",
 			Category:         "Resources",
 			ShortDescription: `Creates a CNAME type DNS record.`,
 			Description:      ``,
-			Keywords: []string{
-				"cname",
-				"record",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -202,15 +191,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_mx_record_set",
+			Type:             "dns_dns_mx_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates an MX type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"mx",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -274,15 +259,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_ns_record_set",
+			Type:             "dns_dns_ns_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates a NS type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"ns",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -338,14 +319,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_ptr_record",
+			Type:             "dns_dns_ptr_record",
 			Category:         "Resources",
 			ShortDescription: `Creates a PTR type DNS record.`,
 			Description:      ``,
-			Keywords: []string{
-				"ptr",
-				"record",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -401,15 +379,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_srv_record_set",
+			Type:             "dns_dns_srv_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates an SRV type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"srv",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -481,15 +455,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_txt_record_set",
+			Type:             "dns_dns_txt_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates a TXT type DNS record set.`,
 			Description:      ``,
-			Keywords: []string{
-				"txt",
-				"record",
-				"set",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
@@ -547,14 +517,14 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"dns_a_record_set":    0,
-		"dns_aaaa_record_set": 1,
-		"dns_cname_record":    2,
-		"dns_mx_record_set":   3,
-		"dns_ns_record_set":   4,
-		"dns_ptr_record":      5,
-		"dns_srv_record_set":  6,
-		"dns_txt_record_set":  7,
+		"dns_dns_a_record_set":    0,
+		"dns_dns_aaaa_record_set": 1,
+		"dns_dns_cname_record":    2,
+		"dns_dns_mx_record_set":   3,
+		"dns_dns_ns_record_set":   4,
+		"dns_dns_ptr_record":      5,
+		"dns_dns_srv_record_set":  6,
+		"dns_dns_txt_record_set":  7,
 	}
 )
 

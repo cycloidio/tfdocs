@@ -1042,10 +1042,6 @@ Provides a ncloud load balancer instance resource.
 					Description: `(Optional) List of server instance numbers to be bound to the load balancer`,
 				},
 				resource.Attribute{
-					Name:        "internet_line_type",
-					Description: `(Optional) Internet line identification code. PUBLC(Public), GLBL(Global). default : PUBLC(Public)`,
-				},
-				resource.Attribute{
 					Name:        "network_usage_type",
 					Description: `(Optional) Network usage identification code. PBLIP(PublicIP), PRVT(PrivateIP). default : PBLIP(PublicIP)`,
 				},
@@ -1449,6 +1445,55 @@ Provides a rule of Network ACL resource.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_network_acl_deny_allow_group",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a rule of Network ACL Deny-Allow Group resource. You can manage list of IP using this resource, \
+Network ACL Deny-Allow Group can be added to the Network ACL Rule(` + "`" + `ncloud_network_acl_rule` + "`" + `) using ` + "`" + `deny_allow_group_no` + "`" + `.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `(Required) The ID of the associated VPC.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `(Required) Enter the IP addresses as list to be registered in the Deny-Allow Group. Up to 100 IPs can be registered. Duplicate IP addresses are not allowed.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name to create. If omitted, terraform will assign a random, unique name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description to create ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_group_no",
+					Description: `The ID of the Deny-Allow Group. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Deny-Allow Group.`,
+				},
+				resource.Attribute{
+					Name:        "network_acl_deny_allow_group_no",
+					Description: `The ID of the Deny-Allow Group. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_network_acl_rule",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -1487,7 +1532,11 @@ Provides a rule of Network ACL  resource.
 				},
 				resource.Attribute{
 					Name:        "ip_block",
-					Description: `(Required) The CIDR block to match. This must be a valid network mask.`,
+					Description: `(Optional, Required if ` + "`" + `deny_allow_group_no` + "`" + ` is not provided) The CIDR block to match. This must be a valid network mask.`,
+				},
+				resource.Attribute{
+					Name:        "deny_allow_group_no",
+					Description: `(Optional, Required if ` + "`" + `ip_block` + "`" + ` is not provided) The access source Deny-Allow Group number of network ACL rules. You can specify a Deny-Allow Group instead of an IP address block as the access source. ` + "`" + `deny_allow_group_no` + "`" + ` can be obtained through the Data source ` + "`" + `ncloud_network_acl_deny_allow_group` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "port_range",
@@ -1579,6 +1628,150 @@ Provides a Network Interface resource.
 				resource.Attribute{
 					Name:        "is_default",
 					Description: `Whether is default or not by Server instance creation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_cluster",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Kubernetes Service cluster resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `(Required) Login key name.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) zone Code.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `(Required) VPC No.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no_list",
+					Description: `(Required) Subnet No. list. (For now, ` + "`" + `public subnet` + "`" + ` is not supported. Will be supported soon)`,
+				},
+				resource.Attribute{
+					Name:        "lb_private_subnet_no",
+					Description: `(Required) Subnet No. for private loadbalancer only.`,
+				},
+				resource.Attribute{
+					Name:        "lb_public_subnet_no",
+					Description: `(Optional) Subnet No. for public loadbalancer only. (Available only ` + "`" + `SGN` + "`" + ` region)`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "audit",
+					Description: `(Required) Audit log availability. (` + "`" + `boolean` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `(Optional) Kubenretes version . ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Cluster uuid. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Control Plane API address. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Cluster uuid. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Control Plane API address. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_nks_node_pool",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Kubernetes Service nodepool resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_pool_name",
+					Description: `(Required) Nodepool name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Required) Cluster uuid.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `(Required) Number of nodes.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `(Required) Product code.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Required) Auto scaling availability.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `(Required) Maximum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `(Required) Minimum number of nodes available for auto scaling.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `(Optional) Subnet No. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of nodepool.` + "`" + `CusterUuid:NodePoolName` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `Instance No. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of nodepool.` + "`" + `CusterUuid:NodePoolName` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `Instance No. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
 				},
 			},
 		},
@@ -1685,10 +1878,6 @@ Provides a Public IP instance resource.
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Public IP description. ~>`,
-				},
-				resource.Attribute{
-					Name:        "internet_line_type",
-					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1884,15 +2073,15 @@ Provides a Server instance resource.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_image_product_code",
-					Description: `(Optional) Server image product code to determine which server image to create. It can be obtained through ` + "`" + `data ncloud_server_images` + "`" + `. You are required to select one between two parameters: server image product code (server_image_product_code) and member server image number(member_server_image_no).`,
+					Description: `(Optional, Required if ` + "`" + `member_server_image_no` + "`" + ` is not provided) Server image product code to determine which server image to create. It can be obtained through ` + "`" + `data.ncloud_server_image(s)` + "`" + `. - [Docs server Image Products](https://github.com/NaverCloudPlatform/terraform-ncloud-docs/blob/main/docs/server_image_product.md) - [` + "`" + `ncloud_server_image` + "`" + ` data source](../data-sources/server_image.md) - [` + "`" + `ncloud_server_images` + "`" + ` data source](../data-sources/server_images.md)`,
 				},
 				resource.Attribute{
 					Name:        "server_product_code",
-					Description: `(Optional) Server product code to determine the server specification to create. It can be obtained through the getServerProductList action. Default : Selected as minimum specification. The minimum standards are 1. memory 2. CPU 3. basic block storage size 4. disk type (NET,LOCAL)`,
+					Description: `(Optional) Server product code to determine the server specification to create. It can be obtained through the ` + "`" + `data.ncloud_server_product(s)` + "`" + ` action. Default : Selected as minimum specification. The minimum standards are 1. memory 2. CPU 3. basic block storage size 4. disk type (NET,LOCAL) - [Docs server Image Products](https://github.com/NaverCloudPlatform/terraform-ncloud-docs/blob/main/docs/server_image_product.md) - [` + "`" + `ncloud_server_product` + "`" + ` data source](../data-sources/server_product.md) - [` + "`" + `ncloud_server_products` + "`" + ` data source](../data-sources/server_products.md)`,
 				},
 				resource.Attribute{
 					Name:        "member_server_image_no",
-					Description: `(Optional) Required value when creating a server from a manually created server image. It can be obtained through the getMemberServerImageList action.`,
+					Description: `(Optional, Required if ` + "`" + `server_image_product_code` + "`" + ` is not provided) Required value when creating a server from a manually created server image. It can be obtained through the ` + "`" + `data.ncloud_member_server_image(s)` + "`" + ` action. - [` + "`" + `ncloud_member_server_image` + "`" + ` data source](../data-sources/member_server_image.md) - [` + "`" + `ncloud_member_server_images` + "`" + ` data source](../data-sources/member_server_images.md)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1908,7 +2097,7 @@ Provides a Server instance resource.
 				},
 				resource.Attribute{
 					Name:        "is_protect_server_termination",
-					Description: `(Optional) You can set whether or not to protect return when creating. default : false`,
+					Description: `(Optional) You can set whether or not to protect return when creating. default :false`,
 				},
 				resource.Attribute{
 					Name:        "fee_system_type_code",
@@ -1917,10 +2106,6 @@ Provides a Server instance resource.
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) Zone code. You can determine the ZONE where the server will be created. Default : Assigned by NAVER Cloud Platform. Get available values using the data source ` + "`" + `ncloud_zones` + "`" + `. ~>`,
-				},
-				resource.Attribute{
-					Name:        "internet_line_type",
-					Description: `(Optional) Internet line identification code. PUBLC(Public), GLBL(Global). default : PUBLC(Public)`,
 				},
 				resource.Attribute{
 					Name:        "access_control_group_configuration_no_list",
@@ -2345,18 +2530,21 @@ Provides a VPC Peering resource.
 		"ncloud_nas_volume":                    16,
 		"ncloud_nat_gateway":                   17,
 		"ncloud_network_acl":                   18,
-		"ncloud_network_acl_rule":              19,
-		"ncloud_network_interface":             20,
-		"ncloud_placement_group":               21,
-		"ncloud_port_forwarding_rule":          22,
-		"ncloud_public_ip":                     23,
-		"ncloud_route":                         24,
-		"ncloud_route_table":                   25,
-		"ncloud_route_table_association":       26,
-		"ncloud_server":                        27,
-		"ncloud_subnet":                        28,
-		"ncloud_vpc":                           29,
-		"ncloud_vpc_peering":                   30,
+		"ncloud_network_acl_deny_allow_group":  19,
+		"ncloud_network_acl_rule":              20,
+		"ncloud_network_interface":             21,
+		"ncloud_nks_cluster":                   22,
+		"ncloud_nks_node_pool":                 23,
+		"ncloud_placement_group":               24,
+		"ncloud_port_forwarding_rule":          25,
+		"ncloud_public_ip":                     26,
+		"ncloud_route":                         27,
+		"ncloud_route_table":                   28,
+		"ncloud_route_table_association":       29,
+		"ncloud_server":                        30,
+		"ncloud_subnet":                        31,
+		"ncloud_vpc":                           32,
+		"ncloud_vpc_peering":                   33,
 	}
 )
 

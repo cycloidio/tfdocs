@@ -11,6 +11,123 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_database_access_controls",
+			Category:         "Resources",
+			ShortDescription: `Manages the access controls for a Linode Database.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"access",
+				"controls",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "database_id",
+					Description: `(Required) The unique ID of the target database.`,
+				},
+				resource.Attribute{
+					Name:        "allow_list",
+					Description: `(Required) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_database_mysql",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode MySQL Database.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"mysql",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine_id",
+					Description: `(Required) The Managed Database engine in engine/version format. (e.g. ` + "`" + `mysql/8.0.26` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) A unique, user-defined string referring to the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region to use for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The Linode Instance type used for the nodes of the Managed Database instance. - - -`,
+				},
+				resource.Attribute{
+					Name:        "allow_list",
+					Description: `(Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use ` + "`" + `linode_database_mysql_firewall` + "`" + ` to manage your allow list separately.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_size",
+					Description: `(Optional) The number of Linode Instance nodes deployed to the Managed Database. (default ` + "`" + `1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `(Optional) Whether the Managed Databases is encrypted. (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "replication_type",
+					Description: `(Optional) The replication method used for the Managed Database. (` + "`" + `none` + "`" + `, ` + "`" + `asynch` + "`" + `, ` + "`" + `semi_synch` + "`" + `; default ` + "`" + `none` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ssl_connection",
+					Description: `(Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default ` + "`" + `false` + "`" + `) ## Attributes In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `The base64-encoded SSL CA certificate for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Managed Database was created.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine. (e.g. ` + "`" + `mysql` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "host_primary",
+					Description: `The primary host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "host_secondary",
+					Description: `The secondary/private network host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `The randomly-generated root password for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "root_username",
+					Description: `The root username for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this Managed Database was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version. (e.g. ` + "`" + `v8.0.26` + "`" + `) ## Import Linode MySQL Databases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_database_mysql.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_domain",
 			Category:         "Resources",
 			ShortDescription: `Manages a Linode Domain Record.`,
@@ -49,19 +166,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl_sec",
-					Description: `(Optional) 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
+					Description: `(Optional) 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
 				},
 				resource.Attribute{
 					Name:        "retry_sec",
-					Description: `(Optional) The interval, in seconds, at which a failed refresh should be retried. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
+					Description: `(Optional) The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
 				},
 				resource.Attribute{
 					Name:        "expire_sec",
-					Description: `(Optional) The amount of time in seconds that may pass before this Domain is no longer authoritative. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
+					Description: `(Optional) The amount of time in seconds that may pass before this Domain is no longer authoritative. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
 				},
 				resource.Attribute{
 					Name:        "refresh_sec",
-					Description: `(Optional) The amount of time in seconds before this Domain should be refreshed. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
+					Description: `(Optional) The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
 				},
 				resource.Attribute{
 					Name:        "axfr_ips",
@@ -69,7 +186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports no additional attributes, however ` + "`" + `status` + "`" + ` may reflect degraded states. ## Import Linodes Domains can be imported using the Linode Domain ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain_record.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domains and other Linode resource types.`,
+					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports no additional attributes, however ` + "`" + `status` + "`" + ` may reflect degraded states. ## Import Linodes Domains can be imported using the Linode Domain ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domains and other Linode resource types.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -103,7 +220,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl_sec",
-					Description: `(Optional) 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
+					Description: `(Optional) 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -244,6 +361,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_firewall_device",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Firewall Device.`,
+			Description:      ``,
+			Keywords: []string{
+				"firewall",
+				"device",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "firewall_id",
+					Description: `(Required) The unique ID of the target Firewall.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Required) The unique ID of the entity to attach.`,
+				},
+				resource.Attribute{
+					Name:        "entity_type",
+					Description: `(Optional) The type of the entity to attach. (default: ` + "`" + `linode` + "`" + `) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When the Firewall Device was last created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When the Firewall Device was last updated.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created",
+					Description: `When the Firewall Device was last created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When the Firewall Device was last updated.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_image",
 			Category:         "Resources",
 			ShortDescription: `Manages a Linode Image.`,
@@ -358,6 +518,14 @@ var (
 					Description: `(Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.`,
 				},
 				resource.Attribute{
+					Name:        "shared_ipv4",
+					Description: `(Optional) A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.`,
+				},
+				resource.Attribute{
+					Name:        "resize_disk",
+					Description: `(Optional) If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined.`,
+				},
+				resource.Attribute{
 					Name:        "alerts.0.cpu",
 					Description: `(Optional) The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.`,
 				},
@@ -384,6 +552,10 @@ var (
 				resource.Attribute{
 					Name:        "watchdog_enabled",
 					Description: `(Optional) The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "booted",
+					Description: `(Optional) Specifies whether the Linode should be ` + "`" + `running` + "`" + ` or ` + "`" + `offline` + "`" + `. If unspecified, the Linode's power status will not be managed by the Provider.`,
 				},
 				resource.Attribute{
 					Name:        "authorized_keys",
@@ -438,12 +610,12 @@ var (
 					Description: `(Optional) The Disk filesystem can be one of: ` + "`" + `"raw"` + "`" + `, ` + "`" + `"swap"` + "`" + `, ` + "`" + `"ext3"` + "`" + `, ` + "`" + `"ext4"` + "`" + `, or ` + "`" + `"initrd"` + "`" + ` which has a max size of 32mb and can be used in the config ` + "`" + `initrd` + "`" + ` (not currently supported in this Terraform Provider).`,
 				},
 				resource.Attribute{
-					Name:        "readonly",
+					Name:        "read_only",
 					Description: `(Optional) If true, this Disk is read-only.`,
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use. Examples are ` + "`" + `linode/debian9` + "`" + `, ` + "`" + `linode/fedora28` + "`" + `, ` + "`" + `linode/ubuntu16.04lts` + "`" + `, ` + "`" + `linode/arch` + "`" + `, and ` + "`" + `private/12345` + "`" + `. See all images [here](https://api.linode.com/v4/linode/kernels).`,
+					Description: `(Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use. Examples are ` + "`" + `linode/debian9` + "`" + `, ` + "`" + `linode/fedora28` + "`" + `, ` + "`" + `linode/ubuntu16.04lts` + "`" + `, ` + "`" + `linode/arch` + "`" + `, and ` + "`" + `private/12345` + "`" + `. See all images [here](https://api.linode.com/v4/images).`,
 				},
 				resource.Attribute{
 					Name:        "authorized_keys",
@@ -689,6 +861,65 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_ipv6_range",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode IPv6 range.`,
+			Description:      ``,
+			Keywords: []string{
+				"ipv6",
+				"range",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Required) The prefix length of the IPv6 range.`,
+				},
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.`,
+				},
+				resource.Attribute{
+					Name:        "route_target",
+					Description: `(Required) The IPv6 SLAAC address to assign this range to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "is_bgp",
+					Description: `Whether this IPv6 range is shared.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `The IPv6 range of addresses in this pool.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region for this range of IPv6 addresses.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "is_bgp",
+					Description: `Whether this IPv6 range is shared.`,
+				},
+				resource.Attribute{
+					Name:        "linodes",
+					Description: `A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `The IPv6 range of addresses in this pool.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region for this range of IPv6 addresses.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_lke_cluster",
 			Category:         "Resources",
 			ShortDescription: `Manages a Linode instance.`,
@@ -704,7 +935,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "k8s_version",
-					Description: `(Required) The desired Kubernetes version for this Kubernetes cluster in the format of ` + "`" + `major.minor` + "`" + ` (e.g. ` + "`" + `1.17` + "`" + `), and the latest supported patch version will be deployed.`,
+					Description: `(Required) The desired Kubernetes version for this Kubernetes cluster in the format of ` + "`" + `major.minor` + "`" + ` (e.g. ` + "`" + `1.21` + "`" + `), and the latest supported patch version will be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -712,7 +943,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### pool The following arguments are supported in the pool specification block:`,
+					Description: `(Optional) An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### pool The following arguments are supported in the ` + "`" + `pool` + "`" + ` specification block:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -720,7 +951,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `(Required) The number of nodes in the Node Pool. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The number of nodes in the Node Pool.`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `(Required) The minimum number of nodes to autoscale to.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `(Required) The maximum number of nodes to autoscale to. ### control_plane The following arguments are supported in the ` + "`" + `control_plane` + "`" + ` specification block:`,
+				},
+				resource.Attribute{
+					Name:        "high_availability",
+					Description: `(Optional) Defines whether High Availability is enabled for the cluster Control Plane. This is an`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -737,6 +980,10 @@ var (
 				resource.Attribute{
 					Name:        "kubeconfig",
 					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_url",
+					Description: `The Kubernetes Dashboard access URL for this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "pool",
@@ -775,6 +1022,10 @@ var (
 				resource.Attribute{
 					Name:        "kubeconfig",
 					Description: `The base64 encoded kubeconfig for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_url",
+					Description: `The Kubernetes Dashboard access URL for this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "pool",
@@ -1244,7 +1495,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rdns",
-					Description: `The name of the RDNS address. ## Import Linodes RDNS resources can be imported using the address as the ` + "`" + `id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_rdns.foo 123.123.123.123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of the RDNS address.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_available",
+					Description: `(Optional) If true, the RDNS assignment will be retried within the operation timeout period. ## Import Linodes RDNS resources can be imported using the address as the ` + "`" + `id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_rdns.foo 123.123.123.123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1623,25 +1878,29 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"linode_domain":                0,
-		"linode_domain_record":         1,
-		"linode_firewall":              2,
-		"linode_image":                 3,
-		"linode_instance":              4,
-		"linode_instance_ip":           5,
-		"linode_lke_cluster":           6,
-		"linode_nodebalancer":          7,
-		"linode_nodebalancer_config":   8,
-		"linode_nodebalancer_node":     9,
-		"linode_object_storage_bucket": 10,
-		"linode_object_storage_key":    11,
-		"linode_object_storage_object": 12,
-		"linode_rdns":                  13,
-		"linode_sshkey":                14,
-		"linode_stackscript":           15,
-		"linode_token":                 16,
-		"linode_user":                  17,
-		"linode_volume":                18,
+		"linode_database_access_controls": 0,
+		"linode_database_mysql":           1,
+		"linode_domain":                   2,
+		"linode_domain_record":            3,
+		"linode_firewall":                 4,
+		"linode_firewall_device":          5,
+		"linode_image":                    6,
+		"linode_instance":                 7,
+		"linode_instance_ip":              8,
+		"linode_ipv6_range":               9,
+		"linode_lke_cluster":              10,
+		"linode_nodebalancer":             11,
+		"linode_nodebalancer_config":      12,
+		"linode_nodebalancer_node":        13,
+		"linode_object_storage_bucket":    14,
+		"linode_object_storage_key":       15,
+		"linode_object_storage_object":    16,
+		"linode_rdns":                     17,
+		"linode_sshkey":                   18,
+		"linode_stackscript":              19,
+		"linode_token":                    20,
+		"linode_user":                     21,
+		"linode_volume":                   22,
 	}
 )
 

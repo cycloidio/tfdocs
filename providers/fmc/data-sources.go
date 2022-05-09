@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_access_policies",
+			Type:             "fmc_access_policies",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Access Policies in FMC An example is shown below: hcl data "fmc_access_policies" "acp" { name = "FTD ACP" }`,
 			Description:      ``,
@@ -21,7 +21,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_devices",
+			Type:             "fmc_devices",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for FTD Devices in FMC An example is shown below: hcl data "fmc_devices" "device" { name = "ftd.adyah.cisco" }`,
 			Description:      ``,
@@ -31,7 +31,17 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_file_policies",
+			Type:             "fmc_dynamic_objects",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for Dynamic Objects in FMC An example is shown below: hcl data "fmc_dynamic_object" "dyobj" { name = "Dynamic Object 1" }`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fmc_file_policies",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for File Policies in FMC An example is shown below: hcl data "fmc_file_policies" "file_policy" { name = "AMP Policy" }`,
 			Description:      ``,
@@ -41,7 +51,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_host_objects",
+			Type:             "fmc_host_objects",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Host Objects in FMC An example is shown below: hcl data "fmc_host_objects" "existing_host" { name = "CUCM-Pub" } Any one of the id, name or value can be specified. The first filter in the order of id, name and value will be used, and the rest will be ignored if multiple are specified.`,
 			Description:      ``,
@@ -51,7 +61,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_ips_policies",
+			Type:             "fmc_ips_policies",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for IPS Policy in FMC An example is shown below: hcl data "fmc_ips_policies" "ips_policy" { name = "Connectivity Over Security" }`,
 			Description:      ``,
@@ -61,7 +71,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_network_objects",
+			Type:             "fmc_network_objects",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Network Objects in FMC An example is shown below: hcl data "fmc_network_objects" "PrivateVLAN" { name = "VLAN825-Private" } Any one of the id, name or value can be specified. The first filter in the order of id, name and value will be used, and the rest will be ignored if multiple are specified.`,
 			Description:      ``,
@@ -71,7 +81,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_port_objects",
+			Type:             "fmc_port_objects",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Port Objects in FMC An example is shown below: hcl data "fmc_port_objects" "existing" { name = "DNS_over_TCP" } Any one of the id, name or port can be specified. The first filter in the order of id, name and port will be used, and the rest will be ignored if multiple are specified.`,
 			Description:      ``,
@@ -81,7 +91,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_security_zones",
+			Type:             "fmc_security_zones",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Security Zones in FMC An example is shown below: hcl data "fmc_security_zones" "inside" { name = "inside" }`,
 			Description:      ``,
@@ -91,7 +101,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_syslog_alerts",
+			Type:             "fmc_syslog_alerts",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for Syslog Alert Configuration in FMC An example is shown below: hcl data "fmc_security_zones" "inside" { name = "inside" }`,
 			Description:      ``,
@@ -101,7 +111,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fmc_fmc_url_objects",
+			Type:             "fmc_url_objects",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for URL Objects in FMC An example is shown below: hcl data "fmc_url_objects" "existing" { name = "DNAC" } Any one of the id, name or value can be specified. The first filter in the order of id, name and value will be used, and the rest will be ignored if multiple are specified.`,
 			Description:      ``,
@@ -113,16 +123,17 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"fmc_fmc_access_policies": 0,
-		"fmc_fmc_devices":         1,
-		"fmc_fmc_file_policies":   2,
-		"fmc_fmc_host_objects":    3,
-		"fmc_fmc_ips_policies":    4,
-		"fmc_fmc_network_objects": 5,
-		"fmc_fmc_port_objects":    6,
-		"fmc_fmc_security_zones":  7,
-		"fmc_fmc_syslog_alerts":   8,
-		"fmc_fmc_url_objects":     9,
+		"fmc_access_policies": 0,
+		"fmc_devices":         1,
+		"fmc_dynamic_objects": 2,
+		"fmc_file_policies":   3,
+		"fmc_host_objects":    4,
+		"fmc_ips_policies":    5,
+		"fmc_network_objects": 6,
+		"fmc_port_objects":    7,
+		"fmc_security_zones":  8,
+		"fmc_syslog_alerts":   9,
+		"fmc_url_objects":     10,
 	}
 )
 

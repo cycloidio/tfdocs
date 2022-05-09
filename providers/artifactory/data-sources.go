@@ -31,7 +31,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_overwrite",
-					Description: `(Optional) If set to true, an existing file in the output_path will be overwritten. Default: false ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) If set to true, an existing file in the output_path will be overwritten. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "path_is_aliased",
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, the provider will get the artifact directly from Artifactory without attempting to resolve it or verify it and will delegate this to artifactory if the file exists. More details in the [official documentation](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-RetrieveLatestArtifact) ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created",

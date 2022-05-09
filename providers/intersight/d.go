@@ -23,7 +23,43 @@ AuditRecord presents the configuration changes made by the user per transaction.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_aaa_retention_config",
+			Category:         "Data Sources",
+			ShortDescription: `Default configuration for audit log retention.`,
+			Description: `
+Default configuration for audit log retention.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_aaa_retention_policy",
+			Category:         "Data Sources",
+			ShortDescription: `An account level policy specifying the period for the audit log retention.`,
+			Description: `
+An account level policy specifying the period for the audit log retention.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_access_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Policy to configure server or chassis management options.`,
+			Description: `
+Policy to configure server or chassis management options.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_access_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to configure server or chassis management options.`,
 			Description: `
@@ -150,9 +186,9 @@ Status of an application.
 			Name:             "",
 			Type:             "intersight_appliance_auto_rma_policy",
 			Category:         "Data Sources",
-			ShortDescription: `Auto rma policy to decide whether rma data should be collected`,
+			ShortDescription: `Auto rma policy to decide whether rma data should be collected.`,
 			Description: `
-Auto rma policy to decide whether rma data should be collected
+Auto rma policy to decide whether rma data should be collected.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -291,6 +327,10 @@ of the device claim operation can be obtained from the claim workflow.
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -331,6 +371,10 @@ of the device claim operation can be obtained from the claim workflow.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -345,6 +389,22 @@ of the device claim operation can be obtained from the claim workflow.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -391,6 +451,14 @@ of the device claim operation can be obtained from the claim workflow.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -409,6 +477,10 @@ of the device claim operation can be obtained from the claim workflow.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -475,12 +547,24 @@ of the device claim operation can be obtained from the claim workflow.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "started",
@@ -493,6 +577,31 @@ of the device claim operation can be obtained from the claim workflow.
 				resource.Attribute{
 					Name:        "completed",
 					Description: `Device claim operation has completed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_device_upgrade_policy",
+			Category:         "Data Sources",
+			ShortDescription: `DeviceUpgradePolicy stores the current upgrade policy of the Intersight Appliances.`,
+			Description: `
+DeviceUpgradePolicy stores the current upgrade policy of the Intersight Appliances.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Indicates user setting of upgrade service to unknown.`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Indicates if the upgrade service is set to upload software to latest version automatically.`,
+				},
+				resource.Attribute{
+					Name:        "manual",
+					Description: `Indicates if the upgrade service is set to upload software to user picked verison manually.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -537,6 +646,23 @@ Configure External Syslog Server.
 					Description: `Secure External Syslog messages sent over TLS.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_file_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `FileGateway is a non-persistent model for accessing files from the Intersight. Intersight Appliances queries the FileGateway API, supplying a filename and version, to get the signed URL from the Intersight. Intersight Appliance services uses the signed URLs to download files and store them in the local image cache. Intersight will not store any record of the file access in the initial revision. This model is a pure pass through proxy for the cloud storage service.`,
+			Description: `
+FileGateway is a non-persistent model for accessing files from the Intersight.
+Intersight Appliances queries the FileGateway API, supplying a filename and version,
+to get the signed URL from the Intersight. Intersight Appliance services uses the
+signed URLs to download files and store them in the local image cache. Intersight
+will not store any record of the file access in the initial revision. This model is
+a pure pass through proxy for the cloud storage service.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -824,6 +950,10 @@ SystemInfo managed object with up to date cluster status information periodicall
 					Description: `Claim of the target is in progress. A connection to the target has not been fully established.`,
 				},
 				resource.Attribute{
+					Name:        "UnclaimInProgress",
+					Description: `Unclaim of the target is in progress. Intersight is able to connect to the target and all management operations are supported.`,
+				},
+				resource.Attribute{
 					Name:        "Unclaimed",
 					Description: `The device was un-claimed from the users account by an Administrator of the device. Also indicates the failure to claim Targets of type HTTP Endpoint in Intersight.`,
 				},
@@ -914,8 +1044,21 @@ Scheduled upgrade policy lets the user start software upgrade at a specified sch
 However, scheduled time cannot be beyond the time limit enforced by the upgrade grace
 period set in the software manifest.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Indicates user setting of upgrade service to unknown.`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Indicates if the upgrade service is set to upload software to latest version automatically.`,
+				},
+				resource.Attribute{
+					Name:        "manual",
+					Description: `Indicates if the upgrade service is set to upload software to user picked verison manually.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -939,6 +1082,10 @@ A node within a cluster of device connectors. A Device Registration may contain 
 				resource.Attribute{
 					Name:        "ClaimInProgress",
 					Description: `Claim of the target is in progress. A connection to the target has not been fully established.`,
+				},
+				resource.Attribute{
+					Name:        "UnclaimInProgress",
+					Description: `Unclaim of the target is in progress. Intersight is able to connect to the target and all management operations are supported.`,
 				},
 				resource.Attribute{
 					Name:        "Unclaimed",
@@ -1004,6 +1151,10 @@ Contains information about Deployments associated with consumption-based subscri
 				resource.Attribute{
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1103,6 +1254,10 @@ Contains information about the Cisco device identified by a unique identifier li
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -1143,6 +1298,10 @@ Contains information about the Cisco device identified by a unique identifier li
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -1157,6 +1316,22 @@ Contains information about the Cisco device identified by a unique identifier li
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -1203,6 +1378,14 @@ Contains information about the Cisco device identified by a unique identifier li
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -1221,6 +1404,10 @@ Contains information about the Cisco device identified by a unique identifier li
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -1287,12 +1474,24 @@ Contains information about the Cisco device identified by a unique identifier li
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Update",
@@ -1336,6 +1535,10 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 					Description: `Claim of the target is in progress. A connection to the target has not been fully established.`,
 				},
 				resource.Attribute{
+					Name:        "UnclaimInProgress",
+					Description: `Unclaim of the target is in progress. Intersight is able to connect to the target and all management operations are supported.`,
+				},
+				resource.Attribute{
 					Name:        "Unclaimed",
 					Description: `The device was un-claimed from the users account by an Administrator of the device. Also indicates the failure to claim Targets of type HTTP Endpoint in Intersight.`,
 				},
@@ -1358,6 +1561,10 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -1400,6 +1607,10 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -1414,6 +1625,22 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -1460,6 +1687,14 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -1478,6 +1713,10 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -1544,12 +1783,24 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1629,6 +1880,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 					Description: `Claim of the target is in progress. A connection to the target has not been fully established.`,
 				},
 				resource.Attribute{
+					Name:        "UnclaimInProgress",
+					Description: `Unclaim of the target is in progress. Intersight is able to connect to the target and all management operations are supported.`,
+				},
+				resource.Attribute{
 					Name:        "Unclaimed",
 					Description: `The device was un-claimed from the users account by an Administrator of the device. Also indicates the failure to claim Targets of type HTTP Endpoint in Intersight.`,
 				},
@@ -1639,6 +1894,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -1681,6 +1940,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -1695,6 +1958,22 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -1741,6 +2020,14 @@ Target represents an entity which can be managed by Intersight. This includes ph
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -1759,6 +2046,10 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -1825,12 +2116,24 @@ Target represents an entity which can be managed by Intersight. This includes ph
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2240,6 +2543,30 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Set by Intel NM",
 					Description: `Value - Set by Intel NM for configuring BootPerformanceMode token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3178,6 +3505,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring CpuPerfEnhancement token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring CpuPerfEnhancement token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "custom",
 					Description: `Value - custom for configuring CpuPerformance token.`,
 				},
@@ -3928,6 +4267,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Value - enabled for configuring LegacyUsbSupport token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring LlcAlloc token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring LlcAlloc token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring LlcAlloc token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4886,6 +5241,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Value - Disabled for configuring PostPackageRepair token.`,
 				},
@@ -5216,6 +5583,30 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring Sev token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -7874,6 +8265,34 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "1",
+					Description: `Value - 1 for configuring UpiLinkEnablement token.`,
+				},
+				resource.Attribute{
+					Name:        "2",
+					Description: `Value - 2 for configuring UpiLinkEnablement token.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring UpiLinkEnablement token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
@@ -7998,6 +8417,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "1LM",
 					Description: `Value - 1LM for configuring VolMemoryMode token.`,
 				},
@@ -8040,6 +8471,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Value - enabled for configuring XptPrefetch token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring XptRemotePrefetch token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring XptRemotePrefetch token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring XptRemotePrefetch token.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8292,14 +8739,262 @@ Virtual Media Boot Device configured on the server.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_bulk_export",
+			Category:         "Data Sources",
+			ShortDescription: `All export operations are captured as Export instances. Users shall use this Export mo to track the export operation progress.`,
+			Description: `
+All export operations are captured as Export instances. Users shall use this Export
+mo to track the export operation progress.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Starts the export operation.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancels the export operation that is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `The operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "OrderInProgress",
+					Description: `The archive operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The operation has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The operation has failed.`,
+				},
+				resource.Attribute{
+					Name:        "OperationTimedOut",
+					Description: `The operation has timed out.`,
+				},
+				resource.Attribute{
+					Name:        "OperationCancelled",
+					Description: `The operation has been cancelled.`,
+				},
+				resource.Attribute{
+					Name:        "CancelInProgress",
+					Description: `The operation is being cancelled.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_bulk_exported_item",
+			Category:         "Data Sources",
+			ShortDescription: `A single managed object that is being exported.`,
+			Description: `
+A single managed object that is being exported.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ValidationInProgress",
+					Description: `The validation operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Valid",
+					Description: `The content to be imported is valid.`,
+				},
+				resource.Attribute{
+					Name:        "InValid",
+					Description: `The content to be imported is not valid and the status message will have the reason.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `The operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The operation has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The operation has failed.`,
+				},
+				resource.Attribute{
+					Name:        "RollBackInitiated",
+					Description: `The rollback has been inititiated for import failure.`,
+				},
+				resource.Attribute{
+					Name:        "RollBackFailed",
+					Description: `The rollback has failed for import failure.`,
+				},
+				resource.Attribute{
+					Name:        "RollbackCompleted",
+					Description: `The rollback has completed for import failure.`,
+				},
+				resource.Attribute{
+					Name:        "RollbackAborted",
+					Description: `The rollback has been aborted for import failure.`,
+				},
+				resource.Attribute{
+					Name:        "OperationTimedOut",
+					Description: `The operation has timed out.`,
+				},
+				resource.Attribute{
+					Name:        "OperationCancelled",
+					Description: `The operation has been cancelled.`,
+				},
+				resource.Attribute{
+					Name:        "CancelInProgress",
+					Description: `The operation is being cancelled.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_bulk_request",
+			Category:         "Data Sources",
+			ShortDescription: `The bulk.Request API allows users to perform API actions (Create, Update or Delete) in bulk, on a given URI. It is possible to operate on multiple subpaths relative to the provided URI (For example, it would be possible to perform a PATCH action on multiple objects of a given REST resource type).`,
+			Description: `
+The bulk.Request API allows users to perform API actions (Create, Update or Delete) in bulk, on a given URI.
+It is possible to operate on multiple subpaths relative to the provided URI (For example, it would be possible to
+perform a PATCH action on multiple objects of a given REST resource type).
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the processing of the request after the first error.`,
+				},
+				resource.Attribute{
+					Name:        "Proceed",
+					Description: `Proceed with the processing of the request even when an error occurs.`,
+				},
+				resource.Attribute{
+					Name:        "NotStarted",
+					Description: `Indicates that the request processing has not begun yet.`,
+				},
+				resource.Attribute{
+					Name:        "ObjPresenceCheckInProgress",
+					Description: `Indicates that the object presence check is in progress for this request.`,
+				},
+				resource.Attribute{
+					Name:        "ObjPresenceCheckComplete",
+					Description: `Indicates that the object presence check is complete.`,
+				},
+				resource.Attribute{
+					Name:        "ExecutionInProgress",
+					Description: `Indicates that the request processing is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the request processing has been completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the processing of this request failed.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `Used to create a REST resource.`,
+				},
+				resource.Attribute{
+					Name:        "PATCH",
+					Description: `Used to update a REST resource.`,
+				},
+				resource.Attribute{
+					Name:        "DELETE",
+					Description: `Used to delete a REST resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_bulk_sub_request_obj",
+			Category:         "Data Sources",
+			ShortDescription: `The sub request object is created for every subrequest in the incoming request.`,
+			Description: `
+The sub request object is created for every subrequest in the incoming request.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `Indicates that the request is yet to be processed.`,
+				},
+				resource.Attribute{
+					Name:        "ObjPresenceCheckInProgress",
+					Description: `Indicates that the checking for object presence is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "ObjPresenceCheckInComplete",
+					Description: `Indicates that the request is being processed.`,
+				},
+				resource.Attribute{
+					Name:        "ObjPresenceCheckFailed",
+					Description: `Indicates that the checking for object presence failed.`,
+				},
+				resource.Attribute{
+					Name:        "Processing",
+					Description: `Indicates that the request is being processed.`,
+				},
+				resource.Attribute{
+					Name:        "TimedOut",
+					Description: `Indicates that the request processing timed out.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the request processing is complete.`,
+				},
+				resource.Attribute{
+					Name:        "Skipped",
+					Description: `Indicates that the request was skipped.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `Used to create a REST resource.`,
+				},
+				resource.Attribute{
+					Name:        "PATCH",
+					Description: `Used to update a REST resource.`,
+				},
+				resource.Attribute{
+					Name:        "DELETE",
+					Description: `Used to delete a REST resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_adapter_unit_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor that uniquely identifies an adapter.`,
 			Description: `
 Descriptor that uniquely identifies an adapter.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "4",
+					Description: `Fourth generation adapters (14xx). The PIDs of these adapters end with the string 04.`,
+				},
+				resource.Attribute{
+					Name:        "2",
+					Description: `Second generation VIC adapters (12xx). The PIDs of these adapters end with the string 02.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Third generation adapters (13xx). The PIDs of these adapters end with the string 03.`,
+				},
+				resource.Attribute{
+					Name:        "5",
+					Description: `Fifth generation adapters (15xx). The PIDs of these adapters contain the V5 string.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -8370,6 +9065,10 @@ Type to represent additional switch specific capabilities.
 					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
 				},
 				resource.Attribute{
+					Name:        "UCS-FI-6536",
+					Description: `The standard 5th generation UCS Fabric Interconnect with 36 ports.`,
+				},
+				resource.Attribute{
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
@@ -8393,6 +9092,10 @@ Type to represent additional switch specific capabilities.
 				resource.Attribute{
 					Name:        "UCS-FI-64108",
 					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
+				},
+				resource.Attribute{
+					Name:        "UCS-FI-6536",
+					Description: `The standard 5th generation UCS Fabric Interconnect with 36 ports.`,
 				},
 				resource.Attribute{
 					Name:        "unknown",
@@ -8420,6 +9123,30 @@ Descriptor that uniquely identifies a fan module.
 			ShortDescription: `Fan module unit that contains multiple fans.`,
 			Description: `
 Fan module unit that contains multiple fans.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_fex_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies an Fabric extender.`,
+			Description: `
+Descriptor that uniquely identifies an Fabric extender.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_fex_manufacturing_def",
+			Category:         "Data Sources",
+			ShortDescription: `Fabric extender manufacturing def properties.`,
+			Description: `
+Fabric extender manufacturing def properties.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -8508,6 +9235,18 @@ Power supply unit properties.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_server_models_capability_def",
+			Category:         "Data Sources",
+			ShortDescription: `Used to categorize server models.`,
+			Description: `
+Used to categorize server models.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_server_schema_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor that identifies the server's redfish locatorled using cimc firmware info.`,
@@ -8573,6 +9312,10 @@ Type to represent additional switch specific capabilities.
 					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
 				},
 				resource.Attribute{
+					Name:        "UCS-FI-6536",
+					Description: `The standard 5th generation UCS Fabric Interconnect with 36 ports.`,
+				},
+				resource.Attribute{
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
@@ -8610,6 +9353,10 @@ Switch/Fabric-Interconnect manufacturing def properties.
 					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
 				},
 				resource.Attribute{
+					Name:        "UCS-FI-6536",
+					Description: `The standard 5th generation UCS Fabric Interconnect with 36 ports.`,
+				},
+				resource.Attribute{
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
@@ -8619,6 +9366,18 @@ Switch/Fabric-Interconnect manufacturing def properties.
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_certificatemanagement_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Certificate Management policy models a reusable certificate and private key configuration that can be applied to multiple servers via profile association.`,
+			Description: `
+Certificate Management policy models a reusable certificate and private key configuration that can be applied to multiple servers via profile association.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_certificatemanagement_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Certificate Management policy models a reusable certificate and private key configuration that can be applied to multiple servers via profile association.`,
 			Description: `
@@ -8879,7 +9638,11 @@ Configuration details of the virtual machine.
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -8942,6 +9705,10 @@ Configuration details of the virtual machine.
 					Description: `Cloud provider named Google Cloud Platform.`,
 				},
 				resource.Attribute{
+					Name:        "CiscoIntersightWorkloadEngine",
+					Description: `Cloud provider named Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `A place holder for the default value.`,
 				},
@@ -9000,6 +9767,10 @@ Configuration details of the virtual machine.
 				resource.Attribute{
 					Name:        "Error",
 					Description: `The deployment of virtual machine is failed.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The virtual machine is in warning state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9097,6 +9868,10 @@ The geographic location where a clouds resources are located. It has details suc
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -9137,6 +9912,10 @@ The geographic location where a clouds resources are located. It has details suc
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -9151,6 +9930,22 @@ The geographic location where a clouds resources are located. It has details suc
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -9197,6 +9992,14 @@ The geographic location where a clouds resources are located. It has details suc
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -9215,6 +10018,10 @@ The geographic location where a clouds resources are located. It has details suc
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -9281,12 +10088,24 @@ The geographic location where a clouds resources are located. It has details suc
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9310,8 +10129,20 @@ Stores hardware attribute information for a container.
 					Description: `The CPU unit used by containers.`,
 				},
 				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -9354,6 +10185,10 @@ Stores hardware attribute information for a container.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -9368,6 +10203,22 @@ Stores hardware attribute information for a container.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -9414,6 +10265,14 @@ Stores hardware attribute information for a container.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -9432,6 +10291,10 @@ Stores hardware attribute information for a container.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -9498,12 +10361,24 @@ Stores hardware attribute information for a container.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -9535,8 +10410,20 @@ Stores details of instance type which handle databases.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -9579,6 +10466,10 @@ Stores details of instance type which handle databases.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -9593,6 +10484,22 @@ Stores details of instance type which handle databases.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -9639,6 +10546,14 @@ Stores details of instance type which handle databases.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -9657,6 +10572,10 @@ Stores details of instance type which handle databases.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -9723,12 +10642,24 @@ Stores details of instance type which handle databases.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -9780,6 +10711,14 @@ Details for an instance type.
 					Description: `The CPU unit used by containers.`,
 				},
 				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
 					Name:        "MB",
 					Description: `Enum to represent mega byte storage unit.`,
 				},
@@ -9806,6 +10745,10 @@ Details for an instance type.
 				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -9848,6 +10791,10 @@ Details for an instance type.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -9862,6 +10809,22 @@ Details for an instance type.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -9908,6 +10871,14 @@ Details for an instance type.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -9926,6 +10897,10 @@ Details for an instance type.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -9992,12 +10967,24 @@ Details for an instance type.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -10029,8 +11016,20 @@ Model to represent network attributes.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -10073,6 +11072,10 @@ Model to represent network attributes.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -10087,6 +11090,22 @@ Model to represent network attributes.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -10133,6 +11152,14 @@ Model to represent network attributes.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -10151,6 +11178,10 @@ Model to represent network attributes.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -10217,12 +11248,305 @@ Model to represent network attributes.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+				},
+				resource.Attribute{
+					Name:        "Compute",
+					Description: `Compute service offered by cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "Storage",
+					Description: `Storage service offered by cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "Database",
+					Description: `Database service offered by cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "Network",
+					Description: `Network service offered by cloud provider.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_cloud_sku_region_rate_cards",
+			Category:         "Data Sources",
+			ShortDescription: `Base sku for containing price information for instance type, volumes, containers.`,
+			Description: `
+Base sku for containing price information for instance type, volumes, containers.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone UCS Server Integrated Management Controller.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone UCS M4 Server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone UCS M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone UCS M6 and above server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `An UCS Chassis IO module.`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A HyperFlex storage controller.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCSC890 server.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A NetApp ONTAP storage system.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX storage system.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO storage system.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter device that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller that monitors applications.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell Compellent storage system.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR storage system.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `An Intersight managed UCS Blade Server.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+				},
+				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -10254,8 +11578,20 @@ Stores information about the volume types.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "USD",
+					Description: `The currency code for United states dollar.`,
+				},
+				resource.Attribute{
+					Name:        "EUR",
+					Description: `The currency code for European Union.`,
+				},
+				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -10298,6 +11634,10 @@ Stores information about the volume types.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -10312,6 +11652,22 @@ Stores information about the volume types.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -10358,6 +11714,14 @@ Stores information about the volume types.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -10376,6 +11740,10 @@ Stores information about the volume types.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -10442,12 +11810,24 @@ Stores information about the volume types.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -10604,6 +11984,18 @@ Identity object that uniquely represents a blade server object under a DR.
 					Description: `The running firmware version is known and does not support IMM mode.`,
 				},
 				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The last discovery type is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Deep",
+					Description: `The last discovery triggered is deep.`,
+				},
+				resource.Attribute{
+					Name:        "Shallow",
+					Description: `The last discovery triggered is shallow.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
 				},
@@ -10662,6 +12054,10 @@ Identity object that uniquely represents a blade server object under a DR.
 				resource.Attribute{
 					Name:        "ReplaceInProgress",
 					Description: `ReplaceInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -10807,6 +12203,18 @@ Identity object that uniquely represents a server object under a DR.
 					Description: `User configured settings could not be applied.`,
 				},
 				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The last discovery type is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Deep",
+					Description: `The last discovery triggered is deep.`,
+				},
+				resource.Attribute{
+					Name:        "Shallow",
+					Description: `The last discovery triggered is shallow.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
 				},
@@ -10865,6 +12273,51 @@ Identity object that uniquely represents a server object under a DR.
 				resource.Attribute{
 					Name:        "ReplaceInProgress",
 					Description: `ReplaceInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_compute_server_power_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Policy to determine the required power task during server profile deploy/undeploy.`,
+			Description: `
+Policy to determine the required power task during server profile deploy/undeploy.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Policy",
+					Description: `Power state is set to the default value in the policy.`,
+				},
+				resource.Attribute{
+					Name:        "PowerOn",
+					Description: `Power state of the server is set to On.`,
+				},
+				resource.Attribute{
+					Name:        "PowerOff",
+					Description: `Power state is the server set to Off.`,
+				},
+				resource.Attribute{
+					Name:        "PowerCycle",
+					Description: `Power state the server is reset.`,
+				},
+				resource.Attribute{
+					Name:        "HardReset",
+					Description: `Power state the server is hard reset.`,
+				},
+				resource.Attribute{
+					Name:        "Shutdown",
+					Description: `Operating system on the server is shut down.`,
+				},
+				resource.Attribute{
+					Name:        "Reboot",
+					Description: `Power state of IMC is rebooted.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10925,7 +12378,7 @@ Models the configurable properties of a server in Intersight.
 				},
 				resource.Attribute{
 					Name:        "Pending",
-					Description: `This indicates that the previous CMOS Reset operation on this server has not completed due to a pending power cycle. CMOS Reset operation cannot be done on the server when in this state.`,
+					Description: `The identifier to state that the previous CMOS Reset operation on this server has not completed due to a pending power cycle. CMOS Reset operation cannot be done on the server when in this state.`,
 				},
 				resource.Attribute{
 					Name:        "Reset",
@@ -10940,6 +12393,10 @@ Models the configurable properties of a server in Intersight.
 					Description: `User settings are being applied on the target server.`,
 				},
 				resource.Attribute{
+					Name:        "Scheduled",
+					Description: `User configured settings are scheduled to be applied.`,
+				},
+				resource.Attribute{
 					Name:        "Failed",
 					Description: `User configured settings could not be applied.`,
 				},
@@ -10950,6 +12407,26 @@ Models the configurable properties of a server in Intersight.
 				resource.Attribute{
 					Name:        "Lock",
 					Description: `Front Panel of the server is set to Locked state.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Reset vKVM operation is allowed to be done on the server in this state.`,
+				},
+				resource.Attribute{
+					Name:        "Reset",
+					Description: `The value that the UI/API needs to provide to trigger a Reset vKVM operation on a server.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Tunneled vKVM is ready to be configured on the server.`,
+				},
+				resource.Attribute{
+					Name:        "Enable",
+					Description: `Tunneled vKVM is enabled for the server.`,
+				},
+				resource.Attribute{
+					Name:        "Disable",
+					Description: `Tunneled vKVM is disabled for the server.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -11412,195 +12889,6 @@ An HCLStatusJob is used to batch mo inventory notifications and process the eval
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_config_exported_item",
-			Category:         "Data Sources",
-			ShortDescription: `A single managed object that is being exported.`,
-			Description: `
-A single managed object that is being exported.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `The operation is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "Success",
-					Description: `The operation has succeeded.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The operation has failed.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackInitiated",
-					Description: `The rollback has been inititiated for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackFailed",
-					Description: `The rollback has failed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackCompleted",
-					Description: `The rollback has completed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackAborted",
-					Description: `The rollback has been aborted for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "OperationTimedOut",
-					Description: `The operation has timed out.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_config_exporter",
-			Category:         "Data Sources",
-			ShortDescription: `All export operations are captured as Exporter instances. Users shall use this Exporter mo to track the export operation progress.`,
-			Description: `
-All export operations are captured as Exporter instances. Users shall use this Exporter
-mo to track the export operation progress.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `The operation is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "Success",
-					Description: `The operation has succeeded.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The operation has failed.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackInitiated",
-					Description: `The rollback has been inititiated for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackFailed",
-					Description: `The rollback has failed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackCompleted",
-					Description: `The rollback has completed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackAborted",
-					Description: `The rollback has been aborted for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "OperationTimedOut",
-					Description: `The operation has timed out.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_config_imported_item",
-			Category:         "Data Sources",
-			ShortDescription: `A single managed object that is being imported.`,
-			Description: `
-A single managed object that is being imported.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `The operation is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "Success",
-					Description: `The operation has succeeded.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The operation has failed.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackInitiated",
-					Description: `The rollback has been inititiated for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackFailed",
-					Description: `The rollback has failed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackCompleted",
-					Description: `The rollback has completed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackAborted",
-					Description: `The rollback has been aborted for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "OperationTimedOut",
-					Description: `The operation has timed out.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_config_importer",
-			Category:         "Data Sources",
-			ShortDescription: `All import operations are captured as Importer instances. Users shall use this Importer mo to track the import operation progress.`,
-			Description: `
-All import operations are captured as Importer instances. Users shall use this Importer mo to track the import operation progress.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ImageRepo",
-					Description: `The 'ImageRepo' source if the source of exporter archive is image repository.`,
-				},
-				resource.Attribute{
-					Name:        "URL",
-					Description: `The 'URL' source if the source of exported archive is a URL.`,
-				},
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `The operation is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "Success",
-					Description: `The operation has succeeded.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The operation has failed.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackInitiated",
-					Description: `The rollback has been inititiated for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollBackFailed",
-					Description: `The rollback has failed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackCompleted",
-					Description: `The rollback has completed for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "RollbackAborted",
-					Description: `The rollback has been aborted for import failure.`,
-				},
-				resource.Attribute{
-					Name:        "OperationTimedOut",
-					Description: `The operation has timed out.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_connectorpack_connector_pack_upgrade",
 			Category:         "Data Sources",
 			ShortDescription: `Used to download or install connector packs on the target device.`,
@@ -11624,12 +12912,75 @@ Used to download or install connector packs on the target device.
 			Name:             "",
 			Type:             "intersight_connectorpack_upgrade_impact",
 			Category:         "Data Sources",
-			ShortDescription: `Used to determine the list of connector packs to be installed on a target UCS Director in its next upgrade cycle. Accepts the moid of the target UcsdInfo as part of the filter query. Given below is a sample url :- https://{{target}}/api/v1/connectorpack/UpgradeImpacts?$filter= ( UcsdInfo.Moid eq <<MoId>> ).`,
+			ShortDescription: `Used to determine the list of connector packs to be installed on a target UCS Director in its next upgrade cycle. Accepts the moid of the target UcsdInfo as part of the filter query. Given below is a sample url :- https://{{target}}/api/v1/connectorpack/UpgradeImpacts? $filter= ( UcsdInfo.Moid eq <<MoId>> ).`,
 			Description: `
-Used to determine the list of connector packs to be installed on a target UCS Director in its next upgrade cycle. Accepts the moid of the target UcsdInfo as part of the filter query. Given below is a sample url :- https://{{target}}/api/v1/connectorpack/UpgradeImpacts?$filter= ( UcsdInfo.Moid eq <<MoId>> ).
+Used to determine the list of connector packs to be installed on a target UCS Director in its next upgrade cycle. Accepts the moid of the target UcsdInfo as part of the filter query. Given below is a sample url :- https://{{target}}/api/v1/connectorpack/UpgradeImpacts? $filter= ( UcsdInfo.Moid eq <<MoId>> ).
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_console_console_config",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for terminal Console.`,
+			Description: `
+Concrete class for terminal Console.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "none",
+					Description: `If Parity is none, parity checking is not performed and the parity bit is not transmitted.`,
+				},
+				resource.Attribute{
+					Name:        "odd",
+					Description: `If Parity is odd, the number of mark bits (1s) in the data is counted, and the parity bit is asserted or unasserted to obtain an odd number of mark bits.`,
+				},
+				resource.Attribute{
+					Name:        "even",
+					Description: `If Parity is even, the number of mark bits in the data is counted, and the parity bit is asserted or unasserted to obtain an even number of mark bits.`,
+				},
+				resource.Attribute{
+					Name:        "mark",
+					Description: `If Parity is mark, the parity bit is asserted.`,
+				},
+				resource.Attribute{
+					Name:        "space",
+					Description: `If Parity is space, the parity bit is unasserted.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_convergedinfra_pod",
+			Category:         "Data Sources",
+			ShortDescription: `A pod is unit of deployment of converged infrastructure. Contains inventory information related to the health, HCL, storage, nodes, etc. of the pod.`,
+			Description: `
+A pod is unit of deployment of converged infrastructure. Contains inventory information related to the health, HCL, storage,
+nodes, etc. of the pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "FlexPodInfra",
+					Description: `The deployment type for a pod is of Infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "FlexPodNG",
+					Description: `The deployment type for a pod is of Nextgen type.`,
+				},
+				resource.Attribute{
+					Name:        "FlexPod",
+					Description: `Pod type is FlexPod, an integrated infrastructure solution developed by Cisco and NetApp.`,
+				},
+				resource.Attribute{
+					Name:        "FlashStack",
+					Description: `Pod type is FlashStack, an integrated infrastructure solution developed by Cisco and Pure Storage.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -11791,6 +13142,10 @@ ChassisIdentity Object conatains connectivity information about IOMs of the chas
 					Name:        "ReplaceInProgress",
 					Description: `ReplaceInProgress Lifecycle state.`,
 				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -11842,6 +13197,18 @@ Models the configurable properties of Chassis.
 			ShortDescription: `Aggregation of properties pertaining to different inventory MOs.`,
 			Description: `
 Aggregation of properties pertaining to different inventory MOs.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_equipment_expander_module",
+			Category:         "Data Sources",
+			ShortDescription: `Expander module inside the chassis.`,
+			Description: `
+Expander module inside the chassis.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -11967,6 +13334,18 @@ FexIdentity Object conatains basic information of fabric extender. moduleId is u
 					Description: `User configured settings could not be applied.`,
 				},
 				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The last discovery type is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Deep",
+					Description: `The last discovery triggered is deep.`,
+				},
+				resource.Attribute{
+					Name:        "Shallow",
+					Description: `The last discovery triggered is shallow.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
 				},
@@ -12025,6 +13404,10 @@ FexIdentity Object conatains basic information of fabric extender. moduleId is u
 				resource.Attribute{
 					Name:        "ReplaceInProgress",
 					Description: `ReplaceInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12166,6 +13549,18 @@ Consolidated view of all equipment identities.
 					Description: `The running firmware version is known and does not support IMM mode.`,
 				},
 				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The last discovery type is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Deep",
+					Description: `The last discovery triggered is deep.`,
+				},
+				resource.Attribute{
+					Name:        "Shallow",
+					Description: `The last discovery triggered is shallow.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
 				},
@@ -12224,6 +13619,10 @@ Consolidated view of all equipment identities.
 				resource.Attribute{
 					Name:        "ReplaceInProgress",
 					Description: `ReplaceInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -12402,6 +13801,34 @@ Fixed / Removable module on a Fabric Interconnect / Switch.
 				resource.Attribute{
 					Name:        "switch",
 					Description: `In switch mode, the switch runs Spanning Tree Protocol to avoid loops, and broadcast and multicast packets are handled in the traditional way.This is the traditional switch mode.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `The power state of the switch hardware is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "off",
+					Description: `The power state of the switch hardware is off.`,
+				},
+				resource.Attribute{
+					Name:        "on",
+					Description: `The power state of the switch hardware is on.`,
+				},
+				resource.Attribute{
+					Name:        "deny",
+					Description: `The power state of the switch hardware is deny.`,
+				},
+				resource.Attribute{
+					Name:        "multi-boot-fail",
+					Description: `The power state of the switch hardware is multi-boot-fail.`,
+				},
+				resource.Attribute{
+					Name:        "Down",
+					Description: `Connection status of the switch card is down.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `Connection status of the switch card is up.`,
 				},
 				resource.Attribute{
 					Name:        "unknown",
@@ -12861,6 +14288,10 @@ Identity object that uniquely represents a network element object under the doma
 					Description: `ReplaceInProgress Lifecycle state.`,
 				},
 				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `The default action is none.`,
 				},
@@ -12922,7 +14353,56 @@ The features that are applied on a vethernet that is connected to the vNIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_fabric_eth_network_control_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `The features that are applied on a vethernet that is connected to the vNIC.`,
+			Description: `
+The features that are applied on a vethernet that is connected to the vNIC.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allow",
+					Description: `Allows mac forging on an interface.`,
+				},
+				resource.Attribute{
+					Name:        "deny",
+					Description: `Denies mac forging on an interface.`,
+				},
+				resource.Attribute{
+					Name:        "nativeVlanOnly",
+					Description: `Register only the MAC addresses learnt on the native VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "allVlans",
+					Description: `Register all the MAC addresses learnt on all the allowed VLANs.`,
+				},
+				resource.Attribute{
+					Name:        "linkDown",
+					Description: `The vethernet will go down in case a suitable uplink is not pinned.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The vethernet will remain up even if a suitable uplink is not pinned.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_fabric_eth_network_group_policy",
+			Category:         "Data Sources",
+			ShortDescription: `The allowed VLAN/s on an interface.`,
+			Description: `
+The allowed VLAN/s on an interface.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_eth_network_group_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `The allowed VLAN/s on an interface.`,
 			Description: `
@@ -12954,6 +14434,35 @@ A policy for all the Virtual SAN networks to be deployed on the Fabric Interconn
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_fc_storage_role",
+			Category:         "Data Sources",
+			ShortDescription: `Configuration object sent by user to create a fc uplink port.`,
+			Description: `
+Configuration object sent by user to create a fc uplink port.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
+				},
+				resource.Attribute{
+					Name:        "8Gbps",
+					Description: `Admin configurable speed 8Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "32Gbps",
+					Description: `Admin configurable speed 32Gbps.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13155,6 +14664,18 @@ Priority Flow Control setting for each port.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_fabric_lan_pin_group",
+			Category:         "Data Sources",
+			ShortDescription: `LAN PinGroup configuration sent by user for static pinning.`,
+			Description: `
+LAN PinGroup configuration sent by user for static pinning.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_fabric_link_aggregation_policy",
 			Category:         "Data Sources",
 			ShortDescription: `A policy to configure the link settings for all the port channels (including LACP).`,
@@ -13286,6 +14807,18 @@ Object sent by user to configure range of unified ports as FC/Ethernet or ports 
 					Name:        "BreakoutEthernet25G",
 					Description: `Breakout Ethernet 25G Port Type.`,
 				},
+				resource.Attribute{
+					Name:        "BreakoutFibreChannel8G",
+					Description: `Breakout FibreChannel 8G Port Type.`,
+				},
+				resource.Attribute{
+					Name:        "BreakoutFibreChannel16G",
+					Description: `Breakout FibreChannel 16G Port Type.`,
+				},
+				resource.Attribute{
+					Name:        "BreakoutFibreChannel32G",
+					Description: `Breakout FibreChannel 32G Port Type.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -13345,10 +14878,26 @@ A policy for all the physical ports of the Fabric Interconnect.
 					Description: `The expanded 4th generation UCS Fabric Interconnect with 108 ports.`,
 				},
 				resource.Attribute{
+					Name:        "UCS-FI-6536",
+					Description: `The standard 5th generation UCS Fabric Interconnect with 36 ports.`,
+				},
+				resource.Attribute{
 					Name:        "unknown",
 					Description: `Unknown device type, usage is TBD.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_san_pin_group",
+			Category:         "Data Sources",
+			ShortDescription: `SAN PinGroup configuration sent by user for static pinning.`,
+			Description: `
+SAN PinGroup configuration sent by user for static pinning.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13359,8 +14908,21 @@ A policy for all the physical ports of the Fabric Interconnect.
 			Description: `
 Configuration object sent by user to create a server port.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Forward error correction option 'Auto'.`,
+				},
+				resource.Attribute{
+					Name:        "Cl91",
+					Description: `Forward error correction option 'cl91'.`,
+				},
+				resource.Attribute{
+					Name:        "Cl74",
+					Description: `Forward error correction option 'cl74'.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13388,8 +14950,25 @@ This specifies the configuration policies for a cluster of switches.
 			Description: `
 A policy to configure the Switching Mode, Port VLAN Optimization, MAC Aging Time, Reserved VLAN Range of the FI.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "end-host",
+					Description: `In end-host mode, the fabric interconnects appear to the upstream devices as end hosts with multiple links.In this mode, the switch does not run Spanning Tree Protocol and avoids loops by following a set of rules for traffic forwarding.In case of ethernet switching mode - Ethernet end-host mode is also known as Ethernet host virtualizer.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `In switch mode, the switch runs Spanning Tree Protocol to avoid loops, and broadcast and multicast packets are handled in the traditional way.This is the traditional switch mode.`,
+				},
+				resource.Attribute{
+					Name:        "end-host",
+					Description: `In end-host mode, the fabric interconnects appear to the upstream devices as end hosts with multiple links.In this mode, the switch does not run Spanning Tree Protocol and avoids loops by following a set of rules for traffic forwarding.In case of ethernet switching mode - Ethernet end-host mode is also known as Ethernet host virtualizer.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `In switch mode, the switch runs Spanning Tree Protocol to avoid loops, and broadcast and multicast packets are handled in the traditional way.This is the traditional switch mode.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13536,6 +15115,18 @@ Configuration object sent by user to create VSAN configurations.
 				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Admin configured Disabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Uplink",
+					Description: `Vsan associated with uplink network.`,
+				},
+				resource.Attribute{
+					Name:        "Storage",
+					Description: `Vsan associated with storage network.`,
+				},
+				resource.Attribute{
+					Name:        "Common",
+					Description: `Vsan that is common for uplink and storage network.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14723,7 +16314,11 @@ Lists software compatibility information between different HperFlex component ve
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -14871,18 +16466,6 @@ A capabilityInfo is like a feature set and/or feature limit for different compon
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_hyperflex_cisco_hypervisor_manager",
-			Category:         "Data Sources",
-			ShortDescription: `A hypervisor manager to manage Cisco HyperFlex compute clusters and is available per user account.`,
-			Description: `
-A hypervisor manager to manage Cisco HyperFlex compute clusters and is available per user account.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_hyperflex_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `A HyperFlex cluster. Contains inventory information concerning the health, software versions, storage, and nodes of the cluster.`,
@@ -14906,31 +16489,31 @@ of the cluster.
 				},
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the HyperFlex cluster is not available.`,
+					Description: `The deployment type of the cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes.`,
 				},
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The drive type of the HyperFlex cluster is not available.`,
+					Description: `The drive type of the cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "All-Flash",
-					Description: `Indicates that this HyperFlex cluster contains flash drives only.`,
+					Description: `Indicates that this cluster contains flash drives only.`,
 				},
 				resource.Attribute{
 					Name:        "Hybrid",
-					Description: `Indicates that this HyperFlex cluster contains both flash and hard disk drives.`,
+					Description: `Indicates that this cluster contains both flash and hard disk drives.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -14938,7 +16521,11 @@ of the cluster.
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -15013,6 +16600,51 @@ Record of HyperFlex Cluster backup policy deployment.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hyperflex_cluster_backup_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Response to Backup Policy requests and queries.`,
+			Description: `
+Response to Backup Policy requests and queries.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "VALIDATE",
+					Description: `Check for problems in policy request without deploying.`,
+				},
+				resource.Attribute{
+					Name:        "DEPLOY",
+					Description: `Remove the policy. Only allowed when cleanup field is true.`,
+				},
+				resource.Attribute{
+					Name:        "PREPARE",
+					Description: `Prepare the policy for subsequent \ COMMIT\ or \ ABORT\ . Only allowed when cleanup field is false.`,
+				},
+				resource.Attribute{
+					Name:        "COMMIT",
+					Description: `Commit the prepared policy. Only allowed when cleanup field is false.`,
+				},
+				resource.Attribute{
+					Name:        "ABORT",
+					Description: `Abort the prepared policy. Only allowed when cleanup field is false.`,
+				},
+				resource.Attribute{
+					Name:        "RUNNING",
+					Description: `HyperFlex policy job is currently \ RUNNING\ .`,
+				},
+				resource.Attribute{
+					Name:        "COMPLETED",
+					Description: `HyperFlex policy job completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "EXCEPTION",
+					Description: `HyperFlex policy job failed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hyperflex_cluster_health_check_execution_snapshot",
 			Category:         "Data Sources",
 			ShortDescription: `Health check execution snapshot of the HyperFlex cluster.`,
@@ -15064,7 +16696,11 @@ A profile specifying configuration settings for a HyperFlex cluster.
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -15192,6 +16828,18 @@ Datastore Statistic describing more detailed information about the Data Protecti
 					Description: `The HyperFlex Accessibility Summary is Partially Accessible.`,
 				},
 				resource.Attribute{
+					Name:        "UNKNOWN",
+					Description: `HyperFlex datastore kind is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "USER_CREATED",
+					Description: `HyperFlex datastore kind is user created.`,
+				},
+				resource.Attribute{
+					Name:        "INTERNAL",
+					Description: `HyperFlex datastore kind is internal.`,
+				},
+				resource.Attribute{
 					Name:        "NORMAL",
 					Description: `The HyperFlex datastore status is normal.`,
 				},
@@ -15302,6 +16950,10 @@ Hyperflex cluster.
 					Description: `The disk has been secure erased.`,
 				},
 				resource.Attribute{
+					Name:        "BLOCKED",
+					Description: `The disk has been blocked by storfs.`,
+				},
+				resource.Attribute{
 					Name:        "Unknown",
 					Description: `Default unknown disk type.`,
 				},
@@ -15366,6 +17018,18 @@ Hyperflex cluster.
 					Description: `The usage of the disk is for caching.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_encryption",
+			Category:         "Data Sources",
+			ShortDescription: `The overview of software-encryption on the cluster`,
+			Description: `
+The overview of software-encryption on the cluster
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -15654,53 +17318,45 @@ HyperFlex health check Debian Package SHA512 checksum.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_hyperflex_hxap_cluster",
+			Type:             "intersight_hyperflex_hxdp_version",
 			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform compute cluster. Contains inventory information concerning the health, version and ip address of the cluster. The cluster has a name assigned by user in Intersight.`,
+			ShortDescription: `A HyperFlex Data Platform version.`,
 			Description: `
-A HyperFlex Application Platform compute cluster. Contains inventory information concerning the health, version and ip address of the cluster. The cluster has a name assigned by user in Intersight.
+A HyperFlex Data Platform version.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_hypervisor_host",
+			Category:         "Data Sources",
+			ShortDescription: `A host appliance in the HyperFlex Cluster.`,
+			Description: `
+A host appliance in the HyperFlex Cluster.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Storage",
-					Description: `Cluster of storage nodes used to persist data.`,
+					Name:        "UNKNOWN",
+					Description: `Current status of the HyperFlex host is unknown.`,
 				},
 				resource.Attribute{
-					Name:        "Compute",
-					Description: `Cluster of compute nodes used to execute business logic.`,
+					Name:        "ONLINE",
+					Description: `The HyperFlex host is online.`,
 				},
 				resource.Attribute{
-					Name:        "Unknown",
-					Description: `This cluster type is Unknown. Expect Compute or Storage as valid values.`,
+					Name:        "OFFLINE",
+					Description: `The HyperFlex host is offline.`,
 				},
 				resource.Attribute{
-					Name:        "NA",
-					Description: `The deployment type of the HyperFlex cluster is not available.`,
+					Name:        "INMAINTENANCE",
+					Description: `The HyperFlex host is in maintenance mode.`,
 				},
 				resource.Attribute{
-					Name:        "Datacenter",
-					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
-				},
-				resource.Attribute{
-					Name:        "Stretched Cluster",
-					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
-				},
-				resource.Attribute{
-					Name:        "Edge",
-					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
-				},
-				resource.Attribute{
-					Name:        "NA",
-					Description: `The drive type of the HyperFlex cluster is not available.`,
-				},
-				resource.Attribute{
-					Name:        "All-Flash",
-					Description: `Indicates that this HyperFlex cluster contains flash drives only.`,
-				},
-				resource.Attribute{
-					Name:        "Hybrid",
-					Description: `Indicates that this HyperFlex cluster contains both flash and hard disk drives.`,
+					Name:        "DEGRADED",
+					Description: `Current status of the HyperFlex virtual machine is degraded.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -15708,7 +17364,11 @@ A HyperFlex Application Platform compute cluster. Contains inventory information
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -15717,6 +17377,18 @@ A HyperFlex Application Platform compute cluster. Contains inventory information
 				resource.Attribute{
 					Name:        "Unknown",
 					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "UNKNOWN",
+					Description: `The role of the HyperFlex host is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "STORAGE",
+					Description: `The HyperFlex host's role is storage.`,
+				},
+				resource.Attribute{
+					Name:        "COMPUTE",
+					Description: `The HyperFlex host's role is compute.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -15739,219 +17411,11 @@ A HyperFlex Application Platform compute cluster. Contains inventory information
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_hyperflex_hxap_datacenter",
+			Type:             "intersight_hyperflex_hypervisor_virtual_machine",
 			Category:         "Data Sources",
-			ShortDescription: `A datacenter object in HyperFlex Application Platform. It is a pre-defined object created internally by the system which acts as a container (logically) for all other objects (Host, VirtualMachine, Volume etc).`,
+			ShortDescription: `A virtual machine belonging to the HyperFlex cluster spawned via the hypervisor.`,
 			Description: `
-A datacenter object in HyperFlex Application Platform. It is a pre-defined object created internally by the system which acts as a container (logically) for all other objects (Host, VirtualMachine, Volume etc).
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_dv_uplink",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform cluster wise distributed uplink entity.`,
-			Description: `
-A HyperFlex Application Platform cluster wise distributed uplink entity.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_dvswitch",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform cluster wise distributed vSwitch entity.`,
-			Description: `
-A HyperFlex Application Platform cluster wise distributed vSwitch entity.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_host",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform compute host entity that is part of HyperFlex compute cluster and probably runs VMs.`,
-			Description: `
-A HyperFlex Application Platform compute host entity that is part of HyperFlex compute cluster and probably runs VMs.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Unknown",
-					Description: `The entity's power state is unknown.`,
-				},
-				resource.Attribute{
-					Name:        "PoweringOn",
-					Description: `The entity is powering on.`,
-				},
-				resource.Attribute{
-					Name:        "PoweredOn",
-					Description: `The entity is powered on.`,
-				},
-				resource.Attribute{
-					Name:        "PoweringOff",
-					Description: `The entity is powering off.`,
-				},
-				resource.Attribute{
-					Name:        "PoweredOff",
-					Description: `The entity is powered down.`,
-				},
-				resource.Attribute{
-					Name:        "StandBy",
-					Description: `The entity is in standby mode.`,
-				},
-				resource.Attribute{
-					Name:        "Paused",
-					Description: `The entity is in pause state.`,
-				},
-				resource.Attribute{
-					Name:        "Rebooting",
-					Description: `The entity reboot is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "ESXi",
-					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
-				},
-				resource.Attribute{
-					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
-				},
-				resource.Attribute{
-					Name:        "Hyper-V",
-					Description: `The hypervisor running on the HyperFlex cluster is Microsoft Hyper-V.`,
-				},
-				resource.Attribute{
-					Name:        "Unknown",
-					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
-				},
-				resource.Attribute{
-					Name:        "Unknown",
-					Description: `Entity status is unknown.`,
-				},
-				resource.Attribute{
-					Name:        "Degraded",
-					Description: `State is degraded, and might impact normal operation of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "Critical",
-					Description: `Entity is in a critical state, impacting operations.`,
-				},
-				resource.Attribute{
-					Name:        "Ok",
-					Description: `Entity status is in a stable state, operating normally.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_host_interface",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform compute host interface entity that can be connected by HxapHostVswitch.`,
-			Description: `
-A HyperFlex Application Platform compute host interface entity that can be connected by HxapHostVswitch.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "unknown",
-					Description: `The interface line is unknown.`,
-				},
-				resource.Attribute{
-					Name:        "up",
-					Description: `The interface line is up.`,
-				},
-				resource.Attribute{
-					Name:        "down",
-					Description: `The interface line is down.`,
-				},
-				resource.Attribute{
-					Name:        "degraded",
-					Description: `For a bond/team interface, not all member interface is up.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_host_vswitch",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform vSwitch entity that is part of a cluster wide dvSwitch.`,
-			Description: `
-A HyperFlex Application Platform vSwitch entity that is part of a cluster wide dvSwitch.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_network",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform network attachment entity that a VM can attached to.`,
-			Description: `
-A HyperFlex Application Platform network attachment entity that a VM can attached to.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "unknown",
-					Description: `This network is of an unknown network type.`,
-				},
-				resource.Attribute{
-					Name:        "L2",
-					Description: `A Layer 2 switching network type.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_virtual_disk",
-			Category:         "Data Sources",
-			ShortDescription: `The Virtual disk created on HyperFlex Application Platform compute cluster.`,
-			Description: `
-The Virtual disk created on HyperFlex Application Platform compute cluster.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "ReadWriteOnce",
-					Description: `Read write permisisons to a Virtual disk by a single virtual machine.`,
-				},
-				resource.Attribute{
-					Name:        "ReadWriteMany",
-					Description: `Read write permisisons to a Virtual disk by multiple virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "ReadOnlyMany",
-					Description: `Read only permisisons to a Virtual disk by multiple virtual machines.`,
-				},
-				resource.Attribute{
-					Name:        "Block",
-					Description: `It is a Block virtual disk.`,
-				},
-				resource.Attribute{
-					Name:        "Filesystem",
-					Description: `It is a File system virtual disk.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxap_virtual_machine",
-			Category:         "Data Sources",
-			ShortDescription: `The Virtual machine that runs on a Hyperflex Application platform compute host.`,
-			Description: `
-The Virtual machine that runs on a Hyperflex Application platform compute host.
+A virtual machine belonging to the HyperFlex cluster spawned via the hypervisor.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -15961,7 +17425,11 @@ The Virtual machine that runs on a Hyperflex Application platform compute host.
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -16024,6 +17492,10 @@ The Virtual machine that runs on a Hyperflex Application platform compute host.
 					Description: `Cloud provider named Google Cloud Platform.`,
 				},
 				resource.Attribute{
+					Name:        "CiscoIntersightWorkloadEngine",
+					Description: `Cloud provider named Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `A place holder for the default value.`,
 				},
@@ -16084,127 +17556,51 @@ The Virtual machine that runs on a Hyperflex Application platform compute host.
 					Description: `The deployment of virtual machine is failed.`,
 				},
 				resource.Attribute{
-					Name:        "Unknown",
-					Description: `Virtual machine state is not available.`,
-				},
-				resource.Attribute{
-					Name:        "Running",
-					Description: `Virtual machine is running normally.`,
-				},
-				resource.Attribute{
-					Name:        "Stopped",
-					Description: `Virtual machine has been stopped.`,
-				},
-				resource.Attribute{
-					Name:        "WaitForLaunch",
-					Description: `Virtual machine is wating to be launched.`,
-				},
-				resource.Attribute{
-					Name:        "Paused",
-					Description: `Virtual machine is currently paused.`,
-				},
-				resource.Attribute{
-					Name:        "ImportInProgress",
-					Description: `Virtual machine image is being imported into the platform.`,
-				},
-				resource.Attribute{
-					Name:        "ImportFailed",
-					Description: `Virtual machine image import operation failed.`,
-				},
-				resource.Attribute{
-					Name:        "DiskCloneInProgress",
-					Description: `Disk clone operation for the virtual machine is in progress.`,
-				},
-				resource.Attribute{
-					Name:        "DiskCloneFailed",
-					Description: `Disk clone operation for the virtual machine failed.`,
-				},
-				resource.Attribute{
-					Name:        "Processing",
-					Description: `Virtual machine is being created.`,
-				},
-				resource.Attribute{
-					Name:        "UnSchedulable",
-					Description: `Virtual machine cannot be scheduled to run, either due to insufficient resources or failure to match affinity specifications.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `Some virtual machine operation has failed. More information is available as part of the results of the operation.`,
+					Name:        "Warning",
+					Description: `The virtual machine is in warning state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_hyperflex_hxap_virtual_machine_network_interface",
+			Type:             "intersight_hyperflex_key_encryption_key",
 			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Application Platform virtual network interface entity that a virtual machine is attached to.`,
+			ShortDescription: `Specifies a key encryption Key and parameters for the associated resource.`,
 			Description: `
-A HyperFlex Application Platform virtual network interface entity that a virtual machine is attached to.
+Specifies a key encryption Key and parameters for the associated resource.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Unknown",
-					Description: `The type of the network adaptor type is unknown.`,
+					Name:        "NEW",
+					Description: `Key Encryption key is newly created.`,
 				},
 				resource.Attribute{
-					Name:        "E1000",
-					Description: `Emulated version of the Intel 82545EM Gigabit Ethernet NIC.`,
+					Name:        "ACTIVE",
+					Description: `Key Encryption key is deployed on active resource.`,
 				},
 				resource.Attribute{
-					Name:        "SRIOV",
-					Description: `Representation of a virtual function (VF) on a physical NIC with SR-IOV support.`,
+					Name:        "INACTIVE",
+					Description: `Key Encryption key is inactive and not used.`,
 				},
 				resource.Attribute{
-					Name:        "VMXNET2",
-					Description: `VMXNET 2 (Enhanced) is available only for some guest operating systems on ESX/ESXi 3.5 and later.`,
+					Name:        "INPROGRESS",
+					Description: `Key Encryption key is in a state where it was used on Intersight but did not receive confirmation from platform of success/failure.`,
 				},
 				resource.Attribute{
-					Name:        "VMXNET3",
-					Description: `VMXNET 3 offers all the features available in VMXNET 2 and adds several new features.`,
+					Name:        "CLUSTER",
+					Description: `Encryption is per HyperFlex cluster.`,
 				},
 				resource.Attribute{
-					Name:        "E1000E",
-					Description: `E1000E – emulates a newer real network adapter, the 1 Gbit Intel 82574, and is available for Windows 2012 and later. The E1000E needs virtual machine hardware version 8 or later.`,
+					Name:        "DATASTORE",
+					Description: `Encryption is per dataStore on the HyperFlex cluster.`,
 				},
 				resource.Attribute{
-					Name:        "NE2K_PCI",
-					Description: `The Ne2000 network card uses two ring buffers for packet handling. These are circular buffers made of 256-byte pages that the chip's DMA logic will use to store received packets or to get received packets.`,
-				},
-				resource.Attribute{
-					Name:        "PCnet",
-					Description: `The PCnet-PCI II is a PCI network adapter. It has built-in support for CRC checks and can automatically pad short packets to the minimum Ethernet length.`,
-				},
-				resource.Attribute{
-					Name:        "RTL8139",
-					Description: `The RTL8139 is a fast Ethernet card that operates at 10/100 Mbps. It is compliant with PCI version 2.0/2.1 and it is known for reliability and superior performance.`,
-				},
-				resource.Attribute{
-					Name:        "VirtIO",
-					Description: `VirtIO is a standardized interface which allows virtual machines access to simplified \ virtual\ devices, such as block devices, network adapters and consoles. Accessing devices through VirtIO on a guest VM improves performance over more traditional \ emulated\ devices, as VirtIO devices require only the bare minimum setup and configuration needed to send and receive data, while the host machine handles the majority of the setup and maintenance of the actual physical hardware.`,
-				},
-				resource.Attribute{
-					Name:        "Up",
-					Description: `Virtual network interface is up and running.`,
-				},
-				resource.Attribute{
-					Name:        "Down",
-					Description: `Virtual network interface is down and not running.`,
+					Name:        "DRIVE",
+					Description: `Encryption is per drive on the HyperFlex cluster.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_hyperflex_hxdp_version",
-			Category:         "Data Sources",
-			ShortDescription: `A HyperFlex Data Platform version.`,
-			Description: `
-A HyperFlex Data Platform version.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16241,6 +17637,66 @@ A host participating in the cluster. The host consists of a hypervisor installed
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The maintenance mode status could not be determined.`,
+				},
+				resource.Attribute{
+					Name:        "InMaintenanceMode",
+					Description: `The node has maintenance mode enabled. The node has been temporarily been relinquished from the cluster to allow for maintenance operations.`,
+				},
+				resource.Attribute{
+					Name:        "NotInMaintenanceMode",
+					Description: `The node does not have maintenance mode enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The default operational status of a HyperFlex node.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `The status of the node cannot be determined by the storage platform.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `The platform node has been acknowledged by the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Unpublished",
+					Description: `The node is not yet added to the storage cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Deleted",
+					Description: `The node has been removed from the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Blocked",
+					Description: `The node is blocked from being added to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Blacklisted",
+					Description: `The deprecated value for 'Blocked'. It is included to maintain backwards compatibility with clusters running a HyperFlex Data Platform version older than 5.0(1a).`,
+				},
+				resource.Attribute{
+					Name:        "Allowed",
+					Description: `The node is allowd to be added to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Whitelisted",
+					Description: `The deprecated value for 'Allowed'. It is included to maintain backwards compatibility with clusters running a HyperFlex Data Platform version older than 5.0(1a).`,
+				},
+				resource.Attribute{
+					Name:        "InMaintenance",
+					Description: `The node is in maintenance mode. It has been temporarily relinquished from the cluster to allow for maintenance operations such as software upgrades.`,
+				},
+				resource.Attribute{
+					Name:        "Online",
+					Description: `The node is participating in the storage cluster and is available for storage operations.`,
+				},
+				resource.Attribute{
+					Name:        "Offline",
+					Description: `The node is part of the storage cluster, but is not available for storage operations.`,
+				},
 				resource.Attribute{
 					Name:        "UNKNOWN",
 					Description: `The role of the HyperFlex cluster node is not known.`,
@@ -16300,22 +17756,34 @@ It defines node settings such as IP address configuration for hypervisor managem
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The node role is not available.`,
+				},
+				resource.Attribute{
 					Name:        "Storage",
-					Description: `Cluster of storage nodes used to persist data.`,
+					Description: `The node persists data and contributes to the storage capacity of a cluster.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
-					Description: `Cluster of compute nodes used to execute business logic.`,
-				},
-				resource.Attribute{
-					Name:        "Unknown",
-					Description: `This cluster type is Unknown. Expect Compute or Storage as valid values.`,
+					Description: `The node contributes to the compute capacity of a cluster.`,
 				},
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_protected_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Object for the protected clusters view.`,
+			Description: `
+Object for the protected clusters view.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16364,6 +17832,10 @@ An entry specifying supported server firmware version in regex format.
 					Name:        "M4",
 					Description: `M4 generation of UCS server.`,
 				},
+				resource.Attribute{
+					Name:        "M6",
+					Description: `M6 generation of UCS server.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -16377,6 +17849,47 @@ A supported server model.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_service_auth_token",
+			Category:         "Data Sources",
+			ShortDescription: `A Service auth token entity that represents HyperFlex Data Platform service AAA token.`,
+			Description: `
+A Service auth token entity that represents HyperFlex Data Platform service AAA token.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Unknown claim state of the service auth token.`,
+				},
+				resource.Attribute{
+					Name:        "Claiming",
+					Description: `The service auth token claim is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Claimed",
+					Description: `The service auth token has been successfully claimed.`,
+				},
+				resource.Attribute{
+					Name:        "FailedToClaim",
+					Description: `Cannot claim the service auth token on the underlying HyperFlex cluster.`,
+				},
+				resource.Attribute{
+					Name:        "Revoking",
+					Description: `The service auth token revocation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Revoked",
+					Description: `The service auth token revocation has been successfully revoked.`,
+				},
+				resource.Attribute{
+					Name:        "FailedToRevoke",
+					Description: `Cannot revoke the service auth token on the underlying HyperFlex cluster.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -16437,6 +17950,22 @@ A storage container (datastore) entity.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The HyperFlex storage container accessibility summary is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "ACCESSIBLE",
+					Description: `The HyperFlex storage container is accessible.`,
+				},
+				resource.Attribute{
+					Name:        "NOT_ACCESSIBLE",
+					Description: `The HyperFlex storage container is not accessible.`,
+				},
+				resource.Attribute{
+					Name:        "PARTIALLY_ACCESSIBLE",
+					Description: `The HyperFlex storage container is partially accessible.`,
+				},
 				resource.Attribute{
 					Name:        "UNKNOWN",
 					Description: `The storage container creator is unknown.`,
@@ -16666,6 +18195,34 @@ Virtual Machine Snapshot information like replication status, snapshot point and
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "NONE",
+					Description: `Snapshot replication state is none.`,
+				},
+				resource.Attribute{
+					Name:        "SUCCESS",
+					Description: `Snapshot completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "FAILED",
+					Description: `Snapshot failed replication status code.`,
+				},
+				resource.Attribute{
+					Name:        "PAUSED",
+					Description: `Snapshot replication paused status code.`,
+				},
+				resource.Attribute{
+					Name:        "IN_USE",
+					Description: `Snapshot replica in use status code.`,
+				},
+				resource.Attribute{
+					Name:        "STARTING",
+					Description: `Snapshot replication starting.`,
+				},
+				resource.Attribute{
+					Name:        "REPLICATING",
+					Description: `Snapshot replication in progress.`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
 					Description: `The snapshot quiesce mode is none.`,
 				},
 				resource.Attribute{
@@ -16732,6 +18289,10 @@ Virtual Machine Snapshot information like replication status, snapshot point and
 					Name:        "NONE",
 					Description: `This snapshot status code is none.`,
 				},
+				resource.Attribute{
+					Name:        "INIT",
+					Description: `This snapshot status code is initializing.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -16789,6 +18350,18 @@ The type of witness and its corresponding configuration is configured within the
 			ShortDescription: `Describes about all the connector pack versions running currently in UCSD.`,
 			Description: `
 Describes about all the connector pack versions running currently in UCSD.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iaas_custom_task_info",
+			Category:         "Data Sources",
+			ShortDescription: `List out the execution of the Custom Tasks with Names.`,
+			Description: `
+List out the execution of the Custom Tasks with Names.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -16866,6 +18439,18 @@ Describes most run workflow tasks within UCSD.
 			ShortDescription: `Gets last six months Service Requests from UCSD.`,
 			Description: `
 Gets last six months Service Requests from UCSD.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iaas_system_task_info",
+			Category:         "Data Sources",
+			ShortDescription: `List out the execution of various library tasks within UCSD.`,
+			Description: `
+List out the execution of various library tasks within UCSD.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -17088,6 +18673,43 @@ a specific number of partitions. For each cloud environment these numbers will b
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_iam_domain_name_info",
+			Category:         "Data Sources",
+			ShortDescription: `The organisation's domain name such as cisco.com that has been used to log in to Intersight.`,
+			Description: `
+The organisation's domain name such as cisco.com that has been used to log in to Intersight.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "generate",
+					Description: `Generate TXT record for domain name ownership validation.`,
+				},
+				resource.Attribute{
+					Name:        "verify",
+					Description: `Verify TXT record for domain name ownership validation.`,
+				},
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `Domain verification is pending.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Domain verification failed. Re-generate token and verify.`,
+				},
+				resource.Attribute{
+					Name:        "Verified",
+					Description: `Domain verification succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Expired",
+					Description: `TXT Record for Domain verification expired.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_iam_end_point_privilege",
 			Category:         "Data Sources",
 			ShortDescription: `The privilege defined at the end point which can be assigned to a user.`,
@@ -17099,6 +18721,10 @@ The privilege defined at the end point which can be assigned to a user.
 				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -17141,6 +18767,10 @@ The privilege defined at the end point which can be assigned to a user.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -17155,6 +18785,22 @@ The privilege defined at the end point which can be assigned to a user.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -17201,6 +18847,14 @@ The privilege defined at the end point which can be assigned to a user.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -17219,6 +18873,10 @@ The privilege defined at the end point which can be assigned to a user.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -17285,12 +18943,24 @@ The privilege defined at the end point which can be assigned to a user.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -17310,6 +18980,10 @@ The role defined in the end point which can be assigned to a user.
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -17350,6 +19024,10 @@ The role defined in the end point which can be assigned to a user.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -17364,6 +19042,22 @@ The role defined in the end point which can be assigned to a user.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -17410,6 +19104,14 @@ The role defined in the end point which can be assigned to a user.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -17428,6 +19130,10 @@ The role defined in the end point which can be assigned to a user.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -17494,12 +19200,24 @@ The role defined in the end point which can be assigned to a user.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -17507,6 +19225,18 @@ The role defined in the end point which can be assigned to a user.
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_iam_end_point_user",
+			Category:         "Data Sources",
+			ShortDescription: `Endpoint User or Local User.`,
+			Description: `
+Endpoint User or Local User.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iam_end_point_user_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Endpoint User or Local User.`,
 			Description: `
@@ -17530,7 +19260,31 @@ Enables creation of local users on endpoints.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_iam_end_point_user_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Enables creation of local users on endpoints.`,
+			Description: `
+Enables creation of local users on endpoints.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_iam_end_point_user_role",
+			Category:         "Data Sources",
+			ShortDescription: `Mapping of endpoint user to endpoint roles.`,
+			Description: `
+Mapping of endpoint user to endpoint roles.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iam_end_point_user_role_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Mapping of endpoint user to endpoint roles.`,
 			Description: `
@@ -17980,6 +19734,31 @@ Intelligent Platform Management Interface Over LAN Policy.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_ipmioverlan_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Intelligent Platform Management Interface Over LAN Policy.`,
+			Description: `
+Intelligent Platform Management Interface Over LAN Policy.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "admin",
+					Description: `Privilege to perform all actions available through IPMI.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Privilege to perform some functions through IPMI but restriction on performing administrative tasks.`,
+				},
+				resource.Attribute{
+					Name:        "read-only",
+					Description: `Privilege to view information throught IPMI but restriction on making any changes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_ippool_block_lease",
 			Category:         "Data Sources",
 			ShortDescription: `BlockLease represents an IP address that is allocated from a pool to a specific entity like server profile.`,
@@ -18347,6 +20126,31 @@ Docker registry or helm repository which hosts helm charts and docker images.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_kubernetes_baremetal_node_profile",
+			Category:         "Data Sources",
+			ShortDescription: `A profile specifying configuration settings for a baremetal node. Users can do operations like Drain, Cordon, Rebuild on a node.`,
+			Description: `
+A profile specifying configuration settings for a baremetal node. Users can do operations like Drain, Cordon, Rebuild on a node.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "noProvider",
+					Description: `Enables the use of no cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "external",
+					Description: `Out of tree cloud provider, e.g. CPI for vsphere.`,
+				},
+				resource.Attribute{
+					Name:        "instance",
+					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_kubernetes_catalog",
 			Category:         "Data Sources",
 			ShortDescription: `A catalog to hold the Kubernetes related items such as versions and addons for Intersight Kubernetes Services.`,
@@ -18380,12 +20184,32 @@ Inventories a Kubernetes cluster state. A Cluster object is automatically create
 					Description: `Claim of the target is in progress. A connection to the target has not been fully established.`,
 				},
 				resource.Attribute{
+					Name:        "UnclaimInProgress",
+					Description: `Unclaim of the target is in progress. Intersight is able to connect to the target and all management operations are supported.`,
+				},
+				resource.Attribute{
 					Name:        "Unclaimed",
 					Description: `The device was un-claimed from the users account by an Administrator of the device. Also indicates the failure to claim Targets of type HTTP Endpoint in Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "Claimed",
 					Description: `Target of type HTTP Endpoint is successfully claimed in Intersight. Currently no validation is performed to verify the Target connectivity from Intersight at the time of creation. However invoking API from Intersight Orchestrator fails if this Target is not reachable from Intersight or if Target API credentials are incorrect.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Entity status is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Degraded",
+					Description: `State is degraded, and might impact normal operation of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `Entity is in a critical state, impacting operations.`,
+				},
+				resource.Attribute{
+					Name:        "Ok",
+					Description: `Entity status is in a stable state, operating normally.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -18438,7 +20262,7 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 				},
 				resource.Attribute{
 					Name:        "DeployFailedTerminal",
-					Description: `The cluster deployment failed terminally and can not be recovered.`,
+					Description: `The Cluster Deploy failed creation and can not be recovered, only Delete or Undeploy operations are available for this Cluster.`,
 				},
 				resource.Attribute{
 					Name:        "DeployFailed",
@@ -18454,7 +20278,7 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 				},
 				resource.Attribute{
 					Name:        "DeleteFailed",
-					Description: `The cluster delete failed.`,
+					Description: `The Cluster Delete failed and the Cluster can not be recovered, only Delete or Undeploy operations are available for this Cluster.`,
 				},
 				resource.Attribute{
 					Name:        "Ready",
@@ -18789,6 +20613,18 @@ Policy to configure KVM Launch settings.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_kvm_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Policy to configure KVM Launch settings.`,
+			Description: `
+Policy to configure KVM Launch settings.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_kvm_session",
 			Category:         "Data Sources",
 			ShortDescription: `Virtual KVM Session that provides Single Sign-On access to the vKVM console of the server. The vKVM access can be direct or can be tunneled by specifying the tunnel to be used for the access.`,
@@ -18840,27 +20676,14 @@ This must be specified while creating the vKVM session to gain tunneled access.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_kvm_vm_console",
+			Type:             "intersight_kvm_tunneled_kvm_policy",
 			Category:         "Data Sources",
-			ShortDescription: `API to launch the virtual machine console.`,
+			ShortDescription: `Policy to control Tunelled vKVM for a specific account.`,
 			Description: `
-API to launch the virtual machine console.
+Policy to control Tunelled vKVM for a specific account.
 `,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Active",
-					Description: `The session is currently active.`,
-				},
-				resource.Attribute{
-					Name:        "Ended",
-					Description: `The session has ended normally.`,
-				},
-				resource.Attribute{
-					Name:        "Terminated",
-					Description: `The session was terminated by an admin.`,
-				},
-			},
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -18906,6 +20729,10 @@ License information for an account.
 					Description: `IWO-Premier as a License type.`,
 				},
 				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
 					Name:        "Base",
 					Description: `Base as a License type. It is default license type.`,
 				},
@@ -18937,6 +20764,10 @@ License information for an account.
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -18947,6 +20778,30 @@ License information for an account.
 			ShortDescription: `Customer operation object to refresh the registration or re-authenticate, pre-created.`,
 			Description: `
 Customer operation object to refresh the registration or re-authenticate, pre-created.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_iks_customer_op",
+			Category:         "Data Sources",
+			ShortDescription: `Customer operation object to refresh the registration or start the trial period of the IKS license tiers.`,
+			Description: `
+Customer operation object to refresh the registration or start the trial period of the IKS license tiers.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_iks_license_count",
+			Category:         "Data Sources",
+			ShortDescription: `Customer operation object to request reservation code.`,
+			Description: `
+Customer operation object to request reservation code.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -18993,6 +20848,10 @@ Customer operation object to refresh the registration or re-authenticate, pre-cr
 				resource.Attribute{
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19076,6 +20935,10 @@ the feature set defined for the license entitlement is granted to the customer.
 				resource.Attribute{
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19202,8 +21065,17 @@ Universe represents a book keeping container to keep track of all IDs for a give
 			Description: `
 A specialized service processor that monitors the physical state of a server, using sensors and communicating with the system administrator through an independent connection.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `The UEM event channel is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `The UEM event channel is enabled.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -19370,6 +21242,18 @@ The meta-data of managed objects and complex types.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_monitoring_health_status",
+			Category:         "Data Sources",
+			ShortDescription: `High level, aggregated status of Intersight components for a given Intersight account user. Meant to inform the user if there's an issue with Intersight components that needs her attention. At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components. Specifically designed to be easily consumed by external dashboards to display an at-a-glance status of Intersight components. This conforms to the health data API schema published as part of Cisco PlatformSuite.`,
+			Description: `
+High level, aggregated status of Intersight components for a given Intersight account user. Meant to inform the user if there's an issue with Intersight components that needs her attention. At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components. Specifically designed to be easily consumed by external dashboards to display an at-a-glance status of Intersight components. This conforms to the health data API schema published as part of Cisco PlatformSuite.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_network_element",
 			Category:         "Data Sources",
 			ShortDescription: `A Unified Computing Systems (UCS) Fabric Interconnect.`,
@@ -19405,6 +21289,18 @@ A Unified Computing Systems (UCS) Fabric Interconnect.
 				resource.Attribute{
 					Name:        "Intersight",
 					Description: `Intersight managed mode of operation.`,
+				},
+				resource.Attribute{
+					Name:        "FabricInterconnect",
+					Description: `The default Switch type of UCSM and IMM mode devices.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `Switch type of Nexus devices.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `Switch type of Nexus MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "unknown",
@@ -19480,6 +21376,18 @@ View MO which aggregates information pertaining to a network element from mutipl
 					Description: `Intersight managed mode of operation.`,
 				},
 				resource.Attribute{
+					Name:        "FabricInterconnect",
+					Description: `The default Switch type of UCSM and IMM mode devices.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `Switch type of Nexus devices.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `Switch type of Nexus MDS devices.`,
+				},
+				resource.Attribute{
 					Name:        "unknown",
 					Description: `The default state of the sensor (in case no data is received).`,
 				},
@@ -19528,11 +21436,71 @@ FC Zone information of a Fabric Interconnect.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_network_feature_control",
+			Category:         "Data Sources",
+			ShortDescription: `List of features available on a switch along with the index and admin state. These features will allow the user to perform certain set of actions on the switch and get a view of the status of the sub-set feature names.`,
+			Description: `
+List of features available on a switch along with the index and admin state. These features will allow the user to perform certain set of actions on the switch and get a view of the status of the sub-set feature names.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_interface_list",
+			Category:         "Data Sources",
+			ShortDescription: `List of interfaces available on the switch to describe the available port inventory information.`,
+			Description: `
+List of interfaces available on the switch to describe the available port inventory information.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_license_file",
+			Category:         "Data Sources",
+			ShortDescription: `Displays license information.`,
+			Description: `
+Displays license information.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_supervisor_card",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for supervisor card.`,
+			Description: `
+Concrete class for supervisor card.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_network_vlan_port_info",
 			Category:         "Data Sources",
 			ShortDescription: `Vlan Port information of a Fabric Interconnect.`,
 			Description: `
 Vlan Port information of a Fabric Interconnect.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_vrf",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for virtual routing and forwarding.`,
+			Description: `
+Concrete class for virtual routing and forwarding.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -19792,6 +21760,18 @@ Object to capture AAA Tacacs provider details.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_apic_app_plugin_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture APIC App plugin details.`,
+			Description: `
+Object to capture APIC App plugin details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_apic_core_file_details",
 			Category:         "Data Sources",
 			ShortDescription: `Object to capture Core File details in APIC.`,
@@ -19900,6 +21880,18 @@ Object to capture Realm details in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_client_grp_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the SNMP client grp details in APIC.`,
+			Description: `
+Object to capture the SNMP client grp details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_apic_snmp_community_access_details",
 			Category:         "Data Sources",
 			ShortDescription: `Object to capture Snmp Community access details in APIC.`,
@@ -19929,6 +21921,18 @@ Object to capture the SNMP community details in APIC.
 			ShortDescription: `Object to capture Snmp trap details in APIC.`,
 			Description: `
 Object to capture Snmp trap details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_snmp_trap_fwd_server_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture the SNMP Trap Fwd Server details in APIC.`,
+			Description: `
+Object to capture the SNMP Trap Fwd Server details in APIC.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20001,6 +22005,18 @@ Object to capture the UI page counts in APIC.
 			ShortDescription: `Details of apps installed on Nexus Dashboard.`,
 			Description: `
 Details of apps installed on Nexus Dashboard.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_common_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Common Policy details.`,
+			Description: `
+Object to capture Common Policy details.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20092,6 +22108,42 @@ Fabric module slot details in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_fabric_node_control_details",
+			Category:         "Data Sources",
+			ShortDescription: `Fabric node control details in APIC.`,
+			Description: `
+Fabric node control details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_fabric_pod_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Fabric Pod Profile details.`,
+			Description: `
+Object to capture Fabric Pod Profile details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_fabric_pod_ss",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Fabric PodS details.`,
+			Description: `
+Object to capture Fabric PodS details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_fault",
 			Category:         "Data Sources",
 			ShortDescription: `Object is available at Fault scope in a fabric and provides details about a fault occurred.`,
@@ -20164,11 +22216,35 @@ Object to capture the HTTPS ACL EPGs filter details in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_insight_group_details",
+			Category:         "Data Sources",
+			ShortDescription: `Insight group details in ND.`,
+			Description: `
+Insight group details in ND.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_lc",
 			Category:         "Data Sources",
 			ShortDescription: `Object is available at Line Card scope.`,
 			Description: `
 Object is available at Line Card scope.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_leaf_pol_grp_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture leaf pol group details.`,
+			Description: `
+Object to capture leaf pol group details.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20356,11 +22432,71 @@ Password Strength of user in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_pod_comm_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Pod Communication Policy details.`,
+			Description: `
+Object to capture Pod Communication Policy details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_pod_snmp_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Pod SNMP Policy details.`,
+			Description: `
+Object to capture Pod SNMP Policy details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_pod_time_server_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Pod Timer server Policy details.`,
+			Description: `
+Object to capture Pod Timer server Policy details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_site_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Details of sites onboarded onto an ND.`,
 			Description: `
 Details of sites onboarded onto an ND.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_snmp_src",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture SNMP Src details.`,
+			Description: `
+Object to capture SNMP Src details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_spine_pol_grp_details",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture leaf pol group details.`,
+			Description: `
+Object to capture leaf pol group details.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20385,6 +22521,42 @@ Object to capture SSH V2 details in APIC.
 			ShortDescription: `Supervisor module slot details in APIC.`,
 			Description: `
 Supervisor module slot details in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_syslog_remote_dest",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Syslog remote dest details.`,
+			Description: `
+Object to capture Syslog remote dest details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_syslog_sys_msg",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Syslog system Msg details.`,
+			Description: `
+Object to capture Syslog system Msg details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_syslog_sys_msg_fac_filter",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Syslog system Msg details.`,
+			Description: `
+Object to capture Syslog system Msg details.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20423,8 +22595,25 @@ Object is available at Tenant scope.
 AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only
 for account level subscriptions by Account Administrator.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email type requires usage of notification.SendEmail complex types for actionsand notification.AlarmMoCondition complex types for conditions.`,
+				},
+				resource.Attribute{
+					Name:        "webhook",
+					Description: `Webhook type requires usage of notification.TriggerWebhook complex types for actionsand notification.MoCondition complex types for conditions.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `No actions will be verified. Default value.`,
+				},
+				resource.Attribute{
+					Name:        "all",
+					Description: `All actions will be re-verified. The previous state of the verification will be preserved.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -20440,6 +22629,48 @@ Policy to configure the NTP Servers.
 				resource.Attribute{
 					Name:        "Pacific/Kiritimati",
 					Description: ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_oauth_access_token",
+			Category:         "Data Sources",
+			ShortDescription: `Api access token for a given account.`,
+			Description: `
+Api access token for a given account.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Unknown is the default API type.`,
+				},
+				resource.Attribute{
+					Name:        "SmartLicensing-API",
+					Description: `Smart licensing API type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_oauth_authorization",
+			Category:         "Data Sources",
+			ShortDescription: `User's consent for Intersight to contact an external software repository such as cisco.com, on the behalf of the user. It is used by Intersight Appliance to support resource owner grant type.`,
+			Description: `
+User's consent for Intersight to contact an external software repository such as cisco.com, on the behalf of the user. It is used by Intersight Appliance to support resource owner grant type.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Unknown is the default API type.`,
+				},
+				resource.Attribute{
+					Name:        "SmartLicensing-API",
+					Description: `Smart licensing API type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -20478,6 +22709,10 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				resource.Attribute{
 					Name:        "APIC",
 					Description: `An Application Policy Infrastructure Controller cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
@@ -20520,6 +22755,10 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -20534,6 +22773,22 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -20580,6 +22835,14 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -20598,6 +22861,10 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -20664,12 +22931,24 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -20912,8 +23191,25 @@ Holder for multiple ports within a portGroup. SubGroup represents a break-out po
 			Description: `
 Managed object used to track chassis power capping information.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -20935,6 +23231,26 @@ Power Management policy models a configuration that can be applied to Chassis or
 					Description: `Set the value to Disabled.`,
 				},
 				resource.Attribute{
+					Name:        "Low",
+					Description: `Set the Power Priority to Low.`,
+				},
+				resource.Attribute{
+					Name:        "Medium",
+					Description: `Set the Power Priority to Medium.`,
+				},
+				resource.Attribute{
+					Name:        "High",
+					Description: `Set the Power Priority to High.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
 					Name:        "AlwaysOff",
 					Description: `Set the Power Restore Mode to Off.`,
 				},
@@ -20945,6 +23261,99 @@ Power Management policy models a configuration that can be applied to Chassis or
 				resource.Attribute{
 					Name:        "LastState",
 					Description: `Set the Power Restore Mode to LastState.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "Grid",
+					Description: `Grid Mode requires two power sources. If one source fails, the surviving PSUs connected to the other source provides power to the chassis.`,
+				},
+				resource.Attribute{
+					Name:        "NotRedundant",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements. No Redundant PSUs are maintained.`,
+				},
+				resource.Attribute{
+					Name:        "N+1",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus one additional PSU for redundancy.`,
+				},
+				resource.Attribute{
+					Name:        "N+2",
+					Description: `Power Manager turns on the minimum number of PSUs required to support chassis power requirements plus two additional PSU for redundancy. This Mode is only supported for UCS X series Chassis.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_power_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Power Management policy models a configuration that can be applied to Chassis or Server to manage Power Related Features.`,
+			Description: `
+Power Management policy models a configuration that can be applied to Chassis or Server to manage Power Related Features.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "Low",
+					Description: `Set the Power Priority to Low.`,
+				},
+				resource.Attribute{
+					Name:        "Medium",
+					Description: `Set the Power Priority to Medium.`,
+				},
+				resource.Attribute{
+					Name:        "High",
+					Description: `Set the Power Priority to High.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysOff",
+					Description: `Set the Power Restore Mode to Off.`,
+				},
+				resource.Attribute{
+					Name:        "AlwaysOn",
+					Description: `Set the Power Restore Mode to On.`,
+				},
+				resource.Attribute{
+					Name:        "LastState",
+					Description: `Set the Power Restore Mode to LastState.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
 				},
 				resource.Attribute{
 					Name:        "Grid",
@@ -20972,6 +23381,18 @@ Power Management policy models a configuration that can be applied to Chassis or
 			ShortDescription: `The CPU present on a server.`,
 			Description: `
 The CPU present on a server.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_rack_unit_personality",
+			Category:         "Data Sources",
+			ShortDescription: `This can be used internally to model a server based on a defined personality without having to reprogram the server PID.`,
+			Description: `
+This can be used internally to model a server based on a defined personality without having to reprogram the server PID.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21237,6 +23658,10 @@ LicenseResourceCount tracks the server count info for 3 different licensing tier
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -21266,6 +23691,137 @@ A holder of REST resources and their membership.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_resource_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `A Reservation is used to reserve a place for a new resource in the resource groups.`,
+			Description: `
+A Reservation is used to reserve a place for a new resource in the resource groups.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Created",
+					Description: `By default, a reservation is in Created status.`,
+				},
+				resource.Attribute{
+					Name:        "Processing",
+					Description: `A reservation is changed to Processing status for appliance mode resource claim requests.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `A reservation is changed to Failed status if the validations on resources, resource groups fails.`,
+				},
+				resource.Attribute{
+					Name:        "Finished",
+					Description: `A reservation is changed to Finished status if the validations on resources, resource groups are successful. The resource moids in reservation will be added to resource groups using OData filters.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_lease",
+			Category:         "Data Sources",
+			ShortDescription: `Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.`,
+			Description: `
+Lease API invoked by passing resource pool, lease API will reserve or un-reserve the resource from the pool.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The resource cannot consider for Resource Pool.`,
+				},
+				resource.Attribute{
+					Name:        "Server",
+					Description: `Resource Pool holds the server kind of resources, example - RackServer, Blade.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_lease_resource",
+			Category:         "Data Sources",
+			ShortDescription: `Lease API is for reserve or unreserve the resource from the pool. Those reserved resource details are maintained in LeaseResource.`,
+			Description: `
+Lease API is for reserve or unreserve the resource from the pool. Those reserved resource details are maintained in LeaseResource.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_pool",
+			Category:         "Data Sources",
+			ShortDescription: `Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.`,
+			Description: `
+Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sequential",
+					Description: `Identifiers are assigned in a sequential order.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Assignment order is decided by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `The resources in the pool will not be changed until user manually update it.`,
+				},
+				resource.Attribute{
+					Name:        "Dynamic",
+					Description: `The resources in the pool will be updated dynamically based on the condition.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The resource cannot consider for Resource Pool.`,
+				},
+				resource.Attribute{
+					Name:        "Server",
+					Description: `Resource Pool holds the server kind of resources, example - RackServer, Blade.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_pool_member",
+			Category:         "Data Sources",
+			ShortDescription: `PoolMember represents a resources that is part of a pool.`,
+			Description: `
+PoolMember represents a resources that is part of a pool.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resourcepool_universe",
+			Category:         "Data Sources",
+			ShortDescription: `Universe represents a book keeping container to keep track of all Resources for a given Account.`,
+			Description: `
+Universe represents a book keeping container to keep track of all Resources for a given Account.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_sdcard_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Policy for configuring SD Card settings on endpoint.`,
@@ -21278,69 +23834,11 @@ Policy for configuring SD Card settings on endpoint.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_sdwan_profile",
+			Type:             "intersight_sdcard_policy_inventory",
 			Category:         "Data Sources",
-			ShortDescription: `A profile that specifies configuration settings for a SDWAN router.`,
+			ShortDescription: `Policy for configuring SD Card settings on endpoint.`,
 			Description: `
-A profile that specifies configuration settings for a SDWAN router.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "instance",
-					Description: `The profile defines the configuration for a specific instance of a target.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_sdwan_router_node",
-			Category:         "Data Sources",
-			ShortDescription: `Configuration settings for a SDWAN vEdge router.`,
-			Description: `
-Configuration settings for a SDWAN vEdge router.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_sdwan_router_policy",
-			Category:         "Data Sources",
-			ShortDescription: `A policy specifying SD-WAN router details.`,
-			Description: `
-A policy specifying SD-WAN router details.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Typical",
-					Description: `Typical deployment configuration with 4 vCPUs and 4GB RAM.`,
-				},
-				resource.Attribute{
-					Name:        "Minimal",
-					Description: `Minimal deployment configuration with 2 vCPUs and 4GB RAM.`,
-				},
-				resource.Attribute{
-					Name:        "Single",
-					Description: `Singly terminated WANs ar evenly distributed across SD-WAN router nodes. A given WAN connection is available only on one of the router nodes.`,
-				},
-				resource.Attribute{
-					Name:        "Dual",
-					Description: `Dually terminated WANs are configured on all the SD-WAN routers. A given WAN connection is available on multiple router nodes.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_sdwan_vmanage_account_policy",
-			Category:         "Data Sources",
-			ShortDescription: `A policy specifying vManage account details.`,
-			Description: `
-A policy specifying vManage account details.
+Policy for configuring SD Card settings on endpoint.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21438,9 +23936,9 @@ Configuration import action will import the existing configuration from physical
 			Name:             "",
 			Type:             "intersight_server_config_result",
 			Category:         "Data Sources",
-			ShortDescription: `The profile configuration (deploy, validation) results with the overall state and detailed result messages.`,
+			ShortDescription: `The profile configuration (policy attach/detach, deploy, validation) results with the overall state and detailed result messages.`,
 			Description: `
-The profile configuration (deploy, validation) results with the overall state and detailed result messages.
+The profile configuration (policy attach/detach, deploy, validation) results with the overall state and detailed result messages.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21450,9 +23948,9 @@ The profile configuration (deploy, validation) results with the overall state an
 			Name:             "",
 			Type:             "intersight_server_config_result_entry",
 			Category:         "Data Sources",
-			ShortDescription: `The profile configuration (deploy, validation) results details information.`,
+			ShortDescription: `The profile configuration (deploy, validation) results detailed information.`,
 			Description: `
-The profile configuration (deploy, validation) results details information.
+The profile configuration (deploy, validation) results detailed information.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21469,6 +23967,18 @@ A profile specifying configuration settings for a physical server.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `No server is assigned to the server profile.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `Server is directly assigned to server profile using assign server.`,
+				},
+				resource.Attribute{
+					Name:        "Pool",
+					Description: `Server is assigned from a resource pool.`,
+				},
+				resource.Attribute{
 					Name:        "Standalone",
 					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
 				},
@@ -21479,6 +23989,18 @@ A profile specifying configuration settings for a physical server.
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `The user did not assign any UUID address.`,
+				},
+				resource.Attribute{
+					Name:        "STATIC",
+					Description: `The user assigns a static UUID address.`,
+				},
+				resource.Attribute{
+					Name:        "POOL",
+					Description: `The user selects a pool from which the address will be leased.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -21504,6 +24026,18 @@ A profile template specifying configuration settings for a physical server.
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `The user did not assign any UUID address.`,
+				},
+				resource.Attribute{
+					Name:        "STATIC",
+					Description: `The user assigns a static UUID address.`,
+				},
+				resource.Attribute{
+					Name:        "POOL",
+					Description: `The user selects a pool from which the address will be leased.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -21544,6 +24078,31 @@ Name that identifies the SMTP Policy.
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_snmp_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Policy to configure SNMP settings on endpoint.`,
+			Description: `
+Policy to configure SNMP settings on endpoint.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Blocks access to the information in the inventory tables.`,
+				},
+				resource.Attribute{
+					Name:        "Limited",
+					Description: `Partial access to read the information in the inventory tables.`,
+				},
+				resource.Attribute{
+					Name:        "Full",
+					Description: `Full access to read the information in the inventory tables.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_snmp_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to configure SNMP settings on endpoint.`,
 			Description: `
@@ -21922,6 +24481,115 @@ A HyperFlex image bundle distributed by Cisco for Private Appliance.
 			ShortDescription: `A HyperFlex image distributed by Cisco.`,
 			Description: `
 A HyperFlex image distributed by Cisco.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action should be taken on the imported file.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedUploadUrl",
+					Description: `Generate pre signed URL of file for importing into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedDownloadUrl",
+					Description: `Generate pre signed URL of file in the repository to download.`,
+				},
+				resource.Attribute{
+					Name:        "CompleteImportProcess",
+					Description: `Mark that the import process of the file into the repository is complete.`,
+				},
+				resource.Attribute{
+					Name:        "MarkImportFailed",
+					Description: `Mark to indicate that the import process of the file into the repository failed.`,
+				},
+				resource.Attribute{
+					Name:        "PreCache",
+					Description: `Cache the file into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `The cancel import process for the file into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extract",
+					Description: `The action to extract the file in the external repository.`,
+				},
+				resource.Attribute{
+					Name:        "Evict",
+					Description: `Evict the cached file from the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForImport",
+					Description: `The image is ready to be imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Importing",
+					Description: `The image is being imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Imported",
+					Description: `The image has been extracted and imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "PendingExtraction",
+					Description: `Indicates that the image has been imported but not extracted in the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracting",
+					Description: `Indicates that the image is being extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracted",
+					Description: `Indicates that the image has been extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The image import from an external source to the repository has failed.`,
+				},
+				resource.Attribute{
+					Name:        "MetaOnly",
+					Description: `The image is present in an external repository.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForCache",
+					Description: `The image is ready to be cached into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Caching",
+					Description: `Indicates that the image is being cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Cached",
+					Description: `Indicates that the image has been cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "CachingFailed",
+					Description: `Indicates that the image caching into the Intersight Appliance failed or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Corrupted",
+					Description: `Indicates that the image in the local repository (or endpoint cache) has been corrupted after it was cached.`,
+				},
+				resource.Attribute{
+					Name:        "Evicted",
+					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_software_iks_bundle_distributable",
+			Category:         "Data Sources",
+			ShortDescription: `An IKS image bundle distributed by Cisco for Private Appliance.`,
+			Description: `
+An IKS image bundle distributed by Cisco for Private Appliance.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -22779,7 +25447,60 @@ Policy for configuring Serial Over LAN settings on endpoint.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_sol_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Policy for configuring Serial Over LAN settings on endpoint.`,
+			Description: `
+Policy for configuring Serial Over LAN settings on endpoint.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "9600",
+					Description: `Use baud rate 9600 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "19200",
+					Description: `Use baud rate 19200 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "38400",
+					Description: `Use baud rate 38400 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "57600",
+					Description: `Use baud rate 57600 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "115200",
+					Description: `Use baud rate 115200 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "com0",
+					Description: `Use serial port com0 for communication.`,
+				},
+				resource.Attribute{
+					Name:        "com1",
+					Description: `Use serial port com1 for communication.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_ssh_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Secure shell policy on the endpoint.`,
+			Description: `
+Secure shell policy on the endpoint.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_ssh_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Secure shell policy on the endpoint.`,
 			Description: `
@@ -23187,31 +25908,35 @@ Disk entity associated with Hitachi storage array.
 				},
 				resource.Attribute{
 					Name:        "SAS",
-					Description: `SAS.`,
+					Description: `SAS stands for Serial Attached SCSI.`,
 				},
 				resource.Attribute{
 					Name:        "SSD(MLC)",
-					Description: `SSD (MLC).`,
+					Description: `SSD (MLC) stands for Multiple Level Cell.`,
 				},
 				resource.Attribute{
 					Name:        "SSD(FMC)",
-					Description: `SSD (FMC).`,
+					Description: `SSD (FMC) stands for Flash Memory Compressed.`,
 				},
 				resource.Attribute{
 					Name:        "SSD(FMD)",
-					Description: `SSD (FMD).`,
+					Description: `SSD (FMD) stands for Flash Module Drive.`,
 				},
 				resource.Attribute{
 					Name:        "SSD(SLC)",
-					Description: `SSD (SLC).`,
+					Description: `SSD (SLC) stands for Single Level Cell.`,
 				},
 				resource.Attribute{
 					Name:        "SSD",
-					Description: `SSD.`,
+					Description: `SSD stands for Solid-State Drive.`,
 				},
 				resource.Attribute{
 					Name:        "SSD(RI)",
-					Description: `SSD (RI).`,
+					Description: `SSD (RI) stands for Read Intensive.`,
+				},
+				resource.Attribute{
+					Name:        "SCM",
+					Description: `SCM stands for Storage Class Memory.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -23488,7 +26213,7 @@ A volume entity in Hitachi storage array.
 				},
 				resource.Attribute{
 					Name:        "N/A",
-					Description: `Not available.`,
+					Description: `The emulation type is not available.`,
 				},
 				resource.Attribute{
 					Name:        "NOT DEFINED",
@@ -23512,15 +26237,15 @@ A volume entity in Hitachi storage array.
 				},
 				resource.Attribute{
 					Name:        "RAID1",
-					Description: `RAID1.`,
+					Description: `RAID level of the given drives is RAID1.`,
 				},
 				resource.Attribute{
 					Name:        "RAID5",
-					Description: `RAID5.`,
+					Description: `RAID level of the given drives is RAID5.`,
 				},
 				resource.Attribute{
 					Name:        "RAID6",
-					Description: `RAID6.`,
+					Description: `RAID level of the given drives is RAID6.`,
 				},
 				resource.Attribute{
 					Name:        "N/A",
@@ -23627,7 +26352,7 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "HDD",
-					Description: `Hard Disk Drive.`,
+					Description: `Hard Disk Drive disk type.`,
 				},
 				resource.Attribute{
 					Name:        "Hybrid",
@@ -23635,15 +26360,15 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 				},
 				resource.Attribute{
 					Name:        "Hybrid (Flash Pool)",
-					Description: `SSHD in a flash pool.`,
+					Description: `SSHD in a flash pool disk type.`,
 				},
 				resource.Attribute{
 					Name:        "SSD",
-					Description: `Solid State Disk.`,
+					Description: `Solid State Disk disk type.`,
 				},
 				resource.Attribute{
 					Name:        "SSD (FabricPool)",
-					Description: `SSD in a flash pool.`,
+					Description: `SSD in a flash pool disk type.`,
 				},
 				resource.Attribute{
 					Name:        "VMDisk (SDS)",
@@ -23655,7 +26380,7 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 				},
 				resource.Attribute{
 					Name:        "LUN (FlexArray)",
-					Description: `LUN as a disk.`,
+					Description: `LUN (FlexArray) disk type.`,
 				},
 				resource.Attribute{
 					Name:        "Not Mapped",
@@ -23707,7 +26432,7 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 				},
 				resource.Attribute{
 					Name:        "Onlining",
-					Description: `Transitioning online.`,
+					Description: `The state is transitioning online.`,
 				},
 				resource.Attribute{
 					Name:        "Offline",
@@ -23715,7 +26440,7 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 				},
 				resource.Attribute{
 					Name:        "Offlining",
-					Description: `Transitioning offline.`,
+					Description: `The state is transitioning offline.`,
 				},
 				resource.Attribute{
 					Name:        "Relocating",
@@ -23758,6 +26483,159 @@ NetApp aggregate is a collection of disks arranged into one or more RAID groups.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_aggregate_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is an aggregate.`,
+			Description: `
+An event where the impacted resource type is an aggregate.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_base_disk",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp base disk is a storage array disk.`,
@@ -23768,7 +26646,7 @@ NetApp base disk is a storage array disk.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Container is currently unknown. This is the default setting.`,
+					Description: `Default container type is currently unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Aggregate",
@@ -23776,7 +26654,7 @@ NetApp base disk is a storage array disk.
 				},
 				resource.Attribute{
 					Name:        "Broken",
-					Description: `Disk is in broken pool.`,
+					Description: `Disk is in a broken pool.`,
 				},
 				resource.Attribute{
 					Name:        "Label Maintenance",
@@ -23804,7 +26682,7 @@ NetApp base disk is a storage array disk.
 				},
 				resource.Attribute{
 					Name:        "Spare",
-					Description: `Disk is a spare disk.`,
+					Description: `The disk is a spare disk.`,
 				},
 				resource.Attribute{
 					Name:        "Unassigned",
@@ -23812,7 +26690,7 @@ NetApp base disk is a storage array disk.
 				},
 				resource.Attribute{
 					Name:        "Unsupported",
-					Description: `Disk is not supported.`,
+					Description: `The disk is not supported.`,
 				},
 				resource.Attribute{
 					Name:        "Unknown",
@@ -23828,7 +26706,7 @@ NetApp base disk is a storage array disk.
 				},
 				resource.Attribute{
 					Name:        "FCAL",
-					Description: `For the FC-AL disk connection type, disk shelves are connected to the controller in a loop`,
+					Description: `For the FC-AL disk connection type, disk shelves are connected to the controller in a loop.`,
 				},
 				resource.Attribute{
 					Name:        "BSAS",
@@ -24013,8 +26891,513 @@ NetApp base disk is a storage array disk.
 			Description: `
 NetApp cluster consists of one or more nodes grouped together as HA pairs to form a scalable cluster.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unreachable",
+					Description: `Cluster status is unreachable.`,
+				},
+				resource.Attribute{
+					Name:        "OK",
+					Description: `Cluster status is either ok or ok-with-suppressed.`,
+				},
+				resource.Attribute{
+					Name:        "Degraded",
+					Description: `Cluster status is degraded.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_cluster_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a cluster.`,
+			Description: `
+An event where the impacted resource type is a cluster.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_data_ip_interface",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp Data IP interface is a logical interface for data within the svm scope.`,
+			Description: `
+NetApp Data IP interface is a logical interface for data within the svm scope.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "IPv4",
+					Description: `IP address family type is IPv4.`,
+				},
+				resource.Attribute{
+					Name:        "IPv6",
+					Description: `IP address family type is IP6.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `An inactive port is listed as Down.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `An active port is listed as Up.`,
+				},
+				resource.Attribute{
+					Name:        "present",
+					Description: `An active port is listed as present.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_data_ip_interface_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is an ip interface.`,
+			Description: `
+An event where the impacted resource type is an ip interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_disk_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a disk.`,
+			Description: `
+An event where the impacted resource type is a disk.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -24050,6 +27433,159 @@ Ethernet port is a port on a node in a storage array.
 				resource.Attribute{
 					Name:        "VLAN",
 					Description: `A logical port that receives and sends VLAN-tagged (IEEE 802.1Q standard) traffic. VLAN port characteristics include the VLAN ID for the port.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_ethernet_port_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is an ethernet port.`,
+			Description: `
+An event where the impacted resource type is an ethernet port.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24135,6 +27671,159 @@ NetApp FC Interface is a logical interface.
 				resource.Attribute{
 					Name:        "FCoE",
 					Description: `Port supports fibre channel over ethernet protocol.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_fc_interface_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a FC interface.`,
+			Description: `
+An event where the impacted resource type is a FC interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24234,6 +27923,159 @@ Fibre Channel (FC) port is a port on a node in a storage array.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_fc_port_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a FC port.`,
+			Description: `
+An event where the impacted resource type is a FC port.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_initiator_group",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp Initiator Group specifies host access to LUNs on the storage system.`,
@@ -24269,11 +28111,11 @@ NetApp IP interface is a logical interface.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "IPv4",
-					Description: `IPv4 Address type.`,
+					Description: `IP address family type is IPv4.`,
 				},
 				resource.Attribute{
 					Name:        "IPv6",
-					Description: `IPv6 Address type.`,
+					Description: `IP address family type is IP6.`,
 				},
 				resource.Attribute{
 					Name:        "down",
@@ -24288,6 +28130,171 @@ NetApp IP interface is a logical interface.
 					Description: `An active port is listed as present.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_ip_interface_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is an ip interface.`,
+			Description: `
+An event where the impacted resource type is an ip interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_iscsi_service",
+			Category:         "Data Sources",
+			ShortDescription: `An iSCSI service defines the properties of the iSCSI target for an SVM. There can be at most one iSCSI service for an SVM. An SVM's iSCSI service must be created before iSCSI initiators can log in to the SVM.`,
+			Description: `
+An iSCSI service defines the properties of the iSCSI target for an SVM. There can be at most one iSCSI service for an SVM. An SVM's iSCSI service must be created before iSCSI initiators can log in to the SVM.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -24358,7 +28365,160 @@ NetApp LUN (logical unit number) is an identifier for a device called a logical 
 				},
 				resource.Attribute{
 					Name:        "online",
-					Description: `The LUN is online.`,
+					Description: `The state of the LUN is online.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_lun_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a lun.`,
+			Description: `
+An event where the impacted resource type is a lun.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24367,9 +28527,21 @@ NetApp LUN (logical unit number) is an identifier for a device called a logical 
 			Name:             "",
 			Type:             "intersight_storage_net_app_lun_map",
 			Category:         "Data Sources",
-			ShortDescription: `NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted. access to the LUN.`,
+			ShortDescription: `NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted access to the LUN.`,
 			Description: `
-NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted. access to the LUN.
+NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted access to the LUN.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_nfs_service",
+			Category:         "Data Sources",
+			ShortDescription: `An NFS service retrieves the NFS configuration of a storage virtual machine.`,
+			Description: `
+An NFS service retrieves the NFS configuration of a storage virtual machine.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -24385,6 +28557,18 @@ NetApp node is a controller in a NetApp cluster. Services and components are con
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `The cdpd option is unknown on the node.`,
+				},
+				resource.Attribute{
+					Name:        "on",
+					Description: `The cdpd option is enabled on the node.`,
+				},
+				resource.Attribute{
+					Name:        "off",
+					Description: `The cdpd option is disabled on the node.`,
+				},
 				resource.Attribute{
 					Name:        "Unknown",
 					Description: `Component operational state is unknown.`,
@@ -24442,6 +28626,410 @@ NetApp node is a controller in a NetApp cluster. Services and components are con
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_node_cdp_neighbor",
+			Category:         "Data Sources",
+			ShortDescription: `Information about the CDP neighbor connected to a given NetApp node port.`,
+			Description: `
+Information about the CDP neighbor connected to a given NetApp node port.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_node_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a node.`,
+			Description: `
+An event where the impacted resource type is a node.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_non_data_ip_interface",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp Non-Data IP interface is a logical interface for management within the cluster scope.`,
+			Description: `
+NetApp Non-Data IP interface is a logical interface for management within the cluster scope.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "IPv4",
+					Description: `IP address family type is IPv4.`,
+				},
+				resource.Attribute{
+					Name:        "IPv6",
+					Description: `IP address family type is IP6.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `An inactive port is listed as Down.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `An active port is listed as Up.`,
+				},
+				resource.Attribute{
+					Name:        "present",
+					Description: `An active port is listed as present.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_non_data_ip_interface_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is an ip interface.`,
+			Description: `
+An event where the impacted resource type is an ip interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_ntp_server",
+			Category:         "Data Sources",
+			ShortDescription: `External NTP time servers ONTAP uses for time adjustment and correction.`,
+			Description: `
+External NTP time servers ONTAP uses for time adjustment and correction.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "none",
+					Description: `Default unknown NTP protocol version.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `NTP protocol version is 3.`,
+				},
+				resource.Attribute{
+					Name:        "4",
+					Description: `NTP protocol version is 4.`,
+				},
+				resource.Attribute{
+					Name:        "auto",
+					Description: `NTP protocol version is auto.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_schedule",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp schedule is a configurable entity on which various tasks (for instance, volume Snapshot copies and mirror replications) are run.`,
+			Description: `
+NetApp schedule is a configurable entity on which various tasks (for instance, volume Snapshot copies and mirror replications) are run.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_sensor",
+			Category:         "Data Sources",
+			ShortDescription: `Information for a particular sensor on a NetApp storage array controller.`,
+			Description: `
+Information for a particular sensor on a NetApp storage array controller.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_storage_vm",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp Storage Virtual Machines contain data volumes and one or more Logical Interfaces ( LIFs ) through which they serve data to the clients.`,
@@ -24473,6 +29061,159 @@ NetApp Storage Virtual Machines contain data volumes and one or more Logical Int
 				resource.Attribute{
 					Name:        "Deleting",
 					Description: `Component deletion is in progress.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_svm_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a storage vm.`,
+			Description: `
+An event where the impacted resource type is a storage vm.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24525,7 +29266,160 @@ NetApp volume are data containers that enable you to partition and manage your d
 				},
 				resource.Attribute{
 					Name:        "load-sharing",
-					Description: `Load Sharing.`,
+					Description: `The volume type is Load Sharing DP.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_volume_event",
+			Category:         "Data Sources",
+			ShortDescription: `An event where the impacted resource type is a volume.`,
+			Description: `
+An event where the impacted resource type is a volume.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown current state.`,
+				},
+				resource.Attribute{
+					Name:        "new",
+					Description: `The current state of the event is new.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `The current state of the event is acknowledged.`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `The current state of the event is resolved.`,
+				},
+				resource.Attribute{
+					Name:        "obsolete",
+					Description: `The current state of the event is obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact area.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `The impact area of the event is availability.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `The impact area of the event is capacity.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The impact area of the event is configuration.`,
+				},
+				resource.Attribute{
+					Name:        "performance",
+					Description: `The impact area of the event is performance.`,
+				},
+				resource.Attribute{
+					Name:        "protection",
+					Description: `The impact area of the event is protection.`,
+				},
+				resource.Attribute{
+					Name:        "security",
+					Description: `The impact area of the event is security.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown impact level.`,
+				},
+				resource.Attribute{
+					Name:        "event",
+					Description: `The impact level of the event is event.`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `The impact level of the event is risk.`,
+				},
+				resource.Attribute{
+					Name:        "incident",
+					Description: `The impact level of the event is incident.`,
+				},
+				resource.Attribute{
+					Name:        "upgrade",
+					Description: `The impact level of the event is upgrade.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown resource type.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `The type of resource impacted by the event is an aggregate.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `The type of resource impacted by the event is a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node",
+					Description: `The type of resource impacted by the event is a node.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The type of resource impacted by the event is a disk.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_lif",
+					Description: `The type of resource impacted by the event is a FC interface.`,
+				},
+				resource.Attribute{
+					Name:        "fcp_port",
+					Description: `The type of resource impacted by the event is a FC port.`,
+				},
+				resource.Attribute{
+					Name:        "lun",
+					Description: `The type of resource impacted by the event is a lun.`,
+				},
+				resource.Attribute{
+					Name:        "network_lif",
+					Description: `The type of resource impacted by the event is an ethernet interface.`,
+				},
+				resource.Attribute{
+					Name:        "network_port",
+					Description: `The type of resource impacted by the event is an ethernet port.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `The type of resource impacted by the event is a volume.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `The type of resource impacted by the event is a storage VM.`,
+				},
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `Default unknown severity.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The severity of the event is normal.`,
+				},
+				resource.Attribute{
+					Name:        "information",
+					Description: `The severity of the event is information.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The severity of the event is warning.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The severity of the event is error.`,
+				},
+				resource.Attribute{
+					Name:        "critical",
+					Description: `The severity of the event is critical.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25072,6 +29966,18 @@ The syslog policy configure the syslog server to receive CIMC log entries.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_syslog_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `The syslog policy configure the syslog server to receive CIMC log entries.`,
+			Description: `
+The syslog policy configure the syslog server to receive CIMC log entries.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_tam_advisory_count",
 			Category:         "Data Sources",
 			ShortDescription: `Total number of advisories currently affecting a given Account.`,
@@ -25107,6 +30013,10 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				resource.Attribute{
 					Name:        "fieldNotice",
 					Description: `Respresents the field notice alert type (https://www.cisco.com/c/en/us/support/web/tsd-products-field-notice-summary.html).`,
+				},
+				resource.Attribute{
+					Name:        "eolAdvisory",
+					Description: `Represents product End of Life (EOL) type (https://www.cisco.com/c/en/us/products/eos-eol-policy.html).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25246,6 +30156,10 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -25286,6 +30200,10 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -25300,6 +30218,22 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -25346,6 +30280,14 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -25364,6 +30306,10 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -25430,12 +30376,24 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25462,6 +30420,31 @@ Audit log of remote terminal user sessions.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_terraform_executor",
+			Category:         "Data Sources",
+			ShortDescription: `Executor is a ManagedObject, aka MO. This API is used to execute terraform scripts.`,
+			Description: `
+Executor is a ManagedObject, aka MO. This API is used to execute terraform scripts.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Create",
+					Description: `Creating a Terraform resource.`,
+				},
+				resource.Attribute{
+					Name:        "Update",
+					Description: `Updating a Terraform resource.`,
+				},
+				resource.Attribute{
+					Name:        "Delete",
+					Description: `Deleting a Terraform resource.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -25586,8 +30569,82 @@ Universe represents a book keeping container to keep track of all UUIDs for a gi
 			Description: `
 UuidLease represents a single UUID that is part of the universe, allocated either from a pool or through static assignment.
 `,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_view_health_status",
+			Category:         "Data Sources",
+			ShortDescription: `Expose a Rest endpoint to return a High level, aggregated status of Intersight components for a given Intersight account user. Meant to inform the user if there's an issue with Intersight components that needs her attention. At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components.`,
+			Description: `
+Expose a Rest endpoint to return a High level, aggregated status of Intersight components for a given Intersight
+account user. Meant to inform the user if there's an issue with Intersight components that needs her attention.
+At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components.
+`,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_view_server",
+			Category:         "Data Sources",
+			ShortDescription: `Expose a Rest endpoint to query a list of UCS servers (compute.Blade and compute.RackUnit) along with associated MO information like asset.DeviceRegistration, cond.HclStatus and server.Profile (partial list). This Rest endpoint supports Odata operators $filter and $orderby on all fields present within the response body.`,
+			Description: `
+Expose a Rest endpoint to query a list of UCS servers (compute.Blade and compute.RackUnit) along with
+associated MO information like asset.DeviceRegistration, cond.HclStatus and server.Profile (partial list).
+This Rest endpoint supports Odata operators $filter and $orderby on all fields present within the response body.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_cisco_hypervisor_manager",
+			Category:         "Data Sources",
+			ShortDescription: `A hypervisor manager to manage Cisco Intersight Workload Engine compute clusters and is available per user account.`,
+			Description: `
+A hypervisor manager to manage Cisco Intersight Workload Engine compute clusters and is available per user account.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_esxi_console",
+			Category:         "Data Sources",
+			ShortDescription: `Vmware Esxi Console Session that provides request validation and Session Management.`,
+			Description: `
+Vmware Esxi Console Session that provides request validation and Session Management.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -25605,6 +30662,14 @@ Depicts operations to control the life cycle of a Hypervisor Host.
 					Description: `A place holder for the default value.`,
 				},
 				resource.Attribute{
+					Name:        "EnterMaintenanceMode",
+					Description: `Put a host into maintenance mode.`,
+				},
+				resource.Attribute{
+					Name:        "ExitMaintenanceMode",
+					Description: `Put a host into active mode.`,
+				},
+				resource.Attribute{
 					Name:        "PowerOffStorageController",
 					Description: `Power off HyperFlex storage controller node running on selected hypervisor host.`,
 				},
@@ -25618,7 +30683,11 @@ Depicts operations to control the life cycle of a Hypervisor Host.
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -25627,6 +30696,613 @@ Depicts operations to control the life cycle of a Hypervisor Host.
 				resource.Attribute{
 					Name:        "Unknown",
 					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `A place holder for the default value.`,
+				},
+				resource.Attribute{
+					Name:        "Enter",
+					Description: `Power action is performed on the virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "Exit",
+					Description: `The virtual machine will be migrated from existing node to a different node in cluster. The behavior depends on the underlying hypervisor.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine compute cluster. Contains inventory information concerning the health, version and ip address of the cluster. The cluster has a name assigned by user in Intersight.`,
+			Description: `
+A Intersight Workload Engine compute cluster. Contains inventory information concerning the health, version and ip address of the cluster. The cluster has a name assigned by user in Intersight.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NA",
+					Description: `The deployment type of the cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Datacenter",
+					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+				},
+				resource.Attribute{
+					Name:        "Stretched Cluster",
+					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+				},
+				resource.Attribute{
+					Name:        "Edge",
+					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "NA",
+					Description: `The drive type of the cluster is not available.`,
+				},
+				resource.Attribute{
+					Name:        "All-Flash",
+					Description: `Indicates that this cluster contains flash drives only.`,
+				},
+				resource.Attribute{
+					Name:        "Hybrid",
+					Description: `Indicates that this cluster contains both flash and hard disk drives.`,
+				},
+				resource.Attribute{
+					Name:        "ESXi",
+					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAp",
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
+					Name:        "Hyper-V",
+					Description: `The hypervisor running on the HyperFlex cluster is Microsoft Hyper-V.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Entity status is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Degraded",
+					Description: `State is degraded, and might impact normal operation of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `Entity is in a critical state, impacting operations.`,
+				},
+				resource.Attribute{
+					Name:        "Ok",
+					Description: `Entity status is in a stable state, operating normally.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_datacenter",
+			Category:         "Data Sources",
+			ShortDescription: `A datacenter object in Intersight Workload Engine. It is a pre-defined object created internally by the system which acts as a container (logically) for all other objects (Host, VirtualMachine, Volume etc).`,
+			Description: `
+A datacenter object in Intersight Workload Engine. It is a pre-defined object created internally by the system which acts as a container (logically) for all other objects (Host, VirtualMachine, Volume etc).
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_dv_uplink",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine cluster wise distributed uplink entity.`,
+			Description: `
+A Intersight Workload Engine cluster wise distributed uplink entity.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_dvswitch",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine cluster wise distributed vSwitch entity.`,
+			Description: `
+A Intersight Workload Engine cluster wise distributed vSwitch entity.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_host",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine compute host entity that is part of HyperFlex compute cluster and probably runs VMs.`,
+			Description: `
+A Intersight Workload Engine compute host entity that is part of HyperFlex compute cluster and probably runs VMs.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The entity's power state is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOn",
+					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOff",
+					Description: `The entity is powered down.`,
+				},
+				resource.Attribute{
+					Name:        "StandBy",
+					Description: `The entity is in standby mode.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "ESXi",
+					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAp",
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
+					Name:        "Hyper-V",
+					Description: `The hypervisor running on the HyperFlex cluster is Microsoft Hyper-V.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Entity status is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Degraded",
+					Description: `State is degraded, and might impact normal operation of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `Entity is in a critical state, impacting operations.`,
+				},
+				resource.Attribute{
+					Name:        "Ok",
+					Description: `Entity status is in a stable state, operating normally.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The entity's power state is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOn",
+					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOff",
+					Description: `The entity is powered down.`,
+				},
+				resource.Attribute{
+					Name:        "StandBy",
+					Description: `The entity is in standby mode.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_host_interface",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine compute host interface entity that can be connected by IweHostVswitch.`,
+			Description: `
+A Intersight Workload Engine compute host interface entity that can be connected by IweHostVswitch.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `The interface line is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `The interface line is up.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `The interface line is down.`,
+				},
+				resource.Attribute{
+					Name:        "degraded",
+					Description: `For a bond/team interface, not all member interface is up.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_host_vswitch",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine vSwitch entity that is part of a cluster wide dvSwitch.`,
+			Description: `
+A Intersight Workload Engine vSwitch entity that is part of a cluster wide dvSwitch.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_network",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine network attachment entity that a VM can attached to.`,
+			Description: `
+A Intersight Workload Engine network attachment entity that a VM can attached to.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `This network is of an unknown network type.`,
+				},
+				resource.Attribute{
+					Name:        "L2",
+					Description: `A Layer 2 switching network type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_virtual_disk",
+			Category:         "Data Sources",
+			ShortDescription: `The Virtual disk created on Intersight Workload Engine compute cluster.`,
+			Description: `
+The Virtual disk created on Intersight Workload Engine compute cluster.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ReadWriteOnce",
+					Description: `Read write permisisons to a Virtual disk by a single virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "ReadWriteMany",
+					Description: `Read write permisisons to a Virtual disk by multiple virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "ReadOnlyMany",
+					Description: `Read only permisisons to a Virtual disk by multiple virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "Block",
+					Description: `It is a Block virtual disk.`,
+				},
+				resource.Attribute{
+					Name:        "Filesystem",
+					Description: `It is a File system virtual disk.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_virtual_machine",
+			Category:         "Data Sources",
+			ShortDescription: `The Virtual machine that runs on a Intersight Workload Engine compute host.`,
+			Description: `
+The Virtual machine that runs on a Intersight Workload Engine compute host.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ESXi",
+					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAp",
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
+					Name:        "Hyper-V",
+					Description: `The hypervisor running on the HyperFlex cluster is Microsoft Hyper-V.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The hypervisor running on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The entity's power state is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOn",
+					Description: `The entity is powering on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOn",
+					Description: `The entity is powered on.`,
+				},
+				resource.Attribute{
+					Name:        "PoweringOff",
+					Description: `The entity is powering off.`,
+				},
+				resource.Attribute{
+					Name:        "PoweredOff",
+					Description: `The entity is powered down.`,
+				},
+				resource.Attribute{
+					Name:        "StandBy",
+					Description: `The entity is in standby mode.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The entity is in pause state.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The entity reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Cloud provider is not known.`,
+				},
+				resource.Attribute{
+					Name:        "VMwarevSphere",
+					Description: `Cloud provider named VMware vSphere.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServices",
+					Description: `Cloud provider named Amazon Web Services.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzure",
+					Description: `Cloud provider named Microsoft Azure.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `Cloud provider named Google Cloud Platform.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoIntersightWorkloadEngine",
+					Description: `Cloud provider named Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `A place holder for the default value.`,
+				},
+				resource.Attribute{
+					Name:        "Creating",
+					Description: `Virtual machine creation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Pending",
+					Description: `The virtual machine is preparing to enter the started state.`,
+				},
+				resource.Attribute{
+					Name:        "Starting",
+					Description: `The virtual machine is starting.`,
+				},
+				resource.Attribute{
+					Name:        "Started",
+					Description: `The virtual machine is running and ready for use.`,
+				},
+				resource.Attribute{
+					Name:        "Stopping",
+					Description: `The virtual machine is preparing to be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `The virtual machine is shut down and cannot be used. The virtual machine can be started again at any time.`,
+				},
+				resource.Attribute{
+					Name:        "Pausing",
+					Description: `The virtual machine is preparing to be paused.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `The virtual machine enters into paused state due to low free disk space.`,
+				},
+				resource.Attribute{
+					Name:        "Suspending",
+					Description: `The virtual machine is preparing to be suspended.`,
+				},
+				resource.Attribute{
+					Name:        "Suspended",
+					Description: `Virtual machine is in sleep mode.When a virtual machine is suspended, the current state of theoperating system, and applications is saved, and the virtual machine put into a suspended mode.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The virtual machine is preparing to be terminated.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The virtual machine has been permanently deleted and cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Rebooting",
+					Description: `The virtual machine reboot is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Error",
+					Description: `The deployment of virtual machine is failed.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The virtual machine is in warning state.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Virtual machine state is not available.`,
+				},
+				resource.Attribute{
+					Name:        "Running",
+					Description: `Virtual machine is running normally.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `Virtual machine has been stopped.`,
+				},
+				resource.Attribute{
+					Name:        "WaitForLaunch",
+					Description: `Virtual machine is wating to be launched.`,
+				},
+				resource.Attribute{
+					Name:        "Paused",
+					Description: `Virtual machine is currently paused.`,
+				},
+				resource.Attribute{
+					Name:        "ImportInProgress",
+					Description: `Virtual machine image is being imported into the platform.`,
+				},
+				resource.Attribute{
+					Name:        "ImportFailed",
+					Description: `Virtual machine image import operation failed.`,
+				},
+				resource.Attribute{
+					Name:        "DiskCloneInProgress",
+					Description: `Disk clone operation for the virtual machine is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DiskCloneFailed",
+					Description: `Disk clone operation for the virtual machine failed.`,
+				},
+				resource.Attribute{
+					Name:        "DiskCreateInProgress",
+					Description: `Disk create operation for the virtual machine is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DiskCreateFailed",
+					Description: `Disk create operation for the virtual machine failed.`,
+				},
+				resource.Attribute{
+					Name:        "Processing",
+					Description: `Virtual machine is being created.`,
+				},
+				resource.Attribute{
+					Name:        "UnSchedulable",
+					Description: `Virtual machine cannot be scheduled to run, either due to insufficient resources or failure to match affinity specifications.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Some virtual machine operation has failed. More information is available as part of the results of the operation.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `CPU/Memory utilisation for the virtual machine has crossed the threshold value.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_iwe_virtual_machine_network_interface",
+			Category:         "Data Sources",
+			ShortDescription: `A Intersight Workload Engine virtual network interface entity that a virtual machine is attached to.`,
+			Description: `
+A Intersight Workload Engine virtual network interface entity that a virtual machine is attached to.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The type of the network adaptor type is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "E1000",
+					Description: `Emulated version of the Intel 82545EM Gigabit Ethernet NIC.`,
+				},
+				resource.Attribute{
+					Name:        "SRIOV",
+					Description: `Representation of a virtual function (VF) on a physical NIC with SR-IOV support.`,
+				},
+				resource.Attribute{
+					Name:        "VMXNET2",
+					Description: `VMXNET 2 (Enhanced) is available only for some guest operating systems on ESX/ESXi 3.5 and later.`,
+				},
+				resource.Attribute{
+					Name:        "VMXNET3",
+					Description: `VMXNET 3 offers all the features available in VMXNET 2 and adds several new features.`,
+				},
+				resource.Attribute{
+					Name:        "E1000E",
+					Description: `E1000E – emulates a newer real network adapter, the 1 Gbit Intel 82574, and is available for Windows 2012 and later. The E1000E needs virtual machine hardware version 8 or later.`,
+				},
+				resource.Attribute{
+					Name:        "NE2K_PCI",
+					Description: `The Ne2000 network card uses two ring buffers for packet handling. These are circular buffers made of 256-byte pages that the chip's DMA logic will use to store received packets or to get received packets.`,
+				},
+				resource.Attribute{
+					Name:        "PCnet",
+					Description: `The PCnet-PCI II is a PCI network adapter. It has built-in support for CRC checks and can automatically pad short packets to the minimum Ethernet length.`,
+				},
+				resource.Attribute{
+					Name:        "RTL8139",
+					Description: `The RTL8139 is a fast Ethernet card that operates at 10/100 Mbps. It is compliant with PCI version 2.0/2.1 and it is known for reliability and superior performance.`,
+				},
+				resource.Attribute{
+					Name:        "VirtIO",
+					Description: `VirtIO is a standardized interface which allows virtual machines access to simplified \ virtual\ devices, such as block devices, network adapters and consoles. Accessing devices through VirtIO on a guest VM improves performance over more traditional \ emulated\ devices, as VirtIO devices require only the bare minimum setup and configuration needed to send and receive data, while the host machine handles the majority of the setup and maintenance of the actual physical hardware.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `Virtual network interface is up and running.`,
+				},
+				resource.Attribute{
+					Name:        "Down",
+					Description: `Virtual network interface is down and not running.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25683,6 +31359,10 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 					Description: `The virtual machine will be deleted from the specified hypervisor. User can either set this action or can do a DELETE operation on the VirtualMachine managed object.`,
 				},
 				resource.Attribute{
+					Name:        "Resize",
+					Description: `The virtual machine will be resized to the specified instance type.`,
+				},
+				resource.Attribute{
 					Name:        "linux",
 					Description: `A Linux operating system.`,
 				},
@@ -25696,7 +31376,11 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -25755,6 +31439,27 @@ Depicts operations to control the life cycle of a virtual machine on a hyperviso
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_virtualization_virtual_network",
+			Category:         "Data Sources",
+			ShortDescription: `Depicts network configuration used to create a virtual network.`,
+			Description: `
+Depicts network configuration used to create a virtual network.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `This network is of an unknown network type.`,
+				},
+				resource.Attribute{
+					Name:        "L2",
+					Description: `A Layer 2 switching network type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_virtualization_vmware_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `A real cluster of resources within a data center in VMware. A cluster is a convenient grouping of resources such as Host, Datastore, etc.`,
@@ -25769,7 +31474,11 @@ A real cluster of resources within a data center in VMware. A cluster is a conve
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -26058,7 +31767,11 @@ The VMware Host entity with its attributes. Every Host belongs to a Datacenter a
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -26293,7 +32006,11 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAp",
-					Description: `The hypervisor running on the HyperFlex cluster is Cisco HyperFlex Application Platform.`,
+					Description: `The hypervisor of the virtualization platform is Cisco HyperFlex Application Platform.`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `The hypervisor of the virtualization platform is Cisco Intersight Workload Engine.`,
 				},
 				resource.Attribute{
 					Name:        "Hyper-V",
@@ -26356,6 +32073,10 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 					Description: `Cloud provider named Google Cloud Platform.`,
 				},
 				resource.Attribute{
+					Name:        "CiscoIntersightWorkloadEngine",
+					Description: `Cloud provider named Cisco Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `A place holder for the default value.`,
 				},
@@ -26415,7 +32136,23 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 					Name:        "Error",
 					Description: `The deployment of virtual machine is failed.`,
 				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The virtual machine is in warning state.`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_vmware_virtual_machine_snapshot",
+			Category:         "Data Sources",
+			ShortDescription: `The virtual machine snapshot is represented here.`,
+			Description: `
+The virtual machine snapshot is represented here.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -26494,11 +32231,48 @@ Policy to configure virtual media settings on endpoint.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vmedia_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Policy to configure virtual media settings on endpoint.`,
+			Description: `
+Policy to configure virtual media settings on endpoint.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vmrc_console",
 			Category:         "Data Sources",
 			ShortDescription: `API to launch VMRC console to a VMware virtual machine.`,
 			Description: `
 API to launch VMRC console to a VMware virtual machine.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Active",
+					Description: `The session is currently active.`,
+				},
+				resource.Attribute{
+					Name:        "Ended",
+					Description: `The session has ended normally.`,
+				},
+				resource.Attribute{
+					Name:        "Terminated",
+					Description: `The session was terminated by an admin.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnc_console",
+			Category:         "Data Sources",
+			ShortDescription: `API to launch the Intersight Workload Engine virtual machine console.`,
+			Description: `
+API to launch the Intersight Workload Engine virtual machine console.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -26531,7 +32305,56 @@ An Ethernet adapter policy governs the host-side behavior of the adapter, includ
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_eth_adapter_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `An Ethernet adapter policy governs the host-side behavior of the adapter, including how the adapter handles traffic. For each VIC Virtual Ethernet Interface various features like VXLAN, NVGRE, ARFS, Interrupt settings, and TCP Offload settings can be configured.`,
+			Description: `
+An Ethernet adapter policy governs the host-side behavior of the adapter, including how the adapter handles traffic. For each VIC Virtual Ethernet Interface various features like VXLAN, NVGRE, ARFS, Interrupt settings, and TCP Offload settings can be configured.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_eth_if",
+			Category:         "Data Sources",
+			ShortDescription: `Virtual Ethernet Interface.`,
+			Description: `
+Virtual Ethernet Interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Type indicates that there is no IP associated to an vnic.`,
+				},
+				resource.Attribute{
+					Name:        "DHCP",
+					Description: `The IP address is assigned using DHCP, if available.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `Static IPv4 address is assigned to the iSCSI boot interface based on the information entered in this area.`,
+				},
+				resource.Attribute{
+					Name:        "Pool",
+					Description: `An IPv4 address is assigned to the iSCSI boot interface from the management IP address pool.`,
+				},
+				resource.Attribute{
+					Name:        "POOL",
+					Description: `The user selects a pool from which the mac/wwn address will be leased for the Virtual Interface.`,
+				},
+				resource.Attribute{
+					Name:        "STATIC",
+					Description: `The user assigns a static mac/wwn address for the Virtual Interface.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_eth_if_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Virtual Ethernet Interface.`,
 			Description: `
@@ -26589,6 +32412,27 @@ An Ethernet Network policy determines if the port can carry single VLAN (Access)
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_eth_network_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `An Ethernet Network policy determines if the port can carry single VLAN (Access) or multiple VLANs (Trunk) traffic. You can specify the VLAN to be associated with an Ethernet packet if no tag is found.`,
+			Description: `
+An Ethernet Network policy determines if the port can carry single VLAN (Access) or multiple VLANs (Trunk) traffic. You can specify the VLAN to be associated with an Ethernet packet if no tag is found.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_eth_qos_policy",
 			Category:         "Data Sources",
 			ShortDescription: `An Ethernet Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vNIC. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can be specified like burst and rate on the outgoing traffic.`,
@@ -26626,7 +32470,105 @@ An Ethernet Quality of Service (QoS) policy assigns a system class to the outgoi
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_eth_qos_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `An Ethernet Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vNIC. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can be specified like burst and rate on the outgoing traffic.`,
+			Description: `
+An Ethernet Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vNIC. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can be specified like burst and rate on the outgoing traffic.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Best Effort",
+					Description: `QoS Priority for Best-effort traffic.`,
+				},
+				resource.Attribute{
+					Name:        "FC",
+					Description: `QoS Priority for FC traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Platinum",
+					Description: `QoS Priority for Platinum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Gold",
+					Description: `QoS Priority for Gold traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Silver",
+					Description: `QoS Priority for Silver traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Bronze",
+					Description: `QoS Priority for Bronze traffic.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_eth_veth_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `QoS settings on FI corresponding to a server’s vNIC.`,
+			Description: `
+QoS settings on FI corresponding to a server’s vNIC.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Best Effort",
+					Description: `QoS Priority for Best-effort traffic.`,
+				},
+				resource.Attribute{
+					Name:        "FC",
+					Description: `QoS Priority for FC traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Platinum",
+					Description: `QoS Priority for Platinum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Gold",
+					Description: `QoS Priority for Gold traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Silver",
+					Description: `QoS Priority for Silver traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Bronze",
+					Description: `QoS Priority for Bronze traffic.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_eth_vnic_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `QoS settings of server’s vNIC.`,
+			Description: `
+QoS settings of server’s vNIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_fc_adapter_policy",
+			Category:         "Data Sources",
+			ShortDescription: `A Fibre Channel Adapter policy governs the host-side behavior of the adapter, including how the adapter handles traffic. You can enable FCP Error Recovery, change the default settings of Queues and Interrupt handling for performance enhancement.`,
+			Description: `
+A Fibre Channel Adapter policy governs the host-side behavior of the adapter, including how the adapter handles traffic. You can enable FCP Error Recovery, change the default settings of Queues and Interrupt handling for performance enhancement.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_fc_adapter_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `A Fibre Channel Adapter policy governs the host-side behavior of the adapter, including how the adapter handles traffic. You can enable FCP Error Recovery, change the default settings of Queues and Interrupt handling for performance enhancement.`,
 			Description: `
@@ -26675,7 +32617,56 @@ Virtual Fibre Channel Interface.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_fc_if_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Virtual Fibre Channel Interface.`,
+			Description: `
+Virtual Fibre Channel Interface.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fc-initiator",
+					Description: `The default value set for vHBA Type Configuration. Fc-initiator specifies vHBA as a consumer of storage. Enables SCSI commands to transfer data and status information between host and target storage systems.`,
+				},
+				resource.Attribute{
+					Name:        "fc-nvme-initiator",
+					Description: `Fc-nvme-initiator specifies vHBA as a consumer of storage. Enables NVMe-based message commands to transfer data and status information between host and target storage systems.`,
+				},
+				resource.Attribute{
+					Name:        "fc-nvme-target",
+					Description: `Fc-nvme-target specifies vHBA as a provider of storage volumes to initiators. Enables NVMe-based message commands to transfer data and status information between host and target storage systems. Currently tech-preview, only enabled with an asynchronous driver.`,
+				},
+				resource.Attribute{
+					Name:        "fc-target",
+					Description: `Fc-target specifies vHBA as a provider of storage volumes to initiators. Enables SCSI commands to transfer data and status information between host and target storage systems. fc-target is enabled only with an asynchronous driver.`,
+				},
+				resource.Attribute{
+					Name:        "POOL",
+					Description: `The user selects a pool from which the mac/wwn address will be leased for the Virtual Interface.`,
+				},
+				resource.Attribute{
+					Name:        "STATIC",
+					Description: `The user assigns a static mac/wwn address for the Virtual Interface.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_fc_network_policy",
+			Category:         "Data Sources",
+			ShortDescription: `A Fibre Channel Network policy governs the vSAN configuration for the virtual interfaces.`,
+			Description: `
+A Fibre Channel Network policy governs the vSAN configuration for the virtual interfaces.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_fc_network_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `A Fibre Channel Network policy governs the vSAN configuration for the virtual interfaces.`,
 			Description: `
@@ -26724,7 +32715,105 @@ A Fibre Channel Quality of Service (QoS) policy assigns a system class to the ou
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_fc_qos_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.`,
+			Description: `
+A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Best Effort",
+					Description: `QoS Priority for Best-effort traffic.`,
+				},
+				resource.Attribute{
+					Name:        "FC",
+					Description: `QoS Priority for FC traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Platinum",
+					Description: `QoS Priority for Platinum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Gold",
+					Description: `QoS Priority for Gold traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Silver",
+					Description: `QoS Priority for Silver traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Bronze",
+					Description: `QoS Priority for Bronze traffic.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_fc_veth_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.`,
+			Description: `
+A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_fc_vhba_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.`,
+			Description: `
+A Fibre Channel Quality of Service (QoS) policy assigns a system class to the outgoing traffic for a vHBA. This system class determines the quality of service for the outgoing traffic. For certain adapters additional controls can also be specified like burst and rate on the outgoing traffic.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Best Effort",
+					Description: `QoS Priority for Best-effort traffic.`,
+				},
+				resource.Attribute{
+					Name:        "FC",
+					Description: `QoS Priority for FC traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Platinum",
+					Description: `QoS Priority for Platinum traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Gold",
+					Description: `QoS Priority for Gold traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Silver",
+					Description: `QoS Priority for Silver traffic.`,
+				},
+				resource.Attribute{
+					Name:        "Bronze",
+					Description: `QoS Priority for Bronze traffic.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_iscsi_adapter_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Set of iSCSI properties that govern the host-side behavior of the adapter.`,
+			Description: `
+Set of iSCSI properties that govern the host-side behavior of the adapter.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_iscsi_adapter_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Set of iSCSI properties that govern the host-side behavior of the adapter.`,
 			Description: `
@@ -26769,6 +32858,39 @@ Configuration parameters to enable a server to boot its operating system from an
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_iscsi_boot_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Configuration parameters to enable a server to boot its operating system from an iSCSI target machine located remotely over a network.`,
+			Description: `
+Configuration parameters to enable a server to boot its operating system from an iSCSI target machine located remotely over a network.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "DHCP",
+					Description: `The IP address is assigned using DHCP, if available.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `Static IPv4 address is assigned to the iSCSI boot interface based on the information entered in this area.`,
+				},
+				resource.Attribute{
+					Name:        "Pool",
+					Description: `An IPv4 address is assigned to the iSCSI boot interface from the management IP address pool.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `Type indicates that static target interface is assigned to iSCSI boot.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Type indicates that the system selects the target interface automatically during iSCSI boot.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_iscsi_static_target_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Configuration parameters that defines the reachability of iSCSI Target portal.`,
@@ -26781,7 +32903,60 @@ Configuration parameters that defines the reachability of iSCSI Target portal.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_iscsi_static_target_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Configuration parameters that defines the reachability of iSCSI Target portal.`,
+			Description: `
+Configuration parameters that defines the reachability of iSCSI Target portal.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_lan_connectivity_policy",
+			Category:         "Data Sources",
+			ShortDescription: `A LAN Connectivity Policy determines the network resources and the connections between the server and the LAN on the network. This policy uses Consistent Device Naming to configure the vNIC. You can configure a usNIC or VMQ connection for the vNIC to improve network performance.`,
+			Description: `
+A LAN Connectivity Policy determines the network resources and the connections between the server and the LAN on the network. This policy uses Consistent Device Naming to configure the vNIC. You can configure a usNIC or VMQ connection for the vNIC to improve network performance.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Type indicates that there is no IQN associated to an interface.`,
+				},
+				resource.Attribute{
+					Name:        "Static",
+					Description: `Type represents that static IQN is associated to an interface.`,
+				},
+				resource.Attribute{
+					Name:        "Pool",
+					Description: `Type indicates that IQN value is sourced from an associated pool.`,
+				},
+				resource.Attribute{
+					Name:        "custom",
+					Description: `The placement of the vNICs / vHBAs on network adapters is manually chosen by the user.`,
+				},
+				resource.Attribute{
+					Name:        "auto",
+					Description: `The placement of the vNICs / vHBAs on network adapters is automatically determined by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_vnic_lan_connectivity_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `A LAN Connectivity Policy determines the network resources and the connections between the server and the LAN on the network. This policy uses Consistent Device Naming to configure the vNIC. You can configure a usNIC or VMQ connection for the vNIC to improve network performance.`,
 			Description: `
@@ -26884,6 +33059,43 @@ SAN connectivity policy determines the network storage resources and the connect
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_vnic_san_connectivity_policy_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `SAN connectivity policy determines the network storage resources and the connections between the server and the SAN on the network. This policy enables configuration of vHBAs that the servers use to communicate with the storage network.`,
+			Description: `
+SAN connectivity policy determines the network storage resources and the connections between the server and the SAN on the network. This policy enables configuration of vHBAs that the servers use to communicate with the storage network.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "custom",
+					Description: `The placement of the vNICs / vHBAs on network adapters is manually chosen by the user.`,
+				},
+				resource.Attribute{
+					Name:        "auto",
+					Description: `The placement of the vNICs / vHBAs on network adapters is automatically determined by the system.`,
+				},
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "POOL",
+					Description: `The user selects a pool from which the mac/wwn address will be leased for the Virtual Interface.`,
+				},
+				resource.Attribute{
+					Name:        "STATIC",
+					Description: `The user assigns a static mac/wwn address for the Virtual Interface.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_vnic_scp_status",
 			Category:         "Data Sources",
 			ShortDescription: `An internal MO to check if a SCP can be deployed or not on a specific Server Profile.`,
@@ -26914,6 +33126,22 @@ An internal MO to check if a SCP can be deployed or not on a specific Server Pro
 			ShortDescription: `Virtual Routing and Forwarding (VRF) is a networking technology that implements an isolated Layer 3 domain.`,
 			Description: `
 Virtual Routing and Forwarding (VRF) is a networking technology that implements an isolated Layer 3 domain.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_ansible_batch_executor",
+			Category:         "Data Sources",
+			ShortDescription: `Intersight allows generic tasks to be created by taking the executor request body and a response parser specification in the form of content.Grammar object. Ansible Batch associates the list of Ansible commands executed as SSH requests as part of single task execution. Each SSH request takes the Ansible command to execute and a response parser specification based off text to extract fields of interest.`,
+			Description: `
+Intersight allows generic tasks to be created by taking the executor request
+body and a response parser specification in the form of content.Grammar object.
+Ansible Batch associates the list of Ansible commands executed as SSH requests as part of single
+task execution. Each SSH request takes the Ansible command to execute and a response parser
+specification based off text to extract fields of interest.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -27005,6 +33233,10 @@ error parameters.
 					Description: `An Application Policy Infrastructure Controller cluster.`,
 				},
 				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+				},
+				resource.Attribute{
 					Name:        "DCNM",
 					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
 				},
@@ -27045,6 +33277,10 @@ error parameters.
 					Description: `A HyperFlex Application Platform.`,
 				},
 				resource.Attribute{
+					Name:        "IWE",
+					Description: `An Intersight Workload Engine.`,
+				},
+				resource.Attribute{
 					Name:        "UCSD",
 					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
 				},
@@ -27059,6 +33295,22 @@ error parameters.
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
 					Description: `A Pure Storage FlashArray device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A platform type to support ACI Switches.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A platform type to support Cisco Nexus Switches.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A platform type to support MDS devices.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
@@ -27105,6 +33357,14 @@ error parameters.
 					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
 				},
 				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
 					Name:        "ReadHatOpenStack",
 					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
 				},
@@ -27123,6 +33383,10 @@ error parameters.
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
 					Description: `A Microsoft SQL database server.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
@@ -27189,12 +33453,24 @@ error parameters.
 					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
 				},
 				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+				},
+				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
 					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -27217,7 +33493,27 @@ Information for a pending Dynamic Workflow Instance before it is run.  Validatio
 					Name:        "Waiting",
 					Description: `Dynamic workflow is in waiting state and not yet started execution.`,
 				},
+				resource.Attribute{
+					Name:        "RateLimit",
+					Description: `Dynamic workflow is rate limited and hasn't started execution.`,
+				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_power_shell_batch_api_executor",
+			Category:         "Data Sources",
+			ShortDescription: `Intersight allows generic API tasks to be created by taking the API request body and a response parser specification in the form of content.Grammar object. Batch API associates the list of API requests to be executed as part of single task execution. Each API request takes the request body and a response parser specification.`,
+			Description: `
+Intersight allows generic API tasks to be created by taking the API request
+body and a response parser specification in the form of content.Grammar object.
+Batch API associates the list of API requests to be executed as part of single
+task execution. Each API request takes the request body and a response parser
+specification.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -27263,6 +33559,540 @@ Rollback workflow contains details about the workflow instance, tasks to be roll
 					Description: `Status of the rollback workflow after execution results in failure.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_action_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Definition to capture the details needed to execute an action on the service item.`,
+			Description: `
+Definition to capture the details needed to execute an action on the service item.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "External",
+					Description: `External actions definition can be triggered by enduser to perform actions on the service item. Once action is completed successfully (eg. create/deploy), user cannot re-trigger that action again.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `Internal action definition is used to trigger periodic actions on the service item instance.`,
+				},
+				resource.Attribute{
+					Name:        "Repetitive",
+					Description: `Repetitive action definition is an external action that can be triggered by enduser to perform repetitive actions (eg. Edit/Update/Perform health check) on the created service item.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_action_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Service item action instance which represents one action on a service item instance.`,
+			Description: `
+Service item action instance which represents one action on a service item instance.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the service item action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFailed",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the service item action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFailed",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "NotStarted",
+					Description: `An action on the service item is not yet started and it is in a draft mode. A service item action instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `A validate action has been triggered on the action and until it completes the start action cannot be issued.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The action on the service item instance failed and can be retried.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The action on the service item instance completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Stopping",
+					Description: `The stop action is running on the action instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Service Item definition is a collection of actions and associated workflow definition that can be used to deploy a service item.`,
+			Description: `
+Service Item definition is a collection of actions and associated workflow definition that can be used to deploy a service item.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Base",
+					Description: `Base as a License type. It is default license type.`,
+				},
+				resource.Attribute{
+					Name:        "Essential",
+					Description: `Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Standard",
+					Description: `Standard as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Advantage",
+					Description: `Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Premier",
+					Description: `Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Essential",
+					Description: `IWO-Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Advantage",
+					Description: `IWO-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Premier",
+					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_health_check_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Service item health check definition metadata.`,
+			Description: `
+Service item health check definition metadata.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "OnDemand",
+					Description: `Execute the health check on-demand.`,
+				},
+				resource.Attribute{
+					Name:        "Periodic",
+					Description: `Execute the health check on a periodic basis.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_health_check_execution",
+			Category:         "Data Sources",
+			ShortDescription: `Health check execution result for a health check definition on a service item.`,
+			Description: `
+Health check execution result for a health check definition on a service item.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `Indicates that the health check results could not be determined.`,
+				},
+				resource.Attribute{
+					Name:        "Pass",
+					Description: `Indicates that the health check has passed.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Indicates that the health check has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `Indicates that the health check completed with a warning.`,
+				},
+				resource.Attribute{
+					Name:        "NotApplicable",
+					Description: `Indicates that the health check is either unsupported, or not applicable for the service item.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Service item instance is one instance of a service item based on a service item definition.`,
+			Description: `
+Service item instance is one instance of a service item based on a service item definition.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the service item instance failed and corrective measures need to be taken to bring the service item instance back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the service item instance completed and the service item instance is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the service item instance failed and corrective measures need to be taken to bring the service item instance back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the service item instance completed and the service item instance is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_output",
+			Category:         "Data Sources",
+			ShortDescription: `Service item output which represents all the artifacts created or related to this service item instance.`,
+			Description: `
+Service item output which represents all the artifacts created or related to this service item instance.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_solution_action_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Definition to capture the details needed to execute an action on the solution.`,
+			Description: `
+Definition to capture the details needed to execute an action on the solution.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "External",
+					Description: `External actions definition can be triggered by enduser to perform actions on the solution. Once action is completed successfully (eg. create/deploy), user cannot re-trigger that action again.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `Internal action definition is used to trigger periodic actions on the solution instance.`,
+				},
+				resource.Attribute{
+					Name:        "Repetitive",
+					Description: `Repetitive action definition is an external action that can be triggered by enduser to perform repetitive actions (eg. Edit/Update/Perform health check) on the created solution.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_solution_action_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Solution action instance which represents one action on a solution instance.`,
+			Description: `
+Solution action instance which represents one action on a solution instance.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validation the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the solution action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFailed",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validation the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the solution action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFailed",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "NotStarted",
+					Description: `Solution action is not yet started and it is in a draft mode. A solution action instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `A validate action has been triggered on the action and until it completes the start action cannot be issued.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The action on the solution failed and can be retried.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The action on the solution completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Stopping",
+					Description: `The stop action is running on the action instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_solution_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.`,
+			Description: `
+Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Base",
+					Description: `Base as a License type. It is default license type.`,
+				},
+				resource.Attribute{
+					Name:        "Essential",
+					Description: `Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Standard",
+					Description: `Standard as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Advantage",
+					Description: `Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "Premier",
+					Description: `Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Essential",
+					Description: `IWO-Essential as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Advantage",
+					Description: `IWO-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IWO-Premier",
+					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_solution_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Solution instance is one instance of a solution based on a solution definition.`,
+			Description: `
+Solution instance is one instance of a solution based on a solution definition.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `Solution is not yet created and it is in a draft mode. A solution instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the solution failed and corrective measures need to be taken to bring the solution back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the solution completed and the solution is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The solution is decommissioned and can be safely deleted. Solution in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `Solution is not yet created and it is in a draft mode. A solution instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the solution failed and corrective measures need to be taken to bring the solution back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the solution completed and the solution is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The solution is decommissioned and can be safely deleted. Solution in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_solution_output",
+			Category:         "Data Sources",
+			ShortDescription: `Solution output which represents all the artifacts created or related to this solution instance.`,
+			Description: `
+Solution output which represents all the artifacts created or related to this solution instance.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_ssh_batch_executor",
+			Category:         "Data Sources",
+			ShortDescription: `Intersight allows generic tasks to be created by taking the executor request body and a response parser specification in the form of content.Grammar object. SSH Batch associates the list of SSH requests to be executed as part of single task execution. Each SSH request takes the command to execute and a response parser specification based off text to extract fields of interest.`,
+			Description: `
+Intersight allows generic tasks to be created by taking the executor request
+body and a response parser specification in the form of content.Grammar object.
+SSH Batch associates the list of SSH requests to be executed as part of single
+task execution. Each SSH request takes the command to execute and a response parser
+specification based off text to extract fields of interest.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -27318,6 +34148,10 @@ Used to define a task which can be included within a workflow. Task definition c
 				resource.Attribute{
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -27399,6 +34233,10 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				resource.Attribute{
 					Name:        "IWO-Premier",
 					Description: `IWO-Premier as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "IKS-Advantage",
+					Description: `IKS-Advantage as a License type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -27536,9 +34374,9 @@ Contains information for a workflow execution which is a runtime instance of wor
 			Name:             "",
 			Type:             "intersight_workflow_workflow_meta",
 			Category:         "Data Sources",
-			ShortDescription: `Contains a workflow definition which is a sequence of tasks to execute.`,
+			ShortDescription: `Contains a workflow definition which is a sequence of tasks to execute. WorkflowMeta is deprecated and WorkflowDefinition is used for creating workflows.`,
 			Description: `
-Contains a workflow definition which is a sequence of tasks to execute.
+Contains a workflow definition which is a sequence of tasks to execute. WorkflowMeta is deprecated and WorkflowDefinition is used for creating workflows.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -27574,727 +34412,860 @@ Workflow metadata is a collection of properties that are common across all the v
 	dataSourcesMap = map[string]int{
 
 		"intersight_aaa_audit_record":                                        0,
-		"intersight_access_policy":                                           1,
-		"intersight_adapter_config_policy":                                   2,
-		"intersight_adapter_ext_eth_interface":                               3,
-		"intersight_adapter_host_eth_interface":                              4,
-		"intersight_adapter_host_fc_interface":                               5,
-		"intersight_adapter_host_iscsi_interface":                            6,
-		"intersight_adapter_unit":                                            7,
-		"intersight_adapter_unit_expander":                                   8,
-		"intersight_appliance_app_status":                                    9,
-		"intersight_appliance_auto_rma_policy":                               10,
-		"intersight_appliance_backup":                                        11,
-		"intersight_appliance_backup_policy":                                 12,
-		"intersight_appliance_certificate_setting":                           13,
-		"intersight_appliance_data_export_policy":                            14,
-		"intersight_appliance_device_certificate":                            15,
-		"intersight_appliance_device_claim":                                  16,
-		"intersight_appliance_diag_setting":                                  17,
-		"intersight_appliance_external_syslog_setting":                       18,
-		"intersight_appliance_file_system_status":                            19,
-		"intersight_appliance_group_status":                                  20,
-		"intersight_appliance_image_bundle":                                  21,
-		"intersight_appliance_node_info":                                     22,
-		"intersight_appliance_node_status":                                   23,
-		"intersight_appliance_release_note":                                  24,
-		"intersight_appliance_remote_file_import":                            25,
-		"intersight_appliance_restore":                                       26,
-		"intersight_appliance_setup_info":                                    27,
-		"intersight_appliance_system_info":                                   28,
-		"intersight_appliance_system_status":                                 29,
-		"intersight_appliance_upgrade":                                       30,
-		"intersight_appliance_upgrade_policy":                                31,
-		"intersight_asset_cluster_member":                                    32,
-		"intersight_asset_deployment":                                        33,
-		"intersight_asset_deployment_device":                                 34,
-		"intersight_asset_device_configuration":                              35,
-		"intersight_asset_device_connector_manager":                          36,
-		"intersight_asset_device_contract_information":                       37,
-		"intersight_asset_device_registration":                               38,
-		"intersight_asset_subscription":                                      39,
-		"intersight_asset_subscription_account":                              40,
-		"intersight_asset_subscription_device_contract_information":          41,
-		"intersight_asset_target":                                            42,
-		"intersight_bios_boot_device":                                        43,
-		"intersight_bios_boot_mode":                                          44,
-		"intersight_bios_policy":                                             45,
-		"intersight_bios_system_boot_order":                                  46,
-		"intersight_bios_token_settings":                                     47,
-		"intersight_bios_unit":                                               48,
-		"intersight_bios_vf_select_memory_ras_configuration":                 49,
-		"intersight_boot_cdd_device":                                         50,
-		"intersight_boot_device_boot_mode":                                   51,
-		"intersight_boot_device_boot_security":                               52,
-		"intersight_boot_hdd_device":                                         53,
-		"intersight_boot_iscsi_device":                                       54,
-		"intersight_boot_nvme_device":                                        55,
-		"intersight_boot_pch_storage_device":                                 56,
-		"intersight_boot_precision_policy":                                   57,
-		"intersight_boot_pxe_device":                                         58,
-		"intersight_boot_san_device":                                         59,
-		"intersight_boot_sd_device":                                          60,
-		"intersight_boot_uefi_shell_device":                                  61,
-		"intersight_boot_usb_device":                                         62,
-		"intersight_boot_vmedia_device":                                      63,
-		"intersight_capability_adapter_unit_descriptor":                      64,
-		"intersight_capability_catalog":                                      65,
-		"intersight_capability_chassis_descriptor":                           66,
-		"intersight_capability_chassis_manufacturing_def":                    67,
-		"intersight_capability_cimc_firmware_descriptor":                     68,
-		"intersight_capability_equipment_physical_def":                       69,
-		"intersight_capability_equipment_slot_array":                         70,
-		"intersight_capability_fan_module_descriptor":                        71,
-		"intersight_capability_fan_module_manufacturing_def":                 72,
-		"intersight_capability_io_card_capability_def":                       73,
-		"intersight_capability_io_card_descriptor":                           74,
-		"intersight_capability_io_card_manufacturing_def":                    75,
-		"intersight_capability_port_group_aggregation_def":                   76,
-		"intersight_capability_psu_descriptor":                               77,
-		"intersight_capability_psu_manufacturing_def":                        78,
-		"intersight_capability_server_schema_descriptor":                     79,
-		"intersight_capability_sioc_module_capability_def":                   80,
-		"intersight_capability_sioc_module_descriptor":                       81,
-		"intersight_capability_sioc_module_manufacturing_def":                82,
-		"intersight_capability_switch_capability":                            83,
-		"intersight_capability_switch_descriptor":                            84,
-		"intersight_capability_switch_manufacturing_def":                     85,
-		"intersight_certificatemanagement_policy":                            86,
-		"intersight_chassis_config_change_detail":                            87,
-		"intersight_chassis_config_import":                                   88,
-		"intersight_chassis_config_result":                                   89,
-		"intersight_chassis_config_result_entry":                             90,
-		"intersight_chassis_iom_profile":                                     91,
-		"intersight_chassis_profile":                                         92,
-		"intersight_cloud_aws_billing_unit":                                  93,
-		"intersight_cloud_aws_key_pair":                                      94,
-		"intersight_cloud_aws_network_interface":                             95,
-		"intersight_cloud_aws_organizational_unit":                           96,
-		"intersight_cloud_aws_security_group":                                97,
-		"intersight_cloud_aws_subnet":                                        98,
-		"intersight_cloud_aws_virtual_machine":                               99,
-		"intersight_cloud_aws_volume":                                        100,
-		"intersight_cloud_aws_vpc":                                           101,
-		"intersight_cloud_regions":                                           102,
-		"intersight_cloud_sku_container_type":                                103,
-		"intersight_cloud_sku_database_type":                                 104,
-		"intersight_cloud_sku_instance_type":                                 105,
-		"intersight_cloud_sku_network_type":                                  106,
-		"intersight_cloud_sku_volume_type":                                   107,
-		"intersight_cloud_tfc_agentpool":                                     108,
-		"intersight_cloud_tfc_organization":                                  109,
-		"intersight_cloud_tfc_workspace":                                     110,
-		"intersight_comm_http_proxy_policy":                                  111,
-		"intersight_compute_blade":                                           112,
-		"intersight_compute_blade_identity":                                  113,
-		"intersight_compute_board":                                           114,
-		"intersight_compute_mapping":                                         115,
-		"intersight_compute_physical_summary":                                116,
-		"intersight_compute_rack_unit":                                       117,
-		"intersight_compute_rack_unit_identity":                              118,
-		"intersight_compute_server_setting":                                  119,
-		"intersight_compute_vmedia":                                          120,
-		"intersight_cond_alarm":                                              121,
-		"intersight_cond_alarm_aggregation":                                  122,
-		"intersight_cond_hcl_status":                                         123,
-		"intersight_cond_hcl_status_detail":                                  124,
-		"intersight_cond_hcl_status_job":                                     125,
-		"intersight_config_exported_item":                                    126,
-		"intersight_config_exporter":                                         127,
-		"intersight_config_imported_item":                                    128,
-		"intersight_config_importer":                                         129,
-		"intersight_connectorpack_connector_pack_upgrade":                    130,
-		"intersight_connectorpack_upgrade_impact":                            131,
-		"intersight_crd_custom_resource":                                     132,
-		"intersight_deviceconnector_policy":                                  133,
-		"intersight_equipment_chassis":                                       134,
-		"intersight_equipment_chassis_identity":                              135,
-		"intersight_equipment_chassis_operation":                             136,
-		"intersight_equipment_device_summary":                                137,
-		"intersight_equipment_fan":                                           138,
-		"intersight_equipment_fan_control":                                   139,
-		"intersight_equipment_fan_module":                                    140,
-		"intersight_equipment_fex":                                           141,
-		"intersight_equipment_fex_identity":                                  142,
-		"intersight_equipment_fex_operation":                                 143,
-		"intersight_equipment_fru":                                           144,
-		"intersight_equipment_identity_summary":                              145,
-		"intersight_equipment_io_card":                                       146,
-		"intersight_equipment_io_card_operation":                             147,
-		"intersight_equipment_io_expander":                                   148,
-		"intersight_equipment_locator_led":                                   149,
-		"intersight_equipment_psu":                                           150,
-		"intersight_equipment_psu_control":                                   151,
-		"intersight_equipment_rack_enclosure":                                152,
-		"intersight_equipment_rack_enclosure_slot":                           153,
-		"intersight_equipment_shared_io_module":                              154,
-		"intersight_equipment_switch_card":                                   155,
-		"intersight_equipment_system_io_controller":                          156,
-		"intersight_equipment_tpm":                                           157,
-		"intersight_equipment_transceiver":                                   158,
-		"intersight_ether_host_port":                                         159,
-		"intersight_ether_network_port":                                      160,
-		"intersight_ether_physical_port":                                     161,
-		"intersight_ether_port_channel":                                      162,
-		"intersight_externalsite_authorization":                              163,
-		"intersight_fabric_appliance_pc_role":                                164,
-		"intersight_fabric_appliance_role":                                   165,
-		"intersight_fabric_config_change_detail":                             166,
-		"intersight_fabric_config_result":                                    167,
-		"intersight_fabric_config_result_entry":                              168,
-		"intersight_fabric_element_identity":                                 169,
-		"intersight_fabric_eth_network_control_policy":                       170,
-		"intersight_fabric_eth_network_group_policy":                         171,
-		"intersight_fabric_eth_network_policy":                               172,
-		"intersight_fabric_fc_network_policy":                                173,
-		"intersight_fabric_fc_uplink_pc_role":                                174,
-		"intersight_fabric_fc_uplink_role":                                   175,
-		"intersight_fabric_fcoe_uplink_pc_role":                              176,
-		"intersight_fabric_fcoe_uplink_role":                                 177,
-		"intersight_fabric_flow_control_policy":                              178,
-		"intersight_fabric_link_aggregation_policy":                          179,
-		"intersight_fabric_link_control_policy":                              180,
-		"intersight_fabric_multicast_policy":                                 181,
-		"intersight_fabric_pc_member":                                        182,
-		"intersight_fabric_pc_operation":                                     183,
-		"intersight_fabric_port_mode":                                        184,
-		"intersight_fabric_port_operation":                                   185,
-		"intersight_fabric_port_policy":                                      186,
-		"intersight_fabric_server_role":                                      187,
-		"intersight_fabric_switch_cluster_profile":                           188,
-		"intersight_fabric_switch_control_policy":                            189,
-		"intersight_fabric_switch_profile":                                   190,
-		"intersight_fabric_system_qos_policy":                                191,
-		"intersight_fabric_uplink_pc_role":                                   192,
-		"intersight_fabric_uplink_role":                                      193,
-		"intersight_fabric_vlan":                                             194,
-		"intersight_fabric_vsan":                                             195,
-		"intersight_fault_instance":                                          196,
-		"intersight_fc_physical_port":                                        197,
-		"intersight_fc_port_channel":                                         198,
-		"intersight_fcpool_fc_block":                                         199,
-		"intersight_fcpool_lease":                                            200,
-		"intersight_fcpool_pool":                                             201,
-		"intersight_fcpool_pool_member":                                      202,
-		"intersight_fcpool_universe":                                         203,
-		"intersight_firmware_bios_descriptor":                                204,
-		"intersight_firmware_board_controller_descriptor":                    205,
-		"intersight_firmware_chassis_upgrade":                                206,
-		"intersight_firmware_cimc_descriptor":                                207,
-		"intersight_firmware_dimm_descriptor":                                208,
-		"intersight_firmware_distributable":                                  209,
-		"intersight_firmware_distributable_meta":                             210,
-		"intersight_firmware_drive_descriptor":                               211,
-		"intersight_firmware_driver_distributable":                           212,
-		"intersight_firmware_eula":                                           213,
-		"intersight_firmware_firmware_summary":                               214,
-		"intersight_firmware_gpu_descriptor":                                 215,
-		"intersight_firmware_hba_descriptor":                                 216,
-		"intersight_firmware_iom_descriptor":                                 217,
-		"intersight_firmware_mswitch_descriptor":                             218,
-		"intersight_firmware_nxos_descriptor":                                219,
-		"intersight_firmware_pcie_descriptor":                                220,
-		"intersight_firmware_psu_descriptor":                                 221,
-		"intersight_firmware_running_firmware":                               222,
-		"intersight_firmware_sas_expander_descriptor":                        223,
-		"intersight_firmware_server_configuration_utility_distributable":     224,
-		"intersight_firmware_storage_controller_descriptor":                  225,
-		"intersight_firmware_switch_upgrade":                                 226,
-		"intersight_firmware_unsupported_version_upgrade":                    227,
-		"intersight_firmware_upgrade":                                        228,
-		"intersight_firmware_upgrade_impact_status":                          229,
-		"intersight_firmware_upgrade_status":                                 230,
-		"intersight_forecast_catalog":                                        231,
-		"intersight_forecast_definition":                                     232,
-		"intersight_forecast_instance":                                       233,
-		"intersight_graphics_card":                                           234,
-		"intersight_graphics_controller":                                     235,
-		"intersight_hcl_driver_image":                                        236,
-		"intersight_hcl_exempted_catalog":                                    237,
-		"intersight_hcl_hyperflex_software_compatibility_info":               238,
-		"intersight_hcl_operating_system":                                    239,
-		"intersight_hcl_operating_system_vendor":                             240,
-		"intersight_hyperflex_alarm":                                         241,
-		"intersight_hyperflex_app_catalog":                                   242,
-		"intersight_hyperflex_auto_support_policy":                           243,
-		"intersight_hyperflex_backup_cluster":                                244,
-		"intersight_hyperflex_capability_info":                               245,
-		"intersight_hyperflex_cisco_hypervisor_manager":                      246,
-		"intersight_hyperflex_cluster":                                       247,
-		"intersight_hyperflex_cluster_backup_policy":                         248,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              249,
-		"intersight_hyperflex_cluster_health_check_execution_snapshot":       250,
-		"intersight_hyperflex_cluster_network_policy":                        251,
-		"intersight_hyperflex_cluster_profile":                               252,
-		"intersight_hyperflex_cluster_replication_network_policy":            253,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 254,
-		"intersight_hyperflex_cluster_storage_policy":                        255,
-		"intersight_hyperflex_config_result":                                 256,
-		"intersight_hyperflex_config_result_entry":                           257,
-		"intersight_hyperflex_data_protection_peer":                          258,
-		"intersight_hyperflex_datastore_statistic":                           259,
-		"intersight_hyperflex_device_package_download_state":                 260,
-		"intersight_hyperflex_drive":                                         261,
-		"intersight_hyperflex_ext_fc_storage_policy":                         262,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      263,
-		"intersight_hyperflex_feature_limit_external":                        264,
-		"intersight_hyperflex_feature_limit_internal":                        265,
-		"intersight_hyperflex_health":                                        266,
-		"intersight_hyperflex_health_check_definition":                       267,
-		"intersight_hyperflex_health_check_execution":                        268,
-		"intersight_hyperflex_health_check_execution_snapshot":               269,
-		"intersight_hyperflex_health_check_package_checksum":                 270,
-		"intersight_hyperflex_hxap_cluster":                                  271,
-		"intersight_hyperflex_hxap_datacenter":                               272,
-		"intersight_hyperflex_hxap_dv_uplink":                                273,
-		"intersight_hyperflex_hxap_dvswitch":                                 274,
-		"intersight_hyperflex_hxap_host":                                     275,
-		"intersight_hyperflex_hxap_host_interface":                           276,
-		"intersight_hyperflex_hxap_host_vswitch":                             277,
-		"intersight_hyperflex_hxap_network":                                  278,
-		"intersight_hyperflex_hxap_virtual_disk":                             279,
-		"intersight_hyperflex_hxap_virtual_machine":                          280,
-		"intersight_hyperflex_hxap_virtual_machine_network_interface":        281,
-		"intersight_hyperflex_hxdp_version":                                  282,
-		"intersight_hyperflex_license":                                       283,
-		"intersight_hyperflex_local_credential_policy":                       284,
-		"intersight_hyperflex_node":                                          285,
-		"intersight_hyperflex_node_config_policy":                            286,
-		"intersight_hyperflex_node_profile":                                  287,
-		"intersight_hyperflex_proxy_setting_policy":                          288,
-		"intersight_hyperflex_server_firmware_version":                       289,
-		"intersight_hyperflex_server_firmware_version_entry":                 290,
-		"intersight_hyperflex_server_model":                                  291,
-		"intersight_hyperflex_software_distribution_component":               292,
-		"intersight_hyperflex_software_distribution_entry":                   293,
-		"intersight_hyperflex_software_distribution_version":                 294,
-		"intersight_hyperflex_software_version_policy":                       295,
-		"intersight_hyperflex_storage_container":                             296,
-		"intersight_hyperflex_sys_config_policy":                             297,
-		"intersight_hyperflex_ucsm_config_policy":                            298,
-		"intersight_hyperflex_vcenter_config_policy":                         299,
-		"intersight_hyperflex_vm_backup_info":                                300,
-		"intersight_hyperflex_vm_import_operation":                           301,
-		"intersight_hyperflex_vm_restore_operation":                          302,
-		"intersight_hyperflex_vm_snapshot_info":                              303,
-		"intersight_hyperflex_volume":                                        304,
-		"intersight_hyperflex_witness_configuration":                         305,
-		"intersight_iaas_connector_pack":                                     306,
-		"intersight_iaas_device_status":                                      307,
-		"intersight_iaas_diagnostic_messages":                                308,
-		"intersight_iaas_license_info":                                       309,
-		"intersight_iaas_most_run_tasks":                                     310,
-		"intersight_iaas_service_request":                                    311,
-		"intersight_iaas_ucsd_info":                                          312,
-		"intersight_iaas_ucsd_managed_infra":                                 313,
-		"intersight_iaas_ucsd_messages":                                      314,
-		"intersight_iam_account":                                             315,
-		"intersight_iam_account_experience":                                  316,
-		"intersight_iam_api_key":                                             317,
-		"intersight_iam_app_registration":                                    318,
-		"intersight_iam_banner_message":                                      319,
-		"intersight_iam_certificate":                                         320,
-		"intersight_iam_certificate_request":                                 321,
-		"intersight_iam_domain_group":                                        322,
-		"intersight_iam_end_point_privilege":                                 323,
-		"intersight_iam_end_point_role":                                      324,
-		"intersight_iam_end_point_user":                                      325,
-		"intersight_iam_end_point_user_policy":                               326,
-		"intersight_iam_end_point_user_role":                                 327,
-		"intersight_iam_idp":                                                 328,
-		"intersight_iam_idp_reference":                                       329,
-		"intersight_iam_ip_access_management":                                330,
-		"intersight_iam_ip_address":                                          331,
-		"intersight_iam_ldap_group":                                          332,
-		"intersight_iam_ldap_policy":                                         333,
-		"intersight_iam_ldap_provider":                                       334,
-		"intersight_iam_local_user_password_policy":                          335,
-		"intersight_iam_o_auth_token":                                        336,
-		"intersight_iam_permission":                                          337,
-		"intersight_iam_private_key_spec":                                    338,
-		"intersight_iam_privilege":                                           339,
-		"intersight_iam_privilege_set":                                       340,
-		"intersight_iam_qualifier":                                           341,
-		"intersight_iam_resource_limits":                                     342,
-		"intersight_iam_resource_permission":                                 343,
-		"intersight_iam_resource_roles":                                      344,
-		"intersight_iam_role":                                                345,
-		"intersight_iam_security_holder":                                     346,
-		"intersight_iam_service_provider":                                    347,
-		"intersight_iam_session":                                             348,
-		"intersight_iam_session_limits":                                      349,
-		"intersight_iam_system":                                              350,
-		"intersight_iam_trust_point":                                         351,
-		"intersight_iam_user":                                                352,
-		"intersight_iam_user_group":                                          353,
-		"intersight_iam_user_preference":                                     354,
-		"intersight_inventory_device_info":                                   355,
-		"intersight_inventory_dn_mo_binding":                                 356,
-		"intersight_inventory_generic_inventory":                             357,
-		"intersight_inventory_generic_inventory_holder":                      358,
-		"intersight_ipmioverlan_policy":                                      359,
-		"intersight_ippool_block_lease":                                      360,
-		"intersight_ippool_ip_lease":                                         361,
-		"intersight_ippool_pool":                                             362,
-		"intersight_ippool_pool_member":                                      363,
-		"intersight_ippool_shadow_block":                                     364,
-		"intersight_ippool_shadow_pool":                                      365,
-		"intersight_ippool_universe":                                         366,
-		"intersight_iqnpool_block":                                           367,
-		"intersight_iqnpool_lease":                                           368,
-		"intersight_iqnpool_pool":                                            369,
-		"intersight_iqnpool_pool_member":                                     370,
-		"intersight_iqnpool_universe":                                        371,
-		"intersight_iwotenant_tenant_status":                                 372,
-		"intersight_kubernetes_aci_cni_apic":                                 373,
-		"intersight_kubernetes_aci_cni_profile":                              374,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            375,
-		"intersight_kubernetes_addon_definition":                             376,
-		"intersight_kubernetes_addon_policy":                                 377,
-		"intersight_kubernetes_addon_repository":                             378,
-		"intersight_kubernetes_catalog":                                      379,
-		"intersight_kubernetes_cluster":                                      380,
-		"intersight_kubernetes_cluster_addon_profile":                        381,
-		"intersight_kubernetes_cluster_profile":                              382,
-		"intersight_kubernetes_config_result":                                383,
-		"intersight_kubernetes_config_result_entry":                          384,
-		"intersight_kubernetes_container_runtime_policy":                     385,
-		"intersight_kubernetes_daemon_set":                                   386,
-		"intersight_kubernetes_deployment":                                   387,
-		"intersight_kubernetes_ingress":                                      388,
-		"intersight_kubernetes_network_policy":                               389,
-		"intersight_kubernetes_node":                                         390,
-		"intersight_kubernetes_node_group_profile":                           391,
-		"intersight_kubernetes_pod":                                          392,
-		"intersight_kubernetes_service":                                      393,
-		"intersight_kubernetes_stateful_set":                                 394,
-		"intersight_kubernetes_sys_config_policy":                            395,
-		"intersight_kubernetes_trusted_registries_policy":                    396,
-		"intersight_kubernetes_version":                                      397,
-		"intersight_kubernetes_version_policy":                               398,
-		"intersight_kubernetes_virtual_machine_infra_config_policy":          399,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      400,
-		"intersight_kubernetes_virtual_machine_instance_type":                401,
-		"intersight_kubernetes_virtual_machine_node_profile":                 402,
-		"intersight_kvm_policy":                                              403,
-		"intersight_kvm_session":                                             404,
-		"intersight_kvm_tunnel":                                              405,
-		"intersight_kvm_vm_console":                                          406,
-		"intersight_license_account_license_data":                            407,
-		"intersight_license_customer_op":                                     408,
-		"intersight_license_iwo_customer_op":                                 409,
-		"intersight_license_iwo_license_count":                               410,
-		"intersight_license_license_info":                                    411,
-		"intersight_license_license_reservation_op":                          412,
-		"intersight_license_smartlicense_token":                              413,
-		"intersight_ls_service_profile":                                      414,
-		"intersight_macpool_id_block":                                        415,
-		"intersight_macpool_lease":                                           416,
-		"intersight_macpool_pool":                                            417,
-		"intersight_macpool_pool_member":                                     418,
-		"intersight_macpool_universe":                                        419,
-		"intersight_management_controller":                                   420,
-		"intersight_management_entity":                                       421,
-		"intersight_management_interface":                                    422,
-		"intersight_memory_array":                                            423,
-		"intersight_memory_persistent_memory_config_result":                  424,
-		"intersight_memory_persistent_memory_configuration":                  425,
-		"intersight_memory_persistent_memory_namespace":                      426,
-		"intersight_memory_persistent_memory_namespace_config_result":        427,
-		"intersight_memory_persistent_memory_policy":                         428,
-		"intersight_memory_persistent_memory_region":                         429,
-		"intersight_memory_persistent_memory_unit":                           430,
-		"intersight_memory_unit":                                             431,
-		"intersight_meta_definition":                                         432,
-		"intersight_network_element":                                         433,
-		"intersight_network_element_summary":                                 434,
-		"intersight_network_fc_zone_info":                                    435,
-		"intersight_network_vlan_port_info":                                  436,
-		"intersight_networkconfig_policy":                                    437,
-		"intersight_niaapi_apic_cco_post":                                    438,
-		"intersight_niaapi_apic_field_notice":                                439,
-		"intersight_niaapi_apic_hweol":                                       440,
-		"intersight_niaapi_apic_latest_maintained_release":                   441,
-		"intersight_niaapi_apic_release_recommend":                           442,
-		"intersight_niaapi_apic_sweol":                                       443,
-		"intersight_niaapi_dcnm_cco_post":                                    444,
-		"intersight_niaapi_dcnm_field_notice":                                445,
-		"intersight_niaapi_dcnm_hweol":                                       446,
-		"intersight_niaapi_dcnm_latest_maintained_release":                   447,
-		"intersight_niaapi_dcnm_release_recommend":                           448,
-		"intersight_niaapi_dcnm_sweol":                                       449,
-		"intersight_niaapi_file_downloader":                                  450,
-		"intersight_niaapi_nia_metadata":                                     451,
-		"intersight_niaapi_nib_file_downloader":                              452,
-		"intersight_niaapi_nib_metadata":                                     453,
-		"intersight_niaapi_version_regex":                                    454,
-		"intersight_niatelemetry_aaa_ldap_provider_details":                  455,
-		"intersight_niatelemetry_aaa_radius_provider_details":                456,
-		"intersight_niatelemetry_aaa_tacacs_provider_details":                457,
-		"intersight_niatelemetry_apic_core_file_details":                     458,
-		"intersight_niatelemetry_apic_dbgexp_rs_export_dest":                 459,
-		"intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler":                460,
-		"intersight_niatelemetry_apic_fan_details":                           461,
-		"intersight_niatelemetry_apic_fex_details":                           462,
-		"intersight_niatelemetry_apic_flash_details":                         463,
-		"intersight_niatelemetry_apic_ntp_auth":                              464,
-		"intersight_niatelemetry_apic_psu_details":                           465,
-		"intersight_niatelemetry_apic_realm_details":                         466,
-		"intersight_niatelemetry_apic_snmp_community_access_details":         467,
-		"intersight_niatelemetry_apic_snmp_community_details":                468,
-		"intersight_niatelemetry_apic_snmp_trap_details":                     469,
-		"intersight_niatelemetry_apic_snmp_version_three_details":            470,
-		"intersight_niatelemetry_apic_sys_log_grp":                           471,
-		"intersight_niatelemetry_apic_sys_log_src":                           472,
-		"intersight_niatelemetry_apic_transceiver_details":                   473,
-		"intersight_niatelemetry_apic_ui_page_counts":                        474,
-		"intersight_niatelemetry_app_details":                                475,
-		"intersight_niatelemetry_dcnm_fan_details":                           476,
-		"intersight_niatelemetry_dcnm_fex_details":                           477,
-		"intersight_niatelemetry_dcnm_module_details":                        478,
-		"intersight_niatelemetry_dcnm_psu_details":                           479,
-		"intersight_niatelemetry_dcnm_transceiver_details":                   480,
-		"intersight_niatelemetry_epg":                                        481,
-		"intersight_niatelemetry_fabric_module_details":                      482,
-		"intersight_niatelemetry_fault":                                      483,
-		"intersight_niatelemetry_https_acl_contract_details":                 484,
-		"intersight_niatelemetry_https_acl_contract_filter_map":              485,
-		"intersight_niatelemetry_https_acl_epg_contract_map":                 486,
-		"intersight_niatelemetry_https_acl_epg_details":                      487,
-		"intersight_niatelemetry_https_acl_filter_details":                   488,
-		"intersight_niatelemetry_lc":                                         489,
-		"intersight_niatelemetry_mso_contract_details":                       490,
-		"intersight_niatelemetry_mso_epg_details":                            491,
-		"intersight_niatelemetry_mso_schema_details":                         492,
-		"intersight_niatelemetry_mso_site_details":                           493,
-		"intersight_niatelemetry_mso_tenant_details":                         494,
-		"intersight_niatelemetry_nexus_dashboard_controller_details":         495,
-		"intersight_niatelemetry_nexus_dashboard_details":                    496,
-		"intersight_niatelemetry_nexus_dashboard_memory_details":             497,
-		"intersight_niatelemetry_nexus_dashboards":                           498,
-		"intersight_niatelemetry_nia_feature_usage":                          499,
-		"intersight_niatelemetry_nia_inventory":                              500,
-		"intersight_niatelemetry_nia_inventory_dcnm":                         501,
-		"intersight_niatelemetry_nia_inventory_fabric":                       502,
-		"intersight_niatelemetry_nia_license_state":                          503,
-		"intersight_niatelemetry_password_strength_check":                    504,
-		"intersight_niatelemetry_site_inventory":                             505,
-		"intersight_niatelemetry_ssh_version_two":                            506,
-		"intersight_niatelemetry_supervisor_module_details":                  507,
-		"intersight_niatelemetry_system_controller_details":                  508,
-		"intersight_niatelemetry_tenant":                                     509,
-		"intersight_notification_account_subscription":                       510,
-		"intersight_ntp_policy":                                              511,
-		"intersight_oprs_deployment":                                         512,
-		"intersight_oprs_sync_target_list_message":                           513,
-		"intersight_organization_organization":                               514,
-		"intersight_os_bulk_install_info":                                    515,
-		"intersight_os_catalog":                                              516,
-		"intersight_os_configuration_file":                                   517,
-		"intersight_os_distribution":                                         518,
-		"intersight_os_install":                                              519,
-		"intersight_os_supported_version":                                    520,
-		"intersight_pci_coprocessor_card":                                    521,
-		"intersight_pci_device":                                              522,
-		"intersight_pci_link":                                                523,
-		"intersight_pci_switch":                                              524,
-		"intersight_port_group":                                              525,
-		"intersight_port_mac_binding":                                        526,
-		"intersight_port_sub_group":                                          527,
-		"intersight_power_control_state":                                     528,
-		"intersight_power_policy":                                            529,
-		"intersight_processor_unit":                                          530,
-		"intersight_recommendation_capacity_runway":                          531,
-		"intersight_recommendation_physical_item":                            532,
-		"intersight_recovery_backup_config_policy":                           533,
-		"intersight_recovery_backup_profile":                                 534,
-		"intersight_recovery_config_result":                                  535,
-		"intersight_recovery_config_result_entry":                            536,
-		"intersight_recovery_on_demand_backup":                               537,
-		"intersight_recovery_restore":                                        538,
-		"intersight_recovery_schedule_config_policy":                         539,
-		"intersight_resource_group":                                          540,
-		"intersight_resource_group_member":                                   541,
-		"intersight_resource_license_resource_count":                         542,
-		"intersight_resource_membership":                                     543,
-		"intersight_resource_membership_holder":                              544,
-		"intersight_sdcard_policy":                                           545,
-		"intersight_sdwan_profile":                                           546,
-		"intersight_sdwan_router_node":                                       547,
-		"intersight_sdwan_router_policy":                                     548,
-		"intersight_sdwan_vmanage_account_policy":                            549,
-		"intersight_search_search_item":                                      550,
-		"intersight_search_tag_item":                                         551,
-		"intersight_security_unit":                                           552,
-		"intersight_server_config_change_detail":                             553,
-		"intersight_server_config_import":                                    554,
-		"intersight_server_config_result":                                    555,
-		"intersight_server_config_result_entry":                              556,
-		"intersight_server_profile":                                          557,
-		"intersight_server_profile_template":                                 558,
-		"intersight_smtp_policy":                                             559,
-		"intersight_snmp_policy":                                             560,
-		"intersight_software_appliance_distributable":                        561,
-		"intersight_software_download_history":                               562,
-		"intersight_software_hcl_meta":                                       563,
-		"intersight_software_hyperflex_bundle_distributable":                 564,
-		"intersight_software_hyperflex_distributable":                        565,
-		"intersight_software_release_meta":                                   566,
-		"intersight_software_solution_distributable":                         567,
-		"intersight_software_ucsd_bundle_distributable":                      568,
-		"intersight_software_ucsd_distributable":                             569,
-		"intersight_softwarerepository_authorization":                        570,
-		"intersight_softwarerepository_cached_image":                         571,
-		"intersight_softwarerepository_catalog":                              572,
-		"intersight_softwarerepository_category_mapper":                      573,
-		"intersight_softwarerepository_category_mapper_model":                574,
-		"intersight_softwarerepository_category_support_constraint":          575,
-		"intersight_softwarerepository_download_spec":                        576,
-		"intersight_softwarerepository_operating_system_file":                577,
-		"intersight_softwarerepository_release":                              578,
-		"intersight_sol_policy":                                              579,
-		"intersight_ssh_policy":                                              580,
-		"intersight_storage_controller":                                      581,
-		"intersight_storage_disk_group":                                      582,
-		"intersight_storage_disk_slot":                                       583,
-		"intersight_storage_drive_group":                                     584,
-		"intersight_storage_enclosure":                                       585,
-		"intersight_storage_enclosure_disk":                                  586,
-		"intersight_storage_enclosure_disk_slot_ep":                          587,
-		"intersight_storage_flex_flash_controller":                           588,
-		"intersight_storage_flex_flash_controller_props":                     589,
-		"intersight_storage_flex_flash_physical_drive":                       590,
-		"intersight_storage_flex_flash_virtual_drive":                        591,
-		"intersight_storage_flex_util_controller":                            592,
-		"intersight_storage_flex_util_physical_drive":                        593,
-		"intersight_storage_flex_util_virtual_drive":                         594,
-		"intersight_storage_hitachi_array":                                   595,
-		"intersight_storage_hitachi_controller":                              596,
-		"intersight_storage_hitachi_disk":                                    597,
-		"intersight_storage_hitachi_host":                                    598,
-		"intersight_storage_hitachi_host_lun":                                599,
-		"intersight_storage_hitachi_parity_group":                            600,
-		"intersight_storage_hitachi_pool":                                    601,
-		"intersight_storage_hitachi_port":                                    602,
-		"intersight_storage_hitachi_volume":                                  603,
-		"intersight_storage_hyper_flex_storage_container":                    604,
-		"intersight_storage_hyper_flex_volume":                               605,
-		"intersight_storage_item":                                            606,
-		"intersight_storage_net_app_aggregate":                               607,
-		"intersight_storage_net_app_base_disk":                               608,
-		"intersight_storage_net_app_cluster":                                 609,
-		"intersight_storage_net_app_ethernet_port":                           610,
-		"intersight_storage_net_app_export_policy":                           611,
-		"intersight_storage_net_app_fc_interface":                            612,
-		"intersight_storage_net_app_fc_port":                                 613,
-		"intersight_storage_net_app_initiator_group":                         614,
-		"intersight_storage_net_app_ip_interface":                            615,
-		"intersight_storage_net_app_license":                                 616,
-		"intersight_storage_net_app_lun":                                     617,
-		"intersight_storage_net_app_lun_map":                                 618,
-		"intersight_storage_net_app_node":                                    619,
-		"intersight_storage_net_app_storage_vm":                              620,
-		"intersight_storage_net_app_volume":                                  621,
-		"intersight_storage_net_app_volume_snapshot":                         622,
-		"intersight_storage_physical_disk":                                   623,
-		"intersight_storage_physical_disk_extension":                         624,
-		"intersight_storage_physical_disk_usage":                             625,
-		"intersight_storage_pure_array":                                      626,
-		"intersight_storage_pure_controller":                                 627,
-		"intersight_storage_pure_disk":                                       628,
-		"intersight_storage_pure_host":                                       629,
-		"intersight_storage_pure_host_group":                                 630,
-		"intersight_storage_pure_host_lun":                                   631,
-		"intersight_storage_pure_port":                                       632,
-		"intersight_storage_pure_protection_group":                           633,
-		"intersight_storage_pure_protection_group_snapshot":                  634,
-		"intersight_storage_pure_replication_schedule":                       635,
-		"intersight_storage_pure_snapshot_schedule":                          636,
-		"intersight_storage_pure_volume":                                     637,
-		"intersight_storage_pure_volume_snapshot":                            638,
-		"intersight_storage_sas_expander":                                    639,
-		"intersight_storage_sas_port":                                        640,
-		"intersight_storage_span":                                            641,
-		"intersight_storage_storage_policy":                                  642,
-		"intersight_storage_vd_member_ep":                                    643,
-		"intersight_storage_virtual_drive":                                   644,
-		"intersight_storage_virtual_drive_container":                         645,
-		"intersight_storage_virtual_drive_extension":                         646,
-		"intersight_storage_virtual_drive_identity":                          647,
-		"intersight_syslog_policy":                                           648,
-		"intersight_tam_advisory_count":                                      649,
-		"intersight_tam_advisory_definition":                                 650,
-		"intersight_tam_advisory_info":                                       651,
-		"intersight_tam_advisory_instance":                                   652,
-		"intersight_tam_security_advisory":                                   653,
-		"intersight_techsupportmanagement_collection_control_policy":         654,
-		"intersight_techsupportmanagement_download":                          655,
-		"intersight_techsupportmanagement_tech_support_bundle":               656,
-		"intersight_techsupportmanagement_tech_support_status":               657,
-		"intersight_terminal_audit_log":                                      658,
-		"intersight_thermal_policy":                                          659,
-		"intersight_top_system":                                              660,
-		"intersight_ucsd_backup_info":                                        661,
-		"intersight_uuidpool_block":                                          662,
-		"intersight_uuidpool_pool":                                           663,
-		"intersight_uuidpool_pool_member":                                    664,
-		"intersight_uuidpool_universe":                                       665,
-		"intersight_uuidpool_uuid_lease":                                     666,
-		"intersight_virtualization_host":                                     667,
-		"intersight_virtualization_virtual_disk":                             668,
-		"intersight_virtualization_virtual_machine":                          669,
-		"intersight_virtualization_vmware_cluster":                           670,
-		"intersight_virtualization_vmware_datacenter":                        671,
-		"intersight_virtualization_vmware_datastore":                         672,
-		"intersight_virtualization_vmware_datastore_cluster":                 673,
-		"intersight_virtualization_vmware_distributed_network":               674,
-		"intersight_virtualization_vmware_distributed_switch":                675,
-		"intersight_virtualization_vmware_folder":                            676,
-		"intersight_virtualization_vmware_host":                              677,
-		"intersight_virtualization_vmware_kernel_network":                    678,
-		"intersight_virtualization_vmware_network":                           679,
-		"intersight_virtualization_vmware_physical_network_interface":        680,
-		"intersight_virtualization_vmware_uplink_port":                       681,
-		"intersight_virtualization_vmware_vcenter":                           682,
-		"intersight_virtualization_vmware_virtual_disk":                      683,
-		"intersight_virtualization_vmware_virtual_machine":                   684,
-		"intersight_virtualization_vmware_virtual_network_interface":         685,
-		"intersight_virtualization_vmware_virtual_switch":                    686,
-		"intersight_vmedia_policy":                                           687,
-		"intersight_vmrc_console":                                            688,
-		"intersight_vnic_eth_adapter_policy":                                 689,
-		"intersight_vnic_eth_if":                                             690,
-		"intersight_vnic_eth_network_policy":                                 691,
-		"intersight_vnic_eth_qos_policy":                                     692,
-		"intersight_vnic_fc_adapter_policy":                                  693,
-		"intersight_vnic_fc_if":                                              694,
-		"intersight_vnic_fc_network_policy":                                  695,
-		"intersight_vnic_fc_qos_policy":                                      696,
-		"intersight_vnic_iscsi_adapter_policy":                               697,
-		"intersight_vnic_iscsi_boot_policy":                                  698,
-		"intersight_vnic_iscsi_static_target_policy":                         699,
-		"intersight_vnic_lan_connectivity_policy":                            700,
-		"intersight_vnic_lcp_status":                                         701,
-		"intersight_vnic_san_connectivity_policy":                            702,
-		"intersight_vnic_scp_status":                                         703,
-		"intersight_vrf_vrf":                                                 704,
-		"intersight_workflow_batch_api_executor":                             705,
-		"intersight_workflow_build_task_meta":                                706,
-		"intersight_workflow_build_task_meta_owner":                          707,
-		"intersight_workflow_catalog":                                        708,
-		"intersight_workflow_custom_data_type_definition":                    709,
-		"intersight_workflow_error_response_handler":                         710,
-		"intersight_workflow_pending_dynamic_workflow_info":                  711,
-		"intersight_workflow_rollback_workflow":                              712,
-		"intersight_workflow_task_debug_log":                                 713,
-		"intersight_workflow_task_definition":                                714,
-		"intersight_workflow_task_info":                                      715,
-		"intersight_workflow_task_metadata":                                  716,
-		"intersight_workflow_template_function_meta":                         717,
-		"intersight_workflow_workflow_definition":                            718,
-		"intersight_workflow_workflow_info":                                  719,
-		"intersight_workflow_workflow_meta":                                  720,
-		"intersight_workflow_workflow_metadata":                              721,
+		"intersight_aaa_retention_config":                                    1,
+		"intersight_aaa_retention_policy":                                    2,
+		"intersight_access_policy":                                           3,
+		"intersight_access_policy_inventory":                                 4,
+		"intersight_adapter_config_policy":                                   5,
+		"intersight_adapter_ext_eth_interface":                               6,
+		"intersight_adapter_host_eth_interface":                              7,
+		"intersight_adapter_host_fc_interface":                               8,
+		"intersight_adapter_host_iscsi_interface":                            9,
+		"intersight_adapter_unit":                                            10,
+		"intersight_adapter_unit_expander":                                   11,
+		"intersight_appliance_app_status":                                    12,
+		"intersight_appliance_auto_rma_policy":                               13,
+		"intersight_appliance_backup":                                        14,
+		"intersight_appliance_backup_policy":                                 15,
+		"intersight_appliance_certificate_setting":                           16,
+		"intersight_appliance_data_export_policy":                            17,
+		"intersight_appliance_device_certificate":                            18,
+		"intersight_appliance_device_claim":                                  19,
+		"intersight_appliance_device_upgrade_policy":                         20,
+		"intersight_appliance_diag_setting":                                  21,
+		"intersight_appliance_external_syslog_setting":                       22,
+		"intersight_appliance_file_gateway":                                  23,
+		"intersight_appliance_file_system_status":                            24,
+		"intersight_appliance_group_status":                                  25,
+		"intersight_appliance_image_bundle":                                  26,
+		"intersight_appliance_node_info":                                     27,
+		"intersight_appliance_node_status":                                   28,
+		"intersight_appliance_release_note":                                  29,
+		"intersight_appliance_remote_file_import":                            30,
+		"intersight_appliance_restore":                                       31,
+		"intersight_appliance_setup_info":                                    32,
+		"intersight_appliance_system_info":                                   33,
+		"intersight_appliance_system_status":                                 34,
+		"intersight_appliance_upgrade":                                       35,
+		"intersight_appliance_upgrade_policy":                                36,
+		"intersight_asset_cluster_member":                                    37,
+		"intersight_asset_deployment":                                        38,
+		"intersight_asset_deployment_device":                                 39,
+		"intersight_asset_device_configuration":                              40,
+		"intersight_asset_device_connector_manager":                          41,
+		"intersight_asset_device_contract_information":                       42,
+		"intersight_asset_device_registration":                               43,
+		"intersight_asset_subscription":                                      44,
+		"intersight_asset_subscription_account":                              45,
+		"intersight_asset_subscription_device_contract_information":          46,
+		"intersight_asset_target":                                            47,
+		"intersight_bios_boot_device":                                        48,
+		"intersight_bios_boot_mode":                                          49,
+		"intersight_bios_policy":                                             50,
+		"intersight_bios_system_boot_order":                                  51,
+		"intersight_bios_token_settings":                                     52,
+		"intersight_bios_unit":                                               53,
+		"intersight_bios_vf_select_memory_ras_configuration":                 54,
+		"intersight_boot_cdd_device":                                         55,
+		"intersight_boot_device_boot_mode":                                   56,
+		"intersight_boot_device_boot_security":                               57,
+		"intersight_boot_hdd_device":                                         58,
+		"intersight_boot_iscsi_device":                                       59,
+		"intersight_boot_nvme_device":                                        60,
+		"intersight_boot_pch_storage_device":                                 61,
+		"intersight_boot_precision_policy":                                   62,
+		"intersight_boot_pxe_device":                                         63,
+		"intersight_boot_san_device":                                         64,
+		"intersight_boot_sd_device":                                          65,
+		"intersight_boot_uefi_shell_device":                                  66,
+		"intersight_boot_usb_device":                                         67,
+		"intersight_boot_vmedia_device":                                      68,
+		"intersight_bulk_export":                                             69,
+		"intersight_bulk_exported_item":                                      70,
+		"intersight_bulk_request":                                            71,
+		"intersight_bulk_sub_request_obj":                                    72,
+		"intersight_capability_adapter_unit_descriptor":                      73,
+		"intersight_capability_catalog":                                      74,
+		"intersight_capability_chassis_descriptor":                           75,
+		"intersight_capability_chassis_manufacturing_def":                    76,
+		"intersight_capability_cimc_firmware_descriptor":                     77,
+		"intersight_capability_equipment_physical_def":                       78,
+		"intersight_capability_equipment_slot_array":                         79,
+		"intersight_capability_fan_module_descriptor":                        80,
+		"intersight_capability_fan_module_manufacturing_def":                 81,
+		"intersight_capability_fex_descriptor":                               82,
+		"intersight_capability_fex_manufacturing_def":                        83,
+		"intersight_capability_io_card_capability_def":                       84,
+		"intersight_capability_io_card_descriptor":                           85,
+		"intersight_capability_io_card_manufacturing_def":                    86,
+		"intersight_capability_port_group_aggregation_def":                   87,
+		"intersight_capability_psu_descriptor":                               88,
+		"intersight_capability_psu_manufacturing_def":                        89,
+		"intersight_capability_server_models_capability_def":                 90,
+		"intersight_capability_server_schema_descriptor":                     91,
+		"intersight_capability_sioc_module_capability_def":                   92,
+		"intersight_capability_sioc_module_descriptor":                       93,
+		"intersight_capability_sioc_module_manufacturing_def":                94,
+		"intersight_capability_switch_capability":                            95,
+		"intersight_capability_switch_descriptor":                            96,
+		"intersight_capability_switch_manufacturing_def":                     97,
+		"intersight_certificatemanagement_policy":                            98,
+		"intersight_certificatemanagement_policy_inventory":                  99,
+		"intersight_chassis_config_change_detail":                            100,
+		"intersight_chassis_config_import":                                   101,
+		"intersight_chassis_config_result":                                   102,
+		"intersight_chassis_config_result_entry":                             103,
+		"intersight_chassis_iom_profile":                                     104,
+		"intersight_chassis_profile":                                         105,
+		"intersight_cloud_aws_billing_unit":                                  106,
+		"intersight_cloud_aws_key_pair":                                      107,
+		"intersight_cloud_aws_network_interface":                             108,
+		"intersight_cloud_aws_organizational_unit":                           109,
+		"intersight_cloud_aws_security_group":                                110,
+		"intersight_cloud_aws_subnet":                                        111,
+		"intersight_cloud_aws_virtual_machine":                               112,
+		"intersight_cloud_aws_volume":                                        113,
+		"intersight_cloud_aws_vpc":                                           114,
+		"intersight_cloud_regions":                                           115,
+		"intersight_cloud_sku_container_type":                                116,
+		"intersight_cloud_sku_database_type":                                 117,
+		"intersight_cloud_sku_instance_type":                                 118,
+		"intersight_cloud_sku_network_type":                                  119,
+		"intersight_cloud_sku_region_rate_cards":                             120,
+		"intersight_cloud_sku_volume_type":                                   121,
+		"intersight_cloud_tfc_agentpool":                                     122,
+		"intersight_cloud_tfc_organization":                                  123,
+		"intersight_cloud_tfc_workspace":                                     124,
+		"intersight_comm_http_proxy_policy":                                  125,
+		"intersight_compute_blade":                                           126,
+		"intersight_compute_blade_identity":                                  127,
+		"intersight_compute_board":                                           128,
+		"intersight_compute_mapping":                                         129,
+		"intersight_compute_physical_summary":                                130,
+		"intersight_compute_rack_unit":                                       131,
+		"intersight_compute_rack_unit_identity":                              132,
+		"intersight_compute_server_power_policy":                             133,
+		"intersight_compute_server_setting":                                  134,
+		"intersight_compute_vmedia":                                          135,
+		"intersight_cond_alarm":                                              136,
+		"intersight_cond_alarm_aggregation":                                  137,
+		"intersight_cond_hcl_status":                                         138,
+		"intersight_cond_hcl_status_detail":                                  139,
+		"intersight_cond_hcl_status_job":                                     140,
+		"intersight_connectorpack_connector_pack_upgrade":                    141,
+		"intersight_connectorpack_upgrade_impact":                            142,
+		"intersight_console_console_config":                                  143,
+		"intersight_convergedinfra_pod":                                      144,
+		"intersight_crd_custom_resource":                                     145,
+		"intersight_deviceconnector_policy":                                  146,
+		"intersight_equipment_chassis":                                       147,
+		"intersight_equipment_chassis_identity":                              148,
+		"intersight_equipment_chassis_operation":                             149,
+		"intersight_equipment_device_summary":                                150,
+		"intersight_equipment_expander_module":                               151,
+		"intersight_equipment_fan":                                           152,
+		"intersight_equipment_fan_control":                                   153,
+		"intersight_equipment_fan_module":                                    154,
+		"intersight_equipment_fex":                                           155,
+		"intersight_equipment_fex_identity":                                  156,
+		"intersight_equipment_fex_operation":                                 157,
+		"intersight_equipment_fru":                                           158,
+		"intersight_equipment_identity_summary":                              159,
+		"intersight_equipment_io_card":                                       160,
+		"intersight_equipment_io_card_operation":                             161,
+		"intersight_equipment_io_expander":                                   162,
+		"intersight_equipment_locator_led":                                   163,
+		"intersight_equipment_psu":                                           164,
+		"intersight_equipment_psu_control":                                   165,
+		"intersight_equipment_rack_enclosure":                                166,
+		"intersight_equipment_rack_enclosure_slot":                           167,
+		"intersight_equipment_shared_io_module":                              168,
+		"intersight_equipment_switch_card":                                   169,
+		"intersight_equipment_system_io_controller":                          170,
+		"intersight_equipment_tpm":                                           171,
+		"intersight_equipment_transceiver":                                   172,
+		"intersight_ether_host_port":                                         173,
+		"intersight_ether_network_port":                                      174,
+		"intersight_ether_physical_port":                                     175,
+		"intersight_ether_port_channel":                                      176,
+		"intersight_externalsite_authorization":                              177,
+		"intersight_fabric_appliance_pc_role":                                178,
+		"intersight_fabric_appliance_role":                                   179,
+		"intersight_fabric_config_change_detail":                             180,
+		"intersight_fabric_config_result":                                    181,
+		"intersight_fabric_config_result_entry":                              182,
+		"intersight_fabric_element_identity":                                 183,
+		"intersight_fabric_eth_network_control_policy":                       184,
+		"intersight_fabric_eth_network_control_policy_inventory":             185,
+		"intersight_fabric_eth_network_group_policy":                         186,
+		"intersight_fabric_eth_network_group_policy_inventory":               187,
+		"intersight_fabric_eth_network_policy":                               188,
+		"intersight_fabric_fc_network_policy":                                189,
+		"intersight_fabric_fc_storage_role":                                  190,
+		"intersight_fabric_fc_uplink_pc_role":                                191,
+		"intersight_fabric_fc_uplink_role":                                   192,
+		"intersight_fabric_fcoe_uplink_pc_role":                              193,
+		"intersight_fabric_fcoe_uplink_role":                                 194,
+		"intersight_fabric_flow_control_policy":                              195,
+		"intersight_fabric_lan_pin_group":                                    196,
+		"intersight_fabric_link_aggregation_policy":                          197,
+		"intersight_fabric_link_control_policy":                              198,
+		"intersight_fabric_multicast_policy":                                 199,
+		"intersight_fabric_pc_member":                                        200,
+		"intersight_fabric_pc_operation":                                     201,
+		"intersight_fabric_port_mode":                                        202,
+		"intersight_fabric_port_operation":                                   203,
+		"intersight_fabric_port_policy":                                      204,
+		"intersight_fabric_san_pin_group":                                    205,
+		"intersight_fabric_server_role":                                      206,
+		"intersight_fabric_switch_cluster_profile":                           207,
+		"intersight_fabric_switch_control_policy":                            208,
+		"intersight_fabric_switch_profile":                                   209,
+		"intersight_fabric_system_qos_policy":                                210,
+		"intersight_fabric_uplink_pc_role":                                   211,
+		"intersight_fabric_uplink_role":                                      212,
+		"intersight_fabric_vlan":                                             213,
+		"intersight_fabric_vsan":                                             214,
+		"intersight_fault_instance":                                          215,
+		"intersight_fc_physical_port":                                        216,
+		"intersight_fc_port_channel":                                         217,
+		"intersight_fcpool_fc_block":                                         218,
+		"intersight_fcpool_lease":                                            219,
+		"intersight_fcpool_pool":                                             220,
+		"intersight_fcpool_pool_member":                                      221,
+		"intersight_fcpool_universe":                                         222,
+		"intersight_firmware_bios_descriptor":                                223,
+		"intersight_firmware_board_controller_descriptor":                    224,
+		"intersight_firmware_chassis_upgrade":                                225,
+		"intersight_firmware_cimc_descriptor":                                226,
+		"intersight_firmware_dimm_descriptor":                                227,
+		"intersight_firmware_distributable":                                  228,
+		"intersight_firmware_distributable_meta":                             229,
+		"intersight_firmware_drive_descriptor":                               230,
+		"intersight_firmware_driver_distributable":                           231,
+		"intersight_firmware_eula":                                           232,
+		"intersight_firmware_firmware_summary":                               233,
+		"intersight_firmware_gpu_descriptor":                                 234,
+		"intersight_firmware_hba_descriptor":                                 235,
+		"intersight_firmware_iom_descriptor":                                 236,
+		"intersight_firmware_mswitch_descriptor":                             237,
+		"intersight_firmware_nxos_descriptor":                                238,
+		"intersight_firmware_pcie_descriptor":                                239,
+		"intersight_firmware_psu_descriptor":                                 240,
+		"intersight_firmware_running_firmware":                               241,
+		"intersight_firmware_sas_expander_descriptor":                        242,
+		"intersight_firmware_server_configuration_utility_distributable":     243,
+		"intersight_firmware_storage_controller_descriptor":                  244,
+		"intersight_firmware_switch_upgrade":                                 245,
+		"intersight_firmware_unsupported_version_upgrade":                    246,
+		"intersight_firmware_upgrade":                                        247,
+		"intersight_firmware_upgrade_impact_status":                          248,
+		"intersight_firmware_upgrade_status":                                 249,
+		"intersight_forecast_catalog":                                        250,
+		"intersight_forecast_definition":                                     251,
+		"intersight_forecast_instance":                                       252,
+		"intersight_graphics_card":                                           253,
+		"intersight_graphics_controller":                                     254,
+		"intersight_hcl_driver_image":                                        255,
+		"intersight_hcl_exempted_catalog":                                    256,
+		"intersight_hcl_hyperflex_software_compatibility_info":               257,
+		"intersight_hcl_operating_system":                                    258,
+		"intersight_hcl_operating_system_vendor":                             259,
+		"intersight_hyperflex_alarm":                                         260,
+		"intersight_hyperflex_app_catalog":                                   261,
+		"intersight_hyperflex_auto_support_policy":                           262,
+		"intersight_hyperflex_backup_cluster":                                263,
+		"intersight_hyperflex_capability_info":                               264,
+		"intersight_hyperflex_cluster":                                       265,
+		"intersight_hyperflex_cluster_backup_policy":                         266,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              267,
+		"intersight_hyperflex_cluster_backup_policy_inventory":               268,
+		"intersight_hyperflex_cluster_health_check_execution_snapshot":       269,
+		"intersight_hyperflex_cluster_network_policy":                        270,
+		"intersight_hyperflex_cluster_profile":                               271,
+		"intersight_hyperflex_cluster_replication_network_policy":            272,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 273,
+		"intersight_hyperflex_cluster_storage_policy":                        274,
+		"intersight_hyperflex_config_result":                                 275,
+		"intersight_hyperflex_config_result_entry":                           276,
+		"intersight_hyperflex_data_protection_peer":                          277,
+		"intersight_hyperflex_datastore_statistic":                           278,
+		"intersight_hyperflex_device_package_download_state":                 279,
+		"intersight_hyperflex_drive":                                         280,
+		"intersight_hyperflex_encryption":                                    281,
+		"intersight_hyperflex_ext_fc_storage_policy":                         282,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      283,
+		"intersight_hyperflex_feature_limit_external":                        284,
+		"intersight_hyperflex_feature_limit_internal":                        285,
+		"intersight_hyperflex_health":                                        286,
+		"intersight_hyperflex_health_check_definition":                       287,
+		"intersight_hyperflex_health_check_execution":                        288,
+		"intersight_hyperflex_health_check_execution_snapshot":               289,
+		"intersight_hyperflex_health_check_package_checksum":                 290,
+		"intersight_hyperflex_hxdp_version":                                  291,
+		"intersight_hyperflex_hypervisor_host":                               292,
+		"intersight_hyperflex_hypervisor_virtual_machine":                    293,
+		"intersight_hyperflex_key_encryption_key":                            294,
+		"intersight_hyperflex_license":                                       295,
+		"intersight_hyperflex_local_credential_policy":                       296,
+		"intersight_hyperflex_node":                                          297,
+		"intersight_hyperflex_node_config_policy":                            298,
+		"intersight_hyperflex_node_profile":                                  299,
+		"intersight_hyperflex_protected_cluster":                             300,
+		"intersight_hyperflex_proxy_setting_policy":                          301,
+		"intersight_hyperflex_server_firmware_version":                       302,
+		"intersight_hyperflex_server_firmware_version_entry":                 303,
+		"intersight_hyperflex_server_model":                                  304,
+		"intersight_hyperflex_service_auth_token":                            305,
+		"intersight_hyperflex_software_distribution_component":               306,
+		"intersight_hyperflex_software_distribution_entry":                   307,
+		"intersight_hyperflex_software_distribution_version":                 308,
+		"intersight_hyperflex_software_version_policy":                       309,
+		"intersight_hyperflex_storage_container":                             310,
+		"intersight_hyperflex_sys_config_policy":                             311,
+		"intersight_hyperflex_ucsm_config_policy":                            312,
+		"intersight_hyperflex_vcenter_config_policy":                         313,
+		"intersight_hyperflex_vm_backup_info":                                314,
+		"intersight_hyperflex_vm_import_operation":                           315,
+		"intersight_hyperflex_vm_restore_operation":                          316,
+		"intersight_hyperflex_vm_snapshot_info":                              317,
+		"intersight_hyperflex_volume":                                        318,
+		"intersight_hyperflex_witness_configuration":                         319,
+		"intersight_iaas_connector_pack":                                     320,
+		"intersight_iaas_custom_task_info":                                   321,
+		"intersight_iaas_device_status":                                      322,
+		"intersight_iaas_diagnostic_messages":                                323,
+		"intersight_iaas_license_info":                                       324,
+		"intersight_iaas_most_run_tasks":                                     325,
+		"intersight_iaas_service_request":                                    326,
+		"intersight_iaas_system_task_info":                                   327,
+		"intersight_iaas_ucsd_info":                                          328,
+		"intersight_iaas_ucsd_managed_infra":                                 329,
+		"intersight_iaas_ucsd_messages":                                      330,
+		"intersight_iam_account":                                             331,
+		"intersight_iam_account_experience":                                  332,
+		"intersight_iam_api_key":                                             333,
+		"intersight_iam_app_registration":                                    334,
+		"intersight_iam_banner_message":                                      335,
+		"intersight_iam_certificate":                                         336,
+		"intersight_iam_certificate_request":                                 337,
+		"intersight_iam_domain_group":                                        338,
+		"intersight_iam_domain_name_info":                                    339,
+		"intersight_iam_end_point_privilege":                                 340,
+		"intersight_iam_end_point_role":                                      341,
+		"intersight_iam_end_point_user":                                      342,
+		"intersight_iam_end_point_user_inventory":                            343,
+		"intersight_iam_end_point_user_policy":                               344,
+		"intersight_iam_end_point_user_policy_inventory":                     345,
+		"intersight_iam_end_point_user_role":                                 346,
+		"intersight_iam_end_point_user_role_inventory":                       347,
+		"intersight_iam_idp":                                                 348,
+		"intersight_iam_idp_reference":                                       349,
+		"intersight_iam_ip_access_management":                                350,
+		"intersight_iam_ip_address":                                          351,
+		"intersight_iam_ldap_group":                                          352,
+		"intersight_iam_ldap_policy":                                         353,
+		"intersight_iam_ldap_provider":                                       354,
+		"intersight_iam_local_user_password_policy":                          355,
+		"intersight_iam_o_auth_token":                                        356,
+		"intersight_iam_permission":                                          357,
+		"intersight_iam_private_key_spec":                                    358,
+		"intersight_iam_privilege":                                           359,
+		"intersight_iam_privilege_set":                                       360,
+		"intersight_iam_qualifier":                                           361,
+		"intersight_iam_resource_limits":                                     362,
+		"intersight_iam_resource_permission":                                 363,
+		"intersight_iam_resource_roles":                                      364,
+		"intersight_iam_role":                                                365,
+		"intersight_iam_security_holder":                                     366,
+		"intersight_iam_service_provider":                                    367,
+		"intersight_iam_session":                                             368,
+		"intersight_iam_session_limits":                                      369,
+		"intersight_iam_system":                                              370,
+		"intersight_iam_trust_point":                                         371,
+		"intersight_iam_user":                                                372,
+		"intersight_iam_user_group":                                          373,
+		"intersight_iam_user_preference":                                     374,
+		"intersight_inventory_device_info":                                   375,
+		"intersight_inventory_dn_mo_binding":                                 376,
+		"intersight_inventory_generic_inventory":                             377,
+		"intersight_inventory_generic_inventory_holder":                      378,
+		"intersight_ipmioverlan_policy":                                      379,
+		"intersight_ipmioverlan_policy_inventory":                            380,
+		"intersight_ippool_block_lease":                                      381,
+		"intersight_ippool_ip_lease":                                         382,
+		"intersight_ippool_pool":                                             383,
+		"intersight_ippool_pool_member":                                      384,
+		"intersight_ippool_shadow_block":                                     385,
+		"intersight_ippool_shadow_pool":                                      386,
+		"intersight_ippool_universe":                                         387,
+		"intersight_iqnpool_block":                                           388,
+		"intersight_iqnpool_lease":                                           389,
+		"intersight_iqnpool_pool":                                            390,
+		"intersight_iqnpool_pool_member":                                     391,
+		"intersight_iqnpool_universe":                                        392,
+		"intersight_iwotenant_tenant_status":                                 393,
+		"intersight_kubernetes_aci_cni_apic":                                 394,
+		"intersight_kubernetes_aci_cni_profile":                              395,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            396,
+		"intersight_kubernetes_addon_definition":                             397,
+		"intersight_kubernetes_addon_policy":                                 398,
+		"intersight_kubernetes_addon_repository":                             399,
+		"intersight_kubernetes_baremetal_node_profile":                       400,
+		"intersight_kubernetes_catalog":                                      401,
+		"intersight_kubernetes_cluster":                                      402,
+		"intersight_kubernetes_cluster_addon_profile":                        403,
+		"intersight_kubernetes_cluster_profile":                              404,
+		"intersight_kubernetes_config_result":                                405,
+		"intersight_kubernetes_config_result_entry":                          406,
+		"intersight_kubernetes_container_runtime_policy":                     407,
+		"intersight_kubernetes_daemon_set":                                   408,
+		"intersight_kubernetes_deployment":                                   409,
+		"intersight_kubernetes_ingress":                                      410,
+		"intersight_kubernetes_network_policy":                               411,
+		"intersight_kubernetes_node":                                         412,
+		"intersight_kubernetes_node_group_profile":                           413,
+		"intersight_kubernetes_pod":                                          414,
+		"intersight_kubernetes_service":                                      415,
+		"intersight_kubernetes_stateful_set":                                 416,
+		"intersight_kubernetes_sys_config_policy":                            417,
+		"intersight_kubernetes_trusted_registries_policy":                    418,
+		"intersight_kubernetes_version":                                      419,
+		"intersight_kubernetes_version_policy":                               420,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          421,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      422,
+		"intersight_kubernetes_virtual_machine_instance_type":                423,
+		"intersight_kubernetes_virtual_machine_node_profile":                 424,
+		"intersight_kvm_policy":                                              425,
+		"intersight_kvm_policy_inventory":                                    426,
+		"intersight_kvm_session":                                             427,
+		"intersight_kvm_tunnel":                                              428,
+		"intersight_kvm_tunneled_kvm_policy":                                 429,
+		"intersight_license_account_license_data":                            430,
+		"intersight_license_customer_op":                                     431,
+		"intersight_license_iks_customer_op":                                 432,
+		"intersight_license_iks_license_count":                               433,
+		"intersight_license_iwo_customer_op":                                 434,
+		"intersight_license_iwo_license_count":                               435,
+		"intersight_license_license_info":                                    436,
+		"intersight_license_license_reservation_op":                          437,
+		"intersight_license_smartlicense_token":                              438,
+		"intersight_ls_service_profile":                                      439,
+		"intersight_macpool_id_block":                                        440,
+		"intersight_macpool_lease":                                           441,
+		"intersight_macpool_pool":                                            442,
+		"intersight_macpool_pool_member":                                     443,
+		"intersight_macpool_universe":                                        444,
+		"intersight_management_controller":                                   445,
+		"intersight_management_entity":                                       446,
+		"intersight_management_interface":                                    447,
+		"intersight_memory_array":                                            448,
+		"intersight_memory_persistent_memory_config_result":                  449,
+		"intersight_memory_persistent_memory_configuration":                  450,
+		"intersight_memory_persistent_memory_namespace":                      451,
+		"intersight_memory_persistent_memory_namespace_config_result":        452,
+		"intersight_memory_persistent_memory_policy":                         453,
+		"intersight_memory_persistent_memory_region":                         454,
+		"intersight_memory_persistent_memory_unit":                           455,
+		"intersight_memory_unit":                                             456,
+		"intersight_meta_definition":                                         457,
+		"intersight_monitoring_health_status":                                458,
+		"intersight_network_element":                                         459,
+		"intersight_network_element_summary":                                 460,
+		"intersight_network_fc_zone_info":                                    461,
+		"intersight_network_feature_control":                                 462,
+		"intersight_network_interface_list":                                  463,
+		"intersight_network_license_file":                                    464,
+		"intersight_network_supervisor_card":                                 465,
+		"intersight_network_vlan_port_info":                                  466,
+		"intersight_network_vrf":                                             467,
+		"intersight_networkconfig_policy":                                    468,
+		"intersight_niaapi_apic_cco_post":                                    469,
+		"intersight_niaapi_apic_field_notice":                                470,
+		"intersight_niaapi_apic_hweol":                                       471,
+		"intersight_niaapi_apic_latest_maintained_release":                   472,
+		"intersight_niaapi_apic_release_recommend":                           473,
+		"intersight_niaapi_apic_sweol":                                       474,
+		"intersight_niaapi_dcnm_cco_post":                                    475,
+		"intersight_niaapi_dcnm_field_notice":                                476,
+		"intersight_niaapi_dcnm_hweol":                                       477,
+		"intersight_niaapi_dcnm_latest_maintained_release":                   478,
+		"intersight_niaapi_dcnm_release_recommend":                           479,
+		"intersight_niaapi_dcnm_sweol":                                       480,
+		"intersight_niaapi_file_downloader":                                  481,
+		"intersight_niaapi_nia_metadata":                                     482,
+		"intersight_niaapi_nib_file_downloader":                              483,
+		"intersight_niaapi_nib_metadata":                                     484,
+		"intersight_niaapi_version_regex":                                    485,
+		"intersight_niatelemetry_aaa_ldap_provider_details":                  486,
+		"intersight_niatelemetry_aaa_radius_provider_details":                487,
+		"intersight_niatelemetry_aaa_tacacs_provider_details":                488,
+		"intersight_niatelemetry_apic_app_plugin_details":                    489,
+		"intersight_niatelemetry_apic_core_file_details":                     490,
+		"intersight_niatelemetry_apic_dbgexp_rs_export_dest":                 491,
+		"intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler":                492,
+		"intersight_niatelemetry_apic_fan_details":                           493,
+		"intersight_niatelemetry_apic_fex_details":                           494,
+		"intersight_niatelemetry_apic_flash_details":                         495,
+		"intersight_niatelemetry_apic_ntp_auth":                              496,
+		"intersight_niatelemetry_apic_psu_details":                           497,
+		"intersight_niatelemetry_apic_realm_details":                         498,
+		"intersight_niatelemetry_apic_snmp_client_grp_details":               499,
+		"intersight_niatelemetry_apic_snmp_community_access_details":         500,
+		"intersight_niatelemetry_apic_snmp_community_details":                501,
+		"intersight_niatelemetry_apic_snmp_trap_details":                     502,
+		"intersight_niatelemetry_apic_snmp_trap_fwd_server_details":          503,
+		"intersight_niatelemetry_apic_snmp_version_three_details":            504,
+		"intersight_niatelemetry_apic_sys_log_grp":                           505,
+		"intersight_niatelemetry_apic_sys_log_src":                           506,
+		"intersight_niatelemetry_apic_transceiver_details":                   507,
+		"intersight_niatelemetry_apic_ui_page_counts":                        508,
+		"intersight_niatelemetry_app_details":                                509,
+		"intersight_niatelemetry_common_policies":                            510,
+		"intersight_niatelemetry_dcnm_fan_details":                           511,
+		"intersight_niatelemetry_dcnm_fex_details":                           512,
+		"intersight_niatelemetry_dcnm_module_details":                        513,
+		"intersight_niatelemetry_dcnm_psu_details":                           514,
+		"intersight_niatelemetry_dcnm_transceiver_details":                   515,
+		"intersight_niatelemetry_epg":                                        516,
+		"intersight_niatelemetry_fabric_module_details":                      517,
+		"intersight_niatelemetry_fabric_node_control_details":                518,
+		"intersight_niatelemetry_fabric_pod_profile":                         519,
+		"intersight_niatelemetry_fabric_pod_ss":                              520,
+		"intersight_niatelemetry_fault":                                      521,
+		"intersight_niatelemetry_https_acl_contract_details":                 522,
+		"intersight_niatelemetry_https_acl_contract_filter_map":              523,
+		"intersight_niatelemetry_https_acl_epg_contract_map":                 524,
+		"intersight_niatelemetry_https_acl_epg_details":                      525,
+		"intersight_niatelemetry_https_acl_filter_details":                   526,
+		"intersight_niatelemetry_insight_group_details":                      527,
+		"intersight_niatelemetry_lc":                                         528,
+		"intersight_niatelemetry_leaf_pol_grp_details":                       529,
+		"intersight_niatelemetry_mso_contract_details":                       530,
+		"intersight_niatelemetry_mso_epg_details":                            531,
+		"intersight_niatelemetry_mso_schema_details":                         532,
+		"intersight_niatelemetry_mso_site_details":                           533,
+		"intersight_niatelemetry_mso_tenant_details":                         534,
+		"intersight_niatelemetry_nexus_dashboard_controller_details":         535,
+		"intersight_niatelemetry_nexus_dashboard_details":                    536,
+		"intersight_niatelemetry_nexus_dashboard_memory_details":             537,
+		"intersight_niatelemetry_nexus_dashboards":                           538,
+		"intersight_niatelemetry_nia_feature_usage":                          539,
+		"intersight_niatelemetry_nia_inventory":                              540,
+		"intersight_niatelemetry_nia_inventory_dcnm":                         541,
+		"intersight_niatelemetry_nia_inventory_fabric":                       542,
+		"intersight_niatelemetry_nia_license_state":                          543,
+		"intersight_niatelemetry_password_strength_check":                    544,
+		"intersight_niatelemetry_pod_comm_policies":                          545,
+		"intersight_niatelemetry_pod_snmp_policies":                          546,
+		"intersight_niatelemetry_pod_time_server_policies":                   547,
+		"intersight_niatelemetry_site_inventory":                             548,
+		"intersight_niatelemetry_snmp_src":                                   549,
+		"intersight_niatelemetry_spine_pol_grp_details":                      550,
+		"intersight_niatelemetry_ssh_version_two":                            551,
+		"intersight_niatelemetry_supervisor_module_details":                  552,
+		"intersight_niatelemetry_syslog_remote_dest":                         553,
+		"intersight_niatelemetry_syslog_sys_msg":                             554,
+		"intersight_niatelemetry_syslog_sys_msg_fac_filter":                  555,
+		"intersight_niatelemetry_system_controller_details":                  556,
+		"intersight_niatelemetry_tenant":                                     557,
+		"intersight_notification_account_subscription":                       558,
+		"intersight_ntp_policy":                                              559,
+		"intersight_oauth_access_token":                                      560,
+		"intersight_oauth_authorization":                                     561,
+		"intersight_oprs_deployment":                                         562,
+		"intersight_oprs_sync_target_list_message":                           563,
+		"intersight_organization_organization":                               564,
+		"intersight_os_bulk_install_info":                                    565,
+		"intersight_os_catalog":                                              566,
+		"intersight_os_configuration_file":                                   567,
+		"intersight_os_distribution":                                         568,
+		"intersight_os_install":                                              569,
+		"intersight_os_supported_version":                                    570,
+		"intersight_pci_coprocessor_card":                                    571,
+		"intersight_pci_device":                                              572,
+		"intersight_pci_link":                                                573,
+		"intersight_pci_switch":                                              574,
+		"intersight_port_group":                                              575,
+		"intersight_port_mac_binding":                                        576,
+		"intersight_port_sub_group":                                          577,
+		"intersight_power_control_state":                                     578,
+		"intersight_power_policy":                                            579,
+		"intersight_power_policy_inventory":                                  580,
+		"intersight_processor_unit":                                          581,
+		"intersight_rack_unit_personality":                                   582,
+		"intersight_recommendation_capacity_runway":                          583,
+		"intersight_recommendation_physical_item":                            584,
+		"intersight_recovery_backup_config_policy":                           585,
+		"intersight_recovery_backup_profile":                                 586,
+		"intersight_recovery_config_result":                                  587,
+		"intersight_recovery_config_result_entry":                            588,
+		"intersight_recovery_on_demand_backup":                               589,
+		"intersight_recovery_restore":                                        590,
+		"intersight_recovery_schedule_config_policy":                         591,
+		"intersight_resource_group":                                          592,
+		"intersight_resource_group_member":                                   593,
+		"intersight_resource_license_resource_count":                         594,
+		"intersight_resource_membership":                                     595,
+		"intersight_resource_membership_holder":                              596,
+		"intersight_resource_reservation":                                    597,
+		"intersight_resourcepool_lease":                                      598,
+		"intersight_resourcepool_lease_resource":                             599,
+		"intersight_resourcepool_pool":                                       600,
+		"intersight_resourcepool_pool_member":                                601,
+		"intersight_resourcepool_universe":                                   602,
+		"intersight_sdcard_policy":                                           603,
+		"intersight_sdcard_policy_inventory":                                 604,
+		"intersight_search_search_item":                                      605,
+		"intersight_search_tag_item":                                         606,
+		"intersight_security_unit":                                           607,
+		"intersight_server_config_change_detail":                             608,
+		"intersight_server_config_import":                                    609,
+		"intersight_server_config_result":                                    610,
+		"intersight_server_config_result_entry":                              611,
+		"intersight_server_profile":                                          612,
+		"intersight_server_profile_template":                                 613,
+		"intersight_smtp_policy":                                             614,
+		"intersight_snmp_policy":                                             615,
+		"intersight_snmp_policy_inventory":                                   616,
+		"intersight_software_appliance_distributable":                        617,
+		"intersight_software_download_history":                               618,
+		"intersight_software_hcl_meta":                                       619,
+		"intersight_software_hyperflex_bundle_distributable":                 620,
+		"intersight_software_hyperflex_distributable":                        621,
+		"intersight_software_iks_bundle_distributable":                       622,
+		"intersight_software_release_meta":                                   623,
+		"intersight_software_solution_distributable":                         624,
+		"intersight_software_ucsd_bundle_distributable":                      625,
+		"intersight_software_ucsd_distributable":                             626,
+		"intersight_softwarerepository_authorization":                        627,
+		"intersight_softwarerepository_cached_image":                         628,
+		"intersight_softwarerepository_catalog":                              629,
+		"intersight_softwarerepository_category_mapper":                      630,
+		"intersight_softwarerepository_category_mapper_model":                631,
+		"intersight_softwarerepository_category_support_constraint":          632,
+		"intersight_softwarerepository_download_spec":                        633,
+		"intersight_softwarerepository_operating_system_file":                634,
+		"intersight_softwarerepository_release":                              635,
+		"intersight_sol_policy":                                              636,
+		"intersight_sol_policy_inventory":                                    637,
+		"intersight_ssh_policy":                                              638,
+		"intersight_ssh_policy_inventory":                                    639,
+		"intersight_storage_controller":                                      640,
+		"intersight_storage_disk_group":                                      641,
+		"intersight_storage_disk_slot":                                       642,
+		"intersight_storage_drive_group":                                     643,
+		"intersight_storage_enclosure":                                       644,
+		"intersight_storage_enclosure_disk":                                  645,
+		"intersight_storage_enclosure_disk_slot_ep":                          646,
+		"intersight_storage_flex_flash_controller":                           647,
+		"intersight_storage_flex_flash_controller_props":                     648,
+		"intersight_storage_flex_flash_physical_drive":                       649,
+		"intersight_storage_flex_flash_virtual_drive":                        650,
+		"intersight_storage_flex_util_controller":                            651,
+		"intersight_storage_flex_util_physical_drive":                        652,
+		"intersight_storage_flex_util_virtual_drive":                         653,
+		"intersight_storage_hitachi_array":                                   654,
+		"intersight_storage_hitachi_controller":                              655,
+		"intersight_storage_hitachi_disk":                                    656,
+		"intersight_storage_hitachi_host":                                    657,
+		"intersight_storage_hitachi_host_lun":                                658,
+		"intersight_storage_hitachi_parity_group":                            659,
+		"intersight_storage_hitachi_pool":                                    660,
+		"intersight_storage_hitachi_port":                                    661,
+		"intersight_storage_hitachi_volume":                                  662,
+		"intersight_storage_hyper_flex_storage_container":                    663,
+		"intersight_storage_hyper_flex_volume":                               664,
+		"intersight_storage_item":                                            665,
+		"intersight_storage_net_app_aggregate":                               666,
+		"intersight_storage_net_app_aggregate_event":                         667,
+		"intersight_storage_net_app_base_disk":                               668,
+		"intersight_storage_net_app_cluster":                                 669,
+		"intersight_storage_net_app_cluster_event":                           670,
+		"intersight_storage_net_app_data_ip_interface":                       671,
+		"intersight_storage_net_app_data_ip_interface_event":                 672,
+		"intersight_storage_net_app_disk_event":                              673,
+		"intersight_storage_net_app_ethernet_port":                           674,
+		"intersight_storage_net_app_ethernet_port_event":                     675,
+		"intersight_storage_net_app_export_policy":                           676,
+		"intersight_storage_net_app_fc_interface":                            677,
+		"intersight_storage_net_app_fc_interface_event":                      678,
+		"intersight_storage_net_app_fc_port":                                 679,
+		"intersight_storage_net_app_fc_port_event":                           680,
+		"intersight_storage_net_app_initiator_group":                         681,
+		"intersight_storage_net_app_ip_interface":                            682,
+		"intersight_storage_net_app_ip_interface_event":                      683,
+		"intersight_storage_net_app_iscsi_service":                           684,
+		"intersight_storage_net_app_license":                                 685,
+		"intersight_storage_net_app_lun":                                     686,
+		"intersight_storage_net_app_lun_event":                               687,
+		"intersight_storage_net_app_lun_map":                                 688,
+		"intersight_storage_net_app_nfs_service":                             689,
+		"intersight_storage_net_app_node":                                    690,
+		"intersight_storage_net_app_node_cdp_neighbor":                       691,
+		"intersight_storage_net_app_node_event":                              692,
+		"intersight_storage_net_app_non_data_ip_interface":                   693,
+		"intersight_storage_net_app_non_data_ip_interface_event":             694,
+		"intersight_storage_net_app_ntp_server":                              695,
+		"intersight_storage_net_app_schedule":                                696,
+		"intersight_storage_net_app_sensor":                                  697,
+		"intersight_storage_net_app_storage_vm":                              698,
+		"intersight_storage_net_app_svm_event":                               699,
+		"intersight_storage_net_app_volume":                                  700,
+		"intersight_storage_net_app_volume_event":                            701,
+		"intersight_storage_net_app_volume_snapshot":                         702,
+		"intersight_storage_physical_disk":                                   703,
+		"intersight_storage_physical_disk_extension":                         704,
+		"intersight_storage_physical_disk_usage":                             705,
+		"intersight_storage_pure_array":                                      706,
+		"intersight_storage_pure_controller":                                 707,
+		"intersight_storage_pure_disk":                                       708,
+		"intersight_storage_pure_host":                                       709,
+		"intersight_storage_pure_host_group":                                 710,
+		"intersight_storage_pure_host_lun":                                   711,
+		"intersight_storage_pure_port":                                       712,
+		"intersight_storage_pure_protection_group":                           713,
+		"intersight_storage_pure_protection_group_snapshot":                  714,
+		"intersight_storage_pure_replication_schedule":                       715,
+		"intersight_storage_pure_snapshot_schedule":                          716,
+		"intersight_storage_pure_volume":                                     717,
+		"intersight_storage_pure_volume_snapshot":                            718,
+		"intersight_storage_sas_expander":                                    719,
+		"intersight_storage_sas_port":                                        720,
+		"intersight_storage_span":                                            721,
+		"intersight_storage_storage_policy":                                  722,
+		"intersight_storage_vd_member_ep":                                    723,
+		"intersight_storage_virtual_drive":                                   724,
+		"intersight_storage_virtual_drive_container":                         725,
+		"intersight_storage_virtual_drive_extension":                         726,
+		"intersight_storage_virtual_drive_identity":                          727,
+		"intersight_syslog_policy":                                           728,
+		"intersight_syslog_policy_inventory":                                 729,
+		"intersight_tam_advisory_count":                                      730,
+		"intersight_tam_advisory_definition":                                 731,
+		"intersight_tam_advisory_info":                                       732,
+		"intersight_tam_advisory_instance":                                   733,
+		"intersight_tam_security_advisory":                                   734,
+		"intersight_techsupportmanagement_collection_control_policy":         735,
+		"intersight_techsupportmanagement_download":                          736,
+		"intersight_techsupportmanagement_tech_support_bundle":               737,
+		"intersight_techsupportmanagement_tech_support_status":               738,
+		"intersight_terminal_audit_log":                                      739,
+		"intersight_terraform_executor":                                      740,
+		"intersight_thermal_policy":                                          741,
+		"intersight_top_system":                                              742,
+		"intersight_ucsd_backup_info":                                        743,
+		"intersight_uuidpool_block":                                          744,
+		"intersight_uuidpool_pool":                                           745,
+		"intersight_uuidpool_pool_member":                                    746,
+		"intersight_uuidpool_universe":                                       747,
+		"intersight_uuidpool_uuid_lease":                                     748,
+		"intersight_view_health_status":                                      749,
+		"intersight_view_server":                                             750,
+		"intersight_virtualization_cisco_hypervisor_manager":                 751,
+		"intersight_virtualization_esxi_console":                             752,
+		"intersight_virtualization_host":                                     753,
+		"intersight_virtualization_iwe_cluster":                              754,
+		"intersight_virtualization_iwe_datacenter":                           755,
+		"intersight_virtualization_iwe_dv_uplink":                            756,
+		"intersight_virtualization_iwe_dvswitch":                             757,
+		"intersight_virtualization_iwe_host":                                 758,
+		"intersight_virtualization_iwe_host_interface":                       759,
+		"intersight_virtualization_iwe_host_vswitch":                         760,
+		"intersight_virtualization_iwe_network":                              761,
+		"intersight_virtualization_iwe_virtual_disk":                         762,
+		"intersight_virtualization_iwe_virtual_machine":                      763,
+		"intersight_virtualization_iwe_virtual_machine_network_interface":    764,
+		"intersight_virtualization_virtual_disk":                             765,
+		"intersight_virtualization_virtual_machine":                          766,
+		"intersight_virtualization_virtual_network":                          767,
+		"intersight_virtualization_vmware_cluster":                           768,
+		"intersight_virtualization_vmware_datacenter":                        769,
+		"intersight_virtualization_vmware_datastore":                         770,
+		"intersight_virtualization_vmware_datastore_cluster":                 771,
+		"intersight_virtualization_vmware_distributed_network":               772,
+		"intersight_virtualization_vmware_distributed_switch":                773,
+		"intersight_virtualization_vmware_folder":                            774,
+		"intersight_virtualization_vmware_host":                              775,
+		"intersight_virtualization_vmware_kernel_network":                    776,
+		"intersight_virtualization_vmware_network":                           777,
+		"intersight_virtualization_vmware_physical_network_interface":        778,
+		"intersight_virtualization_vmware_uplink_port":                       779,
+		"intersight_virtualization_vmware_vcenter":                           780,
+		"intersight_virtualization_vmware_virtual_disk":                      781,
+		"intersight_virtualization_vmware_virtual_machine":                   782,
+		"intersight_virtualization_vmware_virtual_machine_snapshot":          783,
+		"intersight_virtualization_vmware_virtual_network_interface":         784,
+		"intersight_virtualization_vmware_virtual_switch":                    785,
+		"intersight_vmedia_policy":                                           786,
+		"intersight_vmedia_policy_inventory":                                 787,
+		"intersight_vmrc_console":                                            788,
+		"intersight_vnc_console":                                             789,
+		"intersight_vnic_eth_adapter_policy":                                 790,
+		"intersight_vnic_eth_adapter_policy_inventory":                       791,
+		"intersight_vnic_eth_if":                                             792,
+		"intersight_vnic_eth_if_inventory":                                   793,
+		"intersight_vnic_eth_network_policy":                                 794,
+		"intersight_vnic_eth_network_policy_inventory":                       795,
+		"intersight_vnic_eth_qos_policy":                                     796,
+		"intersight_vnic_eth_qos_policy_inventory":                           797,
+		"intersight_vnic_eth_veth_inventory":                                 798,
+		"intersight_vnic_eth_vnic_inventory":                                 799,
+		"intersight_vnic_fc_adapter_policy":                                  800,
+		"intersight_vnic_fc_adapter_policy_inventory":                        801,
+		"intersight_vnic_fc_if":                                              802,
+		"intersight_vnic_fc_if_inventory":                                    803,
+		"intersight_vnic_fc_network_policy":                                  804,
+		"intersight_vnic_fc_network_policy_inventory":                        805,
+		"intersight_vnic_fc_qos_policy":                                      806,
+		"intersight_vnic_fc_qos_policy_inventory":                            807,
+		"intersight_vnic_fc_veth_inventory":                                  808,
+		"intersight_vnic_fc_vhba_policy_inventory":                           809,
+		"intersight_vnic_iscsi_adapter_policy":                               810,
+		"intersight_vnic_iscsi_adapter_policy_inventory":                     811,
+		"intersight_vnic_iscsi_boot_policy":                                  812,
+		"intersight_vnic_iscsi_boot_policy_inventory":                        813,
+		"intersight_vnic_iscsi_static_target_policy":                         814,
+		"intersight_vnic_iscsi_static_target_policy_inventory":               815,
+		"intersight_vnic_lan_connectivity_policy":                            816,
+		"intersight_vnic_lan_connectivity_policy_inventory":                  817,
+		"intersight_vnic_lcp_status":                                         818,
+		"intersight_vnic_san_connectivity_policy":                            819,
+		"intersight_vnic_san_connectivity_policy_inventory":                  820,
+		"intersight_vnic_scp_status":                                         821,
+		"intersight_vrf_vrf":                                                 822,
+		"intersight_workflow_ansible_batch_executor":                         823,
+		"intersight_workflow_batch_api_executor":                             824,
+		"intersight_workflow_build_task_meta":                                825,
+		"intersight_workflow_build_task_meta_owner":                          826,
+		"intersight_workflow_catalog":                                        827,
+		"intersight_workflow_custom_data_type_definition":                    828,
+		"intersight_workflow_error_response_handler":                         829,
+		"intersight_workflow_pending_dynamic_workflow_info":                  830,
+		"intersight_workflow_power_shell_batch_api_executor":                 831,
+		"intersight_workflow_rollback_workflow":                              832,
+		"intersight_workflow_service_item_action_definition":                 833,
+		"intersight_workflow_service_item_action_instance":                   834,
+		"intersight_workflow_service_item_definition":                        835,
+		"intersight_workflow_service_item_health_check_definition":           836,
+		"intersight_workflow_service_item_health_check_execution":            837,
+		"intersight_workflow_service_item_instance":                          838,
+		"intersight_workflow_service_item_output":                            839,
+		"intersight_workflow_solution_action_definition":                     840,
+		"intersight_workflow_solution_action_instance":                       841,
+		"intersight_workflow_solution_definition":                            842,
+		"intersight_workflow_solution_instance":                              843,
+		"intersight_workflow_solution_output":                                844,
+		"intersight_workflow_ssh_batch_executor":                             845,
+		"intersight_workflow_task_debug_log":                                 846,
+		"intersight_workflow_task_definition":                                847,
+		"intersight_workflow_task_info":                                      848,
+		"intersight_workflow_task_metadata":                                  849,
+		"intersight_workflow_template_function_meta":                         850,
+		"intersight_workflow_workflow_definition":                            851,
+		"intersight_workflow_workflow_info":                                  852,
+		"intersight_workflow_workflow_meta":                                  853,
+		"intersight_workflow_workflow_metadata":                              854,
 	}
 )
 

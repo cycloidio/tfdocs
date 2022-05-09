@@ -14,7 +14,11 @@ var (
 			Type:             "octopusdeploy_account",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"account",
@@ -27,7 +31,11 @@ var (
 			Type:             "octopusdeploy_aws_account",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages AWS accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages AWS accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"aws",
@@ -41,7 +49,11 @@ var (
 			Type:             "octopusdeploy_aws_elastic_container_registry",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a AWS Elastic Container Registry in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a AWS Elastic Container Registry in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"aws",
@@ -57,7 +69,11 @@ var (
 			Type:             "octopusdeploy_azure_cloud_service_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages Azure cloud service deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages Azure cloud service deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -74,7 +90,11 @@ var (
 			Type:             "octopusdeploy_azure_service_fabric_cluster_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages Azure service fabric cluster deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages Azure service fabric cluster deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -92,7 +112,11 @@ var (
 			Type:             "octopusdeploy_azure_service_principal",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages Azure service principal accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages Azure service principal accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"azure",
@@ -107,7 +131,11 @@ var (
 			Type:             "octopusdeploy_azure_subscription_account",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages Azure subscription accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages Azure subscription accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"azure",
@@ -122,7 +150,11 @@ var (
 			Type:             "octopusdeploy_azure_web_app_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages Azure web app deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages Azure web app deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -159,7 +191,11 @@ var (
 			Type:             "octopusdeploy_cloud_region_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages cloud region deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages cloud region deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -185,7 +221,11 @@ var (
 			Type:             "octopusdeploy_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: ``,
-			Description:      ``,
+			Description: `
+
+
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -199,7 +239,11 @@ var (
 			Type:             "octopusdeploy_docker_container_registry",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a Docker Container Registry in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a Docker Container Registry in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"docker",
@@ -208,6 +252,16 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "octopusdeploy_dynamic_worker_pool",
+			Category:         "Resources",
+			ShortDescription: `This resource manages dynamic worker pools in Octopus Deploy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -224,7 +278,11 @@ var (
 			Type:             "octopusdeploy_feed",
 			Category:         "Feeds",
 			ShortDescription: ``,
-			Description:      ``,
+			Description: `
+
+
+
+`,
 			Keywords: []string{
 				"feeds",
 				"feed",
@@ -234,10 +292,32 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "octopusdeploy_gcp_account",
+			Category:         "Accounts",
+			ShortDescription: `This resource manages GCP accounts in Octopus Deploy.`,
+			Description: `
+
+This resource manages GCP accounts in Octopus Deploy.
+
+`,
+			Keywords: []string{
+				"accounts",
+				"gcp",
+				"account",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "octopusdeploy_github_repository_feed",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a GitHub repository feed in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a GitHub repository feed in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"github",
@@ -252,7 +332,11 @@ var (
 			Type:             "octopusdeploy_helm_feed",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a Helm feed in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a Helm feed in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"helm",
@@ -264,12 +348,22 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "octopusdeploy_kubernetes_cluster_deployment_target",
-			Category:         "Resources",
+			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages Kubernets cluster deployment targets in Octopus Deploy.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Description: `
+
+This resource manages Kubernets cluster deployment targets in Octopus Deploy.
+
+`,
+			Keywords: []string{
+				"deployment",
+				"targets",
+				"kubernetes",
+				"cluster",
+				"target",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -286,17 +380,25 @@ var (
 			Type:             "octopusdeploy_lifecycle",
 			Category:         "Resources",
 			ShortDescription: `This resource manages lifecycles in Octopus Deploy.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Description: `
+
+This resource manages lifecycles in Octopus Deploy.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "octopusdeploy_listening_tentacle_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages listening tentacle deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages listening tentacle deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -322,7 +424,11 @@ var (
 			Type:             "octopusdeploy_maven_feed",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a Maven feed in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a Maven feed in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"maven",
@@ -336,7 +442,11 @@ var (
 			Type:             "octopusdeploy_nuget_feed",
 			Category:         "Feeds",
 			ShortDescription: `This resource manages a NuGet feed in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages a NuGet feed in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"feeds",
 				"nuget",
@@ -350,7 +460,11 @@ var (
 			Type:             "octopusdeploy_offline_package_drop_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages offline package drop deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages offline package drop deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -367,7 +481,11 @@ var (
 			Type:             "octopusdeploy_polling_tentacle_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages polling tentacle deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages polling tentacle deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -383,10 +501,16 @@ var (
 			Type:             "octopusdeploy_project",
 			Category:         "Resources",
 			ShortDescription: `This resource manages projects in Octopus Deploy.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Description: `
+
+This resource manages projects in Octopus Deploy.
+
+~> Credentials are stored in state as plaintext. [Read more about sensitive data in state.](https://www.terraform.io/language/state/sensitive-data)
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -413,6 +537,29 @@ var (
 			Type:             "octopusdeploy_scoped_user_role",
 			Category:         "Resources",
 			ShortDescription: `This resource manages scoped user roles in Octopus Deploy.`,
+			Description: `
+
+This resource manages scoped user roles in Octopus Deploy.
+
+~> **NOTE on Team User Roles and Scoped User Roles:** We currently
+provides both a standalone [Scoped User Role resource](scoped_user_role.html)
+and a Team resource with ` + "`" + `user_roles` + "`" + ` blocks defined in-line. At this time you 
+cannot use a Team with in-line user_roles in conjunction with any Scoped User Role 
+resources. Doing so will cause a conflict of user role settings and will overwrite 
+user roles.
+
+
+<!-- schema generated by tfplugindocs -->
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "octopusdeploy_script_module",
+			Category:         "Resources",
+			ShortDescription: `This resource manages script modules in Octopus Deploy.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -433,7 +580,11 @@ var (
 			Type:             "octopusdeploy_ssh_connection_deployment_target",
 			Category:         "Deployment Targets",
 			ShortDescription: `This resource manages SSH connection deployment targets in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages SSH connection deployment targets in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"deployment",
 				"targets",
@@ -449,7 +600,11 @@ var (
 			Type:             "octopusdeploy_ssh_key_account",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages SSH key accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages SSH key accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"ssh",
@@ -458,6 +613,16 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "octopusdeploy_static_worker_pool",
+			Category:         "Resources",
+			ShortDescription: `This resource manages static worker pools in Octopus Deploy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -474,10 +639,23 @@ var (
 			Type:             "octopusdeploy_team",
 			Category:         "Resources",
 			ShortDescription: `This resource manages teams in Octopus Deploy.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Description: `
+
+This resource manages teams in Octopus Deploy.
+
+~> **NOTE on Team User Roles and Scoped User Roles:** We currently
+provides both a standalone [Scoped User Role resource](scoped_user_role.html)
+and a Team resource with ` + "`" + `user_roles` + "`" + ` blocks defined in-line. At this time you 
+cannot use a Team with in-line user_roles in conjunction with any Scoped User Role 
+resources. Doing so will cause a conflict of user role settings and will overwrite 
+user roles.
+
+
+<!-- schema generated by tfplugindocs -->
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -514,7 +692,11 @@ var (
 			Type:             "octopusdeploy_token_account",
 			Category:         "Accounts",
 			ShortDescription: ``,
-			Description:      ``,
+			Description: `
+
+
+
+`,
 			Keywords: []string{
 				"accounts",
 				"token",
@@ -548,7 +730,11 @@ var (
 			Type:             "octopusdeploy_username_password_account",
 			Category:         "Accounts",
 			ShortDescription: `This resource manages username-password accounts in Octopus Deploy.`,
-			Description:      ``,
+			Description: `
+
+This resource manages username-password accounts in Octopus Deploy.
+
+`,
 			Keywords: []string{
 				"accounts",
 				"username",
@@ -586,36 +772,40 @@ var (
 		"octopusdeploy_deployment_process":                             11,
 		"octopusdeploy_deployment_target":                              12,
 		"octopusdeploy_docker_container_registry":                      13,
-		"octopusdeploy_environment":                                    14,
-		"octopusdeploy_feed":                                           15,
-		"octopusdeploy_github_repository_feed":                         16,
-		"octopusdeploy_helm_feed":                                      17,
-		"octopusdeploy_kubernetes_cluster_deployment_target":           18,
-		"octopusdeploy_library_variable_set":                           19,
-		"octopusdeploy_lifecycle":                                      20,
-		"octopusdeploy_listening_tentacle_deployment_target":           21,
-		"octopusdeploy_machine_policy":                                 22,
-		"octopusdeploy_maven_feed":                                     23,
-		"octopusdeploy_nuget_feed":                                     24,
-		"octopusdeploy_offline_package_drop_deployment_target":         25,
-		"octopusdeploy_polling_tentacle_deployment_target":             26,
-		"octopusdeploy_project":                                        27,
-		"octopusdeploy_project_deployment_target_trigger":              28,
-		"octopusdeploy_project_group":                                  29,
-		"octopusdeploy_scoped_user_role":                               30,
-		"octopusdeploy_space":                                          31,
-		"octopusdeploy_ssh_connection_deployment_target":               32,
-		"octopusdeploy_ssh_key_account":                                33,
-		"octopusdeploy_tag_set":                                        34,
-		"octopusdeploy_team":                                           35,
-		"octopusdeploy_tenant":                                         36,
-		"octopusdeploy_tenant_common_variable":                         37,
-		"octopusdeploy_tenant_project_variable":                        38,
-		"octopusdeploy_token_account":                                  39,
-		"octopusdeploy_user":                                           40,
-		"octopusdeploy_user_role":                                      41,
-		"octopusdeploy_username_password_account":                      42,
-		"octopusdeploy_variable":                                       43,
+		"octopusdeploy_dynamic_worker_pool":                            14,
+		"octopusdeploy_environment":                                    15,
+		"octopusdeploy_feed":                                           16,
+		"octopusdeploy_gcp_account":                                    17,
+		"octopusdeploy_github_repository_feed":                         18,
+		"octopusdeploy_helm_feed":                                      19,
+		"octopusdeploy_kubernetes_cluster_deployment_target":           20,
+		"octopusdeploy_library_variable_set":                           21,
+		"octopusdeploy_lifecycle":                                      22,
+		"octopusdeploy_listening_tentacle_deployment_target":           23,
+		"octopusdeploy_machine_policy":                                 24,
+		"octopusdeploy_maven_feed":                                     25,
+		"octopusdeploy_nuget_feed":                                     26,
+		"octopusdeploy_offline_package_drop_deployment_target":         27,
+		"octopusdeploy_polling_tentacle_deployment_target":             28,
+		"octopusdeploy_project":                                        29,
+		"octopusdeploy_project_deployment_target_trigger":              30,
+		"octopusdeploy_project_group":                                  31,
+		"octopusdeploy_scoped_user_role":                               32,
+		"octopusdeploy_script_module":                                  33,
+		"octopusdeploy_space":                                          34,
+		"octopusdeploy_ssh_connection_deployment_target":               35,
+		"octopusdeploy_ssh_key_account":                                36,
+		"octopusdeploy_static_worker_pool":                             37,
+		"octopusdeploy_tag_set":                                        38,
+		"octopusdeploy_team":                                           39,
+		"octopusdeploy_tenant":                                         40,
+		"octopusdeploy_tenant_common_variable":                         41,
+		"octopusdeploy_tenant_project_variable":                        42,
+		"octopusdeploy_token_account":                                  43,
+		"octopusdeploy_user":                                           44,
+		"octopusdeploy_user_role":                                      45,
+		"octopusdeploy_username_password_account":                      46,
+		"octopusdeploy_variable":                                       47,
 	}
 )
 

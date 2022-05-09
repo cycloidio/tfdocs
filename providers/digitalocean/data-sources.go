@@ -117,7 +117,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app.`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
 				},
 				resource.Attribute{
 					Name:        "health_check",
@@ -177,7 +177,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. A ` + "`" + `worker` + "`" + ` can contain:`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service. A ` + "`" + `worker` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -293,7 +293,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, or ` + "`" + `REDIS` + "`" + `).`,
+					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, ` + "`" + `REDIS` + "`" + `, or ` + "`" + `MONGODB` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -403,7 +403,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app.`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
 				},
 				resource.Attribute{
 					Name:        "health_check",
@@ -463,7 +463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route",
-					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. A ` + "`" + `worker` + "`" + ` can contain:`,
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service. A ` + "`" + `worker` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -579,7 +579,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, or ` + "`" + `REDIS` + "`" + `).`,
+					Description: `The database engine to use (` + "`" + `MYSQL` + "`" + `, ` + "`" + `PG` + "`" + `, ` + "`" + `REDIS` + "`" + `, or ` + "`" + `MONGODB` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -638,6 +638,26 @@ var (
 					Name:        "subscription_tier_slug",
 					Description: `The slug identifier for the subscription tier`,
 				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug identifier for the region`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The URL endpoint of the container registry. Ex: ` + "`" + `registry.digitalocean.com/my_registry` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "server_url",
+					Description: `The domain of the container registry. Ex: ` + "`" + `registry.digitalocean.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_usage_bytes",
+					Description: `The amount of storage used in the registry in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the registry was created`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -647,6 +667,50 @@ var (
 				resource.Attribute{
 					Name:        "subscription_tier_slug",
 					Description: `The slug identifier for the subscription tier`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The slug identifier for the region`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The URL endpoint of the container registry. Ex: ` + "`" + `registry.digitalocean.com/my_registry` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "server_url",
+					Description: `The domain of the container registry. Ex: ` + "`" + `registry.digitalocean.com` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_usage_bytes",
+					Description: `The amount of storage used in the registry in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the registry was created`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_ca",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the source database cluster. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The CA certificate used to secure database connections decoded to a string.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The CA certificate used to secure database connections decoded to a string.`,
 				},
 			},
 		},
@@ -1811,7 +1875,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of load balancer.`,
+					Description: `(Optional) The name of load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of load balancer.`,
 				},
 				resource.Attribute{
 					Name:        "urn",
@@ -3017,38 +3085,39 @@ var (
 		"digitalocean_app":                   1,
 		"digitalocean_certificate":           2,
 		"digitalocean_container_registry":    3,
-		"digitalocean_database_cluster":      4,
-		"digitalocean_database_replica":      5,
-		"digitalocean_domain":                6,
-		"digitalocean_domains":               7,
-		"digitalocean_droplet":               8,
-		"digitalocean_droplet_snapshot":      9,
-		"digitalocean_droplets":              10,
-		"digitalocean_firewall":              11,
-		"digitalocean_floating_ip":           12,
-		"digitalocean_image":                 13,
-		"digitalocean_images":                14,
-		"digitalocean_kubernetes_cluster":    15,
-		"digitalocean_kubernetes_versions":   16,
-		"digitalocean_loadbalancer":          17,
-		"digitalocean_project":               18,
-		"digitalocean_projects":              19,
-		"digitalocean_record":                20,
-		"digitalocean_records":               21,
-		"digitalocean_region":                22,
-		"digitalocean_regions":               23,
-		"digitalocean_sizes":                 24,
-		"digitalocean_spaces_bucket":         25,
-		"digitalocean_spaces_bucket_object":  26,
-		"digitalocean_spaces_bucket_objects": 27,
-		"digitalocean_spaces_buckets":        28,
-		"digitalocean_ssh_key":               29,
-		"digitalocean_ssh_keys":              30,
-		"digitalocean_tag":                   31,
-		"digitalocean_tags":                  32,
-		"digitalocean_volume":                33,
-		"digitalocean_volume_snapshot":       34,
-		"digitalocean_vpc":                   35,
+		"digitalocean_database_ca":           4,
+		"digitalocean_database_cluster":      5,
+		"digitalocean_database_replica":      6,
+		"digitalocean_domain":                7,
+		"digitalocean_domains":               8,
+		"digitalocean_droplet":               9,
+		"digitalocean_droplet_snapshot":      10,
+		"digitalocean_droplets":              11,
+		"digitalocean_firewall":              12,
+		"digitalocean_floating_ip":           13,
+		"digitalocean_image":                 14,
+		"digitalocean_images":                15,
+		"digitalocean_kubernetes_cluster":    16,
+		"digitalocean_kubernetes_versions":   17,
+		"digitalocean_loadbalancer":          18,
+		"digitalocean_project":               19,
+		"digitalocean_projects":              20,
+		"digitalocean_record":                21,
+		"digitalocean_records":               22,
+		"digitalocean_region":                23,
+		"digitalocean_regions":               24,
+		"digitalocean_sizes":                 25,
+		"digitalocean_spaces_bucket":         26,
+		"digitalocean_spaces_bucket_object":  27,
+		"digitalocean_spaces_bucket_objects": 28,
+		"digitalocean_spaces_buckets":        29,
+		"digitalocean_ssh_key":               30,
+		"digitalocean_ssh_keys":              31,
+		"digitalocean_tag":                   32,
+		"digitalocean_tags":                  33,
+		"digitalocean_volume":                34,
+		"digitalocean_volume_snapshot":       35,
+		"digitalocean_vpc":                   36,
 	}
 )
 

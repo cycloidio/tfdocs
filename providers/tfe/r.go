@@ -174,8 +174,12 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Display name for the OAuth Client. Defaults to the ` + "`" + `service_provider` + "`" + ` if not supplied.`,
+				},
+				resource.Attribute{
 					Name:        "organization",
-					Description: `(Required) Name of the organization.`,
+					Description: `(Required) Name of the Terraform organization.`,
 				},
 				resource.Attribute{
 					Name:        "api_url",
@@ -187,15 +191,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth_token",
-					Description: `(Required) The token string you were given by your VCS provider.`,
+					Description: `The token string you were given by your VCS provider, e.g. ` + "`" + `ghp_xxxxxxxxxxxxxxx` + "`" + ` for a GitHub personal access token. For more information on how to generate this token string for your VCS provider, see the [Create an OAuth Client](https://www.terraform.io/docs/cloud/api/oauth-clients.html#create-an-oauth-client) documentation.`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
 					Description: `(Required for ` + "`" + `ado_server` + "`" + `) The text of the private key associated with your Azure DevOps Server account`,
 				},
 				resource.Attribute{
+					Name:        "key",
+					Description: `The OAuth Client key can refer to a Consumer Key, Application Key, or another type of client key for the VCS provider.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required for ` + "`" + `bitbucket_server` + "`" + `) The OAuth Client secret is used for BitBucket Server, this secret is the the text of the SSH private key associated with your BitBucket Server Application Link.`,
+				},
+				resource.Attribute{
+					Name:        "rsa_public_key",
+					Description: `(Required for ` + "`" + `bitbucket_server` + "`" + `) Required for BitBucket Server in conjunction with the secret. Not used for any other providers. The text of the SSH public key associated with your BitBucket Server Application Link.`,
+				},
+				resource.Attribute{
 					Name:        "service_provider",
-					Description: `(Required) The VCS provider being connected with. Valid options are ` + "`" + `ado_server` + "`" + `, ` + "`" + `ado_services` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `github_enterprise` + "`" + `, ` + "`" + `gitlab_hosted` + "`" + `, ` + "`" + `gitlab_community_edition` + "`" + `, or ` + "`" + `gitlab_enterprise_edition` + "`" + `. ## Attributes Reference`,
+					Description: `(Required) The VCS provider being connected with. Valid options are ` + "`" + `ado_server` + "`" + `, ` + "`" + `ado_services` + "`" + `, ` + "`" + `bitbucket_hosted` + "`" + `, ` + "`" + `bitbucket_server` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `github_enterprise` + "`" + `, ` + "`" + `gitlab_hosted` + "`" + `, ` + "`" + `gitlab_community_edition` + "`" + `, or ` + "`" + `gitlab_enterprise_edition` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -253,7 +269,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cost_estimation_enabled",
-					Description: `(Optional) Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration. ## Attributes Reference`,
+					Description: `(Optional) Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration.`,
+				},
+				resource.Attribute{
+					Name:        "send_passing_statuses_for_untriggered_speculative_plans",
+					Description: `(Optional) Whether or not to send VCS status updates for untriggered speculative plans. This can be useful if large numbers of untriggered workspaces are exhausting request limits for connected version control service providers like GitHub. Defaults to false. In Terraform Enterprise, this setting has no effect and cannot be changed but is also available in Site Administration. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -647,7 +667,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "organization_access",
-					Description: `(Optional) Settings for the team's [organization access](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#organization-level-permissions). The ` + "`" + `organization_access` + "`" + ` block supports:`,
+					Description: `(Optional) Settings for the team's [organization access](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#organization-level-permissions).`,
+				},
+				resource.Attribute{
+					Name:        "sso_team_id",
+					Description: `(Optional) Unique Identifier to control [team membership](https://www.terraform.io/cloud-docs/users-teams-organizations/single-sign-on#team-names-and-sso-team-ids) via SAML. Defaults to ` + "`" + `null` + "`" + ` The ` + "`" + `organization_access` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "manage_policies",
@@ -663,7 +687,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manage_vcs_settings",
-					Description: `(Optional) Allows members to manage the organization's VCS Providers and SSH keys. ## Attributes Reference`,
+					Description: `(Optional) Allows members to manage the organization's VCS Providers and SSH keys.`,
+				},
+				resource.Attribute{
+					Name:        "manage_providers",
+					Description: `(Optional) Allow members to publish and delete providers in the organization's private registry.`,
+				},
+				resource.Attribute{
+					Name:        "manage_modules",
+					Description: `(Optional) Allow members to publish and delete modules in the organization's private registry. ## Attributes Reference`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -869,17 +901,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `(Required) ID of the workspace that owns the variable. ## Attributes Reference`,
+					Description: `ID of the workspace that owns the variable.`,
+				},
+				resource.Attribute{
+					Name:        "variable_set_id",
+					Description: `ID of the variable set that owns the variable. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the variable. ## Import Variables can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the variable. ## Import Variables can be imported. To import a variable that's part of a workspace, use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ` To import a variable that's part of a variable set, use ` + "`" + `<ORGANIZATION NAME>/<VARIABLE SET ID>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/varset-47qC3LmA47piVan7/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the variable. ## Import Variables can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the variable. ## Import Variables can be imported. To import a variable that's part of a workspace, use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ` To import a variable that's part of a variable set, use ` + "`" + `<ORGANIZATION NAME>/<VARIABLE SET ID>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/varset-47qC3LmA47piVan7/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -951,11 +987,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "terraform_version",
-					Description: `(Optional) The version of Terraform to use for this workspace. Defaults to the latest available version.`,
+					Description: `(Optional) The version of Terraform to use for this workspace. This can be either an exact version or a [version constraint](https://www.terraform.io/docs/language/expressions/version-constraints.html) (like ` + "`" + `~> 1.0.0` + "`" + `); if you specify a constraint, the workspace will always use the newest release that meets that constraint. Defaults to the latest available version.`,
 				},
 				resource.Attribute{
 					Name:        "trigger_prefixes",
 					Description: `(Optional) List of repository-root-relative paths which describe all locations to be tracked for changes.`,
+				},
+				resource.Attribute{
+					Name:        "tag_names",
+					Description: `(Optional) A list of tag names for this workspace. Note that tags must only contain letters, numbers or colons.`,
 				},
 				resource.Attribute{
 					Name:        "working_directory",
@@ -983,13 +1023,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace ID. ## Import ~>`,
+					Description: `The workspace ID. ## Import Workspaces can be imported; use ` + "`" + `<WORKSPACE ID>` + "`" + ` or ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test ws-CH5in3chf8RJjrVd ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test my-org-name/my-wkspace-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The workspace ID. ## Import ~>`,
+					Description: `The workspace ID. ## Import Workspaces can be imported; use ` + "`" + `<WORKSPACE ID>` + "`" + ` or ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test ws-CH5in3chf8RJjrVd ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test my-org-name/my-wkspace-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

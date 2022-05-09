@@ -184,6 +184,30 @@ var (
 					Name:        "nsxt_reverse_proxy_url",
 					Description: `NSXT reverse proxy url for managing public IP.`,
 				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin",
+					Description: `the NSXT userID admin for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin_password",
+					Description: `the NSXT userID admin password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit",
+					Description: `the NSXT userID audit for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit_password",
+					Description: `the NSXT userID audit password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_private_url",
+					Description: `for example "https://nsxManager.sddc-54-213-170-7.vmwarevmc.com/login.jsp"`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_public_url",
+					Description: `same as reverse proxy`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -241,6 +265,30 @@ var (
 				resource.Attribute{
 					Name:        "nsxt_reverse_proxy_url",
 					Description: `NSXT reverse proxy url for managing public IP.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin",
+					Description: `the NSXT userID admin for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin_password",
+					Description: `the NSXT userID admin password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit",
+					Description: `the NSXT userID audit for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit_password",
+					Description: `the NSXT userID audit password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_private_url",
+					Description: `for example "https://nsxManager.sddc-54-213-170-7.vmwarevmc.com/login.jsp"`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_public_url",
+					Description: `same as reverse proxy`,
 				},
 			},
 		},

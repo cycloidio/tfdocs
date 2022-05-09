@@ -153,7 +153,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "replace",
-					Description: `(Optional) Re-use the given name, even if that name is already used. This is unsafe in production. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Re-use the given name, only if that name is a deleted release which remains in the history. This is unsafe in production. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",

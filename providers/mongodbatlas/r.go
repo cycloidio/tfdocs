@@ -82,7 +82,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "units",
-					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ` ### Notifications Notifications to send when an alert condition is detected.`,
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ` ### Notifications List of notifications to send when an alert condition is detected.`,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -110,7 +110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_enabled",
-					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating email notifications should be sent. This flag is only valid if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "flowdock_api_token",
@@ -146,11 +146,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sms_enabled",
-					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "team_name",
+					Description: `Label for the team that receives this notification.`,
 				},
 				resource.Attribute{
 					Name:        "type_name",
@@ -169,8 +173,8 @@ var (
 					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
 				},
 				resource.Attribute{
-					Name:        "Roles",
-					Description: `Optional. The following roles grant privileges within a project. Accepted values are: | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Name:        "roles",
+					Description: `Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `. Accepted values are: | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -231,16 +235,16 @@ var (
 					Description: `(Required) The unique ID for the project to configure auditing.`,
 				},
 				resource.Attribute{
-					Name:        "audit_filter",
-					Description: `Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess`,
+					Name:        "audit_authorization_success",
+					Description: `Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).`,
 				},
 				resource.Attribute{
-					Name:        "audit_authorization_success",
-					Description: `JSON-formatted audit filter used by the project`,
+					Name:        "audit_filter",
+					Description: `JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `Denotes whether or not the project associated with the {project_id} has database auditing enabled. ~>`,
+					Description: `Denotes whether or not the project associated with the {project_id} has database auditing enabled. Defaults to false. ~>`,
 				},
 				resource.Attribute{
 					Name:        "configuration_type",
@@ -280,7 +284,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_in_days",
-					Description: `(Required) The number of days that Atlas should retain the on-demand snapshot. Must be at least 1. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -670,7 +674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_disk_gb_enabled",
-					Description: `(Optional) Specifies whether disk auto-scaling is enabled. The default is true. - Set to ` + "`" + `true` + "`" + ` to enable disk auto-scaling. - Set to ` + "`" + `false` + "`" + ` to disable disk auto-scaling.`,
+					Description: `(Optional) Specifies whether disk auto-scaling is enabled. The default is true. - Set to ` + "`" + `true` + "`" + ` to enable disk auto-scaling. - Set to ` + "`" + `false` + "`" + ` to disable disk auto-scaling. ->`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_enabled",
@@ -706,7 +710,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mongo_db_major_version",
-					Description: `(Optional) Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: ` + "`" + `3.6` + "`" + `, ` + "`" + `4.0` + "`" + `, or ` + "`" + `4.2` + "`" + `. You must set this value to ` + "`" + `4.2` + "`" + ` if ` + "`" + `provider_instance_size_name` + "`" + ` is either M2 or M5.`,
+					Description: `(Optional) Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: ` + "`" + `4.0` + "`" + `, ` + "`" + `4.2` + "`" + `, ` + "`" + `4.4` + "`" + `, or ` + "`" + `5.0` + "`" + `. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If ` + "`" + `provider_instance_size_name` + "`" + `: ` + "`" + `M0` + "`" + `, ` + "`" + `M2` + "`" + ` or ` + "`" + `M5` + "`" + `, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.`,
 				},
 				resource.Attribute{
 					Name:        "num_shards",
@@ -758,7 +762,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
-					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details. ### Multi-Region Cluster ` + "`" + `` + "`" + `` + "`" + `hcl //Example 3 Multi-Region block replication_specs { num_shards = 1 regions_config { region_name = "US_EAST_1" electable_nodes = 3 priority = 7 read_only_nodes = 0 } regions_config { region_name = "US_EAST_2" electable_nodes = 2 priority = 6 read_only_nodes = 0 } regions_config { region_name = "US_WEST_1" electable_nodes = 2 priority = 5 read_only_nodes = 2 } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Configuration for cluster regions. See [Replication Spec](#replication-spec) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "version_release_system",
+					Description: `(Optional) - Release cadence that Atlas uses for this cluster. This parameter defaults to ` + "`" + `LTS` + "`" + `. If you set this field to ` + "`" + `CONTINUOUS` + "`" + `, you must omit the ` + "`" + `mongo_db_major_version` + "`" + ` field. Atlas accepts: - ` + "`" + `CONTINUOUS` + "`" + `: Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available. - ` + "`" + `LTS` + "`" + `: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available. ### Multi-Region Cluster ` + "`" + `` + "`" + `` + "`" + `terraform //Example 3 Multi-Region block replication_specs { num_shards = 1 regions_config { region_name = "US_EAST_1" electable_nodes = 3 priority = 7 read_only_nodes = 0 } regions_config { region_name = "US_EAST_2" electable_nodes = 2 priority = 6 read_only_nodes = 0 } regions_config { region_name = "US_WEST_1" electable_nodes = 2 priority = 5 read_only_nodes = 2 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "num_shards",
@@ -794,7 +802,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ### BI Connector Specifies BI Connector for Atlas configuration. ` + "`" + `` + "`" + `` + "`" + `hcl bi_connector = { enabled = true read_preference = secondary } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ### BI Connector Specifies BI Connector for Atlas configuration. ` + "`" + `` + "`" + `` + "`" + `terraform bi_connector = { enabled = true read_preference = secondary } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -803,6 +811,14 @@ var (
 				resource.Attribute{
 					Name:        "read_preference",
 					Description: `(Optional) Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences). - Set to "primary" to have BI Connector for Atlas read from the primary. - Set to "secondary" to have BI Connector for Atlas read from a secondary member. Default if there are no analytics nodes in the cluster. - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes. ### Advanced Configuration Options ->`,
+				},
+				resource.Attribute{
+					Name:        "default_read_concern",
+					Description: `(Optional) [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).`,
+				},
+				resource.Attribute{
+					Name:        "default_write_concern",
+					Description: `(Optional) [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).`,
 				},
 				resource.Attribute{
 					Name:        "fail_index_key_too_long",
@@ -830,7 +846,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sample_refresh_interval_bi_connector",
-					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ### Labels ` + "`" + `` + "`" + `` + "`" + `hcl labels { key = "Key 1" value = "Value 1" } labels { key = "Key 2" value = "Value 2" } ` + "`" + `` + "`" + `` + "`" + ` Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key ` + "`" + `Infrastructure Tool` + "`" + `, it is used for internal purposes to track aggregate usage.`,
+					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ### Labels ` + "`" + `` + "`" + `` + "`" + `terraform labels { key = "Key 1" value = "Value 1" } labels { key = "Key 2" value = "Value 2" } ` + "`" + `` + "`" + `` + "`" + ` Key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key ` + "`" + `Infrastructure Tool` + "`" + `, it is used for internal purposes to track aggregate usage.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -867,10 +883,6 @@ var (
 				resource.Attribute{
 					Name:        "container_id",
 					Description: `The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.`,
-				},
-				resource.Attribute{
-					Name:        "paused",
-					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -973,10 +985,6 @@ var (
 				resource.Attribute{
 					Name:        "container_id",
 					Description: `The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.`,
-				},
-				resource.Attribute{
-					Name:        "paused",
-					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
 					Name:        "srv_address",
@@ -1340,7 +1348,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db",
-					Description: `(Required) The name of the database containing the collection. ### Custom Zone Mapping`,
+					Description: `(Required) The name of the database containing the collection.`,
+				},
+				resource.Attribute{
+					Name:        "is_custom_shard_key_hashed",
+					Description: `(Optional) Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to ` + "`" + `false` + "`" + `. If ` + "`" + `false` + "`" + `, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.`,
+				},
+				resource.Attribute{
+					Name:        "is_shard_key_unique",
+					Description: `(Optional) Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed). ### Custom Zone Mapping`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -1403,11 +1419,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defer",
-					Description: `Defer maintenance for the given project for one week.`,
+					Description: `Defer the next scheduled maintenance for the given project for one week.`,
 				},
 				resource.Attribute{
 					Name:        "auto_defer",
-					Description: `Automatically defer any maintenance for the given project for one week. ->`,
+					Description: `Defer any scheduled maintenance for the given project for one week.`,
+				},
+				resource.Attribute{
+					Name:        "auto_defer_once_enabled",
+					Description: `Flag that indicates whether you want to defer all maintenance windows one week they would be triggered. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1802,7 +1822,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `(Required) The ID of the organization you want to create the project within. ### Teams Teams attribute is optional ~>`,
+					Description: `(Required) The ID of the organization you want to create the project within.`,
+				},
+				resource.Attribute{
+					Name:        "project_owner_id",
+					Description: `(Optional) Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).`,
+				},
+				resource.Attribute{
+					Name:        "with_default_alerts_settings",
+					Description: `(Optional) It allows users to disable the creation of the default alert settings. By default, this flag is set to true. ### Teams Teams attribute is optional ~>`,
 				},
 				resource.Attribute{
 					Name:        "team_id",
@@ -1811,6 +1839,14 @@ var (
 				resource.Attribute{
 					Name:        "role_names",
 					Description: `(Required) Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The following are valid roles:`,
+				},
+				resource.Attribute{
+					Name:        "api_key_id",
+					Description: `(Required) The unique identifier of the Programmatic API key you want to associate with the Project. The Programmatic API key and Project must share the same parent organization. Note: this is not the ` + "`" + `publicKey` + "`" + ` of the Programmatic API key but the ` + "`" + `id` + "`" + ` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.`,
+				},
+				resource.Attribute{
+					Name:        "role_names",
+					Description: `(Required) List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The following are valid roles:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1885,11 +1921,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mappings_fields",
-					Description: `attribute is required when ` + "`" + `mappings_dynamic` + "`" + ` is true. This field needs to be a JSON string in order to be decoded correctly. ` + "`" + `` + "`" + `` + "`" + `hcl mappings_fields = <<-EOF { "address": { "type": "document", "fields": { "city": { "type": "string", "analyzer": "lucene.simple", "ignoreAbove": 255 }, "state": { "type": "string", "analyzer": "lucene.english" } } }, "company": { "type": "string", "analyzer": "lucene.whitespace", "multi": { "mySecondaryAnalyzer": { "type": "string", "analyzer": "lucene.french" } } }, "employees": { "type": "string", "analyzer": "lucene.standard" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `attribute is required when ` + "`" + `mappings_dynamic` + "`" + ` is true. This field needs to be a JSON string in order to be decoded correctly. ` + "`" + `` + "`" + `` + "`" + `terraform mappings_fields = <<-EOF { "address": { "type": "document", "fields": { "city": { "type": "string", "analyzer": "lucene.simple", "ignoreAbove": 255 }, "state": { "type": "string", "analyzer": "lucene.english" } } }, "company": { "type": "string", "analyzer": "lucene.whitespace", "multi": { "mySecondaryAnalyzer": { "type": "string", "analyzer": "lucene.french" } } }, "employees": { "type": "string", "analyzer": "lucene.standard" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "search_analyzer",
-					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer) ### Analyzers An [Atlas Search analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/) prepares a set of documents to be indexed by performing a series of operations to transform, filter, and group sequences of characters. You can define a custom analyzer to suit your specific indexing needs.`,
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)`,
+				},
+				resource.Attribute{
+					Name:        "synonyms",
+					Description: `Synonyms mapping definition to use in this index. ### Analyzers An [Atlas Search analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/) prepares a set of documents to be indexed by performing a series of operations to transform, filter, and group sequences of characters. You can define a custom analyzer to suit your specific indexing needs.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1897,7 +1937,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "char_filters",
-					Description: `Array containing zero or more character filters. Always require a ` + "`" + `type` + "`" + ` field, and some take additional options as well ` + "`" + `` + "`" + `` + "`" + `hcl "char_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL_OPTION": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas search supports four ` + "`" + `types` + "`" + ` of character filters:`,
+					Description: `Array containing zero or more character filters. Always require a ` + "`" + `type` + "`" + ` field, and some take additional options as well ` + "`" + `` + "`" + `` + "`" + `terraform "char_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL_OPTION": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas search supports four ` + "`" + `types` + "`" + ` of character filters:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1905,7 +1945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tokenizer",
-					Description: `(Required) Tokenizer to use. Determines how Atlas Search splits up text into discrete chunks of indexing. Always require a type field, and some take additional options as well. ` + "`" + `` + "`" + `` + "`" + `hcl "tokenizer":{ "type": "<tokenizer-type>", "ADDITIONAL_OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following tokenizer options:`,
+					Description: `(Required) Tokenizer to use. Determines how Atlas Search splits up text into discrete chunks of indexing. Always require a type field, and some take additional options as well. ` + "`" + `` + "`" + `` + "`" + `terraform "tokenizer":{ "type": "<tokenizer-type>", "ADDITIONAL_OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following tokenizer options:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1973,7 +2013,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tokenFilters",
-					Description: `Array containing zero or more token filters. Always require a type field, and some take additional options as well: ` + "`" + `` + "`" + `` + "`" + `hcl "token_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL-OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following token filters:`,
+					Description: `Array containing zero or more token filters. Always require a type field, and some take additional options as well: ` + "`" + `` + "`" + `` + "`" + `terraform "token_filters":{ "type": "<FILTER_TYPE>", "ADDITIONAL-OPTIONS": VALUE } ` + "`" + `` + "`" + `` + "`" + ` Atlas Search supports the following token filters:`,
 				},
 				resource.Attribute{
 					Name:        "original_tokens",
@@ -2095,17 +2135,104 @@ var (
 					Name:        "false",
 					Description: `to be case-sensitive and remove only tokens that exactly match the specified case If omitted, defaults to ` + "`" + `true` + "`" + `.`,
 				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.`,
+				},
+				resource.Attribute{
+					Name:        "source_collection",
+					Description: `(Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).`,
+				},
+				resource.Attribute{
+					Name:        "analyzer",
+					Description: `(Required) Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mongodbatlas_team",
+			Type:             "mongodbatlas_serverless_instance",
+			Category:         "Resources",
+			ShortDescription: `Provides a Serverless Instance resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"serverless",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Human-readable label that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the organization or project you want to create the serverless instance within.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_backing_provider_name",
+					Description: `(Required) Cloud service provider on which MongoDB Cloud provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_provider_name",
+					Description: `(Required) Cloud service provider that applies to the provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_region_name",
+					Description: `(Required) Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. ## Import Serverless Instance can be imported using the group ID and serverless instance id, in the format ` + "`" + `GROUP_ID-SERVERLESS_INSTANCE_ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_serverless_instance.my_serverless_instance 1112222b3bf99403840e8934-1112222b3bf99403840e8935 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. ## Import Serverless Instance can be imported using the group ID and serverless instance id, in the format ` + "`" + `GROUP_ID-SERVERLESS_INSTANCE_ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_serverless_instance.my_serverless_instance 1112222b3bf99403840e8934-1112222b3bf99403840e8935 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_teams",
 			Category:         "Resources",
 			ShortDescription: `Provides a Team resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"team",
+				"teams",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2249,8 +2376,9 @@ var (
 		"mongodbatlas_private_ip_mode":                       13,
 		"mongodbatlas_project":                               14,
 		"mongodbatlas_search_index":                          15,
-		"mongodbatlas_team":                                  16,
-		"mongodbatlas_x509_authentication_database_user":     17,
+		"mongodbatlas_serverless_instance":                   16,
+		"mongodbatlas_teams":                                 17,
+		"mongodbatlas_x509_authentication_database_user":     18,
 	}
 )
 

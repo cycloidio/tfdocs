@@ -62,8 +62,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The Heroku app to add to.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "plan",
@@ -95,7 +95,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config_vars",
-					Description: `The Configuration variables of the add-on ## Import Addons can be imported using the Addon ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Configuration variables of the add-on`,
+				},
+				resource.Attribute{
+					Name:        "config_var_values",
+					Description: `A sensitive map of the add-on's configuration variables. Upon add-on creation, these values will be up-to-date, while the app's own ` + "`" + `config_vars` + "`" + ` require another Terraform refresh cycle to be updated. Useful when an output contains an add-on config var value, or when a configuration needs to operate on a new add-on during an apply. ## Import Addons can be imported using the Addon ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -117,7 +121,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config_vars",
-					Description: `The Configuration variables of the add-on ## Import Addons can be imported using the Addon ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Configuration variables of the add-on`,
+				},
+				resource.Attribute{
+					Name:        "config_var_values",
+					Description: `A sensitive map of the add-on's configuration variables. Upon add-on creation, these values will be up-to-date, while the app's own ` + "`" + `config_vars` + "`" + ` require another Terraform refresh cycle to be updated. Useful when an output contains an add-on config var value, or when a configuration needs to operate on a new add-on during an apply. ## Import Addons can be imported using the Addon ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -131,7 +139,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Required) The ID of the Heroku App to attach to.`,
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "addon_id",
@@ -199,11 +207,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app. This is also the name of the app.`,
+					Description: `The ID (UUID) of the app.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the application.`,
+					Description: `The name of the app.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
@@ -245,11 +253,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app. This is also the name of the app.`,
+					Description: `The ID (UUID) of the app.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the application.`,
+					Description: `The name of the app.`,
 				},
 				resource.Attribute{
 					Name:        "stack",
@@ -299,7 +307,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Required) A Heroku app's ` + "`" + `UUID` + "`" + `. Can also be the name of the Heroku app but ` + "`" + `UUID` + "`" + ` is preferred as it is idempotent.`,
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "vars",
@@ -330,8 +338,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The Heroku app to link to.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -353,8 +361,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The name of the application`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "slug_id",
@@ -366,13 +374,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app release ## Import Existing app releases can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the app release ## Import The most recent app release can be imported using the application name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the app release ## Import Existing app releases can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the app release ## Import The most recent app release can be imported using the application name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -386,7 +394,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Required) The Heroku app to add to.`,
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "level",
@@ -420,8 +428,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The ID of the Heroku app`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "buildpacks",
@@ -517,7 +525,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
-					Description: `(Required) The Heroku app to add to.`,
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "certificate_chain",
@@ -564,8 +572,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The name of the app that the collaborator will be added to.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -624,8 +632,8 @@ var (
 					Description: `(Required) The hostname to serve requests from.`,
 				},
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The Heroku app to link to. ## Attributes Reference The following attributes are exported:`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -672,22 +680,26 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "url",
-					Description: `(Required) The URL for Heroku to drain your logs to.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The Heroku app to link to. ## Attributes Reference The following attributes are exported:`,
+					Name:        "url",
+					Description: `(Optional) The URL for Heroku to drain your logs to. Either ` + "`" + `url` + "`" + ` or ` + "`" + `sensitive_url` + "`" + ` must be defined.`,
+				},
+				resource.Attribute{
+					Name:        "sensitive_url",
+					Description: `(Optional) The URL for Heroku to drain your logs to. The main difference between ` + "`" + `sensitive_url` + "`" + ` and ` + "`" + `url` + "`" + ` is ` + "`" + `sensitive_url` + "`" + ` outputs are redacted, with <sensitive> displayed in place of their value during a ` + "`" + `terraform apply` + "`" + ` or ` + "`" + `terraform refresh` + "`" + `. Either ` + "`" + `url` + "`" + ` or ` + "`" + `sensitive_url` + "`" + ` must be defined. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + ` and the ` + "`" + `url` + "`" + ` attribute value defined for the resource, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ` When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + ` and the ` + "`" + `sensitive_url` + "`" + ` attribute value defined for the resource, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568:sensitive ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "token",
-					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + ` and the ` + "`" + `url` + "`" + ` attribute value defined for the resource, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ` When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + ` and the ` + "`" + `sensitive_url` + "`" + ` attribute value defined for the resource, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568:sensitive ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -700,8 +712,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The name of the application`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -816,8 +828,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) A Heroku app's ` + "`" + `UUID` + "`" + `. Can also be the name of the Heroku app but ` + "`" + `UUID` + "`" + ` is preferred as it is idempotent.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "pipeline",
@@ -829,45 +841,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of this pipeline coupling.`,
-				},
-				resource.Attribute{
-					Name:        "app",
-					Description: `The name of the application.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The ID of the application.`,
-				},
-				resource.Attribute{
-					Name:        "pipeline",
-					Description: `The UUID of the pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "stage",
-					Description: `The stage for this coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The UUID of this pipeline coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The UUID of this pipeline coupling.`,
-				},
-				resource.Attribute{
-					Name:        "app",
-					Description: `The name of the application.`,
-				},
-				resource.Attribute{
-					Name:        "app_id",
-					Description: `The ID of the application.`,
-				},
-				resource.Attribute{
-					Name:        "pipeline",
-					Description: `The UUID of the pipeline.`,
-				},
-				resource.Attribute{
-					Name:        "stage",
-					Description: `The stage for this coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The UUID of this pipeline coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -931,8 +911,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The ID of the Heroku app`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "buildpack_provided_description",
@@ -1108,7 +1088,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the space.`,
+					Description: `The ID (UUID) of the space.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1138,7 +1118,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the space.`,
+					Description: `The ID (UUID) of the space.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1176,7 +1156,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The name of the Private Space.`,
+					Description: `(Required) The ID of the Private Space.`,
 				},
 				resource.Attribute{
 					Name:        "email",
@@ -1199,7 +1179,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the space.`,
+					Description: `(Required) The ID of the space.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -1235,7 +1215,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the space.`,
+					Description: `(Required) The ID of the space.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peering_connection_id",
@@ -1275,7 +1255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "space",
-					Description: `(Required) The ` + "`" + `UUID` + "`" + ` of the Heroku Private Space where the VPN connection will be established.`,
+					Description: `(Required) The ID of the Heroku Private Space where the VPN connection will be established.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
@@ -1339,7 +1319,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Required) The Heroku app UUID to add to.`,
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "certificate_chain",
@@ -1378,8 +1358,8 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "app",
-					Description: `(Required) The name of the team app that the team collaborator will be added to.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name)`,
 				},
 				resource.Attribute{
 					Name:        "email",

@@ -24,13 +24,13 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `AWS IAM Policy JSON document`,
+					Description: `AWS IAM Policy JSON document ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `AWS IAM Policy JSON document`,
+					Description: `AWS IAM Policy JSON document ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -56,13 +56,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "json",
-					Description: `(Read-only) AWS IAM Policy JSON document to grant Databricks full access to bucket.`,
+					Description: `(Read-only) AWS IAM Policy JSON document to grant Databricks full access to bucket. ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `(Read-only) AWS IAM Policy JSON document to grant Databricks full access to bucket.`,
+					Description: `(Read-only) AWS IAM Policy JSON document to grant Databricks full access to bucket. ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -80,13 +80,59 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `AWS IAM Policy JSON document`,
+					Description: `AWS IAM Policy JSON document ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `AWS IAM Policy JSON document`,
+					Description: `AWS IAM Policy JSON document ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_catalogs",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"catalogs",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_catalog](../resources/catalog.md) names ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_clusters",
+			Category:         "Compute",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"clusters",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_name_contains",
+					Description: `(Optional) Only return [databricks_cluster](../resources/cluster.md#cluster_id) ids that match the given name string. ## Attribute Reference This data source exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `list of [databricks_cluster](../resources/cluster.md#cluster_id) ids ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `list of [databricks_cluster](../resources/cluster.md#cluster_id) ids ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -130,7 +176,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_size",
-					Description: `size of the file in bytes`,
+					Description: `size of the file in bytes ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -140,7 +186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_size",
-					Description: `size of the file in bytes`,
+					Description: `size of the file in bytes ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -167,13 +213,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path_list",
-					Description: `returns list of objects with ` + "`" + `path` + "`" + ` and ` + "`" + `file_size` + "`" + ` attributes in each`,
+					Description: `returns list of objects with ` + "`" + `path` + "`" + ` and ` + "`" + `file_size` + "`" + ` attributes in each ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path_list",
-					Description: `returns list of objects with ` + "`" + `path` + "`" + ` and ` + "`" + `file_size` + "`" + ` attributes in each`,
+					Description: `returns list of objects with ` + "`" + `path` + "`" + ` and ` + "`" + `file_size` + "`" + ` attributes in each ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -201,8 +247,20 @@ var (
 					Description: `The id for the group object.`,
 				},
 				resource.Attribute{
-					Name:        "members",
-					Description: `Set of [user](../resources/user.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+					Name:        "external_id",
+					Description: `ID of the group in an external identity provider.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Set of [databricks_user](../resources/user.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "service_principals",
+					Description: `Set of [databricks_service_principal](../resources/service_principal.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "child_groups",
+					Description: `Set of [databricks_group](../resources/group.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
 				},
 				resource.Attribute{
 					Name:        "groups",
@@ -218,7 +276,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_instance_pool_create",
-					Description: `True if group members can create [instance pools](../resources/instance_pool.md)`,
+					Description: `True if group members can create [instance pools](../resources/instance_pool.md) ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -227,8 +285,20 @@ var (
 					Description: `The id for the group object.`,
 				},
 				resource.Attribute{
-					Name:        "members",
-					Description: `Set of [user](../resources/user.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+					Name:        "external_id",
+					Description: `ID of the group in an external identity provider.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Set of [databricks_user](../resources/user.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "service_principals",
+					Description: `Set of [databricks_service_principal](../resources/service_principal.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "child_groups",
+					Description: `Set of [databricks_group](../resources/group.md) identifiers, that can be modified with [databricks_group_member](../resources/group_member.md) resource.`,
 				},
 				resource.Attribute{
 					Name:        "groups",
@@ -244,7 +314,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_instance_pool_create",
-					Description: `True if group members can create [instance pools](../resources/instance_pool.md)`,
+					Description: `True if group members can create [instance pools](../resources/instance_pool.md) ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_jobs",
+			Category:         "Compute",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"jobs",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `map of [databricks_job](../resources/job.md) names to ids ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -293,6 +381,10 @@ var (
 					Description: `(Optional) Pick only nodes that can run Photon driver. Defaults to`,
 				},
 				resource.Attribute{
+					Name:        "graviton",
+					Description: `(boolean, optional) if we should limit the search only to nodes with AWS Graviton CPUs. Default to`,
+				},
+				resource.Attribute{
 					Name:        "is_io_cache_enabled",
 					Description: `(Optional) . Pick only nodes that have IO Cache. Defaults to`,
 				},
@@ -302,13 +394,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `node type, that can be used for [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md).`,
+					Description: `node type, that can be used for [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md). ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `node type, that can be used for [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md).`,
+					Description: `node type, that can be used for [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md). ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 		},
@@ -401,6 +493,34 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_schemas",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"schemas",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `(Required) Name of [databricks_catalog](../resources/catalog.md) ## Attribute Reference This data source exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_schema](../resources/schema.md) full names:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_schema](../resources/schema.md) full names:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_spark_version",
 			Category:         "Compute",
 			ShortDescription: ``,
@@ -413,49 +533,85 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "latest",
-					Description: `(boolean, optional) if we should return only the latest version if there is more than one result. Default to ` + "`" + `true` + "`" + `. If set to ` + "`" + `false` + "`" + ` and multiple versions are matching, throws an error`,
+					Description: `(boolean, optional) if we should return only the latest version if there is more than one result. Default to ` + "`" + `true` + "`" + `. If set to ` + "`" + `false` + "`" + ` and multiple versions are matching, throws an error.`,
 				},
 				resource.Attribute{
 					Name:        "long_term_support",
-					Description: `(boolean, optional) if we should limit the search only to LTS (long term support) & ESR (extended support) versions. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to LTS (long term support) & ESR (extended support) versions. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ml",
-					Description: `(boolean, optional) if we should limit the search only to ML runtimes. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to ML runtimes. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "genomics",
-					Description: `(boolean, optional) if we should limit the search only to Genomics (HLS) runtimes. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to Genomics (HLS) runtimes. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "gpu",
-					Description: `(boolean, optional) if we should limit the search only to runtimes that support GPUs. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to runtimes that support GPUs. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "photon",
-					Description: `(boolean, optional) if we should limit the search only to Photon runtimes. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to Photon runtimes. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "graviton",
+					Description: `(boolean, optional) if we should limit the search only to runtimes supporting AWS Graviton CPUs. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "beta",
-					Description: `(boolean, optional) if we should limit the search only to runtimes that are in Beta stage. Default to ` + "`" + `false` + "`" + ``,
+					Description: `(boolean, optional) if we should limit the search only to runtimes that are in Beta stage. Default to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "scala",
-					Description: `(string, optional) if we should limit the search only to runtimes that are based on specific Scala version. Default to ` + "`" + `2.12` + "`" + ``,
+					Description: `(string, optional) if we should limit the search only to runtimes that are based on specific Scala version. Default to ` + "`" + `2.12` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "spark_version",
-					Description: `(string, optional) if we should limit the search only to runtimes that are based on specific Spark version. Default to empty string. It could be specified as ` + "`" + `3` + "`" + `, or ` + "`" + `3.0` + "`" + `, or full version, like, ` + "`" + `3.0.1` + "`" + ` ## Attribute Reference Data source exposes the following attributes:`,
+					Description: `(string, optional) if we should limit the search only to runtimes that are based on specific Spark version. Default to empty string. It could be specified as ` + "`" + `3` + "`" + `, or ` + "`" + `3.0` + "`" + `, or full version, like, ` + "`" + `3.0.1` + "`" + `. ## Attribute Reference Data source exposes the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Databricks Runtime version, that can be used as ` + "`" + `spark_version` + "`" + ` field in [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md).`,
+					Description: `Databricks Runtime version, that can be used as ` + "`" + `spark_version` + "`" + ` field in [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md). ## Related Resources The following resources are used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Databricks Runtime version, that can be used as ` + "`" + `spark_version` + "`" + ` field in [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md).`,
+					Description: `Databricks Runtime version, that can be used as ` + "`" + `spark_version` + "`" + ` field in [databricks_job](../resources/job.md), [databricks_cluster](../resources/cluster.md), or [databricks_instance_pool](../resources/instance_pool.md). ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_tables",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"tables",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `(Required) Name of [databricks_catalog](../resources/catalog.md)`,
+				},
+				resource.Attribute{
+					Name:        "schema_name",
+					Description: `(Required) Name of [databricks_schema](../resources/schema.md) ## Attribute Reference This data source exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_table](../resources/table.md) full names:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_table](../resources/table.md) full names:`,
 				},
 			},
 		},
@@ -471,6 +627,38 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_views",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"views",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `(Required) Name of [databricks_catalog](../resources/catalog.md)`,
+				},
+				resource.Attribute{
+					Name:        "schema_name",
+					Description: `(Required) Name of [databricks_schema](../resources/schema.md) ## Attribute Reference This data source exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_table](../resources/table.md) full names:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `set of [databricks_table](../resources/table.md) full names:`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -518,16 +706,22 @@ var (
 		"databricks_aws_assume_role_policy":  0,
 		"databricks_aws_bucket_policy":       1,
 		"databricks_aws_crossaccount_policy": 2,
-		"databricks_current_user":            3,
-		"databricks_dbfs_file":               4,
-		"databricks_dbfs_file_paths":         5,
-		"databricks_group":                   6,
-		"databricks_node_type":               7,
-		"databricks_notebook":                8,
-		"databricks_notebook_paths":          9,
-		"databricks_spark_version":           10,
-		"databricks_user":                    11,
-		"databricks_zones":                   12,
+		"databricks_catalogs":                3,
+		"databricks_clusters":                4,
+		"databricks_current_user":            5,
+		"databricks_dbfs_file":               6,
+		"databricks_dbfs_file_paths":         7,
+		"databricks_group":                   8,
+		"databricks_jobs":                    9,
+		"databricks_node_type":               10,
+		"databricks_notebook":                11,
+		"databricks_notebook_paths":          12,
+		"databricks_schemas":                 13,
+		"databricks_spark_version":           14,
+		"databricks_tables":                  15,
+		"databricks_user":                    16,
+		"databricks_views":                   17,
+		"databricks_zones":                   18,
 	}
 )
 

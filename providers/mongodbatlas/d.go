@@ -123,7 +123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_enabled",
-					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating email notifications should be sent. Atlas returns this value if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "flowdock_api_token",
@@ -159,11 +159,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sms_enabled",
-					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating text notifications should be sent. Atlas returns this value if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "team_name",
+					Description: `Label for the team that receives this notification.`,
 				},
 				resource.Attribute{
 					Name:        "type_name",
@@ -182,8 +186,8 @@ var (
 					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
 				},
 				resource.Attribute{
-					Name:        "Roles",
-					Description: `The following roles grant privileges within a project. | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+					Name:        "roles",
+					Description: `Atlas role in current Project or Organization. Atlas returns this value if you set ` + "`" + `type_name` + "`" + ` to ` + "`" + `ORG` + "`" + ` or ` + "`" + `GROUP` + "`" + `. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -285,7 +289,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_enabled",
-					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating email notifications should be sent. Atlas returns this value if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "flowdock_api_token",
@@ -321,11 +325,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sms_enabled",
-					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+					Description: `Flag indicating text notifications should be sent. Atlas returns this value if ` + "`" + `type_name` + "`" + ` is set to ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, or ` + "`" + `USER` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "team_name",
+					Description: `Label for the team that receives this notification.`,
 				},
 				resource.Attribute{
 					Name:        "type_name",
@@ -344,8 +352,8 @@ var (
 					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
 				},
 				resource.Attribute{
-					Name:        "Roles",
-					Description: `The following roles grant privileges within a project. | Project roles | Organization roles | |:---------- |:----------- | | ` + "`" + `GROUP_CHARTS_ADMIN` + "`" + ` | ` + "`" + `ORG_OWNER` + "`" + ` | | ` + "`" + `GROUP_CLUSTER_MANAGER` + "`" + ` | ` + "`" + `ORG_MEMBER` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_ADMIN` + "`" + ` | ` + "`" + `ORG_GROUP_CREATOR` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_ONLY` + "`" + ` | ` + "`" + `ORG_BILLING_ADMIN` + "`" + ` | | ` + "`" + `GROUP_DATA_ACCESS_READ_WRITE` + "`" + ` | ` + "`" + `ORG_READ_ONLY` + "`" + ` | | ` + "`" + `GROUP_OWNER` + "`" + ` | | | ` + "`" + `GROUP_READ_ONLY` + "`" + ` | | See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+					Name:        "roles",
+					Description: `Atlas role in current Project or Organization. Atlas returns this value if you set ` + "`" + `type_name` + "`" + ` to ` + "`" + `ORG` + "`" + ` or ` + "`" + `GROUP` + "`" + `. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
 				},
 			},
 		},
@@ -1115,11 +1123,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_enabled",
-					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+					Description: `Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_scale_down_enabled",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+					Description: `Specifies whether cluster tier auto-down-scaling is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "backup_enabled",
@@ -1199,11 +1207,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
-					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+					Description: `Minimum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_max_instance_size",
-					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+					Description: `Maximum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
@@ -1211,7 +1219,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_id",
-					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `The Network Peering Container ID.`,
+				},
+				resource.Attribute{
+					Name:        "version_release_system",
+					Description: `Release cadence that Atlas uses for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_configuration",
+					Description: `Get the advanced configuration options. See [Advanced Configuration](#advanced-configuration) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1335,7 +1351,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
-					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The number of days, weeks, or months the snapshot is retained. #### Advanced Configuration`,
+				},
+				resource.Attribute{
+					Name:        "default_read_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).`,
+				},
+				resource.Attribute{
+					Name:        "default_write_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).`,
+				},
+				resource.Attribute{
+					Name:        "fail_index_key_too_long",
+					Description: `When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.`,
+				},
+				resource.Attribute{
+					Name:        "javascript_enabled",
+					Description: `When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_enabled_tls_protocol",
+					Description: `Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are: - TLS1_0 - TLS1_1 - TLS1_2`,
+				},
+				resource.Attribute{
+					Name:        "no_table_scan",
+					Description: `When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "oplog_size_mb",
+					Description: `The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size_bi_connector",
+					Description: `Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sample_refresh_interval_bi_connector",
+					Description: `Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1381,11 +1433,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_enabled",
-					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+					Description: `Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_scale_down_enabled",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+					Description: `Specifies whether cluster tier auto-down-scaling is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "backup_enabled",
@@ -1465,11 +1517,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
-					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+					Description: `Minimum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_max_instance_size",
-					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+					Description: `Maximum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "replication_specs",
@@ -1477,7 +1529,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_id",
-					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `The Network Peering Container ID.`,
+				},
+				resource.Attribute{
+					Name:        "version_release_system",
+					Description: `Release cadence that Atlas uses for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_configuration",
+					Description: `Get the advanced configuration options. See [Advanced Configuration](#advanced-configuration) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1601,7 +1661,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
-					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The number of days, weeks, or months the snapshot is retained. #### Advanced Configuration`,
+				},
+				resource.Attribute{
+					Name:        "default_read_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).`,
+				},
+				resource.Attribute{
+					Name:        "default_write_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).`,
+				},
+				resource.Attribute{
+					Name:        "fail_index_key_too_long",
+					Description: `When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.`,
+				},
+				resource.Attribute{
+					Name:        "javascript_enabled",
+					Description: `When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_enabled_tls_protocol",
+					Description: `Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are: - TLS1_0 - TLS1_1 - TLS1_2`,
+				},
+				resource.Attribute{
+					Name:        "no_table_scan",
+					Description: `When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "oplog_size_mb",
+					Description: `The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size_bi_connector",
+					Description: `Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sample_refresh_interval_bi_connector",
+					Description: `Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -1667,11 +1763,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_enabled",
-					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+					Description: `Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_scale_down_enabled",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `Specifies whether cluster tier auto-down-scaling is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "backup_enabled",
@@ -1747,11 +1847,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
-					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+					Description: `Minimum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_max_instance_size",
-					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+					Description: `Maximum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
@@ -1763,7 +1863,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_id",
-					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `The Network Peering Container ID.`,
+				},
+				resource.Attribute{
+					Name:        "version_release_system",
+					Description: `Release cadence that Atlas uses for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_configuration",
+					Description: `Get the advanced configuration options. See [Advanced Configuration](#advanced-configuration) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1887,7 +1995,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
-					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The number of days, weeks, or months the snapshot is retained. #### Advanced Configuration`,
+				},
+				resource.Attribute{
+					Name:        "default_read_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).`,
+				},
+				resource.Attribute{
+					Name:        "default_write_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).`,
+				},
+				resource.Attribute{
+					Name:        "fail_index_key_too_long",
+					Description: `When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.`,
+				},
+				resource.Attribute{
+					Name:        "javascript_enabled",
+					Description: `When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_enabled_tls_protocol",
+					Description: `Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are: - TLS1_0 - TLS1_1 - TLS1_2`,
+				},
+				resource.Attribute{
+					Name:        "no_table_scan",
+					Description: `When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "oplog_size_mb",
+					Description: `The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size_bi_connector",
+					Description: `Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sample_refresh_interval_bi_connector",
+					Description: `Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1941,11 +2085,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_enabled",
-					Description: `(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
+					Description: `Specifies whether cluster tier auto-scaling is enabled. The default is false.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_compute_scale_down_enabled",
-					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to enable the cluster tier to scale down.`,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_compute_scale_down_enabled",
+					Description: `Specifies whether cluster tier auto-down-scaling is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "backup_enabled",
@@ -2021,11 +2169,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_min_instance_size",
-					Description: `(Optional) Minimum instance size to which your cluster can automatically scale.`,
+					Description: `Minimum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "provider_auto_scaling_compute_max_instance_size",
-					Description: `(Optional) Maximum instance size to which your cluster can automatically scale.`,
+					Description: `Maximum instance size to which your cluster can automatically scale.`,
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
@@ -2037,7 +2185,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_id",
-					Description: `The Network Peering Container ID. ### BI Connector Indicates BI Connector for Atlas configuration.`,
+					Description: `The Network Peering Container ID.`,
+				},
+				resource.Attribute{
+					Name:        "version_release_system",
+					Description: `Release cadence that Atlas uses for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_configuration",
+					Description: `Get the advanced configuration options. See [Advanced Configuration](#advanced-configuration) below for more details. ### BI Connector Indicates BI Connector for Atlas configuration.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -2161,7 +2317,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot_backup_policy.#.policies.#.policy_item.#.retention_value",
-					Description: `The number of days, weeks, or months the snapshot is retained. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `The number of days, weeks, or months the snapshot is retained. #### Advanced Configuration`,
+				},
+				resource.Attribute{
+					Name:        "default_read_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).`,
+				},
+				resource.Attribute{
+					Name:        "default_write_concern",
+					Description: `[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).`,
+				},
+				resource.Attribute{
+					Name:        "fail_index_key_too_long",
+					Description: `When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.`,
+				},
+				resource.Attribute{
+					Name:        "javascript_enabled",
+					Description: `When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_enabled_tls_protocol",
+					Description: `Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are: - TLS1_0 - TLS1_1 - TLS1_2`,
+				},
+				resource.Attribute{
+					Name:        "no_table_scan",
+					Description: `When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "oplog_size_mb",
+					Description: `The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size_bi_connector",
+					Description: `Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sample_refresh_interval_bi_connector",
+					Description: `Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -2535,7 +2727,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "number_of_deferrals",
-					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
+					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.`,
+				},
+				resource.Attribute{
+					Name:        "auto_defer_once_enabled",
+					Description: `Flag that indicates whether you want to defer all maintenance windows one week they would be triggered. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2553,7 +2749,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "number_of_deferrals",
-					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
+					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.`,
+				},
+				resource.Attribute{
+					Name:        "auto_defer_once_enabled",
+					Description: `Flag that indicates whether you want to defer all maintenance windows one week they would be triggered. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
 				},
 			},
 		},
@@ -3161,6 +3361,14 @@ var (
 					Name:        "teams.#.role_names",
 					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
 				},
+				resource.Attribute{
+					Name:        "api_keys.#.api_key_id",
+					Description: `The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "api_keys.#.role_names",
+					Description: `Each string in the array represents a project role assigned to the programmatic API key. The following are valid roles:`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -3178,6 +3386,14 @@ var (
 				resource.Attribute{
 					Name:        "teams.#.role_names",
 					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
+				},
+				resource.Attribute{
+					Name:        "api_keys.#.api_key_id",
+					Description: `The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "api_keys.#.role_names",
+					Description: `Each string in the array represents a project role assigned to the programmatic API key. The following are valid roles:`,
 				},
 			},
 		},
@@ -3225,6 +3441,14 @@ var (
 					Name:        "teams.#.role_names",
 					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
 				},
+				resource.Attribute{
+					Name:        "api_keys.#.api_key_id",
+					Description: `The unique identifier of the Organization Programmatic API key assigned to the Project.`,
+				},
+				resource.Attribute{
+					Name:        "api_keys.#.role_names",
+					Description: `List of roles that the Organization Programmatic API key has been assigned. The following are valid roles:`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -3262,11 +3486,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `(Required) Name of the collection the index is on.`,
+					Description: `Name of the collection the index is on.`,
 				},
 				resource.Attribute{
 					Name:        "database",
-					Description: `(Required) Name of the database the collection is in.`,
+					Description: `Name of the database the collection is in.`,
 				},
 				resource.Attribute{
 					Name:        "mappings_dynamic",
@@ -3278,7 +3502,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "search_analyzer",
-					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms",
+					Description: `Synonyms mapping definition to use in this index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.name",
+					Description: `Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.source_collection",
+					Description: `Name of the source MongoDB collection for the synonyms.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.analyzer",
+					Description: `Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3296,11 +3536,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `(Required) Name of the collection the index is on.`,
+					Description: `Name of the collection the index is on.`,
 				},
 				resource.Attribute{
 					Name:        "database",
-					Description: `(Required) Name of the database the collection is in.`,
+					Description: `Name of the database the collection is in.`,
 				},
 				resource.Attribute{
 					Name:        "mappings_dynamic",
@@ -3312,7 +3552,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "search_analyzer",
-					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms",
+					Description: `Synonyms mapping definition to use in this index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.name",
+					Description: `Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.source_collection",
+					Description: `Name of the source MongoDB collection for the synonyms.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.analyzer",
+					Description: `Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
 				},
 			},
 		},
@@ -3386,7 +3642,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "search_analyzer",
-					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms",
+					Description: `Synonyms mapping definition to use in this index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.name",
+					Description: `Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.source_collection",
+					Description: `Name of the source MongoDB collection for the synonyms.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.analyzer",
+					Description: `Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3428,13 +3700,209 @@ var (
 				},
 				resource.Attribute{
 					Name:        "search_analyzer",
-					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
+					Description: `[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms",
+					Description: `Synonyms mapping definition to use in this index.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.name",
+					Description: `Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.source_collection",
+					Description: `Name of the source MongoDB collection for the synonyms.`,
+				},
+				resource.Attribute{
+					Name:        "synonyms.#.analyzer",
+					Description: `Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/atlas-search/) - [and MongoDB Atlas API - Search](https://docs.atlas.mongodb.com/reference/api/atlas-search/) Documentation for more information.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mongodbatlas_team",
+			Type:             "mongodbatlas_serverless_instance",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Serverless Instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Human-readable label that identifies your serverless instance. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_backing_provider_name",
+					Description: `Cloud service provider on which MongoDB Cloud provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_provider_name",
+					Description: `Cloud service provider that applies to the provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_region_name",
+					Description: `Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_backing_provider_name",
+					Description: `Cloud service provider on which MongoDB Cloud provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_provider_name",
+					Description: `Cloud service provider that applies to the provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_region_name",
+					Description: `Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_serverless_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Serverless Instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a search index. ### Results`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Human-readable label that identifies your serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_backing_provider_name",
+					Description: `Cloud service provider on which MongoDB Cloud provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_provider_name",
+					Description: `Cloud service provider that applies to the provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_region_name",
+					Description: `Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a search index. ### Results`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Human-readable label that identifies your serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings_standard_srv",
+					Description: `Public ` + "`" + `mongodb+srv://` + "`" + ` connection string that you can use to connect to this serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique 24-hexadecimal digit string that identifies the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "mongo_db_version",
+					Description: `Version of MongoDB that the serverless instance runs, in ` + "`" + `<major version>` + "`" + `.` + "`" + `<minor version>` + "`" + ` format.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_backing_provider_name",
+					Description: `Cloud service provider on which MongoDB Cloud provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_provider_name",
+					Description: `Cloud service provider that applies to the provisioned the serverless instance.`,
+				},
+				resource.Attribute{
+					Name:        "provider_settings_region_name",
+					Description: `Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.`,
+				},
+				resource.Attribute{
+					Name:        "state_name",
+					Description: `Stage of deployment of this serverless instance when the resource made its request. For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_teams",
 			Category:         "Data Sources",
 			ShortDescription: `Describes a Team.`,
 			Description:      ``,
@@ -3589,8 +4057,10 @@ var (
 		"mongodbatlas_projects":                              18,
 		"mongodbatlas_search_index":                          19,
 		"mongodbatlas_search_indexes":                        20,
-		"mongodbatlas_team":                                  21,
-		"mongodbatlas_x509_authentication_database_user":     22,
+		"mongodbatlas_serverless_instance":                   21,
+		"mongodbatlas_serverless_instances":                  22,
+		"mongodbatlas_teams":                                 23,
+		"mongodbatlas_x509_authentication_database_user":     24,
 	}
 )
 

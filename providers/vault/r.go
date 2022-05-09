@@ -71,7 +71,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "formatter",
-					Description: `(Optional) Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix". This setting is deprecated and should instead use ` + "`" + `password_policy` + "`" + `.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "groupattr",
@@ -95,7 +95,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "length",
-					Description: `(Optional) The desired length of passwords that Vault generates. This setting is deprecated and should instead use ` + "`" + `password_policy` + "`" + `.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -198,14 +198,13 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vault_ad_secret_backend_role",
+			Type:             "vault_ad_secret_role",
 			Category:         "Resources",
 			ShortDescription: `Creates a role on the Active Directory Secret Backend for Vault.`,
 			Description:      ``,
 			Keywords: []string{
 				"ad",
 				"secret",
-				"backend",
 				"role",
 			},
 			Arguments: []resource.Attribute{
@@ -231,7 +230,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password_last_set",
-					Description: `Timestamp of the last password set by Vault. ## Import AD secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ad_secret_backend_role.role ad/roles/bob ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Timestamp of the last password set by Vault. ## Import AD secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ad_secret_role.role ad/roles/bob ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -241,7 +240,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password_last_set",
-					Description: `Timestamp of the last password set by Vault. ## Import AD secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ad_secret_backend_role.role ad/roles/bob ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Timestamp of the last password set by Vault. ## Import AD secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ad_secret_role.role ad/roles/bob ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -300,7 +299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/auth/alicloud#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
@@ -465,23 +464,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/auth/approle#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments`,
-				},
-				resource.Attribute{
-					Name:        "bound_cidr_list",
-					Description: `(Optional; Deprecated, use ` + "`" + `secret_id_bound_cidrs` + "`" + ` instead) If set, specifies blocks of IP addresses which can perform the login operation. These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AppRole authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_approle_auth_backend_role.example auth/approle/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference No additional attributes are exported by this resource. ## Import AppRole authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_approle_auth_backend_role.example auth/approle/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -519,7 +506,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "wrapping_ttl",
-					Description: `(Optional) If set, the SecretID response will be [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) and available for the duration specified. Only a single unwrapping of the token is allowed. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) If set, the SecretID response will be [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) and available for the duration specified. Only a single unwrapping of the token is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "with_wrapped_accessor",
+					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to use the wrapped secret-id accessor as the resource ID. If ` + "`" + `false` + "`" + ` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or invalidated through unwrapping. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "accessor",
@@ -647,37 +638,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The accessor for this auth method ### Deprecated Arguments These arguments are deprecated since version 1.8 of the provider in favour of the ` + "`" + `tune` + "`" + ` block arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "default_lease_ttl_seconds",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.default_lease_ttl` + "`" + ` if you are using Vault provider version >= 1.8) The default lease duration in seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_lease_ttl_seconds",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.max_lease_ttl` + "`" + ` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.`,
-				},
-				resource.Attribute{
-					Name:        "listing_visibility",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.listing_visibility` + "`" + ` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint. ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The accessor for this auth method ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the following tutorials for additional usage examples: - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The accessor for this auth method ### Deprecated Arguments These arguments are deprecated since version 1.8 of the provider in favour of the ` + "`" + `tune` + "`" + ` block arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "default_lease_ttl_seconds",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.default_lease_ttl` + "`" + ` if you are using Vault provider version >= 1.8) The default lease duration in seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_lease_ttl_seconds",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.max_lease_ttl` + "`" + ` if you are using Vault provider version >= 1.8) The maximum lease duration in seconds.`,
-				},
-				resource.Attribute{
-					Name:        "listing_visibility",
-					Description: `(Optional; Deprecated, use ` + "`" + `tune.listing_visibility` + "`" + ` if you are using Vault provider version >= 1.8) Speficies whether to show this mount in the UI-specific listing endpoint. ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The accessor for this auth method ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the following tutorials for additional usage examples: - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)`,
 				},
 			},
 		},
@@ -1018,30 +985,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/auth/aws#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference`,
 				},
 				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "role_id",
+					Description: `The Vault generated role ID. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `The Vault generated role ID. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1125,7 +1085,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "safety_buffer",
-					Description: `(Oprtional) The amount of extra time that must have passed beyond the roletag expiration, before it is removed from the backend storage. Defaults to 259,200 seconds, or 72 hours.`,
+					Description: `(Optional) The amount of extra time that must have passed beyond the roletag expiration, before it is removed from the backend storage. Defaults to 259,200 seconds, or 72 hours.`,
 				},
 				resource.Attribute{
 					Name:        "disable_periodic_tidy",
@@ -1209,7 +1169,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sts_endpoint",
-					Description: `(Optional) Specifies a custom HTTP STS endpoint to use. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies a custom HTTP STS endpoint to use.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template: ` + "`" + `` + "`" + `` + "`" + ` {{ if (eq .Type "STS") }} {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }} {{ else }} {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }} {{ end }} ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1257,7 +1221,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_sts_ttl",
-					Description: `(Optional) The max allowed TTL in seconds for STS credentials (credentials TTL are capped to ` + "`" + `max_sts_ttl` + "`" + `). Valid only when ` + "`" + `credential_type` + "`" + ` is one of ` + "`" + `assumed_role` + "`" + ` or ` + "`" + `federation_token` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend_role.role aws/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The max allowed TTL in seconds for STS credentials (credentials TTL are capped to ` + "`" + `max_sts_ttl` + "`" + `). Valid only when ` + "`" + `credential_type` + "`" + ` is one of ` + "`" + `assumed_role` + "`" + ` or ` + "`" + `federation_token` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_path",
+					Description: `(Optional) The path for the user name. Valid only when ` + "`" + `credential_type` + "`" + ` is ` + "`" + `iam_user` + "`" + `. Default is ` + "`" + `/` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "permissions_boundary_arn",
+					Description: `(Optional) The ARN of the AWS Permissions Boundary to attach to IAM users created in the role. Valid only when ` + "`" + `credential_type` + "`" + ` is ` + "`" + `iam_user` + "`" + `. If not specified, then no permissions boundary policy will be attached. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend_role.role aws/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1337,7 +1309,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bound_resource_groups",
-					Description: `(Optional) If set, defines a constraint on the virtual machiness that can perform the login operation that they be associated with the resource group that matches the value specified by this field.`,
+					Description: `(Optional) If set, defines a constraint on the virtual machines that can perform the login operation that they be associated with the resource group that matches the value specified by this field.`,
 				},
 				resource.Attribute{
 					Name:        "bound_scale_sets",
@@ -1373,27 +1345,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/azure#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_role.example auth/azure/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_role.example auth/azure/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1535,35 +1491,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert). ## Attribute Reference No additional attributes are exposed by this resource.`,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert). ## Attribute Reference No additional attributes are exposed by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1641,10 +1573,6 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "path",
-					Description: `(Optional) The unique name of an existing Consul secrets backend mount. Must not begin or end with a ` + "`" + `/` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name of an existing Consul secrets backend mount. Must not begin or end with a ` + "`" + `/` + "`" + `. One of ` + "`" + `path` + "`" + ` or ` + "`" + `backend` + "`" + ` is required.`,
 				},
@@ -1653,8 +1581,20 @@ var (
 					Description: `(Required) The name of the Consul secrets engine role to create.`,
 				},
 				resource.Attribute{
+					Name:        "consul_namespace",
+					Description: `(Optional) The Consul namespace that the token will be created in. Applicable for Vault 1.10+ and Consul 1.7+",`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) The admin partition that the token will be created in. Applicable for Vault 1.10+ and Consul 1.11+",`,
+				},
+				resource.Attribute{
 					Name:        "policies",
-					Description: `(Required) The list of Consul ACL policies to associate with these roles.`,
+					Description: `(Required when ` + "`" + `consul_roles` + "`" + ` is unset) The list of Consul ACL policies to associate with these roles.`,
+				},
+				resource.Attribute{
+					Name:        "consul_roles",
+					Description: `(Required when ` + "`" + `policies` + "`" + ` is unset) Set of Consul roles to attach to the token. Applicable for Vault 1.10+ with Consul 1.5+.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
@@ -1697,6 +1637,10 @@ var (
 					Description: `(Required) The unique name of the Vault mount to configure.`,
 				},
 				resource.Attribute{
+					Name:        "plugin_name",
+					Description: `(Optional) Specifies the name of the plugin to use.`,
+				},
+				resource.Attribute{
 					Name:        "verify_connection",
 					Description: `(Optional) Whether the connection should be verified on initial configuration or not.`,
 				},
@@ -1715,6 +1659,10 @@ var (
 				resource.Attribute{
 					Name:        "cassandra",
 					Description: `(Optional) A nested block containing configuration options for Cassandra connections.`,
+				},
+				resource.Attribute{
+					Name:        "couchbase",
+					Description: `(Optional) A nested block containing configuration options for Couchbase connections.`,
 				},
 				resource.Attribute{
 					Name:        "mongodb",
@@ -1762,7 +1710,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snowflake",
-					Description: `(Optional) A nested block containing configuration options for Snowflake connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
+					Description: `(Optional) A nested block containing configuration options for Snowflake connections.`,
+				},
+				resource.Attribute{
+					Name:        "influxdb",
+					Description: `(Optional) A nested block containing configuration options for InfluxDB connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "hosts",
@@ -1802,11 +1754,91 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connect_timeout",
+					Description: `(Optional) The number of seconds to use as a connection timeout. ### Couchbase Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `(Required) A set of Couchbase URIs to connect to. Must use ` + "`" + `couchbases://` + "`" + ` scheme if ` + "`" + `tls` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Specifies the username for Vault to use.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the password corresponding to the given username.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Couchbase.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "base64_pem",
+					Description: `(Optional) Required if ` + "`" + `tls` + "`" + ` is ` + "`" + `true` + "`" + `. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Optional) Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated. ### InfluxDB Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) The host to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The default port to connect to if no port is specified as part of the host.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Cassandra.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "pem_bundle",
+					Description: `(Optional) Concatenated PEM blocks configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "pem_json",
+					Description: `(Optional) A JSON structure configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated.`,
+				},
+				resource.Attribute{
+					Name:        "connect_timeout",
 					Description: `(Optional) The number of seconds to use as a connection timeout. ### MongoDB Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
 					Description: `(Required) A URL containing connection information. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload) for an example.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
 				},
 				resource.Attribute{
 					Name:        "username_template",
@@ -1838,7 +1870,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
-					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ### MSSQL Configuration Options`,
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password. ### MSSQL Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1858,7 +1902,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username_template",
-					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### MySQL Configuration Options`,
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
+				},
+				resource.Attribute{
+					Name:        "contained_db",
+					Description: `(Optional bool: false) For Vault v1.9+. Set to true when the target is a Contained Database, e.g. AzureSQL. See the [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db) ### MySQL Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1875,6 +1935,14 @@ var (
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
 					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
 				},
 				resource.Attribute{
 					Name:        "tls_certificate_key",
@@ -1905,6 +1973,18 @@ var (
 					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
 				},
 				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
+				},
+				resource.Attribute{
 					Name:        "username_template",
 					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See the [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### Oracle Configuration Options`,
 				},
@@ -1919,6 +1999,14 @@ var (
 				resource.Attribute{
 					Name:        "max_idle_connections",
 					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
 				},
 				resource.Attribute{
 					Name:        "max_connection_lifetime",
@@ -1938,7 +2026,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) The password to be used in the connection. ### Snowflake Configuration Options`,
+					Description: `(Required) The password to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `(Optional) The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.`,
+				},
+				resource.Attribute{
+					Name:        "ca_path",
+					Description: `(Optional) The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional) The path to the certificate for the Elasticsearch client to present for communication.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional) The path to the key for the Elasticsearch client to use for communication.`,
+				},
+				resource.Attribute{
+					Name:        "tls_server_name",
+					Description: `(Optional) This, if set, is used to set the SNI host when connecting via TLS.`,
+				},
+				resource.Attribute{
+					Name:        "insecure",
+					Description: `(Optional) Whether to disable certificate verification.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) for more details. ### Snowflake Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -1963,6 +2079,38 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Optional) The password to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated. ### Redshift Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) Specifies the Redshift DSN. See the [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload) for an example.`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to the database.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to the database.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum amount of time a connection may be reused.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
 				},
 				resource.Attribute{
 					Name:        "username_template",
@@ -2063,6 +2211,554 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_database_secrets_mount",
+			Category:         "Resources",
+			ShortDescription: `Configures any number of database secrets engines under a single mount resource`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"secrets",
+				"mount",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Where the secret backend will be mounted`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-friendly description of the mount`,
+				},
+				resource.Attribute{
+					Name:        "default_lease_ttl_seconds",
+					Description: `(Optional) Default lease duration for tokens and secrets in seconds`,
+				},
+				resource.Attribute{
+					Name:        "max_lease_ttl_seconds",
+					Description: `(Optional) Maximum possible lease duration for tokens and secrets in seconds`,
+				},
+				resource.Attribute{
+					Name:        "audit_non_hmac_response_keys",
+					Description: `(Optional) Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.`,
+				},
+				resource.Attribute{
+					Name:        "audit_non_hmac_request_keys",
+					Description: `(Optional) Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `(Optional) Boolean flag that can be explicitly set to true to enforce local mount in HA environment`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `(Optional) Specifies mount type specific options that are passed to the backend`,
+				},
+				resource.Attribute{
+					Name:        "seal_wrap",
+					Description: `(Optional) Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability`,
+				},
+				resource.Attribute{
+					Name:        "external_entropy_access",
+					Description: `(Optional) Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source The following arguments are common to all database engines:`,
+				},
+				resource.Attribute{
+					Name:        "plugin_name",
+					Description: `(Optional) Specifies the name of the plugin to use.`,
+				},
+				resource.Attribute{
+					Name:        "verify_connection",
+					Description: `(Optional) Whether the connection should be verified on initial configuration or not.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_roles",
+					Description: `(Optional) A list of roles that are allowed to use this connection.`,
+				},
+				resource.Attribute{
+					Name:        "root_rotation_statements",
+					Description: `(Optional) A list of database statements to be executed to rotate the root user's credentials.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Optional) A map of sensitive data to pass to the endpoint. Useful for templated connection strings. Supported list of database secrets engines that can be configured:`,
+				},
+				resource.Attribute{
+					Name:        "cassandra",
+					Description: `(Optional) A nested block containing configuration options for Cassandra connections.`,
+				},
+				resource.Attribute{
+					Name:        "couchbase",
+					Description: `(Optional) A nested block containing configuration options for Couchbase connections.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch",
+					Description: `(Optional) A nested block containing configuration options for Elasticsearch connections.`,
+				},
+				resource.Attribute{
+					Name:        "hana",
+					Description: `(Optional) A nested block containing configuration options for SAP HanaDB connections.`,
+				},
+				resource.Attribute{
+					Name:        "mongodb",
+					Description: `(Optional) A nested block containing configuration options for MongoDB connections.`,
+				},
+				resource.Attribute{
+					Name:        "mongodbatlas",
+					Description: `(Optional) A nested block containing configuration options for MongoDB Atlas connections.`,
+				},
+				resource.Attribute{
+					Name:        "mssql",
+					Description: `(Optional) A nested block containing configuration options for MSSQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "mysql",
+					Description: `(Optional) A nested block containing configuration options for MySQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_rds",
+					Description: `(Optional) A nested block containing configuration options for RDS MySQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_aurora",
+					Description: `(Optional) A nested block containing configuration options for Aurora MySQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_legacy",
+					Description: `(Optional) A nested block containing configuration options for legacy MySQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "oracle",
+					Description: `(Optional) A nested block containing configuration options for Oracle connections.`,
+				},
+				resource.Attribute{
+					Name:        "postgresql",
+					Description: `(Optional) A nested block containing configuration options for PostgreSQL connections.`,
+				},
+				resource.Attribute{
+					Name:        "redshift",
+					Description: `(Optional) A nested block containing configuration options for AWS Redshift connections.`,
+				},
+				resource.Attribute{
+					Name:        "snowflake",
+					Description: `(Optional) A nested block containing configuration options for Snowflake connections.`,
+				},
+				resource.Attribute{
+					Name:        "influxdb",
+					Description: `(Optional) A nested block containing configuration options for InfluxDB connections.`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `(Required) The hosts to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The default port to connect to if no port is specified as part of the host.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Cassandra.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "pem_bundle",
+					Description: `(Optional) Concatenated PEM blocks configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "pem_json",
+					Description: `(Optional) A JSON structure configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_version",
+					Description: `(Optional) The CQL protocol version to use.`,
+				},
+				resource.Attribute{
+					Name:        "connect_timeout",
+					Description: `(Optional) The number of seconds to use as a connection timeout. ### Couchbase Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `(Required) A set of Couchbase URIs to connect to. Must use ` + "`" + `couchbases://` + "`" + ` scheme if ` + "`" + `tls` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Specifies the username for Vault to use.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the password corresponding to the given username.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Couchbase.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "base64_pem",
+					Description: `(Optional) Required if ` + "`" + `tls` + "`" + ` is ` + "`" + `true` + "`" + `. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Optional) Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated. ### Elasticsearch Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL for Elasticsearch's API. https requires certificate by trusted CA if used.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `(Optional) The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.`,
+				},
+				resource.Attribute{
+					Name:        "ca_path",
+					Description: `(Optional) The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `(Optional) The path to the certificate for the Elasticsearch client to present for communication.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `(Optional) The path to the key for the Elasticsearch client to use for communication.`,
+				},
+				resource.Attribute{
+					Name:        "tls_server_name",
+					Description: `(Optional) This, if set, is used to set the SNI host when connecting via TLS.`,
+				},
+				resource.Attribute{
+					Name:        "insecure",
+					Description: `(Optional) Whether to disable certificate verification.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) for more details. ### InfluxDB Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) The host to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The default port to connect to if no port is specified as part of the host.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Cassandra.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "pem_bundle",
+					Description: `(Optional) Concatenated PEM blocks configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "pem_json",
+					Description: `(Optional) A JSON structure configuring the certificate chain.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated.`,
+				},
+				resource.Attribute{
+					Name:        "connect_timeout",
+					Description: `(Optional) The number of seconds to use as a connection timeout. ### MongoDB Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### MongoDB Atlas Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Required) The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The Private Programmatic API Key used to connect with MongoDB Atlas API.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The Project ID the Database User should be created within. ### SAP HanaDB Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/hanadb.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password. ### MSSQL Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mssql.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
+				},
+				resource.Attribute{
+					Name:        "contained_db",
+					Description: `(Optional bool: false) For Vault v1.9+. Set to true when the target is a Contained Database, e.g. AzureSQL. See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db) ### MySQL Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/mysql-maria.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "tls_certificate_key",
+					Description: `(Optional) x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ca",
+					Description: `(Optional) x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### Oracle Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/oracle.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### PostgreSQL Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/postgresql.html#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### AWS Redshift Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) Specifies the Redshift DSN. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to the database.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to the database.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum amount of time a connection may be reused.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The root credential username used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The root credential password used in the connection URL.`,
+				},
+				resource.Attribute{
+					Name:        "disable_escaping",
+					Description: `(Optional) Disable special character escaping in username and password.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated. ### Snowflake Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "connection_url",
+					Description: `(Required) A URL containing connection information. See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/snowflake#sample-payload)`,
+				},
+				resource.Attribute{
+					Name:        "max_open_connections",
+					Description: `(Optional) The maximum number of open connections to use.`,
+				},
+				resource.Attribute{
+					Name:        "max_idle_connections",
+					Description: `(Optional) The maximum number of idle connections to maintain.`,
+				},
+				resource.Attribute{
+					Name:        "max_connection_lifetime",
+					Description: `(Optional) The maximum number of seconds to keep a connection alive for.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The username to be used in the connection (the account admin level).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password to be used in the connection.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) - [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "engine_count",
+					Description: `The total number of database secrets engines configured. ## Import Database secret backend connections can be imported using the ` + "`" + `path` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secrets_mount.db db ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine_count",
+					Description: `The total number of database secrets engines configured. ## Import Database secret backend connections can be imported using the ` + "`" + `path` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secrets_mount.db db ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2180,10 +2876,6 @@ var (
 					Description: `(Required) Type of GCP authentication role (either ` + "`" + `gce` + "`" + ` or ` + "`" + `iam` + "`" + `)`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional; Deprecated, use ` + "`" + `bound_projects` + "`" + ` instead) GCP Project that the role exists within`,
-				},
-				resource.Attribute{
 					Name:        "bound_projects",
 					Description: `(Optional) An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.`,
 				},
@@ -2253,27 +2945,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attribute Reference No additional attributes are exposed by this resource. ## Import GCP authentication roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_auth_backend_role.my_role auth/gcp/role/my_role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attribute Reference No additional attributes are exposed by this resource. ## Import GCP authentication roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_auth_backend_role.my_role auth/gcp/role/my_role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2467,12 +3143,12 @@ var (
 					Description: `(Required) String containing a JSON-encoded object that will be written as the secret data at the given path.`,
 				},
 				resource.Attribute{
-					Name:        "allow_read",
-					Description: `(Optional, Deprecated) True/false. Set this to true if your vault authentication is able to read the data, this allows the resource to be compared and updated. Defaults to false.`,
+					Name:        "disable_read",
+					Description: `(Optional) true/false. Set this to true if your vault authentication is not able to read the data. Setting this to ` + "`" + `true` + "`" + ` will break drift detection. Defaults to false.`,
 				},
 				resource.Attribute{
-					Name:        "disable_read",
-					Description: `(Optional) True/false. Set this to true if your vault authentication is not able to read the data. Setting this to ` + "`" + `true` + "`" + ` will break drift detection. Defaults to false. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ### Drift Detection This resource does not necessarily need to`,
+					Name:        "delete_all_versions",
+					Description: `(Optional) true/false. Only applicable for kv-v2 stores. If set to ` + "`" + `true` + "`" + `, permanently deletes all versions for the specified key. The default behavior is to only delete the latest version of the secret. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ### Drift Detection This resource does not necessarily need to`,
 				},
 				resource.Attribute{
 					Name:        "data",
@@ -2490,7 +3166,7 @@ var (
 			Name:             "",
 			Type:             "vault_github_auth_backend",
 			Category:         "Resources",
-			ShortDescription: `Manages Github Auth mounts in Vault.`,
+			ShortDescription: `Manages GitHub Auth mounts in Vault.`,
 			Description:      ``,
 			Keywords: []string{
 				"github",
@@ -2513,6 +3189,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Specifies the description of the mount. This overrides the current stored value, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tune",
+					Description: `(Optional) Extra configuration block. Structure is documented below. The ` + "`" + `tune` + "`" + ` block is used to tune the auth backend:`,
 				},
 				resource.Attribute{
 					Name:        "default_lease_ttl",
@@ -2580,23 +3260,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Import GitHub authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2634,23 +3302,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Import GitHub authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3006,6 +3662,76 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_oidc_assignment",
+			Category:         "Resources",
+			ShortDescription: `Provision OIDC Assignments in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"oidc",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the assignment.`,
+				},
+				resource.Attribute{
+					Name:        "entity_ids",
+					Description: `(Optional) A set of Vault entity IDs.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `(Optional) A set of Vault group IDs. ## Attributes Reference No additional attributes are exported by this resource. ## Import OIDC Assignments can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_oidc_assignment.default assignment ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_oidc_client",
+			Category:         "Resources",
+			ShortDescription: `Provision OIDC Clients in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"oidc",
+				"client",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the client.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) A reference to a named key resource in Vault. This cannot be modified after creation. If not provided, the ` + "`" + `default` + "`" + ` key is used.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_uris",
+					Description: `(Optional) Redirection URI values used by the client. One of these values must exactly match the ` + "`" + `redirect_uri` + "`" + ` parameter value used in each authentication request.`,
+				},
+				resource.Attribute{
+					Name:        "assignments",
+					Description: `(Optional) A list of assignment resources associated with the client.`,
+				},
+				resource.Attribute{
+					Name:        "id_token_ttl",
+					Description: `(Optional) The time-to-live for ID tokens obtained by the client. The value should be less than the ` + "`" + `verification_ttl` + "`" + ` on the key.`,
+				},
+				resource.Attribute{
+					Name:        "access_token_ttl",
+					Description: `(Optional) The time-to-live for access tokens obtained by the client.`,
+				},
+				resource.Attribute{
+					Name:        "client_type",
+					Description: `(Optional) The client type based on its ability to maintain confidentiality of credentials. The following client types are supported: ` + "`" + `confidential` + "`" + `, ` + "`" + `public` + "`" + `. Defaults to ` + "`" + `confidential` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import OIDC Clients can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_oidc_client.test my-app ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_identity_oidc_key",
 			Category:         "Resources",
 			ShortDescription: `Creates an Identity OIDC Named Key for Vault`,
@@ -3072,6 +3798,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_oidc_provider",
+			Category:         "Resources",
+			ShortDescription: `Provision OIDC Providers in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"oidc",
+				"provider",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the provider.`,
+				},
+				resource.Attribute{
+					Name:        "https_enabled",
+					Description: `(Optional) Set to true if the issuer endpoint uses HTTPS.`,
+				},
+				resource.Attribute{
+					Name:        "issuer_host",
+					Description: `(Optional) The host for the issuer. Can be either host or host:port.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_client_ids",
+					Description: `(Optional) The client IDs that are permitted to use the provider. If empty, no clients are allowed. If ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "scopes_supported",
+					Description: `(Optional) The scopes available for requesting on the provider. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Specifies what will be used as the ` + "`" + `scheme://host:port` + "`" + ` component for the ` + "`" + `iss` + "`" + ` claim of ID tokens. This value is computed using the ` + "`" + `issuer_host` + "`" + ` and ` + "`" + `https_enabled` + "`" + ` fields. ## Import OIDC Providers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_oidc_provider.test my-provider ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Specifies what will be used as the ` + "`" + `scheme://host:port` + "`" + ` component for the ` + "`" + `iss` + "`" + ` claim of ID tokens. This value is computed using the ` + "`" + `issuer_host` + "`" + ` and ` + "`" + `https_enabled` + "`" + ` fields. ## Import OIDC Providers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_oidc_provider.test my-provider ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_identity_oidc_role",
 			Category:         "Resources",
 			ShortDescription: `Creates an Identity OIDC Role for Vault`,
@@ -3116,6 +3886,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_oidc_scope",
+			Category:         "Resources",
+			ShortDescription: `Provision OIDC Scopes in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"oidc",
+				"scope",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the scope. The ` + "`" + `openid` + "`" + ` scope name is reserved.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the scope. ## Attributes Reference No additional attributes are exported by this resource. ## Import OIDC Scopes can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_oidc_scope.groups groups ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_jwt_auth_backend",
 			Category:         "Resources",
 			ShortDescription: `Managing JWT/OIDC auth backends in Vault`,
@@ -3155,6 +3952,14 @@ var (
 					Description: `(Optional) Client Secret used for OIDC backends`,
 				},
 				resource.Attribute{
+					Name:        "oidc_response_mode",
+					Description: `(Optional) The response mode to be used in the OAuth2 request. Allowed values are ` + "`" + `query` + "`" + ` and ` + "`" + `form_post` + "`" + `. Defaults to ` + "`" + `query` + "`" + `. If using Vault namespaces, and ` + "`" + `oidc_response_mode` + "`" + ` is ` + "`" + `form_post` + "`" + `, then ` + "`" + `namespace_in_state` + "`" + ` should be set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "oidc_response_types",
+					Description: `(Optional) List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to ` + "`" + `["code"]` + "`" + `. Note: ` + "`" + `id_token` + "`" + ` may only be used if ` + "`" + `oidc_response_mode` + "`" + ` is set to ` + "`" + `form_post` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "jwks_url",
 					Description: `(Optional) JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".`,
 				},
@@ -3185,6 +3990,10 @@ var (
 				resource.Attribute{
 					Name:        "local",
 					Description: `(Optional) Specifies if the auth method is local only.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_in_state",
+					Description: `(Optional) Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs`,
 				},
 				resource.Attribute{
 					Name:        "default_lease_ttl",
@@ -3265,7 +4074,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bound_claims",
-					Description: `(Optional) If set, a map of claims/values to match against. The expected value may be a single string or a list of strings.`,
+					Description: `(Optional) If set, a map of claims to values to match against. A claim's value must be a string, which may contain one value or multiple comma-separated values, e.g. ` + "`" + `"red"` + "`" + ` or ` + "`" + `"red,green,blue"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "bound_claims_type",
@@ -3282,10 +4091,6 @@ var (
 				resource.Attribute{
 					Name:        "groups_claim",
 					Description: `(Optional) The claim to use to uniquely identify the set of groups to which the user belongs; this will be used as the names for the Identity group aliases created due to a successful login. The claim value must be a list of strings.`,
-				},
-				resource.Attribute{
-					Name:        "groups_claim_delimiter_pattern",
-					Description: `(Optional; Deprecated. This field has been removed since Vault 1.1. If the groups claim is not at the top level, it can now be specified as a [JSONPointer](https://tools.ietf.org/html/rfc6901).) A pattern of delimiters used to allow the groups_claim to live outside of the top-level JWT structure. For instance, a groups_claim of meta/user.name/groups with this field set to // will expect nested structures named meta, user.name, and groups. If this field was set to /./ the groups information would expect to be via nested structures of meta, user, name, and groups.`,
 				},
 				resource.Attribute{
 					Name:        "backend",
@@ -3341,35 +4146,192 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/jwt#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference No additional attributes are exported by this resource. ## Import JWT authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_jwt_auth_backend_role.example auth/jwt/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kmip_secret_backend",
+			Category:         "Resources",
+			ShortDescription: `Provision KMIP Secret backends in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"kmip",
+				"secret",
+				"backend",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "num_uses",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead if you are running Vault >= 1.2) If set, puts a use-count limitation on the issued token.`,
+					Name:        "description",
+					Description: `(Optional) A human-friendly description for this backend.`,
 				},
 				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Name:        "listen_addrs",
+					Description: `(Optional) Addresses the KMIP server should listen on (` + "`" + `host:port` + "`" + `).`,
 				},
 				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Name:        "server_hostnames",
+					Description: `(Optional) Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).`,
 				},
 				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Name:        "server_ips",
+					Description: `(Optional) IPs to include in the server's TLS certificate as SAN IP addresses.`,
 				},
 				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+					Name:        "tls_ca_key_type",
+					Description: `(Optional) CA key type, rsa or ec.`,
 				},
 				resource.Attribute{
-					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import JWT authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_jwt_auth_backend_role.example auth/jwt/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "tls_ca_key_bits",
+					Description: `(Optional) CA key bits, valid values depend on key type.`,
+				},
+				resource.Attribute{
+					Name:        "tls_min_version",
+					Description: `(Optional) Minimum TLS version to accept.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_client_key_type",
+					Description: `(Optional) Client certificate key type, ` + "`" + `rsa` + "`" + ` or ` + "`" + `ec` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_client_key_bits",
+					Description: `(Optional) Client certificate key bits, valid values depend on key type.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_client_key_type",
+					Description: `(Optional) Client certificate key type, ` + "`" + `rsa` + "`" + ` or ` + "`" + `ec` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import KMIP Secret backend can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kmip_secret_backend.default kmip ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kmip_secret_role",
+			Category:         "Resources",
+			ShortDescription: `Provision KMIP Secret roles in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"kmip",
+				"secret",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) Name of the scope.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) Name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key_type",
+					Description: `(Optional) Client certificate key type, ` + "`" + `rsa` + "`" + ` or ` + "`" + `ec` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key_bits",
+					Description: `(Optional) Client certificate key bits, valid values depend on key type.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_ttl",
+					Description: `(Optional) Client certificate TTL in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "operation_activate",
+					Description: `(Optional) Grant permission to use the KMIP Activate operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_add_attribute",
+					Description: `(Optional) Grant permission to use the KMIP Add Attribute operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_all",
+					Description: `(Optional) Grant all permissions to this role. May not be specified with any other ` + "`" + `operation_`,
+				},
+				resource.Attribute{
+					Name:        "operation_create",
+					Description: `(Optional) Grant permission to use the KMIP Create operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_destroy",
+					Description: `(Optional) Grant permission to use the KMIP Destroy operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_discover_versions",
+					Description: `(Optional) Grant permission to use the KMIP Discover Version operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_get",
+					Description: `(Optional) Grant permission to use the KMIP Get operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_get_attribute_list",
+					Description: `(Optional) Grant permission to use the KMIP Get Atrribute List operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_get_attributes",
+					Description: `(Optional) Grant permission to use the KMIP Get Atrributes operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_locate",
+					Description: `(Optional) Grant permission to use the KMIP Get Locate operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_none",
+					Description: `(Optional) Remove all permissions from this role. May not be specified with any other ` + "`" + `operation_`,
+				},
+				resource.Attribute{
+					Name:        "operation_register",
+					Description: `(Optional) Grant permission to use the KMIP Register operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_rekey",
+					Description: `(Optional) Grant permission to use the KMIP Rekey operation.`,
+				},
+				resource.Attribute{
+					Name:        "operation_revoke",
+					Description: `(Optional) Grant permission to use the KMIP Revoke operation. ## Attributes Reference No additional attributes are exported by this resource. ## Import KMIP Secret role can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kmip_secret_role.admin kmip ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kmip_secret_scope",
+			Category:         "Resources",
+			ShortDescription: `Provision KMIP Secret scopes in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"kmip",
+				"secret",
+				"scope",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) Name of the scope.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Boolean field to force deletion even if there are managed objects in the scope. ## Attributes Reference No additional attributes are exported by this resource. ## Import KMIP Secret scope can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kmip_secret_scope.dev kmip ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3405,7 +4367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "issuer",
-					Description: `Optional JWT issuer. If no issuer is specified, ` + "`" + `kubernetes.io/serviceaccount` + "`" + ` will be used as the default issuer.`,
+					Description: `(Optional) JWT issuer. If no issuer is specified, ` + "`" + `kubernetes.io/serviceaccount` + "`" + ` will be used as the default issuer.`,
 				},
 				resource.Attribute{
 					Name:        "disable_iss_validation",
@@ -3449,11 +4411,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `(Optional) Audience claim to verify in the JWT. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `(Optional) Audience claim to verify in the JWT. ~> Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source) before setting this to something other its default value. There are`,
 				},
 				resource.Attribute{
-					Name:        "token_ttl",
-					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+					Name:        "alias_name_source",
+					Description: `(Optional, default: ` + "`" + `serviceaccount_uid` + "`" + `) Configures how identity aliases are generated. Valid choices are: ` + "`" + `serviceaccount_uid` + "`" + `, ` + "`" + `serviceaccount_name` + "`" + `. (vault-1.9+) ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
 					Name:        "token_max_ttl",
@@ -3481,35 +4443,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
-				},
-				resource.Attribute{
-					Name:        "num_uses",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead if you are running Vault >= 1.2) If set, puts a use-count limitation on the issued token.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
-				},
-				resource.Attribute{
-					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
-				},
-				resource.Attribute{
-					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import Kubernetes auth backend role can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kubernetes_auth_backend_role.foo auth/kubernetes/role/foo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference No additional attributes are exported by this resource. ## Import Kubernetes auth backend role can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kubernetes_auth_backend_role.foo auth/kubernetes/role/foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3533,6 +4471,10 @@ var (
 				resource.Attribute{
 					Name:        "starttls",
 					Description: `(Optional) Control use of TLS when conecting to LDAP`,
+				},
+				resource.Attribute{
+					Name:        "case_sensitive_names",
+					Description: `(Optional) Control case senstivity of objects fetched from LDAP, this is used for object matching in vault`,
 				},
 				resource.Attribute{
 					Name:        "tls_min_version",
@@ -3565,6 +4507,10 @@ var (
 				resource.Attribute{
 					Name:        "userattr",
 					Description: `(Optional) Attribute on user object matching username passed in`,
+				},
+				resource.Attribute{
+					Name:        "userfilter",
+					Description: `(Optional) LDAP user search filter`,
 				},
 				resource.Attribute{
 					Name:        "upndomain",
@@ -3628,11 +4574,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
@@ -3725,6 +4667,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_mfa_okta",
+			Category:         "Resources",
+			ShortDescription: `Managing the MFA Okta method configuration`,
+			Description:      ``,
+			Keywords: []string{
+				"mfa",
+				"okta",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_mfa_pingid",
+			Category:         "Resources",
+			ShortDescription: `Managing the MFA PingID method configuration`,
+			Description:      ``,
+			Keywords: []string{
+				"mfa",
+				"pingid",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_mfa_totp",
+			Category:         "Resources",
+			ShortDescription: `Managing the MFA TOTP method configuration`,
+			Description:      ``,
+			Keywords: []string{
+				"mfa",
+				"totp",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_mount",
 			Category:         "Resources",
 			ShortDescription: `Managing the mounting of secret backends in Vault`,
@@ -3752,6 +4733,14 @@ var (
 				resource.Attribute{
 					Name:        "max_lease_ttl_seconds",
 					Description: `(Optional) Maximum possible lease duration for tokens and secrets in seconds`,
+				},
+				resource.Attribute{
+					Name:        "audit_non_hmac_response_keys",
+					Description: `(Optional) Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.`,
+				},
+				resource.Attribute{
+					Name:        "audit_non_hmac_request_keys",
+					Description: `(Optional) Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -3797,13 +4786,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the namespace.`,
+					Description: `ID of the namespace. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the namespace.`,
+					Description: `ID of the namespace. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3953,37 +4942,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vault_pki_secret_backend",
-			Category:         "Resources",
-			ShortDescription: `Creates an PKI secret backend for Vault.`,
-			Description:      ``,
-			Keywords: []string{
-				"pki",
-				"secret",
-				"backend",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "path",
-					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A human-friendly description for this backend.`,
-				},
-				resource.Attribute{
-					Name:        "default_lease_ttl_seconds",
-					Description: `(Optional) The default TTL for credentials issued by this backend.`,
-				},
-				resource.Attribute{
-					Name:        "max_lease_ttl_seconds",
-					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import PKI secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend.pki pki ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "vault_pki_secret_backend_cert",
 			Category:         "Resources",
 			ShortDescription: `Generate an PKI certificate.`,
@@ -4045,7 +5003,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_renew",
-					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, certs will be renewed if the expiration is within ` + "`" + `min_seconds_remaining` + "`" + `. Default ` + "`" + `false` + "`" + ` ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, certs will be renewed if the expiration is within ` + "`" + `min_seconds_remaining` + "`" + `. Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "revoke",
+					Description: `If set to ` + "`" + `true` + "`" + `, the certificate will be revoked on resource destruction. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certificate",
@@ -4074,6 +5036,10 @@ var (
 				resource.Attribute{
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
+				},
+				resource.Attribute{
+					Name:        "revoke",
+					Description: `Boolean value denoting whether the certificate will be revoked on resource destruction.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4104,6 +5070,10 @@ var (
 				resource.Attribute{
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
+				},
+				resource.Attribute{
+					Name:        "revoke",
+					Description: `Boolean value denoting whether the certificate will be revoked on resource destruction.`,
 				},
 			},
 		},
@@ -4342,7 +5312,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `(Required) The certificate ## Attributes Reference No additional attributes are exported by this resource.`,
+					Description: `(Required) Specifies the PEM encoded certificate. May optionally append additional CA certificates to populate the whole chain, which will then enable returning the full chain from issue and sign operations. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4438,7 +5408,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_type",
-					Description: `(Optional) The type of generated keys`,
+					Description: `(Optional) The generated key type, choices: ` + "`" + `rsa` + "`" + `, ` + "`" + `ec` + "`" + `, ` + "`" + `ed25519` + "`" + `, ` + "`" + `any` + "`" + ` Defaults to ` + "`" + `rsa` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key_bits",
@@ -4619,29 +5589,37 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `The certificate`,
+					Description: `The certificate.`,
 				},
 				resource.Attribute{
 					Name:        "issuing_ca",
-					Description: `The issuing CA`,
+					Description: `The issuing CA certificate.`,
 				},
 				resource.Attribute{
 					Name:        "serial",
-					Description: `The serial`,
+					Description: `Deprecated, use ` + "`" + `serial_number` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `The certificate`,
+					Description: `The certificate.`,
 				},
 				resource.Attribute{
 					Name:        "issuing_ca",
-					Description: `The issuing CA`,
+					Description: `The issuing CA certificate.`,
 				},
 				resource.Attribute{
 					Name:        "serial",
-					Description: `The serial`,
+					Description: `Deprecated, use ` + "`" + `serial_number` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted.`,
 				},
 			},
 		},
@@ -4697,18 +5675,6 @@ var (
 					Description: `(Optional) The format of data`,
 				},
 				resource.Attribute{
-					Name:        "private_key_format",
-					Description: `(Optional) The private key format`,
-				},
-				resource.Attribute{
-					Name:        "key_type",
-					Description: `(Optional) The desired key type`,
-				},
-				resource.Attribute{
-					Name:        "key_bits",
-					Description: `(Optional) The number of bits to use`,
-				},
-				resource.Attribute{
 					Name:        "max_path_length",
 					Description: `(Optional) The maximum path length to encode in the generated certificate`,
 				},
@@ -4754,15 +5720,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `The certificate`,
+					Description: `The intermediate CA certificate in the ` + "`" + `format` + "`" + ` specified.`,
 				},
 				resource.Attribute{
 					Name:        "issuing_ca",
-					Description: `The issuing CA`,
+					Description: `The issuing CA certificate in the ` + "`" + `format` + "`" + ` specified.`,
 				},
 				resource.Attribute{
 					Name:        "ca_chain",
-					Description: `The CA chain`,
+					Description: `A list of the issuing and intermediate CA certificates in the ` + "`" + `format` + "`" + ` specified.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_bundle",
+					Description: `The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). Requires the ` + "`" + `format` + "`" + ` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.`,
 				},
 				resource.Attribute{
 					Name:        "serial",
@@ -4772,15 +5742,19 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `The certificate`,
+					Description: `The intermediate CA certificate in the ` + "`" + `format` + "`" + ` specified.`,
 				},
 				resource.Attribute{
 					Name:        "issuing_ca",
-					Description: `The issuing CA`,
+					Description: `The issuing CA certificate in the ` + "`" + `format` + "`" + ` specified.`,
 				},
 				resource.Attribute{
 					Name:        "ca_chain",
-					Description: `The CA chain`,
+					Description: `A list of the issuing and intermediate CA certificates in the ` + "`" + `format` + "`" + ` specified.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_bundle",
+					Description: `The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). Requires the ` + "`" + `format` + "`" + ` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.`,
 				},
 				resource.Attribute{
 					Name:        "serial",
@@ -4866,12 +5840,16 @@ var (
 					Description: `The CA chain`,
 				},
 				resource.Attribute{
-					Name:        "serial",
-					Description: `The serial`,
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted.`,
 				},
 				resource.Attribute{
 					Name:        "expiration",
-					Description: `The expiration date of the certificate in unix epoch format`,
+					Description: `The expiration date of the certificate in unix epoch format ## Deprecations`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `Use ` + "`" + `serial_number` + "`" + ` instead.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4888,12 +5866,16 @@ var (
 					Description: `The CA chain`,
 				},
 				resource.Attribute{
-					Name:        "serial",
-					Description: `The serial`,
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted.`,
 				},
 				resource.Attribute{
 					Name:        "expiration",
-					Description: `The expiration date of the certificate in unix epoch format`,
+					Description: `The expiration date of the certificate in unix epoch format ## Deprecations`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `Use ` + "`" + `serial_number` + "`" + ` instead.`,
 				},
 			},
 		},
@@ -4913,7 +5895,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) String containing a Vault policy ## Attributes Reference No additional attributes are exported by this resource. ## Import Policies can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_policy.example dev-team ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) String containing a Vault policy ## Attributes Reference No additional attributes are exported by this resource. ## Import Policies can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_policy.example dev-team ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the following tutorials for additional usage examples: - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4998,7 +5980,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "verify_connection",
-					Description: `(Optional) Specifies whether to verify connection URI, username, and password. Defaults to ` + "`" + `true` + "`" + `. ~>`,
+					Description: `(Optional) Specifies whether to verify connection URI, username, and password. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password_policy",
+					Description: `(Optional) Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.`,
+				},
+				resource.Attribute{
+					Name:        "username_template",
+					Description: `(Optional) Template describing how dynamic usernames are generated. ~>`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -5045,8 +6035,12 @@ var (
 					Description: `(Optional) Specifies a comma-separated RabbitMQ management tags.`,
 				},
 				resource.Attribute{
-					Name:        "vhosts",
-					Description: `(Optional) Specifies a map of virtual hosts to permissions. ## Attributes Reference No additional attributes are exported by this resource. ## Import RabbitMQ secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_rabbitmq_secret_backend_role.role rabbitmq/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "vhost",
+					Description: `(Optional) Specifies a map of virtual hosts to permissions.`,
+				},
+				resource.Attribute{
+					Name:        "vhost_topic",
+					Description: `(Optional) Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later. ## Attributes Reference No additional attributes are exported by this resource. ## Import RabbitMQ secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_rabbitmq_secret_backend_role.role rabbitmq/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5199,6 +6193,10 @@ var (
 					Description: `(Optional) When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.`,
 				},
 				resource.Attribute{
+					Name:        "allowed_user_key_config",
+					Description: `(Optional) Set of configuration blocks to define allowed user key configuration, like key type and their lengths. Can be specified multiple times.`,
+				},
+				resource.Attribute{
 					Name:        "allowed_user_key_lengths",
 					Description: `(Optional) Specifies a map of ssh key types and their expected sizes which are allowed to be signed by the CA type.`,
 				},
@@ -5208,7 +6206,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional) Specifies the Time To Live value. ## Attributes Reference No additional attributes are exposed by this resource. ## Import SSH secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ssh_secret_backend_role.foo ssh/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies the Time To Live value. ### Allowed User Key Configuration`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The SSH public key type.`,
+				},
+				resource.Attribute{
+					Name:        "lengths",
+					Description: `(Required) A list of allowed key lengths as integers. For key types that do not support setting the length a value of ` + "`" + `[0]` + "`" + ` should be used. Setting multiple lengths is only supported on Vault 1.10+. For prior releases ` + "`" + `length` + "`" + ` must be set to a single element list. Example configuration blocks that might be included in the ` + "`" + `vault_ssh_secret_backend_role` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl allowed_user_key_config { type = "rsa" lengths = [2048, 4096] } allowed_user_key_config { type = "dss" lengths = [2048, 4096] } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference No additional attributes are exposed by this resource. ## Import SSH secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ssh_secret_backend_role.foo ssh/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5269,11 +6275,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "renew_increment",
-					Description: `(Optional) The renew increment`,
-				},
-				resource.Attribute{
-					Name:        "pgp_key",
-					Description: `(Optional) The PGP key with which the ` + "`" + `client_token` + "`" + ` will be encrypted. The key must be provided using either a base64 encoded non-armored PGP key, or a keybase username in the form ` + "`" + `keybase:somebody` + "`" + `. The token won't be renewed automatically by the provider and ` + "`" + `client_token` + "`" + ` will be empty.`,
+					Description: `(Optional) The renew increment ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "lease_duration",
@@ -5285,11 +6287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_token",
-					Description: `String containing the client token if stored in present file`,
-				},
-				resource.Attribute{
-					Name:        "encrypted_client_token",
-					Description: `String containing the client token encrypted with the given ` + "`" + `pgp_key` + "`" + ` if stored in present file ## Import Tokens can be imported using its ` + "`" + `id` + "`" + ` as accessor id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token.example <accessor_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `String containing the client token if stored in present file ## Import Tokens can be imported using its ` + "`" + `id` + "`" + ` as accessor id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token.example <accessor_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5303,11 +6301,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_token",
-					Description: `String containing the client token if stored in present file`,
-				},
-				resource.Attribute{
-					Name:        "encrypted_client_token",
-					Description: `String containing the client token encrypted with the given ` + "`" + `pgp_key` + "`" + ` if stored in present file ## Import Tokens can be imported using its ` + "`" + `id` + "`" + ` as accessor id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token.example <accessor_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `String containing the client token if stored in present file ## Import Tokens can be imported using its ` + "`" + `id` + "`" + ` as accessor id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token.example <accessor_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5354,19 +6348,53 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+					Description: `(Optional) The [maximum number](https://www.vaultproject.io/api-docs/token#token_num_uses) of times a generated token may be used (within its lifetime); 0 means unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ## Attributes Reference No additional attributes are exported by this resource. ## Import Token auth backend roles can be imported with ` + "`" + `auth/token/roles/` + "`" + ` followed by the ` + "`" + `role_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token_auth_backend_role.example auth/token/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_transform_template",
+			Category:         "Resources",
+			ShortDescription: `"/transform/template/{name}"`,
+			Description:      ``,
+			Keywords: []string{
+				"transform",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
 				},
 				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+					Name:        "alphabet",
+					Description: `(Optional) The alphabet to use for this template. This is only used during FPE transformations.`,
 				},
 				resource.Attribute{
-					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import Token auth backend roles can be imported with ` + "`" + `auth/token/roles/` + "`" + ` followed by the ` + "`" + `role_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token_auth_backend_role.example auth/token/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "name",
+					Description: `(Required) The name of the template.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Optional) The pattern used for matching. Currently, only regular expression pattern is supported.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The pattern type to use for match detection. Currently, only regex is supported.`,
+				},
+				resource.Attribute{
+					Name:        "encode_format",
+					Description: `(Optional) - The regular expression template used to format encoded values. (requires Vault Enterprise 1.9+)`,
+				},
+				resource.Attribute{
+					Name:        "decode_formats",
+					Description: `(Optional) - Optional mapping of name to regular expression template, used to customize the decoded output. (requires Vault Enterprise 1.9+)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5422,7 +6450,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "min_encryption_version",
-					Description: `(Optional) Minimum key version to use for encryption ## Attributes Reference`,
+					Description: `(Optional) Minimum key version to use for encryption`,
+				},
+				resource.Attribute{
+					Name:        "auto_rotate_period",
+					Description: `(Optional) Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the key. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "keys",
@@ -5462,7 +6494,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "supports_signing",
-					Description: `Whether or not the key supports signing, based on key type. ## Import Transit secret backend keys can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_transit_secret_backend_key.key transit/keys/my_key ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether or not the key supports signing, based on key type. ## Deprecations`,
+				},
+				resource.Attribute{
+					Name:        "auto_rotate_interval",
+					Description: `Replaced by ` + "`" + `auto_rotate_period` + "`" + `. ## Import Transit secret backend keys can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_transit_secret_backend_key.key transit/keys/my_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5504,7 +6540,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "supports_signing",
-					Description: `Whether or not the key supports signing, based on key type. ## Import Transit secret backend keys can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_transit_secret_backend_key.key transit/keys/my_key ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether or not the key supports signing, based on key type. ## Deprecations`,
+				},
+				resource.Attribute{
+					Name:        "auto_rotate_interval",
+					Description: `Replaced by ` + "`" + `auto_rotate_period` + "`" + `. ## Import Transit secret backend keys can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_transit_secret_backend_key.key transit/keys/my_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5512,13 +6552,13 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vault_ad_secret_backend":                   0,
-		"vault_ad_secret_backend_library":           1,
-		"vault_ad_secret_backend_role":              2,
-		"vault_alicloud_auth_backend_role":          3,
-		"vault_approle_auth_backend_login":          4,
-		"vault_approle_auth_backend_role":           5,
-		"vault_approle_auth_backend_role_secret_id": 6,
+		"vault_ad_secret_backend":                            0,
+		"vault_ad_secret_backend_library":                    1,
+		"vault_ad_secret_role":                               2,
+		"vault_alicloud_auth_backend_role":                   3,
+		"vault_approle_auth_backend_login":                   4,
+		"vault_approle_auth_backend_role":                    5,
+		"vault_approle_auth_backend_role_secret_id":          6,
 		"vault_audit":                                        7,
 		"vault_auth_backend":                                 8,
 		"vault_aws_auth_backend_cert":                        9,
@@ -5541,63 +6581,74 @@ var (
 		"vault_database_secret_backend_connection":           26,
 		"vault_database_secret_backend_role":                 27,
 		"vault_database_secret_backend_static_role":          28,
-		"vault_egp_policy":                                   29,
-		"vault_gcp_auth_backend":                             30,
-		"vault_gcp_auth_backend_role":                        31,
-		"vault_gcp_secret_backend":                           32,
-		"vault_gcp_secret_roleset":                           33,
-		"vault_gcp_secret_static_account":                    34,
-		"vault_generic_endpoint":                             35,
-		"vault_generic_secret":                               36,
-		"vault_github_auth_backend":                          37,
-		"vault_github_team":                                  38,
-		"vault_github_user":                                  39,
-		"vault_identity_entity":                              40,
-		"vault_identity_entity_alias":                        41,
-		"vault_identity_entity_policies":                     42,
-		"vault_identity_group":                               43,
-		"vault_identity_group_alias":                         44,
-		"vault_identity_group_member_entity_ids":             45,
-		"vault_identity_group_policies":                      46,
-		"vault_identity_oidc":                                47,
-		"vault_identity_oidc_key":                            48,
-		"vault_identity_oidc_key_allowed_client_id":          49,
-		"vault_identity_oidc_role":                           50,
-		"vault_jwt_auth_backend":                             51,
-		"vault_jwt_auth_backend_role":                        52,
-		"vault_kubernetes_auth_backend_config":               53,
-		"vault_kubernetes_auth_backend_role":                 54,
-		"vault_ldap_auth_backend":                            55,
-		"vault_ldap_auth_backend_group":                      56,
-		"vault_ldap_auth_backend_user":                       57,
-		"vault_mfa_duo":                                      58,
-		"vault_mount":                                        59,
-		"vault_namespace":                                    60,
-		"vault_okta_auth_backend":                            61,
-		"vault_okta_auth_backend_group":                      62,
-		"vault_okta_auth_backend_user":                       63,
-		"vault_pki_secret_backend":                           64,
-		"vault_pki_secret_backend_cert":                      65,
-		"vault_pki_secret_backend_config_ca":                 66,
-		"vault_pki_secret_backend_config_urls":               67,
-		"vault_pki_secret_backend_crl_config":                68,
-		"vault_pki_secret_backend_intermediate_cert_request": 69,
-		"vault_pki_secret_backend_intermediate_set_signed":   70,
-		"vault_pki_secret_backend_role":                      71,
-		"vault_pki_secret_backend_root_cert":                 72,
-		"vault_pki_secret_backend_root_sign_intermediate":    73,
-		"vault_pki_secret_backend_sign":                      74,
-		"vault_policy":                                       75,
-		"vault_quota_lease_count":                            76,
-		"vault_quota_rate_limit":                             77,
-		"vault_rabbitmq_secret_backend":                      78,
-		"vault_rabbitmq_secret_backend_role":                 79,
-		"vault_rgp_policy":                                   80,
-		"vault_ssh_secret_backend_ca":                        81,
-		"vault_ssh_secret_backend_role":                      82,
-		"vault_token":                                        83,
-		"vault_token_auth_backend_role":                      84,
-		"vault_transit_secret_backend_key":                   85,
+		"vault_database_secrets_mount":                       29,
+		"vault_egp_policy":                                   30,
+		"vault_gcp_auth_backend":                             31,
+		"vault_gcp_auth_backend_role":                        32,
+		"vault_gcp_secret_backend":                           33,
+		"vault_gcp_secret_roleset":                           34,
+		"vault_gcp_secret_static_account":                    35,
+		"vault_generic_endpoint":                             36,
+		"vault_generic_secret":                               37,
+		"vault_github_auth_backend":                          38,
+		"vault_github_team":                                  39,
+		"vault_github_user":                                  40,
+		"vault_identity_entity":                              41,
+		"vault_identity_entity_alias":                        42,
+		"vault_identity_entity_policies":                     43,
+		"vault_identity_group":                               44,
+		"vault_identity_group_alias":                         45,
+		"vault_identity_group_member_entity_ids":             46,
+		"vault_identity_group_policies":                      47,
+		"vault_identity_oidc":                                48,
+		"vault_identity_oidc_assignment":                     49,
+		"vault_identity_oidc_client":                         50,
+		"vault_identity_oidc_key":                            51,
+		"vault_identity_oidc_key_allowed_client_id":          52,
+		"vault_identity_oidc_provider":                       53,
+		"vault_identity_oidc_role":                           54,
+		"vault_identity_oidc_scope":                          55,
+		"vault_jwt_auth_backend":                             56,
+		"vault_jwt_auth_backend_role":                        57,
+		"vault_kmip_secret_backend":                          58,
+		"vault_kmip_secret_role":                             59,
+		"vault_kmip_secret_scope":                            60,
+		"vault_kubernetes_auth_backend_config":               61,
+		"vault_kubernetes_auth_backend_role":                 62,
+		"vault_ldap_auth_backend":                            63,
+		"vault_ldap_auth_backend_group":                      64,
+		"vault_ldap_auth_backend_user":                       65,
+		"vault_mfa_duo":                                      66,
+		"vault_mfa_okta":                                     67,
+		"vault_mfa_pingid":                                   68,
+		"vault_mfa_totp":                                     69,
+		"vault_mount":                                        70,
+		"vault_namespace":                                    71,
+		"vault_okta_auth_backend":                            72,
+		"vault_okta_auth_backend_group":                      73,
+		"vault_okta_auth_backend_user":                       74,
+		"vault_pki_secret_backend_cert":                      75,
+		"vault_pki_secret_backend_config_ca":                 76,
+		"vault_pki_secret_backend_config_urls":               77,
+		"vault_pki_secret_backend_crl_config":                78,
+		"vault_pki_secret_backend_intermediate_cert_request": 79,
+		"vault_pki_secret_backend_intermediate_set_signed":   80,
+		"vault_pki_secret_backend_role":                      81,
+		"vault_pki_secret_backend_root_cert":                 82,
+		"vault_pki_secret_backend_root_sign_intermediate":    83,
+		"vault_pki_secret_backend_sign":                      84,
+		"vault_policy":                                       85,
+		"vault_quota_lease_count":                            86,
+		"vault_quota_rate_limit":                             87,
+		"vault_rabbitmq_secret_backend":                      88,
+		"vault_rabbitmq_secret_backend_role":                 89,
+		"vault_rgp_policy":                                   90,
+		"vault_ssh_secret_backend_ca":                        91,
+		"vault_ssh_secret_backend_role":                      92,
+		"vault_token":                                        93,
+		"vault_token_auth_backend_role":                      94,
+		"vault_transform_template":                           95,
+		"vault_transit_secret_backend_key":                   96,
 	}
 )
 

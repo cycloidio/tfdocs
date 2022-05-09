@@ -21,6 +21,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "polaris_aws_exocompute",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "polaris_azure_exocompute",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "polaris_azure_service_principal",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -64,10 +84,12 @@ var (
 	resourcesMap = map[string]int{
 
 		"polaris_aws_account":             0,
-		"polaris_azure_service_principal": 1,
-		"polaris_azure_subscription":      2,
-		"polaris_gcp_project":             3,
-		"polaris_gcp_service_account":     4,
+		"polaris_aws_exocompute":          1,
+		"polaris_azure_exocompute":        2,
+		"polaris_azure_service_principal": 3,
+		"polaris_azure_subscription":      4,
+		"polaris_gcp_project":             5,
+		"polaris_gcp_service_account":     6,
 	}
 )
 

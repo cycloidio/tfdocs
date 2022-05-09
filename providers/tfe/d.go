@@ -255,11 +255,19 @@ Use this data source to get information about a team.
 					Name:        "id",
 					Description: `The ID of the team.`,
 				},
+				resource.Attribute{
+					Name:        "sso_team_id",
+					Description: `(Optional) The [SSO Team ID](https://www.terraform.io/cloud-docs/users-teams-organizations/single-sign-on#team-names-and-sso-team-ids) of the team, if it has been defined`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "sso_team_id",
+					Description: `(Optional) The [SSO Team ID](https://www.terraform.io/cloud-docs/users-teams-organizations/single-sign-on#team-names-and-sso-team-ids) of the team, if it has been defined`,
 				},
 			},
 		},
@@ -426,8 +434,12 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether runs in this workspace use the enhanced apply UI.`,
 				},
 				resource.Attribute{
+					Name:        "tag_names",
+					Description: `The names of tags added to this workspace.`,
+				},
+				resource.Attribute{
 					Name:        "terraform_version",
-					Description: `The version of Terraform used for this workspace.`,
+					Description: `The version (or version constraint) of Terraform used for this workspace.`,
 				},
 				resource.Attribute{
 					Name:        "trigger_prefixes",
@@ -520,8 +532,12 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether runs in this workspace use the enhanced apply UI.`,
 				},
 				resource.Attribute{
+					Name:        "tag_names",
+					Description: `The names of tags added to this workspace.`,
+				},
+				resource.Attribute{
 					Name:        "terraform_version",
-					Description: `The version of Terraform used for this workspace.`,
+					Description: `The version (or version constraint) of Terraform used for this workspace.`,
 				},
 				resource.Attribute{
 					Name:        "trigger_prefixes",
@@ -567,7 +583,11 @@ Use this data source to get a map of workspace IDs.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
-					Description: `(Required) A list of workspace names to search for. Names that don't match a real workspace will be omitted from the results, but are not an error. To select _all_ workspaces for an organization, provide a list with a single asterisk, like ` + "`" + `["`,
+					Description: `(Optional) A list of workspace names to search for. Names that don't match a real workspace will be omitted from the results, but are not an error. To select _all_ workspaces for an organization, provide a list with a single asterisk, like ` + "`" + `["`,
+				},
+				resource.Attribute{
+					Name:        "tag_names",
+					Description: `(Optional) A list of tag names to search for.`,
 				},
 				resource.Attribute{
 					Name:        "organization",

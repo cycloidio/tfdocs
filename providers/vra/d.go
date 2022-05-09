@@ -11,1742 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_cloud_account_aws",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_aws.`,
-			Description: `\_cloud\_account\_aws
-
-Provides a VMware vRA vra_cloud_account_aws data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this AWS cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this AWS cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `Access key id for Aws.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `Access key id for Aws.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_azure",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_azure.`,
-			Description: `\_cloud\_account\_azure
-
-Provides a VMware vRA vra_cloud_account_azure data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this Azure cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this Azure cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "application_id",
-					Description: `Azure Client Application ID.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "subscription_id",
-					Description: `Azure Subscription ID.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `Azure Tenant ID.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "application_id",
-					Description: `Azure Client Application ID.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "subscription_id",
-					Description: `Azure Subscription ID.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `Azure Tenant ID.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_gcp",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_gcp.`,
-			Description: `\_cloud\_account\_gcp
-
-Provides a VMware vRA vra_cloud_account_gcp data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this GCP cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this GCP cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "client_email",
-					Description: `GCP Client email.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "private_key_id",
-					Description: `GCP Private key ID.`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `GCP Project ID.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "client_email",
-					Description: `GCP Client email.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "private_key_id",
-					Description: `GCP Private key ID.`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `GCP Project ID.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_nsxt",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxt.`,
-			Description: `\_cloud\_account\_nsxt
-
-Provides a VMware vRA vra_cloud_account_nsxt data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this NSX-T cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this NSX-T cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `Host name for the NSX-T cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username to authenticate with the cloud account.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `Host name for the NSX-T cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username to authenticate with the cloud account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_nsxv",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxv.`,
-			Description: `\_cloud\_account\_nsxv
-
-Provides a VMware vRA vra_cloud_account_nsxv data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this NSX-V cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this NSX-V cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `Host name for the NSX-V cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username to authenticate with the cloud account.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `Host name for the NSX-V cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `Username to authenticate with the cloud account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_vmc",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_vmc.`,
-			Description: `\_cloud\_account\_vmc
-
-Provides a VMware vRA vra_cloud_account_vmc data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this vmc cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this vmc cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "nsx_hostname",
-					Description: `The IP address of the NSX Manager server in the specified SDDC / FQDN.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "region-ids",
-					Description: `A set of region IDs that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "sddc_name",
-					Description: `Identifier of the on-premise SDDC to be used by this cloud account. Note that NSX-V SDDCs are not supported.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "vcenter_hostname",
-					Description: `The IP address or FQDN of the vCenter Server in the specified SDDC. The cloud proxy belongs on this vCenter.`,
-				},
-				resource.Attribute{
-					Name:        "vcenter_username",
-					Description: `vCenter user name for the specified SDDC. The specified user requires CloudAdmin credentials. The user does not require CloudGlobalAdmin credentials.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity.`,
-				},
-				resource.Attribute{
-					Name:        "nsx_hostname",
-					Description: `The IP address of the NSX Manager server in the specified SDDC / FQDN.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `A set of region names that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "region-ids",
-					Description: `A set of region IDs that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "sddc_name",
-					Description: `Identifier of the on-premise SDDC to be used by this cloud account. Note that NSX-V SDDCs are not supported.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "vcenter_hostname",
-					Description: `The IP address or FQDN of the vCenter Server in the specified SDDC. The cloud proxy belongs on this vCenter.`,
-				},
-				resource.Attribute{
-					Name:        "vcenter_username",
-					Description: `vCenter user name for the specified SDDC. The specified user requires CloudAdmin credentials. The user does not require CloudGlobalAdmin credentials.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_cloud_account_vsphere",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_cloud_account_vsphere.`,
-			Description: `\_cloud\_account\_vsphere
-
-Provides a VMware vRA vra_cloud_account_vsphere data source.
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this vSphere cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of this vSphere cloud account. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "custom_properties",
-					Description: `Additional properties that may be used to extend the base info.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "enabled_region_ids",
-					Description: `A set of region IDs that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `The IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `The vSphere username to authenticate the vsphere account.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "associated_cloud_account_ids",
-					Description: `Cloud accounts associated with this cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "custom_properties",
-					Description: `Additional properties that may be used to extend the base info.`,
-				},
-				resource.Attribute{
-					Name:        "dc_id",
-					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description.`,
-				},
-				resource.Attribute{
-					Name:        "enabled_region_ids",
-					Description: `A set of region IDs that are enabled for this account.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `The IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `Tag’s key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `Tag’s value.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "username",
-					Description: `The vSphere username to authenticate the vsphere account.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_fabric_datastore_vsphere",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vSphere fabric datastores.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Only one of 'filter' or 'id' must be specified.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) ID of the vSphere data source. Only one of 'filter' or 'id' must be specified. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `Id of datacenter in which the datastore is present.`,
-				},
-				resource.Attribute{
-					Name:        "free_size_gb",
-					Description: `Indicates free size available in datastore.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the datastore.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of datastore.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `Id of datacenter in which the datastore is present.`,
-				},
-				resource.Attribute{
-					Name:        "free_size_gb",
-					Description: `Indicates free size available in datastore.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the datastore.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of datastore.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_fabric_network",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vRA fabric networks.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Required) Filter query string that is supported by vRA multi-cloud IaaS API. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `Network CIDR to be used.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the vRA fabric network.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Indicates whether the sub-network supports public IP assignment.`,
-				},
-				resource.Attribute{
-					Name:        "is_default",
-					Description: `Indicates whether this is the default subnet for the zone.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `State object representing a network on a external cloud provider.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this network is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the fabric network.`,
-				},
-				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "custom_properties",
-					Description: `Additional properties that may be used to extend the base resource.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `Network CIDR to be used.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the vRA fabric network.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Indicates whether the sub-network supports public IP assignment.`,
-				},
-				resource.Attribute{
-					Name:        "is_default",
-					Description: `Indicates whether this is the default subnet for the zone.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `State object representing a network on a external cloud provider.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this network is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the fabric network.`,
-				},
-				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "custom_properties",
-					Description: `Additional properties that may be used to extend the base resource.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_fabric_storage_account_azure",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for fabric Azure storage account.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `Search criteria to narrow down the fabric Azure storage accounts. Only one of 'filter' or 'id' must be specified.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the fabric Azure storage account. Only one of 'filter' or 'id' must be specified. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric Azure storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric Azure storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_fabric_storage_policy_vsphere",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for fabric vSphere storage policy.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `Search criteria to narrow down the fabric vSphere storage policy. Only one of 'filter' or 'id' must be specified.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the fabric vSphere storage policy. Only one of 'filter' or 'id' must be specified. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option. Only one of 'filter', 'id', 'name' or 'region_id' must be specified.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option. Only one of 'filter', 'id', 'name' or 'region_id' must be specified.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_image",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vRA Images.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `Search criteria to narrow down Images.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the Image. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
-				},
-				resource.Attribute{
-					Name:        "private",
-					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The regionId of the image.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
-				},
-				resource.Attribute{
-					Name:        "private",
-					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The regionId of the image.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_network_domain",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for Network domain objects.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Required) Search criteria to narrow down the network domain objects. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the fabric network domain object.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the network domain.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_ids",
-					Description: `Set of ids of the cloud accounts this entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the fabric network domain object.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the network domain.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_region",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vra_region.`,
-			Description: `\_region
-
-This is an example of how to lookup a region data source.
-
-**Region data source**
-` + "`" + `` + "`" + `` + "`" + `hcl
-data "vra_region" "region_1" {
-  cloud_account_id = "cloud_account_id"
-  region           = "us-east-1"
-}
-` + "`" + `` + "`" + `` + "`" + `
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-data "vra_region" "eastus" {
-  cloud_account_id = "cloud_account_id"
-  region           = "eastus"
-}
-` + "`" + `` + "`" + `` + "`" + `
-
-The region data source supports the following arguments:
-
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_account_id",
-					Description: `(Optional) The id of the cloud account this region belongs to. Example: 9e49`,
-				},
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Optional) The id of this resource instance.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Optional) The id of this resource instance. Example: 9e49`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Optional) Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 8601 and UTC. Example: 2012-09-27`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `Unique identifier of region on the provider side. Example: us-west`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to. Example: 9e49`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity. Example: csp@vmware.com`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. Example: 2012-09-27`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 8601 and UTC. Example: 2012-09-27`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `Unique identifier of region on the provider side. Example: us-west`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id. Example: us-west`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `The id of the organization this entity belongs to. Example: 9e49`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of the user that owns the entity. Example: csp@vmware.com`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. Example: 2012-09-27`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "vra_security_group",
-			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for security groups.`,
-			Description: `
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "filter",
-					Description: `(Required) Search criteria to narrow down the Security groups. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the security groups.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the security group.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the security group.`,
-				},
-				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "rules",
-					Description: `List of security rules.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A human-friendly description of the security groups.`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `External entity Id on the provider side.`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this entity is defined.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the security group.`,
-				},
-				resource.Attribute{
-					Name:        "links",
-					Description: `HATEOAS of the entity`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the security group.`,
-				},
-				resource.Attribute{
-					Name:        "organization_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "rules",
-					Description: `List of security rules.`,
-				},
-				resource.Attribute{
-					Name:        "updated_at",
-					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "vra_vra_block_device",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_block_device.`,
@@ -2572,6 +836,106 @@ This data source provides information about a catalog item in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vra_vra_catalog_item_entitlement",
+			Category:         "Data Sources",
+			ShortDescription: `A data source for catalog item entitlement.`,
+			Description: `\_catalog\_item\_entitlement
+
+This data source provides information about a catalog item entitlement in vRA.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_item_id",
+					Description: `(Optional) The id of the catalog item to find the entitlement. One of ` + "`" + `catalog_item_id` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of entitlement. One of ` + "`" + `catalog_item_id` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project that this entitlement belongs to. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "definition",
+					Description: `Represents a catalog item that is linked to a project via an entitlement.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon id of associated catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_items",
+					Description: `Number of items in the associated catalog source.`,
+				},
+				resource.Attribute{
+					Name:        "source_name",
+					Description: `Catalog source name.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Catalog source type.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Content definition type.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "definition",
+					Description: `Represents a catalog item that is linked to a project via an entitlement.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon id of associated catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_items",
+					Description: `Number of items in the associated catalog source.`,
+				},
+				resource.Attribute{
+					Name:        "source_name",
+					Description: `Catalog source name.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Catalog source type.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Content definition type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vra_vra_catalog_source_blueprint",
 			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog source of type cloud template (blueprint).`,
@@ -2720,27 +1084,35 @@ This data source provides information about a catalog source entitlement in vRA.
 				},
 				resource.Attribute{
 					Name:        "definition",
-					Description: `Represents a catalog item or content source that is linked to a project via an entitlement.`,
+					Description: `Represents a catalog source that is linked to a project via an entitlement.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of either the catalog item, or the catalog source.`,
+					Description: `Description of the catalog source.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon id of associated catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of either the catalog source, or the catalog item.`,
+					Description: `Id of the catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of either the catalog item, or the catalog source.`,
+					Description: `Name of the catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "number_of_items",
 					Description: `Number of items in the associated catalog source.`,
 				},
 				resource.Attribute{
+					Name:        "source_name",
+					Description: `Catalog source name.`,
+				},
+				resource.Attribute{
 					Name:        "source_type",
-					Description: `Type of the catalog source.`,
+					Description: `Catalog source type.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2750,31 +1122,943 @@ This data source provides information about a catalog source entitlement in vRA.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "definition",
-					Description: `Represents a catalog item or content source that is linked to a project via an entitlement.`,
+					Description: `Represents a catalog source that is linked to a project via an entitlement.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description of either the catalog item, or the catalog source.`,
+					Description: `Description of the catalog source.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon id of associated catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of either the catalog source, or the catalog item.`,
+					Description: `Id of the catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of either the catalog item, or the catalog source.`,
+					Description: `Name of the catalog source.`,
 				},
 				resource.Attribute{
 					Name:        "number_of_items",
 					Description: `Number of items in the associated catalog source.`,
 				},
 				resource.Attribute{
+					Name:        "source_name",
+					Description: `Catalog source name.`,
+				},
+				resource.Attribute{
 					Name:        "source_type",
-					Description: `Type of the catalog source.`,
+					Description: `Catalog source type.`,
 				},
 				resource.Attribute{
 					Name:        "type",
 					Description: `Content definition type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_aws",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_aws.`,
+			Description: `\_cloud\_account\_aws
+
+Provides a VMware vRA vra_cloud_account_aws data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this AWS cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this AWS cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `Access key id for Aws.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `Access key id for Aws.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_azure",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_azure.`,
+			Description: `\_cloud\_account\_azure
+
+Provides a VMware vRA vra_cloud_account_azure data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this Azure cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this Azure cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `Azure Client Application ID.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `Azure Subscription ID.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Azure Tenant ID.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `Azure Client Application ID.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `Azure Subscription ID.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Azure Tenant ID.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_gcp",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_gcp.`,
+			Description: `\_cloud\_account\_gcp
+
+Provides a VMware vRA vra_cloud_account_gcp data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this GCP cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this GCP cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `GCP Client email.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `GCP Private key ID.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `GCP Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `GCP Client email.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `GCP Private key ID.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `GCP Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_nsxt",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxt.`,
+			Description: `\_cloud\_account\_nsxt
+
+Provides a VMware vRA vra_cloud_account_nsxt data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this NSX-T cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this NSX-T cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Host name for the NSX-T cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username to authenticate with the cloud account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Host name for the NSX-T cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username to authenticate with the cloud account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_nsxv",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxv.`,
+			Description: `\_cloud\_account\_nsxv
+
+Provides a VMware vRA vra_cloud_account_nsxv data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this NSX-V cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this NSX-V cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Host name for the NSX-V cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username to authenticate with the cloud account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `Host name for the NSX-V cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username to authenticate with the cloud account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_vmc",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_vmc.`,
+			Description: `\_cloud\_account\_vmc
+
+Provides a VMware vRA vra_cloud_account_vmc data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this vmc cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this vmc cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_hostname",
+					Description: `The IP address of the NSX Manager server in the specified SDDC / FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_name",
+					Description: `Identifier of the on-premise SDDC to be used by this cloud account. Note that NSX-V SDDCs are not supported.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_hostname",
+					Description: `The IP address or FQDN of the vCenter Server in the specified SDDC. The cloud proxy belongs on this vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_username",
+					Description: `vCenter user name for the specified SDDC. The specified user requires CloudAdmin credentials. The user does not require CloudGlobalAdmin credentials.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_hostname",
+					Description: `The IP address of the NSX Manager server in the specified SDDC / FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region names that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_name",
+					Description: `Identifier of the on-premise SDDC to be used by this cloud account. Note that NSX-V SDDCs are not supported.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_hostname",
+					Description: `The IP address or FQDN of the vCenter Server in the specified SDDC. The cloud proxy belongs on this vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_username",
+					Description: `vCenter user name for the specified SDDC. The specified user requires CloudAdmin credentials. The user does not require CloudGlobalAdmin credentials.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_cloud_account_vsphere",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vra_cloud_account_vsphere.`,
+			Description: `\_cloud\_account\_vsphere
+
+Provides a VMware vRA vra_cloud_account_vsphere data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of this vSphere cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of this vSphere cloud account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base info.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region IDs that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The vSphere username to authenticate the vsphere account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `Cloud accounts associated with this cloud account.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base info.`,
+				},
+				resource.Attribute{
+					Name:        "dc_id",
+					Description: `Identifier of a data collector vm deployed in the on premise infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `A set of region IDs that are enabled for this account.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The vSphere username to authenticate the vsphere account.`,
 				},
 			},
 		},
@@ -3425,6 +2709,722 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vra_vra_fabric_compute",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vRA fabric computes.`,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the fabric compute resource instance. Only one of 'id' or 'filter' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Search criteria to narrow down the fabric compute resource instance. Only one of 'id' or 'filter' must be specified. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `A list of key value pair of custom properties for the fabric compute resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `The id of the external entity on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The external region id of the fabric compute.`,
+				},
+				resource.Attribute{
+					Name:        "external_zone_id",
+					Description: `The external zone id of the fabric compute.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `Lifecycle status of the compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier for the fabric compute resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "power_state",
+					Description: `Power state of fabric compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the fabric compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `A list of key value pair of custom properties for the fabric compute resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `The id of the external entity on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The external region id of the fabric compute.`,
+				},
+				resource.Attribute{
+					Name:        "external_zone_id",
+					Description: `The external zone id of the fabric compute.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `Lifecycle status of the compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier for the fabric compute resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "power_state",
+					Description: `Power state of fabric compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the fabric compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_fabric_datastore_vsphere",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vSphere fabric datastores.`,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the vSphere fabric datastore resource instance. Only one of 'id' or 'filter' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Search criteria to narrow down the vSphere fabric datastore resource instance. Only one of 'id' or 'filter' must be specified. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `Id of datacenter in which the datastore is present.`,
+				},
+				resource.Attribute{
+					Name:        "free_size_gb",
+					Description: `Indicates free size available in datastore.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier for the vSphere fabric datastore resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of datastore.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `Id of datacenter in which the datastore is present.`,
+				},
+				resource.Attribute{
+					Name:        "free_size_gb",
+					Description: `Indicates free size available in datastore.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier for the vSphere fabric datastore resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of datastore.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_fabric_network",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vRA fabric networks.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Filter query string that is supported by vRA multi-cloud IaaS API. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `Network CIDR to be used.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the vRA fabric network.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `Indicates whether the sub-network supports public IP assignment.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Indicates whether this is the default subnet for the zone.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `State object representing a network on a external cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this network is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the fabric network.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `Network CIDR to be used.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the vRA fabric network.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `Indicates whether the sub-network supports public IP assignment.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Indicates whether this is the default subnet for the zone.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `State object representing a network on a external cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this network is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the fabric network.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `Additional properties that may be used to extend the base resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_fabric_storage_account_azure",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for fabric Azure storage account.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Search criteria to narrow down the fabric Azure storage accounts. Only one of 'filter' or 'id' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the fabric Azure storage account. Only one of 'filter' or 'id' must be specified. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric Azure storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric Azure storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_fabric_storage_policy_vsphere",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for fabric vSphere storage policy.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Search criteria to narrow down the fabric vSphere storage policy. Only one of 'filter' or 'id' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the fabric vSphere storage policy. Only one of 'filter' or 'id' must be specified. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option. Only one of 'filter', 'id', 'name' or 'region_id' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option. Only one of 'filter', 'id', 'name' or 'region_id' must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_image",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for vRA Images.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Search criteria to narrow down Images.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Image. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The regionId of the image.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+				},
+				resource.Attribute{
+					Name:        "private",
+					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The regionId of the image.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vra_vra_image_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_image_profile.`,
@@ -3796,6 +3796,119 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vra_vra_network_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for Network domain objects.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Search criteria to narrow down the network domain objects. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the fabric network domain object.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the network domain.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_account_ids",
+					Description: `Set of ids of the cloud accounts this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the fabric vSphere storage account.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the fabric network domain object.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the network domain.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vra_vra_network_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_network_profile.`,
@@ -3949,12 +4062,13 @@ This data source provides information about a deployment in vRA.
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_project.`,
 			Description: `
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "administrators",
-					Description: `(Optional) List of administrator users associated with the project. Only administrators can manage project's configuration. Deprecated, to specify the type of principal, please refer ` + "`" + `administrator_roles` + "`" + `.`,
+					Description: `(Optional) A list of administrator users associated with the project. Only administrators can manage project's configuration. >`,
 				},
 				resource.Attribute{
 					Name:        "administrator_roles",
@@ -3962,7 +4076,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "constraints",
-					Description: `(Optional) List of storage, network and extensibility constraints to be applied when provisioning through this project.`,
+					Description: `(Optional) A list of storage, network and extensibility constraints to be applied when provisioning through this project.`,
 				},
 				resource.Attribute{
 					Name:        "custom_properties",
@@ -3982,7 +4096,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "members",
-					Description: `(Optional) List of member users associated with the project. Deprecated, to specify the type of principal, please refer ` + "`" + `member_roles` + "`" + `.`,
+					Description: `(Optional) A list of member users associated with the project. >`,
 				},
 				resource.Attribute{
 					Name:        "member_roles",
@@ -3997,12 +4111,16 @@ This data source provides information about a deployment in vRA.
 					Description: `(Optional) The timeout that should be used for Blueprint operations and Provisioning tasks. The timeout is in seconds.`,
 				},
 				resource.Attribute{
+					Name:        "placement_policy",
+					Description: `(Optional) The placement policy that will be applied when selecting a cloud zone for provisioning. Must be one of ` + "`" + `DEFAULT` + "`" + ` or ` + "`" + `SPREAD` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "shared_resources",
 					Description: `(Optional) Specifies whether the resources in this projects are shared or not. If not set default will be used.`,
 				},
 				resource.Attribute{
 					Name:        "zone_assignments",
-					Description: `(Optional) List of configurations for zone assignment to a project.`,
+					Description: `(Optional) A list of configurations for zone assignment to a project.`,
 				},
 				resource.Attribute{
 					Name:        "shared_resources",
@@ -4010,7 +4128,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "viewers",
-					Description: `(Optional) List of viewer users associated with the project. Deprecated, to specify the type of principal, please refer ` + "`" + `viewer_roles` + "`" + `.`,
+					Description: `(Optional) A list of viewer users associated with the project. >`,
 				},
 				resource.Attribute{
 					Name:        "viewer_roles",
@@ -4023,80 +4141,104 @@ This data source provides information about a deployment in vRA.
 			Name:             "",
 			Type:             "vra_vra_region",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for region data source.`,
-			Description: `
+			ShortDescription: `Provides a data lookup for vra_region.`,
+			Description: `\_region
+
+This is an example of how to lookup a region data source:
+
+**Region data source by id:**
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+data "vra_region" "this" {
+  id = var.vra_region_id
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+**Region data source by filter:**
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+data "vra_region" "this" {
+  filter = "name eq '${var.vra_region_name}'"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+**Region data source by cloud account id and region:**
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+data "vra_region" "this" {
+  cloud_account_id = var.vra_cloud_account_id
+  region           = var.vra_region_external_id
+}
+` + "`" + `` + "`" + `` + "`" + `
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_account_id",
-					Description: `(Optional) The Cloud Account ID.`,
+					Description: `(Optional) The id of the cloud account the region belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Search criteria to narrow down Images.`,
+					Description: `(Optional) Search criteria to narrow down Regions.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The ID of the region to find.`,
+					Description: `(Optional) The id of the region instance.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The specific region associated with the cloud account.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) Name of the region from the associated vCenter. ## Attribute Reference`,
+					Description: `(Optional) The specific region associated with the cloud account. On vSphere, this is the external ID. ->`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when entity was created. Date and time format is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of entity owner.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `External regionId of region.`,
+					Description: `Unique identifier of region on the provider side.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the given region within the cloud account.`,
+					Name:        "name",
+					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `Date when entity was updated. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when entity was created. Date and time format is ISO 8601 and UTC.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "owner",
-					Description: `Email of entity owner.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `External regionId of region.`,
+					Description: `Unique identifier of region on the provider side.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the given region within the cloud account.`,
+					Name:        "name",
+					Description: `Name of region on the provider side. In vSphere, the name of the region is different from its id.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `Date when entity was updated. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 		},
@@ -4189,7 +4331,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
-					Description: `(Required) Azure Subscribtion ID`,
+					Description: `(Required) Azure Subscription ID`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -4331,6 +4473,103 @@ This data source provides information about a deployment in vRA.
 				resource.Attribute{
 					Name:        "regions",
 					Description: `A set of datacenter managed object reference identifiers to enable provisioning on. Example: Datacenter:datacenter-2`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_vra_security_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data lookup for security groups.`,
+			Description: `
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Search criteria to narrow down the Security groups. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `List of security rules.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A human-friendly description of the security groups.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this entity is defined.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of organization that entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `List of security rules.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 		},
@@ -4884,16 +5123,25 @@ This data source provides information about a deployment in vRA.
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_zone.`,
 			Description: `
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The id of the image profile instance.`,
+					Description: `(Optional) The id of the zone resource instance.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) A human-friendly name used as an identifier in APIs that support this option. ## Attributes Reference`,
+					Description: `(Optional) A human-friendly name used as an identifier for the zone resource instance. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_id",
+					Description: `The ID of the cloud account this zone belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "compute_ids",
+					Description: `The ids of the compute resources that has been explicitly assigned to this zone.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -4908,8 +5156,16 @@ This data source provides information about a deployment in vRA.
 					Description: `A human-friendly description.`,
 				},
 				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this zone is defined.`,
+				},
+				resource.Attribute{
 					Name:        "folder",
-					Description: `The folder relative path to the datacenter where resources are deployed to. (only applicable for vSphere cloud zones)`,
+					Description: `The folder relative path to the datacenter where resources are deployed to (only applicable for vSphere cloud zones).`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
 				},
 				resource.Attribute{
 					Name:        "org_id",
@@ -4921,23 +5177,31 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "placement_policy",
-					Description: `The id of the region for which this zone is defined`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this zone is defined.`,
-				},
-				resource.Attribute{
-					Name:        "shared_resources",
-					Description: `The id of the organization this entity belongs to.`,
+					Description: `The placement policy for the zone. One of ` + "`" + `DEFAULT` + "`" + `, ` + "`" + `SPREAD` + "`" + ` or ` + "`" + `BINPACK` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
 				},
 				resource.Attribute{
 					Name:        "tags_to_match",
-					Description: `A set of tag keys and optional values for compute resource filtering. example:[ { "key" : "compliance", "value": "pci" } ]`,
+					Description: `A set of tag keys and optional values for compute resource filtering:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4946,6 +5210,14 @@ This data source provides information about a deployment in vRA.
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "cloud_account_id",
+					Description: `The ID of the cloud account this zone belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "compute_ids",
+					Description: `The ids of the compute resources that has been explicitly assigned to this zone.`,
+				},
+				resource.Attribute{
 					Name:        "created_at",
 					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
@@ -4958,8 +5230,16 @@ This data source provides information about a deployment in vRA.
 					Description: `A human-friendly description.`,
 				},
 				resource.Attribute{
+					Name:        "external_region_id",
+					Description: `The id of the region for which this zone is defined.`,
+				},
+				resource.Attribute{
 					Name:        "folder",
-					Description: `The folder relative path to the datacenter where resources are deployed to. (only applicable for vSphere cloud zones)`,
+					Description: `The folder relative path to the datacenter where resources are deployed to (only applicable for vSphere cloud zones).`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
 				},
 				resource.Attribute{
 					Name:        "org_id",
@@ -4971,23 +5251,31 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "placement_policy",
-					Description: `The id of the region for which this zone is defined`,
-				},
-				resource.Attribute{
-					Name:        "external_region_id",
-					Description: `The id of the region for which this zone is defined.`,
-				},
-				resource.Attribute{
-					Name:        "shared_resources",
-					Description: `The id of the organization this entity belongs to.`,
+					Description: `The placement policy for the zone. One of ` + "`" + `DEFAULT` + "`" + `, ` + "`" + `SPREAD` + "`" + ` or ` + "`" + `BINPACK` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
 				},
 				resource.Attribute{
 					Name:        "tags_to_match",
-					Description: `A set of tag keys and optional values for compute resource filtering. example:[ { "key" : "compliance", "value": "pci" } ]`,
+					Description: `A set of tag keys and optional values for compute resource filtering:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag’s key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag’s value.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4999,47 +5287,48 @@ This data source provides information about a deployment in vRA.
 
 	dataSourcesMap = map[string]int{
 
-		"vra_cloud_account_aws":              0,
-		"vra_cloud_account_azure":            1,
-		"vra_cloud_account_gcp":              2,
-		"vra_cloud_account_nsxt":             3,
-		"vra_cloud_account_nsxv":             4,
-		"vra_cloud_account_vmc":              5,
-		"vra_cloud_account_vsphere":          6,
-		"vra_fabric_datastore_vsphere":       7,
-		"vra_fabric_network":                 8,
-		"vra_fabric_storage_account_azure":   9,
-		"vra_fabric_storage_policy_vsphere":  10,
-		"vra_image":                          11,
-		"vra_network_domain":                 12,
-		"vra_region":                         13,
-		"vra_security_group":                 14,
-		"vra_vra_block_device":               15,
-		"vra_vra_block_device_snapshot":      16,
-		"vra_vra_blueprint":                  17,
-		"vra_vra_blueprint_version":          18,
-		"vra_vra_catalog_item":               19,
-		"vra_vra_catalog_source_blueprint":   20,
-		"vra_vra_catalog_source_entitlement": 21,
-		"vra_vra_data_collector":             22,
-		"vra_vra_deployment":                 23,
-		"vra_vra_image_profile":              24,
-		"vra_vra_machine":                    25,
-		"vra_vra_network":                    26,
-		"vra_vra_network_profile":            27,
-		"vra_vra_project":                    28,
-		"vra_vra_region":                     29,
-		"vra_vra_region_enumeration":         30,
-		"vra_vra_region_enumeration_aws":     31,
-		"vra_vra_region_enumeration_azure":   32,
-		"vra_vra_region_enumeration_gcp":     33,
-		"vra_vra_region_enumeration_vmc":     34,
-		"vra_vra_region_enumeration_vsphere": 35,
-		"vra_vra_storage_profile":            36,
-		"vra_vra_storage_profile_aws":        37,
-		"vra_vra_storage_profile_azure":      38,
-		"vra_vra_storage_profile_vsphere":    39,
-		"vra_vra_zone":                       40,
+		"vra_vra_block_device":                  0,
+		"vra_vra_block_device_snapshot":         1,
+		"vra_vra_blueprint":                     2,
+		"vra_vra_blueprint_version":             3,
+		"vra_vra_catalog_item":                  4,
+		"vra_vra_catalog_item_entitlement":      5,
+		"vra_vra_catalog_source_blueprint":      6,
+		"vra_vra_catalog_source_entitlement":    7,
+		"vra_vra_cloud_account_aws":             8,
+		"vra_vra_cloud_account_azure":           9,
+		"vra_vra_cloud_account_gcp":             10,
+		"vra_vra_cloud_account_nsxt":            11,
+		"vra_vra_cloud_account_nsxv":            12,
+		"vra_vra_cloud_account_vmc":             13,
+		"vra_vra_cloud_account_vsphere":         14,
+		"vra_vra_data_collector":                15,
+		"vra_vra_deployment":                    16,
+		"vra_vra_fabric_compute":                17,
+		"vra_vra_fabric_datastore_vsphere":      18,
+		"vra_vra_fabric_network":                19,
+		"vra_vra_fabric_storage_account_azure":  20,
+		"vra_vra_fabric_storage_policy_vsphere": 21,
+		"vra_vra_image":                         22,
+		"vra_vra_image_profile":                 23,
+		"vra_vra_machine":                       24,
+		"vra_vra_network":                       25,
+		"vra_vra_network_domain":                26,
+		"vra_vra_network_profile":               27,
+		"vra_vra_project":                       28,
+		"vra_vra_region":                        29,
+		"vra_vra_region_enumeration":            30,
+		"vra_vra_region_enumeration_aws":        31,
+		"vra_vra_region_enumeration_azure":      32,
+		"vra_vra_region_enumeration_gcp":        33,
+		"vra_vra_region_enumeration_vmc":        34,
+		"vra_vra_region_enumeration_vsphere":    35,
+		"vra_vra_security_group":                36,
+		"vra_vra_storage_profile":               37,
+		"vra_vra_storage_profile_aws":           38,
+		"vra_vra_storage_profile_azure":         39,
+		"vra_vra_storage_profile_vsphere":       40,
+		"vra_vra_zone":                          41,
 	}
 )
 

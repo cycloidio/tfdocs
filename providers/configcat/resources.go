@@ -23,7 +23,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the Config. ## Attribute Reference`,
+					Description: `(Required) The name of the Config.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Config. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -51,7 +55,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the Environment. ## Attribute Reference`,
+					Description: `(Required) The name of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Environment.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) The color (HTML color code) of the Environment. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -79,7 +91,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the Product. ## Attribute Reference`,
+					Description: `(Required) The name of the Product.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Product. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -90,6 +106,50 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique Product ID. ## Import Products can be imported using the ProductId. Get the ProductId using the [GetProducts API](https://api.configcat.com/docs/#operation/get-products) for example. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import configcat_product.example 08d86d63-2726-47cd-8bfc-59608ecb91e2 ` + "`" + `` + "`" + `` + "`" + ` [Read more](https://learn.hashicorp.com/tutorials/terraform/state-import) about importing. ## Endpoints used`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "configcat_segment",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `(Required) The ID of the Product.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Segment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Segment.`,
+				},
+				resource.Attribute{
+					Name:        "comparison_attribute",
+					Description: `(Required) The [comparison attribute](https://configcat.com/docs/advanced/targeting/#attribute).`,
+				},
+				resource.Attribute{
+					Name:        "comparator",
+					Description: `(Required) The [comparator](https://configcat.com/docs/advanced/targeting/#comparator).`,
+				},
+				resource.Attribute{
+					Name:        "comparison_value",
+					Description: `(Required) The [comparison value](https://configcat.com/docs/advanced/targeting/#comparison-value). ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique Segment ID. ## Import Segments can be imported using the SegmentId. Get the SegmentId using the [GetSegments API](https://api.configcat.com/docs/#operation/get-segments) for example. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import configcat_segment.example 08d86d63-2726-47cd-8bfc-59608ecb91e2 ` + "`" + `` + "`" + `` + "`" + ` [Read more](https://learn.hashicorp.com/tutorials/terraform/state-import) about importing. ## Endpoints used`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique Segment ID. ## Import Segments can be imported using the SegmentId. Get the SegmentId using the [GetSegments API](https://api.configcat.com/docs/#operation/get-segments) for example. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import configcat_segment.example 08d86d63-2726-47cd-8bfc-59608ecb91e2 ` + "`" + `` + "`" + `` + "`" + ` [Read more](https://learn.hashicorp.com/tutorials/terraform/state-import) about importing. ## Endpoints used`,
 				},
 			},
 		},
@@ -190,19 +250,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "percentage_items",
-					Description: `(Optional) A [list](https://www.terraform.io/docs/configuration/types.html#list-) to define [Percentage items](https://configcat.com/docs/advanced/targeting/#targeting-a-percentage-of-users). Read more below. ### ` + "`" + `rollout_rules` + "`" + ` list By adding a rule, you specify a group of your users and what feature flag - or other settings - value they should get.`,
+					Description: `(Optional) A [list](https://www.terraform.io/docs/configuration/types.html#list-) to define [Percentage items](https://configcat.com/docs/advanced/targeting/#targeting-a-percentage-of-users). Read more below. ### ` + "`" + `rollout_rules` + "`" + ` list By adding a rule, you specify a group of your users and what feature flag - or other settings - value they should get. Either the comparison_attribute/comparator/comparison_value attributes or the segment_comparator/segment_id attributes are required together.`,
 				},
 				resource.Attribute{
 					Name:        "comparison_attribute",
-					Description: `(Required) The [comparison attribute](https://configcat.com/docs/advanced/targeting/#attribute).`,
+					Description: `(Optional) The [comparison attribute](https://configcat.com/docs/advanced/targeting/#attribute).`,
 				},
 				resource.Attribute{
 					Name:        "comparator",
-					Description: `(Required) The [comparator](https://configcat.com/docs/advanced/targeting/#comparator).`,
+					Description: `(Optional) The [comparator](https://configcat.com/docs/advanced/targeting/#comparator).`,
 				},
 				resource.Attribute{
 					Name:        "comparison_value",
-					Description: `(Required) The [comparison value](https://configcat.com/docs/advanced/targeting/#comparison-value).`,
+					Description: `(Optional) The [comparison value](https://configcat.com/docs/advanced/targeting/#comparison-value).`,
+				},
+				resource.Attribute{
+					Name:        "segment_comparator",
+					Description: `(Optional) The segment_comparator. Possible values: isIn, isNotIn.`,
+				},
+				resource.Attribute{
+					Name:        "segment_id",
+					Description: `(Optional) The [Segment's](https://configcat.com/docs/advanced/segments) unique identifier.`,
 				},
 				resource.Attribute{
 					Name:        "value",
@@ -258,10 +326,11 @@ var (
 		"configcat_config":        0,
 		"configcat_environment":   1,
 		"configcat_product":       2,
-		"configcat_setting":       3,
-		"configcat_setting_tag":   4,
-		"configcat_setting_value": 5,
-		"configcat_tag":           6,
+		"configcat_segment":       3,
+		"configcat_setting":       4,
+		"configcat_setting_tag":   5,
+		"configcat_setting_value": 6,
+		"configcat_tag":           7,
 	}
 )
 

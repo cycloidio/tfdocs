@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_a_record_set",
+			Type:             "dns_dns_a_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS A record set.`,
 			Description:      ``,
@@ -43,7 +43,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_aaaa_record_set",
+			Type:             "dns_dns_aaaa_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS AAAA record set.`,
 			Description:      ``,
@@ -75,7 +75,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_cname_record_set",
+			Type:             "dns_dns_cname_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS CNAME record set.`,
 			Description:      ``,
@@ -107,7 +107,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_mx_record_set",
+			Type:             "dns_dns_mx_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS MX record set.`,
 			Description:      ``,
@@ -139,7 +139,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_ns_record_set",
+			Type:             "dns_dns_ns_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS ns record set.`,
 			Description:      ``,
@@ -171,7 +171,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_ptr_record_set",
+			Type:             "dns_dns_ptr_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS PTR record set.`,
 			Description:      ``,
@@ -203,7 +203,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_srv_record_set",
+			Type:             "dns_dns_srv_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS SRV record set.`,
 			Description:      ``,
@@ -235,7 +235,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "dns_txt_record_set",
+			Type:             "dns_dns_txt_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS TXT record set.`,
 			Description:      ``,
@@ -277,14 +277,14 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"dns_a_record_set":     0,
-		"dns_aaaa_record_set":  1,
-		"dns_cname_record_set": 2,
-		"dns_mx_record_set":    3,
-		"dns_ns_record_set":    4,
-		"dns_ptr_record_set":   5,
-		"dns_srv_record_set":   6,
-		"dns_txt_record_set":   7,
+		"dns_dns_a_record_set":     0,
+		"dns_dns_aaaa_record_set":  1,
+		"dns_dns_cname_record_set": 2,
+		"dns_dns_mx_record_set":    3,
+		"dns_dns_ns_record_set":    4,
+		"dns_dns_ptr_record_set":   5,
+		"dns_dns_srv_record_set":   6,
+		"dns_dns_txt_record_set":   7,
 	}
 )
 

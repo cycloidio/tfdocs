@@ -11,9 +11,9 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_appsec_advanced_settings_logging",
+			Type:             "akamai_appsec_advanced_settings_evasive_path_match",
 			Category:         "Application Security",
-			ShortDescription: `AdvancedSettingsLogging`,
+			ShortDescription: `AdvancedSettingsEvasivePathMatch`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -21,7 +21,9 @@ var (
 				"appsec",
 				"advanced",
 				"settings",
-				"logging",
+				"evasive",
+				"path",
+				"match",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -34,23 +36,40 @@ var (
 				},
 				resource.Attribute{
 					Name:        "json",
-					Description: `A JSON-formatted list of information about the logging settings.`,
+					Description: `A JSON-formatted list of information about the evasive path match settings.`,
 				},
 				resource.Attribute{
 					Name:        "output_text",
-					Description: `A tabular display showing the logging settings.`,
+					Description: `A tabular display showing the evasive path match settings.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
-					Description: `A JSON-formatted list of information about the logging settings.`,
+					Description: `A JSON-formatted list of information about the evasive path match settings.`,
 				},
 				resource.Attribute{
 					Name:        "output_text",
-					Description: `A tabular display showing the logging settings.`,
+					Description: `A tabular display showing the evasive path match settings.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_appsec_advanced_settings_logging",
+			Category:         "Application Security",
+			ShortDescription: `AdvancedSettingsLogging`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"security",
+				"appsec",
+				"advanced",
+				"settings",
+				"logging",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -67,34 +86,8 @@ var (
 				"pragma",
 				"header",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Optional) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderpolicy)) list of information about the pragma header settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the pragma header settings.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted ([format](https://developer.akamai.com/api/cloud_security/application_security/v1.html#putpragmaheaderpolicy)) list of information about the pragma header settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the pragma header settings.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -110,30 +103,8 @@ var (
 				"settings",
 				"prefetch",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the prefetch request settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the prefetch request settings.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the prefetch request settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the prefetch request settings.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -148,46 +119,8 @@ var (
 				"api",
 				"endpoints",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Optional) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "api_name",
-					Description: `(Optional) The name of a specific endpoint. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id_list",
-					Description: `A list of IDs of the API endpoints.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the API endpoints.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of the API endpoints.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id_list",
-					Description: `A list of IDs of the API endpoints.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the API endpoints.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of the API endpoints.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -203,38 +136,8 @@ var (
 				"request",
 				"constraints",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "api_id",
-					Description: `(Optional) The ID of a specific API for which to retrieve constraint information. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the APIs and their constraints and actions.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the APIs and their constraints and actions.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the APIs and their constraints and actions.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the APIs and their constraints and actions.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -249,54 +152,8 @@ var (
 				"attack",
 				"groups",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "attack_group",
-					Description: `(Optional) The ID of the attack group to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "attack_group_action",
-					Description: `The attack group's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The attack group's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified attack group. This output is only generated if an attack group is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified attack group or groups, the attack group's action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "attack_group_action",
-					Description: `The attack group's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The attack group's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified attack group. This output is only generated if an attack group is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified attack group or groups, the attack group's action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -312,38 +169,8 @@ var (
 				"network",
 				"lists",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "bypass_network_list",
-					Description: `A list of strings containing the network list IDs.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the bypass network lists.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the bypass network list information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "bypass_network_list",
-					Description: `A list of strings containing the network list IDs.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of information about the bypass network lists.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the bypass network list information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -357,54 +184,8 @@ var (
 				"appsec",
 				"configuration",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of a specific security configuration. If not supplied, information about all security configurations is returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `The ID of the specified security configuration. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the following information about all available security configurations: config_id, name, latest_version, version_active_in_staging, and version_active_in_production.`,
-				},
-				resource.Attribute{
-					Name:        "latest_version",
-					Description: `The last version of the specified security configuration created. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "staging_version",
-					Description: `The version of the specified security configuration currently active in staging. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "production_version",
-					Description: `The version of the specified security configuration currently active in production. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `The ID of the specified security configuration. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the following information about all available security configurations: config_id, name, latest_version, version_active_in_staging, and version_active_in_production.`,
-				},
-				resource.Attribute{
-					Name:        "latest_version",
-					Description: `The last version of the specified security configuration created. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "staging_version",
-					Description: `The version of the specified security configuration currently active in staging. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "production_version",
-					Description: `The version of the specified security configuration currently active in production. Returned only if ` + "`" + `name` + "`" + ` was specified.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -419,50 +200,8 @@ var (
 				"configuration",
 				"version",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) The version number of the security configuration to use. If not supplied, information about all versions of the specified security configuration is returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "latest_version",
-					Description: `The last version of the security configuration created.`,
-				},
-				resource.Attribute{
-					Name:        "staging_status",
-					Description: `The status of the specified version in staging: "Active", "Inactive", or "Deactivated". Returned only if ` + "`" + `version` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "production_status",
-					Description: `The status of the specified version in production: "Active", "Inactive", or "Deactivated". Returned only if ` + "`" + `version` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the following information about all versions of the security configuration: version number, staging status, and production status.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "latest_version",
-					Description: `The last version of the security configuration created.`,
-				},
-				resource.Attribute{
-					Name:        "staging_status",
-					Description: `The status of the specified version in staging: "Active", "Inactive", or "Deactivated". Returned only if ` + "`" + `version` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "production_status",
-					Description: `The status of the specified version in production: "Active", "Inactive", or "Deactivated". Returned only if ` + "`" + `version` + "`" + ` was specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the following information about all versions of the security configuration: version number, staging status, and production status.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -477,58 +216,8 @@ var (
 				"contracts",
 				"groups",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "contractid",
-					Description: `(Optional) The ID of a contract for which to retrieve information.`,
-				},
-				resource.Attribute{
-					Name:        "groupid",
-					Description: `(Optional) The ID of a group for which to retrieve information. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the contract and group information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the contract and group information.`,
-				},
-				resource.Attribute{
-					Name:        "default_contractid",
-					Description: `The default contract ID for the specified contract and group.`,
-				},
-				resource.Attribute{
-					Name:        "default_groupid",
-					Description: `The default group ID for the specified contract and group.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "contractid",
-					Description: `(Optional) The ID of a contract for which to retrieve information.`,
-				},
-				resource.Attribute{
-					Name:        "groupid",
-					Description: `(Optional) The ID of a group for which to retrieve information. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the contract and group information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the contract and group information.`,
-				},
-				resource.Attribute{
-					Name:        "default_contractid",
-					Description: `The default contract ID for the specified contract and group.`,
-				},
-				resource.Attribute{
-					Name:        "default_groupid",
-					Description: `The default group ID for the specified contract and group.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -543,34 +232,8 @@ var (
 				"custom",
 				"deny",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID to use.`,
-				},
-				resource.Attribute{
-					Name:        "custom_deny_id",
-					Description: `(Optional) The ID of a specific custom deny action. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the custom deny action information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the custom deny action information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the custom deny action information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the custom deny action information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -586,30 +249,8 @@ var (
 				"rule",
 				"actions",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use`,
-				},
-				resource.Attribute{
-					Name:        "custom_rule_id",
-					Description: `(Optional) A specific custom rule for which to retrieve information. If not supplied, information about all custom rules will be returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID, name, and action of all custom rules, or of the specific custom rule, associated with the specified security configuration, version and security policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID, name, and action of all custom rules, or of the specific custom rule, associated with the specified security configuration, version and security policy.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -624,40 +265,14 @@ var (
 				"custom",
 				"rules",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "custom_rule_id",
-					Description: `(Optional) The ID of a specific custom rule to use. If not supplied, information about all custom rules associated with the given security configuration will be returned. ## Attributes Reference In addition to the argument above, the following attribute is exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of the custom rule(s).`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the custom rule information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of the custom rule(s).`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the custom rule information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "akamai_appsec_eval_groups",
 			Category:         "Application Security",
-			ShortDescription: `KRS Eval Groups`,
+			ShortDescription: `Evaluation Attack Groups`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -666,106 +281,14 @@ var (
 				"eval",
 				"groups",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "attack_group",
-					Description: `(Optional) The ID of the eval attack group to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "attack_group_action",
-					Description: `The eval attack group's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `d eny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The eval attack group's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified eval attack group. This output is only generated if an attack group is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified eval attack group or groups, the eval attack group's action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "attack_group_action",
-					Description: `The eval attack group's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `d eny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The eval attack group's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified eval attack group. This output is only generated if an attack group is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified eval attack group or groups, the eval attack group's action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "akamai_appsec_eval_hostnames",
-			Category:         "Application Security",
-			ShortDescription: `EvalHostnames`,
-			Description:      ``,
-			Keywords: []string{
-				"application",
-				"security",
-				"appsec",
-				"eval",
-				"hostnames",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `A list of the evaluation hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the evaluation hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the evaluation hostnames.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `A list of the evaluation hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the evaluation hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the evaluation hostnames.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "akamai_appsec_eval_rules",
 			Category:         "Application Security",
-			ShortDescription: `KRS Eval Rules`,
+			ShortDescription: `Evaluation Rules`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -774,54 +297,8 @@ var (
 				"eval",
 				"rules",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "rule_id",
-					Description: `(Optional) The ID of the rule to use. If not specified, information about all rules will be returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "eval_rule_action",
-					Description: `The eval rule's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The eval rule's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified eval rule. This output is only generated if an eval rule is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified eval rule or rules, the rule action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "eval_rule_action",
-					Description: `The eval rule's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The eval rule's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified eval rule. This output is only generated if an eval rule is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified eval rule or rules, the rule action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -836,38 +313,8 @@ var (
 				"export",
 				"configuration",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "search",
-					Description: `(Optional) A bracket-delimited list of quoted strings specifying the types of information to be retrieved and made available for display in the ` + "`" + `output_text` + "`" + ` format. The following types are available:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `The complete set of information about the specified security configuration version, in JSON format. This includes the types available for the ` + "`" + `search` + "`" + ` parameter, plus several additional fields such as createDate and createdBy.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the types of data specified in the ` + "`" + `search` + "`" + ` parameter. Included only if the ` + "`" + `search` + "`" + ` parameter specifies at least one type.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `The complete set of information about the specified security configuration version, in JSON format. This includes the types available for the ` + "`" + `search` + "`" + ` parameter, plus several additional fields such as createDate and createdBy.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the types of data specified in the ` + "`" + `search` + "`" + ` parameter. Included only if the ` + "`" + `search` + "`" + ` parameter specifies at least one type.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -882,38 +329,8 @@ var (
 				"failover",
 				"hostnames",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use. ## Attributes Reference In addition to the argument above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `A list of the failover hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the failover hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the failover hostnames.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `A list of the failover hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the failover hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the failover hostnames.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -928,26 +345,8 @@ var (
 				"hostname",
 				"coverage",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the hostname coverage information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the hostname coverage information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the hostname coverage information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the hostname coverage information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -964,30 +363,8 @@ var (
 				"match",
 				"targets",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required) The hostname for which to retrieve information. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the coverage information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the coverage information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the coverage information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the coverage information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1003,30 +380,8 @@ var (
 				"coverage",
 				"overlapping",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Optional) The hostname for which to retrieve information. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the overlap information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the overlap information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the overlap information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the overlap information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1041,58 +396,8 @@ var (
 				"ip",
 				"geo",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Optional) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `The mode used for IP/Geo firewall blocking: ` + "`" + `block` + "`" + ` to block specific IPs, geographies or network lists, or ` + "`" + `allow` + "`" + ` to allow specific IPs or geographies to be let through while blocking the rest.`,
-				},
-				resource.Attribute{
-					Name:        "geo_network_lists",
-					Description: `The network lists to be blocked or allowed geographically.`,
-				},
-				resource.Attribute{
-					Name:        "ip_network_lists",
-					Description: `The network lists to be blocked or allowd by IP address.`,
-				},
-				resource.Attribute{
-					Name:        "exception_ip_network_lists",
-					Description: `The network lists to be allowed regardless of ` + "`" + `mode` + "`" + `, ` + "`" + `geo_network_lists` + "`" + `, and ` + "`" + `ip_network_lists` + "`" + ` parameters.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the IP/Geo firewall settings.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "mode",
-					Description: `The mode used for IP/Geo firewall blocking: ` + "`" + `block` + "`" + ` to block specific IPs, geographies or network lists, or ` + "`" + `allow` + "`" + ` to allow specific IPs or geographies to be let through while blocking the rest.`,
-				},
-				resource.Attribute{
-					Name:        "geo_network_lists",
-					Description: `The network lists to be blocked or allowed geographically.`,
-				},
-				resource.Attribute{
-					Name:        "ip_network_lists",
-					Description: `The network lists to be blocked or allowd by IP address.`,
-				},
-				resource.Attribute{
-					Name:        "exception_ip_network_lists",
-					Description: `The network lists to be allowed regardless of ` + "`" + `mode` + "`" + `, ` + "`" + `geo_network_lists` + "`" + `, and ` + "`" + `ip_network_lists` + "`" + ` parameters.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the IP/Geo firewall settings.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1107,34 +412,8 @@ var (
 				"match",
 				"targets",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "match_target_id",
-					Description: `(Optional) The ID of the match target to use. If not supplied, information about all match targets is returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and Policy ID of all match targets associated with the specified security configuration, or of the specific match target if ` + "`" + `match_target_id` + "`" + ` was supplied.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the match target information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and Policy ID of all match targets associated with the specified security configuration, or of the specific match target if ` + "`" + `match_target_id` + "`" + ` was supplied.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the match target information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1149,42 +428,8 @@ var (
 				"penalty",
 				"box",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "action",
-					Description: `The action for the penalty box: ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether penalty box protection is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the ` + "`" + `action` + "`" + ` and ` + "`" + `enabled` + "`" + ` information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "action",
-					Description: `The action for the penalty box: ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Either ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether penalty box protection is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the ` + "`" + `action` + "`" + ` and ` + "`" + `enabled` + "`" + ` information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1199,38 +444,8 @@ var (
 				"rate",
 				"policies",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) The version number of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "rate_policy_id",
-					Description: `(Optional) The ID of the rate policy to use. If this parameter is not supplied, information about all rate policies will be returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of all rate policies associated with the specified security configuration.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the rate policy information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of all rate policies associated with the specified security configuration.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the rate policy information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1246,30 +461,8 @@ var (
 				"policy",
 				"actions",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "rate_policy_id",
-					Description: `(Optional) The ID of the rate policy to use. If not supplied, information about all rate policies will be returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID IPv4Action and IPv6Action of the indicated security policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID IPv4Action and IPv6Action of the indicated security policy.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1285,46 +478,8 @@ var (
 				"profile",
 				"actions",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) THe ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "reputation_profile_id",
-					Description: `(Optional) The ID of a given reputation profile. If not supplied, information about all reputation profiles is returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "action",
-					Description: `The action that the specified reputation profile or profiles take when triggered.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the specified reputation profile action information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the specified reputation profile action information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "action",
-					Description: `The action that the specified reputation profile or profiles take when triggered.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the specified reputation profile action information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the specified reputation profile action information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1340,34 +495,8 @@ var (
 				"profile",
 				"analysis",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the reputation analysis settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the reputation analysis settings.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the reputation analysis settings.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the reputation analysis settings.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1382,34 +511,8 @@ var (
 				"reputation",
 				"profiles",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "reputation_profile_id",
-					Description: `(Optional) The ID of a given reputation profile. If not supplied, information about all reputation profiles is returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the details about the indicated reputation profile or profiles.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the details about the indicated reputation profile or profiles.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the details about the indicated reputation profile or profiles.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted display of the details about the indicated reputation profile or profiles.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1425,34 +528,8 @@ var (
 				"upgrade",
 				"details",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing changes (additions and deletions) to the rules for the specified security policy.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the changes (additions and deletions) to the rules for the specified security policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing changes (additions and deletions) to the rules for the specified security policy.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the changes (additions and deletions) to the rules for the specified security policy.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1466,54 +543,8 @@ var (
 				"appsec",
 				"rules",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use.`,
-				},
-				resource.Attribute{
-					Name:        "rule_id",
-					Description: `(Optional) The ID of the rule to use. If not specified, information about all rules will be returned. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "rule_action",
-					Description: `The rule's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The rule's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified rule. This output is only generated if a rule is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified rule or rules, the rule action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "rule_action",
-					Description: `The rule's action, either ` + "`" + `alert` + "`" + `, ` + "`" + `deny` + "`" + `, or ` + "`" + `none` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "condition_exception",
-					Description: `The rule's conditions and exceptions.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the action and condition-exception information for the specified rule. This output is only generated if a rule is specified.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing, for the specified rule or rules, the rule action and boolean values indicating whether conditions and exceptions are present.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1527,38 +558,8 @@ var (
 				"appsec",
 				"policy",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id_list",
-					Description: `A list of the IDs of all security policies.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of all security policies.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `The ID of the security policy. Included only if ` + "`" + `security_policy_name` + "`" + ` was specified.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "security_policy_id_list",
-					Description: `A list of the IDs of all security policies.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of all security policies.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `The ID of the security policy. Included only if ` + "`" + `security_policy_name` + "`" + ` was specified.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1573,90 +574,8 @@ var (
 				"policy",
 				"protections",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "apply_application_layer_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether application layer controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_network_layer_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether network layer controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_rate_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether rate controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_reputation_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether reputation controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_botman_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether botman controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_api_constraints",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether API constraints are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_slow_post_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether slow post controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `a JSON-formatted list showing the status of the protection settings`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `a tabular display showing the status of the protection settings`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "apply_application_layer_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether application layer controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_network_layer_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether network layer controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_rate_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether rate controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_reputation_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether reputation controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_botman_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether botman controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_api_constraints",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether API constraints are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "apply_slow_post_controls",
-					Description: `` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `, indicating whether slow post controls are in effect.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `a JSON-formatted list showing the status of the protection settings`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `a tabular display showing the status of the protection settings`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1671,46 +590,8 @@ var (
 				"selectable",
 				"hostnames",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Optional) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "contractid",
-					Description: `(Optional) The ID of the contract to use.`,
-				},
-				resource.Attribute{
-					Name:        "groupid",
-					Description: `(Optional) The ID of the group to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `The list of selectable hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `The list of selectable hostnames in json format.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the selectable hostnames showing the name and config_id of the security configuration under which the host is protected in production, or '-' if the host is not protected in production.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `The list of selectable hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `The list of selectable hostnames in json format.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the selectable hostnames showing the name and config_id of the security configuration under which the host is protected in production, or '-' if the host is not protected in production.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1725,38 +606,8 @@ var (
 				"selected",
 				"hostnames",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `The list of selected hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `The list of selected hostnames in JSON format.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the selected hostnames.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "hostnames",
-					Description: `The list of selected hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `The list of selected hostnames in JSON format.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the selected hostnames.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1771,32 +622,14 @@ var (
 				"siem",
 				"definitions",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the SIEM version information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of each SIEM version.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the SIEM version information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the ID and name of each SIEM version.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "akamai_appsec_siem_settings",
 			Category:         "Application Security",
-			ShortDescription: `SiemSettijgs`,
+			ShortDescription: `SiemSettings`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
@@ -1805,30 +638,8 @@ var (
 				"siem",
 				"settings",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the SIEM setting information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the SIEM setting information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the SIEM setting information.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the SIEM setting information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1843,58 +654,8 @@ var (
 				"slow",
 				"post",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display including the following columns:`,
-				},
-				resource.Attribute{
-					Name:        "ACTION",
-					Description: `The action that the rule should trigger (either ` + "`" + `alert` + "`" + ` or ` + "`" + `abort` + "`" + `)`,
-				},
-				resource.Attribute{
-					Name:        "SLOW_RATE_THRESHOLD RATE",
-					Description: `The average rate in bytes per second over the period specified by ` + "`" + `period` + "`" + ` before the specified ` + "`" + `action` + "`" + ` is triggered.`,
-				},
-				resource.Attribute{
-					Name:        "SLOW_RATE_THRESHOLD PERIOD",
-					Description: `The length in seconds of the period during which the server should accept a request before determining whether a POST request is too slow.`,
-				},
-				resource.Attribute{
-					Name:        "DURATION_THRESHOLD TIMEOUT",
-					Description: `The time in seconds before the first eight kilobytes of the POST body must be received to avoid triggering the specified ` + "`" + `action` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display including the following columns:`,
-				},
-				resource.Attribute{
-					Name:        "ACTION",
-					Description: `The action that the rule should trigger (either ` + "`" + `alert` + "`" + ` or ` + "`" + `abort` + "`" + `)`,
-				},
-				resource.Attribute{
-					Name:        "SLOW_RATE_THRESHOLD RATE",
-					Description: `The average rate in bytes per second over the period specified by ` + "`" + `period` + "`" + ` before the specified ` + "`" + `action` + "`" + ` is triggered.`,
-				},
-				resource.Attribute{
-					Name:        "SLOW_RATE_THRESHOLD PERIOD",
-					Description: `The length in seconds of the period during which the server should accept a request before determining whether a POST request is too slow.`,
-				},
-				resource.Attribute{
-					Name:        "DURATION_THRESHOLD TIMEOUT",
-					Description: `The time in seconds before the first eight kilobytes of the POST body must be received to avoid triggering the specified ` + "`" + `action` + "`" + `.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1909,40 +670,48 @@ var (
 				"threat",
 				"intel",
 			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_appsec_tuning_recommendations",
+			Category:         "Application Security",
+			ShortDescription: `TuningRecommendations`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"security",
+				"appsec",
+				"tuning",
+				"recommendations",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
+					Description: `(Required). Unique identifier of the security configuration you want tuning recommendations for.`,
 				},
 				resource.Attribute{
 					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Required). Unique identifier of the security policy you want tuning recommendations for.`,
 				},
 				resource.Attribute{
-					Name:        "threat_intel",
-					Description: `Threat Intelligence setting, either ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `.`,
+					Name:        "ruleset_type",
+					Description: `(Optional). Type of ruleset used by the security configuration you want tuning recommendations for. Supported values are ` + "`" + `active` + "`" + ` and ` + "`" + `evaluation` + "`" + `. Defaults to ` + "`" + `active` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "attack_group",
+					Description: `(Optional). Unique name of the attack group you want tuning recommendations for. If not included, recommendations are returned for all attack groups. ## Attributes Reference In addition to the arguments above, the following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "json",
-					Description: `A JSON-formatted threat intelligence object`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the threat intel information.`,
+					Description: `JSON-formatted list of the tuning recommendations for the security policy or the attack group. The exception block format in a recommendation conforms to the exception block format used in ` + "`" + `condition_exception` + "`" + ` element of ` + "`" + `attack_group` + "`" + ` resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "threat_intel",
-					Description: `Threat Intelligence setting, either ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "json",
-					Description: `A JSON-formatted threat intelligence object`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the threat intel information.`,
+					Description: `JSON-formatted list of the tuning recommendations for the security policy or the attack group. The exception block format in a recommendation conforms to the exception block format used in ` + "`" + `condition_exception` + "`" + ` element of ` + "`" + `attack_group` + "`" + ` resource.`,
 				},
 			},
 		},
@@ -1959,30 +728,8 @@ var (
 				"version",
 				"notes",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The configuration ID to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list showing the version notes.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the version notes.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list showing the version notes.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display showing the version notes.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1997,74 +744,8 @@ var (
 				"waf",
 				"mode",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `The security policy mode, either ` + "`" + `KRS` + "`" + ` (update manually) or ` + "`" + `AAG` + "`" + ` (update automatically), For Adaptive Security Engine (ASE) __BETA__, use ` + "`" + `ASE_AUTO` + "`" + ` for automatic updates or ` + "`" + `ASE_MANUAL` + "`" + ` to manually get current rules. Please contact your Akamai representative to learn more about ASE.`,
-				},
-				resource.Attribute{
-					Name:        "current_ruleset",
-					Description: `The current rule set version and the ISO 8601 date the rule set version was introduced; this date acts like a version number.`,
-				},
-				resource.Attribute{
-					Name:        "eval_status",
-					Description: `Whether the evaluation mode is enabled or disabled."`,
-				},
-				resource.Attribute{
-					Name:        "eval_ruleset",
-					Description: `The evaluation rule set version and the ISO 8601 date the evaluation starts.`,
-				},
-				resource.Attribute{
-					Name:        "eval_expiration_date",
-					Description: `The ISO 8601 time stamp when the evaluation is expiring. This value only appears when ` + "`" + `eval` + "`" + ` is set to "enabled".`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the mode information.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the mode information.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "mode",
-					Description: `The security policy mode, either ` + "`" + `KRS` + "`" + ` (update manually) or ` + "`" + `AAG` + "`" + ` (update automatically), For Adaptive Security Engine (ASE) __BETA__, use ` + "`" + `ASE_AUTO` + "`" + ` for automatic updates or ` + "`" + `ASE_MANUAL` + "`" + ` to manually get current rules. Please contact your Akamai representative to learn more about ASE.`,
-				},
-				resource.Attribute{
-					Name:        "current_ruleset",
-					Description: `The current rule set version and the ISO 8601 date the rule set version was introduced; this date acts like a version number.`,
-				},
-				resource.Attribute{
-					Name:        "eval_status",
-					Description: `Whether the evaluation mode is enabled or disabled."`,
-				},
-				resource.Attribute{
-					Name:        "eval_ruleset",
-					Description: `The evaluation rule set version and the ISO 8601 date the evaluation starts.`,
-				},
-				resource.Attribute{
-					Name:        "eval_expiration_date",
-					Description: `The ISO 8601 time stamp when the evaluation is expiring. This value only appears when ` + "`" + `eval` + "`" + ` is set to "enabled".`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the mode information.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `A JSON-formatted list of the mode information.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2080,50 +761,8 @@ var (
 				"selected",
 				"hostnames",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "config_id",
-					Description: `(Required) The ID of the security configuration to use.`,
-				},
-				resource.Attribute{
-					Name:        "security_policy_id",
-					Description: `(Required) The ID of the security policy to use. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "protected_hostnames",
-					Description: `The list of hostnames currently protected under the given security configuration and policy.`,
-				},
-				resource.Attribute{
-					Name:        "evaluated_hostnames",
-					Description: `The list of hostnames currently being evaluated under the given security configuration and policy.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `A JSON-formatted display of the protected and evaluated hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the protected and evaluated hostnames.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "protected_hostnames",
-					Description: `The list of hostnames currently protected under the given security configuration and policy.`,
-				},
-				resource.Attribute{
-					Name:        "evaluated_hostnames",
-					Description: `The list of hostnames currently being evaluated under the given security configuration and policy.`,
-				},
-				resource.Attribute{
-					Name:        "hostnames_json",
-					Description: `A JSON-formatted display of the protected and evaluated hostnames.`,
-				},
-				resource.Attribute{
-					Name:        "output_text",
-					Description: `A tabular display of the protected and evaluated hostnames.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2135,6 +774,163 @@ var (
 				"dns",
 				"authorities",
 				"set",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_api_prioritization_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `API Prioritization match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"api",
+				"prioritization",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_application_load_balancer",
+			Category:         "Cloudlets",
+			ShortDescription: `Application Load Balancer`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"application",
+				"load",
+				"balancer",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_application_load_balancer_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Application Load Balancer match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"application",
+				"load",
+				"balancer",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_audience_segmentation_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Audience Segmentation match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"audience",
+				"segmentation",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_edge_redirector_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Edge Redirector match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"edge",
+				"redirector",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_forward_rewrite_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Forward Rewrite match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"forward",
+				"rewrite",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_phased_release_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Phased Release match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"phased",
+				"release",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_policy",
+			Category:         "Cloudlets",
+			ShortDescription: `Cloudlets policy`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"policy",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_request_control_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Request Control match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"request",
+				"control",
+				"match",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_cloudlets_visitor_prioritization_match_rule",
+			Category:         "Cloudlets",
+			ShortDescription: `Visitor Prioritization match rule`,
+			Description:      ``,
+			Keywords: []string{
+				"cloudlets",
+				"visitor",
+				"prioritization",
+				"match",
+				"rule",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2176,6 +972,62 @@ var (
 				"provisioning",
 				"cp",
 				"code",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_datastream_activation_history",
+			Category:         "DataStream",
+			ShortDescription: `Activation History`,
+			Description:      ``,
+			Keywords: []string{
+				"datastream",
+				"activation",
+				"history",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_datastream_dataset_fields",
+			Category:         "DataStream",
+			ShortDescription: `Data Set Fields`,
+			Description:      ``,
+			Keywords: []string{
+				"datastream",
+				"dataset",
+				"fields",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_edgeworkers_property_rules",
+			Category:         "EdgeWorkers",
+			ShortDescription: `EdgeWorkers Property Rules`,
+			Description:      ``,
+			Keywords: []string{
+				"edgeworkers",
+				"property",
+				"rules",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_edgeworkers_resource_tier",
+			Category:         "EdgeWorkers",
+			ShortDescription: `EdgeWorkers resource tier`,
+			Description:      ``,
+			Keywords: []string{
+				"edgeworkers",
+				"resource",
+				"tier",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2348,11 +1200,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The type of network lists to be retrieved; must be either "IP" or "GEO". If not supplied, information about both types will be returned. The following arguments are supported: ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Optional) The type of network lists to be retrieved; must be either "IP" or "GEO". If not supplied, information about both types will be returned.`,
 				},
 				resource.Attribute{
-					Name:        "uniqueid",
-					Description: `The ID of the indicated list (if the ` + "`" + `name` + "`" + ` argument was supplied).`,
+					Name:        "network_list_id",
+					Description: `(Optional) The ID of a specific network list to retrieve. If not supplied, information about all network`,
+				},
+				resource.Attribute{
+					Name:        "network_list_id",
+					Description: `(Optional) The ID of a specific network list to retrieve. If not supplied, information about all network lists will be returned. The following arguments are supported: ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "json",
@@ -2368,10 +1224,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "uniqueid",
-					Description: `The ID of the indicated list (if the ` + "`" + `name` + "`" + ` argument was supplied).`,
-				},
 				resource.Attribute{
 					Name:        "json",
 					Description: `A JSON-formatted list of information about the specified network list(s).`,
@@ -2396,6 +1248,21 @@ var (
 				"property",
 				"provisioning",
 				"properties",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_properties_search",
+			Category:         "Property Provisioning",
+			ShortDescription: `Search`,
+			Description:      ``,
+			Keywords: []string{
+				"property",
+				"provisioning",
+				"properties",
+				"search",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2489,71 +1356,87 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"akamai_appsec_advanced_settings_logging":       0,
-		"akamai_appsec_advanced_settings_pragma_header": 1,
-		"akamai_appsec_advanced_settings_prefetch":      2,
-		"akamai_appsec_api_endpoints":                   3,
-		"akamai_appsec_api_request_constraints":         4,
-		"akamai_appsec_attack_groups":                   5,
-		"akamai_appsec_bypass_network_lists":            6,
-		"akamai_appsec_configuration":                   7,
-		"akamai_appsec_configuration_version":           8,
-		"akamai_appsec_contracts_groups":                9,
-		"akamai_appsec_custom_deny":                     10,
-		"akamai_appsec_custom_rule_actions":             11,
-		"akamai_appsec_custom_rules":                    12,
-		"akamai_appsec_eval_groups":                     13,
-		"akamai_appsec_eval_hostnames":                  14,
-		"akamai_appsec_eval_rules":                      15,
-		"akamai_appsec_export_configuration":            16,
-		"akamai_appsec_failover_hostnames":              17,
-		"akamai_appsec_hostname_coverage":               18,
-		"akamai_appsec_hostname_coverage_match_targets": 19,
-		"akamai_appsec_hostname_coverage_overlapping":   20,
-		"akamai_appsec_ip_geo":                          21,
-		"akamai_appsec_match_targets":                   22,
-		"akamai_appsec_penalty_box":                     23,
-		"akamai_appsec_rate_policies":                   24,
-		"akamai_appsec_rate_policy_actions":             25,
-		"akamai_appsec_reputation_profile_actions":      26,
-		"akamai_appsec_reputation_profile_analysis":     27,
-		"akamai_appsec_reputation_profiles":             28,
-		"akamai_appsec_rule_upgrade_details":            29,
-		"akamai_appsec_rules":                           30,
-		"akamai_appsec_security_policy":                 31,
-		"akamai_appsec_security_policy_protections":     32,
-		"akamai_appsec_selectable_hostnames":            33,
-		"akamai_appsec_selected_hostnames":              34,
-		"akamai_appsec_siem_definitions":                35,
-		"akamai_appsec_siem_settings":                   36,
-		"akamai_appsec_slow_post":                       37,
-		"akamai_appsec_threat_intel":                    38,
-		"akamai_appsec_version_notes":                   39,
-		"akamai_appsec_waf_mode":                        40,
-		"akamai_appsec_wap_selected_hostnames":          41,
-		"akamai_authorities_set":                        42,
-		"akamai_contract":                               43,
-		"akamai_contracts":                              44,
-		"akamai_cp_code":                                45,
-		"akamai_group":                                  46,
-		"akamai_groups":                                 47,
-		"akamai_gtm_default_datacenter":                 48,
-		"akamai_iam_contact_types":                      49,
-		"akamai_iam_countries":                          50,
-		"akamai_iam_groups":                             51,
-		"akamai_iam_roles":                              52,
-		"akamai_iam_states":                             53,
-		"akamai_iam_supported_langs":                    54,
-		"akamai_iam_timeout_policies":                   55,
-		"akamai_iam_timezones":                          56,
-		"akamai_networklist_network_lists":              57,
-		"akamai_properties":                             58,
-		"akamai_property":                               59,
-		"akamai_property_hostnames":                     60,
-		"akamai_property_products":                      61,
-		"akamai_property_rule_formats":                  62,
-		"akamai_property_rules":                         63,
-		"akamai_property_rules_template":                64,
+		"akamai_appsec_advanced_settings_evasive_path_match":    0,
+		"akamai_appsec_advanced_settings_logging":               1,
+		"akamai_appsec_advanced_settings_pragma_header":         2,
+		"akamai_appsec_advanced_settings_prefetch":              3,
+		"akamai_appsec_api_endpoints":                           4,
+		"akamai_appsec_api_request_constraints":                 5,
+		"akamai_appsec_attack_groups":                           6,
+		"akamai_appsec_bypass_network_lists":                    7,
+		"akamai_appsec_configuration":                           8,
+		"akamai_appsec_configuration_version":                   9,
+		"akamai_appsec_contracts_groups":                        10,
+		"akamai_appsec_custom_deny":                             11,
+		"akamai_appsec_custom_rule_actions":                     12,
+		"akamai_appsec_custom_rules":                            13,
+		"akamai_appsec_eval_groups":                             14,
+		"akamai_appsec_eval_rules":                              15,
+		"akamai_appsec_export_configuration":                    16,
+		"akamai_appsec_failover_hostnames":                      17,
+		"akamai_appsec_hostname_coverage":                       18,
+		"akamai_appsec_hostname_coverage_match_targets":         19,
+		"akamai_appsec_hostname_coverage_overlapping":           20,
+		"akamai_appsec_ip_geo":                                  21,
+		"akamai_appsec_match_targets":                           22,
+		"akamai_appsec_penalty_box":                             23,
+		"akamai_appsec_rate_policies":                           24,
+		"akamai_appsec_rate_policy_actions":                     25,
+		"akamai_appsec_reputation_profile_actions":              26,
+		"akamai_appsec_reputation_profile_analysis":             27,
+		"akamai_appsec_reputation_profiles":                     28,
+		"akamai_appsec_rule_upgrade_details":                    29,
+		"akamai_appsec_rules":                                   30,
+		"akamai_appsec_security_policy":                         31,
+		"akamai_appsec_security_policy_protections":             32,
+		"akamai_appsec_selectable_hostnames":                    33,
+		"akamai_appsec_selected_hostnames":                      34,
+		"akamai_appsec_siem_definitions":                        35,
+		"akamai_appsec_siem_settings":                           36,
+		"akamai_appsec_slow_post":                               37,
+		"akamai_appsec_threat_intel":                            38,
+		"akamai_appsec_tuning_recommendations":                  39,
+		"akamai_appsec_version_notes":                           40,
+		"akamai_appsec_waf_mode":                                41,
+		"akamai_appsec_wap_selected_hostnames":                  42,
+		"akamai_authorities_set":                                43,
+		"akamai_cloudlets_api_prioritization_match_rule":        44,
+		"akamai_cloudlets_application_load_balancer":            45,
+		"akamai_cloudlets_application_load_balancer_match_rule": 46,
+		"akamai_cloudlets_audience_segmentation_match_rule":     47,
+		"akamai_cloudlets_edge_redirector_match_rule":           48,
+		"akamai_cloudlets_forward_rewrite_match_rule":           49,
+		"akamai_cloudlets_phased_release_match_rule":            50,
+		"akamai_cloudlets_policy":                               51,
+		"akamai_cloudlets_request_control_match_rule":           52,
+		"akamai_cloudlets_visitor_prioritization_match_rule":    53,
+		"akamai_contract":                                       54,
+		"akamai_contracts":                                      55,
+		"akamai_cp_code":                                        56,
+		"akamai_datastream_activation_history":                  57,
+		"akamai_datastream_dataset_fields":                      58,
+		"akamai_edgeworkers_property_rules":                     59,
+		"akamai_edgeworkers_resource_tier":                      60,
+		"akamai_group":                                          61,
+		"akamai_groups":                                         62,
+		"akamai_gtm_default_datacenter":                         63,
+		"akamai_iam_contact_types":                              64,
+		"akamai_iam_countries":                                  65,
+		"akamai_iam_groups":                                     66,
+		"akamai_iam_roles":                                      67,
+		"akamai_iam_states":                                     68,
+		"akamai_iam_supported_langs":                            69,
+		"akamai_iam_timeout_policies":                           70,
+		"akamai_iam_timezones":                                  71,
+		"akamai_networklist_network_lists":                      72,
+		"akamai_properties":                                     73,
+		"akamai_properties_search":                              74,
+		"akamai_property":                                       75,
+		"akamai_property_hostnames":                             76,
+		"akamai_property_products":                              77,
+		"akamai_property_rule_formats":                          78,
+		"akamai_property_rules":                                 79,
+		"akamai_property_rules_template":                        80,
 	}
 )
 

@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "archive_file",
+			Type:             "archive_archive_file",
 			Category:         "Data Sources",
 			ShortDescription: `Generates an archive from content, a file, or directory of files.`,
 			Description:      ``,
@@ -97,7 +97,7 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"archive_file": 0,
+		"archive_archive_file": 0,
 	}
 )
 

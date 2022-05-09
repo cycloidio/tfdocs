@@ -83,6 +83,10 @@ var (
 					Description: `(Optional) The CloudIP mapping target. This is the interface id from a server, or the id of a load balancer, server group or cloud sql resource.`,
 				},
 				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Type of CloudIP required, either ` + "`" + `nat` + "`" + ` or ` + "`" + `route` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "port_translator",
 					Description: `(Optional) An array of port translator blocks. The Port Translator block is descibed below Note that the default group for each account cannot be used as the target for a cloud ip. Port Translator (` + "`" + `port_translator` + "`" + `) supports the following:`,
 				},
@@ -105,10 +109,6 @@ var (
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `Fully Qualified Domain Name of the CloudIP`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `the public IPV4 address of the CloudIP`,
 				},
 				resource.Attribute{
 					Name:        "public_ipv4",
@@ -135,10 +135,6 @@ var (
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `Fully Qualified Domain Name of the CloudIP`,
-				},
-				resource.Attribute{
-					Name:        "public_ip",
-					Description: `the public IPV4 address of the CloudIP`,
 				},
 				resource.Attribute{
 					Name:        "public_ipv4",
@@ -215,6 +211,10 @@ var (
 				resource.Attribute{
 					Name:        "maintenance_hour",
 					Description: `(Optional) Number representing 24hr time start of maintenance window hour for x:00-x:59 (0-23). Default is 6`,
+				},
+				resource.Attribute{
+					Name:        "snapshots_retention",
+					Description: `(Optional) Keep this number of scheduled snapshots. Keep all if unset.`,
 				},
 				resource.Attribute{
 					Name:        "snapshots_schedule",
@@ -402,10 +402,6 @@ var (
 					Description: `(Optional) The RSA private key used to sign the certificate in PEM format. Must be included along with ` + "`" + `certificate_pem` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "buffer_size",
-					Description: `(Optional) Buffer size in bytes`,
-				},
-				resource.Attribute{
 					Name:        "https_redirect",
 					Description: `(Optional) Redirect any requests on port 80 automatically to port 443`,
 				},
@@ -568,7 +564,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image",
-					Description: `(Required) The Server image ID`,
+					Description: `(Optional) The Server image ID. One of image or volume must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Optional) The volume to be used to boot the server. One of image or volume must be specified.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -576,7 +576,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The handle of the server type required (` + "`" + `1gb.ssd` + "`" + `, etc)`,
+					Description: `(Optional) The handle the server type required (` + "`" + `1gb.ssd` + "`" + `, etc), or a Server Type ID.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -589,6 +589,22 @@ var (
 				resource.Attribute{
 					Name:        "disk_encrypted",
 					Description: `(Optional) Create a server where the data on disk is 'encrypted as rest' by the cloud.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional) The desired size of the disk storage for the Server. Only usable with types using network block storage.`,
+				},
+				resource.Attribute{
+					Name:        "data_volumes",
+					Description: `(Optional) List of volumes to attach to server. Only usable with types using network block storage.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots_retention",
+					Description: `(Optional) Keep this number of scheduled snapshots. Keep all if unset.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots_schedule",
+					Description: `(Optional) Crontab pattern for scheduled snapshots. Must be no more frequent than hourly.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -629,6 +645,10 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the server, usually ` + "`" + `active` + "`" + `, ` + "`" + `inactive` + "`" + ` or ` + "`" + `deleted` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "snapshot_schedule_next_at",
+					Description: `Time in UTC of approximately when the next scheduled snapshot will run.`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -675,6 +695,10 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Current state of the server, usually ` + "`" + `active` + "`" + `, ` + "`" + `inactive` + "`" + ` or ` + "`" + `deleted` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "snapshot_schedule_next_at",
+					Description: `Time in UTC of approximately when the next scheduled snapshot will run.`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -729,6 +753,88 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_volume",
+			Category:         "Resources",
+			ShortDescription: `Provides a Brightbox Volume resource. This can be used to create, modify, and delete Volumes.`,
+			Description:      ``,
+			Keywords: []string{
+				"volume",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A label assigned to the Volume`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Verbose Description of this volume`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `(Optional) True if the volume is encrypted`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_label",
+					Description: `(Optional) Label given to the filesystem on the volume. Up to 12 characters.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_type",
+					Description: `(Optional) Format of the filesystem on the volume. Either ` + "`" + `ext4` + "`" + ` or ` + "`" + `xfs` + "`" + `. One of ` + "`" + `image` + "`" + `, ` + "`" + `filesystem_type` + "`" + ` or ` + "`" + `source` + "`" + ` is required.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) Image used to create the volume. One of ` + "`" + `image` + "`" + `, ` + "`" + `filesystem_type` + "`" + ` or ` + "`" + `source` + "`" + ` is required.`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Optional) Volume Serial Number. Up to 20 characters.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Disk size in megabytes`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The ID of the source volume for this image. Defaults to the blank disk. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Volume`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current state of the volume`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type for this image. One of ` + "`" + `image` + "`" + `, ` + "`" + `volume` + "`" + ` or ` + "`" + `raw` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `Storage type for this volume. Either ` + "`" + `local` + "`" + ` or ` + "`" + `network` + "`" + ` ## Import Volumes can be imported using the volume ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_volume.default vol-ok8vw ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_volume` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Volumes - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Volumes`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Volume`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current state of the volume`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type for this image. One of ` + "`" + `image` + "`" + `, ` + "`" + `volume` + "`" + ` or ` + "`" + `raw` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `Storage type for this volume. Either ` + "`" + `local` + "`" + ` or ` + "`" + `network` + "`" + ` ## Import Volumes can be imported using the volume ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_volume.default vol-ok8vw ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_volume` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Volumes - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Volumes`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -743,6 +849,7 @@ var (
 		"brightbox_orbit_container": 7,
 		"brightbox_server":          8,
 		"brightbox_server_group":    9,
+		"brightbox_volume":          10,
 	}
 )
 

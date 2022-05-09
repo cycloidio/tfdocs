@@ -29,14 +29,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) - Description of catalog`,
+					Description: `(Optional) Description of catalog`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile_id",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "delete_recursive",
-					Description: `(Required) - When destroying use delete_recursive=True to remove the catalog and any objects it contains that are in a state that normally allows removal`,
+					Description: `(Required) When destroying use delete_recursive=True to remove the catalog and any objects it contains that are in a state that normally allows removal`,
+				},
+				resource.Attribute{
+					Name:        "publish_enabled",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "cache_enabled",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "preserve_identity_information",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "catalog_version",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "number_of_vapp_templates",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "number_of_media",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "is_shared",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_type",
+					Description: `(`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_version",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "number_of_vapp_templates",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "number_of_media",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "is_shared",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_type",
+					Description: `(`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -63,11 +144,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) - Description of item`,
+					Description: `(Optional) Description of item`,
 				},
 				resource.Attribute{
 					Name:        "ova_path",
-					Description: `(Required) - Absolute or relative path to file to upload`,
+					Description: `(Optional) Absolute or relative path to file to upload`,
+				},
+				resource.Attribute{
+					Name:        "ovf_url",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "upload_piece_size",
@@ -75,7 +160,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "show_upload_progress",
-					Description: `(Optional) - Default false. Allows to see upload progress`,
+					Description: `(Optional) - Default false. Allows seeing upload progress. (See note below)`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -121,7 +206,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "show_upload_progress",
-					Description: `(Optional) - Default false. Allows to see upload progress`,
+					Description: `(Optional) - Default false. Allows to see upload progress. (See note below)`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -153,10 +238,53 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_profile_name",
-					Description: `(Computed) returns storage profile name ## Importing Supported in provider`,
+					Description: `(Computed) returns storage profile name ### A note about upload progress Until version 3.5.0, the progress was optionally shown on the screen. Due to changes in the terraform tool, such operation is no longer possible. The progress messages are thus written to the log file (` + "`" + `go-vcloud-director.log` + "`" + `) using a special tag ` + "`" + `[SCREEN]` + "`" + `. To see the progress at run time, users can run the command below in a separate terminal window while ` + "`" + `terraform apply` + "`" + ` is working: ` + "`" + `` + "`" + `` + "`" + ` $ tail -f go-vcloud-director.log | grep '\[SCREEN\]' ` + "`" + `` + "`" + `` + "`" + ` ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_library_certificate",
+			Category:         "Resources",
+			ShortDescription: `Provides a certificate in System or Org library resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"library",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Required) - Alias (name) of certificate`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) - Certificate description`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) - Content of Certificate`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional) - Content of private key`,
+				},
+				resource.Attribute{
+					Name:        "private_key_passphrase",
+					Description: `(Optional) - private key pass phrase ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The added to library certificate ID ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The added to library certificate ID ## Importing ~>`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -503,19 +631,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter_id",
-					Description: `(Required) vCenter ID. Can be looked up using [` + "`" + `vcd_vcenter` + "`" + `](/docs/providers/vcd/d/vcenter.html) data source.`,
+					Description: `(Required) vCenter ID. Can be looked up using [` + "`" + `vcd_vcenter` + "`" + `](/providers/vmware/vcd/latest/docs/data-sources/vcenter) data source.`,
 				},
 				resource.Attribute{
 					Name:        "portgroup_id",
-					Description: `(Required) vSphere portgroup ID. Can be looked up using [` + "`" + `vcd_portgroup` + "`" + `](/docs/providers/vcd/d/portgroup.html) data source. <a id="nsxtnetwork"></a> ## NSX-T Network`,
+					Description: `(Required) vSphere portgroup ID. Can be looked up using [` + "`" + `vcd_portgroup` + "`" + `](/providers/vmware/vcd/latest/docs/data-sources/portgroup) data source. <a id="nsxtnetwork"></a> ## NSX-T Network`,
 				},
 				resource.Attribute{
 					Name:        "nsxt_manager_id",
-					Description: `(Required) NSX-T manager ID. Can be looked up using [` + "`" + `vcd_nsxt_manager` + "`" + `](/docs/providers/vcd/d/nsxt_manager.html) data source.`,
+					Description: `(Required) NSX-T manager ID. Can be looked up using [` + "`" + `vcd_nsxt_manager` + "`" + `](/providers/vmware/vcd/latest/docs/data-sources/nsxt_manager) data source.`,
 				},
 				resource.Attribute{
 					Name:        "nsxt_tier0_router_id",
-					Description: `(Required) NSX-T Tier-0 router ID. Can be looked up using [` + "`" + `vcd_nsxt_tier0_router` + "`" + `](/docs/providers/vcd/d/nsxt_tier0_router.html) data source. ## Importing ~>`,
+					Description: `(Optional) NSX-T Tier-0 router ID. Can be looked up using [` + "`" + `vcd_nsxt_tier0_router` + "`" + `](/providers/vmware/vcd/latest/docs/data-sources/nsxt_tier0_router) data source.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_segment_name",
+					Description: `(Optional;`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -600,15 +732,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bus_type",
-					Description: `(Optional) Disk bus type. Values can be: ` + "`" + `IDE` + "`" + `, ` + "`" + `SCSI` + "`" + `, ` + "`" + `SATA` + "`" + ``,
+					Description: `(Optional) Disk bus type. Values can be: ` + "`" + `IDE` + "`" + `, ` + "`" + `SCSI` + "`" + `, ` + "`" + `SATA` + "`" + `, (`,
 				},
 				resource.Attribute{
 					Name:        "bus_sub_type",
-					Description: `(Optional) Disk bus subtype. Values can be: ` + "`" + `buslogic` + "`" + `, ` + "`" + `lsilogic` + "`" + `, ` + "`" + `lsilogicsas` + "`" + `, ` + "`" + `VirtualSCSI` + "`" + ` for ` + "`" + `SCSI` + "`" + ` and ` + "`" + `ahci` + "`" + ` for ` + "`" + `SATA` + "`" + ``,
+					Description: `(Optional) Disk bus subtype. Values can be: ` + "`" + `buslogic` + "`" + `, ` + "`" + `lsilogic` + "`" + `, ` + "`" + `lsilogicsas` + "`" + `, ` + "`" + `VirtualSCSI` + "`" + ` for ` + "`" + `SCSI` + "`" + `, ` + "`" + `ahci` + "`" + ` for ` + "`" + `SATA` + "`" + ` and (`,
 				},
 				resource.Attribute{
 					Name:        "storage_profile",
-					Description: `(Optional) The name of storage profile where disk will be created ## Attribute reference Supported in provider`,
+					Description: `(Optional) The name of storage profile where disk will be created`,
+				},
+				resource.Attribute{
+					Name:        "sharing_type",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -624,7 +764,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_attached",
-					Description: `(Computed) True if the disk is already attached ## Importing Supported in provider`,
+					Description: `(Computed) True if the disk is already attached`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `(Computed,`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Computed,`,
+				},
+				resource.Attribute{
+					Name:        "attached_vm_ids",
+					Description: `(Computed,`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1084,7 +1236,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `(Optional) Defines if this network is shared between multiple VDCs in the Org. Defaults to ` + "`" + `false` + "`" + `. ## Attribute reference Supported in provider`,
+					Description: `(Optional) Defines if this network is shared between multiple VDCs in the Org. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "external_network_gateway",
@@ -1162,7 +1318,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1201,7 +1361,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+					Description: `(Deprecated; Optional) The name of VDC to use.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1233,7 +1393,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1307,7 +1471,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools and DHCP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1342,7 +1510,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+					Description: `(Deprecated; Optional) The name of VDC to use.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1378,7 +1546,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "static_ip_pool",
-					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details. <a id="ip-pools"></a> ## IP Pools Static IP Pools support the following attributes:`,
+					Description: `(Optional) A range of IPs permitted to be used as static IPs for virtual machines; see [IP Pools](#ip-pools) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1387,6 +1559,489 @@ var (
 				resource.Attribute{
 					Name:        "end_address",
 					Description: `(Required) The final address in the IP Range ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_cloud",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Clouds for Providers. An NSX-T Cloud is a service provider-level construct that consists of an NSX-T Manager and an NSX-T Data Center transport zone.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"cloud",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T ALB Cloud`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description NSX-T ALB Cloud`,
+				},
+				resource.Attribute{
+					Name:        "controller_id",
+					Description: `(Required) ALB Controller ID`,
+				},
+				resource.Attribute{
+					Name:        "importable_cloud_id",
+					Description: `(Required) Importable Cloud ID. Can be looked up using ` + "`" + `vcd_nsxt_alb_importable_cloud` + "`" + ` data source`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_id",
+					Description: `(Required) Network pool ID for ALB Cloud. Can be looked up using ` + "`" + `vcd_nsxt_alb_importable_cloud` + "`" + ` data source ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "health_status",
+					Description: `HealthStatus contains status of the Load Balancer Cloud. Possible values are:`,
+				},
+				resource.Attribute{
+					Name:        "health_message",
+					Description: `DetailedHealthMessage contains detailed message on the health of the Cloud`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_name",
+					Description: `Network Pool Name used by the Cloud ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Cloud configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_cloud.imported my-alb-cloud-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-alb-cloud-name` + "`" + ` NSX-T ALB cloud settings that are defined at provider level.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "health_status",
+					Description: `HealthStatus contains status of the Load Balancer Cloud. Possible values are:`,
+				},
+				resource.Attribute{
+					Name:        "health_message",
+					Description: `DetailedHealthMessage contains detailed message on the health of the Cloud`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_name",
+					Description: `Network Pool Name used by the Cloud ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Cloud configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_cloud.imported my-alb-cloud-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-alb-cloud-name` + "`" + ` NSX-T ALB cloud settings that are defined at provider level.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_controller",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Controller for Providers. It helps to integrate VMware Cloud Director with NSX-T Advanced Load Balancer deployment. Controller instances are registered with VMware Cloud Director instance. Controller instances serve as a central control plane for the load-balancing services provided by NSX-T Advanced Load Balancer.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"controller",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T ALB Controller`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description NSX-T ALB Controller`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of ALB Controller`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username for ALB Controller`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password for ALB Controller. Password will not be refreshed.`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `(Required) License type of ALB Controller (` + "`" + `ENTERPRISE` + "`" + ` or ` + "`" + `BASIC` + "`" + `) ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `ALB Controller version (e.g. 20.1.3) ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Controller configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_controller.imported my-controller-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-controller-name` + "`" + ` NSX-T ALB controller settings that are defined at provider level.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "version",
+					Description: `ALB Controller version (e.g. 20.1.3) ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Controller configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_controller.imported my-controller-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-controller-name` + "`" + ` NSX-T ALB controller settings that are defined at provider level.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_edgegateway_service_engine_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Service Engine Group assignment to Edge Gateway.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"edgegateway",
+				"service",
+				"engine",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source.`,
+				},
+				resource.Attribute{
+					Name:        "service_engine_group_id",
+					Description: `(Required) An ID of NSX-T Service Engine Group. Can be looked up using [vcd_nsxt_alb_service_engine_group](/providers/vmware/vcd/latest/docs/data-sources/nsxt_alb_service_engine_group) data source.`,
+				},
+				resource.Attribute{
+					Name:        "max_virtual_services",
+					Description: `(Optional) Maximum amount of Virtual Services to run on this Service Engine Group.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_virtual_services",
+					Description: `(Optional) Number of reserved Virtual Services for this Edge Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "deployed_virtual_services",
+					Description: `Number of deployed Virtual Services on this Service Engine Group. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T Edge Gateway ALB Service Engine Group assignment configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_settings.imported my-org.my-vdc.my-nsxt-edge-gateway-name.service-engine-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the NSX-T Edge Gateway ALB Service Engine Group assignment configuration for Service Engine Group Name ` + "`" + `service-engine-group-name` + "`" + ` on Edge Gateway named ` + "`" + `my-nsxt-edge-gateway-name` + "`" + ` in Org ` + "`" + `my-org` + "`" + ` and VDC ` + "`" + `my-vdc` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_pool",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Pools for particular NSX-T Edge Gateway. Pools maintain the list of servers assigned to them and perform health monitoring, load balancing, persistence. A pool may only be used or referenced by only one virtual service at a time.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T ALB Pool`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description NSX-T ALB Pool`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Boolean value if NSX-T ALB Pool should be enabled (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Optional) Optional algorithm for choosing pool members (default ` + "`" + `LEAST_CONNECTIONS` + "`" + `). Other options contain ` + "`" + `ROUND_ROBIN` + "`" + `, ` + "`" + `CONSISTENT_HASH` + "`" + ` (uses Source IP Address hash), ` + "`" + `FASTEST_RESPONSE` + "`" + `, ` + "`" + `LEAST_LOAD` + "`" + `, ` + "`" + `FEWEST_SERVERS` + "`" + `, ` + "`" + `RANDOM` + "`" + `, ` + "`" + `FEWEST_TASKS` + "`" + `, ` + "`" + `CORE_AFFINITY` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_port",
+					Description: `(Optional) Default Port defines destination server port used by the traffic sent to the member (default ` + "`" + `80` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate_ids",
+					Description: `(Optional) A set of CA Certificates to be used when validating certificates presented by the pool members. Can be looked up using [vcd_library_certificate](/providers/vmware/vcd/latest/docs/data-sources/library_certificate) data source`,
+				},
+				resource.Attribute{
+					Name:        "cn_check_enabled",
+					Description: `(Optional) Specifies whether to check the common name of the certificate presented by the pool member`,
+				},
+				resource.Attribute{
+					Name:        "domain_names",
+					Description: `(Optional) A set of domain names which will be used to verify the common names or subject alternative names presented by the pool member certificates. It is performed only when common name check ` + "`" + `cn_check_enabled` + "`" + ` is enabled`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Optional) A block to define pool members. Multiple can be used. See [Member](#member-block) and example for usage details.`,
+				},
+				resource.Attribute{
+					Name:        "persistence_profile",
+					Description: `(Optional) Persistence profile will ensure that the same user sticks to the same server for a desired duration of time. If the persistence profile is unmanaged by Cloud Director, updates that leave the values unchanged will continue to use the same unmanaged profile. Any changes made to the persistence profile will cause Cloud Director to switch the pool to a profile managed by Cloud Director. See [Persistence profile](#persistence-profile-block) and example for usage details.`,
+				},
+				resource.Attribute{
+					Name:        "health_monitor",
+					Description: `(Optional) A block to define health monitor. Multiple can be used. See [Health monitor](#health-monitor-block) and example for usage details. <a id="member-block"></a> ## Member`,
+				},
+				resource.Attribute{
+					Name:        "health_status",
+					Description: `one of ` + "`" + `UP` + "`" + `, ` + "`" + `DOWN` + "`" + `, ` + "`" + `DISABLED` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "detailed_health_message",
+					Description: `human-readable member health description.`,
+				},
+				resource.Attribute{
+					Name:        "marked_down_by",
+					Description: `A set of health monitors that marked the member as ` + "`" + `DOWN` + "`" + ` <a id="persistence-profile-block"></a> ## Persistence profile`,
+				},
+				resource.Attribute{
+					Name:        "CLIENT_IP",
+					Description: `The clients IP is used as the identifier and mapped to the server`,
+				},
+				resource.Attribute{
+					Name:        "HTTP_COOKIE",
+					Description: `Load Balancer inserts a cookie into HTTP responses. Cookie name must be provided as ` + "`" + `value` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "CUSTOM_HTTP_HEADER",
+					Description: `Custom, static mappings of header values to specific servers are used. Header name must be provided as ` + "`" + `value` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "APP_COOKIE",
+					Description: `Load Balancer reads existing server cookies or URI embedded data such as JSessionID. Cookie name must be provided as ` + "`" + `value` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "TLS",
+					Description: `Information is embedded in the client's SSL/TLS ticket ID. This will use default system profile System-Persistence-TLS`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `System generated name of Persistence Profile <a id="health-monitor-block"></a> ## Health monitor`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `System generated name of Health monitor`,
+				},
+				resource.Attribute{
+					Name:        "system_defined",
+					Description: `A boolean flag if the Health monitor is system defined. ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "associated_virtual_service_ids",
+					Description: `A set of associated Virtual Service IDs`,
+				},
+				resource.Attribute{
+					Name:        "associated_virtual_services",
+					Description: `A set of associated Virtual Service names`,
+				},
+				resource.Attribute{
+					Name:        "member_count",
+					Description: `Total number of members defined in the Pool`,
+				},
+				resource.Attribute{
+					Name:        "up_member_count",
+					Description: `Number of members defined in the Pool that are accepting traffic`,
+				},
+				resource.Attribute{
+					Name:        "enabled_member_count",
+					Description: `Number of enabled members defined in the Pool`,
+				},
+				resource.Attribute{
+					Name:        "health_message",
+					Description: `Health message of NSX-T ALB Pool ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB pool configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_pool.imported my-org.my-vdc.my-edge-gateway.my-alb-pool ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `vcd_nsxt_alb_pool` + "`" + ` NSX-T ALB Pool that is defined in VDC ` + "`" + `my-vdc` + "`" + ` of Org ` + "`" + `my-org` + "`" + ` for NSX-T Edge Gateway ` + "`" + `my-edge-gateway` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "associated_virtual_service_ids",
+					Description: `A set of associated Virtual Service IDs`,
+				},
+				resource.Attribute{
+					Name:        "associated_virtual_services",
+					Description: `A set of associated Virtual Service names`,
+				},
+				resource.Attribute{
+					Name:        "member_count",
+					Description: `Total number of members defined in the Pool`,
+				},
+				resource.Attribute{
+					Name:        "up_member_count",
+					Description: `Number of members defined in the Pool that are accepting traffic`,
+				},
+				resource.Attribute{
+					Name:        "enabled_member_count",
+					Description: `Number of enabled members defined in the Pool`,
+				},
+				resource.Attribute{
+					Name:        "health_message",
+					Description: `Health message of NSX-T ALB Pool ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB pool configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_pool.imported my-org.my-vdc.my-edge-gateway.my-alb-pool ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `vcd_nsxt_alb_pool` + "`" + ` NSX-T ALB Pool that is defined in VDC ` + "`" + `my-vdc` + "`" + ` of Org ` + "`" + `my-org` + "`" + ` for NSX-T Edge Gateway ` + "`" + `my-edge-gateway` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_service_engine_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Service Engine Groups. A Service Engine Group is an isolation domain that also defines shared service engine properties, such as size, network access, and failover. Resources in a service engine group can be used for different virtual services, depending on your tenant needs. These resources cannot be shared between different service engine groups.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"service",
+				"engine",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T ALB Service Engine Group`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description NSX-T ALB Service Engine Group`,
+				},
+				resource.Attribute{
+					Name:        "alb_cloud_id",
+					Description: `(Required) A reference NSX-T ALB Cloud. Can be looked up using ` + "`" + `vcd_nsxt_alb_cloud` + "`" + ` resource or data source`,
+				},
+				resource.Attribute{
+					Name:        "reservation_model",
+					Description: `(Required) Definition if the Service Engine Group is ` + "`" + `DEDICATED` + "`" + ` or ` + "`" + `SHARED` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "importable_service_engine_group_name",
+					Description: `(Required) Name of available Service Engine Group in ALB`,
+				},
+				resource.Attribute{
+					Name:        "max_virtual_services",
+					Description: `Maximum number of virtual services this NSX-T ALB Service Engine Group can run`,
+				},
+				resource.Attribute{
+					Name:        "reserved_virtual_services",
+					Description: `Number of reserved virtual services`,
+				},
+				resource.Attribute{
+					Name:        "deployed_virtual_services",
+					Description: `Number of deployed virtual services`,
+				},
+				resource.Attribute{
+					Name:        "overallocated",
+					Description: `Boolean value stating if there are more deployed virtual services than allocated ones ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Service Engine Group configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_service_engine_group.imported my-service-engine-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-service-engine-group-name` + "`" + ` NSX-T ALB controller settings that are defined at provider level.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "max_virtual_services",
+					Description: `Maximum number of virtual services this NSX-T ALB Service Engine Group can run`,
+				},
+				resource.Attribute{
+					Name:        "reserved_virtual_services",
+					Description: `Number of reserved virtual services`,
+				},
+				resource.Attribute{
+					Name:        "deployed_virtual_services",
+					Description: `Number of deployed virtual services`,
+				},
+				resource.Attribute{
+					Name:        "overallocated",
+					Description: `Boolean value stating if there are more deployed virtual services than allocated ones ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing NSX-T ALB Service Engine Group configuration can be [imported][docs-import] into this resource via supplying path for it. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_alb_service_engine_group.imported my-service-engine-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-service-engine-group-name` + "`" + ` NSX-T ALB controller settings that are defined at provider level.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_settings",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB General Settings for particular NSX-T Edge Gateway. One can activate or deactivate NSX-T ALB for a defined Edge Gateway.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"settings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `(Required) Boolean value ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` if ALB is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "service_network_specification",
+					Description: `(Optional) Gateway CIDR format which will be used by Load Balancer service. All the load balancer service engines associated with the Service Engine Group will be attached to this network. The subnet prefix length must be 25. If nothing is set, the`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_alb_virtual_service",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to manage NSX-T ALB Virtual services for particular NSX-T Edge Gateway. A virtual service advertises an IP address and ports to the external world and listens for client traffic. When a virtual service receives traffic, it directs it to members in ALB Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"alb",
+				"virtual",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for NSX-T ALB Virtual Service`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description NSX-T ALB Virtual Service`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) A reference to NSX-T ALB Pool. Can be looked up using ` + "`" + `vcd_nsxt_alb_pool` + "`" + ` resource or data source`,
+				},
+				resource.Attribute{
+					Name:        "service_engine_group_id",
+					Description: `(Required) A reference to NSX-T ALB Service Engine Group. Can be looked up using ` + "`" + `vcd_nsxt_alb_edgegateway_service_engine_group` + "`" + ` resource or data source`,
+				},
+				resource.Attribute{
+					Name:        "application_profile_type",
+					Description: `(Required) One of ` + "`" + `HTTP` + "`" + `, ` + "`" + `HTTPS` + "`" + `, ` + "`" + `L4` + "`" + `, ` + "`" + `L4_TLS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `(Required) IP Address for the service to listen on.`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate_id",
+					Description: `(Optional) ID reference of CA certificate. Required when ` + "`" + `application_profile_type` + "`" + ` is ` + "`" + `HTTPS` + "`" + ` or ` + "`" + `L4_TLS` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "service_port",
+					Description: `(Required) A block to define port, port range and traffic type. Multiple can be used. See [service_port](#service-port-block) and example for usage details. <a id="service-port-block"></a> ## Service Port`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1410,7 +2065,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+					Description: `(Deprecated; Optional) The name of VDC to use, optional if defined at provider level. Deprecated and replaced by ` + "`" + `context_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "context_id",
+					Description: `(Optional) ID of NSX-T Manager, VDC or VDC Group. Replaces deprecated fields ` + "`" + `vdc` + "`" + ` and ` + "`" + `nsxt_manager_id` + "`" + `. It accepts VDC, VDC Group or NSX-T Manager ID.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1422,7 +2081,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsxt_manager_id",
-					Description: `(Optional) Required only when ` + "`" + `scope` + "`" + ` is ` + "`" + `PROVIDER` + "`" + ``,
+					Description: `(Deprecated; Optional) Required only when ` + "`" + `scope` + "`" + ` is ` + "`" + `PROVIDER` + "`" + `. Deprecated and replaced by ` + "`" + `context_id` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "app_port",
@@ -1435,6 +2094,77 @@ var (
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional) A set of port numbers or port ranges (e.g. ` + "`" + `"10000"` + "`" + `, ` + "`" + `"20000-20010"` + "`" + `) ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) There are 2 different import paths based on ` + "`" + `scope` + "`" + `:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_distributed_firewall",
+			Category:         "Resources",
+			ShortDescription: `The Distributed Firewall allows user to segment organization virtual data center entities, such as virtual machines, based on virtual machine names and attributes.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxt",
+				"distributed",
+				"firewall",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc_group_id",
+					Description: `(Required) The ID of VDC Group to manage Distributed Firewall in. Can be looked up using ` + "`" + `vcd_vdc_group` + "`" + ` resource or data source.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Explanatory name for firewall rule (uniqueness not enforced)`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of firewall rule (not shown in UI)`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) One of ` + "`" + `IN` + "`" + `, ` + "`" + `OUT` + "`" + `, or ` + "`" + `IN_OUT` + "`" + `. (default ` + "`" + `IN_OUT` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `(Optional) One of ` + "`" + `IPV4` + "`" + `, ` + "`" + `IPV6` + "`" + `, or ` + "`" + `IPV4_IPV6` + "`" + ` (default ` + "`" + `IPV4_IPV6` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Defines if it should ` + "`" + `ALLOW` + "`" + `, ` + "`" + `DROP` + "`" + `, ` + "`" + `REJECT` + "`" + ` traffic. ` + "`" + `REJECT` + "`" + ` is only supported in VCD 10.2.2+`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the rule is enabled (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) Defines if logging for this rule is enabled (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "source_ids",
+					Description: `(Optional) A set of source object Firewall Groups (` + "`" + `IP Sets` + "`" + ` or ` + "`" + `Security groups` + "`" + `). Leaving it empty matches ` + "`" + `Any` + "`" + ` (all)`,
+				},
+				resource.Attribute{
+					Name:        "destination_ids",
+					Description: `(Optional) A set of source object Firewall Groups (` + "`" + `IP Sets` + "`" + ` or ` + "`" + `Security groups` + "`" + `). Leaving it empty matches ` + "`" + `Any` + "`" + ` (all)`,
+				},
+				resource.Attribute{
+					Name:        "app_port_profile_ids",
+					Description: `(Optional) An optional set of Application Port Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "network_context_profile_ids",
+					Description: `(Optional) An optional set of Network Context Profiles. Can be looked up using ` + "`" + `vcd_nsxt_network_context_profile` + "`" + ` data source.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1456,7 +2186,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "starting_vdc_id",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1560,7 +2298,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxt_ip_set",
 			Category:         "Resources",
-			ShortDescription: `Provides a resource to manage NSX-T IP Set. IP sets are groups of objects to which the firewall rules apply. Combining multiple objects into IP sets helps reduce the total number of firewall rules to be created.`,
+			ShortDescription: `Provides a resource to manage NSX-T IP Set. IP Sets are groups of objects to which the firewall rules apply. Combining multiple objects into IP Sets helps reduce the total number of firewall rules to be created.`,
 			Description:      ``,
 			Keywords: []string{
 				"nsxt",
@@ -1574,7 +2312,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+					Description: `(Deprecated; Optional) The name of VDC to use, optional if defined at provider level.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1586,7 +2324,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1817,7 +2555,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) One or more blocks to define DHCP pool ranges. See [Pools](#pools) and example for usage details. ## Pools`,
+					Description: `(Required) One or more blocks to define DHCP pool ranges. See [Pools](#pools) and example for usage details.`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "start_address",
@@ -1848,7 +2590,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+					Description: `(Deprecated; Optional) The name of VDC to use.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1892,13 +2634,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsxt_logical_switch_id",
-					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of orgName.vdcName.networkName. For example, using this structure, representing an NSX-T Imported Network that was`,
+					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of ` + "`" + `org-name.vdc-or-vdc-group-name.network-name` + "`" + `. For example, using this structure, representing an NSX-T Imported Network that was`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nsxt_logical_switch_id",
-					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of orgName.vdcName.networkName. For example, using this structure, representing an NSX-T Imported Network that was`,
+					Description: `ID of an existing NSX-T segment ## Importing ~> After import the field ` + "`" + `nsxt_logical_switch_name` + "`" + ` will remain empty because it is impossible to read it in API once it is consumed by network. ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.][docs-import] An existing NSX-T VDC Imported network can be [imported][docs-import] into this Terraform resource via supplying its path. The path for this resource is made of ` + "`" + `org-name.vdc-or-vdc-group-name.network-name` + "`" + `. For example, using this structure, representing an NSX-T Imported Network that was`,
 				},
 			},
 		},
@@ -1906,7 +2648,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxt_security_group",
 			Category:         "Resources",
-			ShortDescription: `Provides a resource to manage NSX-T Security Group. Security groups are groups of data center group networks to which distributed firewall rules apply. Grouping networks helps you to reduce the total number of distributed firewall rules to be created.`,
+			ShortDescription: `Provides a resource to manage NSX-T Security Group. Security Groups are groups of data center group networks to which distributed firewall rules apply. Grouping networks helps you to reduce the total number of distributed firewall rules to be created.`,
 			Description:      ``,
 			Keywords: []string{
 				"nsxt",
@@ -1920,7 +2662,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+					Description: `(Deprecated; Optional) The name of VDC to use, optional if defined at provider level.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1948,7 +2690,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_name",
-					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name or terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc-group-name.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + ` or VDC Group ` + "`" + `my-vdc-group-name.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1966,7 +2708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_name",
-					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + `.`,
+					Description: `Parent vApp Name for member VM (empty for standalone VMs) ~> There may be cases where Org Networks and Security Groups are already created, but not all VMs are already created and not shown in this structure. Additional ` + "`" + `depends_on` + "`" + ` can ensure that Security Group is created only after all networks and VMs are there. ## Importing ~> The current implementation of Terraform import can only import resources into the state. It does not generate configuration. [More information.](https://www.terraform.io/docs/import/) An existing Security Group configuration can be [imported][docs-import] into this resource via supplying the full dot separated path for your Security Group name. An example is below: [docs-import]: https://www.terraform.io/docs/import/ ` + "`" + `` + "`" + `` + "`" + ` terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc.my-nsxt-edge-gateway.my-security-group-name or terraform import vcd_nsxt_security_group.imported my-org.my-org-vdc-group-name.my-nsxt-edge-gateway.my-security-group-name ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `my-security-group-name` + "`" + ` Security Group config settings that are defined on NSX-T Edge Gateway ` + "`" + `my-nsxt-edge-gateway` + "`" + ` which is configured in organization named ` + "`" + `my-org` + "`" + ` and VDC named ` + "`" + `my-org-vdc` + "`" + ` or VDC Group ` + "`" + `my-vdc-group-name.`,
 				},
 			},
 		},
@@ -2343,35 +3085,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_recursive",
-					Description: `(Required) - pass ` + "`" + `delete_recursive` + "`" + `=true as query parameter to remove an organization or VDC and any objects it contains that are in a state that normally allows removal.`,
+					Description: `(Required) Pass ` + "`" + `delete_recursive=true` + "`" + ` as query parameter to remove an organization or VDC and any objects it contains that are in a state that normally allows removal.`,
 				},
 				resource.Attribute{
 					Name:        "delete_force",
-					Description: `(Required) - pass ` + "`" + `delete_force=true` + "`" + ` and ` + "`" + `delete_recursive=true` + "`" + ` to remove an organization or VDC and any objects it contains, regardless of their state.`,
+					Description: `(Required) Pass ` + "`" + `delete_force=true` + "`" + ` and ` + "`" + `delete_recursive=true` + "`" + ` to remove an organization or VDC and any objects it contains, regardless of their state.`,
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional) - True if this organization is enabled (allows login and all other operations). Default is ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) True if this organization is enabled (allows login and all other operations). Default is ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) - Org description. Default is empty.`,
+					Description: `(Optional) Org description. Default is empty.`,
 				},
 				resource.Attribute{
 					Name:        "deployed_vm_quota",
-					Description: `(Optional) - Maximum number of virtual machines that can be deployed simultaneously by a member of this organization. Default is unlimited (0)`,
+					Description: `(Optional) Maximum number of virtual machines that can be deployed simultaneously by a member of this organization. Default is unlimited (0)`,
 				},
 				resource.Attribute{
 					Name:        "stored_vm_quota",
-					Description: `(Optional) - Maximum number of virtual machines in vApps or vApp templates that can be stored in an undeployed state by a member of this organization. Default is unlimited (0)`,
+					Description: `(Optional) Maximum number of virtual machines in vApps or vApp templates that can be stored in an undeployed state by a member of this organization. Default is unlimited (0)`,
 				},
 				resource.Attribute{
 					Name:        "can_publish_catalogs",
-					Description: `(Optional) - True if this organization is allowed to share catalogs. Default is ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) True if this organization is allowed to share catalogs. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "can_publish_external_catalogs",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "can_subscribe_external_catalogs",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "delay_after_power_on_seconds",
-					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "vapp_lease",
@@ -2383,27 +3137,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maximum_runtime_lease_in_sec",
-					Description: `(Required) - How long vApps can run before they are automatically stopped (in seconds). 0 means never expires. Values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 604800 (7 days) but may vary depending on vCD version`,
+					Description: `(Required) How long vApps can run before they are automatically stopped (in seconds). 0 means never expires. Values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 604800 (7 days) but may vary depending on vCD version`,
 				},
 				resource.Attribute{
 					Name:        "power_off_on_runtime_lease_expiration",
-					Description: `(Required) - When true, vApps are powered off when the runtime lease expires. When false, vApps are suspended when the runtime lease expires. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false`,
+					Description: `(Required) When true, vApps are powered off when the runtime lease expires. When false, vApps are suspended when the runtime lease expires. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false`,
 				},
 				resource.Attribute{
 					Name:        "maximum_storage_lease_in_sec",
-					Description: `(Required) - How long stopped vApps are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
+					Description: `(Required) How long stopped vApps are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_storage_lease_expiration",
-					Description: `(Required) - If true, storage for a vApp is deleted when the vApp's lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false <a id="vapp-template-lease"></a> ## vApp Template Lease The ` + "`" + `vapp_template_lease` + "`" + ` section contains lease parameters for vApp templates created in the current organization, as defined below:`,
+					Description: `(Required) If true, storage for a vApp is deleted when the vApp's lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_lease` + "`" + ` block is omitted is false <a id="vapp-template-lease"></a> ## vApp Template Lease The ` + "`" + `vapp_template_lease` + "`" + ` section contains lease parameters for vApp templates created in the current organization, as defined below:`,
 				},
 				resource.Attribute{
 					Name:        "maximum_storage_lease_in_sec",
-					Description: `(Required) - How long vApp templates are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
+					Description: `(Required) How long vApp templates are available before being automatically cleaned up (in seconds). 0 means never expires. Regular values accepted from 3600+ <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is 2592000 (30 days) but may vary depending on vCD version`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_storage_lease_expiration",
-					Description: `(Required) - If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is false ## Importing Supported in provider`,
+					Description: `(Required) If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted. <br>Note: Default when the whole ` + "`" + `vapp_template_lease` + "`" + ` block is omitted is false ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2440,6 +3194,10 @@ var (
 					Description: `(Required) The role of the group. Role names can be retrieved from the organization. Both built-in roles and custom built can be used. The roles normally available are:`,
 				},
 				resource.Attribute{
+					Name:        "user_names",
+					Description: `(Read only) The set of user names that belong to this group. It's only populated if the users are created after the group (with ` + "`" + `depends_on` + "`" + ` the given group). ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Organization group ## Importing ~>`,
 				},
@@ -2472,7 +3230,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional, but required if ` + "`" + `password_file` + "`" + ` was not given) The user password. This value is never returned on read. It is inspected on create and modify. To modify, fill with a different value. Note that if you remove the password`,
+					Description: `(Optional, but required if ` + "`" + `password_file` + "`" + ` was not given and ` + "`" + `is_external` + "`" + ` is ` + "`" + `false` + "`" + `) The user password. This value is never returned on read. It is inspected on create and modify. To modify, fill with a different value. Note that if you remove the password`,
 				},
 				resource.Attribute{
 					Name:        "provider_type",
@@ -2512,7 +3270,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_locked",
-					Description: `(Optional)aIf the user account has been locked due to too many invalid login attempts, the value will change to true (only the system can lock the user). To unlock the user re-set this flag to false.`,
+					Description: `(Optional) If the user account has been locked due to too many invalid login attempts, the value will change to true (only the system can lock the user). To unlock the user re-set this flag to false.`,
+				},
+				resource.Attribute{
+					Name:        "is_external",
+					Description: `(Optional) If the user account is going to be imported from an external resource, like an LDAP. In this case, ` + "`" + `password` + "`" + ` nor ` + "`" + `password_file` + "`" + ` are not required. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "take_ownership",
@@ -2520,11 +3282,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployed_vm_quota",
-					Description: `(Optional) Quota of vApps that this user can deploy. A value of 0 specifies an unlimited quota. The default is 10.`,
+					Description: `(Optional) Quota of vApps that this user can deploy. A value of 0 specifies an unlimited quota. The default is 0.`,
 				},
 				resource.Attribute{
 					Name:        "stored_vm_quota",
-					Description: `(Optional) Quota of vApps that this user can store. A value of 0 specifies an unlimited quota. The default is 10. ## Attribute Reference The following attributes are exported on this resource:`,
+					Description: `(Optional) Quota of vApps that this user can store. A value of 0 specifies an unlimited quota. The default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "group_names",
+					Description: `(Read only) The set of group names to which this user belongs. It's only populated if the users are created after the group (with this user having a ` + "`" + `depends_on` + "`" + ` of the given group). ## Attribute Reference The following attributes are exported on this resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2827,6 +3593,18 @@ var (
 					Name:        "status_text",
 					Description: `(Computed;`,
 				},
+				resource.Attribute{
+					Name:        "lease",
+					Description: `(Optional`,
+				},
+				resource.Attribute{
+					Name:        "runtime_lease_in_sec",
+					Description: `How long any of the VMs in the vApp can run before the vApp is automatically powered off or suspended. 0 means never expires (or maximum allowed by Org). Regular values accepted from 3600+.`,
+				},
+				resource.Attribute{
+					Name:        "storage_lease_in_sec",
+					Description: `How long the vApp is available before being automatically deleted or marked as expired. 0 means never expires (or maximum allowed by Org). Regular values accepted from 3600+. ## Importing Supported in provider`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -2907,11 +3685,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_id",
-					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+					Description: `(Required) The identifier of [vApp](/providers/vmware/vcd/latest/docs/resources/vapp).`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
-					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+					Description: `(Required) The identifier of [vApp network](/providers/vmware/vcd/latest/docs/resources/vapp_network).`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -3010,15 +3788,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_id",
-					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+					Description: `(Required) The identifier of [vApp](/providers/vmware/vcd/latest/docs/resources/vapp).`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
-					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+					Description: `(Required) The identifier of [vApp network](/providers/vmware/vcd/latest/docs/resources/vapp_network).`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Enable or disable NAT. Default is ` + "`" + `true` + "`" + `. To enable the NAT service, [vcd_vapp_firewall_rules](/docs/providers/vcd/r/vapp_firewall_rules.html) needs to be enabled as well.`,
+					Description: `(Optional) Enable or disable NAT. Default is ` + "`" + `true` + "`" + `. To enable the NAT service, [vcd_vapp_firewall_rules](/providers/vmware/vcd/latest/docs/resources/vapp_firewall_rules) needs to be enabled as well.`,
 				},
 				resource.Attribute{
 					Name:        "nat_type",
@@ -3206,11 +3984,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_id",
-					Description: `(Required) The identifier of [vApp](/docs/providers/vcd/r/vapp.html).`,
+					Description: `(Required) The identifier of [vApp](/providers/vmware/vcd/latest/docs/resources/vapp).`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
-					Description: `(Required) The identifier of [vApp network](/docs/providers/vcd/r/vapp_network.html).`,
+					Description: `(Required) The identifier of [vApp network](/providers/vmware/vcd/latest/docs/resources/vapp_network).`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -3280,7 +4058,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional) The amount of RAM (in MB) to allocate to the VM. If ` + "`" + `memory_hot_add_enabled` + "`" + ` is true, then memory will be increased without VM power off.`,
+					Description: `(Optional) The amount of RAM (in MB) to allocate to the VM. If ` + "`" + `memory_hot_add_enabled` + "`" + ` is true, then memory will be increased without VM power off`,
+				},
+				resource.Attribute{
+					Name:        "memory_reservation",
+					Description: `The amount of RAM (in MB) reservation on the underlying virtualization infrastructure`,
+				},
+				resource.Attribute{
+					Name:        "memory_priority",
+					Description: `Pre-determined relative priorities according to which the non-reserved portion of this resource is made available to the virtualized workload`,
+				},
+				resource.Attribute{
+					Name:        "memory_shares",
+					Description: `Custom priority for the resource in MB. This is a read-only, unless the ` + "`" + `memory_priority` + "`" + ` is "CUSTOM"`,
+				},
+				resource.Attribute{
+					Name:        "memory_limit",
+					Description: `The limit (in MB) for how much of memory can be consumed on the underlying virtualization infrastructure. ` + "`" + `-1` + "`" + ` value for unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "cpus",
@@ -3289,6 +4083,22 @@ var (
 				resource.Attribute{
 					Name:        "cpu_cores",
 					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "cpu_reservation",
+					Description: `The amount of MHz reservation on the underlying virtualization infrastructure.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_priority",
+					Description: `Pre-determined relative priorities according to which the non-reserved portion of this resource is made available to the virtualized workload`,
+				},
+				resource.Attribute{
+					Name:        "cpu_shares",
+					Description: `Custom priority for the resource in MHz. This is a read-only, unless the ` + "`" + `cpu_priority` + "`" + ` is "CUSTOM"`,
+				},
+				resource.Attribute{
+					Name:        "cpu_limit",
+					Description: `The limit (in MHz) for how much of CPU can be consumed on the underlying virtualization infrastructure. ` + "`" + `-1` + "`" + ` value for unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -3396,7 +4206,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bus_type",
-					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `.`,
+					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `, ` + "`" + `nvme` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "size_in_mb",
@@ -3504,6 +4314,209 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vdc_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a VDC group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"vdc",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for VDC group`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) VDC group description`,
+				},
+				resource.Attribute{
+					Name:        "starting_vdc_id",
+					Description: `(Required) With selecting a starting VDC you will be able to create a group in which this VDC can participate.`,
+				},
+				resource.Attribute{
+					Name:        "participating_vdc_ids",
+					Description: `(Required) The list of organization VDCs that are participating in this group.`,
+				},
+				resource.Attribute{
+					Name:        "dfw_enabled",
+					Description: `(Optional) Whether Distributed Firewall is enabled for this VDC group.`,
+				},
+				resource.Attribute{
+					Name:        "default_policy_status",
+					Description: `(Optional) Whether this security policy is enabled. ` + "`" + `dfw_enabled` + "`" + ` must be ` + "`" + `true` + "`" + `. ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VDC group ID`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `More detailed error message when VDC group has error status`,
+				},
+				resource.Attribute{
+					Name:        "local_egress",
+					Description: `Status whether local egress is enabled for a universal router belonging to a universal VDC group.`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_id",
+					Description: `ID of used network pool.`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_universal_id",
+					Description: `The network provider’s universal id that is backing the universal network pool.`,
+				},
+				resource.Attribute{
+					Name:        "network_provider_type",
+					Description: `Defines the networking provider backing the VDC group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status that the group can be in (e.g. 'SAVING', 'SAVED', 'CONFIGURING', 'REALIZED', 'REALIZATION_FAILED', 'DELETING', 'DELETE_FAILED', 'OBJECT_NOT_FOUND', 'UNCONFIGURED').`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Defines the group as LOCAL or UNIVERSAL.`,
+				},
+				resource.Attribute{
+					Name:        "universal_networking_enabled",
+					Description: `True means that a VDC group router has been created.`,
+				},
+				resource.Attribute{
+					Name:        "participating_org_vdcs",
+					Description: `A list of blocks providing organization VDCs that are participating in this group details. See [Participating Org VDCs](#participatingOrgVdcs) below for details. <a id="participatingOrgVdcs"></a> ## Participating Org VDCs`,
+				},
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `VDC ID.`,
+				},
+				resource.Attribute{
+					Name:        "vdc_name",
+					Description: `VDC name.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `Site ID.`,
+				},
+				resource.Attribute{
+					Name:        "site_name",
+					Description: `Site name.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `Organization ID.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `Organization name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `"The status that the VDC can be in e.g. 'SAVING', 'SAVED', 'CONFIGURING', 'REALIZED', 'REALIZATION_FAILED', 'DELETING', 'DELETE_FAILED', 'OBJECT_NOT_FOUND', 'UNCONFIGURED')."`,
+				},
+				resource.Attribute{
+					Name:        "is_remote_org",
+					Description: `Specifies whether the VDC is local to this VCD site.`,
+				},
+				resource.Attribute{
+					Name:        "network_provider_scope",
+					Description: `Specifies the network provider scope of the VDC.`,
+				},
+				resource.Attribute{
+					Name:        "fault_domain_tag",
+					Description: `Represents the fault domain of a given organization VDC. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VDC group ID`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `More detailed error message when VDC group has error status`,
+				},
+				resource.Attribute{
+					Name:        "local_egress",
+					Description: `Status whether local egress is enabled for a universal router belonging to a universal VDC group.`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_id",
+					Description: `ID of used network pool.`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_universal_id",
+					Description: `The network provider’s universal id that is backing the universal network pool.`,
+				},
+				resource.Attribute{
+					Name:        "network_provider_type",
+					Description: `Defines the networking provider backing the VDC group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status that the group can be in (e.g. 'SAVING', 'SAVED', 'CONFIGURING', 'REALIZED', 'REALIZATION_FAILED', 'DELETING', 'DELETE_FAILED', 'OBJECT_NOT_FOUND', 'UNCONFIGURED').`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Defines the group as LOCAL or UNIVERSAL.`,
+				},
+				resource.Attribute{
+					Name:        "universal_networking_enabled",
+					Description: `True means that a VDC group router has been created.`,
+				},
+				resource.Attribute{
+					Name:        "participating_org_vdcs",
+					Description: `A list of blocks providing organization VDCs that are participating in this group details. See [Participating Org VDCs](#participatingOrgVdcs) below for details. <a id="participatingOrgVdcs"></a> ## Participating Org VDCs`,
+				},
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `VDC ID.`,
+				},
+				resource.Attribute{
+					Name:        "vdc_name",
+					Description: `VDC name.`,
+				},
+				resource.Attribute{
+					Name:        "site_id",
+					Description: `Site ID.`,
+				},
+				resource.Attribute{
+					Name:        "site_name",
+					Description: `Site name.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `Organization ID.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `Organization name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `"The status that the VDC can be in e.g. 'SAVING', 'SAVED', 'CONFIGURING', 'REALIZED', 'REALIZATION_FAILED', 'DELETING', 'DELETE_FAILED', 'OBJECT_NOT_FOUND', 'UNCONFIGURED')."`,
+				},
+				resource.Attribute{
+					Name:        "is_remote_org",
+					Description: `Specifies whether the VDC is local to this VCD site.`,
+				},
+				resource.Attribute{
+					Name:        "network_provider_scope",
+					Description: `Specifies the network provider scope of the VDC.`,
+				},
+				resource.Attribute{
+					Name:        "fault_domain_tag",
+					Description: `Represents the fault domain of a given organization VDC. ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vm",
 			Category:         "Resources",
 			ShortDescription: `Provides a VMware Cloud Director standalone VM resource. This can be used to create, modify, and delete Standalone VMs.`,
@@ -3579,7 +4592,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bus_type",
-					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `.`,
+					Description: `(Required) The type of disk controller. Possible values: ` + "`" + `ide` + "`" + `, ` + "`" + `parallel` + "`" + `( LSI Logic Parallel SCSI), ` + "`" + `sas` + "`" + `(LSI Logic SAS (SCSI)), ` + "`" + `paravirtual` + "`" + `(Paravirtual (SCSI)), ` + "`" + `sata` + "`" + `, ` + "`" + `nvme` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "size_in_mb",
@@ -3621,10 +4634,6 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "org",
-					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of VM sizing policy.`,
 				},
@@ -3638,7 +4647,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional) Configures memory policy; see [Memory](#memory) below for details. <a id="cpu"></a> ## CPU Each VM sizing policy supports the following attributes:`,
+					Description: `(Optional) Configures memory policy; see [Memory](#memory) below for details. ->`,
 				},
 				resource.Attribute{
 					Name:        "shares",
@@ -3687,59 +4696,69 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vcd_catalog":               0,
-		"vcd_catalog_item":          1,
-		"vcd_catalog_media":         2,
-		"vcd_edgegateway":           3,
-		"vcd_edgegateway_settings":  4,
-		"vcd_edgegateway_vpn":       5,
-		"vcd_external_network":      6,
-		"vcd_external_network_v2":   7,
-		"vcd_global_role":           8,
-		"vcd_independent_disk":      9,
-		"vcd_inserted_media":        10,
-		"vcd_lb_app_profile":        11,
-		"vcd_lb_app_rule":           12,
-		"vcd_lb_server_pool":        13,
-		"vcd_lb_service_monitor":    14,
-		"vcd_lb_virtual_server":     15,
-		"vcd_network_direct":        16,
-		"vcd_network_isolated":      17,
-		"vcd_network_isolated_v2":   18,
-		"vcd_network_routed":        19,
-		"vcd_network_routed_v2":     20,
-		"vcd_nsxt_app_port_profile": 21,
-		"vcd_nsxt_edgegateway":      22,
-		"vcd_nsxt_firewall":         23,
-		"vcd_nsxt_ip_set":           24,
-		"vcd_nsxt_ipsec_vpn_tunnel": 25,
-		"vcd_nsxt_nat_rule":         26,
-		"vcd_nsxt_network_dhcp":     27,
-		"vcd_nsxt_network_imported": 28,
-		"vcd_nsxt_security_group":   29,
-		"vcd_nsxv_dhcp_relay":       30,
-		"vcd_nsxv_dnat":             31,
-		"vcd_nsxv_firewall_rule":    32,
-		"vcd_nsxv_ip_set":           33,
-		"vcd_nsxv_snat":             34,
-		"vcd_org":                   35,
-		"vcd_org_group":             36,
-		"vcd_org_user":              37,
-		"vcd_org_vdc":               38,
-		"vcd_rights_bundle":         39,
-		"vcd_role":                  40,
-		"vcd_vapp":                  41,
-		"vcd_vapp_access_control":   42,
-		"vcd_vapp_firewall_rules":   43,
-		"vcd_vapp_nat_rules":        44,
-		"vcd_vapp_network":          45,
-		"vcd_vapp_org_network":      46,
-		"vcd_vapp_static_routing":   47,
-		"vcd_vapp_vm":               48,
-		"vcd_vm":                    49,
-		"vcd_vm_affinity_rule":      50,
-		"vcd_vm_internal_disk":      51,
-		"vcd_vm_sizing_policy":      52,
+		"vcd_catalog":                                   0,
+		"vcd_catalog_item":                              1,
+		"vcd_catalog_media":                             2,
+		"vcd_library_certificate":                       3,
+		"vcd_edgegateway":                               4,
+		"vcd_edgegateway_settings":                      5,
+		"vcd_edgegateway_vpn":                           6,
+		"vcd_external_network":                          7,
+		"vcd_external_network_v2":                       8,
+		"vcd_global_role":                               9,
+		"vcd_independent_disk":                          10,
+		"vcd_inserted_media":                            11,
+		"vcd_lb_app_profile":                            12,
+		"vcd_lb_app_rule":                               13,
+		"vcd_lb_server_pool":                            14,
+		"vcd_lb_service_monitor":                        15,
+		"vcd_lb_virtual_server":                         16,
+		"vcd_network_direct":                            17,
+		"vcd_network_isolated":                          18,
+		"vcd_network_isolated_v2":                       19,
+		"vcd_network_routed":                            20,
+		"vcd_network_routed_v2":                         21,
+		"vcd_nsxt_alb_cloud":                            22,
+		"vcd_nsxt_alb_controller":                       23,
+		"vcd_nsxt_alb_edgegateway_service_engine_group": 24,
+		"vcd_nsxt_alb_pool":                             25,
+		"vcd_nsxt_alb_service_engine_group":             26,
+		"vcd_nsxt_alb_settings":                         27,
+		"vcd_nsxt_alb_virtual_service":                  28,
+		"vcd_nsxt_app_port_profile":                     29,
+		"vcd_nsxt_distributed_firewall":                 30,
+		"vcd_nsxt_edgegateway":                          31,
+		"vcd_nsxt_firewall":                             32,
+		"vcd_nsxt_ip_set":                               33,
+		"vcd_nsxt_ipsec_vpn_tunnel":                     34,
+		"vcd_nsxt_nat_rule":                             35,
+		"vcd_nsxt_network_dhcp":                         36,
+		"vcd_nsxt_network_imported":                     37,
+		"vcd_nsxt_security_group":                       38,
+		"vcd_nsxv_dhcp_relay":                           39,
+		"vcd_nsxv_dnat":                                 40,
+		"vcd_nsxv_firewall_rule":                        41,
+		"vcd_nsxv_ip_set":                               42,
+		"vcd_nsxv_snat":                                 43,
+		"vcd_org":                                       44,
+		"vcd_org_group":                                 45,
+		"vcd_org_user":                                  46,
+		"vcd_org_vdc":                                   47,
+		"vcd_rights_bundle":                             48,
+		"vcd_role":                                      49,
+		"vcd_vapp":                                      50,
+		"vcd_vapp_access_control":                       51,
+		"vcd_vapp_firewall_rules":                       52,
+		"vcd_vapp_nat_rules":                            53,
+		"vcd_vapp_network":                              54,
+		"vcd_vapp_org_network":                          55,
+		"vcd_vapp_static_routing":                       56,
+		"vcd_vapp_vm":                                   57,
+		"vcd_vdc_group":                                 58,
+		"vcd_vm":                                        59,
+		"vcd_vm_affinity_rule":                          60,
+		"vcd_vm_internal_disk":                          61,
+		"vcd_vm_sizing_policy":                          62,
 	}
 )
 

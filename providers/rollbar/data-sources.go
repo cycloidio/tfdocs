@@ -49,6 +49,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rollbar_team",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -57,6 +67,7 @@ var (
 		"rollbar_project_access_token":  1,
 		"rollbar_project_access_tokens": 2,
 		"rollbar_projects":              3,
+		"rollbar_team":                  4,
 	}
 )
 

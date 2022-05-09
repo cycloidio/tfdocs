@@ -463,6 +463,108 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_cloud_project_failover_ip_attach",
+			Category:         "Cloud Resources",
+			ShortDescription: `Attaches failover ip addresses to cloud instances`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"project",
+				"failover",
+				"ip",
+				"attach",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The id of the public cloud project. If omitted, the ` + "`" + `OVH_CLOUD_PROJECT_SERVICE` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The failover ip address to attach`,
+				},
+				resource.Attribute{
+					Name:        "routed_to",
+					Description: `The GUID of an instance to which the failover IP address is be attached ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "block",
+					Description: `The IP block`,
+				},
+				resource.Attribute{
+					Name:        "continentCode",
+					Description: `The Ip continent`,
+				},
+				resource.Attribute{
+					Name:        "geoloc",
+					Description: `The Ip location`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Ip id`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The Ip Address`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `Current operation progress in percent`,
+				},
+				resource.Attribute{
+					Name:        "routedTo",
+					Description: `Instance where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Ip status, can be ` + "`" + `ok` + "`" + ` or ` + "`" + `operationPending` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "subType",
+					Description: `IP sub type, can be ` + "`" + `cloud` + "`" + ` or ` + "`" + `ovh` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "block",
+					Description: `The IP block`,
+				},
+				resource.Attribute{
+					Name:        "continentCode",
+					Description: `The Ip continent`,
+				},
+				resource.Attribute{
+					Name:        "geoloc",
+					Description: `The Ip location`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Ip id`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The Ip Address`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `Current operation progress in percent`,
+				},
+				resource.Attribute{
+					Name:        "routedTo",
+					Description: `Instance where ip is routed to`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Ip status, can be ` + "`" + `ok` + "`" + ` or ` + "`" + `operationPending` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "subType",
+					Description: `IP sub type, can be ` + "`" + `cloud` + "`" + ` or ` + "`" + `ovh` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_cloud_project_network_private",
 			Category:         "Cloud Resources",
 			ShortDescription: `Creates a private network in a public cloud project.`,
@@ -507,16 +609,32 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status",
-					Description: `A map representing the status of the network per region.`,
+					Name:        "regions_attributes",
+					Description: `A map representing information about the region.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/region",
+					Name:        "regions_attributes/region",
 					Description: `The id of the region.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/status",
+					Name:        "regions_attributes/status",
 					Description: `The status of the network in the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_attributes/openstackid",
+					Description: `The private network id in the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status",
+					Description: `(Deprecated) A map representing the status of the network per region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status/region",
+					Description: `(Deprecated) The id of the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status/status",
+					Description: `(Deprecated) The status of the network in the region.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -545,16 +663,32 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status",
-					Description: `A map representing the status of the network per region.`,
+					Name:        "regions_attributes",
+					Description: `A map representing information about the region.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/region",
+					Name:        "regions_attributes/region",
 					Description: `The id of the region.`,
 				},
 				resource.Attribute{
-					Name:        "regions_status/status",
+					Name:        "regions_attributes/status",
 					Description: `The status of the network in the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_attributes/openstackid",
+					Description: `The private network id in the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status",
+					Description: `(Deprecated) A map representing the status of the network per region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status/region",
+					Description: `(Deprecated) The id of the region.`,
+				},
+				resource.Attribute{
+					Name:        "regions_status/status",
+					Description: `(Deprecated) The status of the network in the region.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1792,7 +1926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Valid values : ` + "`" + `http` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `mysql` + "`" + `, ` + "`" + `oko` + "`" + `, ` + "`" + `pgsql` + "`" + `, ` + "`" + `smtp` + "`" + `, ` + "`" + `tcp` + "`" + ``,
+					Description: `(Required) Valid values : ` + "`" + `http` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `mysql` + "`" + `, ` + "`" + `oco` + "`" + `, ` + "`" + `pgsql` + "`" + `, ` + "`" + `smtp` + "`" + `, ` + "`" + `tcp` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -2269,90 +2403,94 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "service_name",
-					Description: `(Required) The internal name of your IP load balancing`,
+					Name:        "action",
+					Description: `(Required) Action triggered when all rules match`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `HTTP status code for "redirect" and "reject" actions`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Action to trigger if all the rules of this route matches`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `Human readable name for your route, this field is for you`,
 				},
 				resource.Attribute{
-					Name:        "weight",
-					Description: `Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action`,
-				},
-				resource.Attribute{
-					Name:        "action.status",
-					Description: `HTTP status code for "redirect" and "reject" actions`,
-				},
-				resource.Attribute{
-					Name:        "action.target",
-					Description: `Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target`,
-				},
-				resource.Attribute{
-					Name:        "action.type",
-					Description: `(Required) Action to trigger if all the rules of this route matches`,
-				},
-				resource.Attribute{
 					Name:        "frontend_id",
-					Description: `Route traffic for this frontend ## Attributes Reference The following attributes are exported:`,
+					Description: `Route traffic for this frontend`,
 				},
 				resource.Attribute{
 					Name:        "service_name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `See Argument Reference above.`,
+					Description: `(Required) The internal name of your IP load balancing`,
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `See Argument Reference above.`,
+					Description: `Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action ## Attributes Reference In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "action.status",
-					Description: `See Argument Reference above.`,
+					Name:        "status",
+					Description: `Route status. Routes in "ok" state are ready to operate`,
 				},
 				resource.Attribute{
-					Name:        "action.target",
-					Description: `See Argument Reference above.`,
+					Name:        "rules",
+					Description: `List of rules to match to trigger action`,
 				},
 				resource.Attribute{
-					Name:        "action.type",
-					Description: `See Argument Reference above.`,
+					Name:        "field",
+					Description: `Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules`,
 				},
 				resource.Attribute{
-					Name:        "frontend_id",
-					Description: `See Argument Reference above.`,
+					Name:        "match",
+					Description: `Matching operator. Not all operators are available for all fields. See "availableRules"`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Value to match against this match. Interpretation if this field depends on the match and field`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of your rule`,
+				},
+				resource.Attribute{
+					Name:        "sub_field",
+					Description: `Name of sub-field, if applicable. This may be a Cookie or Header name for instance`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "service_name",
-					Description: `See Argument Reference above.`,
+					Name:        "status",
+					Description: `Route status. Routes in "ok" state are ready to operate`,
 				},
 				resource.Attribute{
-					Name:        "display_name",
-					Description: `See Argument Reference above.`,
+					Name:        "rules",
+					Description: `List of rules to match to trigger action`,
 				},
 				resource.Attribute{
-					Name:        "weight",
-					Description: `See Argument Reference above.`,
+					Name:        "field",
+					Description: `Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules`,
 				},
 				resource.Attribute{
-					Name:        "action.status",
-					Description: `See Argument Reference above.`,
+					Name:        "match",
+					Description: `Matching operator. Not all operators are available for all fields. See "availableRules"`,
 				},
 				resource.Attribute{
-					Name:        "action.target",
-					Description: `See Argument Reference above.`,
+					Name:        "pattern",
+					Description: `Value to match against this match. Interpretation if this field depends on the match and field`,
 				},
 				resource.Attribute{
-					Name:        "action.type",
-					Description: `See Argument Reference above.`,
+					Name:        "rule_id",
+					Description: `Id of your rule`,
 				},
 				resource.Attribute{
-					Name:        "frontend_id",
-					Description: `See Argument Reference above.`,
+					Name:        "sub_field",
+					Description: `Name of sub-field, if applicable. This may be a Cookie or Header name for instance`,
 				},
 			},
 		},
@@ -2563,7 +2701,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Valid values : ` + "`" + `http` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `mysql` + "`" + `, ` + "`" + `oko` + "`" + `, ` + "`" + `pgsql` + "`" + `, ` + "`" + `smtp` + "`" + `, ` + "`" + `tcp` + "`" + ``,
+					Description: `(Required) Valid values : ` + "`" + `http` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `mysql` + "`" + `, ` + "`" + `oco` + "`" + `, ` + "`" + `pgsql` + "`" + `, ` + "`" + `smtp` + "`" + `, ` + "`" + `tcp` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -3019,6 +3157,160 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_tcp_route",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Manage tcp route for a loadbalancer service.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"tcp",
+				"route",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action triggered when all rules match`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Farm ID for "farm" action type, empty for others.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Action to trigger if all the rules of this route matches`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your route, this field is for you`,
+				},
+				resource.Attribute{
+					Name:        "frontend_id",
+					Description: `Route traffic for this frontend`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action ## Attributes Reference In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Route status. Routes in "ok" state are ready to operate`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `List of rules to match to trigger action`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `Matching operator. Not all operators are available for all fields. See "availableRules"`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Value to match against this match. Interpretation if this field depends on the match and field`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of your rule`,
+				},
+				resource.Attribute{
+					Name:        "sub_field",
+					Description: `Name of sub-field, if applicable. This may be a Cookie or Header name for instance`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Route status. Routes in "ok" state are ready to operate`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `List of rules to match to trigger action`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `Matching operator. Not all operators are available for all fields. See "availableRules"`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Value to match against this match. Interpretation if this field depends on the match and field`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of your rule`,
+				},
+				resource.Attribute{
+					Name:        "sub_field",
+					Description: `Name of sub-field, if applicable. This may be a Cookie or Header name for instance`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_tcp_route_rule",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Manage rules for TCP route.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"tcp",
+				"route",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "route_id",
+					Description: `(Required) The route to apply this rule`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your rule, this field is for you`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/availableRouteRules" for a list of available rules`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `(Required) Matching operator. Not all operators are available for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `Invert the matching operator effect`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Value to match against this match. Interpretation if this field depends on the match and field`,
+				},
+				resource.Attribute{
+					Name:        "sub_field",
+					Description: `Name of sub-field, if applicable. This may be a Cookie or Header name for instance ## Attributes Reference No additional attribute is exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4038,41 +4330,44 @@ var (
 		"ovh_cloud_project":                                           0,
 		"ovh_cloud_project_containerregistry":                         1,
 		"ovh_cloud_project_containerregistry_user":                    2,
-		"ovh_cloud_project_network_private":                           3,
-		"ovh_cloud_project_network_private_subnet":                    4,
-		"ovh_cloud_project_user":                                      5,
-		"ovh_dbaas_logs_input":                                        6,
-		"ovh_dedicated_ceph_acl":                                      7,
-		"ovh_dedicated_server_reboot_task":                            8,
-		"ovh_dedicated_server_update":                                 9,
-		"ovh_ip_reverse":                                              10,
-		"ovh_ip_service":                                              11,
-		"ovh_iploadbalancing":                                         12,
-		"ovh_iploadbalancing_http_farm":                               13,
-		"ovh_iploadbalancing_http_farm_server":                        14,
-		"ovh_iploadbalancing_http_frontend":                           15,
-		"ovh_iploadbalancing_http_route":                              16,
-		"ovh_iploadbalancing_http_route_rule":                         17,
-		"ovh_iploadbalancing_refresh":                                 18,
-		"ovh_iploadbalancing_tcp_farm":                                19,
-		"ovh_iploadbalancing_tcp_farm_server":                         20,
-		"ovh_iploadbalancing_tcp_frontend":                            21,
-		"ovh_iploadbalancing_vrack_network":                           22,
-		"ovh_me_identity_user":                                        23,
-		"ovh_me_installation_template":                                24,
-		"ovh_me_installation_template_partition_scheme":               25,
-		"ovh_me_installation_template_partition_scheme_hardware_raid": 26,
-		"ovh_me_installation_template_partition_scheme_partition":     27,
-		"ovh_me_ipxe_script":                                          28,
-		"ovh_me_ssh_key":                                              29,
-		"ovh_domain_zone":                                             30,
-		"ovh_domain_zone_record":                                      31,
-		"ovh_domain_zone_redirection":                                 32,
-		"ovh_vrack":                                                   33,
-		"ovh_vrack_cloudproject":                                      34,
-		"ovh_vrack_dedicated_server":                                  35,
-		"ovh_vrack_dedicated_server_interface":                        36,
-		"ovh_vrack_iploadbalancing":                                   37,
+		"ovh_cloud_project_failover_ip_attach":                        3,
+		"ovh_cloud_project_network_private":                           4,
+		"ovh_cloud_project_network_private_subnet":                    5,
+		"ovh_cloud_project_user":                                      6,
+		"ovh_dbaas_logs_input":                                        7,
+		"ovh_dedicated_ceph_acl":                                      8,
+		"ovh_dedicated_server_reboot_task":                            9,
+		"ovh_dedicated_server_update":                                 10,
+		"ovh_ip_reverse":                                              11,
+		"ovh_ip_service":                                              12,
+		"ovh_iploadbalancing":                                         13,
+		"ovh_iploadbalancing_http_farm":                               14,
+		"ovh_iploadbalancing_http_farm_server":                        15,
+		"ovh_iploadbalancing_http_frontend":                           16,
+		"ovh_iploadbalancing_http_route":                              17,
+		"ovh_iploadbalancing_http_route_rule":                         18,
+		"ovh_iploadbalancing_refresh":                                 19,
+		"ovh_iploadbalancing_tcp_farm":                                20,
+		"ovh_iploadbalancing_tcp_farm_server":                         21,
+		"ovh_iploadbalancing_tcp_frontend":                            22,
+		"ovh_iploadbalancing_tcp_route":                               23,
+		"ovh_iploadbalancing_tcp_route_rule":                          24,
+		"ovh_iploadbalancing_vrack_network":                           25,
+		"ovh_me_identity_user":                                        26,
+		"ovh_me_installation_template":                                27,
+		"ovh_me_installation_template_partition_scheme":               28,
+		"ovh_me_installation_template_partition_scheme_hardware_raid": 29,
+		"ovh_me_installation_template_partition_scheme_partition":     30,
+		"ovh_me_ipxe_script":                                          31,
+		"ovh_me_ssh_key":                                              32,
+		"ovh_domain_zone":                                             33,
+		"ovh_domain_zone_record":                                      34,
+		"ovh_domain_zone_redirection":                                 35,
+		"ovh_vrack":                                                   36,
+		"ovh_vrack_cloudproject":                                      37,
+		"ovh_vrack_dedicated_server":                                  38,
+		"ovh_vrack_dedicated_server_interface":                        39,
+		"ovh_vrack_iploadbalancing":                                   40,
 	}
 )
 

@@ -545,6 +545,10 @@ var (
 					Name:        "mount_id",
 					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
 				},
+				resource.Attribute{
+					Name:        "block_type",
+					Description: `The type of block storage volume.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -579,6 +583,10 @@ var (
 					Name:        "mount_id",
 					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
 				},
+				resource.Attribute{
+					Name:        "block_type",
+					Description: `The type of block storage volume.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -601,6 +609,10 @@ var (
 					Name:        "date_created",
 					Description: `The date the DNS domain was added to your Vultr account.`,
 				},
+				resource.Attribute{
+					Name:        "dns_sec",
+					Description: `The Domain's DNSSEC status`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -610,6 +622,10 @@ var (
 				resource.Attribute{
 					Name:        "date_created",
 					Description: `The date the DNS domain was added to your Vultr account.`,
+				},
+				resource.Attribute{
+					Name:        "dns_sec",
+					Description: `The Domain's DNSSEC status`,
 				},
 			},
 		},
@@ -813,6 +829,10 @@ var (
 					Name:        "backups_schedule",
 					Description: `The current configuration for backups`,
 				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname assigned to the server.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -922,6 +942,10 @@ var (
 				resource.Attribute{
 					Name:        "backups_schedule",
 					Description: `The current configuration for backups`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The hostname assigned to the server.`,
 				},
 			},
 		},
@@ -1111,6 +1135,222 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vultr_kubernetes",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr Kubernetes Engine (VKE) resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding VKE. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VKE cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The VKE clusters label.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region your VKE cluster is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current kubernetes version your VKE cluster is running on.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The overall status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_subnet",
+					Description: `IP range that services will run on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_subnet",
+					Description: `IP range that your pods will run on in this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Domain for your Kubernetes clusters control plane.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of VKE cluster control plane.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of VKE cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of node pool creation.`,
+				},
+				resource.Attribute{
+					Name:        "date_updated",
+					Description: `Date of node pool updates.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "node_quantity",
+					Description: `Number of nodes within node pool.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Node plan that nodes are using within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag for node pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date node was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of node.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VKE cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The VKE clusters label.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region your VKE cluster is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current kubernetes version your VKE cluster is running on.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The overall status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_subnet",
+					Description: `IP range that services will run on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_subnet",
+					Description: `IP range that your pods will run on in this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Domain for your Kubernetes clusters control plane.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of VKE cluster control plane.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of VKE cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of node pool creation.`,
+				},
+				resource.Attribute{
+					Name:        "date_updated",
+					Description: `Date of node pool updates.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "node_quantity",
+					Description: `Number of nodes within node pool.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Node plan that nodes are using within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag for node pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date node was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of node.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vultr_load_balancer",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Vultr Load Balancer.`,
@@ -1183,7 +1423,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network",
-					Description: `Defines the private network the load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
+					Description: `(Deprecated: use ` + "`" + `vpc` + "`" + ` instead) Defines the private network the load balancer is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `Defines the VPCthe load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1297,7 +1541,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network",
-					Description: `Defines the private network the load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
+					Description: `(Deprecated: use ` + "`" + `vpc` + "`" + ` instead) Defines the private network the load balancer is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `Defines the VPCthe load balancer is attached to. ` + "`" + `health_check` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -2141,6 +2389,70 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_vpc",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Vultr VPC.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Query parameters for finding VPCs. The ` + "`" + `filter` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Attribute name to filter with.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `One or more values filter with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the VPC is in.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 network address. For example: 10.1.1.0.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 20`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The VPC's description.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the VPC was added to your Vultr account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `The ID of the region that the VPC is in.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 network address. For example: 10.1.1.0.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 20`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The VPC's description.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date the VPC was added to your Vultr account.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -2157,19 +2469,21 @@ var (
 		"vultr_instance_ipv4":     9,
 		"vultr_iso_private":       10,
 		"vultr_iso_public":        11,
-		"vultr_load_balancer":     12,
-		"vultr_object_storage":    13,
-		"vultr_os":                14,
-		"vultr_plan":              15,
-		"vultr_private_network":   16,
-		"vultr_region":            17,
-		"vultr_reserved_ip":       18,
-		"vultr_reverse_ipv4":      19,
-		"vultr_reverse_ipv6":      20,
-		"vultr_snapshot":          21,
-		"vultr_ssh_key":           22,
-		"vultr_startup_script":    23,
-		"vultr_user":              24,
+		"vultr_kubernetes":        12,
+		"vultr_load_balancer":     13,
+		"vultr_object_storage":    14,
+		"vultr_os":                15,
+		"vultr_plan":              16,
+		"vultr_private_network":   17,
+		"vultr_region":            18,
+		"vultr_reserved_ip":       19,
+		"vultr_reverse_ipv4":      20,
+		"vultr_reverse_ipv6":      21,
+		"vultr_snapshot":          22,
+		"vultr_ssh_key":           23,
+		"vultr_startup_script":    24,
+		"vultr_user":              25,
+		"vultr_vpc":               26,
 	}
 )
 

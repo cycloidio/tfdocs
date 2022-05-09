@@ -23,7 +23,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the auth method. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to lookup the auth method. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -107,7 +111,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the policy. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the policy.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to lookup the policy. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -151,7 +159,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the role. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the role.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to lookup the role. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL Role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to lookup the role.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -164,10 +184,22 @@ var (
 				resource.Attribute{
 					Name:        "service_identities",
 					Description: `The list of service identities associated with the ACL Role. Each entry has a ` + "`" + `service_name` + "`" + ` attribute and a list of ` + "`" + `datacenters` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities associated with the ACL Role. Each entry has a ` + "`" + `node_name` + "`" + ` and a ` + "`" + `datacenter` + "`" + ` attributes.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL Role.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `The namespace to lookup the role.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the ACL Role.`,
 				},
@@ -178,6 +210,10 @@ var (
 				resource.Attribute{
 					Name:        "service_identities",
 					Description: `The list of service identities associated with the ACL Role. Each entry has a ` + "`" + `service_name` + "`" + ` attribute and a list of ` + "`" + `datacenters` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities associated with the ACL Role. Each entry has a ` + "`" + `node_name` + "`" + ` and a ` + "`" + `datacenter` + "`" + ` attributes.`,
 				},
 			},
 		},
@@ -195,7 +231,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the ACL token. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the ACL token.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to lookup the ACL token. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -206,8 +246,24 @@ var (
 					Description: `A list of policies associated with the ACL token. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
 				},
 				resource.Attribute{
+					Name:        "roles",
+					Description: `The list of roles attached to the token.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities attached to the token. Each entry has a ` + "`" + `service_name` + "`" + ` and a ` + "`" + `datacenters` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities attached to the token. Each entry has a ` + "`" + `node_name` + "`" + ` and a ` + "`" + `datacenter` + "`" + ` attributes.`,
+				},
+				resource.Attribute{
 					Name:        "local",
 					Description: `Whether the ACL token is local to the datacenter it was created within.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `If set this represents the point after which a token should be considered revoked and is eligible for destruction.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -220,8 +276,24 @@ var (
 					Description: `A list of policies associated with the ACL token. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
 				},
 				resource.Attribute{
+					Name:        "roles",
+					Description: `The list of roles attached to the token.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities attached to the token. Each entry has a ` + "`" + `service_name` + "`" + ` and a ` + "`" + `datacenters` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `The list of node identities attached to the token. Each entry has a ` + "`" + `node_name` + "`" + ` and a ` + "`" + `datacenter` + "`" + ` attributes.`,
+				},
+				resource.Attribute{
 					Name:        "local",
 					Description: `Whether the ACL token is local to the datacenter it was created within.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `If set this represents the point after which a token should be considered revoked and is eligible for destruction.`,
 				},
 			},
 		},
@@ -481,7 +553,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to create the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the keys within.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The namespace to lookup the keys within. The ` + "`" + `subkey` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -553,7 +629,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Optional, Enterprise Only) The namespace to lookup the keys. The ` + "`" + `key` + "`" + ` block supports the following:`,
+					Description: `(Optional, Enterprise Only) The namespace to lookup the keys.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional, Enterprise Only) The partition to lookup the keys. The ` + "`" + `key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",

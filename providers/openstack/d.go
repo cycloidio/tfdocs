@@ -55,6 +55,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_blockstorage_quotaset_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a BlockStorage Quotaset v3 of a project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Blockstorage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project to retrieve the quotaset. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `The number of volumes that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `The number of snapshots that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `The size (GB) of volumes and snapshots that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `The size (GB) of volumes that are allowed for each volume.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `The number of backups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `The size (GB) of backups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `The number of groups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type_quota",
+					Description: `Map with gigabytes_{volume_type}, snapshots_{volume_type}, volumes_{volume_type} for each volume type.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `The number of volumes that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `The number of snapshots that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `The size (GB) of volumes and snapshots that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `The size (GB) of volumes that are allowed for each volume.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `The number of backups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `The size (GB) of backups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `The number of groups that are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type_quota",
+					Description: `Map with gigabytes_{volume_type}, snapshots_{volume_type}, volumes_{volume_type} for each volume type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_blockstorage_snapshot_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Snapshot.`,
@@ -381,6 +481,10 @@ var (
 					Name:        "multiattach",
 					Description: `Indicates if the volume can be attached to more then one server.`,
 				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The OpenStack host on which the volume is located.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -418,6 +522,10 @@ var (
 				resource.Attribute{
 					Name:        "multiattach",
 					Description: `Indicates if the volume can be attached to more then one server.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The OpenStack host on which the volume is located.`,
 				},
 			},
 		},
@@ -564,6 +672,154 @@ var (
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `The OpenSSH-formatted public key of the keypair.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_compute_quotaset_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Compute Quotaset of a project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project to retrieve the quotaset. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `The number of allowed server cores.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `The number of allowed servers.`,
+				},
+				resource.Attribute{
+					Name:        "key_pairs",
+					Description: `The number of allowed key pairs for each user.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_items",
+					Description: `The number of allowed metadata items for each server.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of allowed server RAM, in MiB.`,
+				},
+				resource.Attribute{
+					Name:        "server_groups",
+					Description: `The number of allowed server groups.`,
+				},
+				resource.Attribute{
+					Name:        "server_group_members",
+					Description: `The number of allowed members for each server group.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ips",
+					Description: `The number of allowed fixed IP addresses. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ips",
+					Description: `The number of allowed floating IP addresses. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rules",
+					Description: `The number of allowed rules for each security group. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `The number of allowed security groups. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_content_bytes",
+					Description: `The number of allowed bytes of content for each injected file. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_path_bytes",
+					Description: `The number of allowed bytes for each injected file path. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "injected_files",
+					Description: `The number of allowed injected files. Available until version 2.56.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `The number of allowed server cores.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `The number of allowed servers.`,
+				},
+				resource.Attribute{
+					Name:        "key_pairs",
+					Description: `The number of allowed key pairs for each user.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_items",
+					Description: `The number of allowed metadata items for each server.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of allowed server RAM, in MiB.`,
+				},
+				resource.Attribute{
+					Name:        "server_groups",
+					Description: `The number of allowed server groups.`,
+				},
+				resource.Attribute{
+					Name:        "server_group_members",
+					Description: `The number of allowed members for each server group.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ips",
+					Description: `The number of allowed fixed IP addresses. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ips",
+					Description: `The number of allowed floating IP addresses. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rules",
+					Description: `The number of allowed rules for each security group. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `The number of allowed security groups. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_content_bytes",
+					Description: `The number of allowed bytes of content for each injected file. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_path_bytes",
+					Description: `The number of allowed bytes for each injected file path. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "injected_files",
+					Description: `The number of allowed injected files. Available until version 2.56.`,
 				},
 			},
 		},
@@ -3619,6 +3875,114 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_networking_quota_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a NEtworking Quota of a project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Network client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project to retrieve the quota. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip",
+					Description: `The number of allowed floating ips.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The number of allowed networks.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The number of allowed ports.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_policy",
+					Description: `The number of allowed rbac policies.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `The amount of allowed routers.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `The number of allowed security groups.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rule",
+					Description: `The number of allowed security group rules.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `The number of allowed subnets.`,
+				},
+				resource.Attribute{
+					Name:        "subnetpool-",
+					Description: `The number of allowed subnet pools.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip",
+					Description: `The number of allowed floating ips.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The number of allowed networks.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The number of allowed ports.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_policy",
+					Description: `The number of allowed rbac policies.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `The amount of allowed routers.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `The number of allowed security groups.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rule",
+					Description: `The number of allowed security group rules.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `The number of allowed subnets.`,
+				},
+				resource.Attribute{
+					Name:        "subnetpool-",
+					Description: `The number of allowed subnet pools.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_networking_router_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Floating IP.`,
@@ -4691,47 +5055,50 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"openstack_blockstorage_availability_zones_v3":       0,
-		"openstack_blockstorage_snapshot_v2":                 1,
-		"openstack_blockstorage_snapshot_v3":                 2,
-		"openstack_blockstorage_volume_v2":                   3,
-		"openstack_blockstorage_volume_v3":                   4,
-		"openstack_compute_availability_zones_v2":            5,
-		"openstack_compute_flavor_v2":                        6,
-		"openstack_compute_keypair_v2":                       7,
-		"openstack_containerinfra_cluster_v1":                8,
-		"openstack_containerinfra_clustertemplate_v1":        9,
-		"openstack_dns_zone_v2":                              10,
-		"openstack_fw_policy_v1":                             11,
-		"openstack_identity_auth_scope_v3":                   12,
-		"openstack_identity_endpoint_v3":                     13,
-		"openstack_identity_group_v3":                        14,
-		"openstack_identity_project_v3":                      15,
-		"openstack_identity_role_v3":                         16,
-		"openstack_identity_service_v3":                      17,
-		"openstack_identity_user_v3":                         18,
-		"openstack_images_image_ids_v2":                      19,
-		"openstack_images_image_v2":                          20,
-		"openstack_keymanager_container_v1":                  21,
-		"openstack_keymanager_secret_v1":                     22,
-		"openstack_networking_addressscope_v2":               23,
-		"openstack_networking_floatingip_v2":                 24,
-		"openstack_networking_network_v2":                    25,
-		"openstack_networking_port_ids_v2":                   26,
-		"openstack_networking_port_v2":                       27,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   28,
-		"openstack_networking_qos_dscp_marking_rule_v2":      29,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 30,
-		"openstack_networking_qos_policy_v2":                 31,
-		"openstack_networking_router_v2":                     32,
-		"openstack_networking_secgroup_v2":                   33,
-		"openstack_networking_subnet_ids_v2":                 34,
-		"openstack_networking_subnet_v2":                     35,
-		"openstack_networking_subnetpool_v2":                 36,
-		"openstack_networking_trunk_v2":                      37,
-		"openstack_sharedfilesystem_availability_zones_v2":   38,
-		"openstack_sharedfilesystem_share_v2":                39,
-		"openstack_sharedfilesystem_sharenetwork_v2":         40,
-		"openstack_sharedfilesystem_snapshot_v2":             41,
+		"openstack_blockstorage_quotaset_v3":                 1,
+		"openstack_blockstorage_snapshot_v2":                 2,
+		"openstack_blockstorage_snapshot_v3":                 3,
+		"openstack_blockstorage_volume_v2":                   4,
+		"openstack_blockstorage_volume_v3":                   5,
+		"openstack_compute_availability_zones_v2":            6,
+		"openstack_compute_flavor_v2":                        7,
+		"openstack_compute_keypair_v2":                       8,
+		"openstack_compute_quotaset_v2":                      9,
+		"openstack_containerinfra_cluster_v1":                10,
+		"openstack_containerinfra_clustertemplate_v1":        11,
+		"openstack_dns_zone_v2":                              12,
+		"openstack_fw_policy_v1":                             13,
+		"openstack_identity_auth_scope_v3":                   14,
+		"openstack_identity_endpoint_v3":                     15,
+		"openstack_identity_group_v3":                        16,
+		"openstack_identity_project_v3":                      17,
+		"openstack_identity_role_v3":                         18,
+		"openstack_identity_service_v3":                      19,
+		"openstack_identity_user_v3":                         20,
+		"openstack_images_image_ids_v2":                      21,
+		"openstack_images_image_v2":                          22,
+		"openstack_keymanager_container_v1":                  23,
+		"openstack_keymanager_secret_v1":                     24,
+		"openstack_networking_addressscope_v2":               25,
+		"openstack_networking_floatingip_v2":                 26,
+		"openstack_networking_network_v2":                    27,
+		"openstack_networking_port_ids_v2":                   28,
+		"openstack_networking_port_v2":                       29,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   30,
+		"openstack_networking_qos_dscp_marking_rule_v2":      31,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 32,
+		"openstack_networking_qos_policy_v2":                 33,
+		"openstack_networking_quota_v2":                      34,
+		"openstack_networking_router_v2":                     35,
+		"openstack_networking_secgroup_v2":                   36,
+		"openstack_networking_subnet_ids_v2":                 37,
+		"openstack_networking_subnet_v2":                     38,
+		"openstack_networking_subnetpool_v2":                 39,
+		"openstack_networking_trunk_v2":                      40,
+		"openstack_sharedfilesystem_availability_zones_v2":   41,
+		"openstack_sharedfilesystem_share_v2":                42,
+		"openstack_sharedfilesystem_sharenetwork_v2":         43,
+		"openstack_sharedfilesystem_snapshot_v2":             44,
 	}
 )
 

@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudsigma_drive",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudsigma_ip",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -97,11 +107,12 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"cloudsigma_ip":            0,
-		"cloudsigma_library_drive": 1,
-		"cloudsigma_location":      2,
-		"cloudsigma_tag":           3,
-		"cloudsigma_vlan":          4,
+		"cloudsigma_drive":         0,
+		"cloudsigma_ip":            1,
+		"cloudsigma_library_drive": 2,
+		"cloudsigma_location":      3,
+		"cloudsigma_tag":           4,
+		"cloudsigma_vlan":          5,
 	}
 )
 

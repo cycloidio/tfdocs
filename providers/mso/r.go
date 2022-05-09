@@ -160,7 +160,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "epg_name",
-					Description: `(Required) Name of Endpoint Group to manage. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Application Network Profiles Endpoint Group can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_anp_epg.site_anp_epg {schema_id}/site/{site_id}/template/{template_name}/anp/{anp_name}/epg/{epg_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Name of Endpoint Group to manage.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_label",
+					Description: `(Optional) Private Link Label. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Application Network Profiles Endpoint Group can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_anp_epg.site_anp_epg {schema_id}/site/{site_id}/template/{template_name}/anp/{anp_name}/epg/{epg_name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -201,23 +205,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dn",
-					Description: `(Required) The domain profile name.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "deploy_immediacy",
-					Description: `(Required) The deployment immediacy of the domain. choices: [ immediate, lazy ]`,
+					Name:        "domain_dn",
+					Description: `(Optional) The dn of domain. This is required when ` + "`" + `domain_name` + "`" + ` and ` + "`" + `domain_type` + "`" + ` are not specified.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Optional) The domain profile name. This is required when ` + "`" + `domain_dn` + "`" + ` is not used. This attribute requires ` + "`" + `domain_type` + "`" + ` and ` + "`" + `vmm_domain_type` + "`" + ` (when it is applicable) to be set.`,
 				},
 				resource.Attribute{
 					Name:        "domain_type",
-					Description: `(Required) The type of domain to associate. choices: [ vmmDomain, l3ExtDomain, l2ExtDomain, physicalDomain, fibreChannelDomain ]`,
+					Description: `(Optional) The type of domain to associate. This is required when ` + "`" + `domain_dn` + "`" + ` is not used. Choices: [ vmmDomain, l3ExtDomain, l2ExtDomain, physicalDomain, fibreChannelDomain ]`,
+				},
+				resource.Attribute{
+					Name:        "vmm_domain_type",
+					Description: `(Optional) The vmm domain type. This is required when ` + "`" + `domain_type` + "`" + ` is vmmDomain and ` + "`" + `domain_dn` + "`" + ` is not used. Choices: [ VMware, Microsoft, Redhat ]`,
+				},
+				resource.Attribute{
+					Name:        "deploy_immediacy",
+					Description: `(Required) The deployment immediacy of the domain. Choices: [ immediate, lazy ]`,
 				},
 				resource.Attribute{
 					Name:        "resolution_immediacy",
-					Description: `(Required) Determines when the policies should be resolved and available. choices: [ immediate, lazy, pre-provision ]`,
+					Description: `(Required) Determines when the policies should be resolved and available. Choices: [ immediate, lazy, pre-provision ]`,
 				},
 				resource.Attribute{
 					Name:        "vlan_encap_mode",
-					Description: `(Optional) Which VLAN enacap mode to use. This attribute can only be used with vmmDomain domain association. choices: [ static, dynamic ]`,
+					Description: `(Optional) Which VLAN encap mode to use. This attribute can only be used with vmmDomain domain association. Choices: [ static, dynamic ]`,
 				},
 				resource.Attribute{
 					Name:        "allow_micro_segmentation",
@@ -253,7 +269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enhanced_lag_policy_dn",
-					Description: `(Optional) Distinguished name of EPG lagpolicy. This attribute can only be used with vmmDomain domain association. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Application Network Profiles Endpoint Groups Domain can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_anp_epg_domain.site_anp_epg_domain {schema_id}/site/{site_id}/anp/{anp_name}/epg/{epg_name}/domain/{domain_name}/domainType/{domain_type} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Distinguished name of EPG lagpolicy. This attribute can only be used with vmmDomain domain association. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Application Network Profiles Endpoint Groups Domain can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_anp_epg_domain.site_anp_epg_domain {schema_id}/sites/{site_id}-{template_name}/anps/{anp_name}/epgs/{epg_name}/domainAssociations/{domain_dn} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -406,7 +422,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "leaf",
-					Description: `(Required) The leaf of the static port.`,
+					Description: `(Required) The leaf of the static port. When ` + "`" + `path_type` + "`" + ` is ` + "`" + `port` + "`" + ` or ` + "`" + `dpc` + "`" + `, then ` + "`" + `leaf` + "`" + ` is a string of the leaf ID; Example - '101'. When ` + "`" + `path_type` + "`" + ` is ` + "`" + `vpc` + "`" + `, then ` + "`" + `leaf` + "`" + ` is a list with both leaf IDs; Example - '101-102'.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -618,7 +634,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) The description of this subnet. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Bridge Domain(BD) Subnet can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_bd_subnet.sub1 {schema_id}/site/{site_id}/bd/{bd_name}/subnet/{ip} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The description of this subnet. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Site Bridge Domain(BD) Subnet can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site_bd_subnet.sub1 {schema_id}/site/{site_id}/bd/{bd_name}/ip/{ip} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -787,23 +803,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr.primary",
-					Description: `(Required) primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
+					Description: `(Required) Primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet",
-					Description: `(Required) subnets to associate with cidr.`,
+					Description: `(Required) Subnets to associate with cidr.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.ip",
-					Description: `(Required) ip address for subnet.`,
+					Description: `(Required) Ip address for subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.zone",
-					Description: `(Required) zone for the subnet.`,
+					Description: `(Optional) The name of the availability zone for the subnet. This argument is required for AWS sites.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.usage",
-					Description: `(Optional) usage information of particular subnet.`,
+					Description: `(Optional) Usage information of particular subnet.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_gateway",
@@ -819,7 +835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hub_network.name",
-					Description: `(Required) name of the hub network.`,
+					Description: `(Required) The name of the hub network.`,
 				},
 				resource.Attribute{
 					Name:        "hub_network.tenant_name",
@@ -918,7 +934,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The name of the zone for the region CIDR subnet.`,
+					Description: `(Optional) The name of the availability zone for the region CIDR subnet. This argument is required for AWS sites.`,
 				},
 				resource.Attribute{
 					Name:        "usage",
@@ -1019,7 +1035,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bd_name",
-					Description: `(Required) Name of Bridge Domain to associate with.`,
+					Description: `(Optional) Name of Bridge Domain. It is required when using on-premise sites.`,
 				},
 				resource.Attribute{
 					Name:        "bd_schema_id",
@@ -1031,7 +1047,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_name",
-					Description: `(Required) Name of Vrf.`,
+					Description: `(Optional) Name of Vrf. It is required when using cloud sites.`,
 				},
 				resource.Attribute{
 					Name:        "vrf_schema_id",
@@ -1063,7 +1079,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "preferred_group",
-					Description: `(Optional) Boolean flag to enable or disable whether this EPG is added to preferred group. Default value is set to false. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template Application Network Profiles Endpoint Group can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_anp_epg.anp_epg {schema_id}/template/{template_name}/anp/{anp_name}/epg/{epg_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Boolean flag to enable or disable whether this EPG is added to preferred group. Default value is set to false.`,
+				},
+				resource.Attribute{
+					Name:        "epg_type",
+					Description: `(Optional) EPG Type. Allowed values are ` + "`" + `application` + "`" + ` and ` + "`" + `service` + "`" + `. Default is ` + "`" + `application` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `Access Type. Allowed values are ` + "`" + `private` + "`" + `, ` + "`" + `public` + "`" + ` and ` + "`" + `public_and_private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `Deployment Type. Allowed values are ` + "`" + `cloud_native` + "`" + `, ` + "`" + `cloud_native_managed` + "`" + ` and ` + "`" + `third_party` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `Service Type. Allowed values are ` + "`" + `azure_api_management_services` + "`" + `, ` + "`" + `azure_cosmos_db` + "`" + `, ` + "`" + `azure_databricks` + "`" + `, ` + "`" + `azure_sql` + "`" + `, ` + "`" + `azure_storage` + "`" + `, ` + "`" + `azure_storage_blob` + "`" + `, ` + "`" + `azure_storage_file` + "`" + `, ` + "`" + `azure_storage_queue` + "`" + `, ` + "`" + `azure_storage_table` + "`" + `, ` + "`" + `azure_kubernetes_services` + "`" + `, ` + "`" + `azure_ad_domain_services` + "`" + `, ` + "`" + `azure_contain_registry` + "`" + `, ` + "`" + `azure_key_vault` + "`" + `, ` + "`" + `redis_cache` + "`" + `, ` + "`" + `custom` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_service_type",
+					Description: `Custom Service Type. This argument is required when ` + "`" + `service_type` + "`" + ` is set to ` + "`" + `custom` + "`" + `. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template Application Network Profiles Endpoint Group can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_anp_epg.anp_epg {schema_id}/template/{template_name}/anp/{anp_name}/epg/{epg_name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1279,6 +1315,113 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mso_schema_template_bd",
+			Category:         "Resources",
+			ShortDescription: `Manages MSO Schema Template Bridge Domain.`,
+			Description:      ``,
+			Keywords: []string{
+				"schema",
+				"template",
+				"bd",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "schema_id",
+					Description: `(Required) SchemaID under which you want to deploy Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required) Template where Bridge Domain to be created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_name",
+					Description: `(Required) Name of VRF to attach with Bridge Domain. VRF must exist.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_schema_id",
+					Description: `(Optional) SchemaID of VRF. schema_id of Bridge Domain will be used if not provided. Should use this parameter when VRF is in different schema than BD.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_template_name",
+					Description: `(Optional) Template Name of VRF. template_name of Bridge Domain will be used if not provided. Should use this parameter when VRF is in different schema than BD.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_unknown_unicast",
+					Description: `(Optional) Type of layer 2 unknown unicast. Allowed values are ` + "`" + `flood` + "`" + ` and ` + "`" + `proxy` + "`" + `. Default to ` + "`" + `flood` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "intersite_bum_traffic",
+					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "optimize_wan_bandwidth",
+					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "layer2_stretch",
+					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch. Default to false. Should enable this flag if you want to create subnets under this Bridge Domain.`,
+				},
+				resource.Attribute{
+					Name:        "layer3_multicast",
+					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "arp_flooding",
+					Description: `(Optional) ARP Flooding status. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_mac_address",
+					Description: `(Optional) Virtual MAC Address.`,
+				},
+				resource.Attribute{
+					Name:        "unicast_routing",
+					Description: `(Optional) Unicast Routing status. Default to false.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_unknown_multicast_flooding",
+					Description: `(Optional) IPv6 Unknown Multicast Flooding behavior. Allowed values are ` + "`" + `flood` + "`" + ` and ` + "`" + `optimized_flooding` + "`" + `. Default to ` + "`" + `flood` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "multi_destination_flooding",
+					Description: `(Optional) Multi-destination flooding behavior. Allowed values are ` + "`" + `flood_in_bd` + "`" + `, ` + "`" + `drop` + "`" + ` and ` + "`" + `flood_in_encap` + "`" + `. Default to ` + "`" + `flood_in_bd` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "unknown_multicast_flooding",
+					Description: `(Optional) Unknown Multicast Flooding behavior. Allowed values are ` + "`" + `flood` + "`" + ` and ` + "`" + `optimized_flooding` + "`" + `. Default to ` + "`" + `flood` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy",
+					Description: `(Optional) Map to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.name",
+					Description: `(Optional) dhcp_policy name. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.version",
+					Description: `(Optional) Version of dhcp_policy. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policy.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy. Required if you specify the ` + "`" + `dhcp_policy.dhcp_option_policy_name` + "`" + `. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template Bridge Domain can be [imported][docs-import] into this resource via its Id, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_bd.bridge_domain {schema_id}/template/{template_name}/bd/{name} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mso_schema_template_bd_subnet",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Schema Template Bridge Domain Subnet.`,
@@ -1366,10 +1509,6 @@ var (
 					Description: `(Optional) The scope of the contract.`,
 				},
 				resource.Attribute{
-					Name:        "filter_relationships",
-					Description: `(Required) Map to provide Filter Relationships.`,
-				},
-				resource.Attribute{
 					Name:        "filter_relationships.filter_schema_id",
 					Description: `(Optional) The schemaId in which the filter is located.`,
 				},
@@ -1379,6 +1518,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter_relationships.filter_name",
+					Description: `(Required) The filter to associate with this contract.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship",
+					Description: `(Required if filter_relationships is not used) To provide Filter Relationships. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_schema_id",
+					Description: `(Optional) The schemaId in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_template_name",
+					Description: `(Optional) The template name in which the filter is located.`,
+				},
+				resource.Attribute{
+					Name:        "filter_relationship.filter_name",
 					Description: `(Required) The filter to associate with this contract.`,
 				},
 				resource.Attribute{
@@ -1567,11 +1722,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "undeploy",
-					Description: `(Optional) Boolean flag indicating whether to undeploy the template or not. Default is false.`,
+					Description: `(Optional) Boolean flag indicating whether to undeploy the template from a single site (see site_id) or not. Default is false.`,
 				},
 				resource.Attribute{
 					Name:        "site_id",
-					Description: `(Optional) Site-id from where the template is to be undeployed. It is required if you set undeploy = true. NOTE: This resource is intentionally created non-idempotent so that it deploys the template in every run, it will not fail if there is no change and we deploy the template again. ## Attribute Reference ## No attributes are exported.`,
+					Description: `(Optional) Site-id from where the template is to be undeployed. It is required if you set undeploy = true. NOTE: This resource is intentionally created non-idempotent so that it deploys the template in every run, it will not fail if there is no change and we deploy the template again. When destroying the resource, all sites will be undeployed. ## Attribute Reference ## No attributes are exported.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1704,7 +1859,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "contract_template_name",
-					Description: `(Optional) Template Name of Contract. template_name of External-epg will be used if not provided. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template External Endpoint Group Contract can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_external_epg_contract.c1 {schema_id}/template/{template_name}/externalEPG/{external_epg_name}/contract/{contract_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Template Name of Contract. template_name of External-epg will be used if not provided. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template External Endpoint Group Contract can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_external_epg_contract.c1 {schema_id}/templates/{template_name}/externalEpgs/{external_epg_name}/contractRelationships/{contract_name}/{relationship_type} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1782,15 +1937,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of Subnet.`,
+					Description: `(Optional) Name of Subnet. Name can be set through this resource but it is not exposed in the UI.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `.`,
+					Description: `(Optional) The scope of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `, ` + "`" + `import-security` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "aggregate",
-					Description: `(Optional) The aggregate of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `. Aggregate should be enabled only if shared-rtctrl is enabled in Scope. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template External EPG Subnet can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_external_epg_subnet.subnet1 {schema_id}/template/{template_name}/externalEPG/{external_epg_name}/subnet/{ip} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The aggregate of the subnet. Allowed values are ` + "`" + `shared-rtctrl` + "`" + `, ` + "`" + `export-rtctrl` + "`" + `, ` + "`" + `shared-security` + "`" + `, ` + "`" + `import-rtctrl` + "`" + `. Aggregate should be enabled only if shared-rtctrl is enabled in Scope. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template External EPG Subnet can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_external_epg_subnet.subnet1 {schema_id}/template/{template_name}/externalEPG/{external_epg_name}/ip/{ip} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1874,7 +2029,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "match_only_fragments",
-					Description: `(Optional) Whether this filter entry only matches fragments. Allowed Values: true or false. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Resource Schema Template Filter Entry can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_filter_entry.filter_entry {schema_id}/template/{template_name}/filter/{name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Whether this filter entry only matches fragments. Allowed Values: true or false. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Resource Schema Template Filter Entry can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_filter_entry.filter_entry {schema_id}/template/{template_name}/filter/{name}/entry/{entry_name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1949,7 +2104,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_node_type",
-					Description: `(Required) Type of Service Node attached to this Graph.`,
+					Description: `(Required) Type of Service Node attached to this Graph. Allowed values are ` + "`" + `firewall` + "`" + `, ` + "`" + `load-balancer` + "`" + ` , ` + "`" + `other` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2131,89 +2286,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "mso_schema_template_bd",
-			Category:         "Resources",
-			ShortDescription: `Manages MSO Schema Template Bridge Domain.`,
-			Description:      ``,
-			Keywords: []string{
-				"schema",
-				"template",
-				"bd",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "schema_id",
-					Description: `(Required) SchemaID under which you want to deploy Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Required) Template where Bridge Domain to be created.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Required) Display Name of the Bridge Domain on the MSO UI.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_name",
-					Description: `(Required) Name of VRF to attach with Bridge Domain. VRF must exist.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_schema_id",
-					Description: `(Optional) SchemaID of VRF. schema_id of Bridge Domain will be used if not provided. Should use this parameter when VRF is in different schema than BD.`,
-				},
-				resource.Attribute{
-					Name:        "vrf_template_name",
-					Description: `(Optional) Template Name of VRF. template_name of Bridge Domain will be used if not provided. Should use this parameter when VRF is in different schema than BD.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_unknown_unicast",
-					Description: `(Optional) Type of layer 2 unknown unicast. Allowed values are ` + "`" + `flood` + "`" + ` and ` + "`" + `proxy` + "`" + `. Default to ` + "`" + `flood` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_bum_traffic",
-					Description: `(Optional) Boolean Flag to enable or disable intersite bum traffic. Default to false.`,
-				},
-				resource.Attribute{
-					Name:        "optimize_wan_bandwidth",
-					Description: `(Optional) Boolean flag to enable or disable the wan bandwidth optimization. Default to false.`,
-				},
-				resource.Attribute{
-					Name:        "layer2_stretch",
-					Description: `(Optional) Boolean flag to enable or disable the layer-2 stretch. Default to false. Should enable this flag if you want to create subnets under this Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "layer3_multicast",
-					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic. Default to false.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy",
-					Description: `(Optional) Map to provide dhcp_policy configurations.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.name",
-					Description: `(Optional) dhcp_policy name. Required if you specify the dhcp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.version",
-					Description: `(Optional) Version of dhcp_policy. Required if you specify the dhcp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_name",
-					Description: `(Optional) Name of dhcp_option_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_policy.dhcp_option_policy_version",
-					Description: `(Optional) Version of dhcp_option_policy. Require if you specify the ` + "`" + `dhcp_policy.dhcp_option_policy_name` + "`" + `. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Schema Template Bridge Domain can be [imported][docs-import] into this resource via its Id, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_bd.bridge_domain {schema_id}/template/{template_name}/bd/{name} ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "mso_tenant",
 			Category:         "Resources",
 			ShortDescription: `Manages MSO Tenant`,
@@ -2312,12 +2384,24 @@ var (
 					Description: `(Required) password of the user. It must contain at least 8 characters in length.`,
 				},
 				resource.Attribute{
-					Name:        "roles",
-					Description: `(Required) roles given to the user.`,
+					Name:        "roles.roleid",
+					Description: `(Optional) id of roles given to the user.`,
 				},
 				resource.Attribute{
-					Name:        "roles.roleid",
-					Description: `(Required) id of roles given to the user.`,
+					Name:        "roles.access_type",
+					Description: `(Optional) access_type of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac",
+					Description: `(Optional) roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac.name",
+					Description: `(Optional) name of roles given to the user.`,
+				},
+				resource.Attribute{
+					Name:        "user_rbac.user_priv",
+					Description: `(Optional) Privilege access given to users (WritePriv, ReadPriv)`,
 				},
 				resource.Attribute{
 					Name:        "first_name",
@@ -2381,23 +2465,23 @@ var (
 		"mso_schema_template_anp_epg_selector":       24,
 		"mso_schema_template_anp_epg_subnet":         25,
 		"mso_schema_template_anp_epg_useg_attr":      26,
-		"mso_schema_template_bd_subnet":              27,
-		"mso_schema_template_contract":               28,
-		"mso_schema_template_contract_filter":        29,
-		"mso_schema_template_contract_service_graph": 30,
-		"mso_schema_template_deploy":                 31,
-		"mso_schema_template_external_epg":           32,
-		"mso_schema_template_external_epg_contract":  33,
-		"mso_schema_template_external_epg_selector":  34,
-		"mso_schema_template_external_epg_subnet":    35,
-		"mso_schema_template_filter_entry":           36,
-		"mso_schema_template_l3out":                  37,
-		"mso_schema_template_service_graph":          38,
-		"mso_schema_template_vrf":                    39,
-		"mso_schema_template_vrf_contract":           40,
-		"mso_service_node_type":                      41,
-		"mso_site":                                   42,
-		"mso_schema_template_bd":                     43,
+		"mso_schema_template_bd":                     27,
+		"mso_schema_template_bd_subnet":              28,
+		"mso_schema_template_contract":               29,
+		"mso_schema_template_contract_filter":        30,
+		"mso_schema_template_contract_service_graph": 31,
+		"mso_schema_template_deploy":                 32,
+		"mso_schema_template_external_epg":           33,
+		"mso_schema_template_external_epg_contract":  34,
+		"mso_schema_template_external_epg_selector":  35,
+		"mso_schema_template_external_epg_subnet":    36,
+		"mso_schema_template_filter_entry":           37,
+		"mso_schema_template_l3out":                  38,
+		"mso_schema_template_service_graph":          39,
+		"mso_schema_template_vrf":                    40,
+		"mso_schema_template_vrf_contract":           41,
+		"mso_service_node_type":                      42,
+		"mso_site":                                   43,
 		"mso_tenant":                                 44,
 		"mso_user":                                   45,
 	}

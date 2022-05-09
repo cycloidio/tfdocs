@@ -2286,6 +2286,10 @@ var (
 					Description: `Region this tenant belongs to.`,
 				},
 				resource.Attribute{
+					Name:        "contract_id",
+					Description: `Contract which new tenant belongs to.`,
+				},
+				resource.Attribute{
 					Name:        "start_time",
 					Description: `Tenant created time.`,
 				},
@@ -2302,6 +2306,10 @@ var (
 				resource.Attribute{
 					Name:        "tenant_region",
 					Description: `Region this tenant belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "contract_id",
+					Description: `Contract which new tenant belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",

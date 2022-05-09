@@ -276,6 +276,20 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_git_repository_file",
+			Category:         "Resources",
+			ShortDescription: `Manage files within an Azure DevOps Git repository.`,
+			Description:      ``,
+			Keywords: []string{
+				"git",
+				"repository",
+				"file",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_group",
 			Category:         "Resources",
 			ShortDescription: `Manages a group within Azure DevOps organization.`,
@@ -386,6 +400,20 @@ var (
 					Description: `(Required) the permissions to assign. The following permissions are available | Permission | Description | |------------------------------|----------------------------------------------| | GENERIC_READ | View project-level information | | GENERIC_WRITE | Edit project-level information | | DELETE | Delete team project | | PUBLISH_TEST_RESULTS | Create test runs | | ADMINISTER_BUILD | Administer a build | | START_BUILD | Start a build | | EDIT_BUILD_STATUS | Edit build quality | | UPDATE_BUILD | Write to build operational store | | DELETE_TEST_RESULTS | Delete test runs | | VIEW_TEST_RESULTS | View test runs | | MANAGE_TEST_ENVIRONMENTS | Manage test environments | | MANAGE_TEST_CONFIGURATIONS | Manage test configurations | | WORK_ITEM_DELETE | Delete and restore work items | | WORK_ITEM_MOVE | Move work items out of this project | | WORK_ITEM_PERMANENTLY_DELETE | Permanently delete work items | | RENAME | Rename team project | | MANAGE_PROPERTIES | Manage project properties | | MANAGE_SYSTEM_PROPERTIES | Manage system project properties | | BYPASS_PROPERTY_CACHE | Bypass project property cache | | BYPASS_RULES | Bypass rules on work item updates | | SUPPRESS_NOTIFICATIONS | Suppress notifications for work item updates | | UPDATE_VISIBILITY | Update project visibility | | CHANGE_PROCESS | Change process of team project. | | AGILETOOLS_BACKLOG | Agile backlog management. | | AGILETOOLS_PLANS | Agile plans. | ## Relevant Links`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_project_pipeline_settings",
+			Category:         "Resources",
+			ShortDescription: `Manages Pipeline Settings for Azure DevOps projects.`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"pipeline",
+				"settings",
+			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -512,6 +540,19 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_serviceendpoint_argocd",
+			Category:         "Resources",
+			ShortDescription: `Manages a ArgoCD server endpoint within Azure DevOps organization.`,
+			Description:      ``,
+			Keywords: []string{
+				"serviceendpoint",
+				"argocd",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_serviceendpoint_artifactory",
 			Category:         "Resources",
 			ShortDescription: `Manages an Artifactory server endpoint within an Azure DevOps organization.`,
@@ -523,7 +564,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The project ID or project name.`,
+					Description: `(Required) The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -555,7 +596,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -569,7 +610,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -590,7 +631,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The project ID or project name.`,
+					Description: `(Required) The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -630,7 +671,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -644,7 +685,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -785,6 +826,40 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_serviceendpoint_permissions",
+			Category:         "Resources",
+			ShortDescription: `Manages permissions for a AzureDevOps Service Endpoint`,
+			Description:      ``,
+			Keywords: []string{
+				"serviceendpoint",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the project.`,
+				},
+				resource.Attribute{
+					Name:        "principal",
+					Description: `(Required) The`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) the permissions to assign. The following permissions are available.`,
+				},
+				resource.Attribute{
+					Name:        "serviceendpoint_id",
+					Description: `(Optional) The id of the service endpoint to assign the permissions.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Optional) Replace (` + "`" + `true` + "`" + `) or merge (` + "`" + `false` + "`" + `) the permissions. Default: ` + "`" + `true` + "`" + ` | Permission | Description | | ----------------- | ----------------------------------- | | Use | Use service endpoint | | Administer | Full control over service endpoints | | Create | Create service endpoints | | ViewAuthorization | View authorizations | | ViewEndpoint | View service endpoint properties | ## Relevant Links`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_serviceendpoint_runpipeline",
 			Category:         "Resources",
 			ShortDescription: `Manages a Azure DevOps plugin RunPipeline.`,
@@ -822,7 +897,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The project ID or project name.`,
+					Description: `(Required) The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
@@ -846,11 +921,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
-					Description: `The Service Endpoint name. ## Relevant Links`,
+					Description: `The Service Endpoint name. ## Relevant Links - [Azure DevOps Service REST API 6.0 - Endpoints](https://docs.microsoft.com/en-us/rest/api/azure/devops/serviceendpoint/endpoints?view=azure-devops-rest-6.0) - [Azure DevOps Service Connections](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) - [SonarQube User Token](https://docs.sonarqube.org/latest/user-guide/user-token/) ## Import Azure DevOps Service Endpoint SonarQube can be imported using the`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -860,11 +935,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `The project ID or project name.`,
+					Description: `The ID of the project.`,
 				},
 				resource.Attribute{
 					Name:        "service_endpoint_name",
-					Description: `The Service Endpoint name. ## Relevant Links`,
+					Description: `The Service Endpoint name. ## Relevant Links - [Azure DevOps Service REST API 6.0 - Endpoints](https://docs.microsoft.com/en-us/rest/api/azure/devops/serviceendpoint/endpoints?view=azure-devops-rest-6.0) - [Azure DevOps Service Connections](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) - [SonarQube User Token](https://docs.sonarqube.org/latest/user-guide/user-token/) ## Import Azure DevOps Service Endpoint SonarQube can be imported using the`,
 				},
 			},
 		},
@@ -879,6 +954,66 @@ var (
 				"ssh",
 			},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_servicehook_permissions",
+			Category:         "Resources",
+			ShortDescription: `Manages permissions for AzureDevOps service hooks`,
+			Description:      ``,
+			Keywords: []string{
+				"servicehook",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(optional) The ID of the project.`,
+				},
+				resource.Attribute{
+					Name:        "principal",
+					Description: `(Required) The`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) the permissions to assign. The following permissions are available.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Optional) Replace (` + "`" + `true` + "`" + `) or merge (` + "`" + `false` + "`" + `) the permissions. Default: ` + "`" + `true` + "`" + ` | Name | Permission Description | | ------------------ | ------------------------ | | ViewSubscriptions | View Subscriptions | | EditSubscriptions | Edit Subscription | | DeleteSubscriptions| Delete Subscriptions | | PublishEvents | Publish Events | ## Relevant Links`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuredevops_tagging_permissions",
+			Category:         "Resources",
+			ShortDescription: `Manages permissions for AzureDevOps Tagging`,
+			Description:      ``,
+			Keywords: []string{
+				"tagging",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The ID of the project to assign the permissions. If omitted, organization wide permissions for tagging are managed.`,
+				},
+				resource.Attribute{
+					Name:        "principal",
+					Description: `(Required) The`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) the permissions to assign. The following permissions are available.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Optional) Replace (` + "`" + `true` + "`" + `) or merge (` + "`" + `false` + "`" + `) the permissions. Default: ` + "`" + `true` + "`" + ` | Name | Permission Description | | ------------------ | -------------------------- | | Enumerate | Enumerate tag definitions | | Create | Create tag definition | | Update | Update tag definition | | Delete | Delete tag definition | ## Relevant Links`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -997,42 +1132,48 @@ var (
 		"azuredevops_build_definition_permissions":           11,
 		"azuredevops_git_permissions":                        12,
 		"azuredevops_git_repository":                         13,
-		"azuredevops_group":                                  14,
-		"azuredevops_group_membership":                       15,
-		"azuredevops_iteration_permissions":                  16,
-		"azuredevops_project":                                17,
-		"azuredevops_project_features":                       18,
-		"azuredevops_project_permissions":                    19,
-		"azuredevops_repository_policy_author_email_pattern": 20,
-		"azuredevops_repository_policy_case_enforcement":     21,
-		"azuredevops_repository_policy_check_credentials":    22,
-		"azuredevops_repository_policy_file_path_pattern":    23,
-		"azuredevops_repository_policy_max_file_size":        24,
-		"azuredevops_repository_policy_max_path_length":      25,
-		"azuredevops_repository_policy_reserved_names":       26,
-		"azuredevops_resource_authorization":                 27,
-		"azuredevops_serviceendpoint_artifactory":            28,
-		"azuredevops_serviceendpoint_aws":                    29,
-		"azuredevops_serviceendpoint_azuredevops":            30,
-		"azuredevops_serviceendpoint_azurerm":                31,
-		"azuredevops_serviceendpoint_bitbucket":              32,
-		"azuredevops_serviceendpoint_dockerregistry":         33,
-		"azuredevops_serviceendpoint_generic":                34,
-		"azuredevops_serviceendpoint_generic_git":            35,
-		"azuredevops_serviceendpoint_github":                 36,
-		"azuredevops_serviceendpoint_github_enterprise":      37,
-		"azuredevops_serviceendpoint_kubernetes":             38,
-		"azuredevops_serviceendpoint_npm":                    39,
-		"azuredevops_serviceendpoint_runpipeline":            40,
-		"azuredevops_serviceendpoint_servicefabric":          41,
-		"azuredevops_serviceendpoint_sonarqube":              42,
-		"azuredevops_serviceendpoint_ssh":                    43,
-		"azuredevops_team":                                   44,
-		"azuredevops_team_administrators":                    45,
-		"azuredevops_team_members":                           46,
-		"azuredevops_user_entitlement":                       47,
-		"azuredevops_variable_group":                         48,
-		"azuredevops_workitemquery_permissions":              49,
+		"azuredevops_git_repository_file":                    14,
+		"azuredevops_group":                                  15,
+		"azuredevops_group_membership":                       16,
+		"azuredevops_iteration_permissions":                  17,
+		"azuredevops_project":                                18,
+		"azuredevops_project_features":                       19,
+		"azuredevops_project_permissions":                    20,
+		"azuredevops_project_pipeline_settings":              21,
+		"azuredevops_repository_policy_author_email_pattern": 22,
+		"azuredevops_repository_policy_case_enforcement":     23,
+		"azuredevops_repository_policy_check_credentials":    24,
+		"azuredevops_repository_policy_file_path_pattern":    25,
+		"azuredevops_repository_policy_max_file_size":        26,
+		"azuredevops_repository_policy_max_path_length":      27,
+		"azuredevops_repository_policy_reserved_names":       28,
+		"azuredevops_resource_authorization":                 29,
+		"azuredevops_serviceendpoint_argocd":                 30,
+		"azuredevops_serviceendpoint_artifactory":            31,
+		"azuredevops_serviceendpoint_aws":                    32,
+		"azuredevops_serviceendpoint_azuredevops":            33,
+		"azuredevops_serviceendpoint_azurerm":                34,
+		"azuredevops_serviceendpoint_bitbucket":              35,
+		"azuredevops_serviceendpoint_dockerregistry":         36,
+		"azuredevops_serviceendpoint_generic":                37,
+		"azuredevops_serviceendpoint_generic_git":            38,
+		"azuredevops_serviceendpoint_github":                 39,
+		"azuredevops_serviceendpoint_github_enterprise":      40,
+		"azuredevops_serviceendpoint_kubernetes":             41,
+		"azuredevops_serviceendpoint_npm":                    42,
+		"azuredevops_serviceendpoint_permissions":            43,
+		"azuredevops_serviceendpoint_runpipeline":            44,
+		"azuredevops_serviceendpoint_servicefabric":          45,
+		"azuredevops_serviceendpoint_sonarqube":              46,
+		"azuredevops_serviceendpoint_ssh":                    47,
+		"azuredevops_servicehook_permissions":                48,
+		"azuredevops_tagging_permissions":                    49,
+		"azuredevops_team":                                   50,
+		"azuredevops_team_administrators":                    51,
+		"azuredevops_team_members":                           52,
+		"azuredevops_user_entitlement":                       53,
+		"azuredevops_variable_group":                         54,
+		"azuredevops_workitemquery_permissions":              55,
 	}
 )
 

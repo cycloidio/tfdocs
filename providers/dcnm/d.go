@@ -27,7 +27,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) type of the interface. Allowed values are "loopback", "port-channel", "vpc", "sub-interface", "ethernet". ## Common Attribute Reference ##`,
+					Description: `(Required) type of the interface. Allowed values are "loopback", "port-channel", "vpc", "sub-interface", "ethernet".`,
 				},
 				resource.Attribute{
 					Name:        "fabric_name",
@@ -927,6 +927,649 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dcnm_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for DCNM Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required) A unique ID identifying a policy. NOTE: User can specify only empty string value. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "serial_number",
+					Description: `Serial number of switch under which policy will be created.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `A unique name identifying the template. Please note that a template name can be used by multiple policies and hence a template name does not identify a policy uniquely.`,
+				},
+				resource.Attribute{
+					Name:        "template_props",
+					Description: `Properties of the templates related to template name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the policy.Default value is 500.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "template_content_type",
+					Description: `(Optional) Content type of the specified template.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "serial_number",
+					Description: `Serial number of switch under which policy will be created.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `A unique name identifying the template. Please note that a template name can be used by multiple policies and hence a template name does not identify a policy uniquely.`,
+				},
+				resource.Attribute{
+					Name:        "template_props",
+					Description: `Properties of the templates related to template name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the policy.Default value is 500.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "template_content_type",
+					Description: `(Optional) Content type of the specified template.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_route_peering",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for DCNM Route Peering`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of route peering.`,
+				},
+				resource.Attribute{
+					Name:        "service_fabric",
+					Description: `(Required) Name of the target fabric for route peering operations.`,
+				},
+				resource.Attribute{
+					Name:        "attached_fabric",
+					Description: `(Required) Name of the target fabric for route peering operations.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_mode",
+					Description: `(Required) Type of service node.Allowed values are "IntraTenantFW","InterTenantFW","OneArmADC","TwoArmADC","OneArmVNF".`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `(Required) Specifies the type of peering.Allowed values are "StaticPeering","EBGPDynamicPeering","None".`,
+				},
+				resource.Attribute{
+					Name:        "service_networks",
+					Description: `(Required) List of network under which peering will be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_name",
+					Description: `(Required) Network name.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_type",
+					Description: `(Required) Type of network.Allowed values are "InsideNetworkFW"(service node = Firewall),"OutsideNetworkFW"(service node = Firewall),"ArmOneADC"(service node = ADC),"ArmTwoADC"(service node = ADC),"ArmOneVNF"(service node= VNF).`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.template_name",
+					Description: `(Required) Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vrf_name",
+					Description: `(Required) VRF name under which network is created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vlan_id",
+					Description: `(Required) VLan Id of network.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.gateway_ip_address",
+					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+				},
+				resource.Attribute{
+					Name:        "routes",
+					Description: `(Optional) Routing configuration.`,
+				},
+				resource.Attribute{
+					Name:        "routes.template_name",
+					Description: `(Optional) Template name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "routes.route_parmas",
+					Description: `(Optional) NVPair map for routing.`,
+				},
+				resource.Attribute{
+					Name:        "routes.vrf_name",
+					Description: `(Optional) VRF name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "deploy",
+					Description: `(Optional) A flag specifying if a route peering is to be deployed on the switches. Default value is "true".`,
+				},
+				resource.Attribute{
+					Name:        "deploy_timeout",
+					Description: `(Optional) Timeout seconds for deployment. Default value is 300s.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_type",
+					Description: `(Required) Type of service node.Allowed values are "Firewall","VNF","ADC".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "deployment_mode",
+					Description: `(Required) Type of service node.Allowed values are "IntraTenantFW","InterTenantFW","OneArmADC","TwoArmADC","OneArmVNF".`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `(Required) Specifies the type of peering.Allowed values are "StaticPeering","EBGPDynamicPeering","None".`,
+				},
+				resource.Attribute{
+					Name:        "service_networks",
+					Description: `(Required) List of network under which peering will be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_name",
+					Description: `(Required) Network name.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_type",
+					Description: `(Required) Type of network.Allowed values are "InsideNetworkFW"(service node = Firewall),"OutsideNetworkFW"(service node = Firewall),"ArmOneADC"(service node = ADC),"ArmTwoADC"(service node = ADC),"ArmOneVNF"(service node= VNF).`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.template_name",
+					Description: `(Required) Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vrf_name",
+					Description: `(Required) VRF name under which network is created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vlan_id",
+					Description: `(Required) VLan Id of network.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.gateway_ip_address",
+					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+				},
+				resource.Attribute{
+					Name:        "routes",
+					Description: `(Optional) Routing configuration.`,
+				},
+				resource.Attribute{
+					Name:        "routes.template_name",
+					Description: `(Optional) Template name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "routes.route_parmas",
+					Description: `(Optional) NVPair map for routing.`,
+				},
+				resource.Attribute{
+					Name:        "routes.vrf_name",
+					Description: `(Optional) VRF name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "deploy",
+					Description: `(Optional) A flag specifying if a route peering is to be deployed on the switches. Default value is "true".`,
+				},
+				resource.Attribute{
+					Name:        "deploy_timeout",
+					Description: `(Optional) Timeout seconds for deployment. Default value is 300s.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_type",
+					Description: `(Required) Type of service node.Allowed values are "Firewall","VNF","ADC".`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_service_node",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for DCNM Service Node`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Object Service Node.`,
+				},
+				resource.Attribute{
+					Name:        "service_fabric",
+					Description: `(Required) Name of external fabric where the service node is located. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id is set to the name of the Service Node.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state",
+					Description: `Admin state for the Service Node.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_vlans",
+					Description: `Allowed vlan names of the Service.`,
+				},
+				resource.Attribute{
+					Name:        "attached_fabric",
+					Description: `Name of attached easy fabric to which service node is attached.`,
+				},
+				resource.Attribute{
+					Name:        "attached_switch_interface_name",
+					Description: `Switch interfaces where the service node will be attached.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_guard_flag",
+					Description: `BPDU flag for the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_fabric_name",
+					Description: `Destination fabric name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_if_name",
+					Description: `Destination interface name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_serial_number",
+					Description: `Destination serial number of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_switch_name",
+					Description: `Destination switch name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "form_factor",
+					Description: `Form factor of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "interface_name",
+					Description: `Name of the service interface.`,
+				},
+				resource.Attribute{
+					Name:        "is_metaswitch",
+					Description: `Meta-switch flag of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "link_template_name",
+					Description: `Link template name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `MTU of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Name of the service node type.`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Description of the attached policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `ID of the attached policy.`,
+				},
+				resource.Attribute{
+					Name:        "porttype_fast_enabled",
+					Description: `Port-type-fast flag of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_fabric_name",
+					Description: `Source fabric name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_if_name",
+					Description: `Source interface name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_serial_number",
+					Description: `Source serial number of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_switch_name",
+					Description: `Source switch name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `bandwidth of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "switches",
+					Description: `Serial Numbers of the switch where service node will be added.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id is set to the name of the Service Node.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state",
+					Description: `Admin state for the Service Node.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_vlans",
+					Description: `Allowed vlan names of the Service.`,
+				},
+				resource.Attribute{
+					Name:        "attached_fabric",
+					Description: `Name of attached easy fabric to which service node is attached.`,
+				},
+				resource.Attribute{
+					Name:        "attached_switch_interface_name",
+					Description: `Switch interfaces where the service node will be attached.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_guard_flag",
+					Description: `BPDU flag for the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_fabric_name",
+					Description: `Destination fabric name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_if_name",
+					Description: `Destination interface name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_serial_number",
+					Description: `Destination serial number of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "dest_switch_name",
+					Description: `Destination switch name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "form_factor",
+					Description: `Form factor of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "interface_name",
+					Description: `Name of the service interface.`,
+				},
+				resource.Attribute{
+					Name:        "is_metaswitch",
+					Description: `Meta-switch flag of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "link_template_name",
+					Description: `Link template name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `MTU of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Name of the service node type.`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Description of the attached policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `ID of the attached policy.`,
+				},
+				resource.Attribute{
+					Name:        "porttype_fast_enabled",
+					Description: `Port-type-fast flag of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_fabric_name",
+					Description: `Source fabric name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_if_name",
+					Description: `Source interface name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_serial_number",
+					Description: `Source serial number of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "source_switch_name",
+					Description: `Source switch name of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "speed",
+					Description: `bandwidth of the service node.`,
+				},
+				resource.Attribute{
+					Name:        "switches",
+					Description: `Serial Numbers of the switch where service node will be added.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_service_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for DCNM Service Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `(Required) Name of Object Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "service_fabric",
+					Description: `(Required) Fabric name under which Service Policy should be created.`,
+				},
+				resource.Attribute{
+					Name:        "attached_fabric",
+					Description: `(Required) Attached Fabric name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_name",
+					Description: `(Required) Node name of the Service Policy. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "dest_network",
+					Description: `Destination network of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "dest_vrf_name",
+					Description: `Destination VRF name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `Next hop IP of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "peering_name",
+					Description: `Peering name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_template_name",
+					Description: `Policy template name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "reverse_enabled",
+					Description: `Reverse enabled of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "reverse_next_hop_ip",
+					Description: `Reverse next hop IP of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "source_network",
+					Description: `Source network of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "source_vrf_name",
+					Description: `Source VRF name of the Service policy.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "src_port",
+					Description: `Source port of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "dest_port",
+					Description: `Destination Port of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_action",
+					Description: `Next hop Action of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "fwd_direction",
+					Description: `Forward Direction of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "deploy",
+					Description: `Deploy of the Service Policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dest_network",
+					Description: `Destination network of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "dest_vrf_name",
+					Description: `Destination VRF name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `Next hop IP of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "peering_name",
+					Description: `Peering name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_template_name",
+					Description: `Policy template name of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "reverse_enabled",
+					Description: `Reverse enabled of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "reverse_next_hop_ip",
+					Description: `Reverse next hop IP of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "source_network",
+					Description: `Source network of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "source_vrf_name",
+					Description: `Source VRF name of the Service policy.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "src_port",
+					Description: `Source port of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "dest_port",
+					Description: `Destination Port of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_action",
+					Description: `Next hop Action of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "fwd_direction",
+					Description: `Forward Direction of the Service Policy.`,
+				},
+				resource.Attribute{
+					Name:        "deploy",
+					Description: `Deploy of the Service Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_template",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for DCNM Template`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of Template.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) File name or file content.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of template.`,
+				},
+				resource.Attribute{
+					Name:        "supported_platforms",
+					Description: `(Optional) Platform supported by the template.`,
+				},
+				resource.Attribute{
+					Name:        "template_type",
+					Description: `(Optional) Type of template.`,
+				},
+				resource.Attribute{
+					Name:        "template_content_type",
+					Description: `(Optional) Content type of template.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tag of template.`,
+				},
+				resource.Attribute{
+					Name:        "template_sub_type",
+					Description: `(Optional) Sub type of template.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dcnm_vrf",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for DCNM VRF`,
@@ -935,245 +1578,245 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object VRF.`,
+					Description: `(Required) Name of Object VRF.`,
 				},
 				resource.Attribute{
 					Name:        "fabric_name",
-					Description: `(Required) fabric name under which VRF exists. ## Attribute Reference`,
+					Description: `(Required) Fabric name under which VRF exists. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `attribute id set to the Dn of the VRF.`,
+					Description: `Attribute id set to the Dn of the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `vlan Id for the VRF.`,
+					Description: `Vlan Id for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `vlan name for the VRF.`,
+					Description: `Vlan name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the VRF.`,
+					Description: `Description for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "intf_description",
-					Description: `intf desscription for the VRF.`,
+					Description: `Intf desscription for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `tag for the VRF.`,
+					Description: `Tag for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "max_bgp_path",
-					Description: `maximum BGP path value for the VRF.`,
+					Description: `Maximum BGP path value for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "max_ibgp_path",
-					Description: `maximum iBGP path value for the VRF.`,
+					Description: `Maximum iBGP path value for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "trm_enable",
-					Description: `trm enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Trm enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "rp_external_flag",
-					Description: `rp external flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Rp external flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "rp_address",
-					Description: `rp address for the VRF.`,
+					Description: `Rp address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
-					Description: `loopback ip address for the VRF.`,
+					Description: `Loopback ip address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "mutlicast_group",
-					Description: `multicast group address for the VRF.`,
+					Description: `Multicast group address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "mutlicast_address",
-					Description: `multicast address for the VRF.`,
+					Description: `Multicast address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_link_local_flag",
-					Description: `ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "trm_bgw_msite_flag",
-					Description: `trm bgw multisite enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Trm bgw multisite enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "advertise_host_route",
-					Description: `advertise host route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Advertise host route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "advertise_default_route",
-					Description: `advertise default route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Advertise default route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "static_default_route",
-					Description: `configure static default route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Configure static default route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `template name for the VRF. Values allowed "Default_VRF_Universal". Default is "Default_VRF_Universal".`,
+					Description: `Template name for the VRF. Values allowed "Default_VRF_Universal". Default is "Default_VRF_Universal".`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu value for the VRF. Ranginf from 68 to 9216.`,
+					Description: `Mtu value for the VRF. Ranginf from 68 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "extension_template",
-					Description: `extension Template name for the VRF. Values allowed are "Default_VRF_Extension_Universal". Default is "Default_VRF_Extension_Universal".`,
+					Description: `Extension Template name for the VRF. Values allowed are "Default_VRF_Extension_Universal". Default is "Default_VRF_Extension_Universal".`,
 				},
 				resource.Attribute{
 					Name:        "service_template",
-					Description: `service template name for the VRF.`,
+					Description: `Service template name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `source for the VRF.`,
+					Description: `Source for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "deploy",
-					Description: `deploy flag, used to deploy the VRF. Default value is "true".`,
+					Description: `Deploy flag, used to deploy the VRF. Default value is "true".`,
 				},
 				resource.Attribute{
 					Name:        "attachments",
-					Description: `attachment Block, have information regarding the switches which should be attached or detached to/from VRF.`,
+					Description: `Attachment block, have information regarding the switches which should be attached or detached to/from VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.serial_number",
-					Description: `serial number of the switch.`,
+					Description: `Serial number of the switch.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `vlan ID for the switch associated with VRF.`,
+					Description: `Vlan ID for the switch associated with VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
-					Description: `attach flag for switch. Default value is "true".`,
+					Description: `Attach flag for switch.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `attribute id set to the Dn of the VRF.`,
+					Description: `Attribute id set to the Dn of the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `vlan Id for the VRF.`,
+					Description: `Vlan Id for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `vlan name for the VRF.`,
+					Description: `Vlan name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the VRF.`,
+					Description: `Description for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "intf_description",
-					Description: `intf desscription for the VRF.`,
+					Description: `Intf desscription for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `tag for the VRF.`,
+					Description: `Tag for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "max_bgp_path",
-					Description: `maximum BGP path value for the VRF.`,
+					Description: `Maximum BGP path value for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "max_ibgp_path",
-					Description: `maximum iBGP path value for the VRF.`,
+					Description: `Maximum iBGP path value for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "trm_enable",
-					Description: `trm enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Trm enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "rp_external_flag",
-					Description: `rp external flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Rp external flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "rp_address",
-					Description: `rp address for the VRF.`,
+					Description: `Rp address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
-					Description: `loopback ip address for the VRF.`,
+					Description: `Loopback ip address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "mutlicast_group",
-					Description: `multicast group address for the VRF.`,
+					Description: `Multicast group address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "mutlicast_address",
-					Description: `multicast address for the VRF.`,
+					Description: `Multicast address for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_link_local_flag",
-					Description: `ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "trm_bgw_msite_flag",
-					Description: `trm bgw multisite enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Trm bgw multisite enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "advertise_host_route",
-					Description: `advertise host route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Advertise host route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "advertise_default_route",
-					Description: `advertise default route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Advertise default route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "static_default_route",
-					Description: `configure static default route enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `Configure static default route enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `template name for the VRF. Values allowed "Default_VRF_Universal". Default is "Default_VRF_Universal".`,
+					Description: `Template name for the VRF. Values allowed "Default_VRF_Universal". Default is "Default_VRF_Universal".`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu value for the VRF. Ranginf from 68 to 9216.`,
+					Description: `Mtu value for the VRF. Ranginf from 68 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "extension_template",
-					Description: `extension Template name for the VRF. Values allowed are "Default_VRF_Extension_Universal". Default is "Default_VRF_Extension_Universal".`,
+					Description: `Extension Template name for the VRF. Values allowed are "Default_VRF_Extension_Universal". Default is "Default_VRF_Extension_Universal".`,
 				},
 				resource.Attribute{
 					Name:        "service_template",
-					Description: `service template name for the VRF.`,
+					Description: `Service template name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `source for the VRF.`,
+					Description: `Source for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "deploy",
-					Description: `deploy flag, used to deploy the VRF. Default value is "true".`,
+					Description: `Deploy flag, used to deploy the VRF. Default value is "true".`,
 				},
 				resource.Attribute{
 					Name:        "attachments",
-					Description: `attachment Block, have information regarding the switches which should be attached or detached to/from VRF.`,
+					Description: `Attachment block, have information regarding the switches which should be attached or detached to/from VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.serial_number",
-					Description: `serial number of the switch.`,
+					Description: `Serial number of the switch.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `vlan ID for the switch associated with VRF.`,
+					Description: `Vlan ID for the switch associated with VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
-					Description: `attach flag for switch. Default value is "true".`,
+					Description: `Attach flag for switch.`,
 				},
 			},
 		},
@@ -1181,10 +1824,15 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"dcnm_interface": 0,
-		"dcnm_inventory": 1,
-		"dcnm_network":   2,
-		"dcnm_vrf":       3,
+		"dcnm_interface":      0,
+		"dcnm_inventory":      1,
+		"dcnm_network":        2,
+		"dcnm_policy":         3,
+		"dcnm_route_peering":  4,
+		"dcnm_service_node":   5,
+		"dcnm_service_policy": 6,
+		"dcnm_template":       7,
+		"dcnm_vrf":            8,
 	}
 )
 

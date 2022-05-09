@@ -370,7 +370,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "position",
-					Description: `(Required) Indicates the order of the rule. When ` + "`" + `null` + "`" + ` this will default to last position.`,
+					Description: `(Optional) Indicates the ordering of the rule. When not supplied the rule will be put at the end of the list on create and managed by the provider. '0' can be supplied to consistently push this rule to the end of the list on every update.`,
 				},
 				resource.Attribute{
 					Name:        "conditions",
@@ -1517,7 +1517,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "position",
-					Description: `(Required) Indicates the ordering of the mapping. When ` + "`" + `null` + "`" + ` this will be placed last.`,
+					Description: `(Optional) Indicates the ordering of the mapping. When not supplied the mapping will be put at the end of the list on create and managed by the provider. '0' can be supplied to consistently push this mapping to the end of the list on every update.`,
 				},
 				resource.Attribute{
 					Name:        "conditions",

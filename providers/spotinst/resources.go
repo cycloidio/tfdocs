@@ -11,6 +11,45 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "spotinst_data_integration",
+			Category:         "Data Integration",
+			ShortDescription: `Manages an Data Integration resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, only when update) Determines if this data integration is on or off. Valid values: ` + "`" + `"enabled"` + "`" + `, ` + "`" + `"disabled"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "s3",
+					Description: `(Required) When vendor value is s3, the following fields are included:`,
+				},
+				resource.Attribute{
+					Name:        "bucketName",
+					Description: `(Required) The name of the bucket to use. Your spot IAM Role policy needs to include s3:putObject permissions for this bucket. Can't be null.`,
+				},
+				resource.Attribute{
+					Name:        "subdir",
+					Description: `(Optional) The subdirectory in which your files will be stored within the bucket. Adds the prefix subdir/ to new objects' keys. Can't be null or contain '/'. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Spotinst Data Integration ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Spotinst Data Integration ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "spotinst_elastigroup_aws",
 			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst AWS group resource.`,
@@ -1857,6 +1896,22 @@ var (
 					Description: `(Required) The desired number of instances the group should have at any time.`,
 				},
 				resource.Attribute{
+					Name:        "custom_data",
+					Description: `(Optional) Custom init script file or text in Base64 encoded format.`,
+				},
+				resource.Attribute{
+					Name:        "managed_service_identity",
+					Description: `(Optional) List of Managed Service Identity objects.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the Azure Resource Group where the Managed Service Identity is located.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Managed Service Identity.`,
+				},
+				resource.Attribute{
 					Name:        "od_sizes",
 					Description: `(Required) Available On-Demand sizes`,
 				},
@@ -1874,7 +1929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "od_count",
-					Description: `(Optional) Number of On-Demand instances to maintain. Required if low_priority_percentage is not specified.`,
+					Description: `(Optional) Number of On-Demand instances to maintain. Required if ` + "`" + `low_priority_percentage` + "`" + ` is not specified.`,
 				},
 				resource.Attribute{
 					Name:        "fallback_to_on_demand",
@@ -2077,6 +2132,10 @@ var (
 				resource.Attribute{
 					Name:        "draining_timeout",
 					Description: `(Optional) Time (seconds) the instance is allowed to run after it is detached from the group. This is to allow the instance time to drain all the current TCP connections before terminating it.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Optional) Valid values: "SPOT", "PREEMPTIBLE". Define the provisioning model of the launched instances. Default value is "PREEMPTIBLE".`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -3609,6 +3668,10 @@ var (
 					Description: `(Optional).`,
 				},
 				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `(Optional) Number between 0-200 to control the headroom % of the specific Virtual Node Group. Effective when ` + "`" + `cluster.autoScaler.headroom.automatic.is_enabled` + "`" + ` = true is set on the Ocean cluster.`,
+				},
+				resource.Attribute{
 					Name:        "autoscale_headroom",
 					Description: `(Optional)`,
 				},
@@ -3744,7 +3807,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "use_as_template_only",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) launch specification defined on the Ocean object will function only as a template for virtual node groups.`,
+					Description: `(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups. When set to true, on Ocean resource creation please make sure your custom VNG has an initial_nodes parameter to create nodes for your VNG.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancers",
@@ -3795,6 +3858,10 @@ var (
 					Description: `(Optional; Required if not using ` + "`" + `ondemand_count` + "`" + `) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number.`,
 				},
 				resource.Attribute{
+					Name:        "utilize_commitments",
+					Description: `(Optional, Default false) If savings plans exist, Ocean will utilize them before launching Spot instances.`,
+				},
+				resource.Attribute{
 					Name:        "instance_metadata_options",
 					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
 				},
@@ -3804,7 +3871,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "http_put_response_hop_limit",
-					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel. <a id="auto-scaler"></a> ## Auto Scaler`,
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) Logging configuration.`,
+				},
+				resource.Attribute{
+					Name:        "export",
+					Description: `(Optional) Logging Export configuration.`,
+				},
+				resource.Attribute{
+					Name:        "s3",
+					Description: `(Optional) Exports your cluster's logs to the S3 bucket and subdir configured on the S3 data integration given.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The identifier of The S3 data integration to export the logs to. <a id="auto-scaler"></a> ## Auto Scaler`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -3825,6 +3908,10 @@ var (
 				resource.Attribute{
 					Name:        "auto_headroom_percentage",
 					Description: `(Optional) Set the auto headroom percentage (a number in the range [0, 200]) which controls the percentage of headroom from the cluster. Relevant only when ` + "`" + `autoscale_is_auto_config` + "`" + ` toggled on.`,
+				},
+				resource.Attribute{
+					Name:        "enable_automatic_and_manual_headroom",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) enables automatic and manual headroom to work in parallel. When set to false, automatic headroom overrides all other headroom definitions manually configured, whether they are at cluster or VNG level.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headroom",
@@ -3864,7 +3951,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = true autoscale_is_auto_config = true auto_headroom_percentage = 100 autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 0 memory_per_unit = 512 num_of_units = 2 } autoscale_down { max_scale_down_percentage = 60 } resource_limits { max_vcpu = 1024 max_memory_gib = 1500 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "extended_resource_definitions",
+					Description: `(Optional) List of Ocean extended resource definitions to use in this cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = true autoscale_is_auto_config = true auto_headroom_percentage = 100 autoscale_cooldown = 300 enable_automatic_and_manual_headroom = false autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 0 memory_per_unit = 512 num_of_units = 2 } autoscale_down { max_scale_down_percentage = 60 } resource_limits { max_vcpu = 1024 max_memory_gib = 1500 } extended_resource_definitions = ["erd-abc123"] } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -3875,12 +3966,28 @@ var (
 					Description: `(Required) Enables the roll.`,
 				},
 				resource.Attribute{
+					Name:        "conditioned_roll",
+					Description: `(Optional, Default: false) Spot will perform a cluster Roll in accordance with a relevant modification of the cluster’s settings. When set to true , only specific changes in the cluster’s configuration will trigger a cluster roll (such as AMI, Key Pair, user data, instance types, load balancers, etc).`,
+				},
+				resource.Attribute{
+					Name:        "auto_apply_tags",
+					Description: `(Optional, Default: false) will update instance tags on the fly without rolling the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "roll_config",
 					Description: `(Required) While used, you can control whether the group should perform a deployment after an update to the configuration.`,
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch.`,
+				},
+				resource.Attribute{
+					Name:        "launch_spec_ids",
+					Description: `(Optional) List of virtual node group identifiers to be rolled.`,
+				},
+				resource.Attribute{
+					Name:        "batch_min_healthy_percentage",
+					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true auto_apply_tags = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -3923,6 +4030,40 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Cluster ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_ocean_aws_extended_resource_definition",
+			Category:         "Ocean",
+			ShortDescription: `Manages an Ocean extended resource definition resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"aws",
+				"extended",
+				"resource",
+				"definition",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The extended resource name as should be requested by your pods and registered to the nodes. Cannot be updated. The name should be a valid Kubernetes extended resource name.`,
+				},
+				resource.Attribute{
+					Name:        "resource_mapping",
+					Description: `(Required) A mapping between AWS instanceType or`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Spotinst Extended Resource Definition ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Spotinst Extended Resource Definition ID.`,
 				},
 			},
 		},
@@ -4080,6 +4221,14 @@ var (
 					Description: `(Optional) String. Suppresses the specified device included in the block device mapping of the AMI.`,
 				},
 				resource.Attribute{
+					Name:        "autoscale_headrooms_automatic",
+					Description: `(Optional) Set automatic headroom per launch spec.`,
+				},
+				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `(Optional) Number between 0-200 to control the headroom % of the specific Virtual Node Group. Effective when cluster.autoScaler.headroom.automatic.` + "`" + `is_enabled` + "`" + ` = true is set on the Ocean cluster.`,
+				},
+				resource.Attribute{
 					Name:        "autoscale_headrooms",
 					Description: `(Optional) Set custom headroom per Virtual Node Group. Provide a list of headrooms object.`,
 				},
@@ -4108,6 +4257,10 @@ var (
 					Description: `(Optional) Set a maximum number of instances per Virtual Node Group. Can be null. If set, value must be greater than or equal to 0.`,
 				},
 				resource.Attribute{
+					Name:        "min_instance_count",
+					Description: `(Optional) Set a minimum number of instances per Virtual Node Group. Can be null. If set, value must be greater than or equal to 0.`,
+				},
+				resource.Attribute{
 					Name:        "strategy",
 					Description: `(Optional)`,
 				},
@@ -4121,7 +4274,79 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initial_nodes",
-					Description: `(Optional) When set to an integer greater than 0, a corresponding amount of nodes will be launched from the created virtual node group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) When set to an integer greater than 0, a corresponding amount of nodes will be launched from the created Virtual Node Group. The parameter is recommended in case the use_as_template_only (in spotinst_ocean_aws resource) is set to true during Ocean resource creation.`,
+				},
+				resource.Attribute{
+					Name:        "delete_options",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) When set to ` + "`" + `true` + "`" + `, delete even if it is the last Virtual Node Group (also, the default Virtual Node Group must be configured with ` + "`" + `useAsTemlateOnly = true` + "`" + `). Should be set at creation or update, but will be used only at deletion.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_task",
+					Description: `(Optional) Used to define scheduled tasks such as a manual headroom update.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When True, the task runs. When False, it does not run.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The activity that you are scheduling. Valid values: "manualHeadroomUpdate".`,
+				},
+				resource.Attribute{
+					Name:        "task_headroom",
+					Description: `(Optional) The config of this scheduled task. Depends on the value of taskType.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) Optionally configure the number of GPUS to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_shutdown_hours",
+					Description: `(Optional) Used to specify times that the nodes in the virtual node group will be taken down.`,
+				},
+				resource.Attribute{
+					Name:        "time_windows",
+					Description: `(Required ) The times that the shutdown hours will apply.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Flag to enable or disable the shutdown hours mechanism. When False, the mechanism is deactivated, and the virtual node group remains in its current state. <a id="update-policy"></a> ## Update Policy`,
+				},
+				resource.Attribute{
+					Name:        "update_policy",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "should_roll",
+					Description: `(Required) Enables the roll.`,
+				},
+				resource.Attribute{
+					Name:        "roll_config",
+					Description: `(Required) Holds the roll configuration.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4237,6 +4462,10 @@ var (
 				resource.Attribute{
 					Name:        "spot_percentage",
 					Description: `(Optional) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number.`,
+				},
+				resource.Attribute{
+					Name:        "utilize_commitments",
+					Description: `(Optional, Default false) If savings plans exist, Ocean will utilize them before launching Spot instances.`,
 				},
 				resource.Attribute{
 					Name:        "instance_metadata_options",
@@ -4376,7 +4605,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `(Optional) The auto-headroom percentage. Set a number between 0-200 to control the headroom % of the cluster. Relevant when ` + "`" + `isAutoConfig` + "`" + `= true. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } auto_headroom_percentage = 10 } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -4387,12 +4620,24 @@ var (
 					Description: `(Required) Enables the roll.`,
 				},
 				resource.Attribute{
+					Name:        "conditioned_roll",
+					Description: `(Optional, Default: false) Spot will perform a cluster Roll in accordance with a relevant modification of the cluster’s settings. When set to true , only specific changes in the cluster’s configuration will trigger a cluster roll (such as AMI, Key Pair, user data, instance types, load balancers, etc).`,
+				},
+				resource.Attribute{
+					Name:        "auto_apply_tags",
+					Description: `(Optional, Default: false) will update instance tags on the fly without rolling the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "roll_config",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-tasks"></a> ## Scheduled Tasks`,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch.`,
+				},
+				resource.Attribute{
+					Name:        "batch_min_healthy_percentage",
+					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true auto_apply_tags = true roll_config { batch_size_percentage = 33 batch_min_healthy_percentage = 20 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-tasks"></a> ## Scheduled Tasks`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4501,6 +4746,38 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_task",
+					Description: `(Optional) Used to define scheduled tasks such as a manual headroom update.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When True, the task runs. When False, it does not run.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The activity that you are scheduling. Valid values: "manualHeadroomUpdate".`,
+				},
+				resource.Attribute{
+					Name:        "task_headroom",
+					Description: `(Optional) The config of this scheduled task. Depends on the value of taskType.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
 					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. <a id="block-devices"></a> ## Block Devices`,
 				},
 				resource.Attribute{
@@ -4534,6 +4811,10 @@ var (
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required) The GKE cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "controller_cluster_id",
+					Description: `(Required) A unique identifier used for connecting the Ocean SaaS platform and the Kubernetes cluster. Typically, the cluster name is used as its identifier.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -4589,7 +4870,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "root_volume_type",
-					Description: `(Optional) The root volume disk type. <a id="scheduled-task"></a> ## Scheduled task`,
+					Description: `(Optional) The root volume disk type.`,
+				},
+				resource.Attribute{
+					Name:        "shielded_instance_config",
+					Description: `(Optional) The Ocean shielded instance configuration object.`,
+				},
+				resource.Attribute{
+					Name:        "enable_integrity_monitoring",
+					Description: `(Optional) Boolean. Enable the integrity monitoring parameter on the GCP instances.`,
+				},
+				resource.Attribute{
+					Name:        "enable_secure_boot",
+					Description: `(Optional) Boolean. Enable the secure boot parameter on the GCP instances. <a id="scheduled-task"></a> ## Scheduled task`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4648,6 +4941,10 @@ var (
 					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) Cooldown period between scaling actions.`,
 				},
 				resource.Attribute{
+					Name:        "enable_automatic_and_manual_headroom",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) enables automatic and manual headroom to work in parallel. When set to false, automatic headroom overrides all other headroom definitions manually configured, whether they are at cluster or VNG level.`,
+				},
+				resource.Attribute{
 					Name:        "headroom",
 					Description: `(Optional) Spare resource capacity management enabling fast assignment of Pods without waiting for new resources to launch.`,
 				},
@@ -4689,7 +4986,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = true is_auto_config = false cooldown = 30 auto_headroom_percentage = 10 headroom { cpu_per_unit = 0 gpu_per_unit = 0 memory_per_unit = 0 num_of_units = 0 } down { evaluation_periods = 3 max_scale_down_percentage = 30 } resource_limits { max_vcpu = 1500 max_memory_gib = 750 } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = true is_auto_config = false cooldown = 30 auto_headroom_percentage = 10 enable_automatic_and_manual_headroom = false headroom { cpu_per_unit = 0 gpu_per_unit = 0 memory_per_unit = 0 num_of_units = 0 } down { evaluation_periods = 3 max_scale_down_percentage = 30 } resource_limits { max_vcpu = 1500 max_memory_gib = 750 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="strategy"></a> ## Strategy`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Optional) Strategy object.`,
+				},
+				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional) The draining timeout (in seconds) before terminating the instance. If no draining timeout is defined, the default draining timeout will be used.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_model",
+					Description: `(Optional) Define the provisioning model of the launched instances. Valid values: ` + "`" + `SPOT` + "`" + `, ` + "`" + `PREEMPTIBLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_policy",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "should_roll",
+					Description: `(Required) Enables the roll.`,
+				},
+				resource.Attribute{
+					Name:        "conditioned_roll",
+					Description: `(Optional, Default: false) Spot will perform a cluster Roll in accordance with a relevant modification of the cluster’s settings. When set to true , only specific changes in the cluster’s configuration will trigger a cluster roll (such as AMI, Key Pair, user data, instance types, load balancers, etc).`,
+				},
+				resource.Attribute{
+					Name:        "roll_config",
+					Description: `(Required) Holds the roll configuration.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch.`,
+				},
+				resource.Attribute{
+					Name:        "launch_spec_ids",
+					Description: `(Optional) List of Virtual Node Group identifiers to be rolled.`,
+				},
+				resource.Attribute{
+					Name:        "batch_min_healthy_percentage",
+					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4725,12 +5062,16 @@ var (
 					Description: `(Optional) The node pool you wish to use in your Launch Spec.`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The launch specification name.`,
+				},
+				resource.Attribute{
 					Name:        "source_image",
 					Description: `(Required) Image URL.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Cluster's metadata.`,
+					Description: `(Required only if ` + "`" + `node_pool_name` + "`" + ` is not set) Cluster's metadata.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -4783,6 +5124,14 @@ var (
 				resource.Attribute{
 					Name:        "instance_types",
 					Description: `(Optional) List of supported machine types for the Launch Spec.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_headrooms_automatic",
+					Description: `(Optional) Set automatic headroom per launch spec.`,
+				},
+				resource.Attribute{
+					Name:        "auto_headroom_percentage",
+					Description: `(Optional) Number between 0-200 to control the headroom % of the specific Virtual Node Group. Effective when cluster.autoScaler.headroom.automatic.` + "`" + `is_enabled` + "`" + ` = true is set on the Ocean cluster.`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headrooms",
@@ -4841,8 +5190,64 @@ var (
 					Description: `(Optional) Option to set a maximum number of instances per virtual node group. Can be null. If set, the value must be greater than or equal to 0.`,
 				},
 				resource.Attribute{
+					Name:        "min_instance_count",
+					Description: `(Optional) Option to set a minimum number of instances per virtual node group. Can be null. If set, the value must be greater than or equal to 0.`,
+				},
+				resource.Attribute{
 					Name:        "service_account",
-					Description: `(Optional) The account used by applications running on the VM to call GCP APIs. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The account used by applications running on the VM to call GCP APIs.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_task",
+					Description: `(Optional) Used to define scheduled tasks such as a manual headroom update.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Describes whether the task is enabled. When True, the task runs. When False, it does not run.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Required) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The activity that you are scheduling. Valid values: "manualHeadroomUpdate".`,
+				},
+				resource.Attribute{
+					Name:        "task_headroom",
+					Description: `(Optional) The config of this scheduled task. Depends on the value of taskType.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) Optionally configure the number of GPUS to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. <a id="update-policy"></a> ## Update Policy`,
+				},
+				resource.Attribute{
+					Name:        "update_policy",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "should_roll",
+					Description: `(Required) Enables the roll.`,
+				},
+				resource.Attribute{
+					Name:        "roll_config",
+					Description: `(Required) Holds the roll configuration.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4932,26 +5337,28 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"spotinst_elastigroup_aws":              0,
-		"spotinst_elastigroup_aws_beanstalk":    1,
-		"spotinst_elastigroup_aws_suspension":   2,
-		"spotinst_elastigroup_azure":            3,
-		"spotinst_elastigroup_azure_v3":         4,
-		"spotinst_elastigroup_gcp":              5,
-		"spotinst_elastigroup_gke":              6,
-		"spotinst_health_check":                 7,
-		"spotinst_managed_instance_aws":         8,
-		"spotinst_mrscaler_aws":                 9,
-		"spotinst_ocean_aks":                    10,
-		"spotinst_ocean_aks_virtual_node_group": 11,
-		"spotinst_ocean_aws":                    12,
-		"spotinst_ocean_aws_launch_spec":        13,
-		"spotinst_ocean_ecs":                    14,
-		"spotinst_ocean_ecs_launch_spec":        15,
-		"spotinst_ocean_gke_import":             16,
-		"spotinst_ocean_gke_launch_spec":        17,
-		"spotinst_ocean_gke_launch_spec_import": 18,
-		"spotinst_subscription":                 19,
+		"spotinst_data_integration":                       0,
+		"spotinst_elastigroup_aws":                        1,
+		"spotinst_elastigroup_aws_beanstalk":              2,
+		"spotinst_elastigroup_aws_suspension":             3,
+		"spotinst_elastigroup_azure":                      4,
+		"spotinst_elastigroup_azure_v3":                   5,
+		"spotinst_elastigroup_gcp":                        6,
+		"spotinst_elastigroup_gke":                        7,
+		"spotinst_health_check":                           8,
+		"spotinst_managed_instance_aws":                   9,
+		"spotinst_mrscaler_aws":                           10,
+		"spotinst_ocean_aks":                              11,
+		"spotinst_ocean_aks_virtual_node_group":           12,
+		"spotinst_ocean_aws":                              13,
+		"spotinst_ocean_aws_extended_resource_definition": 14,
+		"spotinst_ocean_aws_launch_spec":                  15,
+		"spotinst_ocean_ecs":                              16,
+		"spotinst_ocean_ecs_launch_spec":                  17,
+		"spotinst_ocean_gke_import":                       18,
+		"spotinst_ocean_gke_launch_spec":                  19,
+		"spotinst_ocean_gke_launch_spec_import":           20,
+		"spotinst_subscription":                           21,
 	}
 )
 

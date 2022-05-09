@@ -66,6 +66,186 @@ This resource allows you to execute Check Point Access Point Name.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_access_rulebase",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Access Rule Base.`,
+			Description: `
+
+Use this data source to get information on an existing access RuleBase.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `APN name.`,
+				},
+				resource.Attribute{
+					Name:        "filter_settings",
+					Description: `Enable enforce end user domain. filter_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. orders blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `Name of the package.`,
+				},
+				resource.Attribute{
+					Name:        "show_as_ranges",
+					Description: `When true, the source, destination and services & applications parameters are displayed as ranges of IP addresses and port numbers rather than network objects. Objects that are not represented using IP addresses or port numbers are presented as objects. In addition, the response of each rule does not contain the parameters: source, source-negate, destination, destination-negate, service and service-negate, but instead it contains the parameters:source-ranges, destination-ranges and service-ranges. Note: Requesting to show rules as ranges is limited up to 20 rules per request, otherwise an error is returned. If you wish to request more rules, use the offset and limit parameters to limit your request.`,
+				},
+				resource.Attribute{
+					Name:        "show_hits",
+					Description: `show hits.`,
+				},
+				resource.Attribute{
+					Name:        "hits_settings",
+					Description: `hits_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dereference_group_members",
+					Description: `Indicates whether to dereference "members" field by details level for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "show_membership",
+					Description: `Indicates whether to calculate and show "groups" field for every object in reply. ` + "`" + `filter_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `When set to 'general', both the Full Text Search and Packet Search are enabled. In this mode, Packet Search will not match on 'Any' object, a negated cell or a group-with-exclusion. When the search-mode is set to 'packet', by default, the match on 'Any' object, a negated cell or a group-with-exclusion are enabled. packet-search-settings may be provided to change the default behavior.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group object, results will include rules that match on at least one member of the group.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_with_exclusion_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group-with-exclusion object, results will include rules that match at least one member of the "include" part and is not a member of the "except" part.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_any",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on 'Any' object.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_group_with_exclusion",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a group-with-exclusion.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_negate",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a negated cell. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order. ` + "`" + `hits_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "from-date",
+					Description: `Format: YYYY-MM-DD, YYYY-mm-ddThh:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Target gateway name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "to-date",
+					Description: `Format: YYYY-MM-DD, YYYY-mm-ddThh:mm:ss.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_aci_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Cisco APIC data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Cisco APIC Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_aws_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing AWS data center server.`,
+			Description: `
+
+Use this data source to get information on an existing AWS Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_azure_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing azure data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Microsoft Azure Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_checkpoint_host",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point Checkpoint Host.`,
@@ -441,58 +621,6 @@ Use this data source to get information on an existing Check Point Access Role.
 				resource.Attribute{
 					Name:        "uid",
 					Description: `(Optional) Object unique identifier.`,
-				},
-				resource.Attribute{
-					Name:        "machines",
-					Description: `Machines that can access the system. machines blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "networks",
-					Description: `Collection of Network objects identified by the name or UID that can access the system.`,
-				},
-				resource.Attribute{
-					Name:        "remote_access_clients",
-					Description: `Remote access clients identified by name or UID.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Collection of tag identifiers.`,
-				},
-				resource.Attribute{
-					Name:        "users",
-					Description: `Users that can access the system. users blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "color",
-					Description: `Color of the object. Should be one of existing colors.`,
-				},
-				resource.Attribute{
-					Name:        "comments",
-					Description: `Comments string. ` + "`" + `machines` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `Active Directory name or UID or Identity Tag.`,
-				},
-				resource.Attribute{
-					Name:        "selection",
-					Description: `Name or UID of an object selected from source.selection blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "base_dn",
-					Description: `When source is "Active Directory" use "base-dn" to refine the query in AD database. ` + "`" + `users` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `Active Directory name or UID or Identity Tag or Internal User Groups or LDAP groups or Guests.`,
-				},
-				resource.Attribute{
-					Name:        "selection",
-					Description: `Name or UID of an object selected from source.selection blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "base_dn",
-					Description: `When source is "Active Directory" use "base-dn" to refine the query in AD database.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -899,6 +1027,88 @@ Use this data source to get information on an existing Check Point Application S
 				resource.Attribute{
 					Name:        "groups",
 					Description: `Collection of group identifiers.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_data_center_content",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point data center content.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point data center content.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data_center_name",
+					Description: `(Optional) Name of the Data Center Server where to search for objects.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_uid",
+					Description: `(Optional) Unique identifier of the Data Center Server where to search for objects.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. orders blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "uid_in_data_center",
+					Description: `Return result matching the unique identifier of the object on the Data Center Server.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Return results matching the specified filter. ` + "`" + `filter` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `(Optional) Return results containing the specified text value.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Optional) Return results under the specified Data Center Object (identified by URI).`,
+				},
+				resource.Attribute{
+					Name:        "parent_uid_in_data_center",
+					Description: `(Optional) Return results under the specified Data Center Object (identified by UID). ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_data_center_query",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Data Center Query.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2689,6 +2899,52 @@ Use this data source to get information on an existing Check Point Wildcard.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_gcp_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Google Cloud Platform Data Center Server.`,
+			Description: `
+
+Use this data source to get information on an existing Google Cloud Platform Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_generic_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing generic data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Generic Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required if uid is not given) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Required if name is not given) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_gsn_handover_group",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point Gsn Handover Group.`,
@@ -2736,6 +2992,93 @@ This resource allows you to execute Check Point Gsn Handover Group.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_https_rulebase",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Https Rule Base.`,
+			Description: `
+
+Use this data source to get information on an existing https RuleBase.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Search expression to filter the rulebase. The provided text should be exactly the same as it would be given in Smart Console. The logical operators in the expression ('AND', 'OR') should be provided in capital letters. If an operator is not used, the default OR operator applies.`,
+				},
+				resource.Attribute{
+					Name:        "filter_settings",
+					Description: `Enable enforce end user domain. filter_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. orders blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `Name of the package.`,
+				},
+				resource.Attribute{
+					Name:        "dereference_group_members",
+					Description: `Indicates whether to dereference "members" field by details level for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "show_membership",
+					Description: `Indicates whether to calculate and show "groups" field for every object in reply. ` + "`" + `filter_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `When set to 'general', both the Full Text Search and Packet Search are enabled. In this mode, Packet Search will not match on 'Any' object, a negated cell or a group-with-exclusion. When the search-mode is set to 'packet', by default, the match on 'Any' object, a negated cell or a group-with-exclusion are enabled. packet-search-settings may be provided to change the default behavior.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group object, results will include rules that match on at least one member of the group.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_with_exclusion_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group-with-exclusion object, results will include rules that match at least one member of the "include" part and is not a member of the "except" part.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_any",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on 'Any' object.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_group_with_exclusion",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a group-with-exclusion.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_negate",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a negated cell. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_identity_tag",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point Identity Tag.`,
@@ -2769,6 +3112,52 @@ This resource allows you to execute Check Point Identity Tag.
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_ise_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Cisco ISE data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Cisco ISE Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_kubernetes_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Kubernetes Data Center Server.`,
+			Description: `
+
+Use this data source to get information on an existing Kubernetes Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2929,6 +3318,85 @@ This resource allows you to execute Check Point NAT Rule.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_nat_rulebase",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Nat Rule Base.`,
+			Description: `
+
+Use this data source to get information on an existing nat RuleBase.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "package",
+					Description: `(Required) Name of the package.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `APN name.`,
+				},
+				resource.Attribute{
+					Name:        "filter_settings",
+					Description: `Enable enforce end user domain. filter_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. orders blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dereference_group_members",
+					Description: `Indicates whether to dereference "members" field by details level for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "show_membership",
+					Description: `Indicates whether to calculate and show "groups" field for every object in reply. ` + "`" + `filter_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `When set to 'general', both the Full Text Search and Packet Search are enabled. In this mode, Packet Search will not match on 'Any' object, a negated cell or a group-with-exclusion. When the search-mode is set to ' packet', by default, the match on 'Any' object, a negated cell or a group-with-exclusion are enabled. packet-search-settings may be provided to change the default behavior.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group object, results will include rules that match on at least one member of the group.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_with_exclusion_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group-with-exclusion object, results will include rules that match at least one member of the "include" part and is not a member of the "except" part.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_any",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on 'Any' object.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_group_with_exclusion",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a group-with-exclusion.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_negate",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a negated cell. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_nat_section",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point NAT section.`,
@@ -2950,6 +3418,52 @@ This resource allows you to execute Check Point NAT section.
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_nuage_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Nuage Data Center Server.`,
+			Description: `
+
+Use this data source to get information on an existing Nuage Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_openstack_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing OpenStack Data Center Server.`,
+			Description: `
+
+Use this data source to get information on an existing OpenStack Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4819,6 +5333,93 @@ This resource allows you to execute Check Point Threat Rule.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_threat_rulebase",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Threat Rule Base.`,
+			Description: `
+
+Use this data source to get information on an existing threat RuleBase.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Search expression to filter the rulebase. The provided text should be exactly the same as it would be given in Smart Console. The logical operators in the expression ('AND', 'OR') should be provided in capital letters. If an operator is not used, the default OR operator applies.`,
+				},
+				resource.Attribute{
+					Name:        "filter_settings",
+					Description: `Enable enforce end user domain. filter_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. orders blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `Name of the package.`,
+				},
+				resource.Attribute{
+					Name:        "dereference_group_members",
+					Description: `Indicates whether to dereference "members" field by details level for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "show_membership",
+					Description: `Indicates whether to calculate and show "groups" field for every object in reply. ` + "`" + `filter_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "search_mode",
+					Description: `When set to 'general', both the Full Text Search and Packet Search are enabled. In this mode, Packet Search will not match on 'Any' object, a negated cell or a group-with-exclusion. When the search-mode is set to 'packet', by default, the match on 'Any' object, a negated cell or a group-with-exclusion are enabled. packet-search-settings may be provided to change the default behavior.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group object, results will include rules that match on at least one member of the group.`,
+				},
+				resource.Attribute{
+					Name:        "expand_group_with_exclusion_members",
+					Description: `(Optional, can only be used when search_mode is set to "packet") When true, if the search expression contains a UID or a name of a group-with-exclusion object, results will include rules that match at least one member of the "include" part and is not a member of the "except" part.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_any",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on 'Any' object.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_group_with_exclusion",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a group-with-exclusion.`,
+				},
+				resource.Attribute{
+					Name:        "match_on_negate",
+					Description: `(Optional, can only be used when search_mode is set to "packet") Whether to match on a negated cell. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_user",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point User.`,
@@ -5064,6 +5665,29 @@ This resource allows you to execute Check Point User Template.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_vmware_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing VMware Data Center Server.`,
+			Description: `
+
+Use this data source to get information on an existing VMware Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_vpn_community_remote_access",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point VPN Community Remote Access.`,
@@ -5110,61 +5734,77 @@ This resource allows you to execute Check Point VPN Community Remote Access.
 	dataSourcesMap = map[string]int{
 
 		"checkpoint_management_access_point_name":                         0,
-		"checkpoint_management_checkpoint_host":                           1,
-		"checkpoint_management_data_access_layer":                         2,
-		"checkpoint_management_data_access_role":                          3,
-		"checkpoint_management_data_access_rule":                          4,
-		"checkpoint_management_data_access_section":                       5,
-		"checkpoint_management_data_address_range":                        6,
-		"checkpoint_management_data_application_site":                     7,
-		"checkpoint_management_data_application_site_category":            8,
-		"checkpoint_management_data_application_site_group":               9,
-		"checkpoint_management_data_dns_domain":                           10,
-		"checkpoint_management_data_dynamic_object":                       11,
-		"checkpoint_management_data_exception_group":                      12,
-		"checkpoint_management_data_group":                                13,
-		"checkpoint_management_data_group_with_exclusion":                 14,
-		"checkpoint_management_data_host":                                 15,
-		"checkpoint_management_data_https_layer":                          16,
-		"checkpoint_management_data_https_rule":                           17,
-		"checkpoint_management_data_https_section":                        18,
-		"checkpoint_management_data_multicast_address_range":              19,
-		"checkpoint_management_data_network":                              20,
-		"checkpoint_management_data_opsec_application":                    21,
-		"checkpoint_management_data_package":                              22,
-		"checkpoint_management_data_security_zone":                        23,
-		"checkpoint_management_data_service_dce_rpc":                      24,
-		"checkpoint_management_data_service_group":                        25,
-		"checkpoint_management_data_service_icmp":                         26,
-		"checkpoint_management_data_service_icmp6":                        27,
-		"checkpoint_management_data_service_other":                        28,
-		"checkpoint_management_data_service_rpc":                          29,
-		"checkpoint_management_data_service_sctp":                         30,
-		"checkpoint_management_data_service_tcp":                          31,
-		"checkpoint_management_data_service_udp":                          32,
-		"checkpoint_management_data_threat_indicator":                     33,
-		"checkpoint_management_data_time_group":                           34,
-		"checkpoint_management_data_vpn_community_meshed":                 35,
-		"checkpoint_management_data_vpn_community_star":                   36,
-		"checkpoint_management_data_wildcard":                             37,
-		"checkpoint_management_gsn_handover_group":                        38,
-		"checkpoint_management_identity_tag":                              39,
-		"checkpoint_management_mds":                                       40,
-		"checkpoint_management_nat_rule":                                  41,
-		"checkpoint_management_nat_section":                               42,
-		"checkpoint_management_service_citrix_tcp":                        43,
-		"checkpoint_management_service_compound_tcp":                      44,
-		"checkpoint_management_show_objects":                              45,
-		"checkpoint_management_show_updatable_objects_repository_content": 46,
-		"checkpoint_management_simple_cluster":                            47,
-		"checkpoint_management_simple_gateway":                            48,
-		"checkpoint_management_threat_exception":                          49,
-		"checkpoint_management_threat_profile":                            50,
-		"checkpoint_management_threat_rule":                               51,
-		"checkpoint_management_user":                                      52,
-		"checkpoint_management_user_group":                                53,
-		"checkpoint_management_user_template":                             54,
-		"checkpoint_management_vpn_community_remote_access":               55,
+		"checkpoint_management_access_rulebase":                           1,
+		"checkpoint_management_aci_data_center_server":                    2,
+		"checkpoint_management_aws_data_center_server":                    3,
+		"checkpoint_management_azure_data_center_server":                  4,
+		"checkpoint_management_checkpoint_host":                           5,
+		"checkpoint_management_data_access_layer":                         6,
+		"checkpoint_management_data_access_role":                          7,
+		"checkpoint_management_data_access_rule":                          8,
+		"checkpoint_management_data_access_section":                       9,
+		"checkpoint_management_data_address_range":                        10,
+		"checkpoint_management_data_application_site":                     11,
+		"checkpoint_management_data_application_site_category":            12,
+		"checkpoint_management_data_application_site_group":               13,
+		"checkpoint_management_data_center_content":                       14,
+		"checkpoint_management_data_center_query":                         15,
+		"checkpoint_management_data_dns_domain":                           16,
+		"checkpoint_management_data_dynamic_object":                       17,
+		"checkpoint_management_data_exception_group":                      18,
+		"checkpoint_management_data_group":                                19,
+		"checkpoint_management_data_group_with_exclusion":                 20,
+		"checkpoint_management_data_host":                                 21,
+		"checkpoint_management_data_https_layer":                          22,
+		"checkpoint_management_data_https_rule":                           23,
+		"checkpoint_management_data_https_section":                        24,
+		"checkpoint_management_data_multicast_address_range":              25,
+		"checkpoint_management_data_network":                              26,
+		"checkpoint_management_data_opsec_application":                    27,
+		"checkpoint_management_data_package":                              28,
+		"checkpoint_management_data_security_zone":                        29,
+		"checkpoint_management_data_service_dce_rpc":                      30,
+		"checkpoint_management_data_service_group":                        31,
+		"checkpoint_management_data_service_icmp":                         32,
+		"checkpoint_management_data_service_icmp6":                        33,
+		"checkpoint_management_data_service_other":                        34,
+		"checkpoint_management_data_service_rpc":                          35,
+		"checkpoint_management_data_service_sctp":                         36,
+		"checkpoint_management_data_service_tcp":                          37,
+		"checkpoint_management_data_service_udp":                          38,
+		"checkpoint_management_data_threat_indicator":                     39,
+		"checkpoint_management_data_time_group":                           40,
+		"checkpoint_management_data_vpn_community_meshed":                 41,
+		"checkpoint_management_data_vpn_community_star":                   42,
+		"checkpoint_management_data_wildcard":                             43,
+		"checkpoint_management_gcp_data_center_server":                    44,
+		"checkpoint_management_generic_data_center_server":                45,
+		"checkpoint_management_gsn_handover_group":                        46,
+		"checkpoint_management_https_rulebase":                            47,
+		"checkpoint_management_identity_tag":                              48,
+		"checkpoint_management_ise_data_center_server":                    49,
+		"checkpoint_management_kubernetes_data_center_server":             50,
+		"checkpoint_management_mds":                                       51,
+		"checkpoint_management_nat_rule":                                  52,
+		"checkpoint_management_nat_rulebase":                              53,
+		"checkpoint_management_nat_section":                               54,
+		"checkpoint_management_nuage_data_center_server":                  55,
+		"checkpoint_management_openstack_data_center_server":              56,
+		"checkpoint_management_service_citrix_tcp":                        57,
+		"checkpoint_management_service_compound_tcp":                      58,
+		"checkpoint_management_show_objects":                              59,
+		"checkpoint_management_show_updatable_objects_repository_content": 60,
+		"checkpoint_management_simple_cluster":                            61,
+		"checkpoint_management_simple_gateway":                            62,
+		"checkpoint_management_threat_exception":                          63,
+		"checkpoint_management_threat_profile":                            64,
+		"checkpoint_management_threat_rule":                               65,
+		"checkpoint_management_threat_rulebase":                           66,
+		"checkpoint_management_user":                                      67,
+		"checkpoint_management_user_group":                                68,
+		"checkpoint_management_user_template":                             69,
+		"checkpoint_management_vmware_data_center_server":                 70,
+		"checkpoint_management_vpn_community_remote_access":               71,
 	}
 )
 

@@ -24,7 +24,7 @@ Use this data source to get the Group ID of the ` + "`" + `Everyone` + "`" + ` g
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
-					Description: `Set to the Group ID of the ` + "`" + `Everyone` + "`" + ` group, suitable for referencing in other resources that support group memberships. s`,
+					Description: `Set to the Group ID of the ` + "`" + `Everyone` + "`" + ` group, suitable for referencing in other resources that support group memberships.`,
 				},
 			},
 		},

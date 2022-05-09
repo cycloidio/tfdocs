@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "infrastructure_reference ",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a reference to a infrastructure.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "volume_template ",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a mechanism to search for template ids.`,
@@ -23,7 +33,8 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"volume_template ": 0,
+		"infrastructure_reference ": 0,
+		"volume_template ":          1,
 	}
 )
 

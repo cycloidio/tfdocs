@@ -148,6 +148,8 @@ This resource allows you to create and manage teams.
 
 Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
 
+Note: You must first enable Teams on your organization.
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -195,6 +197,48 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "buildkite_team_member",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+This resource allows manage team membership for existing organization users.
+
+The user must already be part of the organization to which you are managing team membership. This will not invite a new user to the organization.
+
+Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
+
+Note: You must first enable Teams on your organization.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) Either MEMBER or MAINTAINER.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) The GraphQL ID of the team to add to/remove from.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required) The GraphQL ID of the user to add/remove. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID for the team membership. ## Import Team members can be imported using the GraphQL ID of the membership. Note this is different to the ID of the user. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_team_member.a_smith VGVhbU1lbWJlci0tLTVlZDEyMmY2LTM2NjQtNDI1MS04YzMwLTc4NjRiMDdiZDQ4Zg== ` + "`" + `` + "`" + `` + "`" + ` To find the ID of a team member you are trying to import you can use the GraphQL snippet below. A link to this snippet can also be found at https://buildkite.com/user/graphql/console/c6a2cc65-dc59-49df-95c6-7167b68dbd5d. You will need fo fill in the organization slug and search terms for teams and members. Both search terms work on the name of the associated object. ` + "`" + `` + "`" + `` + "`" + `graphql query { organization(slug: "") { teams(first: 2, search: "") { edges { node { members(first: 2, search: "") { edges { node { id } } } } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID for the team membership. ## Import Team members can be imported using the GraphQL ID of the membership. Note this is different to the ID of the user. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import buildkite_team_member.a_smith VGVhbU1lbWJlci0tLTVlZDEyMmY2LTM2NjQtNDI1MS04YzMwLTc4NjRiMDdiZDQ4Zg== ` + "`" + `` + "`" + `` + "`" + ` To find the ID of a team member you are trying to import you can use the GraphQL snippet below. A link to this snippet can also be found at https://buildkite.com/user/graphql/console/c6a2cc65-dc59-49df-95c6-7167b68dbd5d. You will need fo fill in the organization slug and search terms for teams and members. Both search terms work on the name of the associated object. ` + "`" + `` + "`" + `` + "`" + `graphql query { organization(slug: "") { teams(first: 2, search: "") { edges { node { members(first: 2, search: "") { edges { node { id } } } } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -203,6 +247,7 @@ Buildkite Documentation: https://buildkite.com/docs/pipelines/permissions
 		"buildkite_pipeline":          1,
 		"buildkite_pipeline_schedule": 2,
 		"buildkite_team":              3,
+		"buildkite_team_member":       4,
 	}
 )
 

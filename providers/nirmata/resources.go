@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "nirmata_aws_role_credentials",
+			Type:             "nirmata_aws_cloud_credentials",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -26,20 +26,43 @@ var (
 					Description: `(Required) use as the default credentials.`,
 				},
 				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Required) select type for credentials ( access_key or assume_role).`,
+				},
+				resource.Attribute{
 					Name:        "aws_access_key_id",
-					Description: `(Required) The AWS access key ID.`,
+					Description: `(Optional) The AWS access key ID.Required if access_type is access_key`,
 				},
 				resource.Attribute{
 					Name:        "aws_secret_key",
-					Description: `(Required) The AWS secret access key.`,
+					Description: `(Optional) The AWS secret access key. Required if access_type is access_key`,
 				},
 				resource.Attribute{
 					Name:        "aws_role_arn",
-					Description: `(Optional) The Amazon Resource Name (ARN) of the role to assume.`,
+					Description: `(Optional) The Amazon Resource Name (ARN) of the role to assume. Required if access_type is assume_role`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_catalog",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the catalog.`,
 				},
 				resource.Attribute{
-					Name:        "aws_external_id",
-					Description: `(Optional) A unique identifier that might be required when you assume a role in another account.`,
+					Name:        "description",
+					Description: `(Optional) description of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on the catalog.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -55,6 +78,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) a unique name for the application in catalog.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) namespace for the git application.`,
 				},
 				resource.Attribute{
 					Name:        "git_credentials",
@@ -75,6 +102,62 @@ var (
 				resource.Attribute{
 					Name:        "git_include_list",
 					Description: `(Optional) the file extensions to track.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_kustomization",
+					Description: `(Optional) enable fixed kustomize to select kustomizations for your application.`,
+				},
+				resource.Attribute{
+					Name:        "target_based_kustomization",
+					Description: `(Optional) enable target based kustomize to select kustomizations for your application.`,
+				},
+				resource.Attribute{
+					Name:        "kustomization_file_path",
+					Description: `(Required if fixed_kustomization or target_based_kustomization is set) the kustomization file path. kustomization file path required if fixed_kustomization or target_based_kustomization selected.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name to identify your application.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Required) the name of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) the application name.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The channel from which the application should be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "environments",
+					Description: `(Required) the list of environments to deploy an application .`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) the version for the application.`,
+				},
+				resource.Attribute{
+					Name:        "rollout_name",
+					Description: `(Required) A unique name for rollout.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Required) the name of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) the application name.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The channel from which the application should be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) the version for the application.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -116,6 +199,95 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nirmata_catalog_promote_version",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rollout_name",
+					Description: `(Required) A unique name for rollout.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Required) the name of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) the application name.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The channel from which the application should be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) the version for the application.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_catalog_run_app",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name to identify your application.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Required) the name of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) the application name.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The channel from which the application should be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "environments",
+					Description: `(Required) the list of environments to deploy an application .`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) the version for the application.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_catalog_yaml_app",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the application in catalog.`,
+				},
+				resource.Attribute{
+					Name:        "catalog",
+					Description: `(Required) the name of catalog.`,
+				},
+				resource.Attribute{
+					Name:        "yamls",
+					Description: `(Required) path for yaml file.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nirmata_cluster",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -136,7 +308,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) labels to set on cluster. ## Nested Blocks ### nodepool`,
+					Description: `(Optional) labels to set on cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_action",
+					Description: `(Optional) if delete_action set to ` + "`" + `remove` + "`" + `, cluster only get removed from the Nirmata not from the original provider and delete_action set to ` + "`" + `delete` + "`" + ` cluster deleted from nirmata as well as original provider.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timeout_minutes",
+					Description: `(Optional) set maximum time to create cluster. ## Nested Blocks ### nodepool`,
 				},
 				resource.Attribute{
 					Name:        "node_count",
@@ -175,11 +355,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catalog",
-					Description: `(Required) the catalog.`,
+					Description: `(Required) the catalog name.`,
 				},
 				resource.Attribute{
 					Name:        "application",
-					Description: `(Required) the application.`,
+					Description: `(Required) the application name.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -191,11 +371,92 @@ var (
 				},
 				resource.Attribute{
 					Name:        "channel",
-					Description: `(Required) the release channel`,
+					Description: `(Required) The channel from which the application should be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional) labels to set on cluster add-on.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_cluster_aks_registered",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Required) the cluster type to apply.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_action",
+					Description: `(Optional) whether to delete or remove the cluster on destroy. Defaults to ` + "`" + `remove` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_cluster_eks_registered",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Required) the cluster type to apply.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_action",
+					Description: `(Optional) whether to delete or remove the cluster on destroy. Defaults to ` + "`" + `remove` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nirmata_cluster_gke_registered",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) a unique name for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Required) the cluster type to apply.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) labels to set on cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_action",
+					Description: `(Optional) whether to delete or remove the cluster on destroy. Defaults to ` + "`" + `remove` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -285,7 +546,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nirmata_cluster_registered",
+			Type:             "nirmata_cluster_kind_registered",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -300,24 +561,28 @@ var (
 					Description: `(Required) the cluster type to apply.`,
 				},
 				resource.Attribute{
-					Name:        "controller_yamls",
-					Description: `(Computed) the controller YAML`,
-				},
-				resource.Attribute{
-					Name:        "controller_yamls_folder",
-					Description: `(Computed) a local temporary folder with the controller YAML files`,
-				},
-				resource.Attribute{
-					Name:        "controller_yamls_count",
-					Description: `(Computed) the controller YAML file count`,
-				},
-				resource.Attribute{
 					Name:        "labels",
 					Description: `(Optional) labels to set on cluster.`,
 				},
 				resource.Attribute{
 					Name:        "delete_action",
 					Description: `(Optional) whether to delete or remove the cluster on destroy. Defaults to ` + "`" + `remove` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `clusters.cluster.server.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `users.user.client-certificate.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `users.user.client-key.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `clusters.cluster.certificate-authority-data.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -472,7 +737,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "channel",
-					Description: `(Required) the release channel`,
+					Description: `(Required) The channel from which the application should be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "sequence_number",
@@ -695,7 +960,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "channel",
-					Description: `(Required) the release channel`,
+					Description: `(Required) The channel from which the application should be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "sequence_number",
@@ -786,7 +1051,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "channel",
-					Description: `(Required) the release channel`,
+					Description: `(Required) The channel from which the application should be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "sequence_number",
@@ -863,6 +1128,10 @@ var (
 					Name:        "namespace",
 					Description: `(Optional) the cluster namespace bound to this environment. Defaults to the environment name.`,
 				},
+				resource.Attribute{
+					Name:        "environment_update_action",
+					Description: `(Optional) By default value set to notify.Set to update if channges want to apply automatically,`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -897,18 +1166,25 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"nirmata_aws_role_credentials":    0,
-		"nirmata_catalog_git_app":         1,
-		"nirmata_catalog_helm_app":        2,
-		"nirmata_cluster":                 3,
-		"nirmata_cluster_addon":           4,
-		"nirmata_cluster_imported":        5,
-		"nirmata_cluster_registered":      6,
-		"nirmata_cluster_type_eks":        7,
-		"nirmata_cluster_type_gke":        8,
-		"nirmata_cluster_type_registered": 9,
-		"nirmata_environment":             10,
-		"nirmata_environment_type":        11,
+		"nirmata_aws_cloud_credentials":   0,
+		"nirmata_catalog":                 1,
+		"nirmata_catalog_git_app":         2,
+		"nirmata_catalog_helm_app":        3,
+		"nirmata_catalog_promote_version": 4,
+		"nirmata_catalog_run_app":         5,
+		"nirmata_catalog_yaml_app":        6,
+		"nirmata_cluster":                 7,
+		"nirmata_cluster_addon":           8,
+		"nirmata_cluster_aks_registered":  9,
+		"nirmata_cluster_eks_registered":  10,
+		"nirmata_cluster_gke_registered":  11,
+		"nirmata_cluster_imported":        12,
+		"nirmata_cluster_kind_registered": 13,
+		"nirmata_cluster_type_eks":        14,
+		"nirmata_cluster_type_gke":        15,
+		"nirmata_cluster_type_registered": 16,
+		"nirmata_environment":             17,
+		"nirmata_environment_type":        18,
 	}
 )
 

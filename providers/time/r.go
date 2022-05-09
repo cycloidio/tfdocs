@@ -21,9 +21,7 @@ Manages an offset time resource, which keeps an UTC timestamp stored in the Terr
 -> Further manipulation of incoming or outgoing values can be accomplished with the [` + "`" + `formatdate()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/formatdate.html) and the [` + "`" + `timeadd()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/timeadd.html).
 
 `,
-			Keywords: []string{
-				"offset",
-			},
+			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "base_rfc3339",
@@ -145,9 +143,7 @@ Manages a rotating time resource, which keeps a rotating UTC timestamp stored in
 -> Further manipulation of incoming or outgoing values can be accomplished with the [` + "`" + `formatdate()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/formatdate.html) and the [` + "`" + `timeadd()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/timeadd.html).
 
 `,
-			Keywords: []string{
-				"rotating",
-			},
+			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rfc3339",
@@ -261,9 +257,7 @@ Manages a resource that delays creation and/or destruction, typically for furthe
 -> In many cases, this resource should be considered a workaround for issues that should be reported and handled in downstream Terraform Provider logic. Downstream resources can usually introduce or adjust retries in their code to handle time delay issues for all Terraform configurations or upstream resources can be improved to better wait for a resource to be fully ready and available.
 
 `,
-			Keywords: []string{
-				"sleep",
-			},
+			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_duration",
@@ -301,9 +295,7 @@ Manages a static time resource, which keeps a locally sourced UTC timestamp stor
 -> Further manipulation of incoming or outgoing values can be accomplished with the [` + "`" + `formatdate()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/formatdate.html) and the [` + "`" + `timeadd()` + "`" + ` function](https://www.terraform.io/docs/configuration/functions/timeadd.html).
 
 `,
-			Keywords: []string{
-				"static",
-			},
+			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "triggers",

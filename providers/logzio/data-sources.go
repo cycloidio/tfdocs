@@ -467,6 +467,189 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_archive_logs",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "archive_id",
+					Description: `(String) Archive ID in the Logz.io database. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(String) Specifies the storage provider. If ` + "`" + `S3` + "`" + `, the ` + "`" + `amazon_s3_storage_settings` + "`" + ` are relevant. If ` + "`" + `BLOB` + "`" + `, the ` + "`" + `azure_blob_storage_settings` + "`" + ` are relevant.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) If ` + "`" + `true` + "`" + `, archiving is currently enabled.`,
+				},
+				resource.Attribute{
+					Name:        "compressed",
+					Description: `(Boolean) If ` + "`" + `true` + "`" + `, logs are compressed before they are archived.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.credentials_type",
+					Description: `(String) Specifies which credentials will be used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.path",
+					Description: `(String) Specify a path to the`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials",
+					Description: `(Object) Applicable settings when the ` + "`" + `credentials_type` + "`" + ` is ` + "`" + `KEYS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_iam_credentials_arn",
+					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_external_id",
+					Description: `(String) The external id that gives Logz.io access to your S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials.access_key",
+					Description: `(String) AWS access key.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials.secret_key",
+					Description: `(String) AWS secret key.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.tenant_id",
+					Description: `(String) Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.client_id",
+					Description: `(String) Azure application (client) ID. The Client ID of the AD app.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.client_secret",
+					Description: `(String) Azure client secret.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.account_name",
+					Description: `(String) Azure Storage account name.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.container_name",
+					Description: `(String) Name of the container in the Storage account.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settingspath",
+					Description: `(String) Optional virtual sub-folder specifiying a path within the container.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(String) Specifies the storage provider. If ` + "`" + `S3` + "`" + `, the ` + "`" + `amazon_s3_storage_settings` + "`" + ` are relevant. If ` + "`" + `BLOB` + "`" + `, the ` + "`" + `azure_blob_storage_settings` + "`" + ` are relevant.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) If ` + "`" + `true` + "`" + `, archiving is currently enabled.`,
+				},
+				resource.Attribute{
+					Name:        "compressed",
+					Description: `(Boolean) If ` + "`" + `true` + "`" + `, logs are compressed before they are archived.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.credentials_type",
+					Description: `(String) Specifies which credentials will be used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.path",
+					Description: `(String) Specify a path to the`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials",
+					Description: `(Object) Applicable settings when the ` + "`" + `credentials_type` + "`" + ` is ` + "`" + `KEYS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_iam_credentials_arn",
+					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_external_id",
+					Description: `(String) The external id that gives Logz.io access to your S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials.access_key",
+					Description: `(String) AWS access key.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_secret_credentials.secret_key",
+					Description: `(String) AWS secret key.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.tenant_id",
+					Description: `(String) Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.client_id",
+					Description: `(String) Azure application (client) ID. The Client ID of the AD app.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.client_secret",
+					Description: `(String) Azure client secret.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.account_name",
+					Description: `(String) Azure Storage account name.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings.container_name",
+					Description: `(String) Name of the container in the Storage account.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settingspath",
+					Description: `(String) Optional virtual sub-folder specifiying a path within the container.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logzio_authentication_groups",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "authentication_group",
+					Description: `(Block List) Details for the authentication groups. #### Nested schema for ` + "`" + `authentication_group` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(String) Name of authentication group.`,
+				},
+				resource.Attribute{
+					Name:        "user_role",
+					Description: `(String) User role for that group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_drop_filter",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -511,7 +694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint_type",
-					Description: `Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pager_duty` + "`" + `, ` + "`" + `big_panda` + "`" + `, ` + "`" + `data_dog` + "`" + `, ` + "`" + `victorops` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
+					Description: `Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `bigpanda` + "`" + `, ` + "`" + `datadog` + "`" + `, ` + "`" + `victorops` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `servicenow` + "`" + `, ` + "`" + `microsoftteams` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -525,7 +708,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_type",
-					Description: `Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pager_duty` + "`" + `, ` + "`" + `big_panda` + "`" + `, ` + "`" + `data_dog` + "`" + `, ` + "`" + `victorops` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
+					Description: `Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `bigpanda` + "`" + `, ` + "`" + `datadog` + "`" + `, ` + "`" + `victorops` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `servicenow` + "`" + `, ` + "`" + `microsoftteams` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -582,6 +765,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_restore_logs",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "restore_operation_id",
+					Description: `(Integer) ID of the restore operation in Logz.io. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(String) Name of the restored account.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the earliest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the latest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Integer) ID of the restored account in Logz.io.`,
+				},
+				resource.Attribute{
+					Name:        "restored_volume_gb",
+					Description: `(Float) Volume of data restored so far. If the restore operation is still in progress, this will be continuously updated.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(String) Returns the current status of the restored account. See [documentation](https://docs.logz.io/api/#operation/getRestoreRequestByIdApi) for more info about the possible statuses and their meaning.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Integer) Timestamp when the restore process was created and entered the queue. Since only one account can be restored at a time, the process may not initiate immediately.`,
+				},
+				resource.Attribute{
+					Name:        "started_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process initiated.`,
+				},
+				resource.Attribute{
+					Name:        "finished_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process completed.`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying when the account is due to expire. Restored accounts expire automatically after a number of days, as specified in the account's terms.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(String) Name of the restored account.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the earliest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the latest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Integer) ID of the restored account in Logz.io.`,
+				},
+				resource.Attribute{
+					Name:        "restored_volume_gb",
+					Description: `(Float) Volume of data restored so far. If the restore operation is still in progress, this will be continuously updated.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(String) Returns the current status of the restored account. See [documentation](https://docs.logz.io/api/#operation/getRestoreRequestByIdApi) for more info about the possible statuses and their meaning.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Integer) Timestamp when the restore process was created and entered the queue. Since only one account can be restored at a time, the process may not initiate immediately.`,
+				},
+				resource.Attribute{
+					Name:        "started_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process initiated.`,
+				},
+				resource.Attribute{
+					Name:        "finished_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process completed.`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying when the account is due to expire. Restored accounts expire automatically after a number of days, as specified in the account's terms.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_subaccount",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -593,52 +872,52 @@ var (
 					Description: `ID of the subaccount. ## Attribute Reference`,
 				},
 				resource.Attribute{
-					Name:        "account_token",
-					Description: `Log shipping token for the subaccount. [Learn more](https://docs.logz.io/user-guide/tokens/log-shipping-tokens/)`,
-				},
-				resource.Attribute{
 					Name:        "email",
-					Description: `(Required) Email address of an existing admin user on the main account which will also become the admin of the subaccount being created.`,
+					Description: `(String) Email address of an existing admin user on the main account which will also become the admin of the subaccount being created.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
-					Description: `(Required) Name of the subaccount.`,
+					Description: `(String) Name of the subaccount.`,
 				},
 				resource.Attribute{
 					Name:        "max_daily_gb",
-					Description: `(Required) Maximum daily log volume that the subaccount can index, in GB.`,
+					Description: `(Float) Maximum daily log volume that the subaccount can index, in GB.`,
 				},
 				resource.Attribute{
 					Name:        "retention_days",
-					Description: `(Required) Number of days that log data is retained.`,
-				},
-				resource.Attribute{
-					Name:        "searchable",
-					Description: `(Optional) False by default. Determines if other accounts can search logs indexed by the subaccount.`,
-				},
-				resource.Attribute{
-					Name:        "accessible",
-					Description: `(Optional) False by default. Determines if users of main account can access the subaccount.`,
-				},
-				resource.Attribute{
-					Name:        "doc_size_setting",
-					Description: `(Optional) False by default. If enabled, Logz.io adds a ` + "`" + `LogSize` + "`" + ` field to record the size of the log line in bytes, for the purpose of managing account utilization. [Learn more about managing account usage](https://docs.logz.io/user-guide/accounts/manage-account-usage.html#enabling-account-utilization-metrics-and-log-size)`,
+					Description: `(Integer) Number of days that log data is retained.`,
 				},
 				resource.Attribute{
 					Name:        "sharing_objects_accounts",
-					Description: `(Required) IDs of accounts that can access the account's Kibana objects.`,
+					Description: `(List) IDs of accounts that can access the account's Kibana objects. Can be an empty array.`,
 				},
 				resource.Attribute{
-					Name:        "utilization_settings",
-					Description: `(Optional) If enabled, account utilization metrics and expected utilization at the current indexing rate are measured at a pre-defined sampling rate. Useful for managing account utilization and avoiding running out of capacity. [Learn more about managing account capacity](https://docs.logz.io/user-guide/accounts/manage-account-usage.html)`,
+					Name:        "searchable",
+					Description: `(Boolean) False by default. Determines if other accounts can search logs indexed by the subaccount.`,
 				},
 				resource.Attribute{
-					Name:        "frequencyMinutes",
-					Description: `Determines the sampling rate in minutes.`,
+					Name:        "accessible",
+					Description: `(Boolean) False by default. Determines if users of main account can access the subaccount.`,
 				},
 				resource.Attribute{
-					Name:        "utilizationEnabled",
-					Description: `Enables the feature. ## Endpoints used`,
+					Name:        "doc_size_setting",
+					Description: `(Boolean) False by default. If enabled, Logz.io adds a ` + "`" + `LogSize` + "`" + ` field to record the size of the log line in bytes, for the purpose of managing account utilization. [Learn more about managing account usage](https://docs.logz.io/user-guide/accounts/manage-account-usage.html#enabling-account-utilization-metrics-and-log-size)`,
+				},
+				resource.Attribute{
+					Name:        "utilization_enabled",
+					Description: `(Boolean) If enabled, account utilization metrics and expected utilization at the current indexing rate are measured at a pre-defined sampling rate. Useful for managing account utilization and avoiding running out of capacity. [Learn more about managing account capacity](https://docs.logz.io/user-guide/accounts/manage-account-usage.html).`,
+				},
+				resource.Attribute{
+					Name:        "frequency_minutes",
+					Description: `(Int) Determines the sampling rate in minutes of the utilization.`,
+				},
+				resource.Attribute{
+					Name:        "flexible",
+					Description: `(Boolean) Defaults to false. Whether the sub account that created is flexible or not. Can be set to flexible only if the main account is flexible.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_daily_gb",
+					Description: `(Float) The maximum volume of data that an account can index per calendar day. Depends on ` + "`" + `flexible` + "`" + `. For further info see [the docs](https://docs.logz.io/api/#operation/createTimeBasedAccount). ## Endpoints used`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -682,13 +961,16 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"logzio_alert":              0,
-		"logzio_alert_v2":           1,
-		"logzio_drop_filter":        2,
-		"logzio_endpoint":           3,
-		"logzio_log_shipping_token": 4,
-		"logzio_subaccount":         5,
-		"logzio_user":               6,
+		"logzio_alert":                 0,
+		"logzio_alert_v2":              1,
+		"logzio_archive_logs":          2,
+		"logzio_authentication_groups": 3,
+		"logzio_drop_filter":           4,
+		"logzio_endpoint":              5,
+		"logzio_log_shipping_token":    6,
+		"logzio_restore_logs":          7,
+		"logzio_subaccount":            8,
+		"logzio_user":                  9,
 	}
 )
 

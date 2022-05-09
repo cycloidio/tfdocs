@@ -11,19 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "drive_array",
-			Category:         "Resources",
-			ShortDescription: `Controls a Metalcloud DriveArray.`,
-			Description:      ``,
-			Keywords: []string{
-				"drive",
-				"array",
-			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "firewall_rule",
 			Category:         "Resources",
 			ShortDescription: `Represents a firewall rule that is applied on an instance array.`,
@@ -37,33 +24,28 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "instance_array",
+			Type:             "instance_array_custom_variables",
 			Category:         "Resources",
-			ShortDescription: `Controls a Metalcloud InstanceArray (collection of servers)`,
+			ShortDescription: `Represents a set of custom variables that is applied on an instance array.`,
 			Description:      ``,
 			Keywords: []string{
 				"instance",
 				"array",
+				"custom",
+				"variables",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "instance_array_label",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "instance_array_instance_count",
-					Description: `(Required)`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "interface",
+			Type:             "instance_array_interface",
 			Category:         "Resources",
 			ShortDescription: `Controls where an InstanceArray's Instances network interface will be connected.`,
 			Description:      ``,
 			Keywords: []string{
+				"instance",
+				"array",
 				"interface",
 			},
 			Arguments:  []resource.Attribute{},
@@ -71,25 +53,14 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "network",
+			Type:             "instance_custom_variables",
 			Category:         "Resources",
-			ShortDescription: `Controls a Metalcloud network.`,
+			ShortDescription: `Represents a set of custom variables that is applied on an specific instance of an instance array.`,
 			Description:      ``,
 			Keywords: []string{
-				"network",
-			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "shared_drive",
-			Category:         "Resources",
-			ShortDescription: `Controls a Metalcloud DriveArray.`,
-			Description:      ``,
-			Keywords: []string{
-				"shared",
-				"drive",
+				"instance",
+				"custom",
+				"variables",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -98,12 +69,10 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"drive_array":    0,
-		"firewall_rule":  1,
-		"instance_array": 2,
-		"interface":      3,
-		"network":        4,
-		"shared_drive":   5,
+		"firewall_rule":                   0,
+		"instance_array_custom_variables": 1,
+		"instance_array_interface":        2,
+		"instance_custom_variables":       3,
 	}
 )
 

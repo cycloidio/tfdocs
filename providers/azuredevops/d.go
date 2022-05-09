@@ -153,6 +153,20 @@ Use this data source to access information about an existing Group within Azure 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuredevops_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to access information about existing Groups within Azure DevOps`,
+			Description: `
+
+Use this data source to access information about existing Groups within Azure DevOps
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuredevops_iteration",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to access information about an existing Iteration (Sprint) within Azure DevOps.`,
@@ -221,10 +235,11 @@ Use this data source to access information about an existing users within Azure 
 		"azuredevops_git_repositories": 7,
 		"azuredevops_git_repository":   8,
 		"azuredevops_group":            9,
-		"azuredevops_iteration":        10,
-		"azuredevops_project":          11,
-		"azuredevops_projects":         12,
-		"azuredevops_users":            13,
+		"azuredevops_groups":           10,
+		"azuredevops_iteration":        11,
+		"azuredevops_project":          12,
+		"azuredevops_projects":         13,
+		"azuredevops_users":            14,
 	}
 )
 

@@ -1,5 +1,7 @@
 {
  "openstack_blockstorage_availability_zones_v3": "",
+ "openstack_blockstorage_qos_association_v3": "",
+ "openstack_blockstorage_qos_v3": "",
  "openstack_blockstorage_quotaset_v2": "",
  "openstack_blockstorage_quotaset_v3": "",
  "openstack_blockstorage_snapshot_v2": "",

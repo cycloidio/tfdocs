@@ -41,6 +41,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alkira_group_connector",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get an existing connector group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alkira_group_user",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get an existing user group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alkira_policy_prefix_list",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get an existing policy prefix list.`,
@@ -66,8 +86,10 @@ var (
 		"alkira_billing_tag":        0,
 		"alkira_credential":         1,
 		"alkira_group":              2,
-		"alkira_policy_prefix_list": 3,
-		"alkira_segment":            4,
+		"alkira_group_connector":    3,
+		"alkira_group_user":         4,
+		"alkira_policy_prefix_list": 5,
+		"alkira_segment":            6,
 	}
 )
 

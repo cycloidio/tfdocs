@@ -19,19 +19,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object aaa domain. ## Attribute Reference`,
+					Description: `(Required) Name of object aaa domain. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the aaa domain.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object aaa domain.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object aaa domain.`,
+					Description: `(Optional) Annotation for object aaa domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aaa domain.`,
+					Description: `(Optional) Name alias for object aaa domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -40,12 +44,96 @@ var (
 					Description: `Attribute id set to the Dn of the aaa domain.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object aaa domain.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object aaa domain.`,
+					Description: `(Optional) Annotation for object aaa domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aaa domain.`,
+					Description: `(Optional) Name alias for object aaa domain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_aaa_domain_relationship",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI AAA Domain Relationship for Parent Object`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Required) Distinguished name of parent object.`,
+				},
+				resource.Attribute{
+					Name:        "aaa_domain_dn",
+					Description: `(Required) Distinguished name of the AAA Security Domain for Parent Object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the AAA Security Domain for Parent Object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object AAA Security Domain for Parent Object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object AAA Security Domain for Parent Object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the AAA Security Domain for Parent Object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object AAA Security Domain for Parent Object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object AAA Security Domain for Parent Object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_aaep_to_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Attachable Access Entity Profile (AAEP) to domain (VMM, Physical or External domain) relationships.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "attachable_access_entity_profile_dn",
+					Description: `(Required) Distinguished name of the parent Attachable Access Entity Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "domain_dn",
+					Description: `(Required) The Distinguished name of the domain object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Attachable AccessEntity Profile to Domain Relationship object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Attachable AccessEntity Profile to Domain Relationship object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Attachable AccessEntity Profile to Domain Relationship object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Attachable AccessEntity Profile to Domain Relationship object.`,
 				},
 			},
 		},
@@ -56,42 +144,8 @@ var (
 			ShortDescription: `Data source for ACI Access Generic`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "attachable_access_entity_profile_dn",
-					Description: `(Required) Distinguished name of parent AttachableAccessEntityProfile object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object access_generic. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Generic.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_generic.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_generic.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Generic.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_generic.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_generic.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -100,46 +154,8 @@ var (
 			ShortDescription: `Data source for ACI Access Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "access_port_selector_dn",
-					Description: `(Required) Distinguished name of parent AccessPortSelector object. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Access Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_access_group.`,
-				},
-				resource.Attribute{
-					Name:        "fex_id",
-					Description: `(Optional) interface policy group fex id`,
-				},
-				resource.Attribute{
-					Name:        "tdn",
-					Description: `(Optional) interface policy group's target rn`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Access Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_access_group.`,
-				},
-				resource.Attribute{
-					Name:        "fex_id",
-					Description: `(Optional) interface policy group fex id`,
-				},
-				resource.Attribute{
-					Name:        "tdn",
-					Description: `(Optional) interface policy group's target rn`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -148,74 +164,8 @@ var (
 			ShortDescription: `Data source for ACI Access Port Block`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "access_port_selector_dn",
-					Description: `(Required) Distinguished name of parent AccessPortSelector object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object access_port_block. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Port Block.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_port_block.`,
-				},
-				resource.Attribute{
-					Name:        "from_card",
-					Description: `(Optional) The beginning (from-range) of the card range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "from_port",
-					Description: `(Optional) The beginning (from-range) of the port range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_port_block.`,
-				},
-				resource.Attribute{
-					Name:        "to_card",
-					Description: `(Optional) The end (to-range) of the card range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "to_port",
-					Description: `(Optional) The end (to-range) of the port range block for the leaf access port block.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Port Block.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_port_block.`,
-				},
-				resource.Attribute{
-					Name:        "from_card",
-					Description: `(Optional) The beginning (from-range) of the card range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "from_port",
-					Description: `(Optional) The beginning (from-range) of the port range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_port_block.`,
-				},
-				resource.Attribute{
-					Name:        "to_card",
-					Description: `(Optional) The end (to-range) of the card range block for the leaf access port block.`,
-				},
-				resource.Attribute{
-					Name:        "to_port",
-					Description: `(Optional) The end (to-range) of the port range block for the leaf access port block.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -224,54 +174,8 @@ var (
 			ShortDescription: `Data source for ACI Access Port Selector`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "leaf_interface_profile_dn",
-					Description: `(Required) Distinguished name of parent LeafInterfaceProfile object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object access_port_selector.`,
-				},
-				resource.Attribute{
-					Name:        "access_port_selector_type",
-					Description: `(Required) access_port_selector_type of Object access_port_selector. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Port Selector.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_port_selector.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_port_selector.`,
-				},
-				resource.Attribute{
-					Name:        "access_port_selector_type",
-					Description: `(Optional) host port selector type.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Access Port Selector.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object access_port_selector.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_port_selector.`,
-				},
-				resource.Attribute{
-					Name:        "access_port_selector_type",
-					Description: `(Optional) host port selector type.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -283,11 +187,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_port_selector_dn",
-					Description: `(Required) Distinguished name of parent AccessPortSelector object.`,
+					Description: `(Required) Distinguished name of parent Access Port Selector or Spine Access Port Selector object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object access_sub_port_block. ## Attribute Reference`,
+					Description: `(Required) Name of Object access sub port block. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -295,35 +199,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object access_sub_port_block.`,
+					Description: `(Optional) Annotation for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "from_card",
-					Description: `(Optional) from card`,
+					Description: `(Optional) From card`,
 				},
 				resource.Attribute{
 					Name:        "from_port",
-					Description: `(Optional) port block from port`,
+					Description: `(Optional) Port block from port`,
 				},
 				resource.Attribute{
 					Name:        "from_sub_port",
-					Description: `(Optional) from_sub_port for object access_sub_port_block.`,
+					Description: `(Optional) From sub port for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_sub_port_block.`,
+					Description: `(Optional) Name alias for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "to_card",
-					Description: `(Optional) to card`,
+					Description: `(Optional) To card`,
 				},
 				resource.Attribute{
 					Name:        "to_port",
-					Description: `(Optional) to port`,
+					Description: `(Optional) To port`,
 				},
 				resource.Attribute{
 					Name:        "to_sub_port",
-					Description: `(Optional) to_sub_port for object access_sub_port_block.`,
+					Description: `(Optional) To sub port for object access sub port block.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -333,35 +237,143 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object access_sub_port_block.`,
+					Description: `(Optional) Annotation for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "from_card",
-					Description: `(Optional) from card`,
+					Description: `(Optional) From card`,
 				},
 				resource.Attribute{
 					Name:        "from_port",
-					Description: `(Optional) port block from port`,
+					Description: `(Optional) Port block from port`,
 				},
 				resource.Attribute{
 					Name:        "from_sub_port",
-					Description: `(Optional) from_sub_port for object access_sub_port_block.`,
+					Description: `(Optional) From sub port for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object access_sub_port_block.`,
+					Description: `(Optional) Name alias for object access sub port block.`,
 				},
 				resource.Attribute{
 					Name:        "to_card",
-					Description: `(Optional) to card`,
+					Description: `(Optional) To card`,
 				},
 				resource.Attribute{
 					Name:        "to_port",
-					Description: `(Optional) to port`,
+					Description: `(Optional) To port`,
 				},
 				resource.Attribute{
 					Name:        "to_sub_port",
-					Description: `(Optional) to_sub_port for object access_sub_port_block.`,
+					Description: `(Optional) To sub port for object access sub port block.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_access_switch_policy_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Access Switch Policy Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Access Switch Policy Group. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Access Switch Policy Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Access Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Access Switch Policy Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_action_rule_additional_communities",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Action Rule Profile Set Additional Communities`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action_rule_profile_dn",
+					Description: `(Required) Distinguished name of the parent action rule profile object.`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `(Required) The community value of the set action rule profile additional communities object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the set action rule profile additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "set_criteria",
+					Description: `(Optional) The criteria for setting the (extended) community attribute for a BGP route update.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the set action rule profile additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the additional communities object.`,
+				},
+				resource.Attribute{
+					Name:        "set_criteria",
+					Description: `(Optional) The criteria for setting the (extended) community attribute for a BGP route update.`,
 				},
 			},
 		},
@@ -369,43 +381,207 @@ var (
 			Name:             "",
 			Type:             "aci_action_rule_profile",
 			Category:         "Data Sources",
-			ShortDescription: `Data source for ACI Action Rule Profile`,
+			ShortDescription: `Data source for the ACI Action Rule Profile`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object action_rule_profile. ## Attribute Reference`,
+					Description: `(Required) Name of the Action Rule Profile object. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Action Rule Profile.`,
+					Description: `Attribute id set to the Dn of the Action Rule Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object action_rule_profile.`,
+					Description: `(Optional) Annotation of the Action Rule Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object action_rule_profile.`,
+					Description: `(Optional) Name Alias of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_route_tag",
+					Description: `(Optional) Set Route Tag of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_preference",
+					Description: `(Optional) Set Preference of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_weight",
+					Description: `(Optional) Set Weight of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_metric",
+					Description: `(Optional) Set Metric of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_metric_type",
+					Description: `(Optional) Set Metric Type of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_next_hop",
+					Description: `(Optional) Set Next Hop of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_communities",
+					Description: `(Optional) A block representing the attributes of Set Communities object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `(Optional) Criteria of the Set Communities object.`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `(Optional) Community of the Set Communities object.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_propagation",
+					Description: `(Optional) Next Hop Propagation of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "multipath",
+					Description: `(Optional) Multipath of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_as_path_prepend_last_as",
+					Description: `(Optional) Number of ASN prepended to AS Path of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_as_path_prepend_as",
+					Description: `(Optional) A block representing ASNs configured as Set As Path - Prepend AS of the Action Rule Profile object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `ASN prepended to Set AS Path.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Order in which the ASN is prepended to Set AS Path.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Action Rule Profile.`,
+					Description: `Attribute id set to the Dn of the Action Rule Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object action_rule_profile.`,
+					Description: `(Optional) Annotation of the Action Rule Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object action_rule_profile.`,
+					Description: `(Optional) Name Alias of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_route_tag",
+					Description: `(Optional) Set Route Tag of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_preference",
+					Description: `(Optional) Set Preference of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_weight",
+					Description: `(Optional) Set Weight of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_metric",
+					Description: `(Optional) Set Metric of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_metric_type",
+					Description: `(Optional) Set Metric Type of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_next_hop",
+					Description: `(Optional) Set Next Hop of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_communities",
+					Description: `(Optional) A block representing the attributes of Set Communities object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `(Optional) Criteria of the Set Communities object.`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `(Optional) Community of the Set Communities object.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_propagation",
+					Description: `(Optional) Next Hop Propagation of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "multipath",
+					Description: `(Optional) Multipath of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_as_path_prepend_last_as",
+					Description: `(Optional) Number of ASN prepended to AS Path of the Action Rule Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "set_as_path_prepend_as",
+					Description: `(Optional) A block representing ASNs configured as Set As Path - Prepend AS of the Action Rule Profile object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "asn",
+					Description: `ASN prepended to Set AS Path.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `Order in which the ASN is prepended to Set AS Path.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_annotation",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Annotation`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Required) Distinguished name of the object to which the Annotation is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key of the Annotation. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Annotation.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the Annotation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Annotation.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the Annotation.`,
 				},
 			},
 		},
@@ -416,54 +592,8 @@ var (
 			ShortDescription: `Data source for ACI Any`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vrf_dn",
-					Description: `(Required) Distinguished name of parent VRF object. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Any.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object any.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) Represents the provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object any.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPgs can be divided in a the context can be divided in two subgroups.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Any.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object any.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) Represents the provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object any.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPgs can be divided in a the context can be divided in two subgroups.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -479,7 +609,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object application_epg. ## Attribute Reference`,
+					Description: `(Required) Name of Object application epg. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -487,19 +617,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object application_epg.`,
+					Description: `(Optional) Annotation for object application epg.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object application_epg.`,
+					Description: `(Optional) Exception tag for object application epg. Range: "0" - "512" .`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
+					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings. Allowed values are "disabled" and "enabled". Default is "disabled".`,
 				},
 				resource.Attribute{
 					Name:        "fwd_ctrl",
-					Description: `(Optional) Forwarding control at EPG level.`,
+					Description: `(Optional) Forwarding control at EPG level. Allowed values are "none" and "proxy-arp". Default is "none".`,
 				},
 				resource.Attribute{
 					Name:        "has_mcast_source",
@@ -515,7 +649,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object application_epg.`,
+					Description: `(Optional) Name alias for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "pc_enf_pref",
@@ -527,11 +661,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) qos priority class id`,
+					Description: `(Optional) QoS priority class id.`,
 				},
 				resource.Attribute{
 					Name:        "shutdown",
-					Description: `(Optional) shutdown for object application_epg.`,
+					Description: `(Optional) Shutdown for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_sec_inherited",
@@ -545,19 +679,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object application_epg.`,
+					Description: `(Optional) Annotation for object application epg.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object application_epg.`,
+					Description: `(Optional) Exception tag for object application epg. Range: "0" - "512" .`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
+					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings. Allowed values are "disabled" and "enabled". Default is "disabled".`,
 				},
 				resource.Attribute{
 					Name:        "fwd_ctrl",
-					Description: `(Optional) Forwarding control at EPG level.`,
+					Description: `(Optional) Forwarding control at EPG level. Allowed values are "none" and "proxy-arp". Default is "none".`,
 				},
 				resource.Attribute{
 					Name:        "has_mcast_source",
@@ -573,7 +711,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object application_epg.`,
+					Description: `(Optional) Name alias for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "pc_enf_pref",
@@ -585,11 +723,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) qos priority class id`,
+					Description: `(Optional) QoS priority class id.`,
 				},
 				resource.Attribute{
 					Name:        "shutdown",
-					Description: `(Optional) shutdown for object application_epg.`,
+					Description: `(Optional) Shutdown for object application epg.`,
 				},
 				resource.Attribute{
 					Name:        "relation_fv_rs_sec_inherited",
@@ -604,50 +742,8 @@ var (
 			ShortDescription: `Data source for ACI Application Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object application_profile. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Application Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object application_profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object application_profile.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) priority class id`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Application Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object application_profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object application_profile.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) priority class id`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -659,33 +755,84 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object attachable_access_entity_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object attachable access entity profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Attachable Access Entity Profile.`,
+					Description: `Attribute id set to the Dn of the attachable access entity profile.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object attachable_access_entity_profile.`,
+					Description: `(Optional) Annotation for object attachable access entity profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object attachable_access_entity_profile.`,
+					Description: `(Optional) Name alias for object attachable access entity profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object attachable access entity profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Attachable Access Entity Profile.`,
+					Description: `Attribute id set to the Dn of the attachable access entity profile.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object attachable_access_entity_profile.`,
+					Description: `(Optional) Annotation for object attachable access entity profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object attachable_access_entity_profile.`,
+					Description: `(Optional) Name alias for object attachable access entity profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object attachable access entity profile.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_authentication_properties",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI AAA Authentication Properties and Default Radius Authentication Settings`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the AAA Authentication.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of objects AAA Authentication and Default Radius Authentication Settings.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of objects AAA Authentication and Default Radius Authentication Settings.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of objects AAA Authentication and Default Radius Authentication Settings.`,
+				},
+				resource.Attribute{
+					Name:        "def_role_policy",
+					Description: `(Optional) The default role policy of object AAA Authentication.`,
+				},
+				resource.Attribute{
+					Name:        "ping_check",
+					Description: `(Optional) Heart bit ping checks for RADIUS/TACACS/LDAP/SAML/RSA server reachability.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts that the authentication method is tried.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The amount of time between authentication attempts.`,
 				},
 			},
 		},
@@ -703,7 +850,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object autonomous_system_profile.`,
+					Description: `(Optional) Annotation for object Autonomous System Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Autonomous System Profile.`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -711,7 +862,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object autonomous_system_profile.`,
+					Description: `(Optional) Name alias for object Autonomous System Profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -721,7 +872,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object autonomous_system_profile.`,
+					Description: `(Optional) Annotation for object Autonomous System Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Autonomous System Profile.`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -729,7 +884,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object autonomous_system_profile.`,
+					Description: `(Optional) Name alias for object Autonomous System Profile.`,
 				},
 			},
 		},
@@ -742,6 +897,114 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_bfd_interface_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI BFD Interface Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object BFD Interface Policy. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) Administrative state of the BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "ctrl",
+					Description: `(Optional) Control state of object BFD Interface Policy`,
+				},
+				resource.Attribute{
+					Name:        "detect_mult",
+					Description: `(Optional) Detection multiplier for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "echo_admin_st",
+					Description: `(Optional) Echo mode indicator for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "echo_rx_intvl",
+					Description: `(Optional) Echo rx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "min_rx_intvl",
+					Description: `(Optional) Required minimum rx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "min_tx_intvl",
+					Description: `(Optional) Desired minimum tx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object BFD Interface Policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) Administrative state of the BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "ctrl",
+					Description: `(Optional) Control state of object BFD Interface Policy`,
+				},
+				resource.Attribute{
+					Name:        "detect_mult",
+					Description: `(Optional) Detection multiplier for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "echo_admin_st",
+					Description: `(Optional) Echo mode indicator for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "echo_rx_intvl",
+					Description: `(Optional) Echo rx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "min_rx_intvl",
+					Description: `(Optional) Required minimum rx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "min_tx_intvl",
+					Description: `(Optional) Desired minimum tx interval for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias for object BFD Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object BFD Interface Policy.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -783,7 +1046,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent tenant object.`,
+					Description: `(Required) Distinguished name of parent Tenant object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -894,202 +1157,8 @@ var (
 			ShortDescription: `Data source for ACI Bridge Domain`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object bridge_domain. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "optimize_wan_bandwidth",
-					Description: `(Optional) Flag to enable OptimizeWanBandwidth between sites.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "arp_flood",
-					Description: `(Optional) A property to specify whether ARP flooding is enabled. If flooding is disabled, unicast routing will be performed on the target IP address.`,
-				},
-				resource.Attribute{
-					Name:        "ep_clear",
-					Description: `(Optional) Represents the parameter used by the node (i.e. Leaf) to clear all EPs in all leaves for this BD.`,
-				},
-				resource.Attribute{
-					Name:        "ep_move_detect_mode",
-					Description: `(Optional) The End Point move detection option uses the Gratuitous Address Resolution Protocol (GARP). A gratuitous ARP is an ARP broadcast-type of packet that is used to verify that no other device on the network has the same IP address as the sending device.`,
-				},
-				resource.Attribute{
-					Name:        "host_based_routing",
-					Description: `(Optional) Enables advertising host routes out of l3outs of this BD.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_bum_traffic_allow",
-					Description: `(Optional) Control whether BUM traffic is allowed between sites.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_l2_stretch",
-					Description: `(Optional) Flag to enable l2Stretch between sites.`,
-				},
-				resource.Attribute{
-					Name:        "ip_learning",
-					Description: `(Optional) Endpoint Dataplane Learning.`,
-				},
-				resource.Attribute{
-					Name:        "ipv6_mcast_allow",
-					Description: `(Optional) Flag to indicate multicast IpV6 is allowed or not.`,
-				},
-				resource.Attribute{
-					Name:        "limit_ip_learn_to_subnets",
-					Description: `(Optional) Limits IP address learning to the bridge domain subnets only. Every BD can have multiple subnets associated with it. By default, all IPs are learned.`,
-				},
-				resource.Attribute{
-					Name:        "ll_addr",
-					Description: `(Optional) override of system generated ipv6 link-local address.`,
-				},
-				resource.Attribute{
-					Name:        "mac",
-					Description: `(Optional) The MAC address of the bridge domain (BD) or switched virtual interface (SVI). Every BD by default takes the fabric-wide default MAC address. You can override that address with a different one. By default the BD will take a 00:22:BD:F8:19:FF mac address.`,
-				},
-				resource.Attribute{
-					Name:        "mcast_allow",
-					Description: `(Optional) Flag to indicate if multicast is enabled for IpV4 addresses.`,
-				},
-				resource.Attribute{
-					Name:        "multi_dst_pkt_act",
-					Description: `(Optional) The multiple destination forwarding method for L2 Multicast, Broadcast, and Link Layer traffic types.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "bridge_domain_type",
-					Description: `(Optional) The specific type of the object or component.`,
-				},
-				resource.Attribute{
-					Name:        "unicast_route",
-					Description: `(Optional) The forwarding method based on predefined forwarding criteria (IP or MAC address).`,
-				},
-				resource.Attribute{
-					Name:        "unk_mac_ucast_act",
-					Description: `(Optional) The forwarding method for unknown layer 2 destinations.`,
-				},
-				resource.Attribute{
-					Name:        "unk_mcast_act",
-					Description: `(Optional) The parameter used by the node (i.e. a leaf) for forwarding data for an unknown multicast destination.`,
-				},
-				resource.Attribute{
-					Name:        "v6unk_mcast_act",
-					Description: `(Optional) v6unk_mcast_act for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "vmac",
-					Description: `(Optional) Virtual MAC address of the BD/SVI. This is used when the BD is extended to multiple sites using l2 Outside.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Bridge Domain.`,
-				},
-				resource.Attribute{
-					Name:        "optimize_wan_bandwidth",
-					Description: `(Optional) Flag to enable OptimizeWanBandwidth between sites.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "arp_flood",
-					Description: `(Optional) A property to specify whether ARP flooding is enabled. If flooding is disabled, unicast routing will be performed on the target IP address.`,
-				},
-				resource.Attribute{
-					Name:        "ep_clear",
-					Description: `(Optional) Represents the parameter used by the node (i.e. Leaf) to clear all EPs in all leaves for this BD.`,
-				},
-				resource.Attribute{
-					Name:        "ep_move_detect_mode",
-					Description: `(Optional) The End Point move detection option uses the Gratuitous Address Resolution Protocol (GARP). A gratuitous ARP is an ARP broadcast-type of packet that is used to verify that no other device on the network has the same IP address as the sending device.`,
-				},
-				resource.Attribute{
-					Name:        "host_based_routing",
-					Description: `(Optional) Enables advertising host routes out of l3outs of this BD.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_bum_traffic_allow",
-					Description: `(Optional) Control whether BUM traffic is allowed between sites.`,
-				},
-				resource.Attribute{
-					Name:        "intersite_l2_stretch",
-					Description: `(Optional) Flag to enable l2Stretch between sites.`,
-				},
-				resource.Attribute{
-					Name:        "ip_learning",
-					Description: `(Optional) Endpoint Dataplane Learning.`,
-				},
-				resource.Attribute{
-					Name:        "ipv6_mcast_allow",
-					Description: `(Optional) Flag to indicate multicast IpV6 is allowed or not.`,
-				},
-				resource.Attribute{
-					Name:        "limit_ip_learn_to_subnets",
-					Description: `(Optional) Limits IP address learning to the bridge domain subnets only. Every BD can have multiple subnets associated with it. By default, all IPs are learned.`,
-				},
-				resource.Attribute{
-					Name:        "ll_addr",
-					Description: `(Optional) override of system generated ipv6 link-local address.`,
-				},
-				resource.Attribute{
-					Name:        "mac",
-					Description: `(Optional) The MAC address of the bridge domain (BD) or switched virtual interface (SVI). Every BD by default takes the fabric-wide default MAC address. You can override that address with a different one. By default the BD will take a 00:22:BD:F8:19:FF mac address.`,
-				},
-				resource.Attribute{
-					Name:        "mcast_allow",
-					Description: `(Optional) Flag to indicate if multicast is enabled for IpV4 addresses.`,
-				},
-				resource.Attribute{
-					Name:        "multi_dst_pkt_act",
-					Description: `(Optional) The multiple destination forwarding method for L2 Multicast, Broadcast, and Link Layer traffic types.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "bridge_domain_type",
-					Description: `(Optional) The specific type of the object or component.`,
-				},
-				resource.Attribute{
-					Name:        "unicast_route",
-					Description: `(Optional) The forwarding method based on predefined forwarding criteria (IP or MAC address).`,
-				},
-				resource.Attribute{
-					Name:        "unk_mac_ucast_act",
-					Description: `(Optional) The forwarding method for unknown layer 2 destinations.`,
-				},
-				resource.Attribute{
-					Name:        "unk_mcast_act",
-					Description: `(Optional) The parameter used by the node (i.e. a leaf) for forwarding data for an unknown multicast destination.`,
-				},
-				resource.Attribute{
-					Name:        "v6unk_mcast_act",
-					Description: `(Optional) v6unk_mcast_act for object bridge_domain.`,
-				},
-				resource.Attribute{
-					Name:        "vmac",
-					Description: `(Optional) Virtual MAC address of the BD/SVI. This is used when the BD is extended to multiple sites using l2 Outside.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1101,7 +1170,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cdp_interface_policy. ## Attribute Reference`,
+					Description: `(Required) Name of Object cdp interface policy. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1109,15 +1178,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state`,
+					Description: `(Optional) Administrative state`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cdp_interface_policy.`,
+					Description: `(Optional) Annotation for object cdp interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cdp_interface_policy.`,
+					Description: `(Optional) Name alias for object cdp interface policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cdp interface policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1127,15 +1200,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state`,
+					Description: `(Optional) Administrative state`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cdp_interface_policy.`,
+					Description: `(Optional) Annotation for object cdp interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cdp_interface_policy.`,
+					Description: `(Optional) Name alias for object cdp interface policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cdp interface policy.`,
 				},
 			},
 		},
@@ -1146,130 +1223,8 @@ var (
 			ShortDescription: `Data source for ACI Client End Point`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) name of Object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "mac",
-					Description: `(Optional) Mac address of the object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional) ip address of the object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "vlan",
-					Description: `(Optional) vlan for the object client end point. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set as all Dns for matching the Client End Point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects",
-					Description: `list of all client end point objects which matched to the given filter attributes.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.name",
-					Description: `Name of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.mac",
-					Description: `Mac address of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.ip",
-					Description: `IP address of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.vlan",
-					Description: `vlan of client end point object.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.tenant_name",
-					Description: `parent Tenant name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.vrf_name",
-					Description: `parent vrf name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.application_profile_name",
-					Description: `parent application profile name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.epg_name",
-					Description: `parent epg name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.l2out_name",
-					Description: `parent l2out name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.instance_profile_name",
-					Description: `parent instance profile name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.endpoint_path",
-					Description: `list of endpoint paths associated with client end point.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set as all Dns for matching the Client End Point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects",
-					Description: `list of all client end point objects which matched to the given filter attributes.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.name",
-					Description: `Name of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.mac",
-					Description: `Mac address of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.ip",
-					Description: `IP address of object client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.vlan",
-					Description: `vlan of client end point object.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.tenant_name",
-					Description: `parent Tenant name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.vrf_name",
-					Description: `parent vrf name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.application_profile_name",
-					Description: `parent application profile name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.epg_name",
-					Description: `parent epg name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.l2out_name",
-					Description: `parent l2out name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.instance_profile_name",
-					Description: `parent instance profile name for matched client end point.`,
-				},
-				resource.Attribute{
-					Name:        "fvcep_objects.endpoint_path",
-					Description: `list of endpoint paths associated with client end point.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1292,12 +1247,16 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud Application container.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud applicationcontainer.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_applicationcontainer.`,
+					Description: `(Optional) Annotation for object cloud applicationcontainer.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_applicationcontainer.`,
+					Description: `(Optional) Name alias for object cloud applicationcontainer.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1306,12 +1265,16 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud Application container.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud applicationcontainer.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_applicationcontainer.`,
+					Description: `(Optional) Annotation for object cloud applicationcontainer.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_applicationcontainer.`,
+					Description: `(Optional) Name alias for object cloud applicationcontainer.`,
 				},
 			},
 		},
@@ -1329,7 +1292,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_availability_zone. ## Attribute Reference`,
+					Description: `(Required) Name of Object cloud availability zone. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1337,11 +1300,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_availability_zone.`,
+					Description: `(Optional) Annotation for object cloud availability zone.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_availability_zone.`,
+					Description: `(Optional) Name alias for object cloud availability zone.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1351,11 +1314,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_availability_zone.`,
+					Description: `(Optional) Annotation for object cloud availability zone.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_availability_zone.`,
+					Description: `(Optional) Name alias for object cloud availability zone.`,
 				},
 			},
 		},
@@ -1377,47 +1340,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key_id",
-					Description: `(Optional) access_key_id for object cloud_aws_provider.`,
+					Description: `(Optional) access_key_id for the AWS account provided in the account id field.`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `(Optional) account_id for object cloud_aws_provider.`,
+					Description: `(Optional) AWS account-id to manage with cloud APIC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_aws_provider.`,
+					Description: `(Optional) Annotation for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "email",
-					Description: `(Optional) email address of the local user`,
+					Description: `(Optional) Email address of the local user.`,
 				},
 				resource.Attribute{
 					Name:        "http_proxy",
-					Description: `(Optional) http_proxy for object cloud_aws_provider.`,
+					Description: `(Optional) Http proxy for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "is_account_in_org",
-					Description: `(Optional) is_account_in_org for object cloud_aws_provider.`,
+					Description: `(Optional) Flag to decide whether the account is in the organization or not.`,
 				},
 				resource.Attribute{
 					Name:        "is_trusted",
-					Description: `(Optional) is_trusted for object cloud_aws_provider.`,
+					Description: `(Optional) Whether the account is trusted with Tenant infra account.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_aws_provider.`,
+					Description: `(Optional) Name alias for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "provider_id",
-					Description: `(Optional) provider_id for object cloud_aws_provider.`,
+					Description: `(Optional) Provider id for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) region for object cloud_aws_provider. \[Supported only in Cloud APIC 4.2(x) or earlier\]`,
+					Description: `(Optional) Which AWS region to manage. \[Supported only in Cloud-APIC 4.2(x) or earlier\]`,
 				},
 				resource.Attribute{
 					Name:        "secret_access_key",
-					Description: `(Optional) secret_access_key for object cloud_aws_provider.`,
+					Description: `(Optional) Secret access key for the AWS account provided in the account id field.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1427,47 +1394,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key_id",
-					Description: `(Optional) access_key_id for object cloud_aws_provider.`,
+					Description: `(Optional) access_key_id for the AWS account provided in the account id field.`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `(Optional) account_id for object cloud_aws_provider.`,
+					Description: `(Optional) AWS account-id to manage with cloud APIC.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_aws_provider.`,
+					Description: `(Optional) Annotation for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "email",
-					Description: `(Optional) email address of the local user`,
+					Description: `(Optional) Email address of the local user.`,
 				},
 				resource.Attribute{
 					Name:        "http_proxy",
-					Description: `(Optional) http_proxy for object cloud_aws_provider.`,
+					Description: `(Optional) Http proxy for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "is_account_in_org",
-					Description: `(Optional) is_account_in_org for object cloud_aws_provider.`,
+					Description: `(Optional) Flag to decide whether the account is in the organization or not.`,
 				},
 				resource.Attribute{
 					Name:        "is_trusted",
-					Description: `(Optional) is_trusted for object cloud_aws_provider.`,
+					Description: `(Optional) Whether the account is trusted with Tenant infra account.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_aws_provider.`,
+					Description: `(Optional) Name alias for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "provider_id",
-					Description: `(Optional) provider_id for object cloud_aws_provider.`,
+					Description: `(Optional) Provider id for object cloud aws provider.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) region for object cloud_aws_provider. \[Supported only in Cloud APIC 4.2(x) or earlier\]`,
+					Description: `(Optional) Which AWS region to manage. \[Supported only in Cloud-APIC 4.2(x) or earlier\]`,
 				},
 				resource.Attribute{
 					Name:        "secret_access_key",
-					Description: `(Optional) secret_access_key for object cloud_aws_provider.`,
+					Description: `(Optional) Secret access key for the AWS account provided in the account id field.`,
 				},
 			},
 		},
@@ -1492,12 +1463,16 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud CIDR Pool.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_cidr_pool.`,
+					Description: `(Optional) Annotation for object Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_cidr_pool.`,
+					Description: `(Optional) Name alias for object Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -1510,12 +1485,16 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud CIDR Pool.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_cidr_pool.`,
+					Description: `(Optional) Annotation for object Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_cidr_pool.`,
+					Description: `(Optional) Name alias for object Cloud CIDR Pool.`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -1530,74 +1509,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud Context Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object cloud-ctx-profile. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `annotation for object Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `name_alias for object Cloud Context Profile.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `The specific type of the object or component.`,
-				},
-				resource.Attribute{
-					Name:        "primary_cidr",
-					Description: `Primary CIDR block of Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `AWS region in which profile is created.`,
-				},
-				resource.Attribute{
-					Name:        "hub_network",
-					Description: `hub network Dn which enables Transit Gateway.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `annotation for object Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `name_alias for object Cloud Context Profile.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `The specific type of the object or component.`,
-				},
-				resource.Attribute{
-					Name:        "primary_cidr",
-					Description: `Primary CIDR block of Cloud Context profile.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `AWS region in which profile is created.`,
-				},
-				resource.Attribute{
-					Name:        "hub_network",
-					Description: `hub network Dn which enables Transit Gateway.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1606,42 +1519,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud Domain Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Domain Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_domain_profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_domain_profile.`,
-				},
-				resource.Attribute{
-					Name:        "site_id",
-					Description: `(Optional) site_id for object cloud_domain_profile.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Domain Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_domain_profile.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_domain_profile.`,
-				},
-				resource.Attribute{
-					Name:        "site_id",
-					Description: `(Optional) site_id for object cloud_domain_profile.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1650,50 +1529,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud Endpoint Selector`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_epg_dn",
-					Description: `(Required) Distinguished name of parent CloudEPg object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object cloud_endpoint_selector. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_endpoint_selector.`,
-				},
-				resource.Attribute{
-					Name:        "match_expression",
-					Description: `(Optional) Match expression for the endpoint selector to select EP on criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_endpoint_selector.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_endpoint_selector.`,
-				},
-				resource.Attribute{
-					Name:        "match_expression",
-					Description: `(Optional) Match expression for the endpoint selector to select EP on criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_endpoint_selector.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1702,58 +1539,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud Endpoint Selector for External EPgs`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_external_epg_dn",
-					Description: `(Required) Distinguished name of parent CloudExternalEPg object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object cloud_endpoint_selectorfor_external_epgs. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector for External EPgs.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_endpoint_selectorfor_external_epgs.`,
-				},
-				resource.Attribute{
-					Name:        "is_shared",
-					Description: `(Optional) For Selectors set the shared route control.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_endpoint_selectorfor_external_epgs.`,
-				},
-				resource.Attribute{
-					Name:        "subnet",
-					Description: `(Optional) Subnet from which EP to select.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector for External EPgs.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_endpoint_selectorfor_external_epgs.`,
-				},
-				resource.Attribute{
-					Name:        "is_shared",
-					Description: `(Optional) For Selectors set the shared route control.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_endpoint_selectorfor_external_epgs.`,
-				},
-				resource.Attribute{
-					Name:        "subnet",
-					Description: `(Optional) Subnet from which EP to select.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1762,82 +1549,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud EPg`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "cloud_applicationcontainer_dn",
-					Description: `(Required) Distinguished name of parent CloudApplicationcontainer object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object cloud_epg. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud EPg.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) The provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPg is part of a group that does not a contract for communication.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) qos priority class id.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud EPg.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) The provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_epg.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPg is part of a group that does not a contract for communication.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) qos priority class id.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1849,23 +1562,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_applicationcontainer_dn",
-					Description: `(Required) Distinguished name of parent CloudApplicationcontainer object.`,
+					Description: `(Required) Distinguished name of parent Cloud Application container object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_external_epg. ## Attribute Reference`,
+					Description: `(Required) Name of Object Cloud External EPg. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud External EPg.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud External EPg.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_external_epg.`,
+					Description: `(Optional) Annotation for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_external_epg.`,
+					Description: `(Optional) Exception-tag for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
@@ -1877,7 +1594,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_external_epg.`,
+					Description: `(Optional) Name alias for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "pref_gr_memb",
@@ -1885,7 +1602,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) qos priority class id.`,
+					Description: `(Optional) QOS priority class id.`,
 				},
 				resource.Attribute{
 					Name:        "route_reachability",
@@ -1898,12 +1615,16 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud External EPg.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud External EPg.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_external_epg.`,
+					Description: `(Optional) Annotation for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object cloud_external_epg.`,
+					Description: `(Optional) Exception-tag for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "flood_on_encap",
@@ -1915,7 +1636,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_external_epg.`,
+					Description: `(Optional) Name alias for object Cloud External EPg.`,
 				},
 				resource.Attribute{
 					Name:        "pref_gr_memb",
@@ -1923,7 +1644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) qos priority class id.`,
+					Description: `(Optional) QOS priority class id.`,
 				},
 				resource.Attribute{
 					Name:        "route_reachability",
@@ -1938,30 +1659,8 @@ var (
 			ShortDescription: `Data source for ACI Cloud Provider Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "vendor",
-					Description: `(Required) vendor of Object cloud_provider_profile. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Provider Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_provider_profile.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Provider Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_provider_profile.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1977,7 +1676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object cloud_providers_region. ## Attribute Reference`,
+					Description: `(Required) Name of Object cloud providers region. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1985,15 +1684,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy`,
+					Description: `(Optional) Administrative state of the object or policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_providers_region.`,
+					Description: `(Optional) Annotation for object cloud providers region.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_providers_region.`,
+					Description: `(Optional) Name alias for object cloud providers region.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2003,15 +1702,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy`,
+					Description: `(Optional) Administrative state of the object or policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_providers_region.`,
+					Description: `(Optional) Annotation for object cloud providers region.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_providers_region.`,
+					Description: `(Optional) Name alias for object cloud providers region.`,
 				},
 			},
 		},
@@ -2029,7 +1728,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `(Required) CIDR block of Object cloud_subnet. ## Attribute Reference`,
+					Description: `(Required) CIDR block of Object cloud subnet. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2040,12 +1739,16 @@ var (
 					Description: `(Optional) Name for object cloud subnet.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud subnet.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_subnet.`,
+					Description: `(Optional) Annotation for object cloud subnet.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_subnet.`,
+					Description: `(Optional) Name alias for object cloud subnet.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -2066,12 +1769,16 @@ var (
 					Description: `(Optional) Name for object cloud subnet.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object cloud subnet.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object cloud_subnet.`,
+					Description: `(Optional) Annotation for object cloud subnet.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_subnet.`,
+					Description: `(Optional) Name alias for object cloud subnet.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -2097,23 +1804,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of Object cloud_router_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object Cloud Router Profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Router Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud Router Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object cloud_router_profile.`,
+					Description: `(Optional) Annotation for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_router_profile.`,
+					Description: `(Optional) Name alias for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "num_instances",
-					Description: `(Optional) num_instances for object cloud_router_profile.`,
+					Description: `(Optional) Num instances for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_router_profile_type",
@@ -2126,16 +1837,20 @@ var (
 					Description: `Attribute id set to the Dn of the Cloud Router Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Cloud Router Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object cloud_router_profile.`,
+					Description: `(Optional) Annotation for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object cloud_router_profile.`,
+					Description: `(Optional) Name alias for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "num_instances",
-					Description: `(Optional) num_instances for object cloud_router_profile.`,
+					Description: `(Optional) Num instances for object Cloud Router Profile.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_router_profile_type",
@@ -2170,80 +1885,45 @@ var (
 			ShortDescription: `Data source for ACI Connection`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "l4_l7_service_graph_template_dn",
-					Description: `(Required) Distinguished name of parent L4-L7 Service Graph Template object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of Object connection. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Connection.`,
-				},
-				resource.Attribute{
-					Name:        "adj_type",
-					Description: `Connector adjacency type`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `Annotation for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "conn_dir",
-					Description: `Connection dir for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "conn_type",
-					Description: `Connection type for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "direct_connect",
-					Description: `Direct connect for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `Name alias for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "unicast_route",
-					Description: `Unicast route for object connection.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_console_authentication",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Console Authentication`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Connection.`,
-				},
-				resource.Attribute{
-					Name:        "adj_type",
-					Description: `Connector adjacency type`,
+					Description: `Attribute id set to the Dn of the Console Authentication.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `Annotation for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "conn_dir",
-					Description: `Connection dir for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "conn_type",
-					Description: `Connection type for object connection.`,
-				},
-				resource.Attribute{
-					Name:        "direct_connect",
-					Description: `Direct connect for object connection.`,
+					Description: `(Optional) Annotation of object Console Authentication.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `Name alias for object connection.`,
+					Description: `(Optional) Name Alias of object Console Authentication.`,
 				},
 				resource.Attribute{
-					Name:        "unicast_route",
-					Description: `Unicast route for object connection.`,
+					Name:        "description",
+					Description: `(Optional) Description of object Console Authentication.`,
+				},
+				resource.Attribute{
+					Name:        "provider_group",
+					Description: `(Optional) Provider Group. An AAA configuration provider group is a group of remote servers supporting the same AAA protocol that will be used for authentication and authorization. When a provider group is specified, only the servers within that group will be used for authentication and authorization. If no provider group is specified, all servers supporting the realm of AAA protocols will be used for authentication and authorization.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Realm. The security method for processing authentication and authorization requests. The realm allows the protected resources on the associated server to be partitioned into a set of protection spaces, each with its own authentication authorization database. This is an abstract class and cannot be instantiated.`,
+				},
+				resource.Attribute{
+					Name:        "realm_sub_type",
+					Description: `(Optional) Realm subtype that can be default or Duo.`,
 				},
 			},
 		},
@@ -2268,16 +1948,20 @@ var (
 					Description: `Attribute id set to the Dn of the Contract.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object contract.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object contract.`,
+					Description: `(Optional) Annotation for object contract.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object contract.`,
+					Description: `(Optional) Name alias for object contract.`,
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) priority level of the service contract.`,
+					Description: `(Optional) Priority level of the service contract.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -2294,16 +1978,20 @@ var (
 					Description: `Attribute id set to the Dn of the Contract.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object contract.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object contract.`,
+					Description: `(Optional) Annotation for object contract.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object contract.`,
+					Description: `(Optional) Name alias for object contract.`,
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) priority level of the service contract.`,
+					Description: `(Optional) Priority level of the service contract.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -2322,80 +2010,80 @@ var (
 			ShortDescription: `Data source for ACI Contract Subject`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "contract_dn",
-					Description: `(Required) Distinguished name of parent Contract object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object contract_subject. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Contract Subject.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object contract_subject.`,
-				},
-				resource.Attribute{
-					Name:        "cons_match_t",
-					Description: `(Optional) The subject match criteria across consumers.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object contract_subject.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) The priority level of a sub application running behind an endpoint group, such as an Exchange server.`,
-				},
-				resource.Attribute{
-					Name:        "prov_match_t",
-					Description: `(Optional) The subject match criteria across consumers.`,
-				},
-				resource.Attribute{
-					Name:        "rev_flt_ports",
-					Description: `(Optional) enables filter to apply on ingress and egress traffic.`,
-				},
-				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_coop_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI COOP Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Contract Subject.`,
+					Description: `Attribute id set to the Dn of the COOP Group Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object contract_subject.`,
-				},
-				resource.Attribute{
-					Name:        "cons_match_t",
-					Description: `(Optional) The subject match criteria across consumers.`,
+					Description: `(Optional) Annotation of object COOP Group Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object contract_subject.`,
+					Description: `(Optional) Name Alias of object COOP Group Policy.`,
 				},
 				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) The priority level of a sub application running behind an endpoint group, such as an Exchange server.`,
+					Name:        "type",
+					Description: `(Optional) Authentication type. The specific type of the object or component.`,
 				},
 				resource.Attribute{
-					Name:        "prov_match_t",
-					Description: `(Optional) The subject match criteria across consumers.`,
+					Name:        "description",
+					Description: `(Optional) Description of object COOP Group Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_default_authentication",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Default Authentication Method for all Logins`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Default Authentication Method for all Logins.`,
 				},
 				resource.Attribute{
-					Name:        "rev_flt_ports",
-					Description: `(Optional) enables filter to apply on ingress and egress traffic.`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Default Authentication Method for all Logins.`,
 				},
 				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
+					Name:        "description",
+					Description: `(Optional) Description of object Default Authentication Method for all Logins.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object Default Authentication Method for all Logins.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_check",
+					Description: `(Optional) The parameter to disable fallback in case there are active servers in the default auth type.`,
+				},
+				resource.Attribute{
+					Name:        "provider_group",
+					Description: `(Optional) The group of remote servers supporting the same AAA protocol that will be used for authentication and authorization.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) The security method for processing authentication and authorization requests. The realm allows the protected resources on the associated server to be partitioned into a set of protection spaces, each with its own authentication authorization database.`,
+				},
+				resource.Attribute{
+					Name:        "realm_sub_type",
+					Description: `(Optional) Realm subtype.`,
 				},
 			},
 		},
@@ -2406,82 +2094,8 @@ var (
 			ShortDescription: `Data source for ACI Destination of redirected traffic`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "service_redirect_policy_dn",
-					Description: `(Required) Distinguished name of parent Service Redirect Policy object.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Required) ip of Object destination of redirected traffic. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "dest_name",
-					Description: `(Optional) destination name to which data was exported.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional) ip address.`,
-				},
-				resource.Attribute{
-					Name:        "ip2",
-					Description: `(Optional) ip2 for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "mac",
-					Description: `(Optional) mac address.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "pod_id",
-					Description: `(Optional) pod id.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "dest_name",
-					Description: `(Optional) destination name to which data was exported.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional) ip address.`,
-				},
-				resource.Attribute{
-					Name:        "ip2",
-					Description: `(Optional) ip2 for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "mac",
-					Description: `(Optional) mac address.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object destination of redirected traffic.`,
-				},
-				resource.Attribute{
-					Name:        "pod_id",
-					Description: `(Optional) pod id.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2510,56 +2124,121 @@ var (
 			ShortDescription: `Data source for ACI DHCP Relay Policy`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_duo_provider_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Duo Provider Group`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of Object DHCP Relay Policy. ## Attribute Reference`,
+					Description: `(Required) name of object Duo Provider Group. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the DHCP Relay Policy.`,
+					Description: `Attribute id set to the Dn of the Duo Provider Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object DHCP Relay Policy.`,
+					Description: `(Optional) Annotation of object Duo Provider Group.`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) Dhcp Relay policy mode.`,
+					Name:        "auth_choice",
+					Description: `(Optional) Authentication choice of object Duo Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "provider_type",
+					Description: `(Optional) Type of the Auth Provider.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_group_map_ref",
+					Description: `(Optional) Reference to LDAP Group Map containing user's group membership info.`,
+				},
+				resource.Attribute{
+					Name:        "sec_fac_auth_methods",
+					Description: `(Optional) Second factor authentication methods.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for object DHCP Relay Policy.`,
+					Description: `(Optional) Name alias of object Duo Provider Group.`,
 				},
 				resource.Attribute{
-					Name:        "owner",
-					Description: `(Optional) Owner of the target relay servers.`,
+					Name:        "description",
+					Description: `(Optional) Description of object Duo Provider Group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the DHCP Relay Policy.`,
+					Description: `Attribute id set to the Dn of the Duo Provider Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object DHCP Relay Policy.`,
+					Description: `(Optional) Annotation of object Duo Provider Group.`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) Dhcp Relay policy mode.`,
+					Name:        "auth_choice",
+					Description: `(Optional) Authentication choice of object Duo Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "provider_type",
+					Description: `(Optional) Type of the Auth Provider.`,
+				},
+				resource.Attribute{
+					Name:        "ldap_group_map_ref",
+					Description: `(Optional) Reference to LDAP Group Map containing user's group membership info.`,
+				},
+				resource.Attribute{
+					Name:        "sec_fac_auth_methods",
+					Description: `(Optional) Second factor authentication methods.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for object DHCP Relay Policy.`,
+					Description: `(Optional) Name alias of object Duo Provider Group.`,
 				},
 				resource.Attribute{
-					Name:        "owner",
-					Description: `(Optional) Owner of the target relay servers.`,
+					Name:        "description",
+					Description: `(Optional) Description of object Duo Provider Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_encryption_key",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI AES Encryption Passphrase and Keys for Config Export and Import`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the AES Encryption Passphrase and Keys for Config Export (and Import).`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object AES Encryption Passphrase and Keys for Config Export and Import.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object AES Encryption Passphrase and Keys for Config Export and Import.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object AES Encryption Passphrase and Keys for Config Export and Import.`,
+				},
+				resource.Attribute{
+					Name:        "passphrase_key_derivation_version",
+					Description: `(Optional) Version of the algorithm used for forward compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "strong_encryption_enabled",
+					Description: `(Optional) Parameter indicating whether encryption is weak or strong.`,
 				},
 			},
 		},
@@ -2584,8 +2263,12 @@ var (
 					Description: `Attribute id set to the Dn of the End Point Retention Policy.`,
 				},
 				resource.Attribute{
+					Name:        "descripton",
+					Description: `(Optional) Descripton for object end point retention policy.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object end_point_retention_policy.`,
+					Description: `(Optional) Annotation for object end point retention policy.`,
 				},
 				resource.Attribute{
 					Name:        "bounce_age_intvl",
@@ -2609,7 +2292,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object end_point_retention_policy.`,
+					Description: `(Optional) Name alias for object end point retention policy.`,
 				},
 				resource.Attribute{
 					Name:        "remote_ep_age_intvl",
@@ -2622,8 +2305,12 @@ var (
 					Description: `Attribute id set to the Dn of the End Point Retention Policy.`,
 				},
 				resource.Attribute{
+					Name:        "descripton",
+					Description: `(Optional) Descripton for object end point retention policy.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object end_point_retention_policy.`,
+					Description: `(Optional) Annotation for object end point retention policy.`,
 				},
 				resource.Attribute{
 					Name:        "bounce_age_intvl",
@@ -2647,7 +2334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object end_point_retention_policy.`,
+					Description: `(Optional) Name alias for object end point retention policy.`,
 				},
 				resource.Attribute{
 					Name:        "remote_ep_age_intvl",
@@ -2657,7 +2344,124 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_end_point_security_group",
+			Type:             "aci_endpoint_controls",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Endpoint Control`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) The administrative state of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "hold_intvl",
+					Description: `(Optional) The period of time before declaring that the neighbor is down of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "rogue_ep_detect_intvl",
+					Description: `(Optional) Rogue Endpoint Detection Interval of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "rogue_ep_detect_mult",
+					Description: `(Optional) Rogue Endpoint Detection Multiplication Factor of object Endpoint Control.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Control.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_endpoint_ip_aging_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Endpoint IP Aging Profile`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint IP Aging Profile.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint IP Aging Profile.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint IP Aging Profile.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) The administrative state of the object Endpoint IP Aging Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint IP Aging Profile.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_endpoint_loop_protection",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Endpoint Loop Protection`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Loop Protection Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Loop Protection Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint Loop Protection Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Loop Protection.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Action. Sets the action to take when a loop is detected.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) Admin State. The administrative state of the object or policy.`,
+				},
+				resource.Attribute{
+					Name:        "loop_detect_intvl",
+					Description: `(Optional) Loop Detection Interval. Sets the loop detection interval, which specifies the time to detect a loop.`,
+				},
+				resource.Attribute{
+					Name:        "loop_detect_mult",
+					Description: `(Optional) Loop Detection Multiplier. Sets the loop detection multiplication factor, which is the number of times a single Endpoint moves between ports within the Detection interval.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_endpoint_security_group",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Endpoint Security Group`,
 			Description:      ``,
@@ -2680,6 +2484,10 @@ var (
 					Description: `(Optional) Annotation of object Endpoint Security Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Security Group.`,
+				},
+				resource.Attribute{
 					Name:        "name_alias",
 					Description: `(Optional) Name Alias of object Endpoint Security Group.`,
 				},
@@ -2714,6 +2522,10 @@ var (
 					Description: `(Optional) Annotation of object Endpoint Security Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Security Group.`,
+				},
+				resource.Attribute{
 					Name:        "name_alias",
 					Description: `(Optional) Name Alias of object Endpoint Security Group.`,
 				},
@@ -2741,7 +2553,51 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_end_point_security_group_selector",
+			Type:             "aci_endpoint_security_group_epg_selector",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Endpoint Security Group EPG Selector`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "endpoint_security_group_dn",
+					Description: `(Required) Distinguished name of parent Endpoint Security Group object.`,
+				},
+				resource.Attribute{
+					Name:        "match_epg_dn",
+					Description: `(Required) EPG Dn to be associated. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Security Group EPG Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Security Group EPG Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint Security Group EPG Selector.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Security Group EPG Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Security Group EPG Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint Security Group EPG Selector.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_endpoint_security_group_selector",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Endpoint Security Group Selector`,
 			Description:      ``,
@@ -2753,7 +2609,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "match_expression",
-					Description: `(Optional) Expression used to define matching tags. ## Attribute Reference ##`,
+					Description: `(Required) Expression used to define matching tags. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2764,12 +2620,16 @@ var (
 					Description: `(Optional) Annotation of object Endpoint Security Group Selector.`,
 				},
 				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) Name Alias of object Endpoint Security Group Selector.`,
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Security Group Selector.`,
 				},
 				resource.Attribute{
-					Name:        "match_expression",
-					Description: `(Optional) Expression used to define matching tagTags.`,
+					Name:        "name",
+					Description: `(Optional) Name of object Endpoint Security Group Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Endpoint Security Group Selector.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2782,12 +2642,80 @@ var (
 					Description: `(Optional) Annotation of object Endpoint Security Group Selector.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Endpoint Security Group Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object Endpoint Security Group Selector.`,
+				},
+				resource.Attribute{
 					Name:        "name_alias",
 					Description: `(Optional) Name Alias of object Endpoint Security Group Selector.`,
 				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_endpoint_security_group_tag_selector",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Endpoint Security Group Tag Selector`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "match_expression",
-					Description: `(Optional) Expression used to define matching tagTags.`,
+					Name:        "endpoint_security_group_dn",
+					Description: `(Required) Distinguished name of parent EndpointSecurityGroup object.`,
+				},
+				resource.Attribute{
+					Name:        "match_key",
+					Description: `(Required) Match key of object Endpoint Security Group Tag Selector.`,
+				},
+				resource.Attribute{
+					Name:        "match_value",
+					Description: `(Required) Match value of object Endpoint Security Group Tag Selector. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Security Group Tag Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Security Group Tag Selector.`,
+				},
+				resource.Attribute{
+					Name:        "match_key",
+					Description: `(Optional) Key of Tag to be associated with.`,
+				},
+				resource.Attribute{
+					Name:        "match_value",
+					Description: `(Optional) Value of Tag to be associated with.`,
+				},
+				resource.Attribute{
+					Name:        "value_operator",
+					Description: `(Optional) Match Value Operator.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Endpoint Security Group Tag Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Endpoint Security Group Tag Selector.`,
+				},
+				resource.Attribute{
+					Name:        "match_key",
+					Description: `(Optional) Key of Tag to be associated with.`,
+				},
+				resource.Attribute{
+					Name:        "match_value",
+					Description: `(Optional) Value of Tag to be associated with.`,
+				},
+				resource.Attribute{
+					Name:        "value_operator",
+					Description: `(Optional) Match Value Operator.`,
 				},
 			},
 		},
@@ -2798,52 +2726,50 @@ var (
 			ShortDescription: `Data source for ACI EPG to contract relationship.`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_epg_to_contract_interface",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Contract Interface Relationship`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_epg_dn",
-					Description: `(Required) Distinguished name of Parent epg.`,
+					Description: `(Required) Distinguished name of the parent Application EPG object.`,
 				},
 				resource.Attribute{
-					Name:        "contract_name",
-					Description: `(Required) Name of the contract.`,
-				},
-				resource.Attribute{
-					Name:        "contract_type",
-					Description: `(Required) Type of relationship. Allowed values are ` + "`" + `consumer` + "`" + ` and ` + "`" + `provider` + "`" + `. ## Attribute Reference`,
+					Name:        "contract_interface_dn",
+					Description: `(Required) Distinguished name of the Contract Interface object. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the provider/consumer contract.`,
+					Description: `Attribute id set to the Dn of the Contract Interface Relationship object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) Provider matching criteria.`,
+					Description: `(Optional) Annotation of the Contract Interface Relationship object.`,
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) Priority of relation object.`,
+					Description: `(Optional) The Contract Interface Relationship priority.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the provider/consumer contract.`,
+					Description: `Attribute id set to the Dn of the Contract Interface Relationship object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) Provider matching criteria.`,
+					Description: `(Optional) Annotation of the Contract Interface Relationship object.`,
 				},
 				resource.Attribute{
 					Name:        "prio",
-					Description: `(Optional) Priority of relation object.`,
+					Description: `(Optional) The Contract Interface Relationship priority.`,
 				},
 			},
 		},
@@ -2861,7 +2787,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tdn",
-					Description: `(Required) vmm domain instance. ## Attribute Reference`,
+					Description: `(Required) Vmm domain instance. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2869,79 +2795,83 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object domain.`,
+					Description: `(Optional) Annotation for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "binding_type",
-					Description: `(Optional) binding_type for object domain.`,
+					Description: `(Optional) Binding type for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "allow_micro_seg",
-					Description: `(Optional) boolean flag for allow micro segment. default value will be "false". "true" maps to class_pref="useg" and "false maps to class_pref="encap"`,
+					Description: `(Optional) Boolean flag for allow micro segment. default value will be "false". "true" maps to class_pref="useg" and "false maps to class_pref="encap"`,
+				},
+				resource.Attribute{
+					Name:        "custom_epg_name",
+					Description: `(Optional) Custom EPG name used as name of the VMM port group for the domain.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_lag_policy",
+					Description: `(Optional) Distinguished Name of the Enhanced LACP LAG Policy (class lacpEnhancedLagPol) to associate with the VMM domain.`,
 				},
 				resource.Attribute{
 					Name:        "delimiter",
-					Description: `(Optional) delimiter for object domain.`,
+					Description: `(Optional) Delimiter for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) port encapsulation`,
+					Description: `(Optional) Port encapsulation.`,
 				},
 				resource.Attribute{
 					Name:        "encap_mode",
-					Description: `(Optional) encap_mode for object domain.`,
+					Description: `(Optional) Encap mode for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "epg_cos",
-					Description: `(Optional) epg_cos for object domain.`,
+					Description: `(Optional) Epg cos for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "epg_cos_pref",
-					Description: `(Optional) epg_cos_pref for object domain.`,
+					Description: `(Optional) Epg cos pref for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) determines when policies are pushed to cam`,
-				},
-				resource.Attribute{
-					Name:        "lag_policy_name",
-					Description: `(Optional) lag_policy_name for object domain.`,
+					Description: `(Optional) Determines when policies are pushed to cam.`,
 				},
 				resource.Attribute{
 					Name:        "netflow_dir",
-					Description: `(Optional) netflow_dir for object domain.`,
+					Description: `(Optional) Netflow dir for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "netflow_pref",
-					Description: `(Optional) netflow_pref for object domain.`,
+					Description: `(Optional) Netflow pref for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "num_ports",
-					Description: `(Optional) number of ports existing operationally in module`,
+					Description: `(Optional) Number of ports existing operationally in module`,
 				},
 				resource.Attribute{
 					Name:        "port_allocation",
-					Description: `(Optional) port_allocation for object domain.`,
+					Description: `(Optional) Port allocation for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object domain.`,
+					Description: `(Optional) Primary encap for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap_inner",
-					Description: `(Optional) primary_encap_inner for object domain.`,
+					Description: `(Optional) Primary encap inner for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "res_imedcy",
-					Description: `(Optional) policy resolution`,
+					Description: `(Optional) Policy resolution`,
 				},
 				resource.Attribute{
 					Name:        "secondary_encap_inner",
-					Description: `(Optional) secondary_encap_inner for object domain.`,
+					Description: `(Optional) Secondary encap inner for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "switching_mode",
-					Description: `(Optional) switching_mode for object domain.`,
+					Description: `(Optional) Switching mode for object Domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2951,79 +2881,83 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object domain.`,
+					Description: `(Optional) Annotation for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "binding_type",
-					Description: `(Optional) binding_type for object domain.`,
+					Description: `(Optional) Binding type for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "allow_micro_seg",
-					Description: `(Optional) boolean flag for allow micro segment. default value will be "false". "true" maps to class_pref="useg" and "false maps to class_pref="encap"`,
+					Description: `(Optional) Boolean flag for allow micro segment. default value will be "false". "true" maps to class_pref="useg" and "false maps to class_pref="encap"`,
+				},
+				resource.Attribute{
+					Name:        "custom_epg_name",
+					Description: `(Optional) Custom EPG name used as name of the VMM port group for the domain.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_lag_policy",
+					Description: `(Optional) Distinguished Name of the Enhanced LACP LAG Policy (class lacpEnhancedLagPol) to associate with the VMM domain.`,
 				},
 				resource.Attribute{
 					Name:        "delimiter",
-					Description: `(Optional) delimiter for object domain.`,
+					Description: `(Optional) Delimiter for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) port encapsulation`,
+					Description: `(Optional) Port encapsulation.`,
 				},
 				resource.Attribute{
 					Name:        "encap_mode",
-					Description: `(Optional) encap_mode for object domain.`,
+					Description: `(Optional) Encap mode for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "epg_cos",
-					Description: `(Optional) epg_cos for object domain.`,
+					Description: `(Optional) Epg cos for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "epg_cos_pref",
-					Description: `(Optional) epg_cos_pref for object domain.`,
+					Description: `(Optional) Epg cos pref for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) determines when policies are pushed to cam`,
-				},
-				resource.Attribute{
-					Name:        "lag_policy_name",
-					Description: `(Optional) lag_policy_name for object domain.`,
+					Description: `(Optional) Determines when policies are pushed to cam.`,
 				},
 				resource.Attribute{
 					Name:        "netflow_dir",
-					Description: `(Optional) netflow_dir for object domain.`,
+					Description: `(Optional) Netflow dir for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "netflow_pref",
-					Description: `(Optional) netflow_pref for object domain.`,
+					Description: `(Optional) Netflow pref for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "num_ports",
-					Description: `(Optional) number of ports existing operationally in module`,
+					Description: `(Optional) Number of ports existing operationally in module`,
 				},
 				resource.Attribute{
 					Name:        "port_allocation",
-					Description: `(Optional) port_allocation for object domain.`,
+					Description: `(Optional) Port allocation for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object domain.`,
+					Description: `(Optional) Primary encap for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap_inner",
-					Description: `(Optional) primary_encap_inner for object domain.`,
+					Description: `(Optional) Primary encap inner for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "res_imedcy",
-					Description: `(Optional) policy resolution`,
+					Description: `(Optional) Policy resolution`,
 				},
 				resource.Attribute{
 					Name:        "secondary_encap_inner",
-					Description: `(Optional) secondary_encap_inner for object domain.`,
+					Description: `(Optional) Secondary encap inner for object Domain.`,
 				},
 				resource.Attribute{
 					Name:        "switching_mode",
-					Description: `(Optional) switching_mode for object domain.`,
+					Description: `(Optional) Switching mode for object Domain.`,
 				},
 			},
 		},
@@ -3040,8 +2974,8 @@ var (
 					Description: `(Required) Distinguished name of parent ApplicationEPG object.`,
 				},
 				resource.Attribute{
-					Name:        "tDn",
-					Description: `(Required) tDn of Object static_path. ## Attribute Reference`,
+					Name:        "tdn",
+					Description: `(Required) tdn of Object Static Path. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3049,23 +2983,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object static_path.`,
+					Description: `(Optional) Annotation for object Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) encapsulation`,
+					Description: `(Optional) Encapsulation of the Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) immediacy`,
+					Description: `(Optional) Immediacy of the Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) mode of the static association with the path`,
+					Description: `(Optional) Mode of the static association with the path.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object static_path.`,
+					Description: `(Optional) Primary encap for object Static Path.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3075,23 +3009,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object static_path.`,
+					Description: `(Optional) Annotation for object Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) encapsulation`,
+					Description: `(Optional) Encapsulation of the Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) immediacy`,
+					Description: `(Optional) Immediacy of the Static Path.`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) mode of the static association with the path`,
+					Description: `(Optional) Mode of the static association with the path.`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object static_path.`,
+					Description: `(Optional) Primary encap for object Static Path.`,
 				},
 			},
 		},
@@ -3109,7 +3043,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tdn",
-					Description: `(Required) tDn of Object epgs_using_function. ## Attribute Reference`,
+					Description: `(Required) tDn of Object EPGs Using Function. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3117,23 +3051,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object epgs_using_function.`,
+					Description: `(Optional) Annotation for object EPGs Using Function.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) vlan number encap`,
+					Description: `(Optional) Vlan number encap`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) instrumentation immediacy`,
+					Description: `(Optional) Instrumentation immediacy`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) bgp domain mode`,
+					Description: `(Optional) Bgp domain mode`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object epgs_using_function.`,
+					Description: `(Optional) Primary encap for object EPGs Using Function.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3143,23 +3077,54 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object epgs_using_function.`,
+					Description: `(Optional) Annotation for object EPGs Using Function.`,
 				},
 				resource.Attribute{
 					Name:        "encap",
-					Description: `(Optional) vlan number encap`,
+					Description: `(Optional) Vlan number encap`,
 				},
 				resource.Attribute{
 					Name:        "instr_imedcy",
-					Description: `(Optional) instrumentation immediacy`,
+					Description: `(Optional) Instrumentation immediacy`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) bgp domain mode`,
+					Description: `(Optional) Bgp domain mode`,
 				},
 				resource.Attribute{
 					Name:        "primary_encap",
-					Description: `(Optional) primary_encap for object epgs_using_function.`,
+					Description: `(Optional) Primary encap for object EPGs Using Function.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_error_disable_recovery",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Error Disable Recovery`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Error Disable Recovery.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Error Disable Recovery.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Error Disable Recovery.`,
+				},
+				resource.Attribute{
+					Name:        "err_dis_recov_intvl",
+					Description: `(Optional) Error Disable Recovery Interval. Sets the error disable recovery interval, which specifies the time to recover from an error-disabled state.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Error Disable Recovery.`,
 				},
 			},
 		},
@@ -3170,90 +3135,8 @@ var (
 			ShortDescription: `Data source for ACI External Network Instance Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "l3_outside_dn",
-					Description: `(Required) Distinguished name of parent L3Outside object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object external_network_instance_profile. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the External Network Instance Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) The provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPg is part of a group that does not a contract for communication.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) The QoS priority class identifier.`,
-				},
-				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the External Network Instance Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "exception_tag",
-					Description: `(Optional) exception_tag for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "flood_on_encap",
-					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
-				},
-				resource.Attribute{
-					Name:        "match_t",
-					Description: `(Optional) The provider label match criteria.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object external_network_instance_profile.`,
-				},
-				resource.Attribute{
-					Name:        "pref_gr_memb",
-					Description: `(Optional) Represents parameter used to determine if EPg is part of a group that does not a contract for communication.`,
-				},
-				resource.Attribute{
-					Name:        "prio",
-					Description: `(Optional) The QoS priority class identifier.`,
-				},
-				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3265,7 +3148,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object fabric if pol. ## Attribute Reference`,
+					Description: `(Required) Name of object fabric if pol. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3273,27 +3156,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric if pol.`,
+					Description: `(Optional) Annotation for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "auto_neg",
-					Description: `(Optional) policy auto-negotiation`,
+					Description: `(Optional) Policy auto-negotiation for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "fec_mode",
-					Description: `(Optional) forwarding error correction`,
+					Description: `(Optional) Forwarding error correction for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "link_debounce",
-					Description: `(Optional) link debounce interval`,
+					Description: `(Optional) Link debounce interval for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name alias for object fabric if pol.`,
+					Description: `(Optional) Name alias for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "speed",
-					Description: `(Optional) port speed`,
+					Description: `(Optional) Port speed for object fabric if pol.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3303,27 +3186,191 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric if pol.`,
+					Description: `(Optional) Annotation for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "auto_neg",
-					Description: `(Optional) policy auto-negotiation`,
+					Description: `(Optional) Policy auto-negotiation for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "fec_mode",
-					Description: `(Optional) forwarding error correction`,
+					Description: `(Optional) Forwarding error correction for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "link_debounce",
-					Description: `(Optional) link debounce interval`,
+					Description: `(Optional) Link debounce interval for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name alias for object fabric if pol.`,
+					Description: `(Optional) Name alias for object fabric if pol.`,
 				},
 				resource.Attribute{
 					Name:        "speed",
-					Description: `(Optional) port speed`,
+					Description: `(Optional) Port speed for object fabric if pol.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_fabric_node",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Fabric Node`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fabric_pod_dn",
+					Description: `(Required) Distinguished name of parent Fabric Pod object.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_node_id",
+					Description: `(Required) fabric_node_id of object Fabric Node. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "ad_st",
+					Description: `(Optional) The administrative state of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "apic_type",
+					Description: `(Optional) The APIC type for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_st",
+					Description: `(Optional) Fabric state for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) IP address of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Optional) Fabric Node type of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) Fabric Node role of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias for object Fabric Node.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "ad_st",
+					Description: `(Optional) The administrative state of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "apic_type",
+					Description: `(Optional) The APIC type for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_st",
+					Description: `(Optional) Fabric state for object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) IP address of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `(Optional) Fabric Node type of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) Fabric Node role of object Fabric Node.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias for object Fabric Node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_fabric_node_control",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Fabric Node Control`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Fabric Node Control. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "control",
+					Description: `(Optional) Fabric node control bitmask of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "feature_sel",
+					Description: `(Optional) Feature Selection of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Fabric Node Control.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "control",
+					Description: `(Optional) Fabric node control bitmask of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "feature_sel",
+					Description: `(Optional) Feature Selection of object Fabric Node Control.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Fabric Node Control.`,
 				},
 			},
 		},
@@ -3334,94 +3381,8 @@ var (
 			ShortDescription: `Data source for ACI Fabric Node Member`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "serial",
-					Description: `(Required) serial of Object fabric_node_member. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Fabric Node Member.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "ext_pool_id",
-					Description: `(Optional) ext_pool_id for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "fabric_id",
-					Description: `(Optional) place holder for a value`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "node_id",
-					Description: `(Optional) node id`,
-				},
-				resource.Attribute{
-					Name:        "node_type",
-					Description: `(Optional) node_type for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "pod_id",
-					Description: `(Optional) pod id`,
-				},
-				resource.Attribute{
-					Name:        "role",
-					Description: `(Optional) system role type`,
-				},
-				resource.Attribute{
-					Name:        "serial",
-					Description: `(Optional) serial number`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Fabric Node Member.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "ext_pool_id",
-					Description: `(Optional) ext_pool_id for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "fabric_id",
-					Description: `(Optional) place holder for a value`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "node_id",
-					Description: `(Optional) node id`,
-				},
-				resource.Attribute{
-					Name:        "node_type",
-					Description: `(Optional) node_type for object fabric_node_member.`,
-				},
-				resource.Attribute{
-					Name:        "pod_id",
-					Description: `(Optional) pod id`,
-				},
-				resource.Attribute{
-					Name:        "role",
-					Description: `(Optional) system role type`,
-				},
-				resource.Attribute{
-					Name:        "serial",
-					Description: `(Optional) serial number`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3461,43 +3422,80 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_fabric_wide_settings",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Fabric-Wide Settings Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "disable_ep_dampening",
+					Description: `(Optional) Disable Ep Dampening knob of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "enable_mo_streaming",
+					Description: `(Optional) Enable MO streaming of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "enable_remote_leaf_direct",
+					Description: `(Optional) Enable remote leaf direct communication of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_subnet_check",
+					Description: `(Optional) Enforce subnet check of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "opflexp_authenticate_clients",
+					Description: `(Optional) Opflexp Client Certificates for authentication of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "opflexp_use_ssl",
+					Description: `(Optional) SSL transport for Opflexp indicator of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_infra_vlan_traffic",
+					Description: `(Optional) Intra Leaf Communication traffic indicator of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "unicast_xr_ep_learn_disable",
+					Description: `(Optional) Disable xrLeanrs indicator of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "validate_overlapping_vlans",
+					Description: `(Optional) Validate Overlapping VLANS indicator of object Fabric-Wide Settings Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_fc_domain",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI FC Domain`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object fc_domain. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the FC Domain.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fc_domain.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fc_domain.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the FC Domain.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fc_domain.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fc_domain.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3506,42 +3504,8 @@ var (
 			ShortDescription: `Data source for ACI Fex Bundle Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "fex_profile_dn",
-					Description: `(Required) Distinguished name of parent FEXProfile object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object fex_bundle_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Fex Bundle Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fex_bundle_group.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fex_bundle_group.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Fex Bundle Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object fex_bundle_group.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fex_bundle_group.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3550,36 +3514,102 @@ var (
 			ShortDescription: `Data source for ACI FEX Profile`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_file_remote_path",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Remote Path of a File`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object fex_profile. ## Attribute Reference`,
+					Description: `(Required) name of object File Remote Path. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the FEX Profile.`,
+					Description: `Attribute id set to the Dn of the File Remote Path.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fex_profile.`,
+					Description: `(Optional) Annotation of object File Remote Path.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fex_profile.`,
+					Description: `(Optional) Name Alias of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Optional) Authentication Type Choice.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional) Hostname or IP for export destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Transfer protocol to be used for data export of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "remote_path",
+					Description: `(Optional) Path where data will reside in the destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "remote_port",
+					Description: `(Optional) Remote port for data export destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `(Optional) Username to be used to transfer data to destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object File Remote Path.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the FEX Profile.`,
+					Description: `Attribute id set to the Dn of the File Remote Path.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fex_profile.`,
+					Description: `(Optional) Annotation of object File Remote Path.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object fex_profile.`,
+					Description: `(Optional) Name Alias of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Optional) Authentication Type Choice.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional) Hostname or IP for export destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Transfer protocol to be used for data export of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "remote_path",
+					Description: `(Optional) Path where data will reside in the destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "remote_port",
+					Description: `(Optional) Remote port for data export destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `(Optional) Username to be used to transfer data to destination of object File Remote Path.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object File Remote Path.`,
 				},
 			},
 		},
@@ -3597,19 +3627,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object filter. ## Attribute Reference`,
+					Description: `(Required) Name of Object filter. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Filter.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object filter.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object filter.`,
+					Description: `(Optional) Annotation for object filter.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object filter.`,
+					Description: `(Optional) Name alias for object filter.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3618,12 +3652,16 @@ var (
 					Description: `Attribute id set to the Dn of the Filter.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object filter.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object filter.`,
+					Description: `(Optional) Annotation for object filter.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object filter.`,
+					Description: `(Optional) Name alias for object filter.`,
 				},
 			},
 		},
@@ -3641,15 +3679,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object filter_entry. ## Attribute Reference`,
+					Description: `(Required) Name of Object filter entry. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Filter Entry.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object filter entry.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object filter_entry.`,
+					Description: `(Optional) Annotation for object filter_entry.`,
 				},
 				resource.Attribute{
 					Name:        "apply_to_frag",
@@ -3657,7 +3699,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "arp_opc",
-					Description: `(Optional) open peripheral codes.`,
+					Description: `(Optional) Open peripheral codes.`,
 				},
 				resource.Attribute{
 					Name:        "d_from_port",
@@ -3669,7 +3711,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ether_t",
-					Description: `(Optional) ether type for the entry.`,
+					Description: `(Optional) Ether type for the entry.`,
 				},
 				resource.Attribute{
 					Name:        "icmpv4_t",
@@ -3685,11 +3727,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object filter_entry.`,
+					Description: `(Optional) Name alias for object filter_entry.`,
 				},
 				resource.Attribute{
 					Name:        "prot",
-					Description: `(Optional) level 3 ip protocol.`,
+					Description: `(Optional) Level 3 ip protocol.`,
 				},
 				resource.Attribute{
 					Name:        "s_from_port",
@@ -3714,8 +3756,12 @@ var (
 					Description: `Attribute id set to the Dn of the Filter Entry.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object filter entry.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object filter_entry.`,
+					Description: `(Optional) Annotation for object filter_entry.`,
 				},
 				resource.Attribute{
 					Name:        "apply_to_frag",
@@ -3723,7 +3769,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "arp_opc",
-					Description: `(Optional) open peripheral codes.`,
+					Description: `(Optional) Open peripheral codes.`,
 				},
 				resource.Attribute{
 					Name:        "d_from_port",
@@ -3735,7 +3781,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ether_t",
-					Description: `(Optional) ether type for the entry.`,
+					Description: `(Optional) Ether type for the entry.`,
 				},
 				resource.Attribute{
 					Name:        "icmpv4_t",
@@ -3751,11 +3797,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object filter_entry.`,
+					Description: `(Optional) Name alias for object filter_entry.`,
 				},
 				resource.Attribute{
 					Name:        "prot",
-					Description: `(Optional) level 3 ip protocol.`,
+					Description: `(Optional) Level 3 ip protocol.`,
 				},
 				resource.Attribute{
 					Name:        "s_from_port",
@@ -3782,134 +3828,8 @@ var (
 			ShortDescription: `Data source for ACI Firmware Download Task`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object firmware_download_task. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Firmware Download Task.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "auth_pass",
-					Description: `(Optional) authentication type`,
-				},
-				resource.Attribute{
-					Name:        "auth_type",
-					Description: `(Optional) ospf authentication type specifier`,
-				},
-				resource.Attribute{
-					Name:        "dnld_task_flip",
-					Description: `(Optional) dnld_task_flip for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_private_key_contents",
-					Description: `(Optional) identity_private_key_contents for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_private_key_passphrase",
-					Description: `(Optional) identity_private_key_passphrase for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_public_key_contents",
-					Description: `(Optional) identity_public_key_contents for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "load_catalog_if_exists_and_newer",
-					Description: `(Optional) tracks to load the contained catalog or newer`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) password/key string`,
-				},
-				resource.Attribute{
-					Name:        "polling_interval",
-					Description: `(Optional) polling interval`,
-				},
-				resource.Attribute{
-					Name:        "proto",
-					Description: `(Optional) download protocol`,
-				},
-				resource.Attribute{
-					Name:        "url",
-					Description: `(Optional) URL of image of source`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `(Optional) username for source`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Firmware Download Task.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "auth_pass",
-					Description: `(Optional) authentication type`,
-				},
-				resource.Attribute{
-					Name:        "auth_type",
-					Description: `(Optional) ospf authentication type specifier`,
-				},
-				resource.Attribute{
-					Name:        "dnld_task_flip",
-					Description: `(Optional) dnld_task_flip for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_private_key_contents",
-					Description: `(Optional) identity_private_key_contents for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_private_key_passphrase",
-					Description: `(Optional) identity_private_key_passphrase for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "identity_public_key_contents",
-					Description: `(Optional) identity_public_key_contents for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "load_catalog_if_exists_and_newer",
-					Description: `(Optional) tracks to load the contained catalog or newer`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_download_task.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) password/key string`,
-				},
-				resource.Attribute{
-					Name:        "polling_interval",
-					Description: `(Optional) polling interval`,
-				},
-				resource.Attribute{
-					Name:        "proto",
-					Description: `(Optional) download protocol`,
-				},
-				resource.Attribute{
-					Name:        "url",
-					Description: `(Optional) URL of image of source`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `(Optional) username for source`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3921,7 +3841,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object firmware_group. ## Attribute Reference`,
+					Description: `(Required) Name of Object firmware_group. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3929,15 +3849,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_group.`,
+					Description: `(Optional) Annotation for object Firmware Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Firmware Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_group.`,
+					Description: `(Optional) Name alias for object Firmware Group.`,
 				},
 				resource.Attribute{
 					Name:        "firmware_group_type",
-					Description: `(Optional) component type`,
+					Description: `(Optional) Component type.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3947,15 +3871,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_group.`,
+					Description: `(Optional) Annotation for object Firmware Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Firmware Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_group.`,
+					Description: `(Optional) Name alias for object Firmware Group.`,
 				},
 				resource.Attribute{
 					Name:        "firmware_group_type",
-					Description: `(Optional) component type`,
+					Description: `(Optional) Component type.`,
 				},
 			},
 		},
@@ -3966,78 +3894,8 @@ var (
 			ShortDescription: `Data source for ACI Firmware Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object firmware_policy. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Firmware Policy.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_policy.`,
-				},
-				resource.Attribute{
-					Name:        "effective_on_reboot",
-					Description: `(Optional) firmware version effective on reboot selection`,
-				},
-				resource.Attribute{
-					Name:        "ignore_compat",
-					Description: `(Optional) whether compatibility check required`,
-				},
-				resource.Attribute{
-					Name:        "internal_label",
-					Description: `(Optional) firmware label`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_policy.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) firmware version`,
-				},
-				resource.Attribute{
-					Name:        "version_check_override",
-					Description: `(Optional) version check override`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Firmware Policy.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object firmware_policy.`,
-				},
-				resource.Attribute{
-					Name:        "effective_on_reboot",
-					Description: `(Optional) firmware version effective on reboot selection`,
-				},
-				resource.Attribute{
-					Name:        "ignore_compat",
-					Description: `(Optional) whether compatibility check required`,
-				},
-				resource.Attribute{
-					Name:        "internal_label",
-					Description: `(Optional) firmware label`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object firmware_policy.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) firmware version`,
-				},
-				resource.Attribute{
-					Name:        "version_check_override",
-					Description: `(Optional) version check override`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4048,6 +3906,93 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_global_security",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Global Security`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Global Security.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Global Security.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Global Security.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object Global Security.`,
+				},
+				resource.Attribute{
+					Name:        "pwd_strength_check",
+					Description: `(Optional) Password Strength Check.The password strength check specifies if the system enforces the strength of the user password. Allowed values are "no", "yes", and default value is "yes". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "change_count",
+					Description: `(Optional) Number of Password Changes in Interval.The number of password changes allowed within the change interval. Allowed range is 0-10 and default value is "2".`,
+				},
+				resource.Attribute{
+					Name:        "change_during_interval",
+					Description: `(Optional) Password Policy.The change count/change interval policy selector. This property enables you to select an option for enforcing password change. Allowed values are "disable", "enable", and default value is "enable". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "change_interval",
+					Description: `(Optional) Change Interval in Hours.A time interval for limiting the number of password changes. Allowed range is 0-745 and default value is "48".`,
+				},
+				resource.Attribute{
+					Name:        "expiration_warn_time",
+					Description: `(Optional) Password Expiration Warn Time in Days.A warning period before password expiration. A warning will be displayed when a user logs in within this number of days of an impending password expiration. Allowed range is 0-30 and default value is "15".`,
+				},
+				resource.Attribute{
+					Name:        "history_count",
+					Description: `(Optional) Password History Count.How many retired passwords are stored in a user's password history. Allowed range is 0-15 and default value is "5".`,
+				},
+				resource.Attribute{
+					Name:        "no_change_interval",
+					Description: `(Optional) No Password Change Interval in Hours.A minimum period after a password change before the user can change the password again. Allowed range is 0-745 and default value is "24".`,
+				},
+				resource.Attribute{
+					Name:        "block_duration",
+					Description: `(Optional) Duration in minutes for which login should be blocked.Duration in minutes for which future logins should be blocked Allowed range is 1-1440 and default value is "60".`,
+				},
+				resource.Attribute{
+					Name:        "enable_login_block",
+					Description: `(Optional) Enable blocking of user logins after failed attempts. Allowed values are "disable", "enable", and default value is "disable". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "max_failed_attempts",
+					Description: `(Optional) Maximum continuous failed logins before blocking user.max failed login attempts before blocking user login Allowed range is 1-15 and default value is "5".`,
+				},
+				resource.Attribute{
+					Name:        "max_failed_attempts_window",
+					Description: `(Optional) Time period for maximum continuous failed logins.times in minutes for max login failures to occur before blocking the user Allowed range is 1-720 and default value is "5".`,
+				},
+				resource.Attribute{
+					Name:        "maximum_validity_period",
+					Description: `(Optional) Maximum Validity Period in hours.The maximum validity period for a webt oken. Allowed range is 4-24 and default value is "24".`,
+				},
+				resource.Attribute{
+					Name:        "session_record_flags",
+					Description: `(Optional) Session Recording Options.Enables or disables a refresh in the session records. Allowed values are "login", "logout", "refresh", and default value is "7". Type: List.`,
+				},
+				resource.Attribute{
+					Name:        "ui_idle_timeout_seconds",
+					Description: `(Optional) GUI Idle Timeout in Seconds.The maximum interval time the GUI remains idle before login needs to be refreshed. Allowed range is 60-65525 and default value is "1200".`,
+				},
+				resource.Attribute{
+					Name:        "webtoken_timeout_seconds",
+					Description: `(Optional) Timeout in Seconds.The web token timeout interval. Allowed range is 300-9600 and default value is "600".`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4076,40 +4021,50 @@ var (
 			ShortDescription: `Data source for ACI Imported Contract`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_interface_blacklist",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Out of Service Fabric Path`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
+					Name:        "pod_id",
+					Description: `(Required) The Pod ID of the switch that own the interface that need to be disabled.`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object imported_contract. ## Attribute Reference`,
+					Name:        "node_id",
+					Description: `(Required) The Node ID of the switch that own the interface that need to be disabled.`,
+				},
+				resource.Attribute{
+					Name:        "fex_id",
+					Description: `(Required) The FEX ID of the FEX that own the interface that need to be disabled.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `(Required) The interface name of the interface that need to be disabled. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Imported Contract.`,
+					Description: `Attribute id set to the Dn of the Out of Service Fabric Path.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object imported_contract.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object imported_contract.`,
+					Description: `(Optional) Annotation of object Out of Service Fabric Path.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Imported Contract.`,
+					Description: `Attribute id set to the Dn of the Out of Service Fabric Path.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object imported_contract.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object imported_contract.`,
+					Description: `(Optional) Annotation of object Out of Service Fabric Path.`,
 				},
 			},
 		},
@@ -4120,84 +4075,77 @@ var (
 			ShortDescription: `Data source for ACI Interface FC Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object interface_fc_policy. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Interface FC Policy.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object interface_fc_policy.`,
-				},
-				resource.Attribute{
-					Name:        "automaxspeed",
-					Description: `(Optional) automaxspeed for object interface_fc_policy.`,
-				},
-				resource.Attribute{
-					Name:        "fill_pattern",
-					Description: `(Optional) Fill Pattern for native FC ports.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object interface_fc_policy.`,
-				},
-				resource.Attribute{
-					Name:        "port_mode",
-					Description: `(Optional) In which mode Ports should be used.`,
-				},
-				resource.Attribute{
-					Name:        "rx_bb_credit",
-					Description: `(Optional) Receive buffer credits for native FC ports.`,
-				},
-				resource.Attribute{
-					Name:        "speed",
-					Description: `(Optional) cpu or port speed.`,
-				},
-				resource.Attribute{
-					Name:        "trunk_mode",
-					Description: `(Optional) Trunking on/off for native FC ports.Default value is OFF.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_isis_domain_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI ISIS Domain Policy and ISIS Level`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Interface FC Policy.`,
+					Description: `Attribute id set to the Dn of the ISIS Domain Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object interface_fc_policy.`,
-				},
-				resource.Attribute{
-					Name:        "automaxspeed",
-					Description: `(Optional) automaxspeed for object interface_fc_policy.`,
-				},
-				resource.Attribute{
-					Name:        "fill_pattern",
-					Description: `(Optional) Fill Pattern for native FC ports.`,
+					Description: `(Optional) Annotation of object ISIS Domain Policy and ISIS Level.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object interface_fc_policy.`,
+					Description: `(Optional) Name Alias of object ISIS Domain Policy and ISIS Level.`,
 				},
 				resource.Attribute{
-					Name:        "port_mode",
-					Description: `(Optional) In which mode Ports should be used.`,
+					Name:        "mtu",
+					Description: `(Optional) Maximum Transmission Unit. The IS-IS Domain policy LSP MTU.`,
 				},
 				resource.Attribute{
-					Name:        "rx_bb_credit",
-					Description: `(Optional) Receive buffer credits for native FC ports.`,
+					Name:        "redistrib_metric",
+					Description: `(Optional) Metric. Metric used for redistributed routes.`,
 				},
 				resource.Attribute{
-					Name:        "speed",
-					Description: `(Optional) cpu or port speed.`,
+					Name:        "description",
+					Description: `(Optional) Description of object ISIS Domain Policy and ISIS Level.`,
 				},
 				resource.Attribute{
-					Name:        "trunk_mode",
-					Description: `(Optional) Trunking on/off for native FC ports.Default value is OFF.`,
+					Name:        "lsp_fast_flood",
+					Description: `(Optional) The IS-IS Fast-Flooding of LSPs improves Intermediate System-to-Intermediate System (IS-IS) convergence time when new link-state packets (LSPs) are generated in the network and shortest path first (SPF) is triggered by the new LSPs. Allowed values are "disabled" and "enabled".`,
+				},
+				resource.Attribute{
+					Name:        "lsp_gen_init_intvl",
+					Description: `(Optional) The LSP generation initial wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "lsp_gen_max_intvl",
+					Description: `(Optional) The LSP generation maximum wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "lsp_gen_sec_intvl",
+					Description: `(Optional) The LSP generation second wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "spf_comp_init_intvl",
+					Description: `(Optional) The SPF computation frequency initial wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "spf_comp_max_intvl",
+					Description: `(Optional) The SPF computation frequency maximum wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "spf_comp_sec_intvl",
+					Description: `(Optional) The SPF computation frequency second wait interval.`,
+				},
+				resource.Attribute{
+					Name:        "isis_level_name",
+					Description: `(Optional) The name of ISIS Level object.`,
+				},
+				resource.Attribute{
+					Name:        "isis_level_type",
+					Description: `(Optional) The type of ISIS Level object.`,
 				},
 			},
 		},
@@ -4211,7 +4159,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object L2 Domain. ## Attribute Reference`,
+					Description: `(Required) Name of object L2 Domain. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4219,11 +4167,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for L2 Domain.`,
+					Description: `(Optional) Annotation for object L2 Domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for L2 Domain.`,
+					Description: `(Optional) Name alias for object L2 Domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4233,11 +4181,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for L2 Domain.`,
+					Description: `(Optional) Annotation for object L2 Domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for L2 Domain.`,
+					Description: `(Optional) Name alias for object L2 Domain.`,
 				},
 			},
 		},
@@ -4248,62 +4196,8 @@ var (
 			ShortDescription: `Data source for ACI L2 Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object l2_interface_policy. ## Attribute Reference ##`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the L2 Interface Policy.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object l2_interface_policy.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l2_interface_policy.`,
-				},
-				resource.Attribute{
-					Name:        "qinq",
-					Description: `(Optional) Determines if QinQ is disabled or if the port should be considered a core or edge port.`,
-				},
-				resource.Attribute{
-					Name:        "vepa",
-					Description: `(Optional) Determines if Virtual Ethernet Port Aggregator is disabled or enabled.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_scope",
-					Description: `(Optional) The scope of the VLAN.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the L2 Interface Policy.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object l2_interface_policy.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l2_interface_policy.`,
-				},
-				resource.Attribute{
-					Name:        "qinq",
-					Description: `(Optional) Determines if QinQ is disabled or if the port should be considered a core or edge port.`,
-				},
-				resource.Attribute{
-					Name:        "vepa",
-					Description: `(Optional) Determines if Virtual Ethernet Port Aggregator is disabled or enabled.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_scope",
-					Description: `(Optional) The scope of the VLAN.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4335,7 +4229,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object l3_domain_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object l3 domain profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4343,11 +4237,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3_domain_profile.`,
+					Description: `(Optional) Annotation for object l3 domain profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3_domain_profile.`,
+					Description: `(Optional) Name alias for object l3 domain profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4357,11 +4251,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3_domain_profile.`,
+					Description: `(Optional) Annotation for object l3 domain profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3_domain_profile.`,
+					Description: `(Optional) Name alias for object l3 domain profile.`,
 				},
 			},
 		},
@@ -4372,56 +4266,62 @@ var (
 			ShortDescription: `Data source for ACI l3 extension subnet`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_l3_interface_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI L3 Interface Policy`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "external_network_instance_profile_dn",
-					Description: `(Required) Distinguished name of parent ExternalNetworkInstanceProfile object.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Required) ip of Object l3 extension subnet. ## Attribute Reference`,
+					Name:        "name",
+					Description: `(Required) Name of object L3 Interface Policy. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the l3 extension subnet.`,
-				},
-				resource.Attribute{
-					Name:        "aggregate",
-					Description: `(Optional) Aggregate Routes for l3 extension subnet.`,
+					Description: `Attribute id set to the Dn of the L3 Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3 extension subnet.`,
+					Description: `(Optional) Annotation for object L3 Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "bfd_isis",
+					Description: `(Optional) BFD ISIS Configuration for object L3 Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3 extension subnet.`,
+					Description: `(Optional) Name alias for object L3 Interface Policy.`,
 				},
 				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) The list of domain applicable to the capability.`,
+					Name:        "description",
+					Description: `(Optional) Description for object L3 Interface Policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the l3 extension subnet.`,
-				},
-				resource.Attribute{
-					Name:        "aggregate",
-					Description: `(Optional) Aggregate Routes for l3 extension subnet.`,
+					Description: `Attribute id set to the Dn of the L3 Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3 extension subnet.`,
+					Description: `(Optional) Annotation for object L3 Interface Policy.`,
+				},
+				resource.Attribute{
+					Name:        "bfd_isis",
+					Description: `(Optional) BFD ISIS Configuration for object L3 Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3 extension subnet.`,
+					Description: `(Optional) Name alias for object L3 Interface Policy.`,
 				},
 				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) The list of domain applicable to the capability.`,
+					Name:        "description",
+					Description: `(Optional) Description for object L3 Interface Policy.`,
 				},
 			},
 		},
@@ -4439,7 +4339,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object l3_outside. ## Attribute Reference`,
+					Description: `(Required) name of Object l3 outside. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4447,7 +4347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3_outside.`,
+					Description: `(Optional) annotation for object l3 outside.`,
 				},
 				resource.Attribute{
 					Name:        "enforce_rtctrl",
@@ -4455,7 +4355,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3_outside.`,
+					Description: `(Optional) name_alias for object l3 outside.`,
 				},
 				resource.Attribute{
 					Name:        "target_dscp",
@@ -4469,7 +4369,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3_outside.`,
+					Description: `(Optional) annotation for object l3 outside.`,
 				},
 				resource.Attribute{
 					Name:        "enforce_rtctrl",
@@ -4477,7 +4377,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3_outside.`,
+					Description: `(Optional) name_alias for object l3 outside.`,
 				},
 				resource.Attribute{
 					Name:        "target_dscp",
@@ -4565,7 +4465,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fabric_node_dn",
-					Description: `(Required) Distinguished name of parent FabricNode object.`,
+					Description: `(Required) Distinguished name of parent Fabric Node object.`,
 				},
 				resource.Attribute{
 					Name:        "addr",
@@ -4614,66 +4514,8 @@ var (
 			ShortDescription: `Data source for ACI L3-out OSPF External Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) Annotation for object L3-out OSPF External Policy.`,
-				},
-				resource.Attribute{
-					Name:        "area_cost",
-					Description: `(Optional) The OSPF Area cost.`,
-				},
-				resource.Attribute{
-					Name:        "area_ctrl",
-					Description: `(Optional) The controls of redistribution and summary LSA generation into NSSA and Stub areas.`,
-				},
-				resource.Attribute{
-					Name:        "area_id",
-					Description: `(Optional) The OSPF Area ID.`,
-				},
-				resource.Attribute{
-					Name:        "area_type",
-					Description: `(Optional) The area type.`,
-				},
-				resource.Attribute{
-					Name:        "multipod_internal",
-					Description: `(Optional) Start OSPF in WAN instance instead of default.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) Name alias for object L3-out OSPF External Policy.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) Annotation for object L3-out OSPF External Policy.`,
-				},
-				resource.Attribute{
-					Name:        "area_cost",
-					Description: `(Optional) The OSPF Area cost.`,
-				},
-				resource.Attribute{
-					Name:        "area_ctrl",
-					Description: `(Optional) The controls of redistribution and summary LSA generation into NSSA and Stub areas.`,
-				},
-				resource.Attribute{
-					Name:        "area_id",
-					Description: `(Optional) The OSPF Area ID.`,
-				},
-				resource.Attribute{
-					Name:        "area_type",
-					Description: `(Optional) The area type.`,
-				},
-				resource.Attribute{
-					Name:        "multipod_internal",
-					Description: `(Optional) Start OSPF in WAN instance instead of default.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) Name alias for object L3-out OSPF External Policy.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4682,62 +4524,8 @@ var (
 			ShortDescription: `Data source for ACI L3out OSPF Interface Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "logical_interface_profile_dn",
-					Description: `(Required) Distinguished name of parent logical interface profile object. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Interface Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `Annotation for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "auth_key_id",
-					Description: `Authentication key id for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "auth_type",
-					Description: `OSPF authentication type for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `Name alias for L3out OSPF interface profile object.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Interface Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `Annotation for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Description for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "auth_key_id",
-					Description: `Authentication key id for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "auth_type",
-					Description: `OSPF authentication type for L3out OSPF interface profile object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `Name alias for L3out OSPF interface profile object.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4806,58 +4594,8 @@ var (
 			ShortDescription: `Data source for ACI L4-L7 Service Graph Template`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name for L4-L7 service graph template object. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the L4-L7 Service Graph Template.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) Annotation for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "l4_l7_service_graph_template_type",
-					Description: `(Optional) Component type for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "ui_template_type",
-					Description: `(Optional) UI template type for L4-L7 service graph template object.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the L4-L7 Service Graph Template.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) Annotation for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "l4_l7_service_graph_template_type",
-					Description: `(Optional) Component type for L4-L7 service graph template object.`,
-				},
-				resource.Attribute{
-					Name:        "ui_template_type",
-					Description: `(Optional) UI template type for L4-L7 service graph template object.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4866,68 +4604,310 @@ var (
 			ShortDescription: `Data source for ACI LACP Policy`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ldap_group_map",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI LDAP Group Map`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of Object lacp_policy. ## Attribute Reference`,
+					Description: `(Required) Name of object LDAP Group Map.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of object LDAP Group Map. Allowed values are "duo" and "ldap". ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the LACP Policy.`,
+					Description: `Attribute id set to the Dn of the LDAP Group Map.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object lacp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl",
-					Description: `(Optional) List of LAG control properties`,
-				},
-				resource.Attribute{
-					Name:        "max_links",
-					Description: `(Optional) Maximum number of links.`,
-				},
-				resource.Attribute{
-					Name:        "min_links",
-					Description: `(Optional) Minimum number of links in port channel.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) Policy mode.`,
+					Description: `(Optional) Annotation of object LDAP Group Map.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name_alias for object lacp_policy.`,
+					Description: `(Optional) Name Alias of object LDAP Group Map.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the LACP Policy.`,
+					Description: `Attribute id set to the Dn of the LDAP Group Map.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object lacp_policy.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl",
-					Description: `(Optional) List of LAG control properties`,
-				},
-				resource.Attribute{
-					Name:        "max_links",
-					Description: `(Optional) Maximum number of links.`,
-				},
-				resource.Attribute{
-					Name:        "min_links",
-					Description: `(Optional) Minimum number of links in port channel.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) Policy mode.`,
+					Description: `(Optional) Annotation of object LDAP Group Map.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name_alias for object lacp_policy.`,
+					Description: `(Optional) Name Alias of object LDAP Group Map.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ldap_group_map_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI LDAP Group Map Rule`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of object LDAP Group MAp Rule. Allowed Values are "duo" and "ldap". ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "groupdn",
+					Description: `(Optional) LDAP Group DN to compare with LDAP search query for user's membership.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map Rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object LDAP Group Map Rule.`,
+				},
+				resource.Attribute{
+					Name:        "groupdn",
+					Description: `(Optional) LDAP Group DN to compare with LDAP search query for user's membership.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map Rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ldap_group_map_rule_to_group_map",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI LDAP Group Map Rule to Group Map Ref`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ldap_group_map_dn",
+					Description: `(Required) Distinguished name of parent LDAP Group Map object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object LDAP Group Map Rule to Group Map Ref. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Group Map Rule to Group Map Ref.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ldap_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI LDAP Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Host name or IP address of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of LDAP Provider. Allowed values are "ldap" and "duo". ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_validation_level",
+					Description: `(Optional) The LDAP Server SSL Certificate validation level.`,
+				},
+				resource.Attribute{
+					Name:        "attribute",
+					Description: `(Optional) The attribute to be downloaded that contains user role and domain information.`,
+				},
+				resource.Attribute{
+					Name:        "basedn",
+					Description: `(Optional) The LDAP base DN to be used in a user search.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ssl",
+					Description: `(Optional) A property for enabling an SSL connection with the LDAP provider.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) The LDAP filter to be used in a user search.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The service port number for the LDAP service.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retry count of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "rootdn",
+					Description: `(Optional) The root DN or bind DN of the LDAP provider.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The timeout for communication with an LDAP provider server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_validation_level",
+					Description: `(Optional) The LDAP Server SSL Certificate validation level.`,
+				},
+				resource.Attribute{
+					Name:        "attribute",
+					Description: `(Optional) The attribute to be downloaded that contains user role and domain information.`,
+				},
+				resource.Attribute{
+					Name:        "basedn",
+					Description: `(Optional) The LDAP base DN to be used in a user search.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ssl",
+					Description: `(Optional) A property for enabling an SSL connection with the LDAP provider.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) The LDAP filter to be used in a user search.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The service port number for the LDAP service.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retry count of object LDAP Provider.`,
+				},
+				resource.Attribute{
+					Name:        "rootdn",
+					Description: `(Optional) The root DN or bind DN of the LDAP provider.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The timeout for communication with an LDAP provider server.`,
 				},
 			},
 		},
@@ -4938,46 +4918,8 @@ var (
 			ShortDescription: `Data source for ACI leaf access bundle policy group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object leaf_access_bundle_policy_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the ACI leaf access bundle policy group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object aci_leaf_access_bundle_policy_group.`,
-				},
-				resource.Attribute{
-					Name:        "lag_t",
-					Description: `(Optional) The bundled ports group link aggregation type: port channel vs virtual port channel.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aci_leaf_access_bundle_policy_group.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the ACI leaf access bundle policy group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object aci_leaf_access_bundle_policy_group.`,
-				},
-				resource.Attribute{
-					Name:        "lag_t",
-					Description: `(Optional) The bundled ports group link aggregation type: port channel vs virtual port channel.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aci_leaf_access_bundle_policy_group.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4989,19 +4931,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object leaf_access_port_policy_group. ## Attribute Reference`,
+					Description: `(Required) Name of Object leaf_access_port_policy_group. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Leaf Access Port Policy Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object leaf access port policy group.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_access_port_policy_group.`,
+					Description: `(Optional) Annotation for object leaf access port policy group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_access_port_policy_group.`,
+					Description: `(Optional) Name alias for object leaf access port policy group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5010,12 +4956,16 @@ var (
 					Description: `Attribute id set to the Dn of the Leaf Access Port Policy Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object leaf access port policy group.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_access_port_policy_group.`,
+					Description: `(Optional) Annotation for object leaf access port policy group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_access_port_policy_group.`,
+					Description: `(Optional) Name alias for object leaf access port policy group.`,
 				},
 			},
 		},
@@ -5039,19 +4989,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object leaf_interface_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object Leaf Interface Profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Leaf Interface Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Leaf Interface Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_interface_profile.`,
+					Description: `(Optional) Annotation for object Leaf Interface Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_interface_profile.`,
+					Description: `(Optional) Name alias for object Leaf Interface Profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5060,12 +5014,16 @@ var (
 					Description: `Attribute id set to the Dn of the Leaf Interface Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Leaf Interface Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_interface_profile.`,
+					Description: `(Optional) Annotation for object Leaf Interface Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_interface_profile.`,
+					Description: `(Optional) Name alias for object Leaf Interface Profile.`,
 				},
 			},
 		},
@@ -5086,12 +5044,16 @@ var (
 					Description: `Attribute id set to the Dn of the Leaf Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object leaf profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_profile.`,
+					Description: `(Optional) Annotation for object leaf profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_profile.`,
+					Description: `(Optional) Name alias for object leaf profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5100,12 +5062,16 @@ var (
 					Description: `Attribute id set to the Dn of the Leaf Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object leaf profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object leaf_profile.`,
+					Description: `(Optional) Annotation for object leaf profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object leaf_profile.`,
+					Description: `(Optional) Name alias for object leaf profile.`,
 				},
 			},
 		},
@@ -5116,54 +5082,8 @@ var (
 			ShortDescription: `Data source for ACI Leaf Selector`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "leaf_profile_dn",
-					Description: `(Required) Distinguished name of parent LeafProfile object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object switch_association.`,
-				},
-				resource.Attribute{
-					Name:        "switch_association_type",
-					Description: `(Required) switch_association_type of Object switch_association. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Switch Association.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object switch_association.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object switch_association.`,
-				},
-				resource.Attribute{
-					Name:        "switch_association_type",
-					Description: `(Optional) leaf selector type`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Switch Association.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object switch_association.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object switch_association.`,
-				},
-				resource.Attribute{
-					Name:        "switch_association_type",
-					Description: `(Optional) leaf selector type`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5175,7 +5095,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object lldp_interface_policy. ## Attribute Reference`,
+					Description: `(Required) Name of Object LLDP Interface Policy. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5183,19 +5103,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_rx_st",
-					Description: `(Optional) admin receive state.`,
+					Description: `(Optional) Admin receive state.`,
 				},
 				resource.Attribute{
 					Name:        "admin_tx_st",
-					Description: `(Optional) admin transmit state.`,
+					Description: `(Optional) Admin transmit state.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object LLDP Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object lldp_interface_policy.`,
+					Description: `(Optional) Annotation for object LLDP Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object lldp_interface_policy.`,
+					Description: `(Optional) Name alias for object LLDP Interface Policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5205,19 +5129,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_rx_st",
-					Description: `(Optional) admin receive state.`,
+					Description: `(Optional) Admin receive state.`,
 				},
 				resource.Attribute{
 					Name:        "admin_tx_st",
-					Description: `(Optional) admin transmit state.`,
+					Description: `(Optional) Admin transmit state.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object LLDP Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object lldp_interface_policy.`,
+					Description: `(Optional) Annotation for object LLDP Interface Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object lldp_interface_policy.`,
+					Description: `(Optional) Name alias for object LLDP Interface Policy.`,
 				},
 			},
 		},
@@ -5228,166 +5156,8 @@ var (
 			ShortDescription: `Data source for ACI Local User`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object local_user. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Local User.`,
-				},
-				resource.Attribute{
-					Name:        "account_status",
-					Description: `(Optional) local AAA user account status`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "cert_attribute",
-					Description: `(Optional) cert_attribute for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "clear_pwd_history",
-					Description: `(Optional) clear password history of local user`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Optional) email address of the local user`,
-				},
-				resource.Attribute{
-					Name:        "expiration",
-					Description: `(Optional) local user account expiration date`,
-				},
-				resource.Attribute{
-					Name:        "expires",
-					Description: `(Optional) enables local user account expiration`,
-				},
-				resource.Attribute{
-					Name:        "first_name",
-					Description: `(Optional) first name of the local user`,
-				},
-				resource.Attribute{
-					Name:        "last_name",
-					Description: `(Optional) last name of the local user`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "otpenable",
-					Description: `(Optional) otpenable for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "otpkey",
-					Description: `(Optional) otpkey for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "phone",
-					Description: `(Optional) phone number of the local user`,
-				},
-				resource.Attribute{
-					Name:        "pwd",
-					Description: `(Optional) system user password`,
-				},
-				resource.Attribute{
-					Name:        "pwd_life_time",
-					Description: `(Optional) lifetime of the local user password`,
-				},
-				resource.Attribute{
-					Name:        "pwd_update_required",
-					Description: `(Optional) pwd_update_required for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "rbac_string",
-					Description: `(Optional) rbac_string for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "unix_user_id",
-					Description: `(Optional) UNIX identifier of the local user`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Local User.`,
-				},
-				resource.Attribute{
-					Name:        "account_status",
-					Description: `(Optional) local AAA user account status`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "cert_attribute",
-					Description: `(Optional) cert_attribute for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "clear_pwd_history",
-					Description: `(Optional) clear password history of local user`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Optional) email address of the local user`,
-				},
-				resource.Attribute{
-					Name:        "expiration",
-					Description: `(Optional) local user account expiration date`,
-				},
-				resource.Attribute{
-					Name:        "expires",
-					Description: `(Optional) enables local user account expiration`,
-				},
-				resource.Attribute{
-					Name:        "first_name",
-					Description: `(Optional) first name of the local user`,
-				},
-				resource.Attribute{
-					Name:        "last_name",
-					Description: `(Optional) last name of the local user`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "otpenable",
-					Description: `(Optional) otpenable for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "otpkey",
-					Description: `(Optional) otpkey for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "phone",
-					Description: `(Optional) phone number of the local user`,
-				},
-				resource.Attribute{
-					Name:        "pwd",
-					Description: `(Optional) system user password`,
-				},
-				resource.Attribute{
-					Name:        "pwd_life_time",
-					Description: `(Optional) lifetime of the local user password`,
-				},
-				resource.Attribute{
-					Name:        "pwd_update_required",
-					Description: `(Optional) pwd_update_required for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "rbac_string",
-					Description: `(Optional) rbac_string for object local_user.`,
-				},
-				resource.Attribute{
-					Name:        "unix_user_id",
-					Description: `(Optional) UNIX identifier of the local user`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5426,66 +5196,8 @@ var (
 			ShortDescription: `Data source for ACI Logical Node Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "l3_outside_dn",
-					Description: `(Required) Distinguished name of parent L3Outside object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object logical_node_profile. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Logical Node Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object logical_node_profile.`,
-				},
-				resource.Attribute{
-					Name:        "config_issues",
-					Description: `(Optional) configuration issues`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object logical_node_profile.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `(Optional) label color`,
-				},
-				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) target dscp`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Logical Node Profile.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object logical_node_profile.`,
-				},
-				resource.Attribute{
-					Name:        "config_issues",
-					Description: `(Optional) configuration issues`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object logical_node_profile.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `(Optional) label color`,
-				},
-				resource.Attribute{
-					Name:        "target_dscp",
-					Description: `(Optional) target dscp`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5500,8 +5212,8 @@ var (
 					Description: `(Required) Distinguished name of parent LogicalNodeProfile object.`,
 				},
 				resource.Attribute{
-					Name:        "tDn",
-					Description: `(Required) tDn of Object fabric_node. ## Attribute Reference`,
+					Name:        "tdn",
+					Description: `(Required) Tdn of Object Fabric Node. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5509,15 +5221,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric_node.`,
+					Description: `(Optional) Annotation for object Fabric Node.`,
 				},
 				resource.Attribute{
 					Name:        "config_issues",
-					Description: `(Optional) configuration issues`,
+					Description: `(Optional) Configuration issues`,
 				},
 				resource.Attribute{
 					Name:        "rtr_id",
-					Description: `(Optional) router identifier`,
+					Description: `(Optional) Router identifier`,
 				},
 				resource.Attribute{
 					Name:        "rtr_id_loop_back",
@@ -5531,19 +5243,151 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object fabric_node.`,
+					Description: `(Optional) Annotation for object Fabric Node.`,
 				},
 				resource.Attribute{
 					Name:        "config_issues",
-					Description: `(Optional) configuration issues`,
+					Description: `(Optional) Configuration issues`,
 				},
 				resource.Attribute{
 					Name:        "rtr_id",
-					Description: `(Optional) router identifier`,
+					Description: `(Optional) Router identifier`,
 				},
 				resource.Attribute{
 					Name:        "rtr_id_loop_back",
 					Description: `(Optional)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_login_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Login Domain`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object Login Domain. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "provider_group",
+					Description: `(Optional) Provider Group. An AAA configuration provider group is a group of remote servers supporting the same AAA protocol that will be used for authentication and authorization. When a provider group is specified, only the servers within that group will be used for authentication and authorization. If no provider group is specified, all servers supporting the realm of AAA protocols will be used for authentication and authorization.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Realm. The security method for processing authentication requests. The realm allows the protected resources on the associated server to be partitioned into a set of protection spaces, each with its own authentication authorization database.`,
+				},
+				resource.Attribute{
+					Name:        "realm_sub_type",
+					Description: `(Optional) Realm subtype of object Login Domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Login Domain.`,
+				},
+				resource.Attribute{
+					Name:        "provider_group",
+					Description: `(Optional) Provider Group. An AAA configuration provider group is a group of remote servers supporting the same AAA protocol that will be used for authentication and authorization. When a provider group is specified, only the servers within that group will be used for authentication and authorization. If no provider group is specified, all servers supporting the realm of AAA protocols will be used for authentication and authorization.`,
+				},
+				resource.Attribute{
+					Name:        "realm",
+					Description: `(Optional) Realm. The security method for processing authentication requests. The realm allows the protected resources on the associated server to be partitioned into a set of protection spaces, each with its own authentication authorization database.`,
+				},
+				resource.Attribute{
+					Name:        "realm_sub_type",
+					Description: `(Optional) Realm subtype of object Login Domain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_login_domain_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Login Domain Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Required) Distinguished name of parent.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object Login Domain Provider. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order in which Providers are Tried. The relative priority in which the AAA provider will be contacted within the provider group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Login Domain Provider.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order in which Providers are Tried. The relative priority in which the AAA provider will be contacted within the provider group.`,
 				},
 			},
 		},
@@ -5557,53 +5401,61 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pod_maintenance_group_dn",
-					Description: `(Required) Distinguished name of parent POD maintenance group object.`,
+					Description: `(Required) Distinguished name of parent POD Maintenance Group Object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of maintenance group node object. ## Attribute Reference`,
+					Description: `(Required) Name of Maintenance Group Node Object. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the dn of the maintenance group node object.`,
+					Description: `Attribute id set to the dn of the Maintenance Group Node Object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for maintenance group node object.`,
+					Description: `(Optional) Annotation for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "from_",
-					Description: `(Optional) From for maintenance group node object.`,
+					Description: `(Optional) From for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for maintenance group node object.`,
+					Description: `(Optional) Name alias for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "to_",
-					Description: `(Optional) To for maintenance group node object.`,
+					Description: `(Optional) To for Maintenance Group Node Object.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the dn of the maintenance group node object.`,
+					Description: `Attribute id set to the dn of the Maintenance Group Node Object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for maintenance group node object.`,
+					Description: `(Optional) Annotation for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "from_",
-					Description: `(Optional) From for maintenance group node object.`,
+					Description: `(Optional) From for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for maintenance group node object.`,
+					Description: `(Optional) Name alias for Maintenance Group Node Object.`,
 				},
 				resource.Attribute{
 					Name:        "to_",
-					Description: `(Optional) To for maintenance group node object.`,
+					Description: `(Optional) To for Maintenance Group Node Object.`,
 				},
 			},
 		},
@@ -5614,102 +5466,388 @@ var (
 			ShortDescription: `Data source for ACI Maintenance Policy`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_managed_node_connectivity_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Managed Node Connectivity Group`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object maintenance_policy. ## Attribute Reference`,
+					Description: `(Required) name of object Managed Node Connectivity Group. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Maintenance Policy.`,
-				},
-				resource.Attribute{
-					Name:        "admin_st",
-					Description: `(Optional) maintenance policy admin state`,
+					Description: `Attribute id set to the Dn of the Managed Node Connectivity Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object maintenance_policy.`,
-				},
-				resource.Attribute{
-					Name:        "graceful",
-					Description: `(Optional) graceful for object maintenance_policy.`,
-				},
-				resource.Attribute{
-					Name:        "ignore_compat",
-					Description: `(Optional) whether compatibility check required`,
-				},
-				resource.Attribute{
-					Name:        "internal_label",
-					Description: `(Optional) firmware label`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object maintenance_policy.`,
-				},
-				resource.Attribute{
-					Name:        "notif_cond",
-					Description: `(Optional) when to send notifications to the admin`,
-				},
-				resource.Attribute{
-					Name:        "run_mode",
-					Description: `(Optional) maintenance policy run mode`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) compatibility catalog version`,
-				},
-				resource.Attribute{
-					Name:        "version_check_override",
-					Description: `(Optional) version check override`,
+					Description: `(Optional) Annotation of object Managed Node Connectivity Group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Maintenance Policy.`,
-				},
-				resource.Attribute{
-					Name:        "admin_st",
-					Description: `(Optional) maintenance policy admin state`,
+					Description: `Attribute id set to the Dn of the Managed Node Connectivity Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object maintenance_policy.`,
+					Description: `(Optional) Annotation of object Managed Node Connectivity Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_match_community_terms",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Match Community Term`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "match_rule_dn",
+					Description: `(Required) Distinguished name of the parent Match Rule object.`,
 				},
 				resource.Attribute{
-					Name:        "graceful",
-					Description: `(Optional) graceful for object maintenance_policy.`,
+					Name:        "name",
+					Description: `(Required) Name of the Match Community Term object. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
-					Name:        "ignore_compat",
-					Description: `(Optional) whether compatibility check required`,
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Community Term.`,
 				},
 				resource.Attribute{
-					Name:        "internal_label",
-					Description: `(Optional) firmware label`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Match Community Term object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object maintenance_policy.`,
+					Description: `(Optional) Name Alias of the Match Community Term object.`,
 				},
 				resource.Attribute{
-					Name:        "notif_cond",
-					Description: `(Optional) when to send notifications to the admin`,
+					Name:        "match_community_factors",
+					Description: `(Optional) Match Community Factor object.Type: Block.`,
 				},
 				resource.Attribute{
-					Name:        "run_mode",
-					Description: `(Optional) maintenance policy run mode`,
+					Name:        "community",
+					Description: `(Required) The community of the Match Community Factor object. Type: String.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) compatibility catalog version`,
+					Name:        "scope",
+					Description: `(Optional) The scope of the Match Community Factor object. Allowed values are "transitive", "non-transitive", and default value is "transitive". Type: String.`,
 				},
 				resource.Attribute{
-					Name:        "version_check_override",
-					Description: `(Optional) version check override`,
+					Name:        "community",
+					Description: `(Optional) The community of the Match Community Factor object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Match Community Factor object.`,
 				},
 			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Community Term.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Match Community Term object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Match Community Term object.`,
+				},
+				resource.Attribute{
+					Name:        "match_community_factors",
+					Description: `(Optional) Match Community Factor object.Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `(Required) The community of the Match Community Factor object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) The scope of the Match Community Factor object. Allowed values are "transitive", "non-transitive", and default value is "transitive". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "community",
+					Description: `(Optional) The community of the Match Community Factor object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the Match Community Factor object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_match_regex_community_terms",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Match Rule Based on Community Regular Expression`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "match_rule_dn",
+					Description: `(Required) Distinguished name of parent Match Rule object.`,
+				},
+				resource.Attribute{
+					Name:        "community_type",
+					Description: `(Required) Community Type of the Match Rule Based on Community Regular Expression object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Rule Based on Community Regular Expression.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Match Rule Based on Community Regular Expression object.`,
+				},
+				resource.Attribute{
+					Name:        "community_type",
+					Description: `(Optional) Community Type of the Match Rule Based on Community Regular Expression object.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) Regular Expression. A regular expression used to specify a pattern to match against the community string.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Rule Based on Community Regular Expression.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Match Rule Based on Community Regular Expression object.`,
+				},
+				resource.Attribute{
+					Name:        "community_type",
+					Description: `(Optional) Community Type of the Match Rule Based on Community Regular Expression object.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) Regular Expression. A regular expression used to specify a pattern to match against the community string.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_match_route_destination_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Match Route Destination Rule`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "match_rule_dn",
+					Description: `(Required) Distinguished name of parent MatchRule object.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) ip of object Match Route Destination Rule. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `(Optional) Aggregated Route. Aggregated Route`,
+				},
+				resource.Attribute{
+					Name:        "greater_than_mask",
+					Description: `(Optional) Start of Prefix Length. Prefix list range`,
+				},
+				resource.Attribute{
+					Name:        "less_than_mask",
+					Description: `(Optional) End of Prefix Length.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Match Route Destination Rule.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `(Optional) Aggregated Route. Aggregated Route`,
+				},
+				resource.Attribute{
+					Name:        "greater_than_mask",
+					Description: `(Optional) Start of Prefix Length. Prefix list range`,
+				},
+				resource.Attribute{
+					Name:        "less_than_mask",
+					Description: `(Optional) End of Prefix Length.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_match_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Match Rule`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Match Rule. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Match Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Match Rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Match Rule.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Match Rule.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Match Rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_mcp_instance_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI MCP Instance Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the MCP Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object MCP Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object MCP Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of Object MCP Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) Admin State. The administrative state of the object or policy.`,
+				},
+				resource.Attribute{
+					Name:        "ctrl",
+					Description: `(Optional) Controls. The control state.`,
+				},
+				resource.Attribute{
+					Name:        "init_delay_time",
+					Description: `(Optional) Init Delay Time.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(optional) Secret Key. The key or password used to uniquely identify this configuration object.`,
+				},
+				resource.Attribute{
+					Name:        "loop_detect_mult",
+					Description: `(Optional) Loop Detection Multiplier.`,
+				},
+				resource.Attribute{
+					Name:        "loop_protect_act",
+					Description: `(Optional) Loop Protection Action.`,
+				},
+				resource.Attribute{
+					Name:        "tx_freq",
+					Description: `(Optional) Transmission Frequency. Sets the transmission frequency of the instance advertisements.`,
+				},
+				resource.Attribute{
+					Name:        "tx_freq_msec",
+					Description: `(Optional) Transmission Frequency. Sets the transmission frequency of mcp advertisements in milliseconds`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_mgmt_preference",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Mgmt Preference`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Mgmt preference.`,
+				},
+				resource.Attribute{
+					Name:        "interface_pref",
+					Description: `(Optional) Management interface that has to be used.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Mgmt preference.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Mgmt preference.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Mgmt Preference.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_mgmt_zone",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Management Zone`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5729,15 +5867,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy.`,
+					Description: `(Optional) Administrative state of the object or policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object miscabling protocol interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object miscabling_protocol_interface_policy.`,
+					Description: `(Optional) Annotation for object miscabling protocol interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object miscabling_protocol_interface_policy.`,
+					Description: `(Optional) Name alias for object miscabling protocol interface policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5747,15 +5889,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy.`,
+					Description: `(Optional) Administrative state of the object or policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object miscabling protocol interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object miscabling_protocol_interface_policy.`,
+					Description: `(Optional) Annotation for object miscabling protocol interface policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object miscabling_protocol_interface_policy.`,
+					Description: `(Optional) Name alias for object miscabling protocol interface policy.`,
 				},
 			},
 		},
@@ -5769,11 +5915,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
-					Description: `(Required) tenant dn of object monitoring policy.`,
+					Description: `(Required) Tenant dn of object monitoring policy.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of object monitoring policy. ## Attribute Reference`,
+					Description: `(Required) Name of object monitoring policy. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5781,11 +5927,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object monitoring policy.`,
+					Description: `(Optional) Annotation for object monitoring policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object monitoring policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object monitoring policy.`,
+					Description: `(Optional) Name alias for object monitoring policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5795,11 +5945,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object monitoring policy.`,
+					Description: `(Optional) Annotation for object monitoring policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object monitoring policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object monitoring policy.`,
+					Description: `(Optional) Name alias for object monitoring policy.`,
 				},
 			},
 		},
@@ -5810,58 +5964,8 @@ var (
 			ShortDescription: `Data source for ACI Node Block`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "switch_association_dn",
-					Description: `(Required) Distinguished name of parent SwitchAssociation object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object node_block. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Node Block.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object node_block.`,
-				},
-				resource.Attribute{
-					Name:        "from_",
-					Description: `(Optional) from Node ID. Range from 101 to 110.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object node_block.`,
-				},
-				resource.Attribute{
-					Name:        "to_",
-					Description: `(Optional) to node ID. Range from 101 to 110.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Node Block.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object node_block.`,
-				},
-				resource.Attribute{
-					Name:        "from_",
-					Description: `(Optional) from Node ID. Range from 101 to 110.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object node_block.`,
-				},
-				resource.Attribute{
-					Name:        "to_",
-					Description: `(Optional) to node ID. Range from 101 to 110.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5873,31 +5977,35 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "firmware_group_dn",
-					Description: `(Required) Distinguished name of parent FirmwareGroup object.`,
+					Description: `(Required) Distinguished name of parent Firmware Group object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object node_block. ## Attribute Reference`,
+					Description: `(Required) Name of Object Node Block. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Node Block.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Object Node Block.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object node_block.`,
+					Description: `(Optional) Annotation for Object Node Block.`,
 				},
 				resource.Attribute{
 					Name:        "from_",
-					Description: `(Optional) from`,
+					Description: `(Optional) From value for Object Node Block.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object node_block.`,
+					Description: `(Optional) Name alias for Object Node Block..`,
 				},
 				resource.Attribute{
 					Name:        "to_",
-					Description: `(Optional) to`,
+					Description: `(Optional) To value for Object Node Block.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5906,20 +6014,24 @@ var (
 					Description: `Attribute id set to the Dn of the Node Block.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Object Node Block.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object node_block.`,
+					Description: `(Optional) Annotation for Object Node Block.`,
 				},
 				resource.Attribute{
 					Name:        "from_",
-					Description: `(Optional) from`,
+					Description: `(Optional) From value for Object Node Block.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object node_block.`,
+					Description: `(Optional) Name alias for Object Node Block..`,
 				},
 				resource.Attribute{
 					Name:        "to_",
-					Description: `(Optional) to`,
+					Description: `(Optional) To value for Object Node Block.`,
 				},
 			},
 		},
@@ -5973,7 +6085,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object physical_domain. ## Attribute Reference`,
+					Description: `(Required) Name of object physical domain. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5981,11 +6093,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object physical_domain.`,
+					Description: `(Optional) Annotation for object physical domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object physical_domain.`,
+					Description: `(Optional) Name alias for object physical domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5995,11 +6107,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object physical_domain.`,
+					Description: `(Optional) Annotation for object physical domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object physical_domain.`,
+					Description: `(Optional) Name alias for object physical domain.`,
 				},
 			},
 		},
@@ -6010,54 +6122,8 @@ var (
 			ShortDescription: `Data source for ACI POD Maintenance Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object pod_maintenance_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `attribute id set to the Dn of pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `annotation for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "fwtype",
-					Description: `fwtype for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `name_alias for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "pod_maintenance_group_type",
-					Description: `component type for pod maintenance group object.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `attribute id set to the Dn of pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `annotation for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "fwtype",
-					Description: `fwtype for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `name_alias for pod maintenance group object.`,
-				},
-				resource.Attribute{
-					Name:        "pod_maintenance_group_type",
-					Description: `component type for pod maintenance group object.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6066,68 +6132,293 @@ var (
 			ShortDescription: `Data source for ACI Port Security Policy`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_port_tracking",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Port Tracking`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object port_security_policy. ## Attribute Reference`,
-				},
-				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Port Security Policy.`,
+					Description: `Attribute id set to the Dn of the Port Tracking.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object port_security_policy.`,
-				},
-				resource.Attribute{
-					Name:        "maximum",
-					Description: `(Optional) Port Security Maximum.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) bgp domain mode`,
+					Description: `(Optional) Annotation of object Port Tracking.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object port_security_policy.`,
+					Description: `(Optional) Name Alias of object Port Tracking.`,
 				},
 				resource.Attribute{
-					Name:        "timeout",
-					Description: `(Optional) amount of time between authentication attempts`,
+					Name:        "admin_st",
+					Description: `(Optional) Port Tracking State. The administrative state of the object or policy.`,
 				},
 				resource.Attribute{
-					Name:        "violation",
-					Description: `(Optional) Port security violation.`,
+					Name:        "delay",
+					Description: `(Optional) Delay Timeout. The administrative port delay.`,
+				},
+				resource.Attribute{
+					Name:        "include_apic_ports",
+					Description: `(Optional) Include APIC Ports when port tracking is triggered.`,
+				},
+				resource.Attribute{
+					Name:        "minlinks",
+					Description: `(Optional) Minimum links left up before trigger.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Port Tracking.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Port Security Policy.`,
+					Description: `Attribute id set to the Dn of the Port Tracking.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object port_security_policy.`,
-				},
-				resource.Attribute{
-					Name:        "maximum",
-					Description: `(Optional) Port Security Maximum.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) bgp domain mode`,
+					Description: `(Optional) Annotation of object Port Tracking.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object port_security_policy.`,
+					Description: `(Optional) Name Alias of object Port Tracking.`,
+				},
+				resource.Attribute{
+					Name:        "admin_st",
+					Description: `(Optional) Port Tracking State. The administrative state of the object or policy.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Optional) Delay Timeout. The administrative port delay.`,
+				},
+				resource.Attribute{
+					Name:        "include_apic_ports",
+					Description: `(Optional) Include APIC Ports when port tracking is triggered.`,
+				},
+				resource.Attribute{
+					Name:        "minlinks",
+					Description: `(Optional) Minimum links left up before trigger.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object Port Tracking.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_qos_instance_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI QOS Instance Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the QOS Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object QOS Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object QOS Instance Policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object QOS Instance Policy`,
+				},
+				resource.Attribute{
+					Name:        "etrap_age_timer",
+					Description: `(Optional) E-trap flow age out timer.`,
+				},
+				resource.Attribute{
+					Name:        "etrap_bw_thresh",
+					Description: `(Optional) Track activeness of elephant flow.`,
+				},
+				resource.Attribute{
+					Name:        "etrap_byte_ct",
+					Description: `(Optional) E-trap elephant flow identifier.`,
+				},
+				resource.Attribute{
+					Name:        "etrap_st",
+					Description: `(Optional) E-trap enable knob. E-trap parameters`,
+				},
+				resource.Attribute{
+					Name:        "fabric_flush_interval",
+					Description: `(Optional) Fabric Flush Interval in ms.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_flush_st",
+					Description: `(Optional) Fabric PFC Flush enable knob. Fabric Flush parameters`,
+				},
+				resource.Attribute{
+					Name:        "ctrl",
+					Description: `(Optional) Global Control Settings. The control state.`,
+				},
+				resource.Attribute{
+					Name:        "uburst_spine_queues",
+					Description: `(Optional) Micro burst spine queues percent.`,
+				},
+				resource.Attribute{
+					Name:        "uburst_tor_queues",
+					Description: `(Optional) Micro burst tor queues percent.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_radius_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI RADIUS Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Host name or IP address of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of object RADIUS Provider. Allowed values are "duo" and "radius". ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_port",
+					Description: `(Optional) The service port number for RADIUS service.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) The RADIUS authentication protocol.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Number of retries for a for communication with a RADIUS provider server.`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) amount of time between authentication attempts`,
+					Description: `(Optional) The timeout for communication with a RADIUS provider server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RADIUS Provider.`,
 				},
 				resource.Attribute{
-					Name:        "violation",
-					Description: `(Optional) Port security violation.`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RADIUS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_port",
+					Description: `(Optional) The service port number for RADIUS service.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) The RADIUS authentication protocol.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Number of retries for a for communication with a RADIUS provider server.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The timeout for communication with a RADIUS provider server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_radius_provider_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI RADIUS Provider Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object RADIUS Provider Group. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RADIUS Provider Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RADIUS Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RADIUS Provider Group.`,
 				},
 			},
 		},
@@ -6135,13 +6426,13 @@ var (
 			Name:             "",
 			Type:             "aci_ranges",
 			Category:         "Data Sources",
-			ShortDescription: `Data source for ACI Ranges`,
+			ShortDescription: `Data source for ACI VLAN Pool Ranges`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vlan_pool_dn",
-					Description: `(Required) Distinguished name of parent VLANPool object.`,
+					Description: `(Required) Distinguished name of parent VLAN Pool object.`,
 				},
 				resource.Attribute{
 					Name:        "from",
@@ -6161,15 +6452,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object ranges.`,
+					Description: `(Optional) Annotation for object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object ranges.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object ranges.`,
+					Description: `(Optional) Name alias for object ranges.`,
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) system role type`,
+					Description: `(Optional) System role type`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6183,15 +6478,127 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object ranges.`,
+					Description: `(Optional) Annotation for object ranges.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object ranges.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object ranges.`,
+					Description: `(Optional) Name alias for object ranges.`,
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) system role type`,
+					Description: `(Optional) System role type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_recurring_window",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Recurring Window`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scheduler_dn",
+					Description: `(Required) Distinguished name of parent Scheduler object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Recurring Window. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "concur_cap",
+					Description: `(Optional) Maximum Concurrent Tasks. The concurrency capacity limit. This is the maximum number of tasks that can be processed concurrently.`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `(Optional) Recurring Window Schedule Day. The day of the week that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "hour",
+					Description: `(Optional) Schedule Hour. The hour that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "minute",
+					Description: `(Optional) Schedule Minute. The minute that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "node_upg_interval",
+					Description: `(Optional) Delay between node upgrades. Delay between node upgrades in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "proc_break",
+					Description: `(Optional) procBreak. A period of time taken between processing of items within the concurrency cap.`,
+				},
+				resource.Attribute{
+					Name:        "proc_cap",
+					Description: `(Optional) procCap. Processing size capacity limitation specification. Indicates the limit of items to be processed within this window.`,
+				},
+				resource.Attribute{
+					Name:        "time_cap",
+					Description: `(Optional) Maximum Running Time. The processing time capacity limit. This is the maximum duration of the window.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Recurring Window.`,
+				},
+				resource.Attribute{
+					Name:        "concur_cap",
+					Description: `(Optional) Maximum Concurrent Tasks. The concurrency capacity limit. This is the maximum number of tasks that can be processed concurrently.`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `(Optional) Recurring Window Schedule Day. The day of the week that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "hour",
+					Description: `(Optional) Schedule Hour. The hour that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "minute",
+					Description: `(Optional) Schedule Minute. The minute that the recurring window begins.`,
+				},
+				resource.Attribute{
+					Name:        "node_upg_interval",
+					Description: `(Optional) Delay between node upgrades. Delay between node upgrades in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "proc_break",
+					Description: `(Optional) procBreak. A period of time taken between processing of items within the concurrency cap.`,
+				},
+				resource.Attribute{
+					Name:        "proc_cap",
+					Description: `(Optional) procCap. Processing size capacity limitation specification. Indicates the limit of items to be processed within this window.`,
+				},
+				resource.Attribute{
+					Name:        "time_cap",
+					Description: `(Optional) Maximum Running Time. The processing time capacity limit. This is the maximum duration of the window.`,
 				},
 			},
 		},
@@ -6202,68 +6609,457 @@ var (
 			ShortDescription: `Data source for ACI Rest`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_rest_managed",
+			Category:         "Data Sources",
+			ShortDescription: `This data source can read one ACI object and its children.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_route_control_context",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Route Control Context`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "path",
-					Description: `(Required) ACI path for object which should should be get. Starting with api/node/mo/{parent-dn}(if applicable)/{rn of object}.json <strong>Note</strong> : To extract children, use path format as "api/node/mo/{parent-dn}(if applicable)/{rn of object}.json?rsp-subtree=children" ## Attribute Reference`,
+					Name:        "route_control_profile_dn",
+					Description: `(Required) Distinguished name of parent Route Control Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Route Control Context. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Dishtiguished name of object being managed.`,
+					Description: `Attribute id set to the Dn of the Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "class_name",
-					Description: `Class name of object being managed.`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "content",
-					Description: `Map of key-value pairs which represents the attributes for the object being managed.`,
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "dn",
-					Description: `Distinguished name of object being managed.`,
+					Name:        "action",
+					Description: `(Optional) Action. The action required when the condition is met.`,
 				},
 				resource.Attribute{
-					Name:        "children",
-					Description: `Set of children of the object being managed.`,
-				},
-				resource.Attribute{
-					Name:        "children.child_class_name",
-					Description: `Class name of the child of the object being managed.`,
-				},
-				resource.Attribute{
-					Name:        "children.child_content",
-					Description: `Map of key-value pairs which represents the attributes for child of the object being managed.`,
+					Name:        "order",
+					Description: `(Optional) Local Order. The order of the policy context.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Dishtiguished name of object being managed.`,
+					Description: `Attribute id set to the Dn of the Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "class_name",
-					Description: `Class name of object being managed.`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "content",
-					Description: `Map of key-value pairs which represents the attributes for the object being managed.`,
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Route Control Context.`,
 				},
 				resource.Attribute{
-					Name:        "dn",
-					Description: `Distinguished name of object being managed.`,
+					Name:        "action",
+					Description: `(Optional) Action. The action required when the condition is met.`,
 				},
 				resource.Attribute{
-					Name:        "children",
-					Description: `Set of children of the object being managed.`,
+					Name:        "order",
+					Description: `(Optional) Local Order. The order of the policy context.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_route_control_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Route Control Profile`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_rsa_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI RSA Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object RSA Provider. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
-					Name:        "children.child_class_name",
-					Description: `Class name of the child of the object being managed.`,
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RSA Provider.`,
 				},
 				resource.Attribute{
-					Name:        "children.child_content",
-					Description: `Map of key-value pairs which represents the attributes for child of the object being managed.`,
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_port",
+					Description: `(Optional) Port.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) Authentication Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Key. A password for the AAA provider database.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_password",
+					Description: `(Optional) Periodic Server Monitoring Password.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. null`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The amount of time between authentication attempts.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object RSA Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_port",
+					Description: `(Optional) Port.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) Authentication Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Key. A password for the AAA provider database.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_password",
+					Description: `(Optional) Periodic Server Monitoring Password.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. null`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The amount of time between authentication attempts.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_saml_certificate",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI SAML Encryption Certificate`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Key pair for SAML Encryption Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SAML Encryption Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SAML Encryption Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SAML Encryption Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "regenerate",
+					Description: `(Optional) Regenerate Encryption Key Pair.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Optional) Certificate of SAML Encryption Key.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_validty",
+					Description: `(Optional) Certificate validity of SAML Encryption Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "expiry_status",
+					Description: `(Optional) Expiry status of SAML Encryption Certificate.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_saml_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI SAML Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object SAML Provider. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Optional) Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "gui_banner_message",
+					Description: `(Optional) Gui Redirect Banner Message.`,
+				},
+				resource.Attribute{
+					Name:        "https_proxy",
+					Description: `(Optional) Https Proxy to reach IDP's Metadata URL.`,
+				},
+				resource.Attribute{
+					Name:        "id_p",
+					Description: `(Optional) Identity Provider.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_url",
+					Description: `(Optional) Metadata Url provided by IDP.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. null`,
+				},
+				resource.Attribute{
+					Name:        "sig_alg",
+					Description: `(Optional) Signature Algorithm.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The amount of time between authentication attempts.`,
+				},
+				resource.Attribute{
+					Name:        "tp",
+					Description: `(Optional) Certificate Authority.`,
+				},
+				resource.Attribute{
+					Name:        "want_assertions_encrypted",
+					Description: `(Optional) Want Encrypted SAML Assertions.`,
+				},
+				resource.Attribute{
+					Name:        "want_assertions_signed",
+					Description: `(Optional) Want Assertions in SAML Response Signed.`,
+				},
+				resource.Attribute{
+					Name:        "want_requests_signed",
+					Description: `(Optional) Want SAML Auth Requests Signed.`,
+				},
+				resource.Attribute{
+					Name:        "want_response_signed",
+					Description: `(Optional) Want SAML Response Message Signed.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SAML Provider.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Optional) Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "gui_banner_message",
+					Description: `(Optional) Gui Redirect Banner Message.`,
+				},
+				resource.Attribute{
+					Name:        "https_proxy",
+					Description: `(Optional) Https Proxy to reach IDP's Metadata URL.`,
+				},
+				resource.Attribute{
+					Name:        "id_p",
+					Description: `(Optional) Identity Provider.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_url",
+					Description: `(Optional) Metadata Url provided by IDP.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. null`,
+				},
+				resource.Attribute{
+					Name:        "sig_alg",
+					Description: `(Optional) Signature Algorithm.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The amount of time between authentication attempts.`,
+				},
+				resource.Attribute{
+					Name:        "tp",
+					Description: `(Optional) Certificate Authority.`,
+				},
+				resource.Attribute{
+					Name:        "want_assertions_encrypted",
+					Description: `(Optional) Want Encrypted SAML Assertions.`,
+				},
+				resource.Attribute{
+					Name:        "want_assertions_signed",
+					Description: `(Optional) Want Assertions in SAML Response Signed.`,
+				},
+				resource.Attribute{
+					Name:        "want_requests_signed",
+					Description: `(Optional) Want SAML Auth Requests Signed.`,
+				},
+				resource.Attribute{
+					Name:        "want_response_signed",
+					Description: `(Optional) Want SAML Response Message Signed.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_saml_provider_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI SAML Provider Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object SAML Provider Group. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SAML Provider Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SAML Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SAML Provider Group.`,
 				},
 			},
 		},
@@ -6274,112 +7070,50 @@ var (
 			ShortDescription: `Data source for ACI Service Redirect Policy`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_snmp_community",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI SNMP Community`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
+					Name:        "parent_dn",
+					Description: `(Required) Distinguished name of the parent object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object service_redirect_policy. ## Attribute Reference`,
+					Description: `(Required) Name of object SNMP Community. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Service Redirect Policy.`,
-				},
-				resource.Attribute{
-					Name:        "anycast_enabled",
-					Description: `(Optional) anycast_enabled for object service_redirect_policy.`,
+					Description: `Attribute id set to the Dn of the SNMP Community.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dest_type",
-					Description: `(Optional) dest_type for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "hashing_algorithm",
-					Description: `(Optional) hashing_algorithm for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "max_threshold_percent",
-					Description: `(Optional) max_threshold_percent for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "min_threshold_percent",
-					Description: `(Optional) min_threshold_percent for object service_redirect_policy.`,
+					Description: `(Optional) Annotation of the SNMP Community.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "program_local_pod_only",
-					Description: `(Optional) program_local_pod_only for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "resilient_hash_enabled",
-					Description: `(Optional) resilient_hash_enabled for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_down_action",
-					Description: `(Optional) threshold_down_action for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_enable",
-					Description: `(Optional) threshold_enable for object service_redirect_policy.`,
+					Description: `(Optional) Name Alias of the SNMP Community.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Service Redirect Policy.`,
-				},
-				resource.Attribute{
-					Name:        "anycast_enabled",
-					Description: `(Optional) anycast_enabled for object service_redirect_policy.`,
+					Description: `Attribute id set to the Dn of the SNMP Community.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "dest_type",
-					Description: `(Optional) dest_type for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "hashing_algorithm",
-					Description: `(Optional) hashing_algorithm for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "max_threshold_percent",
-					Description: `(Optional) max_threshold_percent for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "min_threshold_percent",
-					Description: `(Optional) min_threshold_percent for object service_redirect_policy.`,
+					Description: `(Optional) Annotation of the SNMP Community.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "program_local_pod_only",
-					Description: `(Optional) program_local_pod_only for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "resilient_hash_enabled",
-					Description: `(Optional) resilient_hash_enabled for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_down_action",
-					Description: `(Optional) threshold_down_action for object service_redirect_policy.`,
-				},
-				resource.Attribute{
-					Name:        "threshold_enable",
-					Description: `(Optional) threshold_enable for object service_redirect_policy.`,
+					Description: `(Optional) Name Alias of the SNMP Community.`,
 				},
 			},
 		},
@@ -6390,42 +7124,8 @@ var (
 			ShortDescription: `Data source for ACI SPAN Destination Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object span_destination_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the SPAN Destination Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional)`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the SPAN Destination Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional)`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6434,50 +7134,8 @@ var (
 			ShortDescription: `Data source for ACI SPAN Source Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object span_source_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the SPAN Source Group.`,
-				},
-				resource.Attribute{
-					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional)`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the SPAN Source Group.`,
-				},
-				resource.Attribute{
-					Name:        "admin_st",
-					Description: `(Optional) administrative state of the object or policy`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional)`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6493,7 +7151,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object span_sourcedestination_group_match_label. ## Attribute Reference`,
+					Description: `(Required) Name of Object SPAN Source Group object. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6501,11 +7159,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional)`,
+					Description: `(Optional) Annotation for object SPANSourceGroup object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object SPANSourceGroup object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional)`,
+					Description: `(Optional) Name Alias for object SPANSourceGroup object.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -6519,11 +7181,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional)`,
+					Description: `(Optional) Annotation for object SPANSourceGroup object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object SPANSourceGroup object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional)`,
+					Description: `(Optional) Name Alias for object SPANSourceGroup object.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -6533,16 +7199,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_stp_if_pol",
+			Type:             "aci_spanning_tree_interface_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Spanning Tree Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of object Spanning Tree Interface Policy. ## Attribute Reference ##`,
-				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Spanning Tree Interface Policy.`,
@@ -6584,6 +7246,54 @@ var (
 				resource.Attribute{
 					Name:        "ctrl",
 					Description: `(Optional) Interface controls.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_spine_access_port_selector",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Spine Access Port Selector`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "spine_interface_profile_dn",
+					Description: `(Required) Distinguished name of the parent Spine Interface Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Spine Access Port Selector.`,
+				},
+				resource.Attribute{
+					Name:        "spine_access_port_selector_type",
+					Description: `(Required) The type of Spine Access Port Selector. Allowed values are "ALL" and "range". Default is "ALL". ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Access Port Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Spine Access Port Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Spine Access Port Selector.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Access Port Selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Spine Access Port Selector.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Spine Access Port Selector.`,
 				},
 			},
 		},
@@ -6597,33 +7307,77 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object spine_interface_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object spine_interface_profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Spine Interface Profile.`,
+					Description: `Attribute id set to the Dn of the Object Spine interface profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Object Spine interface profile.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object spine_interface_profile.`,
+					Description: `(Optional) Annotation for Object Spine interface profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object spine_interface_profile.`,
+					Description: `(Optional) Name alias for Object Spine interface profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Spine Interface Profile.`,
+					Description: `Attribute id set to the Dn of the Object Spine interface profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for Object Spine interface profile.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object spine_interface_profile.`,
+					Description: `(Optional) Annotation for Object Spine interface profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object spine_interface_profile.`,
+					Description: `(Optional) Name alias for Object Spine interface profile.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_spine_interface_profile_selector",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Spine Interface Profile Selector`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "spine_profile_dn",
+					Description: `(Required) Distinguished name of parent Spine Profile.`,
+				},
+				resource.Attribute{
+					Name:        "tdn",
+					Description: `(Required) tDn of the Spine Interface Profile. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Interface Profile selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for Spine Interface Profile selector.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Interface Profile selector.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation for Spine Interface Profile selector.`,
 				},
 			},
 		},
@@ -6637,19 +7391,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object aci_spine_port_policy_group. ## Attribute Reference`,
+					Description: `(Required) Name of Object Spine Port Policy Group. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Spine Port Policy Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Port Policy Group.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object aci_spine_port_policy_group.`,
+					Description: `(Optional) Annotation for object Spine Port Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aci_spine_port_policy_group.`,
+					Description: `(Optional) Name alias for object Spine Port Policy Group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6658,12 +7416,16 @@ var (
 					Description: `Attribute id set to the Dn of the Spine Port Policy Group.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Port Policy Group.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object aci_spine_port_policy_group.`,
+					Description: `(Optional) Annotation for object Spine Port Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object aci_spine_port_policy_group.`,
+					Description: `(Optional) Name alias for object Spine Port Policy Group.`,
 				},
 			},
 		},
@@ -6677,29 +7439,29 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "spine_profile_dn",
-					Description: `(Required) Distinguished name of parent SpineProfile object.`,
+					Description: `(Required) Distinguished name of parent Spine Profile.`,
 				},
 				resource.Attribute{
 					Name:        "tdn",
-					Description: `(Required) tDn of Object interface_profile. ## Attribute Reference`,
+					Description: `(Required) tDn of the Spine Interface Profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the port selector.`,
+					Description: `Attribute id set to the Dn of the Spine Port selector.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object port selector.`,
+					Description: `(Optional) Annotation for Spine Port selector.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the port selector.`,
+					Description: `Attribute id set to the Dn of the Spine Port selector.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object port selector.`,
+					Description: `(Optional) Annotation for Spine Port selector.`,
 				},
 			},
 		},
@@ -6713,19 +7475,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object spine_profile. ## Attribute Reference`,
+					Description: `(Required) Name of Object Spine Profile. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Spine Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object spine_profile.`,
+					Description: `(Optional) Annotation for object Spine Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object spine_profile.`,
+					Description: `(Optional) Name alias for object Spine Profile.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6734,12 +7500,16 @@ var (
 					Description: `Attribute id set to the Dn of the Spine Profile.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Profile.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object spine_profile.`,
+					Description: `(Optional) Annotation for object Spine Profile.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object spine_profile.`,
+					Description: `(Optional) Name alias for object Spine Profile.`,
 				},
 			},
 		},
@@ -6753,27 +7523,31 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "spine_profile_dn",
-					Description: `(Required) Distinguished name of parent SpineProfile object.`,
+					Description: `(Required) Distinguished name of parent Spine Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object Spine Switch association.`,
+					Description: `(Required) Name of Object Spine Switch Association.`,
 				},
 				resource.Attribute{
 					Name:        "spine_switch_association_type",
-					Description: `(Required) spine association type of Object Spine Switch association. ## Attribute Reference`,
+					Description: `(Required) Spine association type of Object Spine Switch Association. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Switch Association.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Switch Association.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object Spine Switch association.`,
+					Description: `(Optional) Annotation for object Spine Switch Association.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name alias for object Spine Switch association.`,
+					Description: `(Optional) Name alias for object Spine Switch Association.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6782,12 +7556,64 @@ var (
 					Description: `Attribute id set to the Dn of the Switch Association.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Switch Association.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object Spine Switch association.`,
+					Description: `(Optional) Annotation for object Spine Switch Association.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name alias for object Spine Switch association.`,
+					Description: `(Optional) Name alias for object Spine Switch Association.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_spine_switch_policy_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Spine Switch Policy Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object Spine Switch Policy Group. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Switch Policy Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object Spine Switch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object Spine Switch Policy Group.`,
 				},
 			},
 		},
@@ -6801,65 +7627,73 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "management_epg_dn",
-					Description: `(Required) Distinguished name of parent management static node object.`,
+					Description: `(Required) Distinguished name of parent Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "t_dn",
-					Description: `(Required) Target dn of management static node object.`,
+					Description: `(Required) Target dn of Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) type for management static node object. Allowed values are "in_band" and "out_of_band". Note := for "in_band", ` + "`" + `management_epg_dn` + "`" + ` should be of type "in_band" and for "out_of_band", ` + "`" + `management_epg_dn` + "`" + ` should be of type "out_of_band". ## Attribute Reference`,
+					Description: `(Required) Type for Management static node object. Allowed values are "in_band" and "out_of_band". Note := for "in_band", ` + "`" + `management_epg_dn` + "`" + ` should be of type "in_band" and for "out_of_band", ` + "`" + `management_epg_dn` + "`" + ` should be of type "out_of_band". ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of management static node object.`,
+					Description: `Attribute id set to the Dn of Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "addr",
-					Description: `Peer address for management static node object.`,
+					Description: `Peer address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `Annotation for management static node object.`,
+					Description: `Annotation for Management static node object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "gw",
-					Description: `Gateway IP address for management static node object`,
+					Description: `Gateway IP address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "v6_addr",
-					Description: `V6 address for management static node object.`,
+					Description: `V6 address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "v6_gw",
-					Description: `V6 gw for management static node object.`,
+					Description: `V6 gw for Management static node object.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of management static node object.`,
+					Description: `Attribute id set to the Dn of Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "addr",
-					Description: `Peer address for management static node object.`,
+					Description: `Peer address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `Annotation for management static node object.`,
+					Description: `Annotation for Management static node object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "gw",
-					Description: `Gateway IP address for management static node object`,
+					Description: `Gateway IP address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "v6_addr",
-					Description: `V6 address for management static node object.`,
+					Description: `V6 address for Management static node object.`,
 				},
 				resource.Attribute{
 					Name:        "v6_gw",
-					Description: `V6 gw for management static node object.`,
+					Description: `V6 gw for Management static node object.`,
 				},
 			},
 		},
@@ -6870,74 +7704,8 @@ var (
 			ShortDescription: `Data source for ACI Subnet`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "parent_dn",
-					Description: `(Required) Distinguished name of parent object.`,
-				},
-				resource.Attribute{
-					Name:        "ip",
-					Description: `(Required) The IP address and mask of the default gateway. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Subnet.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object subnet.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl",
-					Description: `(Optional) The list of subnet control state. The control can be specific protocols applied to the subnet such as IGMP Snooping.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object subnet.`,
-				},
-				resource.Attribute{
-					Name:        "preferred",
-					Description: `(Optional) Indicates if the subnet is preferred (primary) over the available alternatives. Only one preferred subnet is allowed.`,
-				},
-				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) The List of network visibility of the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "virtual",
-					Description: `(Optional) Treated as virtual IP address. Used in case of BD extended to multiple sites.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the Subnet.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object subnet.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl",
-					Description: `(Optional) The list of subnet control state. The control can be specific protocols applied to the subnet such as IGMP Snooping.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object subnet.`,
-				},
-				resource.Attribute{
-					Name:        "preferred",
-					Description: `(Optional) Indicates if the subnet is preferred (primary) over the available alternatives. Only one preferred subnet is allowed.`,
-				},
-				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) The List of network visibility of the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "virtual",
-					Description: `(Optional) Treated as virtual IP address. Used in case of BD extended to multiple sites.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6956,40 +7724,378 @@ var (
 			ShortDescription: `Data source for ACI Taboo Contract`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tacacs_accounting",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI TACACS Accounting`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object taboo_contract. ## Attribute Reference`,
+					Description: `(Required) Name of object TACACS Accounting. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Taboo Contract.`,
+					Description: `Attribute id set to the Dn of the TACACS Accounting.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object taboo_contract.`,
+					Description: `(Optional) Annotation of object TACACS Accounting.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object taboo_contract.`,
+					Description: `(Optional) Name Alias of object TACACS Accounting.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Accounting.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Taboo Contract.`,
+					Description: `Attribute id set to the Dn of the TACACS Accounting.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object taboo_contract.`,
+					Description: `(Optional) Annotation of object TACACS Accounting.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object taboo_contract.`,
+					Description: `(Optional) Name Alias of object TACACS Accounting.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Accounting.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tacacs_accounting_destination",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI TACACS Accounting Destination`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tacacs_accounting_dn",
+					Description: `(Required) Distinguished name of parent TACACS Accounting object.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) Host or IP address of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port of object TACACS Accounting Destination. Allowed Range: "1" - "65535". Default value: "49". ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Destination.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) Authentication Protocol of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Accounting Destination.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Destination.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) Authentication Protocol of object TACACS Accounting Destination.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Accounting Destination.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tacacs_provider",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI TACACS Provider`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object TACACS Provider. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) TACACS Authentication Protocol. The TACACS authentication protocol.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port. The service port number for the TACACS service.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. Null.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The timeout for communication with the TACACS+ provider server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Provider.`,
+				},
+				resource.Attribute{
+					Name:        "auth_protocol",
+					Description: `(Optional) TACACS Authentication Protocol. The TACACS authentication protocol.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_server",
+					Description: `(Optional) Periodic Server Monitoring.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_user",
+					Description: `(Optional) Periodic Server Monitoring Username.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port. The service port number for the TACACS service.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Retries. Null.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout in Seconds. The timeout for communication with the TACACS+ provider server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tacacs_provider_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI TACACS + Provider Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of object TACACS + Provider Group.er Group. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS+ Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS + Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS + Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object TACACS + Provider Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS+ Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS + Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS + Provider Group.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of object TACACS + Provider Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tacacs_source",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI TACACS Source`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object TACACS Source. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Optional) Distinguished name of parent object of TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "incl",
+					Description: `(Optional) Include Action. The information to include for the call home source.`,
+				},
+				resource.Attribute{
+					Name:        "min_sev",
+					Description: `(Optional) minSev.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Optional) Distinguished name of parent object of TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object TACACS Source.`,
+				},
+				resource.Attribute{
+					Name:        "incl",
+					Description: `(Optional) Include Action. The information to include for the call home source.`,
+				},
+				resource.Attribute{
+					Name:        "min_sev",
+					Description: `(Optional) minSev.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_tag",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Tag`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "parent_dn",
+					Description: `(Required) Distinguished name of the object to which the Tag is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key of the Tag. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the Tag.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the Tag.`,
 				},
 			},
 		},
@@ -7015,41 +8121,113 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aci_v_switch_policy_group",
+			Type:             "aci_user_security_domain",
 			Category:         "Data Sources",
-			ShortDescription: `Data source for ACI VSwitch Policy Group`,
+			ShortDescription: `Data source for ACI User Security Domain`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vmm_domain_dn",
-					Description: `(Required) Distinguished name of parent VMM Domain object. ## Attribute Reference ##`,
+					Name:        "local_user_dn",
+					Description: `(Required) Distinguished name of parent LocalUser object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object User Domain. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VSwitch Policy Group.`,
+					Description: `Attribute id set to the Dn of the User Domain.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation of object VSwitch Policy Group.`,
+					Description: `(Optional) Annotation of object User Security Domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name Alias of object VSwitch Policy Group.`,
+					Description: `(Optional) Name Alias of object User SecDomain.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object User Security Domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VSwitch Policy Group.`,
+					Description: `Attribute id set to the Dn of the User Domain.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation of object VSwitch Policy Group.`,
+					Description: `(Optional) Annotation of object User Security Domain.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name Alias of object VSwitch Policy Group.`,
+					Description: `(Optional) Name Alias of object User SecDomain.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object User Security Domain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_user_security_domain_role",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI User Security Domain Role`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_domain_dn",
+					Description: `(Required) Distinguished name of parent UserDomain object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object User Security Domain Role. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "priv_type",
+					Description: `(Optional) Privilege Type. The privilege type for a user role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object User Security Domain Role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object User Security Domain Role.`,
+				},
+				resource.Attribute{
+					Name:        "priv_type",
+					Description: `(Optional) Privilege Type. The privilege type for a user role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object User Security Domain Role.`,
 				},
 			},
 		},
@@ -7071,11 +8249,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vlan_encapsulationfor_vxlan_traffic.`,
+					Description: `(Optional) Annotation for object vlan encapsulation for vxlan traffic.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vlan_encapsulationfor_vxlan_traffic.`,
+					Description: `(Optional) Name alias for object vlan encapsulation for vxlan traffic.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7085,11 +8263,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vlan_encapsulationfor_vxlan_traffic.`,
+					Description: `(Optional) Annotation for object vlan encapsulation for vxlan traffic.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vlan_encapsulationfor_vxlan_traffic.`,
+					Description: `(Optional) Name alias for object vlan encapsulation for vxlan traffic.`,
 				},
 			},
 		},
@@ -7100,50 +8278,8 @@ var (
 			ShortDescription: `Data source for ACI VLAN Pool`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object vlan_pool.`,
-				},
-				resource.Attribute{
-					Name:        "alloc_mode",
-					Description: `(Required) allocation mode of Object vlan_pool. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the VLAN Pool.`,
-				},
-				resource.Attribute{
-					Name:        "alloc_mode",
-					Description: `(Optional) allocation mode`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object vlan_pool.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vlan_pool.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the VLAN Pool.`,
-				},
-				resource.Attribute{
-					Name:        "alloc_mode",
-					Description: `(Optional) allocation mode`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object vlan_pool.`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vlan_pool.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7207,7 +8343,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "root_cont_name",
-					Description: `(Optional) Top level container name.`,
+					Description: `Top level container name.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -7273,7 +8409,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "root_cont_name",
-					Description: `(Optional) Top level container name.`,
+					Description: `Top level container name.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
@@ -7307,7 +8443,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of object VMM Credential. ## Attribute Reference ##`,
+					Description: `(Required) Name of object VMM Credential. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7316,6 +8452,10 @@ var (
 				resource.Attribute{
 					Name:        "annotation",
 					Description: `(Optional) Annotation of object VMM Credential.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VMM Credential.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
@@ -7338,6 +8478,10 @@ var (
 				resource.Attribute{
 					Name:        "annotation",
 					Description: `(Optional) Annotation of object VMM Credential.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VMM Credential.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
@@ -7363,165 +8507,68 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "provider_profile_dn",
-					Description: `(Required) Distinguished name of parent ProviderProfile object.`,
+					Description: `(Required) Distinguished name of parent Provider Profile object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object vmm_domain. ## Attribute Reference`,
+					Description: `(Required) name of Object vmm_domain. ## Argument Reference - ` + "`" + `provider_profile_dn` + "`" + ` - (Required) Distinguished name of parent ProviderProfile object. - ` + "`" + `name` + "`" + ` - (Required) name of Object vmm_domain. ## Attribute Reference - ` + "`" + `id` + "`" + ` - Attribute id set to the Dn of the VMM Domain. - ` + "`" + `access_mode` + "`" + ` - (Optional) Access mode for object vmm domain. - ` + "`" + `annotation` + "`" + ` - (Optional) Annotation for object vmm domain. - ` + "`" + `arp_learning` + "`" + ` - (Optional) Enable/Disable arp learning for AVS Domain. - ` + "`" + `ave_time_out` + "`" + ` - (Optional) ACI Virtual Edge time-out for object vmm domain. - ` + "`" + `config_infra_pg` + "`" + ` - (Optional) Flag to enable configure infra port groups for object vmm domain. - ` + "`" + `ctrl_knob` + "`" + ` - (Optional) Type pf control knob to use. Allowed values are "none" and "epDpVerify". - ` + "`" + `delimiter` + "`" + ` - (Optional) Delimiter for object vmm domain. - ` + "`" + `enable_ave` + "`" + ` - (Optional) Flag to enable ACI Virtual Edge for object vmm domain. - ` + "`" + `enable_tag` + "`" + ` - (Optional) Flag enable tagging for object vmm domain. - ` + "`" + `encap_mode` + "`" + ` - (Optional) The layer 2 encapsulation protocol to use with the virtual switch. - ` + "`" + `enf_pref` + "`" + ` - (Optional) The switching enforcement preference. This determines whether switches can be done within the virtual switch (Local Switching) or whether all switched traffic must go through the fabric (No Local Switching). - ` + "`" + `ep_inventory_type` + "`" + ` - (Optional) Determines which end point inventory type to use for object VMM domain. - ` + "`" + `ep_ret_time` + "`" + ` - (Optional) End point retention time for object vmm domain. Allowed value range is "0" - "600". Default value is "0". - ` + "`" + `hv_avail_monitor` + "`" + ` - (Optional) Flag to enable host availability monitor for object VMM domain. - ` + "`" + `mcast_addr` + "`" + ` - (Optional) The multicast address of the VMM domain profile. - ` + "`" + `mode` + "`" + ` - (Optional) The switch to be used for the domain profile. - ` + "`" + `name_alias` + "`" + ` - (Optional) Name alias for object VMM domain. - ` + "`" + `pref_encap_mode` + "`" + ` - (Optional) The preferred encapsulation mode for object VMM domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vpc_domain_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI VPC Domain Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of object VPC Domain Policy. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VMM Domain.`,
-				},
-				resource.Attribute{
-					Name:        "access_mode",
-					Description: `(Optional) access_mode for object vmm_domain.`,
+					Description: `Attribute id set to the Dn of the VPC Domain Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "arp_learning",
-					Description: `(Optional) Enable/Disable arp learning for AVS Domain.`,
-				},
-				resource.Attribute{
-					Name:        "ave_time_out",
-					Description: `(Optional) ave_time_out for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "config_infra_pg",
-					Description: `(Optional) Flag to enable config_infra_pg for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl_knob",
-					Description: `(Optional) Type pf control knob to use.`,
-				},
-				resource.Attribute{
-					Name:        "delimiter",
-					Description: `(Optional) delimiter for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "enable_ave",
-					Description: `(Optional) Flag to enable ave for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "enable_tag",
-					Description: `(Optional) Flag enable tagging for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "encap_mode",
-					Description: `(Optional) The layer 2 encapsulation protocol to use with the virtual switch.`,
-				},
-				resource.Attribute{
-					Name:        "enf_pref",
-					Description: `(Optional) The switching enforcement preference. This determines whether switches can be done within the virtual switch (Local Switching) or whether all switched traffic must go through the fabric (No Local Switching).`,
-				},
-				resource.Attribute{
-					Name:        "ep_inventory_type",
-					Description: `(Optional) Determines which end point inventory_type to use for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "ep_ret_time",
-					Description: `(Optional) end point retention time for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "hv_avail_monitor",
-					Description: `(Optional) Flag to enable hv_avail_monitor for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "mcast_addr",
-					Description: `(Optional) The multicast address of the VMM domain profile.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) The switch to be used for the domain profile.`,
+					Description: `(Optional) Annotation of object VPC Domain Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vmm_domain.`,
+					Description: `(Optional) Name Alias of object VPC Domain Policy.`,
 				},
 				resource.Attribute{
-					Name:        "pref_encap_mode",
-					Description: `(Optional) The preferred encapsulation mode for object vmm_domain.`,
+					Name:        "dead_intvl",
+					Description: `(Optional) The VPC peer dead interval time of object VPC Domain Policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VPC Domain Policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VMM Domain.`,
-				},
-				resource.Attribute{
-					Name:        "access_mode",
-					Description: `(Optional) access_mode for object vmm_domain.`,
+					Description: `Attribute id set to the Dn of the VPC Domain Policy.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "arp_learning",
-					Description: `(Optional) Enable/Disable arp learning for AVS Domain.`,
-				},
-				resource.Attribute{
-					Name:        "ave_time_out",
-					Description: `(Optional) ave_time_out for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "config_infra_pg",
-					Description: `(Optional) Flag to enable config_infra_pg for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "ctrl_knob",
-					Description: `(Optional) Type pf control knob to use.`,
-				},
-				resource.Attribute{
-					Name:        "delimiter",
-					Description: `(Optional) delimiter for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "enable_ave",
-					Description: `(Optional) Flag to enable ave for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "enable_tag",
-					Description: `(Optional) Flag enable tagging for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "encap_mode",
-					Description: `(Optional) The layer 2 encapsulation protocol to use with the virtual switch.`,
-				},
-				resource.Attribute{
-					Name:        "enf_pref",
-					Description: `(Optional) The switching enforcement preference. This determines whether switches can be done within the virtual switch (Local Switching) or whether all switched traffic must go through the fabric (No Local Switching).`,
-				},
-				resource.Attribute{
-					Name:        "ep_inventory_type",
-					Description: `(Optional) Determines which end point inventory_type to use for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "ep_ret_time",
-					Description: `(Optional) end point retention time for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "hv_avail_monitor",
-					Description: `(Optional) Flag to enable hv_avail_monitor for object vmm_domain.`,
-				},
-				resource.Attribute{
-					Name:        "mcast_addr",
-					Description: `(Optional) The multicast address of the VMM domain profile.`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `(Optional) The switch to be used for the domain profile.`,
+					Description: `(Optional) Annotation of object VPC Domain Policy.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vmm_domain.`,
+					Description: `(Optional) Name Alias of object VPC Domain Policy.`,
 				},
 				resource.Attribute{
-					Name:        "pref_encap_mode",
-					Description: `(Optional) The preferred encapsulation mode for object vmm_domain.`,
+					Name:        "dead_intvl",
+					Description: `(Optional) The VPC peer dead interval time of object VPC Domain Policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VPC Domain Policy.`,
 				},
 			},
 		},
@@ -7532,38 +8579,8 @@ var (
 			ShortDescription: `Data source for ACI VPC Explicit Protection Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object vpc_explicit_protection_group. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the VPC Explicit Protection Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object vpc_explicit_protection_group.`,
-				},
-				resource.Attribute{
-					Name:        "vpc_explicit_protection_group_id",
-					Description: `(Optional) explicit protection group ID`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the VPC Explicit Protection Group.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object vpc_explicit_protection_group.`,
-				},
-				resource.Attribute{
-					Name:        "vpc_explicit_protection_group_id",
-					Description: `(Optional) explicit protection group ID`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7572,80 +8589,146 @@ var (
 			ShortDescription: `Data source for ACI VRF`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vrf_snmp_context",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI VRF SNMP Context`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object vrf. ## Attribute Reference`,
+					Name:        "vrf_dn",
+					Description: `(Required) Distinguished name of parent VRF object. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VRF.`,
+					Description: `Attribute id set to the Dn of the VRF SNMP Context.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object VRF SNMP Context`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation(tags) for object vrf.`,
-				},
-				resource.Attribute{
-					Name:        "bd_enforced_enable",
-					Description: `(Optional) Flag to enable/disable bd_enforced for VRF.`,
-				},
-				resource.Attribute{
-					Name:        "ip_data_plane_learning",
-					Description: `(Optional) iFlag to enable/disable ip-data-plane learning for VRF.`,
-				},
-				resource.Attribute{
-					Name:        "knw_mcast_act",
-					Description: `(Optional) specifies if known multicast traffic is forwarded.`,
+					Description: `(Optional) Annotation of object VRF SNMP Context.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vrf.`,
-				},
-				resource.Attribute{
-					Name:        "pc_enf_dir",
-					Description: `(Optional) Policy Control Enforcement Direction. It is used for defining policy enforcement direction for the traffic coming to or from an L3Out. Egress and Ingress directions are wrt L3Out. Default will be Ingress. But on the existing L3Outs during upgrade it will get set to Egress so that right after upgrade behavior doesn't change for them. This also means that there is no special upgrade sequence needed for upgrading to the release introducing this feature. After upgrade user would have to change the property value to Ingress. Once changed, system will reprogram the rules and prefix entry. Rules will get removed from the egress leaf and will get installed on the ingress leaf. Actrl prefix entry, if not already, will get installed on the ingress leaf. This feature will be ignored for the following cases: 1. Golf: Gets applied at Ingress by design. 2. Transit Rules get applied at Ingress by design. 4. vzAny 5. Taboo.`,
-				},
-				resource.Attribute{
-					Name:        "pc_enf_pref",
-					Description: `(Optional) Determines if the fabric should enforce contract policies to allow routing and packet forwarding.`,
+					Description: `(Optional) Name Alias of object VRF SNMP Context.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VRF.`,
+					Description: `Attribute id set to the Dn of the VRF SNMP Context.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of object VRF SNMP Context`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation(tags) for object vrf.`,
-				},
-				resource.Attribute{
-					Name:        "bd_enforced_enable",
-					Description: `(Optional) Flag to enable/disable bd_enforced for VRF.`,
-				},
-				resource.Attribute{
-					Name:        "ip_data_plane_learning",
-					Description: `(Optional) iFlag to enable/disable ip-data-plane learning for VRF.`,
-				},
-				resource.Attribute{
-					Name:        "knw_mcast_act",
-					Description: `(Optional) specifies if known multicast traffic is forwarded.`,
+					Description: `(Optional) Annotation of object VRF SNMP Context.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vrf.`,
+					Description: `(Optional) Name Alias of object VRF SNMP Context.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vrf_snmp_context_community",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI SNMP Community`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_snmp_context_dn",
+					Description: `(Required) Distinguished name of parent VRF SNMP Context object.`,
 				},
 				resource.Attribute{
-					Name:        "pc_enf_dir",
-					Description: `(Optional) Policy Control Enforcement Direction. It is used for defining policy enforcement direction for the traffic coming to or from an L3Out. Egress and Ingress directions are wrt L3Out. Default will be Ingress. But on the existing L3Outs during upgrade it will get set to Egress so that right after upgrade behavior doesn't change for them. This also means that there is no special upgrade sequence needed for upgrading to the release introducing this feature. After upgrade user would have to change the property value to Ingress. Once changed, system will reprogram the rules and prefix entry. Rules will get removed from the egress leaf and will get installed on the ingress leaf. Actrl prefix entry, if not already, will get installed on the ingress leaf. This feature will be ignored for the following cases: 1. Golf: Gets applied at Ingress by design. 2. Transit Rules get applied at Ingress by design. 4. vzAny 5. Taboo.`,
+					Name:        "name",
+					Description: `(Required) name of object SNMP Community. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
-					Name:        "pc_enf_pref",
-					Description: `(Optional) Determines if the fabric should enforce contract policies to allow routing and packet forwarding.`,
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SNMP Community.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of object SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of object SNMP Community.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object SNMP Community.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vrf_to_bgp_address_family_context",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for the ACI Relationship object between VRF and the BGP Address Family Context Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Required) Distinguished name (DN) of the parent VRF object.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_address_family_context_dn",
+					Description: `(Required) Distinguished name (DN) of the BGP address family context policy object.`,
+				},
+				resource.Attribute{
+					Name:        "address_family",
+					Description: `(Required) The BGP address family. Allowed values are "ipv4-ucast", "ipv6-ucast", and default value is "ipv4-ucast". Type: String. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the BGP address family context policy relationship.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of object BGP address family context policy relationship.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the BGP address family context policy relationship.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of object BGP address family context policy relationship.`,
 				},
 			},
 		},
@@ -7656,48 +8739,54 @@ var (
 			ShortDescription: `Data source for ACI VSAN Pool`,
 			Description:      ``,
 			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vswitch_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI VSwitch Policy Group`,
+			Description:      ``,
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object vsan_pool.`,
-				},
-				resource.Attribute{
-					Name:        "allocMode",
-					Description: `(Required) allocMode of Object vsan_pool. ## Attribute Reference`,
+					Name:        "vmm_domain_dn",
+					Description: `(Required) Distinguished name of parent VMM Domain object. ## Attribute Reference ##`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VSAN Pool.`,
-				},
-				resource.Attribute{
-					Name:        "alloc_mode",
-					Description: `(Optional) alloc_mode for object vsan_pool.`,
+					Description: `Attribute id set to the Dn of the VSwitch Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vsan_pool.`,
+					Description: `(Optional) Annotation of object VSwitch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VSwitch Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vsan_pool.`,
+					Description: `(Optional) Name Alias of object VSwitch Policy Group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the VSAN Pool.`,
-				},
-				resource.Attribute{
-					Name:        "alloc_mode",
-					Description: `(Optional) alloc_mode for object vsan_pool.`,
+					Description: `Attribute id set to the Dn of the VSwitch Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vsan_pool.`,
+					Description: `(Optional) Annotation of object VSwitch Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of object VSwitch Policy Group.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vsan_pool.`,
+					Description: `(Optional) Name Alias of object VSwitch Policy Group.`,
 				},
 			},
 		},
@@ -7711,7 +8800,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object vxlan_pool. ## Attribute Reference`,
+					Description: `(Required) Name of Object vxlan pool. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7719,11 +8808,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vxlan_pool.`,
+					Description: `(Optional) Annotation for object vxlan pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object vxlan pool.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vxlan_pool.`,
+					Description: `(Optional) Name alias for object vxlan pool.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7733,11 +8826,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object vxlan_pool.`,
+					Description: `(Optional) Annotation for object vxlan pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for object vxlan pool.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object vxlan_pool.`,
+					Description: `(Optional) Name alias for object vxlan pool.`,
 				},
 			},
 		},
@@ -7748,205 +8845,232 @@ var (
 			ShortDescription: `Data source for ACI X509 Certificate`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "local_user_dn",
-					Description: `(Required) Distinguished name of parent LocalUser object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object x509_certificate. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the X509 Certificate.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object x509_certificate.`,
-				},
-				resource.Attribute{
-					Name:        "data",
-					Description: `(Optional) data from the user certificate`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object x509_certificate.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `Attribute id set to the Dn of the X509 Certificate.`,
-				},
-				resource.Attribute{
-					Name:        "annotation",
-					Description: `(Optional) annotation for object x509_certificate.`,
-				},
-				resource.Attribute{
-					Name:        "data",
-					Description: `(Optional) data from the user certificate`,
-				},
-				resource.Attribute{
-					Name:        "name_alias",
-					Description: `(Optional) name_alias for object x509_certificate.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
 	dataSourcesMap = map[string]int{
 
 		"aci_aaa_domain":                               0,
-		"aci_access_generic":                           1,
-		"aci_access_group":                             2,
-		"aci_access_port_block":                        3,
-		"aci_access_port_selector":                     4,
-		"aci_access_sub_port_block":                    5,
-		"aci_action_rule_profile":                      6,
-		"aci_any":                                      7,
-		"aci_application_epg":                          8,
-		"aci_application_profile":                      9,
-		"aci_attachable_access_entity_profile":         10,
-		"aci_autonomous_system_profile":                11,
-		"aci_bd_dhcp_label":                            12,
-		"aci_bgp_address_family_context":               13,
-		"aci_bgp_best_path_policy":                     14,
-		"aci_bgp_peer_connectivity_profile":            15,
-		"aci_bgp_peer_prefix":                          16,
-		"aci_bgp_route_control_profile":                17,
-		"aci_bgp_route_summarization":                  18,
-		"aci_bgp_timers":                               19,
-		"aci_bridge_domain":                            20,
-		"aci_cdp_interface_policy":                     21,
-		"aci_client_end_point":                         22,
-		"aci_cloud_applicationcontainer":               23,
-		"aci_cloud_availability_zone":                  24,
-		"aci_cloud_aws_provider":                       25,
-		"aci_cloud_cidr_pool":                          26,
-		"aci_cloud_context_profile":                    27,
-		"aci_cloud_domain_profile":                     28,
-		"aci_cloud_endpoint_selector":                  29,
-		"aci_cloud_endpoint_selectorfor_external_epgs": 30,
-		"aci_cloud_epg":                                31,
-		"aci_cloud_external_epg":                       32,
-		"aci_cloud_provider_profile":                   33,
-		"aci_cloud_providers_region":                   34,
-		"aci_cloud_subnet":                             35,
-		"aci_cloud_vpn_gateway":                        36,
-		"aci_configuration_export_policy":              37,
-		"aci_configuration_import_policy":              38,
-		"aci_connection":                               39,
-		"aci_contract":                                 40,
-		"aci_contract_subject":                         41,
-		"aci_destination_of_redirected_traffic":        42,
-		"aci_dhcp_option":                              43,
-		"aci_dhcp_option_policy":                       44,
-		"aci_dhcp_relay_policy":                        45,
-		"aci_end_point_retention_policy":               46,
-		"aci_end_point_security_group":                 47,
-		"aci_end_point_security_group_selector":        48,
-		"aci_epg_to_contract":                          49,
-		"aci_epg_to_domain":                            50,
-		"aci_epg_to_static_path":                       51,
-		"aci_epgs_using_function":                      52,
-		"aci_external_network_instance_profile":        53,
-		"aci_fabric_if_pol":                            54,
-		"aci_fabric_node_member":                       55,
-		"aci_fabric_path_ep":                           56,
-		"aci_fc_domain":                                57,
-		"aci_fex_bundle_group":                         58,
-		"aci_fex_profile":                              59,
-		"aci_filter":                                   60,
-		"aci_filter_entry":                             61,
-		"aci_firmware_download_task":                   62,
-		"aci_firmware_group":                           63,
-		"aci_firmware_policy":                          64,
-		"aci_function_node":                            65,
-		"aci_hsrp_group_policy":                        66,
-		"aci_hsrp_interface_policy":                    67,
-		"aci_imported_contract":                        68,
-		"aci_interface_fc_policy":                      69,
-		"aci_l2_domain":                                70,
-		"aci_l2_interface_policy":                      71,
-		"aci_l2_outside":                               72,
-		"aci_l2out_extepg":                             73,
-		"aci_l3_domain_profile":                        74,
-		"aci_l3_ext_subnet":                            75,
-		"aci_l3_outside":                               76,
-		"aci_l3out_bfd_interface_profile":              77,
-		"aci_l3out_bgp_external_policy":                78,
-		"aci_l3out_bgp_protocol_profile":               79,
-		"aci_l3out_floating_svi":                       80,
-		"aci_l3out_hsrp_interface_group":               81,
-		"aci_l3out_hsrp_interface_profile":             82,
-		"aci_l3out_hsrp_secondary_vip":                 83,
-		"aci_l3out_loopback_interface_profile":         84,
-		"aci_l3out_ospf_external_policy":               85,
-		"aci_l3out_ospf_interface_profile":             86,
-		"aci_l3out_path_attachment":                    87,
-		"aci_l3out_path_attachment_secondary_ip":       88,
-		"aci_l3out_route_tag_policy":                   89,
-		"aci_l3out_static_route":                       90,
-		"aci_l3out_static_route_next_hop":              91,
-		"aci_l3out_vpc_member":                         92,
-		"aci_l4_l7_service_graph_template":             93,
-		"aci_lacp_policy":                              94,
-		"aci_leaf_access_bundle_policy_group":          95,
-		"aci_leaf_access_port_policy_group":            96,
-		"aci_leaf_breakout_port_group":                 97,
-		"aci_leaf_interface_profile":                   98,
-		"aci_leaf_profile":                             99,
-		"aci_leaf_selector":                            100,
-		"aci_lldp_interface_policy":                    101,
-		"aci_local_user":                               102,
-		"aci_logical_device_context":                   103,
-		"aci_logical_interface_context":                104,
-		"aci_logical_interface_profile":                105,
-		"aci_logical_node_profile":                     106,
-		"aci_logical_node_to_fabric_node":              107,
-		"aci_maintenance_group_node":                   108,
-		"aci_maintenance_policy":                       109,
-		"aci_miscabling_protocol_interface_policy":     110,
-		"aci_monitoring_policy":                        111,
-		"aci_node_block":                               112,
-		"aci_node_block_firmware":                      113,
-		"aci_node_mgmt_epg":                            114,
-		"aci_ospf_interface_policy":                    115,
-		"aci_ospf_route_summarization":                 116,
-		"aci_ospf_timers":                              117,
-		"aci_physical_domain":                          118,
-		"aci_pod_maintenance_group":                    119,
-		"aci_port_security_policy":                     120,
-		"aci_ranges":                                   121,
-		"aci_rest":                                     122,
-		"aci_service_redirect_policy":                  123,
-		"aci_span_destination_group":                   124,
-		"aci_span_source_group":                        125,
-		"aci_span_sourcedestination_group_match_label": 126,
-		"aci_stp_if_pol":                               127,
-		"aci_spine_interface_profile":                  128,
-		"aci_spine_port_policy_group":                  129,
-		"aci_spine_port_selector":                      130,
-		"aci_spine_profile":                            131,
-		"aci_spine_switch_association":                 132,
-		"aci_static_node_mgmt_address":                 133,
-		"aci_subnet":                                   134,
-		"aci_system":                                   135,
-		"aci_taboo_contract":                           136,
-		"aci_tenant":                                   137,
-		"aci_trigger_scheduler":                        138,
-		"aci_v_switch_policy_group":                    139,
-		"aci_vlan_encapsulationfor_vxlan_traffic":      140,
-		"aci_vlan_pool":                                141,
-		"aci_vmm_controller":                           142,
-		"aci_vmm_credential":                           143,
-		"aci_vmm_domain":                               144,
-		"aci_vpc_explicit_protection_group":            145,
-		"aci_vrf":                                      146,
-		"aci_vsan_pool":                                147,
-		"aci_vxlan_pool":                               148,
-		"aci_x509_certificate":                         149,
+		"aci_aaa_domain_relationship":                  1,
+		"aci_aaep_to_domain":                           2,
+		"aci_access_generic":                           3,
+		"aci_access_group":                             4,
+		"aci_access_port_block":                        5,
+		"aci_access_port_selector":                     6,
+		"aci_access_sub_port_block":                    7,
+		"aci_access_switch_policy_group":               8,
+		"aci_action_rule_additional_communities":       9,
+		"aci_action_rule_profile":                      10,
+		"aci_annotation":                               11,
+		"aci_any":                                      12,
+		"aci_application_epg":                          13,
+		"aci_application_profile":                      14,
+		"aci_attachable_access_entity_profile":         15,
+		"aci_authentication_properties":                16,
+		"aci_autonomous_system_profile":                17,
+		"aci_bd_dhcp_label":                            18,
+		"aci_bfd_interface_policy":                     19,
+		"aci_bgp_address_family_context":               20,
+		"aci_bgp_best_path_policy":                     21,
+		"aci_bgp_peer_connectivity_profile":            22,
+		"aci_bgp_peer_prefix":                          23,
+		"aci_bgp_route_control_profile":                24,
+		"aci_bgp_route_summarization":                  25,
+		"aci_bgp_timers":                               26,
+		"aci_bridge_domain":                            27,
+		"aci_cdp_interface_policy":                     28,
+		"aci_client_end_point":                         29,
+		"aci_cloud_applicationcontainer":               30,
+		"aci_cloud_availability_zone":                  31,
+		"aci_cloud_aws_provider":                       32,
+		"aci_cloud_cidr_pool":                          33,
+		"aci_cloud_context_profile":                    34,
+		"aci_cloud_domain_profile":                     35,
+		"aci_cloud_endpoint_selector":                  36,
+		"aci_cloud_endpoint_selectorfor_external_epgs": 37,
+		"aci_cloud_epg":                                38,
+		"aci_cloud_external_epg":                       39,
+		"aci_cloud_provider_profile":                   40,
+		"aci_cloud_providers_region":                   41,
+		"aci_cloud_subnet":                             42,
+		"aci_cloud_vpn_gateway":                        43,
+		"aci_configuration_export_policy":              44,
+		"aci_configuration_import_policy":              45,
+		"aci_connection":                               46,
+		"aci_console_authentication":                   47,
+		"aci_contract":                                 48,
+		"aci_contract_subject":                         49,
+		"aci_coop_policy":                              50,
+		"aci_default_authentication":                   51,
+		"aci_destination_of_redirected_traffic":        52,
+		"aci_dhcp_option":                              53,
+		"aci_dhcp_option_policy":                       54,
+		"aci_dhcp_relay_policy":                        55,
+		"aci_duo_provider_group":                       56,
+		"aci_encryption_key":                           57,
+		"aci_end_point_retention_policy":               58,
+		"aci_endpoint_controls":                        59,
+		"aci_endpoint_ip_aging_profile":                60,
+		"aci_endpoint_loop_protection":                 61,
+		"aci_endpoint_security_group":                  62,
+		"aci_endpoint_security_group_epg_selector":     63,
+		"aci_endpoint_security_group_selector":         64,
+		"aci_endpoint_security_group_tag_selector":     65,
+		"aci_epg_to_contract":                          66,
+		"aci_epg_to_contract_interface":                67,
+		"aci_epg_to_domain":                            68,
+		"aci_epg_to_static_path":                       69,
+		"aci_epgs_using_function":                      70,
+		"aci_error_disable_recovery":                   71,
+		"aci_external_network_instance_profile":        72,
+		"aci_fabric_if_pol":                            73,
+		"aci_fabric_node":                              74,
+		"aci_fabric_node_control":                      75,
+		"aci_fabric_node_member":                       76,
+		"aci_fabric_path_ep":                           77,
+		"aci_fabric_wide_settings":                     78,
+		"aci_fc_domain":                                79,
+		"aci_fex_bundle_group":                         80,
+		"aci_fex_profile":                              81,
+		"aci_file_remote_path":                         82,
+		"aci_filter":                                   83,
+		"aci_filter_entry":                             84,
+		"aci_firmware_download_task":                   85,
+		"aci_firmware_group":                           86,
+		"aci_firmware_policy":                          87,
+		"aci_function_node":                            88,
+		"aci_global_security":                          89,
+		"aci_hsrp_group_policy":                        90,
+		"aci_hsrp_interface_policy":                    91,
+		"aci_imported_contract":                        92,
+		"aci_interface_blacklist":                      93,
+		"aci_interface_fc_policy":                      94,
+		"aci_isis_domain_policy":                       95,
+		"aci_l2_domain":                                96,
+		"aci_l2_interface_policy":                      97,
+		"aci_l2_outside":                               98,
+		"aci_l2out_extepg":                             99,
+		"aci_l3_domain_profile":                        100,
+		"aci_l3_ext_subnet":                            101,
+		"aci_l3_interface_policy":                      102,
+		"aci_l3_outside":                               103,
+		"aci_l3out_bfd_interface_profile":              104,
+		"aci_l3out_bgp_external_policy":                105,
+		"aci_l3out_bgp_protocol_profile":               106,
+		"aci_l3out_floating_svi":                       107,
+		"aci_l3out_hsrp_interface_group":               108,
+		"aci_l3out_hsrp_interface_profile":             109,
+		"aci_l3out_hsrp_secondary_vip":                 110,
+		"aci_l3out_loopback_interface_profile":         111,
+		"aci_l3out_ospf_external_policy":               112,
+		"aci_l3out_ospf_interface_profile":             113,
+		"aci_l3out_path_attachment":                    114,
+		"aci_l3out_path_attachment_secondary_ip":       115,
+		"aci_l3out_route_tag_policy":                   116,
+		"aci_l3out_static_route":                       117,
+		"aci_l3out_static_route_next_hop":              118,
+		"aci_l3out_vpc_member":                         119,
+		"aci_l4_l7_service_graph_template":             120,
+		"aci_lacp_policy":                              121,
+		"aci_ldap_group_map":                           122,
+		"aci_ldap_group_map_rule":                      123,
+		"aci_ldap_group_map_rule_to_group_map":         124,
+		"aci_ldap_provider":                            125,
+		"aci_leaf_access_bundle_policy_group":          126,
+		"aci_leaf_access_port_policy_group":            127,
+		"aci_leaf_breakout_port_group":                 128,
+		"aci_leaf_interface_profile":                   129,
+		"aci_leaf_profile":                             130,
+		"aci_leaf_selector":                            131,
+		"aci_lldp_interface_policy":                    132,
+		"aci_local_user":                               133,
+		"aci_logical_device_context":                   134,
+		"aci_logical_interface_context":                135,
+		"aci_logical_interface_profile":                136,
+		"aci_logical_node_profile":                     137,
+		"aci_logical_node_to_fabric_node":              138,
+		"aci_login_domain":                             139,
+		"aci_login_domain_provider":                    140,
+		"aci_maintenance_group_node":                   141,
+		"aci_maintenance_policy":                       142,
+		"aci_managed_node_connectivity_group":          143,
+		"aci_match_community_terms":                    144,
+		"aci_match_regex_community_terms":              145,
+		"aci_match_route_destination_rule":             146,
+		"aci_match_rule":                               147,
+		"aci_mcp_instance_policy":                      148,
+		"aci_mgmt_preference":                          149,
+		"aci_mgmt_zone":                                150,
+		"aci_miscabling_protocol_interface_policy":     151,
+		"aci_monitoring_policy":                        152,
+		"aci_node_block":                               153,
+		"aci_node_block_firmware":                      154,
+		"aci_node_mgmt_epg":                            155,
+		"aci_ospf_interface_policy":                    156,
+		"aci_ospf_route_summarization":                 157,
+		"aci_ospf_timers":                              158,
+		"aci_physical_domain":                          159,
+		"aci_pod_maintenance_group":                    160,
+		"aci_port_security_policy":                     161,
+		"aci_port_tracking":                            162,
+		"aci_qos_instance_policy":                      163,
+		"aci_radius_provider":                          164,
+		"aci_radius_provider_group":                    165,
+		"aci_ranges":                                   166,
+		"aci_recurring_window":                         167,
+		"aci_rest":                                     168,
+		"aci_rest_managed":                             169,
+		"aci_route_control_context":                    170,
+		"aci_route_control_profile":                    171,
+		"aci_rsa_provider":                             172,
+		"aci_saml_certificate":                         173,
+		"aci_saml_provider":                            174,
+		"aci_saml_provider_group":                      175,
+		"aci_service_redirect_policy":                  176,
+		"aci_snmp_community":                           177,
+		"aci_span_destination_group":                   178,
+		"aci_span_source_group":                        179,
+		"aci_span_sourcedestination_group_match_label": 180,
+		"aci_spanning_tree_interface_policy":           181,
+		"aci_spine_access_port_selector":               182,
+		"aci_spine_interface_profile":                  183,
+		"aci_spine_interface_profile_selector":         184,
+		"aci_spine_port_policy_group":                  185,
+		"aci_spine_port_selector":                      186,
+		"aci_spine_profile":                            187,
+		"aci_spine_switch_association":                 188,
+		"aci_spine_switch_policy_group":                189,
+		"aci_static_node_mgmt_address":                 190,
+		"aci_subnet":                                   191,
+		"aci_system":                                   192,
+		"aci_taboo_contract":                           193,
+		"aci_tacacs_accounting":                        194,
+		"aci_tacacs_accounting_destination":            195,
+		"aci_tacacs_provider":                          196,
+		"aci_tacacs_provider_group":                    197,
+		"aci_tacacs_source":                            198,
+		"aci_tag":                                      199,
+		"aci_tenant":                                   200,
+		"aci_trigger_scheduler":                        201,
+		"aci_user_security_domain":                     202,
+		"aci_user_security_domain_role":                203,
+		"aci_vlan_encapsulationfor_vxlan_traffic":      204,
+		"aci_vlan_pool":                                205,
+		"aci_vmm_controller":                           206,
+		"aci_vmm_credential":                           207,
+		"aci_vmm_domain":                               208,
+		"aci_vpc_domain_policy":                        209,
+		"aci_vpc_explicit_protection_group":            210,
+		"aci_vrf":                                      211,
+		"aci_vrf_snmp_context":                         212,
+		"aci_vrf_snmp_context_community":               213,
+		"aci_vrf_to_bgp_address_family_context":        214,
+		"aci_vsan_pool":                                215,
+		"aci_vswitch_policy":                           216,
+		"aci_vxlan_pool":                               217,
+		"aci_x509_certificate":                         218,
 	}
 )
 

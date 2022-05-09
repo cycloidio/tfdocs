@@ -1145,7 +1145,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags assigned to this rule set. ## ` + "`" + `if` + "`" + ` Configuration The ` + "`" + `if` + "`" + ` configuration block is an [ordered list of rules](https://login.circonus.com/user/docs/Alerting/Rules/Configure) that are evaluated in order, first to last. The first ` + "`" + `if` + "`" + ` condition to evaluate true shortcircuits all other ` + "`" + `if` + "`" + ` blocks in this rule set. An ` + "`" + `if` + "`" + ` block is also referred to as a "rule." It is advised that all high-severity rules are ordered before low-severity rules otherwise low-severity rules will mask notifications that should be delivered with a high-severity. ` + "`" + `if` + "`" + ` blocks are made up of two configuration blocks: ` + "`" + `value` + "`" + ` and ` + "`" + `then` + "`" + `. The ` + "`" + `value` + "`" + ` configuration block specifies the criteria underwhich the metric streams are evaluated. The ` + "`" + `then` + "`" + ` configuration block, optional, specifies what action to take. ### ` + "`" + `value` + "`" + ` Configuration A ` + "`" + `value` + "`" + ` block can have only one of several "predicate" attributes specified because they conflict with each other. The list of mutually exclusive predicates is dependent on the ` + "`" + `metric_type` + "`" + `. To evaluate multiple predicates, create multiple ` + "`" + `if` + "`" + ` configuration blocks in the proper order. #### ` + "`" + `numeric` + "`" + ` Predicates Metric types of type ` + "`" + `numeric` + "`" + ` support the following predicates. Only one of the following predicates may be specified at a time.`,
+					Description: `(Optional) A list of tags assigned to this rule set. NOTE: tags are IGNORED - any tags returned with a rule_set are check tags. Any tags submitted with a rule_set are dropped. ## ` + "`" + `if` + "`" + ` Configuration The ` + "`" + `if` + "`" + ` configuration block is an [ordered list of rules](https://login.circonus.com/user/docs/Alerting/Rules/Configure) that are evaluated in order, first to last. The first ` + "`" + `if` + "`" + ` condition to evaluate true shortcircuits all other ` + "`" + `if` + "`" + ` blocks in this rule set. An ` + "`" + `if` + "`" + ` block is also referred to as a "rule." It is advised that all high-severity rules are ordered before low-severity rules otherwise low-severity rules will mask notifications that should be delivered with a high-severity. ` + "`" + `if` + "`" + ` blocks are made up of two configuration blocks: ` + "`" + `value` + "`" + ` and ` + "`" + `then` + "`" + `. The ` + "`" + `value` + "`" + ` configuration block specifies the criteria underwhich the metric streams are evaluated. The ` + "`" + `then` + "`" + ` configuration block, optional, specifies what action to take. ### ` + "`" + `value` + "`" + ` Configuration A ` + "`" + `value` + "`" + ` block can have only one of several "predicate" attributes specified because they conflict with each other. The list of mutually exclusive predicates is dependent on the ` + "`" + `metric_type` + "`" + `. To evaluate multiple predicates, create multiple ` + "`" + `if` + "`" + ` configuration blocks in the proper order. #### ` + "`" + `numeric` + "`" + ` Predicates Metric types of type ` + "`" + `numeric` + "`" + ` support the following predicates. Only one of the following predicates may be specified at a time.`,
 				},
 				resource.Attribute{
 					Name:        "absent",
@@ -1161,19 +1161,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_value",
-					Description: `(Optional) When the value is greater than this value, this rule will fire (e.g. ` + "`" + `n > ${max_value}` + "`" + `). Additionally, a ` + "`" + `numeric` + "`" + ` check can also evaluate data based on a windowing function versus the last measured value in the metric stream. In order to have a rule evaluate on derived value from a window, include a nested ` + "`" + `over` + "`" + ` attribute inside of the ` + "`" + `value` + "`" + ` configuration block. An ` + "`" + `over` + "`" + ` attribute needs two attributes:`,
+					Description: `(Optional) When the value is greater than this value, this rule will fire (e.g. ` + "`" + `n > ${max_value}` + "`" + `). Additionally, a ` + "`" + `numeric` + "`" + ` check can also evaluate data based on a windowing function versus the last measured value in the metric stream. In order to have a rule evaluate on derived value from a window, include a nested ` + "`" + `over` + "`" + ` attribute inside of the ` + "`" + `value` + "`" + ` configuration block. An ` + "`" + `over` + "`" + ` attribute needs three attributes:`,
 				},
 				resource.Attribute{
 					Name:        "last",
-					Description: `(Optional) A duration for the sliding window. Default ` + "`" + `300` + "`" + `.`,
+					Description: `(Required) A duration for the sliding window.`,
 				},
 				resource.Attribute{
 					Name:        "atleast",
-					Description: `(Optional) A duration for the minimum amount of data to consider in the sliding window. Default ` + "`" + `0` + "`" + `.`,
+					Description: `(Required) A duration for the minimum amount of data to consider in the sliding window.`,
 				},
 				resource.Attribute{
 					Name:        "using",
-					Description: `(Optional) The window function to use over the ` + "`" + `last` + "`" + ` interval. Valid window functions include: ` + "`" + `average` + "`" + ` (the default), ` + "`" + `stddev` + "`" + `, ` + "`" + `derive` + "`" + `, ` + "`" + `derive_stddev` + "`" + `, ` + "`" + `counter` + "`" + `, ` + "`" + `counter_stddev` + "`" + `, ` + "`" + `derive_2` + "`" + `, ` + "`" + `derive_2_stddev` + "`" + `, ` + "`" + `counter_2` + "`" + `, and ` + "`" + `counter_2_stddev` + "`" + `. #### ` + "`" + `text` + "`" + ` Predicates Metric types of type ` + "`" + `text` + "`" + ` support the following predicates:`,
+					Description: `(Required) The window function to use over the ` + "`" + `last` + "`" + ` interval. Valid window functions include: ` + "`" + `average` + "`" + ` (the default), ` + "`" + `stddev` + "`" + `, ` + "`" + `derive` + "`" + `, ` + "`" + `derive_stddev` + "`" + `, ` + "`" + `counter` + "`" + `, and ` + "`" + `counter_stddev` + "`" + `. #### ` + "`" + `text` + "`" + ` Predicates Metric types of type ` + "`" + `text` + "`" + ` support the following predicates:`,
 				},
 				resource.Attribute{
 					Name:        "absent",

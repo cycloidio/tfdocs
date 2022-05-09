@@ -15,9 +15,7 @@ var (
 			Category:         "Resources",
 			ShortDescription: `Manages DCNM interface modules`,
 			Description:      ``,
-			Keywords: []string{
-				"interface",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrf",
@@ -269,61 +267,59 @@ var (
 			Category:         "Resources",
 			ShortDescription: `Manages DCNM inventory modules`,
 			Description:      ``,
-			Keywords: []string{
-				"inventory",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fabric_name",
-					Description: `(Required) fabric name under which inventory should be created.`,
+					Description: `(Required) Fabric name under which inventory should be created.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) username for the the switch.`,
+					Description: `(Required) Username for the the switch.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) password for the the switch.`,
+					Description: `(Required) Password for the the switch.`,
 				},
 				resource.Attribute{
 					Name:        "max_hops",
-					Description: `(Optional) maximum number hops for switch. Ranging from 0 to 10, default value is 0.`,
+					Description: `(Optional) Maximum number hops for switch. Ranging from 0 to 10, default value is 0.`,
 				},
 				resource.Attribute{
 					Name:        "auth_protocol",
-					Description: `(Optional) authentication protocol for switch. Mapping is as ` + "`" + `0 : "MD5", 1: "SHA", 2 : "MD5_DES", 3 : "MD5_AES", 4 : "SHA_DES", 5 : "SHA_AES"` + "`" + ``,
+					Description: `(Optional) Authentication protocol for switch. Mapping is as ` + "`" + `0 : "MD5", 1: "SHA", 2 : "MD5_DES", 3 : "MD5_AES", 4 : "SHA_DES", 5 : "SHA_AES"` + "`" + `. Default value is 0.`,
 				},
 				resource.Attribute{
 					Name:        "preserve_config",
-					Description: `(Optional) flag to preserve the configuration of switch. Default value is "false".`,
+					Description: `(Optional) Flag to preserve the configuration of switch. Default value is "false".`,
 				},
 				resource.Attribute{
 					Name:        "platform",
-					Description: `(Optional) platform name for the switch.`,
+					Description: `(Optional) Platform name for the switch. Default value is null.`,
 				},
 				resource.Attribute{
 					Name:        "second_timeout",
-					Description: `(Optional) second timeout value for switch.`,
+					Description: `(Optional) Second timeout value for switch. Default value is null.`,
 				},
 				resource.Attribute{
 					Name:        "config_timeout",
-					Description: `(Optional) configuration timeout value in minutes. Default value is "5".`,
+					Description: `(Optional) Configuration timeout value in minutes. Default value is "5".`,
 				},
 				resource.Attribute{
 					Name:        "switch_config",
-					Description: `(Required) switch configuration block for inventory resource. It consists of the information regarding switches.`,
+					Description: `(Required) Switch configuration block for inventory resource. It consists of the information regarding switches.`,
 				},
 				resource.Attribute{
 					Name:        "switch_config.ip",
-					Description: `(Required) ip Address of switch.`,
+					Description: `(Required) Ip Address of switch.`,
 				},
 				resource.Attribute{
 					Name:        "switch_config.role",
-					Description: `(Optional) role of the switch. Allowed values are "leaf", "spine", "border", "border_spine", "border_gateway", "border_gateway_spine", "super_spine", "border_super_spine", "border_gateway_super_spine".`,
+					Description: `(Optional) Role of the switch. Allowed values are "leaf", "spine", "border", "border_spine", "border_gateway", "border_gateway_spine", "super_spine", "border_super_spine", "border_gateway_super_spine". Default value is "leaf"`,
 				},
 				resource.Attribute{
 					Name:        "deploy",
-					Description: `(Optional) deploy flag for the switch. Default value is "true". ## Attribute Reference`,
+					Description: `(Optional) Deploy flag for the switch. Default value is "true". ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -391,9 +387,7 @@ var (
 			Category:         "Resources",
 			ShortDescription: `Manages DCNM Network`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -452,6 +446,14 @@ var (
 					Description: `(Optional) ipv4 secondary gateway 2 for the network.`,
 				},
 				resource.Attribute{
+					Name:        "secondary_gw_3",
+					Description: `(Optional) ipv4 secondary gateway 3 for the network.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_gw_4",
+					Description: `(Optional) ipv4 secondary gateway 4 for the network.`,
+				},
+				resource.Attribute{
 					Name:        "arp_supp_flag",
 					Description: `(Optional) arp suppression flag for the network.`,
 				},
@@ -472,8 +474,20 @@ var (
 					Description: `(Optional) ipv4 address of DHCP server 2 for the network.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_3",
+					Description: `(Optional) ipv4 address of DHCP server 3 for the network.`,
+				},
+				resource.Attribute{
 					Name:        "dhcp_vrf",
 					Description: `(Optional) vrf name of DHCP server for the network.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_vrf_2",
+					Description: `(Optional) vrf name of DHCP server 2 for the network.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_vrf_3",
+					Description: `(Optional) vrf name of DHCP server 3 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
@@ -492,8 +506,12 @@ var (
 					Description: `(Optional) enable L3 gateway on border flag for the network.`,
 				},
 				resource.Attribute{
+					Name:        "netflow_flag",
+					Description: `(Optional) enable Netflow flag for the network. default is "false".`,
+				},
+				resource.Attribute{
 					Name:        "template",
-					Description: `(Optional) template name for the network. Values allowed "Default_VRF_Universal" and "Service_Network_Universal". Default is "Default_VRF_Universal".`,
+					Description: `(Optional) template name for the network. Values allowed "Default_Network_Universal" and "Service_Network_Universal". Default is "Default_Network_Universal".`,
 				},
 				resource.Attribute{
 					Name:        "extension_template",
@@ -506,6 +524,18 @@ var (
 				resource.Attribute{
 					Name:        "source",
 					Description: `(Optional) source for the network.`,
+				},
+				resource.Attribute{
+					Name:        "svi_netflow_monitor",
+					Description: `(Optional) SVI netflow monitor for the network.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_netflow_monitor",
+					Description: `(Optional) VLAN netflow monitor for the network.`,
+				},
+				resource.Attribute{
+					Name:        "nve_id",
+					Description: `(Optional) NVE-Id of the network. Default value is 1.`,
 				},
 				resource.Attribute{
 					Name:        "deploy",
@@ -577,13 +607,21 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dcnm_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages DCNM policy modules`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dcnm_rest",
 			Category:         "Resources",
 			ShortDescription: `Manages DCNM rest modules`,
 			Description:      ``,
-			Keywords: []string{
-				"rest",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
@@ -595,7 +633,174 @@ var (
 				},
 				resource.Attribute{
 					Name:        "payload",
-					Description: `(Required) JSON encoded payload data. NOTE: This resource will not work well in the case of Terraform destroy if there is a change in the terraform configuration required to destroy the object from the DCNM, as Destroy only has the access to the data in the state file. To destroy the objects created via dcnm_rest in such cases modify the payload and method and use the Terraform apply instead. ## Attribute Reference No attributes are exported.`,
+					Description: `(Optional) JSON/TEXT payload data.`,
+				},
+				resource.Attribute{
+					Name:        "payload_type",
+					Description: `(Optional) Encoding type for payload. Allowed values are "json" and "text". Default value is "json". NOTE: This resource will not work well in the case of Terraform destroy if there is a change in the terraform configuration required to destroy the object from the DCNM, as Destroy only has the access to the data in the state file. To destroy the objects created via dcnm_rest in such cases modify the payload and method and use the Terraform apply instead. ## Attribute Reference No attributes are exported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_route_peering",
+			Category:         "Resources",
+			ShortDescription: `Manages DCNM Route Peering modules`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of route peering.`,
+				},
+				resource.Attribute{
+					Name:        "attached_fabric",
+					Description: `(Required) Name of the target fabric for route peering operations.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_mode",
+					Description: `(Required) Type of service node.Allowed values are "IntraTenantFW","InterTenantFW","OneArmADC","TwoArmADC","OneArmVNF".`,
+				},
+				resource.Attribute{
+					Name:        "service_fabric",
+					Description: `(Required) Name of the target fabric for route peering operations.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip",
+					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `(Required) Specifies the type of peering.Allowed values are "StaticPeering","EBGPDynamicPeering","None".`,
+				},
+				resource.Attribute{
+					Name:        "service_networks",
+					Description: `(Required) List of network under which peering will be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_name",
+					Description: `(Required) Network name.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.network_type",
+					Description: `(Required) Type of network.Allowed values are "InsideNetworkFW"(service node = Firewall),"OutsideNetworkFW"(service node = Firewall),"ArmOneADC"(service node = ADC),"ArmTwoADC"(service node = ADC),"ArmOneVNF"(service node= VNF).`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.template_name",
+					Description: `(Required) Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vrf_name",
+					Description: `(Required) VRF name under which network is created.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.vlan_id",
+					Description: `(Required) VLan Id of network.`,
+				},
+				resource.Attribute{
+					Name:        "service_networks.gateway_ip_address",
+					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+				},
+				resource.Attribute{
+					Name:        "routes",
+					Description: `(Optional) Routing configuration.`,
+				},
+				resource.Attribute{
+					Name:        "routes.template_name",
+					Description: `(Optional) Template name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "routes.route_parmas",
+					Description: `(Optional) NVPair map for routing. The value for predefined route parameters depens upon deployment mode.`,
+				},
+				resource.Attribute{
+					Name:        "routes.vrf_name",
+					Description: `(Optional) VRF name for routing.`,
+				},
+				resource.Attribute{
+					Name:        "deploy",
+					Description: `(Optional) A flag specifying if a route peering is to be deployed on the switches. Default value is "true".`,
+				},
+				resource.Attribute{
+					Name:        "deploy_timeout",
+					Description: `(Optional) Timeout seconds for deployment. Default value is 300s.`,
+				},
+				resource.Attribute{
+					Name:        "service_node_type",
+					Description: `(Required) Type of service node.Allowed values are "Firewall","VNF","ADC". ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Route peering deployment status. ## Importing ## An existing route peering can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_route_peering.example <peering_name>:<external_fabric>:<service_node>:<attached_fabric_name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Route peering deployment status. ## Importing ## An existing route peering can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_route_peering.example <peering_name>:<external_fabric>:<service_node>:<attached_fabric_name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_service_node",
+			Category:         "Resources",
+			ShortDescription: `Manages DCNM Service Node`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_service_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages DCNM Service Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "dcnm_template",
+			Category:         "Resources",
+			ShortDescription: `Manages DCNM Template`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Template.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Content of file or file name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of template.`,
+				},
+				resource.Attribute{
+					Name:        "supported_platforms",
+					Description: `(Optional) Platform supported by the template.`,
+				},
+				resource.Attribute{
+					Name:        "template_type",
+					Description: `(Optional) Type of template.`,
+				},
+				resource.Attribute{
+					Name:        "template_content_type",
+					Description: `(Optional) Content type of template.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tag of template.`,
+				},
+				resource.Attribute{
+					Name:        "template_sub_type",
+					Description: `(Optional) Sub type of template. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the template. ## Importing ## An existing Template can be [imported][docs-import] into this resource via template name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_template.example <template_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -606,170 +811,24 @@ var (
 			Category:         "Resources",
 			ShortDescription: `Manages DCNM VRF`,
 			Description:      ``,
-			Keywords: []string{
-				"vrf",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) name of Object VRF.`,
-				},
-				resource.Attribute{
-					Name:        "fabric_name",
-					Description: `(Required) fabric name under which VRF should be created.`,
-				},
-				resource.Attribute{
-					Name:        "segment_id",
-					Description: `(Optional) VRF-Segment id. This field is auto-calculated if not provided. However while creating multiple VRFs in the same plan use this field to reserve the VRF id to avoid any conflicts due to concurrent execution. <strong>Note: </strong> For auto-generation of segment-id while creating multiple VRFs in the same plan, Use the depends on functionality of terraform to avoid any segment-id conflicts.`,
-				},
-				resource.Attribute{
-					Name:        "vlan",
-					Description: `(Optional) vlan Id for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_name",
-					Description: `(Optional) vlan name for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) description for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "intf_description",
-					Description: `(Optional) intf desscription for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `(Optional) tag for the VRF. Ranging from 0 to 4294967295.`,
-				},
-				resource.Attribute{
-					Name:        "max_bgp_path",
-					Description: `(Optional) maximum BGP path value for the VRF. Ranging from 1 to 64.`,
-				},
-				resource.Attribute{
-					Name:        "max_ibgp_path",
-					Description: `(Optional) maximum iBGP path value for the VRF. Ranging from 1 to 64.`,
-				},
-				resource.Attribute{
-					Name:        "trm_enable",
-					Description: `(Optional) trm enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "rp_external_flag",
-					Description: `(Optional) rp external flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "rp_address",
-					Description: `(Optional) rp address for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "loopback_id",
-					Description: `(Optional) loopback ip address for the VRF. Ranging from 0 to 1023.`,
-				},
-				resource.Attribute{
-					Name:        "mutlicast_group",
-					Description: `(Optional) multicast group address for the VRF. Ranging from 224.0.0.0/4 to 239.255.255.255/4.`,
-				},
-				resource.Attribute{
-					Name:        "mutlicast_address",
-					Description: `(Optional) multicast address for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "ipv6_link_local_flag",
-					Description: `(Optional) ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "trm_bgw_msite_flag",
-					Description: `(Optional) trm bgw multisite enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "advertise_host_route",
-					Description: `(Optional) advertise host route enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "advertise_default_route",
-					Description: `(Optional) advertise default route enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "static_default_route",
-					Description: `(Optional) configure static default route enable flag for the VRF. Allowed values are "true" and "false".`,
-				},
-				resource.Attribute{
-					Name:        "template",
-					Description: `(Optional) template name for the VRF. Values allowed "Default_VRF_Universal". Default is "Default_VRF_Universal".`,
-				},
-				resource.Attribute{
-					Name:        "mtu",
-					Description: `(Optional) mtu value for the VRF. Ranging from 68 to 9216.`,
-				},
-				resource.Attribute{
-					Name:        "extension_template",
-					Description: `(Optional) extension Template name for the VRF. Values allowed are "Default_VRF_Extension_Universal". Default is "Default_VRF_Extension_Universal".`,
-				},
-				resource.Attribute{
-					Name:        "service_template",
-					Description: `(Optional) service template name for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(Optional) source for the VRF.`,
-				},
-				resource.Attribute{
-					Name:        "deploy",
-					Description: `(Optional) deploy flag, used to deploy the VRF. Default value is "true".`,
-				},
-				resource.Attribute{
-					Name:        "deploy_timeout",
-					Description: `(Optional) deployment timeout, used as the limiter for the deployment status check for VRF resource. It is in the unit of seconds and default value is "300".`,
-				},
-				resource.Attribute{
-					Name:        "attachments",
-					Description: `(Optional) attachment Block, have information regarding the switches which should be attached or detached to/from VRF. If ` + "`" + `deploy` + "`" + ` is "true", then atleast one attachment must be configured.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.serial_number",
-					Description: `(Required) serial number of the switch.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.vlan_id",
-					Description: `(Optional) vlan ID for the switch associated with VRF. If not mentioned then VRF's default vlan id will be used for attachment.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.attach",
-					Description: `(Optional) attach flag for switch. Default value is "true".`,
-				},
-				resource.Attribute{
-					Name:        "attachments.free_form_config",
-					Description: `(Optional) free form configuration for the switch attachment.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.extension_values",
-					Description: `(Optional) extension values for switch attachment.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.loopback_id",
-					Description: `(Optional) loopback id for the switch attachment.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.loopback_ipv4",
-					Description: `(Optional) loopback ipv4 address for the switch attachment.`,
-				},
-				resource.Attribute{
-					Name:        "attachments.loopback_ipv6",
-					Description: `(Optional) loopback ipv6 address for the switch attachment. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the VRF. ## Importing ## An existing VRF can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_vrf.example <fabric_name>:<vrf_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"dcnm_interface": 0,
-		"dcnm_inventory": 1,
-		"dcnm_network":   2,
-		"dcnm_rest":      3,
-		"dcnm_vrf":       4,
+		"dcnm_interface":      0,
+		"dcnm_inventory":      1,
+		"dcnm_network":        2,
+		"dcnm_policy":         3,
+		"dcnm_rest":           4,
+		"dcnm_route_peering":  5,
+		"dcnm_service_node":   6,
+		"dcnm_service_policy": 7,
+		"dcnm_template":       8,
+		"dcnm_vrf":            9,
 	}
 )
 

@@ -11,257 +11,33 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "databricks_aws_s3_mount",
-			Category:         "AWS",
+			Type:             "databricks_catalog",
+			Category:         "Unity Catalog",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"aws",
-				"s3",
-				"mount",
+				"unity",
+				"catalog",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `(Optional) (String) [Cluster](cluster.md) to use for mounting. If no cluster is specified, a new cluster will be created and will mount the bucket for all of the clusters in this workspace. If a cluster is specified, mount will be visible for all clusters with the same [instance profile](./instance_profile.md). If the cluster is not running - it's going to be started, so be aware to set auto-termination rules on it.`,
+					Name:        "name",
+					Description: `Name of Catalog relative to parent metastore. Change forces creation of a new resource.`,
 				},
 				resource.Attribute{
-					Name:        "instance_profile",
-					Description: `(Optional) (String) ARN of registered [instance profile](instance_profile.md) for data access.`,
+					Name:        "owner",
+					Description: `(Optional) Username/groupname of catalog owner. Currently this field can only be changed after the resource is created.`,
 				},
 				resource.Attribute{
-					Name:        "mount_name",
-					Description: `(Required) (String) Name, under which mount will be accessible in ` + "`" + `dbfs:/mnt/<MOUNT_NAME>` + "`" + ` or locally on each instance through FUSE mount ` + "`" + `/dbfs/mnt/<MOUNT_NAME>` + "`" + `.`,
+					Name:        "comment",
+					Description: `(Optional) User-supplied free-form text.`,
 				},
 				resource.Attribute{
-					Name:        "s3_bucket_name",
-					Description: `(Required) (String) S3 bucket name to be mounted. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible S3 bucket url ` + "`" + `s3a://<s3_bucket_name>` + "`" + ` ## Import The resource aws s3 mount can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_aws_s3_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "properties",
+					Description: `(Optional) Extensible Catalog properties. ## Import This resource can be imported by name: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_catalog.this <name> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are used in the same context:`,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible S3 bucket url ` + "`" + `s3a://<s3_bucket_name>` + "`" + ` ## Import The resource aws s3 mount can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_aws_s3_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "databricks_azure_adls_gen1_mount",
-			Category:         "Azure",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords: []string{
-				"azure",
-				"adls",
-				"gen1",
-				"mount",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "client_id",
-					Description: `(Required) (String) This is the client_id for the enterprise application for the service principal.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `(Required) (String) This is your azure directory tenant id. This is required for creating the mount.`,
-				},
-				resource.Attribute{
-					Name:        "client_secret_key",
-					Description: `(Required) (String) This is the secret key in which your service principal/enterprise app client secret will be stored.`,
-				},
-				resource.Attribute{
-					Name:        "client_secret_scope",
-					Description: `(Required) (String) This is the secret scope in which your service principal/enterprise app client secret will be stored.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `(Optional) (String) Cluster to use for mounting. If no cluster is specified, a new cluster will be created and will mount the bucket for all of the clusters in this workspace. If the cluster is not running - it's going to be started, so be aware to set auto-termination rules on it.`,
-				},
-				resource.Attribute{
-					Name:        "mount_name",
-					Description: `(Required) (String) Name, under which mount will be accessible in ` + "`" + `dbfs:/mnt/<MOUNT_NAME>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "storage_resource_name",
-					Description: `(Required) (String) The name of the storage resource in which the data is for ADLS gen 1. This is what you are trying to mount.`,
-				},
-				resource.Attribute{
-					Name:        "spark_conf_prefix",
-					Description: `(Optional) (String) This is the spark configuration prefix for adls gen 1 mount. The options are ` + "`" + `fs.adl` + "`" + `, ` + "`" + `dfs.adls` + "`" + `. Use ` + "`" + `fs.adl` + "`" + ` for runtime 6.0 and above for the clusters. Otherwise use ` + "`" + `dfs.adls` + "`" + `. The default value is: ` + "`" + `fs.adl` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "directory",
-					Description: `(Computed) (String) This is optional if you want to add an additional directory that you wish to mount. This must start with a "/". ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `adl://<adlsv1-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_adls_gen1_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `adl://<adlsv1-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_adls_gen1_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "databricks_azure_adls_gen2_mount",
-			Category:         "Azure",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords: []string{
-				"azure",
-				"adls",
-				"gen2",
-				"mount",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "client_id",
-					Description: `(Required) (String) This is the client_id (Application Object ID) for the enterprise application for the service principal.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `(Required) (String) This is your azure directory tenant id. This is required for creating the mount.`,
-				},
-				resource.Attribute{
-					Name:        "client_secret_key",
-					Description: `(Required) (String) This is the secret key in which your service principal/enterprise app client secret will be stored.`,
-				},
-				resource.Attribute{
-					Name:        "client_secret_scope",
-					Description: `(Required) (String) This is the secret scope in which your service principal/enterprise app client secret will be stored.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `(Optional) (String) Cluster to use for mounting. If no cluster is specified, a new cluster will be created and will mount the bucket for all of the clusters in this workspace. If the cluster is not running - it's going to be started, so be aware to set auto-termination rules on it.`,
-				},
-				resource.Attribute{
-					Name:        "container_name",
-					Description: `(Required) (String) ADLS gen2 container name`,
-				},
-				resource.Attribute{
-					Name:        "storage_account_name",
-					Description: `(Required) (String) The name of the storage resource in which the data is.`,
-				},
-				resource.Attribute{
-					Name:        "mount_name",
-					Description: `(Required) (String) Name, under which mount will be accessible in ` + "`" + `dbfs:/mnt/<MOUNT_NAME>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "directory",
-					Description: `(Computed) (String) This is optional if you want to add an additional directory that you wish to mount. This must start with a "/".`,
-				},
-				resource.Attribute{
-					Name:        "initialize_file_system",
-					Description: `(Required) (Bool) either or not initialize FS for the first use ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `abfss://<adlsv2-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_adls_gen2_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `abfss://<adlsv2-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_adls_gen2_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "databricks_azure_blob_mount",
-			Category:         "Azure",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords: []string{
-				"azure",
-				"blob",
-				"mount",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "auth_type",
-					Description: `(Required) (String) This is the auth type for blob storage. This can either be SAS tokens or account access keys.`,
-				},
-				resource.Attribute{
-					Name:        "token_secret_scope",
-					Description: `(Required) (String) This is the secret scope in which your auth type token is stored.`,
-				},
-				resource.Attribute{
-					Name:        "token_secret_key",
-					Description: `(Required) (String) This is the secret key in which your auth type token is stored.`,
-				},
-				resource.Attribute{
-					Name:        "container_name",
-					Description: `(Required) (String) The container in which the data is. This is what you are trying to mount.`,
-				},
-				resource.Attribute{
-					Name:        "storage_account_name",
-					Description: `(Required) (String) The name of the storage resource in which the data is.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `(Optional) (String) Cluster to use for mounting. If no cluster is specified, a new cluster will be created and will mount the bucket for all of the clusters in this workspace. If the cluster is not running - it's going to be started, so be aware to set auto-termination rules on it.`,
-				},
-				resource.Attribute{
-					Name:        "mount_name",
-					Description: `(Required) (String) Name, under which mount will be accessible in ` + "`" + `dbfs:/mnt/<MOUNT_NAME>` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "directory",
-					Description: `(Computed) (String) This is optional if you want to add an additional directory that you wish to mount. This must start with a "/". ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `wasbs://<adlsv2-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_blob_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `mount name`,
-				},
-				resource.Attribute{
-					Name:        "source",
-					Description: `(String) HDFS-compatible url ` + "`" + `wasbs://<adlsv2-account>` + "`" + ` ## Import The resource can be imported using it's mount name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_azure_blob_mount.this <mount_name> ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -307,6 +83,10 @@ var (
 					Description: `(Optional) Some instance types you use to run clusters may have locally attached disks. Databricks may store shuffle data or temporary data on these locally attached disks. To ensure that all data at rest is encrypted for all storage types, including shuffle data stored temporarily on your cluster’s local disks, you can enable local disk encryption. When local disk encryption is enabled, Databricks generates an encryption key locally unique to each cluster node and encrypting all data stored on local disks. The scope of the key is local to each cluster node and is destroyed along with the cluster node itself. During its lifetime, the key resides in memory for encryption and decryption and is stored encrypted on the disk. _Your workloads may run more slowly because of the performance impact of reading and writing encrypted data to and from local volumes. This feature is not available for all Azure Databricks subscriptions. Contact your Microsoft or Databricks account representative to request access._`,
 				},
 				resource.Attribute{
+					Name:        "data_security_mode",
+					Description: `(Optional) Select the security features of the cluster. Unity Catalog requires ` + "`" + `SINGLE_USER` + "`" + ` or ` + "`" + `USER_ISOLATION` + "`" + ` mode. ` + "`" + `LEGACY_PASSTHROUGH` + "`" + ` for passthrough cluster and ` + "`" + `LEGACY_TABLE_ACL` + "`" + ` for Table ACL cluster. Default to ` + "`" + `NONE` + "`" + `, i.e. no security feature enabled.`,
+				},
+				resource.Attribute{
 					Name:        "single_user_name",
 					Description: `(Optional) The optional user name of the user to assign to an interactive cluster. This field is required when using standard AAD Passthrough for Azure Data Lake Storage (ADLS) with a single-user cluster (i.e., not high-concurrency clusters).`,
 				},
@@ -332,7 +112,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_pinned",
-					Description: `(Optional) boolean value specifying if cluster is pinned (not pinned by default). You must be a Databricks administrator to use this. The pinned clusters' maximum number is [limited to 20](https://docs.databricks.com/clusters/clusters-manage.html#pin-a-cluster), so ` + "`" + `apply` + "`" + ` may fail if you have more than that. The following example demonstrates how to create an autoscaling cluster with [Delta Cache](https://docs.databricks.com/delta/optimizations/delta-cache.html) enabled: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_node_type" "smallest" { local_disk = true } data "databricks_spark_version" "latest_lts" { long_term_support = true } resource "databricks_cluster" "shared_autoscaling" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest_lts.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } spark_conf = { "spark.databricks.io.cache.enabled": true, "spark.databricks.io.cache.maxDiskUsage": "50g", "spark.databricks.io.cache.maxMetaDataCache": "1g" } } ` + "`" + `` + "`" + `` + "`" + ` ## Fixed size or autoscaling cluster When you [create a Databricks cluster](https://docs.databricks.com/clusters/configure.html#cluster-size-and-autoscaling), you can either provide a ` + "`" + `num_workers` + "`" + ` for the fixed-size cluster or provide ` + "`" + `min_workers` + "`" + ` and/or ` + "`" + `max_workers` + "`" + ` for the cluster within the ` + "`" + `autoscale` + "`" + ` group. When you give a fixed-sized cluster, Databricks ensures that your cluster has a specified number of workers. When you provide a range for the number of workers, Databricks chooses the appropriate number of workers required to run your job - also known as "autoscaling." With autoscaling, Databricks dynamically reallocates workers to account for the characteristics of your job. Certain parts of your pipeline may be more computationally demanding than others, and Databricks automatically adds additional workers during these phases of your job (and removes them when they’re no longer needed). ` + "`" + `autoscale` + "`" + ` optional configuration block supports the following:`,
+					Description: `(Optional) boolean value specifying if cluster is pinned (not pinned by default). You must be a Databricks administrator to use this. The pinned clusters' maximum number is [limited to 70](https://docs.databricks.com/clusters/clusters-manage.html#pin-a-cluster), so ` + "`" + `apply` + "`" + ` may fail if you have more than that. The following example demonstrates how to create an autoscaling cluster with [Delta Cache](https://docs.databricks.com/delta/optimizations/delta-cache.html) enabled: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_node_type" "smallest" { local_disk = true } data "databricks_spark_version" "latest_lts" { long_term_support = true } resource "databricks_cluster" "shared_autoscaling" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest_lts.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } spark_conf = { "spark.databricks.io.cache.enabled" : true, "spark.databricks.io.cache.maxDiskUsage" : "50g", "spark.databricks.io.cache.maxMetaDataCache" : "1g" } } ` + "`" + `` + "`" + `` + "`" + ` ## Fixed size or autoscaling cluster When you [create a Databricks cluster](https://docs.databricks.com/clusters/configure.html#cluster-size-and-autoscaling), you can either provide a ` + "`" + `num_workers` + "`" + ` for the fixed-size cluster or provide ` + "`" + `min_workers` + "`" + ` and/or ` + "`" + `max_workers` + "`" + ` for the cluster within the ` + "`" + `autoscale` + "`" + ` group. When you give a fixed-sized cluster, Databricks ensures that your cluster has a specified number of workers. When you provide a range for the number of workers, Databricks chooses the appropriate number of workers required to run your job - also known as "autoscaling." With autoscaling, Databricks dynamically reallocates workers to account for the characteristics of your job. Certain parts of your pipeline may be more computationally demanding than others, and Databricks automatically adds additional workers during these phases of your job (and removes them when they’re no longer needed). ` + "`" + `autoscale` + "`" + ` optional configuration block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "min_workers",
@@ -368,7 +148,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "canned_acl",
-					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs:/init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Like the ` + "`" + `cluster_log_conf` + "`" + ` configuration block, init scripts support S3 and DBFS locations. In addition, you can also specify a local file as follows: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { file { destination = "file:/my/local/file.sh" } } ` + "`" + `` + "`" + `` + "`" + ` ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "i3.xlarge" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } aws_attributes { availability = "SPOT" zone_id = "us-east-1" first_on_demand = 1 spot_bid_price_percent = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
+					Description: `(Optional) Set canned access control list, e.g. ` + "`" + `bucket-owner-full-control` + "`" + `. If ` + "`" + `canned_cal` + "`" + ` is set, the cluster instance profile must have ` + "`" + `s3:PutObjectAcl` + "`" + ` permission on the destination bucket and prefix. The full list of possible canned ACLs can be found [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). By default, only the object owner gets full control. If you are using a cross-account role for writing data, you may want to set ` + "`" + `bucket-owner-full-control` + "`" + ` to make bucket owners able to read the logs. ## init_scripts You can specify up to 10 different init scripts for the specific cluster. If you want a shell script to run on all clusters and jobs within the same workspace, you should consider [databricks_global_init_script](global_init_script.md). Example of taking init script from DBFS: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { dbfs { destination = "dbfs:/init-scripts/install-elk.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Example of taking init script from S3: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { s3 { destination = "s3a://acmecorp-main/init-scripts/install-elk.sh" region = "us-east-1" } } ` + "`" + `` + "`" + `` + "`" + ` Like the ` + "`" + `cluster_log_conf` + "`" + ` configuration block, init scripts support S3 and DBFS locations. In addition, you can also specify a local file as follows: ` + "`" + `` + "`" + `` + "`" + `hcl init_scripts { file { destination = "file:/my/local/file.sh" } } ` + "`" + `` + "`" + `` + "`" + ` Take note that this can only be specified for clusters with [custom Docker containers](https://docs.databricks.com/clusters/custom-containers.html). ## aws_attributes ` + "`" + `aws_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Amazon Web Services](https://docs.databricks.com/clusters/configure.html#aws-configurations). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_spark_version" "latest" {} data "databricks_node_type" "smallest" { local_disk = true } resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } aws_attributes { availability = "SPOT" zone_id = "us-east-1" first_on_demand = 1 spot_bid_price_percent = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
@@ -400,7 +180,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ebs_volume_size",
-					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## azure_attributes ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes). Here is the example of shared autoscaling cluster with some of AWS options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = "6.6.x-scala2.11" node_type_id = "Standard_DS3_v2" autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } azure_attributes { availability = "SPOT_AZURE" first_on_demand = 1 spot_bid_max_price = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are [available](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes):`,
+					Description: `(Optional) The size of each EBS volume (in GiB) launched for each instance. For general purpose SSD, this value must be within the range 100 - 4096. For throughput optimized HDD, this value must be within the range 500 - 4096. Custom EBS volumes cannot be specified for the legacy node types (memory-optimized and compute-optimized). ## azure_attributes ` + "`" + `azure_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on Azure](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes). Here is the example of shared autoscaling cluster with some of Azure options set: ` + "`" + `` + "`" + `` + "`" + `hcl data "databricks_spark_version" "latest" {} data "databricks_node_type" "smallest" { local_disk = true } resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } azure_attributes { availability = "SPOT_AZURE" first_on_demand = 1 spot_bid_max_price = 100 } } ` + "`" + `` + "`" + `` + "`" + ` The following options are [available](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/clusters#--azureattributes):`,
 				},
 				resource.Attribute{
 					Name:        "availability",
@@ -412,15 +192,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spot_bid_max_price",
-					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#clustergcpattributes). The following options are available:`,
+					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [clusters running on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#clustergcpattributes). Here is the example of shared autoscaling cluster with some of GCP options set: ` + "`" + `` + "`" + `` + "`" + `hcl resource "databricks_cluster" "this" { cluster_name = "Shared Autoscaling" spark_version = data.databricks_spark_version.latest.id node_type_id = data.databricks_node_type.smallest.id autotermination_minutes = 20 autoscale { min_workers = 1 max_workers = 50 } gcp_attributes { availability = "PREEMPTIBLE_WITH_FALLBACK_GCP" zone_id = "AUTO" } } ` + "`" + `` + "`" + `` + "`" + ` The following options are available:`,
 				},
 				resource.Attribute{
 					Name:        "use_preemptible_executors",
-					Description: `(Optional, bool) if we should use preemptible executors ([GCP documentation](https://cloud.google.com/compute/docs/instances/preemptible))`,
+					Description: `(Optional, bool) if we should use preemptible executors ([GCP documentation](https://cloud.google.com/compute/docs/instances/preemptible)).`,
 				},
 				resource.Attribute{
 					Name:        "google_service_account",
-					Description: `(Optional, string) Google Service Account email address that the cluster uses to authenticate with Google Identity. This field is used for authentication with the GCS and BigQuery data sources. ## docker_image [Databricks Container Services](https://docs.databricks.com/clusters/custom-containers.html) lets you specify a Docker image when you create a cluster. You need to enable Container Services in`,
+					Description: `(Optional, string) Google Service Account email address that the cluster uses to authenticate with Google Identity. This field is used for authentication with the GCS and BigQuery data sources.`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `(Optional) Availability type used for all nodes. Valid values are ` + "`" + `PREEMPTIBLE_GCP` + "`" + `, ` + "`" + `PREEMPTIBLE_WITH_FALLBACK_GCP` + "`" + ` and ` + "`" + `ON_DEMAND_GCP` + "`" + `, default: ` + "`" + `ON_DEMAND_GCP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -484,7 +268,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_id",
-					Description: `Canonical unique identifier for the cluster policy. ## Import The resource cluster policy can be imported using the policy id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_cluster_policy.this <cluster-policy-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the cluster policy. ## Import The resource cluster policy can be imported using the policy id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_cluster_policy.this <cluster-policy-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -494,7 +278,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_id",
-					Description: `Canonical unique identifier for the cluster policy. ## Import The resource cluster policy can be imported using the policy id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_cluster_policy.this <cluster-policy-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the cluster policy. ## Import The resource cluster policy can be imported using the policy id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_cluster_policy.this <cluster-policy-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -532,7 +316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dbfs_path",
-					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -546,7 +330,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dbfs_path",
-					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Path, but with ` + "`" + `dbfs:` + "`" + ` prefix ## Import The resource dbfs file can be imported using the path of the file ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_dbfs_file.this <path> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -562,6 +346,82 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_external_location",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"external",
+				"location",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of External Location, which must be unique within the [databricks_metastore](metastore.md). Change forces creation of a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Path URL in cloud storage, of the form: ` + "`" + `s3://[bucket-host]/[bucket-dir]` + "`" + ` (AWS), ` + "`" + `abfss://[user]@[host]/[path]` + "`" + ` (Azure).`,
+				},
+				resource.Attribute{
+					Name:        "credential_name",
+					Description: `Name of the [databricks_storage_credential](storage_credential.md) to use with this External Location.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Optional) Username/groupname of External Location owner. Currently this field can only be changed after the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) User-supplied free-form text. ## Import This resource can be imported by name: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_external_location.this <name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_git_credential",
+			Category:         "Workspace",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"workspace",
+				"git",
+				"credential",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "personal_access_token",
+					Description: `(Required) The personal access token used to authenticate to the corresponding Git provider.`,
+				},
+				resource.Attribute{
+					Name:        "git_username",
+					Description: `(Required) user name at Git provider.`,
+				},
+				resource.Attribute{
+					Name:        "git_provider",
+					Description: `(Required) case insensitive name of the Git provider. Following values are supported right now (could be a subject for a change, consult [Git Credentials API documentation](https://docs.databricks.com/dev-tools/api/latest/gitcredentials.html)): ` + "`" + `gitHub` + "`" + `, ` + "`" + `gitHubEnterprise` + "`" + `, ` + "`" + `bitbucketCloud` + "`" + `, ` + "`" + `bitbucketServer` + "`" + `, ` + "`" + `azureDevOpsServices` + "`" + `, ` + "`" + `gitLab` + "`" + `, ` + "`" + `gitLabEnterpriseEdition` + "`" + `, ` + "`" + `awsCodeCommit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) specify if settings need to be enforced - right now, Databricks allows only single Git credential, so if it's already configured, the apply operation will fail. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `identifier of specific Git credential ## Import The resource cluster can be imported using ID of Git credential that could be obtained via REST API: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_git_credential.this <git-credential-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `identifier of specific Git credential ## Import The resource cluster can be imported using ID of Git credential that could be obtained via REST API: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_git_credential.this <git-credential-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -586,15 +446,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID assigned to a global init script by API ## Access Control Global init scripts are available only for administrators, so you can't change permissions for it. ## Import The resource global init script can be imported using script ID: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_global_init_script.this script_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID assigned to a global init script by API ## Access Control Global init scripts are available only for administrators, so you can't change permissions for it. ## Import The resource global init script can be imported using script ID: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_global_init_script.this script_id ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID assigned to a global init script by API ## Access Control Global init scripts are available only for administrators, so you can't change permissions for it. ## Import The resource global init script can be imported using script ID: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_global_init_script.this script_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID assigned to a global init script by API ## Access Control Global init scripts are available only for administrators, so you can't change permissions for it. ## Import The resource global init script can be imported using script ID: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_global_init_script.this script_id ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_grants",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"grants",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -612,6 +486,10 @@ var (
 					Description: `(Required) This is the display name for the given group.`,
 				},
 				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) ID of the group in an external identity provider.`,
+				},
+				resource.Attribute{
 					Name:        "allow_cluster_create",
 					Description: `(Optional) This is a field to allow the group to have [cluster](cluster.md) create privileges. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Cluster-usage) and [cluster_id](permissions.md#cluster_id) argument. Everyone without ` + "`" + `allow_cluster_create` + "`" + ` argument set, but with [permission to use](permissions.md#Cluster-Policy-usage) Cluster Policy would be able to create clusters, but within boundaries of that specific policy.`,
 				},
@@ -620,12 +498,16 @@ var (
 					Description: `(Optional) This is a field to allow the group to have [instance pool](instance_pool.md) create privileges. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Instance-Pool-usage) and [instance_pool_id](permissions.md#instance_pool_id) argument.`,
 				},
 				resource.Attribute{
-					Name:        "allow_sql_analytics_access",
-					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/databricks-sql) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
+					Name:        "databricks_sql_access",
+					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/databricks-sql) feature in User Interface and through [databricks_sql_endpoint](sql_endpoint.md).`,
 				},
 				resource.Attribute{
 					Name:        "workspace_access",
-					Description: `(Optional) This is a field to allow the group to have access to Databricks Workspace. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) This is a field to allow the group to have access to Databricks Workspace.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Ignore ` + "`" + `cannot create group: Group with name X already exists.` + "`" + ` errors and implicitly import the specific group into Terraform state, enforcing entitlements defined in the instance of resource. _This functionality is experimental_ and is designed to simplify corner cases, like Azure Active Directory synchronisation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -681,7 +563,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "member_id",
-					Description: `(Required) This is the id of the [group](group.md) or [user](user.md). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) This is the id of the [group](group.md), [service principal](service_principal.md), or [user](user.md). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -753,11 +635,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "availability",
-					Description: `(Optional) Availability type used for all subsequent nodes past the ` + "`" + `first_on_demand` + "`" + ` ones. Valid values are ` + "`" + `SPOT_AZURE` + "`" + ` and ` + "`" + `ON_DEMAND_AZURE` + "`" + `.`,
+					Description: `(Optional) Availability type used for all nodes. Valid values are ` + "`" + `SPOT_AZURE` + "`" + ` and ` + "`" + `ON_DEMAND_AZURE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "spot_bid_max_price",
-					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ### disk_spec Configuration Block For disk_spec make sure to use`,
+					Description: `(Optional) The max price for Azure spot instances. Use ` + "`" + `-1` + "`" + ` to specify lowest price. ## gcp_attributes Configuration Block ` + "`" + `gcp_attributes` + "`" + ` optional configuration block contains attributes related to [instance pools on GCP](https://docs.gcp.databricks.com/dev-tools/api/latest/instance-pools.html#clusterinstancepoolgcpattributes). The following options are [available](https://docs.gcp.databricks.com/dev-tools/api/latest/clusters.html#gcpavailability):`,
+				},
+				resource.Attribute{
+					Name:        "availability",
+					Description: `(Optional) Availability type used for all nodes. Valid values are ` + "`" + `PREEMPTIBLE_GCP` + "`" + `, ` + "`" + `PREEMPTIBLE_WITH_FALLBACK_GCP` + "`" + ` and ` + "`" + `ON_DEMAND_GCP` + "`" + `, default: ` + "`" + `ON_DEMAND_GCP` + "`" + `. ### disk_spec Configuration Block For disk_spec make sure to use`,
 				},
 				resource.Attribute{
 					Name:        "disk_count",
@@ -801,11 +687,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_profile_arn",
-					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. This ARN would be validated upon resource creation and it's not possible to skip validation.`,
+					Description: `(Required) ` + "`" + `ARN` + "`" + ` attribute of ` + "`" + `aws_iam_instance_profile` + "`" + ` output, the EC2 instance profile association to AWS IAM role. This ARN would be validated upon resource creation.`,
 				},
 				resource.Attribute{
 					Name:        "is_meta_instance_profile",
-					Description: `(Optional) Whether the instance profile is a meta instance profile. Used only in [IAM credential passthrough](https://docs.databricks.com/security/credential-passthrough/iam-passthrough.html). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Whether the instance profile is a meta instance profile. Used only in [IAM credential passthrough](https://docs.databricks.com/security/credential-passthrough/iam-passthrough.html).`,
+				},
+				resource.Attribute{
+					Name:        "skip_validation",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -842,7 +732,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) This is the display name for the given IP ACL List.`,
+					Description: `This is the display name for the given IP ACL List.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -850,13 +740,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "list_id",
-					Description: `Canonical unique identifier for the IP Access List. ## Import The databricks_ip_access_list can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_ip_access_list.this <list-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the IP Access List. ## Import The databricks_ip_access_list can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_ip_access_list.this <list-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list_id",
-					Description: `Canonical unique identifier for the IP Access List. ## Import The databricks_ip_access_list can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_ip_access_list.this <list-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the IP Access List. ## Import The databricks_ip_access_list can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_ip_access_list.this <list-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -917,7 +807,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "schedule",
-					Description: `(Optional) (List) An optional periodic schedule for this job. The default behavior is that the job runs when triggered by clicking Run Now in the Jobs UI or sending an API request to runNow. This field is a block and is documented below. ### schedule Configuration Block`,
+					Description: `(Optional) (List) An optional periodic schedule for this job. The default behavior is that the job runs when triggered by clicking Run Now in the Jobs UI or sending an API request to runNow. This field is a block and is documented below. ### job_cluster Configuration Block [Shared job cluster](https://docs.databricks.com/jobs.html#use-shared-job-clusters) specification. Allows multiple tasks in the same job run to reuse the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "job_cluster_key",
+					Description: `(Required) Identifier that can be referenced in ` + "`" + `task` + "`" + ` block, so that cluster is shared between tasks`,
+				},
+				resource.Attribute{
+					Name:        "new_cluster",
+					Description: `Same set of parameters as for [databricks_cluster](cluster.md) resource. ### schedule Configuration Block`,
 				},
 				resource.Attribute{
 					Name:        "quartz_cron_expression",
@@ -957,7 +855,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notebook_path",
-					Description: `(Required) The absolute path of the [databricks_notebook](notebook.md#path) to be run in the Databricks workspace. This path must begin with a slash. This field is required. ### email_notifications Configuration Block`,
+					Description: `(Required) The absolute path of the [databricks_notebook](notebook.md#path) to be run in the Databricks workspace. This path must begin with a slash. This field is required. ### pipeline_task Configuration Block`,
+				},
+				resource.Attribute{
+					Name:        "pipeline_id",
+					Description: `(Required) The pipeline's unique ID. ### python_wheel_task Configuration Block`,
+				},
+				resource.Attribute{
+					Name:        "entry_point",
+					Description: `(Optional) Python function as entry point for the task`,
+				},
+				resource.Attribute{
+					Name:        "package_name",
+					Description: `(Optional) Name of Python package`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) Parameters for the task`,
+				},
+				resource.Attribute{
+					Name:        "named_parameters",
+					Description: `(Optional) Named parameters for the task ### email_notifications Configuration Block`,
 				},
 				resource.Attribute{
 					Name:        "on_failure",
@@ -973,10 +891,279 @@ var (
 				},
 				resource.Attribute{
 					Name:        "on_success",
-					Description: `(Optional) (List) list of emails to notify on failure ## Access Control By default, all users can create and modify jobs unless an administrator [enables jobs access control](https://docs.databricks.com/administration-guide/access-control/jobs-acl.html). With jobs access control, individual permissions determine a user’s abilities.`,
+					Description: `(Optional) (List) list of emails to notify on failure ### git_source Configuration Block This block is used to specify Git repository information & branch/tag/commit that will be used to pull source code from to execute a job. Supported options are:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) URL of the Git repository to use.`,
+				},
+				resource.Attribute{
+					Name:        "provider",
+					Description: `(Optional, if it's possible to detect Git provider by host name) case insensitive name of the Git provider. Following values are supported right now (could be a subject for change, consult [Repos API documentation](https://docs.databricks.com/dev-tools/api/latest/repos.html)): ` + "`" + `gitHub` + "`" + `, ` + "`" + `gitHubEnterprise` + "`" + `, ` + "`" + `bitbucketCloud` + "`" + `, ` + "`" + `bitbucketServer` + "`" + `, ` + "`" + `azureDevOpsServices` + "`" + `, ` + "`" + `gitLab` + "`" + `, ` + "`" + `gitLabEnterpriseEdition` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `name of the Git branch to use. Conflicts with ` + "`" + `tag` + "`" + ` and ` + "`" + `commit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `name of the Git branch to use. Conflicts with ` + "`" + `branch` + "`" + ` and ` + "`" + `commit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "commit",
+					Description: `hash of Git commit to use. Conflicts with ` + "`" + `branch` + "`" + ` and ` + "`" + `tag` + "`" + `. ### Exported attributes In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `URL of the job on the given workspace ## Access Control By default, all users can create and modify jobs unless an administrator [enables jobs access control](https://docs.databricks.com/administration-guide/access-control/jobs-acl.html). With jobs access control, individual permissions determine a user’s abilities.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_library",
+			Category:         "Compute",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"library",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_metastore",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"metastore",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of metastore.`,
+				},
+				resource.Attribute{
+					Name:        "storage_root",
+					Description: `Path on cloud storage account, where managed [databricks_table](table.md) are stored. Change forces creation of a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Optional) Username/groupname of Metastore owner.`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) Destroy metastore regardless of its contents. ## Import This resource can be imported by ID: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_metastore.this <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_metastore_assignment",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"metastore",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metastore_id",
+					Description: `Unique identifier of the parent Metastore`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `id of the workspace for the assignment`,
+				},
+				resource.Attribute{
+					Name:        "default_catalog_name",
+					Description: `(Optional) Default catalog used for this assignment, default to ` + "`" + `hive_metastore` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_metastore_data_access",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"metastore",
+				"data",
+				"access",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Data Access Configuration, which must be unique within the [databricks_metastore](metastore.md). Change forces creation of a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "metastore_id",
+					Description: `Unique identifier of the parent Metastore ` + "`" + `aws_iam_role` + "`" + ` optional configuration block for credential details for AWS:`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of the AWS IAM role for S3 data access, of the form ` + "`" + `arn:aws:iam::1234567890:role/MyRole-AJJHDSKSDF` + "`" + ` ` + "`" + `azure_service_principal` + "`" + ` optional configuration block for credential details for Azure:`,
+				},
+				resource.Attribute{
+					Name:        "directory_id",
+					Description: `The directory ID corresponding to the Azure Active Directory (AAD) tenant of the application`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID of the application registration within the referenced AAD tenant`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The client secret generated for the above app ID in AAD.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_mlflow_experiment",
+			Category:         "MLflow",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"mlflow",
+				"experiment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of MLflow experiment. It must be an absolute path within the Databricks workspace, e.g. ` + "`" + `/Users/<some-username>/my-experiment` + "`" + `. For more information about changes to experiment naming conventions, see [mlflow docs](https://docs.databricks.com/applications/mlflow/experiments.html#experiment-migration).`,
+				},
+				resource.Attribute{
+					Name:        "artifact_location",
+					Description: `Path to dbfs:/ or s3:// artifact location of the MLflow experiment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the MLflow experiment. ## Access Control`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_mlflow_model",
+			Category:         "MLflow",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"mlflow",
+				"model",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of MLflow model. Change of name triggers new resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the MLflow model.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags for the MLflow model. ## Import The model resource can be imported using the name ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_mlflow_model.this <name> ` + "`" + `` + "`" + `` + "`" + ` ## Access Control`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_mlflow_webhook",
+			Category:         "MLflow",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"mlflow",
+				"webhook",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "model_name",
+					Description: `(Optional) Name of MLflow model for which webhook will be created. If model name is not specified, a registry-wide webhook is created that listens for the specified events across all versions of all registered models.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Optional description of the MLflow webhook.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Optional status of webhook. Possible values are ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `TEST_MODE` + "`" + `, ` + "`" + `DISABLED` + "`" + `. Default is ` + "`" + `ACTIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "events",
+					Description: `(Required) The list of events that will trigger execution of Databricks job or POSTing to an URL, for example, ` + "`" + `MODEL_VERSION_CREATED` + "`" + `, ` + "`" + `MODEL_VERSION_TRANSITIONED_STAGE` + "`" + `, ` + "`" + `TRANSITION_REQUEST_CREATED` + "`" + `, etc. Refer to the [Webhooks API documentation](https://docs.databricks.com/dev-tools/api/latest/mlflow.html#operation/create-registry-webhook) for a full list of supported events. Configuration must include one of ` + "`" + `http_url_spec` + "`" + ` or ` + "`" + `job_spec` + "`" + ` blocks, but not both. ### job_spec`,
+				},
+				resource.Attribute{
+					Name:        "access_token",
+					Description: `(Required) The personal access token used to authorize webhook's job runs.`,
+				},
+				resource.Attribute{
+					Name:        "job_id",
+					Description: `(Required) ID of the Databricks job that the webhook runs.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_url",
+					Description: `(Optional) URL of the workspace containing the job that this webhook runs. If not specified, the job’s workspace URL is assumed to be the same as the workspace where the webhook is created. ### http_url_spec`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) External HTTPS URL called on event trigger (by using a POST request). Structure of payload depends on the event type, refer to [documentation](https://docs.databricks.com/applications/mlflow/model-registry-webhooks.html) for more details.`,
+				},
+				resource.Attribute{
+					Name:        "authorization",
+					Description: `(Optional) Value of the authorization header that should be sent in the request sent by the wehbook. It should be of the form ` + "`" + `<auth type> <credentials>` + "`" + `, e.g. ` + "`" + `Bearer <access_token>` + "`" + `. If set to an empty string, no authorization header will be included in the request.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ssl_verification",
+					Description: `(Optional) Enable/disable SSL certificate validation. Default is ` + "`" + `true` + "`" + `. For self-signed certificates, this field must be ` + "`" + `false` + "`" + ` AND the destination server must disable certificate validation as well. For security purposes, it is encouraged to perform secret validation with the HMAC-encoded portion of the payload and acknowledge the risk associated with disabling hostname validation whereby it becomes more likely that requests can be maliciously routed to an unintended host.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Optional) Shared secret required for HMAC encoding payload. The HMAC-encoded payload will be sent in the header as ` + "`" + `X-Databricks-Signature: encoded_payload` + "`" + `. ## Import ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_mount",
+			Category:         "Storage",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"mount",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `mount name`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(String) HDFS-compatible url ## Import ->`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1012,7 +1199,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "credentials_id",
-					Description: `(String) identifier of credentials`,
+					Description: `(String) identifier of credentials ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1026,7 +1213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "credentials_id",
-					Description: `(String) identifier of credentials`,
+					Description: `(String) identifier of credentials ## Import ->`,
 				},
 			},
 		},
@@ -1078,11 +1265,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_managed_key_id",
-					Description: `(String) ID of the notebook encryption key configuration object.`,
+					Description: `(String) ID of the encryption key configuration object.`,
 				},
 				resource.Attribute{
 					Name:        "creation_time",
-					Description: `(Integer) Time in epoch milliseconds when the customer key was created.`,
+					Description: `(Integer) Time in epoch milliseconds when the customer key was created. ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1092,11 +1279,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_managed_key_id",
-					Description: `(String) ID of the notebook encryption key configuration object.`,
+					Description: `(String) ID of the encryption key configuration object.`,
 				},
 				resource.Attribute{
 					Name:        "creation_time",
-					Description: `(Integer) Time in epoch milliseconds when the customer key was created.`,
+					Description: `(Integer) Time in epoch milliseconds when the customer key was created. ## Import ->`,
 				},
 			},
 		},
@@ -1160,7 +1347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `(Integer) id of associated workspace`,
+					Description: `(Integer) id of associated workspace ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1178,7 +1365,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_id",
-					Description: `(Integer) id of associated workspace`,
+					Description: `(Integer) id of associated workspace ## Import ->`,
 				},
 			},
 		},
@@ -1206,7 +1393,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `Region of AWS VPC ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `Region of AWS VPC`,
+				},
+				resource.Attribute{
+					Name:        "private_access_level",
+					Description: `(Optional) The private access level controls which VPC endpoints can connect to the UI or API of any workspace that attaches this private access settings object. ` + "`" + `ANY` + "`" + ` level access _(default)_ lets any [databricks_mws_vpc_endpoint](mws_vpc_endpoint.md) connect to your [databricks_mws_workspaces](mws_workspaces.md). ` + "`" + `ACCOUNT` + "`" + ` level access lets only [databricks_mws_vpc_endpoint](mws_vpc_endpoint.md) that are registered in your Databricks account connect to your [databricks_mws_workspaces](mws_workspaces.md). ` + "`" + `ENDPOINT` + "`" + ` level access lets only specified [databricks_mws_vpc_endpoint](mws_vpc_endpoint.md) connect to your workspace. Please see the ` + "`" + `allowed_vpc_endpoint_ids` + "`" + ` documentation for more details.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_vpc_endpoint_ids",
+					Description: `(Optional) An array of [databricks_mws_vpc_endpoint](mws_vpc_endpoint.md#vpc_endpoint_id) ` + "`" + `vpc_endpoint_id` + "`" + ` (not ` + "`" + `id` + "`" + `). Only used when ` + "`" + `private_access_level` + "`" + ` is set to ` + "`" + `ENDPOINT` + "`" + `. This is an allow list of [databricks_mws_vpc_endpoint](mws_vpc_endpoint.md) that in your account that can connect to your [databricks_mws_workspaces](mws_workspaces.md) over AWS PrivateLink. If hybrid access to your workspace is enabled by setting ` + "`" + `public_access_enabled` + "`" + ` to true, then this control only works for PrivateLink connections. To control how your workspace is accessed via public internet, see the article for [databricks_ip_access_list](ip_access_list.md). ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "private_access_settings_id",
@@ -1214,7 +1409,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of Private Access Settings`,
+					Description: `Status of Private Access Settings ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1224,7 +1419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of Private Access Settings`,
+					Description: `Status of Private Access Settings ## Import ->`,
 				},
 			},
 		},
@@ -1259,7 +1454,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_configuration_id",
-					Description: `(String) id of storage config to be used for ` + "`" + `databricks_mws_workspace` + "`" + ` resource.`,
+					Description: `(String) id of storage config to be used for ` + "`" + `databricks_mws_workspace` + "`" + ` resource. ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1269,7 +1464,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_configuration_id",
-					Description: `(String) id of storage config to be used for ` + "`" + `databricks_mws_workspace` + "`" + ` resource.`,
+					Description: `(String) id of storage config to be used for ` + "`" + `databricks_mws_workspace` + "`" + ` resource. ## Import ->`,
 				},
 			},
 		},
@@ -1312,7 +1507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of VPC Endpoint`,
+					Description: `State of VPC Endpoint ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1322,7 +1517,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of VPC Endpoint`,
+					Description: `State of VPC Endpoint ## Import ->`,
 				},
 			},
 		},
@@ -1341,10 +1536,6 @@ var (
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `Account Id that could be found in the bottom left corner of [Accounts Console](https://accounts.cloud.databricks.com/).`,
-				},
-				resource.Attribute{
-					Name:        "customer_managed_key_id",
-					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "managed_services_customer_managed_key_id",
@@ -1368,7 +1559,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_access_settings_id",
-					Description: `(Optional) Canonical unique identifier of [databricks_mws_private_access_settings](mws_private_access_settings.md) in Databricks Account The following arguments could be modified after the workspace is running:`,
+					Description: `(Optional) Canonical unique identifier of [databricks_mws_private_access_settings](mws_private_access_settings.md) in Databricks Account ## token block You can specify a ` + "`" + `token` + "`" + ` block in the body of workspace resource, so that Terraform manages the refresh of PAT token for the deployment user. The other option is to create [databricks_obo_token](obo_token.md), though it requires Premium or Enterprise plan enabled as well as more complex setup. Token block exposes ` + "`" + `token_value` + "`" + `, that holds sensitive PAT token and optionally it can accept two arugments: ->`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Comment, that will appear in "User Settings / Access Tokens" page on Workspace UI. By default it's "Terraform PAT".`,
+				},
+				resource.Attribute{
+					Name:        "lifetime_seconds",
+					Description: `(Optional) Token expiry lifetime. By default its 2592000 (30 days). The following arguments could be modified after the workspace is running:`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -1400,7 +1599,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_url",
-					Description: `(String) URL of the workspace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify ` + "`" + `create` + "`" + `, ` + "`" + `read` + "`" + ` and ` + "`" + `update` + "`" + ` timeouts. It usually takes 5-7 minutes to provision Databricks E2 Workspace and another couple of minutes for your local DNS caches to resolve. Please launch ` + "`" + `TF_LOG=DEBUG terraform apply` + "`" + ` whenever you observe timeout issues. ` + "`" + `` + "`" + `` + "`" + `hcl timeouts { create = "30m" read = "10m" update = "20m } ` + "`" + `` + "`" + `` + "`" + ` You can reset local DNS caches before provisioning new workspaces with one of the following commands:`,
+					Description: `(String) URL of the workspace ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1422,7 +1621,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "workspace_url",
-					Description: `(String) URL of the workspace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify ` + "`" + `create` + "`" + `, ` + "`" + `read` + "`" + ` and ` + "`" + `update` + "`" + ` timeouts. It usually takes 5-7 minutes to provision Databricks E2 Workspace and another couple of minutes for your local DNS caches to resolve. Please launch ` + "`" + `TF_LOG=DEBUG terraform apply` + "`" + ` whenever you observe timeout issues. ` + "`" + `` + "`" + `` + "`" + `hcl timeouts { create = "30m" read = "10m" update = "20m } ` + "`" + `` + "`" + `` + "`" + ` You can reset local DNS caches before provisioning new workspaces with one of the following commands:`,
+					Description: `(String) URL of the workspace ## Import ->`,
 				},
 			},
 		},
@@ -1559,7 +1758,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `The name of a database for persisting pipeline output data. Configuring the target setting allows you to view and query the pipeline output data from the Databricks UI. ## Import The resource job can be imported using the id of the pipeline ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_pipeline.this <pipeline-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The name of a database for persisting pipeline output data. Configuring the target setting allows you to view and query the pipeline output data from the Databricks UI. ## Import The resource job can be imported using the id of the pipeline ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_pipeline.this <pipeline-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1577,15 +1776,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required) The URL of the Git Repository to clone from. If value changes, repo is re-created`,
+					Description: `(Required) The URL of the Git Repository to clone from. If value changes, repo is re-created.`,
 				},
 				resource.Attribute{
 					Name:        "git_provider",
-					Description: `(Optional, if it's possible to detect Git provider by host name) case insensitive name of the Git provider. Following values are supported right now (maybe a subject for change, consult [Repos API documentation](https://docs.databricks.com/dev-tools/api/latest/repos.html)): ` + "`" + `gitHub` + "`" + `, ` + "`" + `gitHubEnterprise` + "`" + `, ` + "`" + `bitbucketCloud` + "`" + `, ` + "`" + `bitbucketServer` + "`" + `, ` + "`" + `azureDevOpsServices` + "`" + `, ` + "`" + `gitLab` + "`" + `, ` + "`" + `gitLabEnterpriseEdition` + "`" + ``,
+					Description: `(Optional, if it's possible to detect Git provider by host name) case insensitive name of the Git provider. Following values are supported right now (could be a subject for a change, consult [Repos API documentation](https://docs.databricks.com/dev-tools/api/latest/repos.html)): ` + "`" + `gitHub` + "`" + `, ` + "`" + `gitHubEnterprise` + "`" + `, ` + "`" + `bitbucketCloud` + "`" + `, ` + "`" + `bitbucketServer` + "`" + `, ` + "`" + `azureDevOpsServices` + "`" + `, ` + "`" + `gitLab` + "`" + `, ` + "`" + `gitLabEnterpriseEdition` + "`" + `, , ` + "`" + `awsCodeCommit` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) path to put the checked out Repo. If not specified, then repo will be created in the user's repo directory (` + "`" + `/Repos/<username>/...` + "`" + `). If value changes, repo is re-created`,
+					Description: `(Optional) path to put the checked out Repo. If not specified, then repo will be created in the user's repo directory (` + "`" + `/Repos/<username>/...` + "`" + `). If value changes, repo is re-created.`,
 				},
 				resource.Attribute{
 					Name:        "branch",
@@ -1593,7 +1792,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) name of the tag for initial checkout. Conflicts with ` + "`" + `branch` + "`" + ` ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) name of the tag for initial checkout. Conflicts with ` + "`" + `branch` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1614,6 +1813,41 @@ var (
 					Description: `Hash of the HEAD commit at time of the last executed operation. It won't change if you manually perform pull operation via UI or API ## Access Control`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_schema",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"schema",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Schema relative to parent catalog. Change forces creation of a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Name of parent catalog`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Optional) Username/groupname of schema owner. Currently this field can only be changed after the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) User-supplied free-form text.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Extensible Schema properties. ## Import This resource can be imported by name: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_schema.this <name> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are used in the same context:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1680,7 +1914,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Required) ` + "`" + `READ` + "`" + `, ` + "`" + `WRITE` + "`" + ` or ` + "`" + `MANAGE` + "`" + `. ## Import The resource secret acl can be imported using ` + "`" + `scopeName|||principalName` + "`" + ` combination.`,
+					Description: `(Required) ` + "`" + `READ` + "`" + `, ` + "`" + `WRITE` + "`" + ` or ` + "`" + `MANAGE` + "`" + `. ## Import The resource secret acl can be imported using ` + "`" + `scopeName|||principalName` + "`" + ` combination. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_secret_acl.object ` + "`" + `scopeName|||principalName` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1711,7 +1945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backend_type",
-					Description: `Either ` + "`" + `DATABRICKS` + "`" + ` or ` + "`" + `AZURE_KEYVAULT` + "`" + ` ## Import The secret resource scope can be imported using the scope name. ` + "`" + `initial_manage_principal` + "`" + ` state won't be imported, because the underlying API doesn't include it in the response. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_secret_scope.object <scopeName> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Either ` + "`" + `DATABRICKS` + "`" + ` or ` + "`" + `AZURE_KEYVAULT` + "`" + ` ## Import The secret resource scope can be imported using the scope name. ` + "`" + `initial_manage_principal` + "`" + ` state won't be imported, because the underlying API doesn't include it in the response. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_secret_scope.object <scopeName> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1721,7 +1955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backend_type",
-					Description: `Either ` + "`" + `DATABRICKS` + "`" + ` or ` + "`" + `AZURE_KEYVAULT` + "`" + ` ## Import The secret resource scope can be imported using the scope name. ` + "`" + `initial_manage_principal` + "`" + ` state won't be imported, because the underlying API doesn't include it in the response. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_secret_scope.object <scopeName> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Either ` + "`" + `DATABRICKS` + "`" + ` or ` + "`" + `AZURE_KEYVAULT` + "`" + ` ## Import The secret resource scope can be imported using the scope name. ` + "`" + `initial_manage_principal` + "`" + ` state won't be imported, because the underlying API doesn't include it in the response. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_secret_scope.object <scopeName> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -1746,6 +1980,10 @@ var (
 					Description: `(Required) This is an alias for the service principal and can be the full name of the service principal.`,
 				},
 				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) ID of the service principal in an external identity provider.`,
+				},
+				resource.Attribute{
 					Name:        "allow_cluster_create",
 					Description: `(Optional) Allow the service principal to have [cluster](cluster.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Cluster-usage) and ` + "`" + `cluster_id` + "`" + ` argument. Everyone without ` + "`" + `allow_cluster_create` + "`" + ` argument set, but with [permission to use](permissions.md#Cluster-Policy-usage) Cluster Policy would be able to create clusters, but within the boundaries of that specific policy.`,
 				},
@@ -1754,18 +1992,30 @@ var (
 					Description: `(Optional) Allow the service principal to have [instance pool](instance_pool.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Instance-Pool-usage) and [instance_pool_id](permissions.md#instance_pool_id) argument.`,
 				},
 				resource.Attribute{
+					Name:        "databricks_sql_access",
+					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/databricks-sql) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
+				},
+				resource.Attribute{
+					Name:        "workspace_access",
+					Description: `(Optional) This is a field to allow the group to have access to Databricks Workspace.`,
+				},
+				resource.Attribute{
 					Name:        "active",
-					Description: `(Optional) Either service principal is active or not. True by default, but can be set to false in case of service principal deactivation with preserving service principal assets. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Either service principal is active or not. True by default, but can be set to false in case of service principal deactivation with preserving service principal assets.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Ignore ` + "`" + `cannot create service principal: Service principal with application ID X already exists` + "`" + ` errors and implicitly import the specific service principal into Terraform state, enforcing entitlements defined in the instance of resource. _This functionality is experimental_ and is designed to simplify corner cases, like Azure Active Directory synchronisation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Canonical unique identifier for the service principal. ## Import The resource scim service principal can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_service_principal.me <service-principal-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the service principal. ## Import The resource scim service principal can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_service_principal.me <service-principal-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Canonical unique identifier for the service principal. ## Import The resource scim service principal can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_service_principal.me <service-principal-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the service principal. ## Import The resource scim service principal can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_service_principal.me <service-principal-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -1811,11 +2061,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_stop_mins",
-					Description: `Time in minutes until an idle SQL endpoint terminates all clusters and stops. This field is optional. The default is 0, which means auto stop is disabled.`,
-				},
-				resource.Attribute{
-					Name:        "instance_profile_arn",
-					Description: `[databricks_instance_profile](instance_profile.md) used to access storage from the SQL endpoint. This field is optional.`,
+					Description: `Time in minutes until an idle SQL endpoint terminates all clusters and stops. This field is optional. The default is 120, set to 0 to disable the auto stop.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1827,7 +2073,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_photon",
-					Description: `Whether to enable [Photon](https://databricks.com/product/delta-engine). This field is optional and is enabled by default. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `Whether to enable [Photon](https://databricks.com/product/delta-engine). This field is optional and is enabled by default.`,
+				},
+				resource.Attribute{
+					Name:        "enable_serverless_compute",
+					Description: `Whether this SQL endpoint is a Serverless endpoint. To use a Serverless SQL endpoint, you must enable Serverless SQL endpoints for the workspace.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the Databricks SQL release channel. Possible values are: ` + "`" + `CHANNEL_NAME_PREVIEW` + "`" + ` and ` + "`" + `CHANNEL_NAME_CURRENT` + "`" + `. Default is ` + "`" + `CHANNEL_NAME_CURRENT` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "jdbc_url",
@@ -1835,7 +2089,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "odbc_params",
-					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
+					Description: `ODBC connection params: ` + "`" + `odbc_params.hostname` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "data_source_id",
@@ -1849,13 +2103,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "odbc_params",
-					Description: `ODBC connection params: ` + "`" + `odbc_params.host` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
+					Description: `ODBC connection params: ` + "`" + `odbc_params.hostname` + "`" + `, ` + "`" + `odbc_params.path` + "`" + `, ` + "`" + `odbc_params.protocol` + "`" + `, and ` + "`" + `odbc_params.port` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "data_source_id",
 					Description: `ID of the data source for this endpoint. This is used to bind an SQLA query to an endpoint. ## Access Control`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_sql_global_config",
+			Category:         "Databricks SQL",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"sql",
+				"global",
+				"config",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1951,7 +2219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "anonymous function/",
-					Description: `anonymous function. ` + "`" + `/` + "`" + ` suffix is mandatory. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_sql_permissions.foo /<object-type>/<object-name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `anonymous function. ` + "`" + `/` + "`" + ` suffix is mandatory. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_sql_permissions.foo /<object-type>/<object-name> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1993,6 +2261,145 @@ var (
 				"widget",
 			},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_storage_credential",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"storage",
+				"credential",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of Storage Credentials, which must be unique within the [databricks_metastore](metastore.md). Change forces creation of a new resource. ` + "`" + `aws_iam_role` + "`" + ` optional configuration block for credential details for AWS:`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of the AWS IAM role for S3 data access, of the form ` + "`" + `arn:aws:iam::1234567890:role/MyRole-AJJHDSKSDF` + "`" + ` ` + "`" + `azure_service_principal` + "`" + ` optional configuration block for credential details for Azure:`,
+				},
+				resource.Attribute{
+					Name:        "directory_id",
+					Description: `The directory ID corresponding to the Azure Active Directory (AAD) tenant of the application`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID of the application registration within the referenced AAD tenant`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `The client secret generated for the above app ID in AAD.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "databricks_table",
+			Category:         "Unity Catalog",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"unity",
+				"catalog",
+				"table",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of table relative to parent catalog and schema. Change forces creation of a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `Name of parent catalog`,
+				},
+				resource.Attribute{
+					Name:        "schema_name",
+					Description: `Name of parent Schema relative to parent Catalog`,
+				},
+				resource.Attribute{
+					Name:        "table_type",
+					Description: `Distinguishes a view vs. managed/external Table. ` + "`" + `MANAGED` + "`" + `, ` + "`" + `EXTERNAL` + "`" + ` or ` + "`" + `VIEW` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "storage_location",
+					Description: `URL of storage location for Table data (required for EXTERNAL Tables. For Managed Tables, if the path is provided it needs to be a Staging Table path that has been generated through the Staging Table API, otherwise should be empty)`,
+				},
+				resource.Attribute{
+					Name:        "data_source_format",
+					Description: `External tables are supported in multiple data source formats. The string constants identifying these formats are ` + "`" + `DELTA` + "`" + `, ` + "`" + `CSV` + "`" + `, ` + "`" + `JSON` + "`" + `, ` + "`" + `AVRO` + "`" + `, ` + "`" + `PARQUET` + "`" + `, ` + "`" + `ORC` + "`" + `, ` + "`" + `TEXT` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "view_definition",
+					Description: `(Optional) SQL text defining the view (for ` + "`" + `table_type == "VIEW"` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "storage_credential_name",
+					Description: `(Optional) For EXTERNAL Tables only: the name of storage credential to use. This cannot be updated`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Optional) Username/groupname of Table owner. Currently this field can only be changed after the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) User-supplied free-form text.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) Extensible Table properties. ### ` + "`" + `column` + "`" + ` configuration block ->`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `User-visible name of column`,
+				},
+				resource.Attribute{
+					Name:        "type_name",
+					Description: `Name of (outer) type`,
+				},
+				resource.Attribute{
+					Name:        "type_text",
+					Description: `Column type spec (with metadata) as SQL text`,
+				},
+				resource.Attribute{
+					Name:        "type_json",
+					Description: `Column type spec (with metadata) as JSON string`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `Ordinal position of column, starting at 0.`,
+				},
+				resource.Attribute{
+					Name:        "type_precision",
+					Description: `(Optional) Digits of precision; applies to ` + "`" + `DECIMAL` + "`" + ` columns`,
+				},
+				resource.Attribute{
+					Name:        "type_scale",
+					Description: `(Optional) Digits to right of decimal; applies to ` + "`" + `DECIMAL` + "`" + ` columns`,
+				},
+				resource.Attribute{
+					Name:        "type_interval_type",
+					Description: `(Optional) Format of ` + "`" + `INTERVAL` + "`" + ` columns`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) User-supplied free-form text.`,
+				},
+				resource.Attribute{
+					Name:        "nullable",
+					Description: `(Optional) Whether field is nullable (Default: ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "partition_index",
+					Description: `(Optional) Partition ID ## Import This resource can be imported by full name:`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -2046,6 +2453,10 @@ var (
 					Description: `(Optional) This is an alias for the username that can be the full name of the user.`,
 				},
 				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) ID of the user in an external identity provider.`,
+				},
+				resource.Attribute{
 					Name:        "allow_cluster_create",
 					Description: `(Optional) Allow the user to have [cluster](cluster.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Cluster-usage) and ` + "`" + `cluster_id` + "`" + ` argument. Everyone without ` + "`" + `allow_cluster_create` + "`" + ` argument set, but with [permission to use](permissions.md#Cluster-Policy-usage) Cluster Policy would be able to create clusters, but within boundaries of that specific policy.`,
 				},
@@ -2054,22 +2465,26 @@ var (
 					Description: `(Optional) Allow the user to have [instance pool](instance_pool.md) create privileges. Defaults to false. More fine grained permissions could be assigned with [databricks_permissions](permissions.md#Instance-Pool-usage) and [instance_pool_id](permissions.md#instance_pool_id) argument.`,
 				},
 				resource.Attribute{
-					Name:        "allow_sql_analytics_access",
-					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/sql-analytics) feature through [databricks_sql_endpoint](sql_endpoint.md).`,
+					Name:        "databricks_sql_access",
+					Description: `(Optional) This is a field to allow the group to have access to [Databricks SQL](https://databricks.com/product/databricks-sql) feature in User Interface and through [databricks_sql_endpoint](sql_endpoint.md).`,
 				},
 				resource.Attribute{
 					Name:        "active",
-					Description: `(Optional) Either user is active or not. True by default, but can be set to false in case of user deactivation with preserving user assets. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Either user is active or not. True by default, but can be set to false in case of user deactivation with preserving user assets.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Ignore ` + "`" + `cannot create user: User with username X already exists` + "`" + ` errors and implicitly import the specific user into Terraform state, enforcing entitlements defined in the instance of resource. _This functionality is experimental_ and is designed to simplify corner cases, like Azure Active Directory synchronisation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Canonical unique identifier for the user. ## Import The resource scim user can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_user.me <user-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the user. ## Import The resource scim user can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_user.me <user-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Canonical unique identifier for the user. ## Import The resource scim user can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_user.me <user-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Canonical unique identifier for the user. ## Import The resource scim user can be imported using id: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import databricks_user.me <user-id> ` + "`" + `` + "`" + `` + "`" + ` ## Related Resources The following resources are often used in the same context:`,
 				},
 			},
 		},
@@ -2099,6 +2514,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "databricks_user_role",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"user",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required) This is the id of the [user](user.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) Either a role name or the id of the [instance profile](instance_profile.md) resource. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "databricks_workspace_conf",
 			Category:         "Workspace",
 			ShortDescription: ``,
@@ -2110,7 +2548,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "custom_config",
-					Description: `(Required) Key-value map of strings, that represent workspace configuration. Upon resource deletion, properties that start with ` + "`" + `enable` + "`" + ` or ` + "`" + `enforce` + "`" + ` will be reset to ` + "`" + `false` + "`" + ` value, regardless of initial default one. ## Import This resource doesn't support import.`,
+					Description: `(Required) Key-value map of strings, that represent workspace configuration. Upon resource deletion, properties that start with ` + "`" + `enable` + "`" + ` or ` + "`" + `enforce` + "`" + ` will be reset to ` + "`" + `false` + "`" + ` value, regardless of initial default one. ## Import ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2119,15 +2557,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"databricks_aws_s3_mount":                0,
-		"databricks_azure_adls_gen1_mount":       1,
-		"databricks_azure_adls_gen2_mount":       2,
-		"databricks_azure_blob_mount":            3,
-		"databricks_cluster":                     4,
-		"databricks_cluster_policy":              5,
-		"databricks_dbfs_file":                   6,
-		"databricks_directory":                   7,
-		"databricks_global_init_script":          8,
+		"databricks_catalog":                     0,
+		"databricks_cluster":                     1,
+		"databricks_cluster_policy":              2,
+		"databricks_dbfs_file":                   3,
+		"databricks_directory":                   4,
+		"databricks_external_location":           5,
+		"databricks_git_credential":              6,
+		"databricks_global_init_script":          7,
+		"databricks_grants":                      8,
 		"databricks_group":                       9,
 		"databricks_group_instance_profile":      10,
 		"databricks_group_member":                11,
@@ -2135,33 +2573,46 @@ var (
 		"databricks_instance_profile":            13,
 		"databricks_ip_access_list":              14,
 		"databricks_job":                         15,
-		"databricks_mws_credentials":             16,
-		"databricks_mws_customer_managed_keys":   17,
-		"databricks_mws_log_delivery":            18,
-		"databricks_mws_networks":                19,
-		"databricks_mws_private_access_settings": 20,
-		"databricks_mws_storage_configurations":  21,
-		"databricks_mws_vpc_endpoint":            22,
-		"databricks_mws_workspaces":              23,
-		"databricks_notebook":                    24,
-		"databricks_obo_token":                   25,
-		"databricks_permissions":                 26,
-		"databricks_pipeline":                    27,
-		"databricks_repo":                        28,
-		"databricks_secret":                      29,
-		"databricks_secret_acl":                  30,
-		"databricks_secret_scope":                31,
-		"databricks_service_principal":           32,
-		"databricks_sql_dashboard":               33,
-		"databricks_sql_endpoint":                34,
-		"databricks_sql_permissions":             35,
-		"databricks_sql_query":                   36,
-		"databricks_sql_visualization":           37,
-		"databricks_sql_widget":                  38,
-		"databricks_token":                       39,
-		"databricks_user":                        40,
-		"databricks_user_instance_profile":       41,
-		"databricks_workspace_conf":              42,
+		"databricks_library":                     16,
+		"databricks_metastore":                   17,
+		"databricks_metastore_assignment":        18,
+		"databricks_metastore_data_access":       19,
+		"databricks_mlflow_experiment":           20,
+		"databricks_mlflow_model":                21,
+		"databricks_mlflow_webhook":              22,
+		"databricks_mount":                       23,
+		"databricks_mws_credentials":             24,
+		"databricks_mws_customer_managed_keys":   25,
+		"databricks_mws_log_delivery":            26,
+		"databricks_mws_networks":                27,
+		"databricks_mws_private_access_settings": 28,
+		"databricks_mws_storage_configurations":  29,
+		"databricks_mws_vpc_endpoint":            30,
+		"databricks_mws_workspaces":              31,
+		"databricks_notebook":                    32,
+		"databricks_obo_token":                   33,
+		"databricks_permissions":                 34,
+		"databricks_pipeline":                    35,
+		"databricks_repo":                        36,
+		"databricks_schema":                      37,
+		"databricks_secret":                      38,
+		"databricks_secret_acl":                  39,
+		"databricks_secret_scope":                40,
+		"databricks_service_principal":           41,
+		"databricks_sql_dashboard":               42,
+		"databricks_sql_endpoint":                43,
+		"databricks_sql_global_config":           44,
+		"databricks_sql_permissions":             45,
+		"databricks_sql_query":                   46,
+		"databricks_sql_visualization":           47,
+		"databricks_sql_widget":                  48,
+		"databricks_storage_credential":          49,
+		"databricks_table":                       50,
+		"databricks_token":                       51,
+		"databricks_user":                        52,
+		"databricks_user_instance_profile":       53,
+		"databricks_user_role":                   54,
+		"databricks_workspace_conf":              55,
 	}
 )
 

@@ -11,9 +11,9 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "checkly_alert-channel",
+			Type:             "checkly_alert_channel",
 			Category:         "Resources",
-			ShortDescription: ``,
+			ShortDescription: `Allows you to define alerting channels for the checks and groups in your account`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -23,24 +23,35 @@ var (
 			Name:             "",
 			Type:             "checkly_check",
 			Category:         "Resources",
-			ShortDescription: ``,
+			ShortDescription: `Checks allows you to monitor key webapp flows, backend API's and set up alerting, so you get a notification when things break or slow down.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the check.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Required) The type of the check. Possible values are ` + "`" + `API` + "`" + `, and ` + "`" + `BROWSER` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "checkly_check_group",
+			Category:         "Resources",
+			ShortDescription: `Check groups allow you to group together a set of related checks, which can also share default settings for various attributes.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkly_dashboard",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkly_maintenance_windows",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -55,26 +66,41 @@ var (
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the snippet.`,
-				},
-				resource.Attribute{
-					Name:        "script",
-					Description: `(Required) Your Node.js code that interacts with the API check lifecycle, or functions as a partial for browser checks.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkly_trigger_check",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkly_trigger_group",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"checkly_alert-channel": 0,
-		"checkly_check":         1,
-		"checkly_check_group":   2,
-		"checkly_snippet":       3,
+		"checkly_alert_channel":       0,
+		"checkly_check":               1,
+		"checkly_check_group":         2,
+		"checkly_dashboard":           3,
+		"checkly_maintenance_windows": 4,
+		"checkly_snippet":             5,
+		"checkly_trigger_check":       6,
+		"checkly_trigger_group":       7,
 	}
 )
 

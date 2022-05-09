@@ -41,7 +41,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "run_interval",
-					Description: `(Required) The interval at which the schedule will run (in minutes, >=60). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Required) The interval at which the schedule will run (in minutes, >=60).`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_uuid",
+					Description: `(Optional, ForceNew) UUID of the location where your backup is stored. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -70,6 +74,14 @@ var (
 				resource.Attribute{
 					Name:        "active",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_name",
+					Description: `The human-readable name of backup location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -134,6 +146,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "backup_location_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_location_name",
+					Description: `The human-readable name of backup location. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
 				},
@@ -178,6 +198,143 @@ var (
 					Description: `The date and time the backup was initially created.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gridscale_filesystem",
+			Category:         "Resources",
+			ShortDescription: `Manage a Filesystem service in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"filesystem",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 character set, with a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `(Required) The filesystem service release of this instance. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available filesystem service releases.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `(Required) Performance class of filesystem service. Available performance classes at the time of writing: ` + "`" + `standard` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `insane` + "`" + `, ` + "`" + `ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+				},
+				resource.Attribute{
+					Name:        "root_squash",
+					Description: `(Optional) Map root user/group ownership to anon_uid/anon_gid.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_ip_ranges",
+					Description: `(Optional) Allowed CIDR block or IP address in CIDR notation.`,
+				},
+				resource.Attribute{
+					Name:        "anon_uid",
+					Description: `(Optional) Target user id when root squash is active.`,
+				},
+				resource.Attribute{
+					Name:        "anon_gid",
+					Description: `(Optional) Target group id when root squash is active. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Default value is "15m" - 15 minutes) Used for creating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Default value is "15m" - 15 minutes) Used for updating a resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Default value is "15m" - 15 minutes) Used for deleting a resource. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "release",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "performance_class",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "root_squash",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_ip_ranges",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "anon_uid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "anon_gid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `The port numbers where the filesystem service accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of a port.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host address.`,
+				},
+				resource.Attribute{
+					Name:        "listen_port",
+					Description: `Port number.`,
+				},
+				resource.Attribute{
+					Name:        "security_zone_uuid",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `Network UUID containing security zone.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_uuid",
+					Description: `PaaS service template that filesystem service uses.`,
+				},
+				resource.Attribute{
+					Name:        "usage_in_minutes",
+					Description: `Number of minutes that PaaS service is in use.`,
+				},
+				resource.Attribute{
+					Name:        "change_time",
+					Description: `Time of the last change.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Date time this service has been created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current status of PaaS service.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2617,7 +2774,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional) List of labels in the format [ "label1", "label2" ]. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_active",
+					Description: `(Optional) Enable DHCP.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_gateway",
+					Description: `(Optional) The general IP Range configured for this network (/24 for private networks). If it is not set, gridscale internal default range is used.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_dns",
+					Description: `(Optional) The IP address reserved and communicated by the dhcp service to be the default gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_range",
+					Description: `(Optional, Computed) DHCP DNS. If it is not set and DHCP is enabled, ` + "`" + `dhcp_range` + "`" + ` will be set by the backend automatically.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_reserved_subnet",
+					Description: `(Optional) Subrange within the IP range. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -2646,6 +2823,50 @@ var (
 				resource.Attribute{
 					Name:        "labels",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_active",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_gateway",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_dns",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_range",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_reserved_subnet",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auto_assigned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the DHCP server.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "pinned_servers",
+					Description: `A list of server UUIDs with the corresponding IPs that are designated by the user.`,
+				},
+				resource.Attribute{
+					Name:        "server_uuid",
+					Description: `UUID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP which is assigned to the server.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -3337,7 +3558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_profile",
-					Description: `(Optional, ForceNew) The hardware profile of the Server. Options are default, legacy, nested, cisco_csr, sophos_utm, f5_bigip and q35 at the moment of writing. Check the`,
+					Description: `(Optional, Computed) The hardware profile of the Server. Options are default, legacy, nested, cisco_csr, sophos_utm, f5_bigip and q35 at the moment of writing. If it is not set, the backend will set it by default. Check [the official docs](https://gridscale.io/en/api-documentation/index.html#operation/createServer).`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
@@ -3369,19 +3590,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network",
-					Description: `(Optional) Connects a network to the server.`,
+					Description: `(Optional) Connects a network to the server. The network ordering of the server corresponds to the order of the networks in the server resource block.`,
 				},
 				resource.Attribute{
 					Name:        "object_uuid",
 					Description: `(Required) The object UUID or id of the network.`,
 				},
 				resource.Attribute{
-					Name:        "ordering",
-					Description: `(Optional) Defines the ordering of the network interfaces. Lower numbers have lower PCI-IDs.`,
-				},
-				resource.Attribute{
 					Name:        "bootdevice",
 					Description: `(Optional, Computed) Make this network the boot device. This can only be set for one network.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) Manually assign DHCP IP to the server (if applicable).`,
 				},
 				resource.Attribute{
 					Name:        "firewall_template_uuid",
@@ -3636,12 +3857,16 @@ var (
 					Description: `Make this network the boot device. This can only be set for one network.`,
 				},
 				resource.Attribute{
-					Name:        "object_name",
-					Description: `Name of the network.`,
+					Name:        "ip",
+					Description: `DHCP IP which is manually assigned to the server (if applicable).`,
 				},
 				resource.Attribute{
-					Name:        "ordering",
-					Description: `Defines the ordering of the network interfaces. Lower numbers have lower PCI-IDs.`,
+					Name:        "auto_assigned_ip",
+					Description: `DHCP IP which is automatically assigned to the server (if applicable).`,
+				},
+				resource.Attribute{
+					Name:        "object_name",
+					Description: `Name of the network.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -5190,34 +5415,35 @@ var (
 	resourcesMap = map[string]int{
 
 		"gridscale_backupschedule":                 0,
-		"gridscale_firewall":                       1,
-		"gridscale_ipv4":                           2,
-		"gridscale_ipv6":                           3,
-		"gridscale_isoimage":                       4,
-		"gridscale_k8s":                            5,
-		"gridscale_loadbalancer":                   6,
-		"gridscale_mariadb":                        7,
-		"gridscale_marketplace_application":        8,
-		"gridscale_marketplace_application_import": 9,
-		"gridscale_memcached":                      10,
-		"gridscale_mysql":                          11,
-		"gridscale_network":                        12,
-		"gridscale_object_storage_accesskey":       13,
-		"gridscale_paas":                           14,
-		"gridscale_postgres":                       15,
-		"gridscale_redis_cache":                    16,
-		"gridscale_redis_store":                    17,
-		"gridscale_paas_securityzone":              18,
-		"gridscale_server":                         19,
-		"gridscale_snapshot":                       20,
-		"gridscale_snapshotschedule":               21,
-		"gridscale_sqlserver":                      22,
-		"gridscale_sshkey":                         23,
-		"gridscale_ssl_certificate":                24,
-		"gridscale_storage":                        25,
-		"gridscale_storage_clone":                  26,
-		"gridscale_storage_import":                 27,
-		"gridscale_template":                       28,
+		"gridscale_filesystem":                     1,
+		"gridscale_firewall":                       2,
+		"gridscale_ipv4":                           3,
+		"gridscale_ipv6":                           4,
+		"gridscale_isoimage":                       5,
+		"gridscale_k8s":                            6,
+		"gridscale_loadbalancer":                   7,
+		"gridscale_mariadb":                        8,
+		"gridscale_marketplace_application":        9,
+		"gridscale_marketplace_application_import": 10,
+		"gridscale_memcached":                      11,
+		"gridscale_mysql":                          12,
+		"gridscale_network":                        13,
+		"gridscale_object_storage_accesskey":       14,
+		"gridscale_paas":                           15,
+		"gridscale_postgres":                       16,
+		"gridscale_redis_cache":                    17,
+		"gridscale_redis_store":                    18,
+		"gridscale_paas_securityzone":              19,
+		"gridscale_server":                         20,
+		"gridscale_snapshot":                       21,
+		"gridscale_snapshotschedule":               22,
+		"gridscale_sqlserver":                      23,
+		"gridscale_sshkey":                         24,
+		"gridscale_ssl_certificate":                25,
+		"gridscale_storage":                        26,
+		"gridscale_storage_clone":                  27,
+		"gridscale_storage_import":                 28,
+		"gridscale_template":                       29,
 	}
 )
 

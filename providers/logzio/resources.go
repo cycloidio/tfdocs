@@ -191,7 +191,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter_must_not",
-					Description: `(Map) Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+					Description: `(String) Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
 				},
 				resource.Attribute{
 					Name:        "group_by_aggregation_fields",
@@ -235,7 +235,121 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sort",
-					Description: `(String) Specify a single field to sort by. The field cannot be an analyzed field (a field that supports free text search or searching by part of a message, such as the 'message' field). Should be: ` + "`" + `"DESC"` + "`" + `, ` + "`" + `"ASC"` + "`" + `.`,
+					Description: `(String) Specify a single field to sort by. The field cannot be an analyzed field (a field that supports free text search or searching by part of a message, such as the 'message' field). Should be: ` + "`" + `"DESC"` + "`" + `, ` + "`" + `"ASC"` + "`" + `. ## Importing resource: To import an alert you'll need to specify your logzio alert's id. For example, if you have in your Terraform configuration the following: resource "logzio_alert_v2" "imported" { } And your alert's id is 123456, then your import command should be: ` + "`" + `` + "`" + `` + "`" + `bash terraform import logzio_alert_v2.imported 123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logzio_archive_logs",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(String) Specifies the storage provider. Applicable values: ` + "`" + `S3` + "`" + `, ` + "`" + `BLOB` + "`" + `. If ` + "`" + `S3` + "`" + `, the ` + "`" + `amazon_s3_storage_settings` + "`" + ` are relevant. If ` + "`" + `BLOB` + "`" + `, the ` + "`" + `azure_blob_storage_settings` + "`" + ` are relevant.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. See below for`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage_settings",
+					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. See below for`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) Defaults to ` + "`" + `true` + "`" + `. If ` + "`" + `true` + "`" + `, archiving is currently enabled.`,
+				},
+				resource.Attribute{
+					Name:        "compressed",
+					Description: `(Boolean) Defaults to ` + "`" + `true` + "`" + `. If ` + "`" + `true` + "`" + `, logs are compressed before they are archived. #### Nested schema for ` + "`" + `amazon_s3_storage_settings` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "credentials_type",
+					Description: `(String) Specifies which credentials will be used for authentication. The options are either ` + "`" + `KEYS` + "`" + ` with ` + "`" + `s3_secret_credentials` + "`" + `, or ` + "`" + `IAM` + "`" + ` with ` + "`" + `s3_iam_credentials_arn` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(String) Specify a path to the`,
+				},
+				resource.Attribute{
+					Name:        "s3_secret_credentials",
+					Description: `(Object) Applicable settings when the ` + "`" + `credentials_type` + "`" + ` is ` + "`" + `KEYS` + "`" + `. Authentication with S3 Secret Credentials is supported for backward compatibility. IAM roles are strongly recommended. See below for`,
+				},
+				resource.Attribute{
+					Name:        "s3_iam_credentials_arn",
+					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket. ##### Nested schema for ` + "`" + `s3_secret_credentials` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(String)`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(String) #### Nested schema for ` + "`" + `azure_blob_storage_settings` + "`" + `: ##### Required:`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(String) Azure Directory (tenant) ID. The Tenant ID of the AD app. Go to Azure Active Directory > App registrations and select the app to see it.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(String) Azure application (client) ID. The Client ID of the AD app, found under the App Overview page. Go to Azure Active Directory > App registrations and select the app to see it.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(String) Azure client secret. Password of the Client secret, found in the app's Certificates & secrets page. Go to Azure Active Directory > App registrations and select the app. Then select Certificates & secrets to see it.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(String) Azure Storage account name. Name of the storage account that holds the container where the logs will be archived.`,
+				},
+				resource.Attribute{
+					Name:        "container_name",
+					Description: `(String) Name of the container in the Storage account. This is where the logs will be archived. ##### Optional:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(String) Optional virtual sub-folder specifiying a path within the container. Logs will be archived under the path “{container-name}/{virtual sub-folder}”. Avoid leading and trailing slashes (/). For example, the prefix “region1” is good, but “/region1/” is not. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "archive_id",
+					Description: `(String) Archive ID in the Logz.io database.`,
+				},
+				resource.Attribute{
+					Name:        "amazon_s3_storage_settings.s3_external_id",
+					Description: `(String) The external id that gives Logz.io access to your S3 bucket. ## Importing resource: To import an archive you'll need to specify your archive's id. For example, if you have in your Terraform configuration the following: ` + "`" + `` + "`" + `` + "`" + `hcl resource "logzio_archive_logs" "imported" { ... } ` + "`" + `` + "`" + `` + "`" + ` And your archives's id is 123456, then your import command should be: ` + "`" + `` + "`" + `` + "`" + `bash terraform import logzio_archive_logs.imported 123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logzio_authentication_groups",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "authentication_group",
+					Description: `(Block List) Sets details for the authentication groups. Must be at least one ` + "`" + `authentication_group` + "`" + ` in a resource. #### Nested schema for ` + "`" + `authentication_group` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(String) Name of authentication group.`,
+				},
+				resource.Attribute{
+					Name:        "user_role",
+					Description: `(String) User role for that group. Can be one of the following: ` + "`" + `USER_ROLE_ACCOUNT_ADMIN` + "`" + `, ` + "`" + `USER_ROLE_REGULAR` + "`" + `, ` + "`" + `USER_ROLE_READONLY` + "`" + `. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "manage_groups_id",
+					Description: `(Int) Id for the resource, generated by the provider. It has no real use outside of Terraform. ## Importing resource: The import command expects an id for the import command, but the authentication groups api does not work with ids. Because of that, if you wish to import authentication groups, you can use whichever numeric id you'd like. That id won't affect anything, it will only be the id of the resource in Terraform. ` + "`" + `` + "`" + `` + "`" + `bash terraform import logzio_authentication_groups.imported 1234 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -285,7 +399,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_type",
-					Description: `(Required) Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `bigpanda` + "`" + `, ` + "`" + `datadog` + "`" + `, ` + "`" + `victorops` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
+					Description: `(Required) Specifies the endpoint resource type: ` + "`" + `custom` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `bigpanda` + "`" + `, ` + "`" + `datadog` + "`" + `, ` + "`" + `victorops` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `servicenow` + "`" + `, ` + "`" + `microsoftteams` + "`" + `. Use the appropriate parameters for your selected endpoint type.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -304,7 +418,7 @@ var (
 					Description: `Slack webhook URL to a specific Slack channel.`,
 				},
 				resource.Attribute{
-					Name:        "pager_duty",
+					Name:        "pagerduty",
 					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `pagerduty` + "`" + `. Manages a webhook to PagerDuty.`,
 				},
 				resource.Attribute{
@@ -312,7 +426,7 @@ var (
 					Description: `API key generated from PagerDuty for the purpose of the integration.`,
 				},
 				resource.Attribute{
-					Name:        "big_panda",
+					Name:        "bigpanda",
 					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `bigpanda` + "`" + `. Manages a webhook to BigPanda.`,
 				},
 				resource.Attribute{
@@ -324,7 +438,7 @@ var (
 					Description: `Application key from BigPanda.`,
 				},
 				resource.Attribute{
-					Name:        "data_dog",
+					Name:        "datadog",
 					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `datadog` + "`" + `. Manages a webhook to Datadog.`,
 				},
 				resource.Attribute{
@@ -361,11 +475,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "headers",
-					Description: `Header parameters for the request. Sent as comma-separated key-value pairs.`,
+					Description: `Header parameters for the request. String, sent as comma-separated key-value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "body_template",
-					Description: `JSON object that serves as the template for the message body. ## Attribute Reference`,
+					Description: `string of JSON object that serves as the template for the message body.`,
+				},
+				resource.Attribute{
+					Name:        "opsgenie",
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `opsgenie` + "`" + `. Manages a webhook to OpsGenie.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `API key from OpsGenie, see https://docs.opsgenie.com/docs/logz-io-integration.`,
+				},
+				resource.Attribute{
+					Name:        "servicenow",
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `servicenow` + "`" + `. Manages a webhook to ServiceNow.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `ServiceNow user name.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `ServiceNow password.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Provide your instance URL to connect to your existing ServiceNow instance, i.e. https://xxxxxxxxx.service-now.com/.`,
+				},
+				resource.Attribute{
+					Name:        "microsoftteams",
+					Description: `(Optional) Relevant when ` + "`" + `endpoint_type` + "`" + ` is ` + "`" + `microsoftteams` + "`" + `. Manages a webhook to Microsoft Teams.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Your Microsoft Teams webhook URL, see https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -424,6 +570,61 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_restore_logs",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(String) Name of the restored account.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the earliest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying the latest logs to be restored.`,
+				},
+				resource.Attribute{
+					Name:        "restore_operation_id",
+					Description: `(Integer) ID of the restore operation in Logz.io.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Integer) ID of the restored account in Logz.io.`,
+				},
+				resource.Attribute{
+					Name:        "restored_volume_gb",
+					Description: `(Float) Volume of data restored so far. If the restore operation is still in progress, this will be continuously updated.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(String) Returns the current status of the restored account. See [documentation](https://docs.logz.io/api/#operation/getRestoreRequestByIdApi) for more info about the possible statuses and their meaning.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Integer) Timestamp when the restore process was created and entered the queue. Since only one account can be restored at a time, the process may not initiate immediately.`,
+				},
+				resource.Attribute{
+					Name:        "started_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process initiated.`,
+				},
+				resource.Attribute{
+					Name:        "finished_at",
+					Description: `(Integer) UNIX timestamp in milliseconds when the restore process completed.`,
+				},
+				resource.Attribute{
+					Name:        "expires_at",
+					Description: `(Integer) UNIX timestamp in milliseconds specifying when the account is due to expire. Restored accounts expire automatically after a number of days, as specified in the account's terms. ## Importing resource: To import a restore operation you'll need to specify the restore's id. For example, if you have in your Terraform configuration the following: ` + "`" + `` + "`" + `` + "`" + `hcl resource "logzio_restore_logs" "imported" { ... } ` + "`" + `` + "`" + `` + "`" + ` And your restore operation id is 123456, then your import command should be: ` + "`" + `` + "`" + `` + "`" + `bash terraform import logzio_restore_logs.imported 123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_subaccount",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -432,47 +633,51 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
-					Description: `(Required) Email address of an existing admin user on the main account which will also become the admin of the subaccount being created.`,
+					Description: `(String) Email address of an existing admin user on the main account which will also become the admin of the subaccount being created.`,
 				},
 				resource.Attribute{
 					Name:        "account_name",
-					Description: `(Required) Name of the subaccount.`,
-				},
-				resource.Attribute{
-					Name:        "max_daily_gb",
-					Description: `(Required) Maximum daily log volume that the subaccount can index, in GB.`,
+					Description: `(String) Name of the subaccount.`,
 				},
 				resource.Attribute{
 					Name:        "retention_days",
-					Description: `(Required) Number of days that log data is retained.`,
-				},
-				resource.Attribute{
-					Name:        "searchable",
-					Description: `(Optional) False by default. Determines if other accounts can search logs indexed by the subaccount.`,
-				},
-				resource.Attribute{
-					Name:        "accessible",
-					Description: `(Optional) False by default. Determines if users of main account can access the subaccount.`,
-				},
-				resource.Attribute{
-					Name:        "doc_size_setting",
-					Description: `(Optional) False by default. If enabled, Logz.io adds a ` + "`" + `LogSize` + "`" + ` field to record the size of the log line in bytes, for the purpose of managing account utilization. [Learn more about managing account usage](https://docs.logz.io/user-guide/accounts/manage-account-usage.html#enabling-account-utilization-metrics-and-log-size)`,
+					Description: `(Integer) Number of days that log data is retained.`,
 				},
 				resource.Attribute{
 					Name:        "sharing_objects_accounts",
-					Description: `(Required) IDs of accounts that can access the account's Kibana objects. Can be an empty array.`,
+					Description: `(List) IDs of accounts that can access the account's Kibana objects. Can be an empty array. ### Optional`,
 				},
 				resource.Attribute{
-					Name:        "utilization_settings",
-					Description: `(Optional) If enabled, account utilization metrics and expected utilization at the current indexing rate are measured at a pre-defined sampling rate. Useful for managing account utilization and avoiding running out of capacity. [Learn more about managing account capacity](https://docs.logz.io/user-guide/accounts/manage-account-usage.html)`,
+					Name:        "max_daily_gb",
+					Description: `(Float) Maximum daily log volume that the subaccount can index, in GB.`,
 				},
 				resource.Attribute{
-					Name:        "frequencyMinutes",
-					Description: `Determines the sampling rate in minutes.`,
+					Name:        "searchable",
+					Description: `(Boolean) False by default. Determines if other accounts can search logs indexed by the subaccount.`,
 				},
 				resource.Attribute{
-					Name:        "utilizationEnabled",
-					Description: `Enables the feature. ## Attribute Reference`,
+					Name:        "accessible",
+					Description: `(Boolean) False by default. Determines if users of main account can access the subaccount.`,
+				},
+				resource.Attribute{
+					Name:        "doc_size_setting",
+					Description: `(Boolean) False by default. If enabled, Logz.io adds a ` + "`" + `LogSize` + "`" + ` field to record the size of the log line in bytes, for the purpose of managing account utilization. [Learn more about managing account usage](https://docs.logz.io/user-guide/accounts/manage-account-usage.html#enabling-account-utilization-metrics-and-log-size)`,
+				},
+				resource.Attribute{
+					Name:        "utilization_enabled",
+					Description: `(Boolean) If enabled, account utilization metrics and expected utilization at the current indexing rate are measured at a pre-defined sampling rate. Useful for managing account utilization and avoiding running out of capacity. [Learn more about managing account capacity](https://docs.logz.io/user-guide/accounts/manage-account-usage.html).`,
+				},
+				resource.Attribute{
+					Name:        "frequency_minutes",
+					Description: `(Int) Determines the sampling rate in minutes of the utilization.`,
+				},
+				resource.Attribute{
+					Name:        "flexible",
+					Description: `(Boolean) Defaults to false. Whether the sub account that created is flexible or not. Can be set to flexible only if the main account is flexible.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_daily_gb",
+					Description: `(Float) The maximum volume of data that an account can index per calendar day. Depends on ` + "`" + `flexible` + "`" + `. For further info see [the docs](https://docs.logz.io/api/#operation/createTimeBasedAccount). ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "account_id",
@@ -524,13 +729,16 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"logzio_alert":              0,
-		"logzio_alert_v2":           1,
-		"logzio_drop_filter":        2,
-		"logzio_endpoint":           3,
-		"logzio_log_shipping_token": 4,
-		"logzio_subaccount":         5,
-		"logzio_user":               6,
+		"logzio_alert":                 0,
+		"logzio_alert_v2":              1,
+		"logzio_archive_logs":          2,
+		"logzio_authentication_groups": 3,
+		"logzio_drop_filter":           4,
+		"logzio_endpoint":              5,
+		"logzio_log_shipping_token":    6,
+		"logzio_restore_logs":          7,
+		"logzio_subaccount":            8,
+		"logzio_user":                  9,
 	}
 )
 

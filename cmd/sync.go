@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 
 	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing/transport"
 )
 
 // sync will pull all the Providers from TF Registry and create
@@ -110,7 +111,7 @@ func sync() error {
 			URL:               p.Attributes.Source,
 			RecurseSubmodules: git.DefaultSubmoduleRecursionDepth,
 		})
-		if err != nil {
+		if err != nil && err != transport.ErrAuthenticationRequired {
 			return fmt.Errorf("failed to clone %q %q: %w", k, p.Attributes.Source, err)
 		}
 	}

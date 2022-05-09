@@ -50,11 +50,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Required) Group template content in OpenNebula XML or String format. Used to provide SUSNTONE arguments.`,
+					Description: `(Deprecated) Group template content in OpenNebula XML or String format. Used to provide SUSNTONE arguments.`,
 				},
 				resource.Attribute{
 					Name:        "delete_on_destruction",
-					Description: `(Optional) Flag to delete the group on destruction. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Deprecated) Flag to delete the group on destruction. Defaults to ` + "`" + `true` + "`" + `. Use [Terraform lifecycle ` + "`" + `prevent_destroy` + "`" + `](https://www.terraform.io/language/meta-arguments/lifecycle#prevent_destroy) instead.`,
 				},
 				resource.Attribute{
 					Name:        "admins",
@@ -62,7 +62,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quotas",
-					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details`,
+				},
+				resource.Attribute{
+					Name:        "sunstone",
+					Description: `(Optional) Allow users and group admins to access specific views. See [Sunstone parameters](#sunstone-parameters) below for details`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Group tags (Key = value) ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "datastore_quotas",
@@ -134,7 +142,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "system_disk_size",
-					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ## Attribute Reference The following attribute is exported:`,
+					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. #### Sunstone parameters`,
+				},
+				resource.Attribute{
+					Name:        "default_view",
+					Description: `(Optional) Default Sunstone view for regular users`,
+				},
+				resource.Attribute{
+					Name:        "views",
+					Description: `(Optional) List of available views for regular users`,
+				},
+				resource.Attribute{
+					Name:        "group_admin_default_view",
+					Description: `(Optional) Default Sunstone view for group admin users`,
+				},
+				resource.Attribute{
+					Name:        "group_admin_views",
+					Description: `(Optional) List of available views for the group admins ## Attribute Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -244,11 +268,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image.`,
-				},
-				resource.Attribute{
-					Name:        "computed_size",
-					Description: `Size of the image in MB. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -270,11 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image.`,
-				},
-				resource.Attribute{
-					Name:        "computed_size",
-					Description: `Size of the image in MB. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -636,8 +652,24 @@ var (
 					Description: `(Optional) Can be specified multiple times to attach several NICs. See [Nic parameters](#nic-parameters) below for details.`,
 				},
 				resource.Attribute{
+					Name:        "raw",
+					Description: `(Optional) Allow to pass hypervisor level tuning content. See [Raw parameters](#raw-parameters) below for details.`,
+				},
+				resource.Attribute{
 					Name:        "vmgroup",
 					Description: `(Optional) See [VM group parameters](#vm-group-parameters) below for details. Changing this argument triggers a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_inputs",
+					Description: `(Optional) Ask the user instantiating the template to define the values described.`,
+				},
+				resource.Attribute{
+					Name:        "sched_requirements",
+					Description: `(Optional) Scheduling requirements to deploy the resource following specific rule`,
+				},
+				resource.Attribute{
+					Name:        "sched_ds_requirements",
+					Description: `(Optional) Storage placement requirements to deploy the resource following specific rule.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -645,7 +677,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template",
-					Description: `(Deprecated) Text describing the OpenNebula template object, in Opennebula's XML string format. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+					Description: `(Deprecated) Text describing the OpenNebula template object, in Opennebula's XML string format.`,
+				},
+				resource.Attribute{
+					Name:        "lock",
+					Description: `(Optional) Lock the template with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -673,7 +709,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `(Required) ID of the image to attach to the virtual machine.`,
+					Description: `(Optional) ID of the image to attach to the virtual machine. Conflicts with ` + "`" + `volatile_type` + "`" + ` and ` + "`" + `volatile_format` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -685,7 +721,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "driver",
-					Description: `(Optional) OpenNebula image driver. Minimum 1 item. Maximum 8 items. ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
+					Description: `(Optional) OpenNebula image driver.`,
+				},
+				resource.Attribute{
+					Name:        "volatile_type",
+					Description: `(Optional) Type of the volatile disk: ` + "`" + `swap` + "`" + ` or ` + "`" + `fs` + "`" + `. Type ` + "`" + `swap` + "`" + ` is not supported in vcenter. Conflicts with ` + "`" + `image_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volatile_format",
+					Description: `(Optional) Format of the volatile disk: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. Conflicts with ` + "`" + `image_id` + "`" + `. Minimum 1 item. Maximum 8 items. ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -709,7 +753,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) List of security group IDs to use on the virtual network. Minimum 1 item. Maximum 8 items. ### Raw parameters ` + "`" + `raw` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) - Hypervisor. Supported values: ` + "`" + `kvm` + "`" + `, ` + "`" + `lxd` + "`" + `, ` + "`" + `vmware` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Required) - Raw data to pass to the hypervisor. ### VM group parameters ` + "`" + `vmgroup` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "vmgroup_id",
@@ -1002,6 +1054,10 @@ var (
 					Description: `(Optional) Can be specified multiple times to attach several NICs. See [Nic parameters](#nic-parameters) below for details.`,
 				},
 				resource.Attribute{
+					Name:        "keep_nic_order",
+					Description: `(Optional) Indicates if the provider should keep NIC list ordering at update.`,
+				},
+				resource.Attribute{
 					Name:        "vmgroup",
 					Description: `(Optional) See [VM group parameters](#vm-group-parameters) below for details. Changing this argument triggers a new resource.`,
 				},
@@ -1010,12 +1066,28 @@ var (
 					Description: `(Optional) Name of the group which owns the virtual machine. Defaults to the caller primary group.`,
 				},
 				resource.Attribute{
+					Name:        "sched_requirements",
+					Description: `(Optional) Scheduling requirements to deploy the resource following specific rule.`,
+				},
+				resource.Attribute{
+					Name:        "sched_ds_requirements",
+					Description: `(Optional) Storage placement requirements to deploy the resource following specific rule.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Virtual Machine tags (Key = Value).`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout (in Minutes) for VM availability. Defaults to 3 minutes. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Timeout (in Minutes) for VM availability. Defaults to 3 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "lock",
+					Description: `(Optional) Lock the VM with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "on_disk_change",
+					Description: `(Optional) Select the behavior for changing disk images. Supported values: ` + "`" + `RECREATE` + "`" + ` or ` + "`" + `SWAP` + "`" + ` (default). ` + "`" + `RECREATE` + "`" + ` forces recreation of the vm and ` + "`" + `SWAP` + "`" + ` adopts the standard behavior of hot-swapping the disks. NOTE: This property does not affect the behavior of adding new disks. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1043,7 +1115,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `(Optional) ID of the image to attach to the virtual machine. Defaults to -1 if not set: this skip Image attchment to the VM.`,
+					Description: `(Optional) ID of the image to attach to the virtual machine. Defaults to -1 if not set: this skip Image attchment to the VM. Conflicts with ` + "`" + `volatile_type` + "`" + ` and ` + "`" + `volatile_format` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1055,7 +1127,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "driver",
-					Description: `(Optional) OpenNebula image driver. Minimum 1 item. Maximum 8 items. A disk update will be triggered in adding or removing a ` + "`" + `disk` + "`" + ` section, or by a modification of any of these parameters: ` + "`" + `image_id` + "`" + `, ` + "`" + `target` + "`" + `, ` + "`" + `driver` + "`" + ` ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
+					Description: `(Optional) OpenNebula image driver.`,
+				},
+				resource.Attribute{
+					Name:        "volatile_type",
+					Description: `(Optional) Type of the disk: ` + "`" + `swap` + "`" + ` or ` + "`" + `fs` + "`" + `. Type ` + "`" + `swap` + "`" + ` is not supported in vcenter. Conflicts with ` + "`" + `image_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volatile_format",
+					Description: `(Optional) Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. Conflicts with ` + "`" + `image_id` + "`" + `. Minimum 1 item. Maximum 8 items. A disk update will be triggered in adding or removing a ` + "`" + `disk` + "`" + ` section, or by a modification of any of these parameters: ` + "`" + `image_id` + "`" + `, ` + "`" + `target` + "`" + `, ` + "`" + `driver` + "`" + ` ### NIC parameters ` + "`" + `nic` + "`" + ` supports the following arguments`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -1235,7 +1315,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_driver",
-					Description: `OpenNebula image driver. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `OpenNebula image driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_volatile_format",
+					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1381,7 +1465,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_driver",
-					Description: `OpenNebula image driver. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `OpenNebula image driver.`,
+				},
+				resource.Attribute{
+					Name:        "computed_volatile_format",
+					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1457,11 +1545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the role.`,
-				},
-				resource.Attribute{
-					Name:        "vms",
-					Description: `List of Virtual Machine IDs using this role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1491,11 +1575,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the role.`,
-				},
-				resource.Attribute{
-					Name:        "vms",
-					Description: `List of Virtual Machine IDs using this role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1599,7 +1679,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Virtual Network tags (Key = Value). ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Virtual Network tags (Key = Value).`,
+				},
+				resource.Attribute{
+					Name:        "lock",
+					Description: `(Optional) Lock the virtual network with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `. ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "ar_type",
@@ -1612,6 +1696,10 @@ var (
 				resource.Attribute{
 					Name:        "ip6",
 					Description: `(Optional) Starting IPv6 address of the range. Required if ` + "`" + `ar_type` + "`" + ` is ` + "`" + `IP6_STATIC` + "`" + ` or ` + "`" + `IP4_6_STATIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Address range size.`,
 				},
 				resource.Attribute{
 					Name:        "mac",
@@ -1647,7 +1735,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the virtual network. ### Address range computed attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the address range`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip6",
+					Description: `Starting IPv6 address of the range.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `Starting MAC Address of the range.`,
+				},
+				resource.Attribute{
+					Name:        "computed_global_prefix",
+					Description: `Global prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_ula_prefix",
+					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1669,7 +1777,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the virtual network. ### Address range computed attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the address range`,
+				},
+				resource.Attribute{
+					Name:        "computed_ip6",
+					Description: `Starting IPv6 address of the range.`,
+				},
+				resource.Attribute{
+					Name:        "computed_mac",
+					Description: `Starting MAC Address of the range.`,
+				},
+				resource.Attribute{
+					Name:        "computed_global_prefix",
+					Description: `Global prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "computed_ula_prefix",
+					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

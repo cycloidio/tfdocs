@@ -201,10 +201,6 @@ var (
 					Description: `SDDC identifier.`,
 				},
 				resource.Attribute{
-					Name:        "nsxt_reverse_proxy_url",
-					Description: `NSXT reverse proxy url for managing public IP.`,
-				},
-				resource.Attribute{
 					Name:        "cluster_info",
 					Description: `Information about cluster like id, name, state, host instance type.`,
 				},
@@ -214,7 +210,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "intranet_uplink_mtu",
-					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500. ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
+					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_reverse_proxy_url",
+					Description: `NSXT reverse proxy url for managing public IP.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin",
+					Description: `the NSXT userID admin for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin_password",
+					Description: `the NSXT userID admin password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit",
+					Description: `the NSXT userID audit for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit_password",
+					Description: `the NSXT userID audit password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_private_url",
+					Description: `for example "https://nsxManager.sddc-54-213-170-7.vmwarevmc.com/login.jsp"`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_public_url",
+					Description: `same as reverse proxy ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -223,10 +247,6 @@ var (
 					Description: `SDDC identifier.`,
 				},
 				resource.Attribute{
-					Name:        "nsxt_reverse_proxy_url",
-					Description: `NSXT reverse proxy url for managing public IP.`,
-				},
-				resource.Attribute{
 					Name:        "cluster_info",
 					Description: `Information about cluster like id, name, state, host instance type.`,
 				},
@@ -236,7 +256,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "intranet_uplink_mtu",
-					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500. ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
+					Description: `Uplink MTU of direct connect, sddc-grouping and outposts traffic in edge tier-0 router port. This field can be updated only after an SDDC is created. Range : 1500 - 8900. Default : 1500.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_reverse_proxy_url",
+					Description: `NSXT reverse proxy url for managing public IP.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin",
+					Description: `the NSXT userID admin for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudadmin_password",
+					Description: `the NSXT userID admin password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit",
+					Description: `the NSXT userID audit for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_cloudaudit_password",
+					Description: `the NSXT userID audit password for direct NSXT access`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_private_url",
+					Description: `for example "https://nsxManager.sddc-54-213-170-7.vmwarevmc.com/login.jsp"`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_public_url",
+					Description: `same as reverse proxy ## Import SDDC resource can be imported using the ` + "`" + `id` + "`" + ` , e.g. ` + "`" + `$ terraform import vmc_sddc.sddc_1 id` + "`" + ` For this example: - id = SDDC Identifier ` + "`" + `$ terraform import vmc_sddc.sddc_1 afe7a0fd-3f0a-48b2-9ddb-0489c22732ae` + "`" + ` Note : Running plan/apply after importing an SDDC causes the SDDC to be re-created. This is due to a limitation in the current Get and Update SDDC APIs. Hence, the import functionality is only partially supported.`,
 				},
 			},
 		},

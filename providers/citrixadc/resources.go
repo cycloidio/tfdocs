@@ -11,6 +11,55 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_appfwconfidfield",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwconfidfield resource is used to create appfw confidfield.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwconfidfield",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fieldname",
+					Description: `(Required) Name of the form field to designate as confidential.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) URL of the web page that contains the web form.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about the form field designation.`,
+				},
+				resource.Attribute{
+					Name:        "isregex",
+					Description: `(Optional) Method of specifying the form field name. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enable or disable the confidential field designation. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwconfidfield. It is the concatenation of ` + "`" + `fieldname` + "`" + ` and ` + "`" + `url` + "`" + ` attribute. ## Import A appfwconfidfield can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwconfidfield.tf_confidfield tf_confidfield,www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwconfidfield. It is the concatenation of ` + "`" + `fieldname` + "`" + ` and ` + "`" + `url` + "`" + ` attribute. ## Import A appfwconfidfield can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwconfidfield.tf_confidfield tf_confidfield,www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_appfwfieldtype",
 			Category:         "Application Firewall",
 			ShortDescription: ``,
@@ -54,6 +103,199 @@ The ` + "`" + `appfwfieldtype` + "`" + ` resource is used to create Application 
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ` + "`" + `appfwfieldtype` + "`" + `. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwglobal_appfwpolicy_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwglobal_appfwpolicy_binding resource is used to bind appfwpolicy to appfwglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwglobal",
+				"appfwpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "globalbindtype",
+					Description: `(Optional) 0`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the policy label to invoke if the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is set to Policy Label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label invocation.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enable or disable the binding to activate or deactivate the policy. This is applicable to classic policies only.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Bind point to which to policy is bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_appfwpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_appfwpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_appfwpolicy_binding.tf_binding tf_appfwpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_appfwpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_appfwpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_appfwpolicy_binding.tf_binding tf_appfwpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwglobal_auditnslogpolicy_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwglobal_auditnslogpolicy_binding resource is used to bind auditnslogpolicy to appfwglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwglobal",
+				"auditnslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the policy label to invoke if the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is set to Policy Label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke if the current policy evaluates to TRUE and the invoke parameter is set. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enable or disable the binding to activate or deactivate the policy. This is applicable to classic policies only.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Bind point to which to policy is bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_auditnslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_auditnslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_auditnslogpolicy_binding.tf_binding tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_auditnslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_auditnslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_auditnslogpolicy_binding.tf_binding tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwglobal_auditsyslogpolicy_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwglobal_auditsyslogpolicy_binding resource is used to bind auditsyslogpolicy to appfwglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwglobal",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the policy label to invoke if the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is set to Policy Label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke if the current policy evaluates to TRUE and the invoke parameter is set. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enable or disable the binding to activate or deactivate the policy. This is applicable to classic policies only.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Bind point to which to policy is bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_auditsyslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_auditsyslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_auditsyslogpolicy_binding.tf_binding tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwglobal_auditsyslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A appfwglobal_auditsyslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwglobal_auditsyslogpolicy_binding.tf_binding tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -178,6 +420,65 @@ The ` + "`" + `appfwpolicylabel` + "`" + ` resource is used to create Applicatio
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ` + "`" + `appfwpolicylabel` + "`" + `. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwpolicylabel_appfwpolicy_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwpolicylabel_appfwpolicy_binding resource is used to bind appfw policy to appfw policylabel resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwpolicylabel",
+				"appfwpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the application firewall policy label.`,
+				},
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the application firewall policy to bind to the policy label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Positive integer specifying the priority of the policy. A lower number specifies a higher priority. Must be unique within a group of policies that are bound to the same bind point or label. Policies are evaluated in the order of their priority numbers.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_labelname",
+					Description: `(Optional) Name of the policy label to invoke if the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is set to Policy Label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke if the current policy evaluates to TRUE and the invoke parameter is set. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwpolicylabel_appfwpolicy_binding. It is the concatenation of ` + "`" + `labelname` + "`" + `and ` + "`" + `policyname` + "`" + ` attributes separated by comma. ## Import A appfwpolicylabel_appfwpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwpolicylabel_appfwpolicy_binding.tf_binding tf_appfwpolicylabel,tf_appfwpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwpolicylabel_appfwpolicy_binding. It is the concatenation of ` + "`" + `labelname` + "`" + `and ` + "`" + `policyname` + "`" + ` attributes separated by comma. ## Import A appfwpolicylabel_appfwpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwpolicylabel_appfwpolicy_binding.tf_binding tf_appfwpolicylabel,tf_appfwpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -579,6 +880,156 @@ The ` + "`" + `appfwprofile` + "`" + ` resource is used to create Applicatin Fir
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_appfwprofile_cmdinjection_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_cmdinjection_binding resource is used to bind cmdinjection to appfw profile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"cmdinjection",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "cmdinjection",
+					Description: `(Required) Name of the relaxed web form field/header/cookie`,
+				},
+				resource.Attribute{
+					Name:        "formactionurl_cmd",
+					Description: `(Required) The web form action URL.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "as_scan_location_cmd",
+					Description: `(Optional) Location of command injection exception - form field, header or cookie.`,
+				},
+				resource.Attribute{
+					Name:        "as_value_expr_cmd",
+					Description: `(Optional) The web form/header/cookie value expression.`,
+				},
+				resource.Attribute{
+					Name:        "as_value_type_cmd",
+					Description: `(Optional) Type of the relaxed web form value`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_cmd",
+					Description: `(Optional) Is the relaxed web form field name/header/cookie a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "isvalueregex_cmd",
+					Description: `(Optional) Is the web form field/header/cookie value a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_cmdinjection_binding. It is the concatenation of ` + "`" + `name` + "`" + ` ,` + "`" + `cmdinjection` + "`" + ` and ` + "`" + `formactionurl_cmd` + "`" + ` attributes separated by comma. ## Import A appfwprofile_cmdinjection_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_cmdinjection_binding.tf_binding tf_appfwprofile,tf_cmdinjection,http://10.10.10.10/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_cmdinjection_binding. It is the concatenation of ` + "`" + `name` + "`" + ` ,` + "`" + `cmdinjection` + "`" + ` and ` + "`" + `formactionurl_cmd` + "`" + ` attributes separated by comma. ## Import A appfwprofile_cmdinjection_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_cmdinjection_binding.tf_binding tf_appfwprofile,tf_cmdinjection,http://10.10.10.10/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_contenttype_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_contenttype_binding resource is used to bind contenttype to appfw profile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"contenttype",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "contenttype",
+					Description: `(Required) A regular expression that designates a content-type on the content-types list.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_contenttype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `contenttype` + "`" + ` attributes separated by comma. ## Import A appfwprofile_contenttype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_contenttype_binding.tf_binding tf_appfwprofile,hello ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_contenttype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `contenttype` + "`" + ` attributes separated by comma. ## Import A appfwprofile_contenttype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_contenttype_binding.tf_binding tf_appfwprofile,hello ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_appfwprofile_cookieconsistency_binding",
 			Category:         "Application Firewall",
 			ShortDescription: ``,
@@ -632,6 +1083,72 @@ The ` + "`" + `appfwprofile_cookieconsistency_binding` + "`" + ` resource is use
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ` + "`" + `appfwprofile_cookieconsistency_binding` + "`" + `. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `cookieconsistency` + "`" + ` attributes separated by a comma.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_creditcardnumber_binding",
+			Category:         "appfwprofile_creditcardnumber_binding",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_creditcardnumber_binding resource is used to bind creditcard number to appfw profile.
+
+
+`,
+			Keywords: []string{
+				"appfwprofile_creditcardnumber_binding",
+				"appfwprofile",
+				"creditcardnumber",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "creditcardnumber",
+					Description: `(Required) The object expression that is to be excluded from safe commerce check`,
+				},
+				resource.Attribute{
+					Name:        "creditcardnumberurl",
+					Description: `(Required) The url for which the list of credit card numbers are needed to be bypassed from inspection`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_creditcardnumber_binding. It is the concatenation of ` + "`" + `name` + "`" + ` , ` + "`" + `creditcardnumber` + "`" + ` and ` + "`" + `creditcardnumberurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_creditcardnumber_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_creditcardnumber_binding.tf_binding tf_csaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_creditcardnumber_binding. It is the concatenation of ` + "`" + `name` + "`" + ` , ` + "`" + `creditcardnumber` + "`" + ` and ` + "`" + `creditcardnumberurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_creditcardnumber_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_creditcardnumber_binding.tf_binding tf_csaction ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -715,6 +1232,73 @@ The ` + "`" + `appfwprofile_crosssitescripting_binding` + "`" + ` resource is us
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_appfwprofile_csrftag_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_csrftag_binding resource is used to bind csrftag to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"csrftag",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "csrftag",
+					Description: `(Required) The web form originating URL.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "csrfformactionurl",
+					Description: `(Optional) The web form action URL.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_csrftag_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `csrftag` + "`" + ` attributes separated by comma. ## Import A appfwprofile_csrftag_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_csrftag_binding.tf_binding tf_appfwprofile,www.source.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_csrftag_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `csrftag` + "`" + ` attributes separated by comma. ## Import A appfwprofile_csrftag_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_csrftag_binding.tf_binding tf_appfwprofile,www.source.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_appfwprofile_denyurl_binding",
 			Category:         "Application Firewall",
 			ShortDescription: ``,
@@ -764,6 +1348,740 @@ The ` + "`" + `appfwprofile_denyurl_binding` + "`" + ` resource is used to add b
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ` + "`" + `appfwprofile_denyurl_binding` + "`" + `. It has the value of the string ` + "`" + `name,denyurl` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_excluderescontenttype_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_excluderescontenttype_binding resource is used to bind excluderescontenttype to appfw profile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"excluderescontenttype",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "excluderescontenttype",
+					Description: `(Required) A regular expression that represents the content type of the response that are to be excluded from inspection.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_excluderescontenttype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `excluderescontenttype` + "`" + ` attributes separated by comma. ## Import A appfwprofile_excluderescontenttype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_excluderescontenttype_binding.tf_binding tf_appfwprofile,expressionexample ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_excluderescontenttype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `excluderescontenttype` + "`" + ` attributes separated by comma. ## Import A appfwprofile_excluderescontenttype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_excluderescontenttype_binding.tf_binding tf_appfwprofile,expressionexample ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_fieldconsistency_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_fieldconsistency_binding resource is used to bind fieldconsistency to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"fieldconsistency",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "fieldconsistency",
+					Description: `(Required) The web form field name.`,
+				},
+				resource.Attribute{
+					Name:        "formactionurl_ffc",
+					Description: `(Required) The web form action URL.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_ffc",
+					Description: `(Optional) Is the web form field name a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fieldconsistency_binding. It is the concatenation of ` + "`" + `name` + "`" + ` , ` + "`" + `fieldconsistency` + "`" + ` and ` + "`" + `formactionurl_ffc` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fieldconsistency_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fieldconsistency_binding.tf_binding tf_appfwprofile,tf_field,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fieldconsistency_binding. It is the concatenation of ` + "`" + `name` + "`" + ` , ` + "`" + `fieldconsistency` + "`" + ` and ` + "`" + `formactionurl_ffc` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fieldconsistency_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fieldconsistency_binding.tf_binding tf_appfwprofile,tf_field,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_fieldformat_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_fieldformat_binding resource is used to bind fieldformat to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"fieldformat",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "fieldformat",
+					Description: `(Required) Name of the form field to which a field format will be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "formactionurl_ff",
+					Description: `(Required) Action URL of the form field to which a field format will be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "fieldformatmaxlength",
+					Description: `(Optional) The maximum allowed length for data in this form field.`,
+				},
+				resource.Attribute{
+					Name:        "fieldformatminlength",
+					Description: `(Optional) The minimum allowed length for data in this form field.`,
+				},
+				resource.Attribute{
+					Name:        "fieldtype",
+					Description: `(Optional) The field type you are assigning to this form field.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_ff",
+					Description: `(Optional) Is the form field name a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fieldformat_binding. It is the concatenation of ` + "`" + `name` + "`" + `,` + "`" + `fieldformat` + "`" + ` and ` + "`" + `formactionurl_ff` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fieldformat_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fieldformat_binding.tf_binding tf_appfwprofile,tf_field,http://www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fieldformat_binding. It is the concatenation of ` + "`" + `name` + "`" + `,` + "`" + `fieldformat` + "`" + ` and ` + "`" + `formactionurl_ff` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fieldformat_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fieldformat_binding.tf_binding tf_appfwprofile,tf_field,http://www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_fileuploadtype_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_fileuploadtype_binding resource is used to bind fileuploadtype to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"fileuploadtype",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "fileuploadtype",
+					Description: `(Required) FileUploadTypes to allow/deny.`,
+				},
+				resource.Attribute{
+					Name:        "as_fileuploadtypes_url",
+					Description: `(Required) FileUploadTypes action URL.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "filetype",
+					Description: `(Optional) FileUploadTypes file types.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_fileuploadtypes_url",
+					Description: `(Optional) Is a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fileuploadtype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` ,` + "`" + `fileuploadtype` + "`" + ` and ` + "`" + `as_fileuploadtypes_url` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fileuploadtype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fileuploadtype_binding.tf_binding tf_appfwprofile,tf_uploadtype,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_fileuploadtype_binding. It is the concatenation of ` + "`" + `name` + "`" + ` ,` + "`" + `fileuploadtype` + "`" + ` and ` + "`" + `as_fileuploadtypes_url` + "`" + ` attributes separated by comma. ## Import A appfwprofile_fileuploadtype_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_fileuploadtype_binding.tf_binding tf_appfwprofile,tf_uploadtype,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_jsoncmdurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_jsoncmdurl_binding resource is used to bind jsoncmdurl to appfw profile resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"jsoncmdurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "jsoncmdurl",
+					Description: `(Required) A regular expression that designates a URL on the Json CMD URL list for which Command injection violations are relaxed. Enclose URLs in double quotes to ensure preservation of any embedded spaces or non-alphanumeric characters.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsoncmdurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsoncmdurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsoncmdurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsoncmdurl_binding.tf_binding tf_appfwprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsoncmdurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsoncmdurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsoncmdurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsoncmdurl_binding.tf_binding tf_appfwprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_jsondosurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_jsondosurl_binding resource is used to bind jsondosurl to appfw profile resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"jsondosurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "jsondosurl",
+					Description: `(Required) The URL on which we need to enforce the specified JSON denial-of-service (JSONDoS) attack protections. An JSON DoS configuration consists of the following items:`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxarraylength",
+					Description: `(Optional) Maximum array length in the any of JSON object. This check protects against arrays having large lengths.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxarraylengthcheck",
+					Description: `(Optional) State if JSON Max array value count check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxcontainerdepth",
+					Description: `(Optional) Maximum allowed nesting depth of JSON document. JSON allows one to nest the containers (object and array) in any order to any depth. This check protects against documents that have excessive depth of hierarchy.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxcontainerdepthcheck",
+					Description: `(Optional) State if JSON Max depth check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxdocumentlength",
+					Description: `(Optional) Maximum document length of JSON document, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxdocumentlengthcheck",
+					Description: `(Optional) State if JSON Max document length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxobjectkeycount",
+					Description: `(Optional) Maximum key count in the any of JSON object. This check protects against objects that have large number of keys.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxobjectkeycountcheck",
+					Description: `(Optional) State if JSON Max object key count check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxobjectkeylength",
+					Description: `(Optional) Maximum key length in the any of JSON object. This check protects against objects that have large keys.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxobjectkeylengthcheck",
+					Description: `(Optional) State if JSON Max object key length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxstringlength",
+					Description: `(Optional) Maximum string length in the JSON. This check protects against strings that have large length.`,
+				},
+				resource.Attribute{
+					Name:        "jsonmaxstringlengthcheck",
+					Description: `(Optional) State if JSON Max string value count check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsondosurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsondosurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsondosurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsondosurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsondosurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsondosurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsondosurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsondosurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_jsonsqlurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_jsonsqlurl_binding resource is used to bind jsonsqlurl to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"jsonsqlurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "jsonsqlurl",
+					Description: `(Required) A regular expression that designates a URL on the Json SQL URL list for which SQL violations are relaxed. Enclose URLs in double quotes to ensure preservation of any embedded spaces or non-alphanumeric characters.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsonsqlurl_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsonsqlurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsonsqlurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsonsqlurl_binding.tf_binding tf_appfwprofile,[abc][a-z]a`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsonsqlurl_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsonsqlurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsonsqlurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsonsqlurl_binding.tf_binding tf_appfwprofile,[abc][a-z]a`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_jsonxssurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_jsonxssurl_binding resource is used to bind jsonxssurl to appfwprofile resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"jsonxssurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "jsonxssurl",
+					Description: `(Required) A regular expression that designates a URL on the Json XSS URL list for which XSS violations are relaxed. Enclose URLs in double quotes to ensure preservation of any embedded spaces or non-alphanumeric characters.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsonxssurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsonxssurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsonxssurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsonxssurl_binding.tf_binding tf_appfwprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_jsonxssurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `jsonxssurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_jsonxssurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_jsonxssurl_binding.tf_binding tf_appfwprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_logexpression_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_logexpression_binding resource is used to bind logexpression to appfwprofile resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"logexpression",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "logexpression",
+					Description: `(Required) Name of LogExpression object.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "as_logexpression",
+					Description: `(Optional) LogExpression to log when violation happened on appfw profile`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_logexpression_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `logexpression` + "`" + ` attributes separated by comma. ## Import A appfwprofile_logexpression_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_logexpression_binding.tf_binding tf_appfwprofile,tf_logexp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_logexpression_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `logexpression` + "`" + ` attributes separated by comma. ## Import A appfwprofile_logexpression_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_logexpression_binding.tf_binding tf_appfwprofile,tf_logexp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_safeobject_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_safeobject_binding resource is used to bind safeobject to appfw profile. 
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"safeobject",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "safeobject",
+					Description: `(Required) Name of the Safe Object.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Safe Object action types. (BLOCK | LOG | STATS | NONE)`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "as_expression",
+					Description: `(Optional) A regular expression that defines the Safe Object.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "maxmatchlength",
+					Description: `(Optional) Maximum match length for a Safe Object expression.`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_safeobject_binding. It is theconcatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `safeobject` + "`" + ` attributes separated by comma. ## Import A appfwprofile_safeobject_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_safeobject_binding.tf_binding tf_appfwprofile,tf_safeobject ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_safeobject_binding. It is theconcatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `safeobject` + "`" + ` attributes separated by comma. ## Import A appfwprofile_safeobject_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_safeobject_binding.tf_binding tf_appfwprofile,tf_safeobject ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -897,6 +2215,714 @@ The ` + "`" + `appfwprofile_starturl_binding` + "`" + ` resource is used to add 
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ` + "`" + `appfwprofile_starturl_binding` + "`" + `. It has the value of the string ` + "`" + `name,starturl` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_trustedlearningclients_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_trustedlearningclients_binding resource is used to bind trustedlearningclients to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"trustedlearningclients",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "trustedlearningclients",
+					Description: `(Required) Specify trusted host/network IP`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_trustedlearningclients_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `trustedlearningclients` + "`" + ` attributes separated by comma. ## Import A appfwprofile_trustedlearningclients_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_trustedlearningclients_binding.tf_binding tf_appfwprofile,1.2.31.1/32 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_trustedlearningclients_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `trustedlearningclients` + "`" + ` attributes separated by comma. ## Import A appfwprofile_trustedlearningclients_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_trustedlearningclients_binding.tf_binding tf_appfwprofile,1.2.31.1/32 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_xmlattachmenturl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_xmlattachmenturl_binding resource is used to bind xmlattachmenturl to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"xmlattachmenturl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "xmlattachmenturl",
+					Description: `(Required) XML attachment URL regular expression length.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "xmlattachmentcontenttype",
+					Description: `(Optional) Specify content-type regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "xmlattachmentcontenttypecheck",
+					Description: `(Optional) State if XML attachment content-type check is ON or OFF. Protects against XML requests with illegal attachments.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattachmentsize",
+					Description: `(Optional) Specify maximum attachment size.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattachmentsizecheck",
+					Description: `(Optional) State if XML Max attachment size Check is ON or OFF. Protects against XML requests with large attachment data. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlattachmenturl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlattachmenturl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlattachmenturl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlattachmenturl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlattachmenturl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlattachmenturl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlattachmenturl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlattachmenturl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_xmldosurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_xmldosurl_binding resource is used to bind xmldosurl to appfwprofile resource.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"xmldosurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "xmldosurl",
+					Description: `(Required) XML DoS URL regular expression length.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "xmlblockdtd",
+					Description: `(Optional) State if XML DTD is ON or OFF. Protects against recursive Document Type Declaration (DTD) entity expansion attacks. Also, SOAP messages cannot have DTDs in messages.`,
+				},
+				resource.Attribute{
+					Name:        "xmlblockexternalentities",
+					Description: `(Optional) State if XML Block External Entities Check is ON or OFF. Protects against XML External Entity (XXE) attacks that force applications to parse untrusted external entities (sources) in XML documents.`,
+				},
+				resource.Attribute{
+					Name:        "xmlblockpi",
+					Description: `(Optional) State if XML Block PI is ON or OFF. Protects resources from denial of service attacks as SOAP messages cannot have processing instructions (PI) in messages.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributenamelength",
+					Description: `(Optional) Specify the longest name of any XML attribute. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributenamelengthcheck",
+					Description: `(Optional) State if XML Max attribute name length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributes",
+					Description: `(Optional) Specify maximum number of attributes per XML element. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributescheck",
+					Description: `(Optional) State if XML Max attributes check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributevaluelength",
+					Description: `(Optional) Specify the longest value of any XML attribute. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxattributevaluelengthcheck",
+					Description: `(Optional) State if XML Max atribute value length is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxchardatalength",
+					Description: `(Optional) Specify the maximum size of CDATA. Protects against overflow attacks and large quantities of unparsed data within XML messages.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxchardatalengthcheck",
+					Description: `(Optional) State if XML Max CDATA length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementchildren",
+					Description: `(Optional) Specify the maximum number of children allowed per XML element. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementchildrencheck",
+					Description: `(Optional) State if XML Max element children check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementdepth",
+					Description: `(Optional) Maximum nesting (depth) of XML elements. This check protects against documents that have excessive hierarchy depths.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementdepthcheck",
+					Description: `(Optional) State if XML Max element depth check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementnamelength",
+					Description: `(Optional) Specify the longest name of any element (including the expanded namespace) to protect against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementnamelengthcheck",
+					Description: `(Optional) State if XML Max element name length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelements",
+					Description: `(Optional) Specify the maximum number of XML elements allowed. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxelementscheck",
+					Description: `(Optional) State if XML Max elements check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxentityexpansiondepth",
+					Description: `(Optional) Specify maximum entity expansion depth. Protects aganist Entity Expansion Attack.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxentityexpansiondepthcheck",
+					Description: `(Optional) State if XML Max Entity Expansions Depth Check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxentityexpansions",
+					Description: `(Optional) Specify maximum allowed number of entity expansions. Protects aganist Entity Expansion Attack.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxentityexpansionscheck",
+					Description: `(Optional) State if XML Max Entity Expansions Check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxfilesize",
+					Description: `(Optional) Specify the maximum size of XML messages. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxfilesizecheck",
+					Description: `(Optional) State if XML Max file size check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnamespaces",
+					Description: `(Optional) Specify maximum number of active namespaces. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnamespacescheck",
+					Description: `(Optional) State if XML Max namespaces check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnamespaceurilength",
+					Description: `(Optional) Specify the longest URI of any XML namespace. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnamespaceurilengthcheck",
+					Description: `(Optional) State if XML Max namespace URI length check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnodes",
+					Description: `(Optional) Specify the maximum number of XML nodes. Protects against overflow attacks.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxnodescheck",
+					Description: `(Optional) State if XML Max nodes check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxsoaparrayrank",
+					Description: `(Optional) XML Max Individual SOAP Array Rank. This is the dimension of the SOAP array.`,
+				},
+				resource.Attribute{
+					Name:        "xmlmaxsoaparraysize",
+					Description: `(Optional) XML Max Total SOAP Array Size. Protects against SOAP Array Abuse attack.`,
+				},
+				resource.Attribute{
+					Name:        "xmlminfilesize",
+					Description: `(Optional) Enforces minimum message size.`,
+				},
+				resource.Attribute{
+					Name:        "xmlminfilesizecheck",
+					Description: `(Optional) State if XML Min file size check is ON or OFF.`,
+				},
+				resource.Attribute{
+					Name:        "xmlsoaparraycheck",
+					Description: `(Optional) State if XML SOAP Array check is ON or OFF. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmldosurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmldosurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmldosurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmldosurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmldosurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmldosurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmldosurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmldosurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_xmlsqlinjection_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_xmlsqlinjection_binding resource is used to bind xmlsqlinjection to appfwprofile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"xmlsqlinjection",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "xmlsqlinjection",
+					Description: `(Required) Exempt the specified URL from the XML SQL injection check. An XML SQL injection exemption (relaxation) consists of the following items:`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "as_scan_location_xmlsql",
+					Description: `(Optional) Location of SQL injection exception - XML Element or Attribute.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_xmlsql",
+					Description: `(Optional) Is the XML SQL Injection exempted field name a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlsqlinjection_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlsqlinjection` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlsqlinjection_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlsqlinjection_binding.tf_binding tf_appfwprofile,hello ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlsqlinjection_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlsqlinjection` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlsqlinjection_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlsqlinjection_binding.tf_binding tf_appfwprofile,hello ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_xmlwsiurl_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_xmlwsiurl_binding resource is used to bind xmlwsiurl to appfw profile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"xmlwsiurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "xmlwsiurl",
+					Description: `(Required) XML WS-I URL regular expression length.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "xmlwsichecks",
+					Description: `(Optional) Specify a comma separated list of relevant WS-I rule IDs. (R1140, R1141) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlwsiurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlwsiurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlwsiurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlwsiurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlwsiurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `xmlwsiurl` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlwsiurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlwsiurl_binding.tf_binding tf_appfwprofile,.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwprofile_xmlxss_binding",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwprofile_xmlxss_binding resource is used to bind xmlxss with appfw profile.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwprofile",
+				"xmlxss",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the profile to which to bind an exemption or rule.`,
+				},
+				resource.Attribute{
+					Name:        "xmlxss",
+					Description: `(Required) Exempt the specified URL from the XML cross-site scripting (XSS) check. An XML cross-site scripting exemption (relaxation) consists of the following items:`,
+				},
+				resource.Attribute{
+					Name:        "as_scan_location_xmlxss",
+					Description: `(Required) Location of XSS injection exception - XML Element or Attribute.`,
+				},
+				resource.Attribute{
+					Name:        "alertonly",
+					Description: `(Optional) Send SNMP alert?`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments about the purpose of profile, or other useful information about the profile.`,
+				},
+				resource.Attribute{
+					Name:        "isautodeployed",
+					Description: `(Optional) Is the rule auto deployed by dynamic profile ?`,
+				},
+				resource.Attribute{
+					Name:        "isregex_xmlxss",
+					Description: `(Optional) Is the XML XSS exempted field name a regular expression?`,
+				},
+				resource.Attribute{
+					Name:        "resourceid",
+					Description: `(Optional) A "id" that identifies the rule.`,
+				},
+				resource.Attribute{
+					Name:        "ruletype",
+					Description: `(Optional) Specifies rule type of binding`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Enabled. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlxss_binding. It is the concatenation ` + "`" + `name` + "`" + ` ,` + "`" + `xmlxss` + "`" + ` and ` + "`" + `as_scan_location_xmlxss` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlxss_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlxss_binding.tf_binding tf_appfwprofile,tf_xmlxss,ELEMENT ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwprofile_xmlxss_binding. It is the concatenation ` + "`" + `name` + "`" + ` ,` + "`" + `xmlxss` + "`" + ` and ` + "`" + `as_scan_location_xmlxss` + "`" + ` attributes separated by comma. ## Import A appfwprofile_xmlxss_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwprofile_xmlxss_binding.tf_binding tf_appfwprofile,tf_xmlxss,ELEMENT ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwsettings",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwsettings resource is used to create configure aplication firewall settings.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwsettings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ceflogging",
+					Description: `(Optional) Enable CEF format logs.`,
+				},
+				resource.Attribute{
+					Name:        "centralizedlearning",
+					Description: `(Optional) Flag used to enable/disable ADM centralized learning`,
+				},
+				resource.Attribute{
+					Name:        "clientiploggingheader",
+					Description: `(Optional) Name of an HTTP header that contains the IP address that the client used to connect to the protected web site or service.`,
+				},
+				resource.Attribute{
+					Name:        "cookiepostencryptprefix",
+					Description: `(Optional) String that is prepended to all encrypted cookie values.`,
+				},
+				resource.Attribute{
+					Name:        "defaultprofile",
+					Description: `(Optional) Profile to use when a connection does not match any policy. Default setting is APPFW_BYPASS, which sends unmatched connections back to the Citrix ADC without attempting to filter them further.`,
+				},
+				resource.Attribute{
+					Name:        "entitydecoding",
+					Description: `(Optional) Transform multibyte (double- or half-width) characters to single width characters.`,
+				},
+				resource.Attribute{
+					Name:        "geolocationlogging",
+					Description: `(Optional) Enable Geo-Location Logging in CEF format logs.`,
+				},
+				resource.Attribute{
+					Name:        "importsizelimit",
+					Description: `(Optional) Cumulative total maximum number of bytes in web forms imported to a protected web site. If a user attempts to upload files with a total byte count higher than the specified limit, the application firewall blocks the request.`,
+				},
+				resource.Attribute{
+					Name:        "learnratelimit",
+					Description: `(Optional) Maximum number of connections per second that the application firewall learning engine examines to generate new relaxations for learning-enabled security checks. The application firewall drops any connections above this limit from the list of connections used by the learning engine.`,
+				},
+				resource.Attribute{
+					Name:        "logmalformedreq",
+					Description: `(Optional) Log requests that are so malformed that application firewall parsing doesn't occur.`,
+				},
+				resource.Attribute{
+					Name:        "malformedreqaction",
+					Description: `(Optional) flag to define action on malformed requests that application firewall cannot parse`,
+				},
+				resource.Attribute{
+					Name:        "proxyport",
+					Description: `(Optional) Proxy Server Port to get updated signatures from AWS.`,
+				},
+				resource.Attribute{
+					Name:        "proxyserver",
+					Description: `(Optional) Proxy Server IP to get updated signatures from AWS.`,
+				},
+				resource.Attribute{
+					Name:        "sessioncookiename",
+					Description: `(Optional) Name of the session cookie that the application firewall uses to track user sessions. Must begin with a letter or number, and can consist of from 1 to 31 letters, numbers, and the hyphen (-) and underscore (\_) symbols. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cookie name" or 'my cookie name').`,
+				},
+				resource.Attribute{
+					Name:        "sessionlifetime",
+					Description: `(Optional) Maximum amount of time (in seconds) that the application firewall allows a user session to remain active, regardless of user activity. After this time, the user session is terminated. Before continuing to use the protected web site, the user must establish a new session by opening a designated start URL.`,
+				},
+				resource.Attribute{
+					Name:        "sessionlimit",
+					Description: `(Optional) Maximum number of sessions that the application firewall allows to be active, regardless of user activity. After the max_limit reaches, No more user session will be created .`,
+				},
+				resource.Attribute{
+					Name:        "sessiontimeout",
+					Description: `(Optional) Timeout, in seconds, after which a user session is terminated. Before continuing to use the protected web site, the user must establish a new session by opening a designated start URL.`,
+				},
+				resource.Attribute{
+					Name:        "signatureautoupdate",
+					Description: `(Optional) Flag used to enable/disable auto update signatures`,
+				},
+				resource.Attribute{
+					Name:        "signatureurl",
+					Description: `(Optional) URL to download the mapping file from server`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Profile to use when an application firewall policy evaluates to undefined (UNDEF). An UNDEF event indicates an internal error condition. The APPFW_BLOCK built-in profile is the default setting. You can specify a different built-in or user-created profile as the UNDEF profile.`,
+				},
+				resource.Attribute{
+					Name:        "useconfigurablesecretkey",
+					Description: `(Optional) Use configurable secret key in AppFw operations ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwsettings. It is a unique string prefixed with "tf-appfwsettings-".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwsettings. It is a unique string prefixed with "tf-appfwsettings-".`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_appfwurlencodedformcontenttype",
+			Category:         "Application Firewall",
+			ShortDescription: ``,
+			Description: `
+
+The appfwurlencodedformcontenttype resource is used to create appfw urlencoded form contenttype.
+
+
+`,
+			Keywords: []string{
+				"application",
+				"firewall",
+				"appfwurlencodedformcontenttype",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "urlencodedformcontenttypevalue",
+					Description: `(Required) Content type to be classified as urlencoded form`,
+				},
+				resource.Attribute{
+					Name:        "isregex",
+					Description: `(Optional) Is urlencoded form content type a regular expression? ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwurlencodedformcontenttype. It has the same value as the ` + "`" + `urlencodedformcontenttypevalue` + "`" + ` attribute. ## Import A appfwurlencodedformcontenttype can be imported using its urlencodedformcontenttypevalue, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwurlencodedformcontenttype.tf_urlencodedformcontenttype tf_urlencodedformcontenttype ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the appfwurlencodedformcontenttype. It has the same value as the ` + "`" + `urlencodedformcontenttypevalue` + "`" + ` attribute. ## Import A appfwurlencodedformcontenttype can be imported using its urlencodedformcontenttypevalue, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_appfwurlencodedformcontenttype.tf_urlencodedformcontenttype tf_urlencodedformcontenttype ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1177,6 +3203,4212 @@ The resource is used to create audit syslog policies
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_authenticationauthnprofile",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationauthnprofile resource is used to create Authentication profile resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationauthnprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the authentication profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the RADIUS action is added.`,
+				},
+				resource.Attribute{
+					Name:        "authnvsname",
+					Description: `(Required) Name of the authentication vserver at which authentication should be done.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationdomain",
+					Description: `(Optional) Domain for which TM cookie must to be set. If unspecified, cookie will be set for FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationhost",
+					Description: `(Optional) Hostname of the authentication vserver to which user must be redirected for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationlevel",
+					Description: `(Optional) Authentication weight or level of the vserver to which this will bound. This is used to order TM vservers based on the protection required. A session that is created by authenticating against TM vserver at given level cannot be used to access TM vserver at a higher level. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationauthnprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationauthnprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationauthnprofile.tf_authenticationauthnprofile tf_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationauthnprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationauthnprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationauthnprofile.tf_authenticationauthnprofile tf_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationcaptchaaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationcaptchaaction resource is used to create authentication captchaaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationcaptchaaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new captcha action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "secretkey",
+					Description: `(Required) Secret of gateway as established at the captcha source.`,
+				},
+				resource.Attribute{
+					Name:        "sitekey",
+					Description: `(Required) Sitekey to identify gateway fqdn while loading captcha.`,
+				},
+				resource.Attribute{
+					Name:        "serverurl",
+					Description: `(Optional) This is the endpoint at which captcha response is validated.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the group that is added to user sessions that match current policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcaptchaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcaptchaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcaptchaaction.tf_captchaaction tf_captchaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcaptchaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcaptchaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcaptchaaction.tf_captchaaction tf_captchaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationcertaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationcertaction resource is used to create authentication certaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationcertaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the client cert authentication server profile (action). Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after certifcate action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "groupnamefield",
+					Description: `(Optional) Client-cert field from which the group is extracted. Must be set to either ""Subject"" and ""Issuer"" (include both sets of double quotation marks). Format: <field>:<subfield>`,
+				},
+				resource.Attribute{
+					Name:        "twofactor",
+					Description: `(Optional) Enables or disables two-factor authentication. Two factor authentication is client cert authentication followed by password authentication.`,
+				},
+				resource.Attribute{
+					Name:        "usernamefield",
+					Description: `(Optional) Client-cert field from which the username is extracted. Must be set to either ""Subject"" and ""Issuer"" (include both sets of double quotation marks). Format: <field>:<subfield>. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcertaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcertaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcertaction.tf_certaction tf_certaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcertaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcertaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcertaction.tf_certaction tf_certaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationcertpolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationcertpolicy resource is used to create authentication certpolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationcertpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the client certificate authentication policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after cert authentication policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the authentication server.`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Optional) Name of the client cert authentication action to be performed if the policy matches. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcertpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcertpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcertpolicy.tf_certpolicy tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcertpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcertpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcertpolicy.tf_certpolicy tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationcitrixauthaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationcitrixauthaction resource is used to create authentication citrixauthaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationcitrixauthaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new Citrix Authentication action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) Authentication needs to be disabled for searching user object without performing authentication.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationtype",
+					Description: `(Optional) Type of the Citrix Authentication implementation. Default implementation uses Citrix Cloud Connector. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcitrixauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcitrixauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcitrixauthaction.tf_citrixauthaction tf_citrixauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationcitrixauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationcitrixauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationcitrixauthaction.tf_citrixauthaction tf_citrixauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationdfaaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationdfaaction resource is used to create Authentication dfa action Resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationdfaaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the DFA action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the DFA action is added.`,
+				},
+				resource.Attribute{
+					Name:        "passphrase",
+					Description: `(Required) Key shared between the DFA server and the Citrix ADC. Required to allow the Citrix ADC to communicate with the DFA server.`,
+				},
+				resource.Attribute{
+					Name:        "serverurl",
+					Description: `(Required) DFA Server URL`,
+				},
+				resource.Attribute{
+					Name:        "clientid",
+					Description: `(Required) If configured, this string is sent to the DFA server as the X-Citrix-Exchange header value.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationdfaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationdfaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationdfaaction.tf_dfaaction tf_dfaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationdfaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationdfaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationdfaaction.tf_dfaaction tf_dfaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationdfapolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationdfapolicy resource is used to create authentication dfapolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationdfapolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the DFA policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after DFA policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the DFA action to perform if the policy matches.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the Web server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationdfapolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationdfapolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationdfapolicy.td_dfapolicy td_dfapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationdfapolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationdfapolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationdfapolicy.td_dfapolicy td_dfapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationemailaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationemailaction resource is used to create authentication emailaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationemailaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new email action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username/Clientid/EmailID to be used to authenticate to the server.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Password/Clientsecret to use when authenticating to the server.`,
+				},
+				resource.Attribute{
+					Name:        "serverurl",
+					Description: `(Required) Address of the server that delivers the message. It is fully qualified fqdn such as http(s):// or smtp(s):// for http and smtp protocols respectively. For SMTP, the port number is mandatory like smtps://smtp.example.com:25.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) Content to be delivered to the user. "$code" string within the content will be replaced with the actual one-time-code to be sent.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the group that is added to user sessions that match current IdP policy. It can be used in policies to identify relying party trust.`,
+				},
+				resource.Attribute{
+					Name:        "emailaddress",
+					Description: `(Optional) An optional expression that yields user's email. When not configured, user's default mail address would be used. When configured, result of this expression is used as destination email address.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Time after which the code expires.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of the email action. Default type is SMTP. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationemailaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationemailaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationemailaction.tf_emailaction tf_emailaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationemailaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationemailaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationemailaction.tf_emailaction tf_emailaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationepaaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationepaaction resource is used to create authentication epaaction Resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationepaaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the epa action. Must begin with a letter, number, or the underscore character (_), and must consist only of letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after epa action is created.The following requirement applies only to the Citrix ADC CLI:If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my aaa action" or 'my aaa action').`,
+				},
+				resource.Attribute{
+					Name:        "csecexpr",
+					Description: `(Required) it holds the ClientSecurityExpression to be sent to the client`,
+				},
+				resource.Attribute{
+					Name:        "defaultepagroup",
+					Description: `(Optional) This is the default group that is chosen when the EPA check succeeds.`,
+				},
+				resource.Attribute{
+					Name:        "deletefiles",
+					Description: `(Optional) String specifying the path(s) and name(s) of the files to be deleted by the endpoint analysis (EPA) tool. Multiple files to be delimited by comma`,
+				},
+				resource.Attribute{
+					Name:        "killprocess",
+					Description: `(Optional) String specifying the name of a process to be terminated by the endpoint analysis (EPA) tool. Multiple processes to be delimited by comma`,
+				},
+				resource.Attribute{
+					Name:        "quarantinegroup",
+					Description: `(Optional) This is the quarantine group that is chosen when the EPA check fails if configured. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationepaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationepaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationepaaction.tf_epaaction tf_epaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationepaaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationepaaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationepaaction.tf_epaaction tf_epaaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationldapaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationldapaction resource is used to create LDAP action resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationldapaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new LDAP action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the LDAP action is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "alternateemailattr",
+					Description: `(Optional) The NetScaler appliance uses the alternateive email attribute to query the Active Directory for the alternative email id of a user`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Expression that would be evaluated to extract attribute1 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Expression that would be evaluated to extract attribute10 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Expression that would be evaluated to extract attribute11 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Expression that would be evaluated to extract attribute12 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Expression that would be evaluated to extract attribute13 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Expression that would be evaluated to extract attribute14 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Expression that would be evaluated to extract attribute15 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Expression that would be evaluated to extract attribute16 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Expression that would be evaluated to extract attribute2 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Expression that would be evaluated to extract attribute3 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Expression that would be evaluated to extract attribute4 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Expression that would be evaluated to extract attribute5 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Expression that would be evaluated to extract attribute6 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Expression that would be evaluated to extract attribute7 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Expression that would be evaluated to extract attribute8 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Expression that would be evaluated to extract attribute9 from the ldap response`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) List of attribute names separated by ',' which needs to be fetched from ldap server. Note that preceeding and trailing spaces will be removed. Attribute name can be 127 bytes and total length of this string should not cross 2047 bytes. These attributes have multi-value support separated by ',' and stored as key-value pair in AAA session`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) Perform LDAP authentication. If authentication is disabled, any LDAP authentication attempt returns authentication success if the user is found. CAUTION! Authentication should be disabled only for authorization group extraction or where other (non-LDAP) authentication methods are in use and either bound to a primary list or flagged as secondary.`,
+				},
+				resource.Attribute{
+					Name:        "authtimeout",
+					Description: `(Optional) Number of seconds the Citrix ADC waits for a response from the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "cloudattributes",
+					Description: `(Optional) The Citrix ADC uses the cloud attributes to extract additional attributes from LDAP servers required for Citrix Cloud operations`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) The Citrix ADC uses the email attribute to query the Active Directory for the email id of a user`,
+				},
+				resource.Attribute{
+					Name:        "followreferrals",
+					Description: `(Optional) Setting this option to ON enables following LDAP referrals received from the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "groupattrname",
+					Description: `(Optional) LDAP group attribute name. Used for group extraction on the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "groupnameidentifier",
+					Description: `(Optional) Name that uniquely identifies a group in LDAP or Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "groupsearchattribute",
+					Description: `(Optional) LDAP group search attribute. Used to determine to which groups a group belongs.`,
+				},
+				resource.Attribute{
+					Name:        "groupsearchfilter",
+					Description: `(Optional) String to be combined with the default LDAP group search string to form the search value. For example, the group search filter ""vpnallowed=true"" when combined with the group identifier ""samaccount"" and the group name ""g1"" yields the LDAP search string ""(&(vpnallowed=true)(samaccount=g1)"". If nestedGroupExtraction is ENABLED, the filter is applied on the first level group search as well, otherwise first level groups (of which user is a direct member of) will be fetched without applying this filter. (Be sure to enclose the search string in two sets of double quotation marks; both sets are needed.)`,
+				},
+				resource.Attribute{
+					Name:        "groupsearchsubattribute",
+					Description: `(Optional) LDAP group search subattribute. Used to determine to which groups a group belongs.`,
+				},
+				resource.Attribute{
+					Name:        "kbattribute",
+					Description: `(Optional) KnowledgeBasedAuthentication(KBA) attribute on AD. This attribute is used to store and retrieve preconfigured Question and Answer knowledge base used for KBA authentication.`,
+				},
+				resource.Attribute{
+					Name:        "ldapbase",
+					Description: `(Optional) Base (node) from which to start LDAP searches. If the LDAP server is running locally, the default value of base is dc=netscaler, dc=com.`,
+				},
+				resource.Attribute{
+					Name:        "ldapbinddn",
+					Description: `(Optional) Full distinguished name (DN) that is used to bind to the LDAP server. Default: cn=Manager,dc=netscaler,dc=com`,
+				},
+				resource.Attribute{
+					Name:        "ldapbinddnpassword",
+					Description: `(Optional) Password used to bind to the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "ldaphostname",
+					Description: `(Optional) Hostname for the LDAP server. If -validateServerCert is ON then this must be the host name on the certificate from the LDAP server. A hostname mismatch will cause a connection failure.`,
+				},
+				resource.Attribute{
+					Name:        "ldaploginname",
+					Description: `(Optional) LDAP login name attribute. The Citrix ADC uses the LDAP login name to query external LDAP servers or Active Directories.`,
+				},
+				resource.Attribute{
+					Name:        "maxldapreferrals",
+					Description: `(Optional) Specifies the maximum number of nested referrals to follow.`,
+				},
+				resource.Attribute{
+					Name:        "maxnestinglevel",
+					Description: `(Optional) If nested group extraction is ON, specifies the number of levels up to which group extraction is performed.`,
+				},
+				resource.Attribute{
+					Name:        "mssrvrecordlocation",
+					Description: `(Optional) MSSRV Specific parameter. Used to locate the DNS node to which the SRV record pertains in the domainname. The domainname is appended to it to form the srv record. Example : For "dc._msdcs", the srv record formed is _ldap._tcp.dc._msdcs.<domainname>.`,
+				},
+				resource.Attribute{
+					Name:        "nestedgroupextraction",
+					Description: `(Optional) Allow nested group extraction, in which the Citrix ADC queries external LDAP servers to determine whether a group is part of another group.`,
+				},
+				resource.Attribute{
+					Name:        "otpsecret",
+					Description: `(Optional) OneTimePassword(OTP) Secret key attribute on AD. This attribute is used to store and retrieve secret key used for OTP check`,
+				},
+				resource.Attribute{
+					Name:        "passwdchange",
+					Description: `(Optional) Allow password change requests.`,
+				},
+				resource.Attribute{
+					Name:        "pushservice",
+					Description: `(Optional) Name of the service used to send push notifications`,
+				},
+				resource.Attribute{
+					Name:        "referraldnslookup",
+					Description: `(Optional) Specifies the DNS Record lookup Type for the referrals`,
+				},
+				resource.Attribute{
+					Name:        "requireuser",
+					Description: `(Optional) Require a successful user search for authentication. CAUTION! This field should be set to NO only if usersearch not required [Both username validation as well as password validation skipped] and (non-LDAP) authentication methods are in use and either bound to a primary list or flagged as secondary.`,
+				},
+				resource.Attribute{
+					Name:        "searchfilter",
+					Description: `(Optional) String to be combined with the default LDAP user search string to form the search value. For example, if the search filter "vpnallowed=true" is combined with the LDAP login name "samaccount" and the user-supplied username is "bob", the result is the LDAP search string ""(&(vpnallowed=true)(samaccount=bob)"" (Be sure to enclose the search string in two sets of double quotation marks; both sets are needed.).`,
+				},
+				resource.Attribute{
+					Name:        "sectype",
+					Description: `(Optional) Type of security used for communications between the Citrix ADC and the LDAP server. For the PLAINTEXT setting, no encryption is required.`,
+				},
+				resource.Attribute{
+					Name:        "serverip",
+					Description: `(Optional) IP address assigned to the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "servername",
+					Description: `(Optional) LDAP server name as a FQDN. Mutually exclusive with LDAP IP address.`,
+				},
+				resource.Attribute{
+					Name:        "serverport",
+					Description: `(Optional) Port on which the LDAP server accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "sshpublickey",
+					Description: `(Optional) SSH PublicKey is attribute on AD. This attribute is used to retrieve ssh PublicKey for RBA authentication`,
+				},
+				resource.Attribute{
+					Name:        "ssonameattribute",
+					Description: `(Optional) LDAP single signon (SSO) attribute. The Citrix ADC uses the SSO name attribute to query external LDAP servers or Active Directories for an alternate username.`,
+				},
+				resource.Attribute{
+					Name:        "subattributename",
+					Description: `(Optional) LDAP group sub-attribute name. Used for group extraction from the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "svrtype",
+					Description: `(Optional) The type of LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "validateservercert",
+					Description: `(Optional) When to validate LDAP server certs ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationldapaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationldapaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationldapaction.tf_authenticationldapaction ldapaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationldapaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationldapaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationldapaction.tf_authenticationldapaction ldapaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationldappolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationldappolicy resource is used to create authentication ldap policy.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationldappolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the LDAP policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after LDAP policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the LDAP server.`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Optional) Name of the LDAP action to perform if the policy matches. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationldappolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationldappolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationldappolicy.tf_authenticationldappolicy tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationldappolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationldappolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationldappolicy.tf_authenticationldappolicy tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationlocalpolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationlocalpolicy resource is used to create authentication localpolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationlocalpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the local authentication policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after local policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to perform the authentication. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationlocalpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationlocalpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationlocalpolicy.tf_authenticationlocalpolicy tf_authenticationlocalpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationlocalpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationlocalpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationlocalpolicy.tf_authenticationlocalpolicy tf_authenticationlocalpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationloginschema",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationloginschema resource is used to create authentication loginschema Resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationloginschema",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new login schema. Login schema defines the way login form is rendered. It provides a way to customize the fields that are shown to the user. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "authenticationschema",
+					Description: `(Required) Name of the file for reading authentication schema to be sent for Login Page UI. This file should contain xml definition of elements as per Citrix Forms Authentication Protocol to be able to render login form. If administrator does not want to prompt users for additional credentials but continue with previously obtained credentials, then "noschema" can be given as argument. Please note that this applies only to loginSchemas that are used with user-defined factors, and not the vserver factor.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationstrength",
+					Description: `(Optional) Weight of the current authentication`,
+				},
+				resource.Attribute{
+					Name:        "passwdexpression",
+					Description: `(Optional) Expression for password extraction during login. This can be any relevant advanced policy expression.`,
+				},
+				resource.Attribute{
+					Name:        "passwordcredentialindex",
+					Description: `(Optional) The index at which user entered password should be stored in session.`,
+				},
+				resource.Attribute{
+					Name:        "ssocredentials",
+					Description: `(Optional) This option indicates whether current factor credentials are the default SSO (SingleSignOn) credentials.`,
+				},
+				resource.Attribute{
+					Name:        "usercredentialindex",
+					Description: `(Optional) The index at which user entered username should be stored in session.`,
+				},
+				resource.Attribute{
+					Name:        "userexpression",
+					Description: `(Optional) Expression for username extraction during login. This can be any relevant advanced policy expression. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationloginschema. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationloginschema can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationloginschema.tf_loginschema tf_loginschema ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationloginschema. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationloginschema can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationloginschema.tf_loginschema tf_loginschema ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationloginschemapolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationloginschemapolicy resource is used to create authentication loginschema policy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationloginschemapolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the LoginSchema policy. This is used for selecting parameters for user logon. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression which is evaluated to choose a profile for authentication. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the profile to apply to requests or connections that match this policy.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of messagelog action to use when a request matches this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the LoginSchema policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my loginschemapolicy policy" or 'my loginschemapolicy policy').`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition. Only the above built-in actions can be used. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationloginschemapolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationloginschemapolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationloginschemapolicy.tf_loginschemapolicy tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationloginschemapolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationloginschemapolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationloginschemapolicy.tf_loginschemapolicy tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationnegotiateaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationnegotiateaction resource is used to create authentication negotiate action resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationnegotiateaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the AD KDC server profile (negotiate action). Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AD KDC server profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) Domain name of the service principal that represnts Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "domainuser",
+					Description: `(Optional) User name of the account that is mapped with Citrix ADC principal. This can be given along with domain and password when keytab file is not available. If username is given along with keytab file, then that keytab file will be searched for this user's credentials.`,
+				},
+				resource.Attribute{
+					Name:        "domainuserpasswd",
+					Description: `(Optional) Password of the account that is mapped to the Citrix ADC principal.`,
+				},
+				resource.Attribute{
+					Name:        "keytab",
+					Description: `(Optional) The path to the keytab file that is used to decrypt kerberos tickets presented to Citrix ADC. If keytab is not available, domain/username/password can be specified in the negotiate action configuration`,
+				},
+				resource.Attribute{
+					Name:        "ntlmpath",
+					Description: `(Optional) The path to the site that is enabled for NTLM authentication, including FQDN of the server. This is used when clients fallback to NTLM.`,
+				},
+				resource.Attribute{
+					Name:        "ou",
+					Description: `(Optional) Active Directory organizational units (OU) attribute. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnegotiateaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnegotiateaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnegotiateaction.tf_negotiateaction tf_negotiateaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnegotiateaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnegotiateaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnegotiateaction.tf_negotiateaction tf_negotiateaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationnegotiatepolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationnegotiatepolicy resource is used to create authentication negotiatepolicy Resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationnegotiatepolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required ) Name for the negotiate authentication policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AD KCD (negotiate) policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Required) Name of the negotiate action to perform if the policy matches.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the AD KCD server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnegotiatepolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnegotiatepolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnegotiatepolicy.tf_negotiatepolicy tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnegotiatepolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnegotiatepolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnegotiatepolicy.tf_negotiatepolicy tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationnoauthaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationnoauthaction resource is used to create Authenticationnoauth action resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationnoauthaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new no-authentication action. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the group that is added to user sessions that match current policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnoauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnoauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnoauthaction.tf_noauthaction tf_noauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationnoauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationnoauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationnoauthaction.tf_noauthaction tf_noauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationoauthaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationoauthaction resource is used to create OAuth authentication action resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationoauthaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the OAuth Authentication action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "tokenendpoint",
+					Description: `(Required) URL to which OAuth token will be posted to verify its authenticity. User obtains this token from Authorization server upon successful authentication. Citrix ADC will validate presented token by posting it to the URL configured.`,
+				},
+				resource.Attribute{
+					Name:        "authorizationendpoint",
+					Description: `(Required) Authorization endpoint/url to which unauthenticated user will be redirected. Citrix ADC redirects user to this endpoint by adding query parameters including clientid. If this parameter not specified then as default value we take Token Endpoint/URL value. Please note that Authorization Endpoint or Token Endpoint is mandatory for oauthAction`,
+				},
+				resource.Attribute{
+					Name:        "clientid",
+					Description: `(Required) Unique identity of the client/user who is getting authenticated. Authorization server infers client configuration using this ID`,
+				},
+				resource.Attribute{
+					Name:        "clientsecret",
+					Description: `(Required) Secret string established by user and authorization server`,
+				},
+				resource.Attribute{
+					Name:        "allowedalgorithms",
+					Description: `(Optional) Multivalued option to specify allowed token verification algorithms.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute1`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute10`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute11`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute12`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute13`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute14`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute15`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute16`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute2`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute3`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute4`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute5`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute6`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute7`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute8`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Name of the attribute to be extracted from OAuth Token and to be stored in the attribute9`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) List of attribute names separated by ',' which needs to be extracted. Note that preceding and trailing spaces will be removed. Attribute name can be 127 bytes and total length of this string should not cross 1023 bytes. These attributes have multi-value support separated by ',' and stored as key-value pair in AAA session`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience for which token sent by Authorization server is applicable. This is typically entity name or url that represents the recipient`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) If authentication is disabled, password is not sent in the request.`,
+				},
+				resource.Attribute{
+					Name:        "certendpoint",
+					Description: `(Optional) URL of the endpoint that contains JWKs (Json Web Key) for JWT (Json Web Token) verification.`,
+				},
+				resource.Attribute{
+					Name:        "certfilepath",
+					Description: `(Optional) Path to the file that contains JWKs (Json Web Key) for JWT (Json Web Token) verification.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "granttype",
+					Description: `(Optional) Grant type support. value can be code or password`,
+				},
+				resource.Attribute{
+					Name:        "graphendpoint",
+					Description: `(Optional) URL of the Graph API service to learn Enterprise Mobility Services (EMS) endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "idtokendecryptendpoint",
+					Description: `(Optional) URL to which obtained idtoken will be posted to get a decrypted user identity. Encrypted idtoken will be obtained by posting OAuth token to token endpoint. In order to decrypt idtoken, Citrix ADC posts request to the URL configured`,
+				},
+				resource.Attribute{
+					Name:        "introspecturl",
+					Description: `(Optional) URL to which access token would be posted for validation`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Optional) Identity of the server whose tokens are to be accepted.`,
+				},
+				resource.Attribute{
+					Name:        "metadataurl",
+					Description: `(Optional) Well-known configuration endpoint of the Authorization Server. Citrix ADC fetches server details from this endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "oauthtype",
+					Description: `(Optional) Type of the OAuth implementation. Default value is generic implementation that is applicable for most deployments.`,
+				},
+				resource.Attribute{
+					Name:        "pkce",
+					Description: `(Optional) Option to enable/disable PKCE flow during authentication.`,
+				},
+				resource.Attribute{
+					Name:        "refreshinterval",
+					Description: `(Optional) Interval at which services are monitored for necessary configuration.`,
+				},
+				resource.Attribute{
+					Name:        "resourceuri",
+					Description: `(Optional) Resource URL for Oauth configuration.`,
+				},
+				resource.Attribute{
+					Name:        "skewtime",
+					Description: `(Optional) This option specifies the allowed clock skew in number of minutes that Citrix ADC allows on an incoming token. For example, if skewTime is 10, then token would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.`,
+				},
+				resource.Attribute{
+					Name:        "tenantid",
+					Description: `(Optional) TenantID of the application. This is usually specific to providers such as Microsoft and usually refers to the deployment identifier.`,
+				},
+				resource.Attribute{
+					Name:        "tokenendpointauthmethod",
+					Description: `(Optional) Option to select the variant of token authentication method. This method is used while exchanging code with IdP.`,
+				},
+				resource.Attribute{
+					Name:        "userinfourl",
+					Description: `(Optional) URL to which OAuth access token will be posted to obtain user information.`,
+				},
+				resource.Attribute{
+					Name:        "usernamefield",
+					Description: `(Optional) Attribute in the token from which username should be extracted. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthaction.tf_authenticationoauthaction tf_authenticationoauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthaction.tf_authenticationoauthaction tf_authenticationoauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationoauthidppolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"authentication",
+				"authenticationoauthidppolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the OAuth Identity Provider (IdP) authentication policy. This is used for configuring Citrix ADC as OAuth Identity Provider. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression that the policy uses to determine whether to respond to the specified request.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the profile to apply to requests or connections that match this policy.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of messagelog action to use when a request matches this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the OAuth IdentityProvider policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my oauthidppolicy policy" or 'my oauthidppolicy policy').`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition. Only DROP/RESET actions can be used. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthidppolicy.tf_idppolicy tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthidppolicy.tf_idppolicy tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationoauthidpprofile",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationoauthidpprofile resource is used to create authenticationOAuthIdpProfile resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationoauthidpprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new OAuth Identity Provider (IdP) single sign-on profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "clientid",
+					Description: `(Required) Unique identity of the relying party requesting for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecret",
+					Description: `(Required) Unique secret string to authorize relying party at authorization server.`,
+				},
+				resource.Attribute{
+					Name:        "redirecturl",
+					Description: `(Required) URL endpoint on relying party to which the OAuth token is to be sent.`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) Name-Value pairs of attributes to be inserted in idtoken. Configuration format is name=value_expr@@@name2=value2_expr@@@. '@@@' is used as delimiter between Name-Value pairs. name is a literal string whose value is 127 characters and does not contain '=' character. Value is advanced policy expression terminated by @@@ delimiter. Last value need not contain the delimiter.`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience for which token is being sent by Citrix ADC IdP. This is typically entity name or url that represents the recipient`,
+				},
+				resource.Attribute{
+					Name:        "configservice",
+					Description: `(Optional) Name of the entity that is used to obtain configuration for the current authentication request. It is used only in Citrix Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This group will be part of AAA session's internal group list. This will be helpful to admin in Nfactor flow to decide right AAA configuration for Relaying Party. In authentication policy AAA.USER.IS_MEMBER_OF("<default_auth_group>") is way to use this feature.`,
+				},
+				resource.Attribute{
+					Name:        "encrypttoken",
+					Description: `(Optional) Option to encrypt token when Citrix ADC IDP sends one.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Optional) The name to be used in requests sent from Citrix ADC to IdP to uniquely identify Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "refreshinterval",
+					Description: `(Optional) Interval at which Relying Party metadata is refreshed.`,
+				},
+				resource.Attribute{
+					Name:        "relyingpartymetadataurl",
+					Description: `(Optional) This is the endpoint at which Citrix ADC IdP can get details about Relying Party (RP) being configured. Metadata response should include endpoints for jwks_uri for RP public key(s).`,
+				},
+				resource.Attribute{
+					Name:        "sendpassword",
+					Description: `(Optional) Option to send encrypted password in idtoken.`,
+				},
+				resource.Attribute{
+					Name:        "signaturealg",
+					Description: `(Optional) Algorithm to be used to sign OpenID tokens.`,
+				},
+				resource.Attribute{
+					Name:        "signatureservice",
+					Description: `(Optional) Name of the service in cloud used to sign the data. This is applicable only if signature if offloaded to cloud.`,
+				},
+				resource.Attribute{
+					Name:        "skewtime",
+					Description: `(Optional) This option specifies the duration for which the token sent by Citrix ADC IdP is valid. For example, if skewTime is 10, then token would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthidpprofile.tf_idpprofile tf_idpprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationoauthidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationoauthidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationoauthidpprofile.tf_idpprofile tf_idpprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationpolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationpolicy resource is used to create <fillme>.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the advance AUTHENTICATION policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after AUTHENTICATION policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the authentication action to be performed if the policy matches.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the AUTHENTICATION server.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of messagelog action to use when a request matches this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the authentication policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition. Only the above built-in actions can be used. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicy.tf_authenticationpolicy tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicy.tf_authenticationpolicy tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationpolicylabel",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationpolicylabel resource is used to create authentication policy label.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationpolicylabel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name for the new authentication policy label. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy label" or 'authentication policy label').`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this authentication policy label.`,
+				},
+				resource.Attribute{
+					Name:        "loginschema",
+					Description: `(Optional) Login schema associated with authentication policy label. Login schema defines the UI rendering by providing customization option of the fields. If user intervention is not needed for a given factor such as group extraction, a loginSchema whose authentication schema is "noschema" should be used.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) The new name of the auth policy label`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of feature (aaatm or rba) against which to match the policies bound to this policy label. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A authenticationpolicylabel can be imported using its labelname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicylabel.tf_authenticationpolicylabel tf_authenticationpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A authenticationpolicylabel can be imported using its labelname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicylabel.tf_authenticationpolicylabel tf_authenticationpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationpolicylabel_authenticationpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationpolicylabel_authenticationpolicy_binding resource is used to bind authenticationpolicylabel to authenticationpolicy.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationpolicylabel",
+				"authenticationpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the authentication policy label to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the authentication policy to bind to the policy label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) On success invoke label. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicylabel_authenticationpolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A authenticationpolicylabel_authenticationpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicylabel_authenticationpolicy_binding.tf_bind tf_authenticationpolicylabel,tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpolicylabel_authenticationpolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A authenticationpolicylabel_authenticationpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpolicylabel_authenticationpolicy_binding.tf_bind tf_authenticationpolicylabel,tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationpushservice",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationpushservice resource is used to create authentication pushservice resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationpushservice",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the push service. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. Cannot be changed after the profile is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my push service" or 'my push service').`,
+				},
+				resource.Attribute{
+					Name:        "clientid",
+					Description: `(Optional) Unique identity for communicating with Citrix Push server in cloud.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecret",
+					Description: `(Optional) Unique secret for communicating with Citrix Push server in cloud.`,
+				},
+				resource.Attribute{
+					Name:        "customerid",
+					Description: `(Optional) Customer id/name of the account in cloud that is used to create clientid/secret pair.`,
+				},
+				resource.Attribute{
+					Name:        "refreshinterval",
+					Description: `(Optional) Interval at which certificates or idtoken is refreshed. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpushservice. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationpushservice can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpushservice.tf_pushservice tf_pushservice ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationpushservice. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationpushservice can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationpushservice.tf_pushservice tf_pushservice ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationradiusaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationradiusaction resource is used to create authentication radiusaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationradiusaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the RADIUS action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the RADIUS action is added.`,
+				},
+				resource.Attribute{
+					Name:        "radkey",
+					Description: `(Required) Key shared between the RADIUS server and the Citrix ADC. Required to allow the Citrix ADC to communicate with the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "accounting",
+					Description: `(Optional) Whether the RADIUS server is currently accepting accounting messages.`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) Configure the RADIUS server state to accept or refuse authentication messages.`,
+				},
+				resource.Attribute{
+					Name:        "authservretry",
+					Description: `(Optional) Number of retry by the Citrix ADC before getting response from the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "authtimeout",
+					Description: `(Optional) Number of seconds the Citrix ADC waits for a response from the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "callingstationid",
+					Description: `(Optional) Send Calling-Station-ID of the client to the RADIUS server. IP Address of the client is sent as its Calling-Station-ID.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "ipattributetype",
+					Description: `(Optional) Remote IP address attribute type in a RADIUS response.`,
+				},
+				resource.Attribute{
+					Name:        "ipvendorid",
+					Description: `(Optional) Vendor ID of the intranet IP attribute in the RADIUS response. NOTE: A value of 0 indicates that the attribute is not vendor encoded.`,
+				},
+				resource.Attribute{
+					Name:        "passencoding",
+					Description: `(Optional) Encoding type for passwords in RADIUS packets that the Citrix ADC sends to the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "pwdattributetype",
+					Description: `(Optional) Vendor-specific password attribute type in a RADIUS response.`,
+				},
+				resource.Attribute{
+					Name:        "pwdvendorid",
+					Description: `(Optional) Vendor ID of the attribute, in the RADIUS response, used to extract the user password.`,
+				},
+				resource.Attribute{
+					Name:        "radattributetype",
+					Description: `(Optional) RADIUS attribute type, used for RADIUS group extraction.`,
+				},
+				resource.Attribute{
+					Name:        "radgroupseparator",
+					Description: `(Optional) RADIUS group separator string The group separator delimits group names within a RADIUS attribute for RADIUS group extraction.`,
+				},
+				resource.Attribute{
+					Name:        "radgroupsprefix",
+					Description: `(Optional) RADIUS groups prefix string. This groups prefix precedes the group names within a RADIUS attribute for RADIUS group extraction.`,
+				},
+				resource.Attribute{
+					Name:        "radnasid",
+					Description: `(Optional) If configured, this string is sent to the RADIUS server as the Network Access Server ID (NASID).`,
+				},
+				resource.Attribute{
+					Name:        "radnasip",
+					Description: `(Optional) If enabled, the Citrix ADC IP address (NSIP) is sent to the RADIUS server as the Network Access Server IP (NASIP) address. The RADIUS protocol defines the meaning and use of the NASIP address.`,
+				},
+				resource.Attribute{
+					Name:        "radvendorid",
+					Description: `(Optional) RADIUS vendor ID attribute, used for RADIUS group extraction.`,
+				},
+				resource.Attribute{
+					Name:        "serverip",
+					Description: `(Optional) IP address assigned to the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "servername",
+					Description: `(Optional) RADIUS server name as a FQDN. Mutually exclusive with RADIUS IP address.`,
+				},
+				resource.Attribute{
+					Name:        "serverport",
+					Description: `(Optional) Port number on which the RADIUS server listens for connections.`,
+				},
+				resource.Attribute{
+					Name:        "tunnelendpointclientip",
+					Description: `(Optional) Send Tunnel Endpoint Client IP address to the RADIUS server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationradiusaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationradiusaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationradiusaction.tf_radiusaction tf_radiusaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationradiusaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationradiusaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationradiusaction.tf_radiusaction tf_radiusaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationradiuspolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationradiuspolicy resource is used to create authentication radiuspolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationradiuspolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the RADIUS authentication policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after RADIUS policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Optional) Name of the RADIUS action to perform if the policy matches. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationradiuspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A <authenticationradiuspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationradiuspolicy.tf_radiuspolicy tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationradiuspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A <authenticationradiuspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationradiuspolicy.tf_radiuspolicy tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationsamlaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationsamlaction resource is used to create authenticationsamlaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationsamlaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the SAML server profile (action). Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after SAML profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "artifactresolutionserviceurl",
+					Description: `(Optional) URL of the Artifact Resolution Service on IdP to which Citrix ADC will post artifact to get actual SAML token.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute1. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute10. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute11. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute12. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute13. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute14. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute15. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute16. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute2. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute3. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute4. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute5. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute6. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute7. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute8. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Name of the attribute in SAML Assertion whose value needs to be extracted and stored as attribute9. Maximum length of the extracted attribute is 239 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "attributeconsumingserviceindex",
+					Description: `(Optional) Index/ID of the attribute specification at Identity Provider (IdP). IdP will locate attributes requested by SP using this index and send those attributes in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) List of attribute names separated by ',' which needs to be extracted. Note that preceeding and trailing spaces will be removed. Attribute name can be 127 bytes and total length of this string should not cross 2047 bytes. These attributes have multi-value support separated by ',' and stored as key-value pair in AAA session`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience for which assertion sent by IdP is applicable. This is typically entity name or url that represents ServiceProvider`,
+				},
+				resource.Attribute{
+					Name:        "authnctxclassref",
+					Description: `(Optional) This element specifies the authentication class types that are requested from IdP (IdentityProvider). InternetProtocol: This is applicable when a principal is authenticated through the use of a provided IP address. InternetProtocolPassword: This is applicable when a principal is authenticated through the use of a provided IP address, in addition to a username/password. Kerberos: This is applicable when the principal has authenticated using a password to a local authentication authority, in order to acquire a Kerberos ticket. MobileOneFactorUnregistered: This indicates authentication of the mobile device without requiring explicit end-user interaction. MobileTwoFactorUnregistered: This indicates two-factor based authentication during mobile customer registration process, such as secure device and user PIN. MobileOneFactorContract: Reflects mobile contract customer registration procedures and a single factor authentication. MobileTwoFactorContract: Reflects mobile contract customer registration procedures and a two-factor based authentication. Password: This class is applicable when a principal authenticates using password over unprotected http session. PasswordProtectedTransport: This class is applicable when a principal authenticates to an authentication authority through the presentation of a password over a protected session. PreviousSession: This class is applicable when a principal had authenticated to an authentication authority at some point in the past using any authentication context. X509: This indicates that the principal authenticated by means of a digital signature where the key was validated as part of an X.509 Public Key Infrastructure. PGP: This indicates that the principal authenticated by means of a digital signature where the key was validated as part of a PGP Public Key Infrastructure. SPKI: This indicates that the principal authenticated by means of a digital signature where the key was validated via an SPKI Infrastructure. XMLDSig: This indicates that the principal authenticated by means of a digital signature according to the processing rules specified in the XML Digital Signature specification. Smartcard: This indicates that the principal has authenticated using smartcard. SmartcardPKI: This class is applicable when a principal authenticates to an authentication authority through a two-factor authentication mechanism using a smartcard with enclosed private key and a PIN. SoftwarePKI: This class is applicable when a principal uses an X.509 certificate stored in software to authenticate to the authentication authority. Telephony: This class is used to indicate that the principal authenticated via the provision of a fixed-line telephone number, transported via a telephony protocol such as ADSL. NomadTelephony: Indicates that the principal is "roaming" and authenticates via the means of the line number, a user suffix, and a password element. PersonalTelephony: This class is used to indicate that the principal authenticated via the provision of a fixed-line telephone. AuthenticatedTelephony: Indicates that the principal authenticated via the means of the line number, a user suffix, and a password element. SecureRemotePassword: This class is applicable when the authentication was performed by means of Secure Remote Password. TLSClient: This class indicates that the principal authenticated by means of a client certificate, secured with the SSL/TLS transport. TimeSyncToken: This is applicable when a principal authenticates through a time synchronization token. Unspecified: This indicates that the authentication was performed by unspecified means. Windows: This indicates that Windows integrated authentication is utilized for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "customauthnctxclassref",
+					Description: `(Optional) This element specifies the custom authentication class reference to be sent as a part of the Authentication Request that is sent by the SP to SAML IDP. The input string must be the body of the authentication class being requested. Input format: Alphanumeric string or URL specifying the body of the Request.If more than one string has to be provided, then the same can be done by specifying the classes as a string of comma separated values. Example input: set authentication samlaction samlact1 -customAuthnCtxClassRef http://www.class1.com/LoA1,http://www.class2.com/LoA2`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "digestmethod",
+					Description: `(Optional) Algorithm to be used to compute/verify digest for SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "enforceusername",
+					Description: `(Optional) Option to choose whether the username that is extracted from SAML assertion can be edited in login page while doing second factor`,
+				},
+				resource.Attribute{
+					Name:        "forceauthn",
+					Description: `(Optional) Option that forces authentication at the Identity Provider (IdP) that receives Citrix ADC's request`,
+				},
+				resource.Attribute{
+					Name:        "groupnamefield",
+					Description: `(Optional) Name of the tag in assertion that contains user groups.`,
+				},
+				resource.Attribute{
+					Name:        "logoutbinding",
+					Description: `(Optional) This element specifies the transport mechanism of saml logout messages.`,
+				},
+				resource.Attribute{
+					Name:        "logouturl",
+					Description: `(Optional) SingleLogout URL on IdP to which logoutRequest will be sent on Citrix ADC session cleanup.`,
+				},
+				resource.Attribute{
+					Name:        "metadatarefreshinterval",
+					Description: `(Optional) Interval in minutes for fetching metadata from specified metadata URL`,
+				},
+				resource.Attribute{
+					Name:        "metadataurl",
+					Description: `(Optional) This URL is used for obtaining saml metadata. Note that it fills samlIdPCertName and samlredirectUrl fields so those fields should not be updated when metadataUrl present`,
+				},
+				resource.Attribute{
+					Name:        "relaystaterule",
+					Description: `(Optional) Boolean expression that will be evaluated to validate the SAML Response. Examples: set authentication samlaction <actionname> -relaystateRule 'AAA.LOGIN.RELAYSTATE.EQ("https://fqdn.com/")' set authentication samlaction <actionname> -relaystateRule 'AAA.LOGIN.RELAYSTATE.CONTAINS("https://fqdn.com/")' set authentication samlaction <actionname> -relaystateRule 'AAA.LOGIN.RELAYSTATE.CONTAINS_ANY("patset_name")' set authentication samlAction samlsp -relaystateRule 'AAA.LOGIN.RELAYSTATE.REGEX_MATCH(re#http://<regex>.com/#)'.`,
+				},
+				resource.Attribute{
+					Name:        "requestedauthncontext",
+					Description: `(Optional) This element specifies the authentication context requirements of authentication statements returned in the response.`,
+				},
+				resource.Attribute{
+					Name:        "samlacsindex",
+					Description: `(Optional) Index/ID of the metadata entry corresponding to this configuration.`,
+				},
+				resource.Attribute{
+					Name:        "samlbinding",
+					Description: `(Optional) This element specifies the transport mechanism of saml messages.`,
+				},
+				resource.Attribute{
+					Name:        "samlidpcertname",
+					Description: `(Optional) Name of the SSL certificate used to verify responses from SAML Identity Provider (IdP). Note that if metadateURL is present then this filed should be empty.`,
+				},
+				resource.Attribute{
+					Name:        "samlissuername",
+					Description: `(Optional) The name to be used in requests sent from Citrix ADC to IdP to uniquely identify Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "samlredirecturl",
+					Description: `(Optional) URL to which users are redirected for authentication. Note that if metadateURL is present then this filed should be empty`,
+				},
+				resource.Attribute{
+					Name:        "samlrejectunsignedassertion",
+					Description: `(Optional) Reject unsigned SAML assertions. ON option results in rejection of Assertion that is received without signature. STRICT option ensures that both Response and Assertion are signed. OFF allows unsigned Assertions.`,
+				},
+				resource.Attribute{
+					Name:        "samlsigningcertname",
+					Description: `(Optional) Name of the SSL certificate to sign requests from ServiceProvider (SP) to Identity Provider (IdP).`,
+				},
+				resource.Attribute{
+					Name:        "samltwofactor",
+					Description: `(Optional) Option to enable second factor after SAML`,
+				},
+				resource.Attribute{
+					Name:        "samluserfield",
+					Description: `(Optional) SAML user ID, as given in the SAML assertion.`,
+				},
+				resource.Attribute{
+					Name:        "sendthumbprint",
+					Description: `(Optional) Option to send thumbprint instead of x509 certificate in SAML request`,
+				},
+				resource.Attribute{
+					Name:        "signaturealg",
+					Description: `(Optional) Algorithm to be used to sign/verify SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "skewtime",
+					Description: `(Optional) This option specifies the allowed clock skew in number of minutes that Citrix ADC ServiceProvider allows on an incoming assertion. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.`,
+				},
+				resource.Attribute{
+					Name:        "storesamlresponse",
+					Description: `(Optional) Option to store entire SAML Response through the life of user session. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlaction.tf_samlaction tf_samlaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlaction.tf_samlaction tf_samlaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationsamlidppolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationsamlidppolicyresource is used to create authentication samlidppolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationsamlidppolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the SAML Identity Provider (IdP) authentication policy. This is used for configuring Citrix ADC as SAML Identity Provider. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression which is evaluated to choose a profile for authentication. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the profile to apply to requests or connections that match this policy.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of messagelog action to use when a request matches this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the SAML IdentityProvider policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my samlidppolicy policy" or 'my samlidppolicy policy').`,
+				},
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an internal error condition. Only the above built-in actions can be used. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlidppolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlidppolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlidppolicy.tf_samlidppolicy tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlidppolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlidppolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlidppolicy.tf_samlidppolicy tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationsamlidpprofile",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationsamlidpprofile resource is used to create authentication samlidpprofile resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationsamlidpprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new saml single sign-on profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "acsurlrule",
+					Description: `(Optional) Expression that will be evaluated to allow Assertion Consumer Service URI coming in the SAML Request`,
+				},
+				resource.Attribute{
+					Name:        "assertionconsumerserviceurl",
+					Description: `(Optional) URL to which the assertion is to be sent.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Name of attribute1 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Name of attribute10 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute10's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10format",
+					Description: `(Optional) Format of Attribute10 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute10friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute10 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Name of attribute11 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute11's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11format",
+					Description: `(Optional) Format of Attribute11 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute11friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute11 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Name of attribute12 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute12's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12format",
+					Description: `(Optional) Format of Attribute12 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute12friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute12 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Name of attribute13 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute13's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13format",
+					Description: `(Optional) Format of Attribute13 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute13friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute13 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Name of attribute14 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute14's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14format",
+					Description: `(Optional) Format of Attribute14 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute14friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute14 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Name of attribute15 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute15's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15format",
+					Description: `(Optional) Format of Attribute15 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute15friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute15 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Name of attribute16 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute16's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16format",
+					Description: `(Optional) Format of Attribute16 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute16friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute16 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute1expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute1's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute1format",
+					Description: `(Optional) Format of Attribute1 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute1 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Name of attribute2 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute2's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2format",
+					Description: `(Optional) Format of Attribute2 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute2friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute2 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Name of attribute3 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute3's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3format",
+					Description: `(Optional) Format of Attribute3 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute3friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute3 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Name of attribute4 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute4's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4format",
+					Description: `(Optional) Format of Attribute4 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute4friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute4 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Name of attribute5 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute5's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5format",
+					Description: `(Optional) Format of Attribute5 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute5friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute5 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Name of attribute6 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute6's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6format",
+					Description: `(Optional) Format of Attribute6 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute6friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute6 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Name of attribute7 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute7's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7format",
+					Description: `(Optional) Format of Attribute7 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute7friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute7 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Name of attribute8 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute8's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8format",
+					Description: `(Optional) Format of Attribute8 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute8friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute8 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Name of attribute9 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute9's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9format",
+					Description: `(Optional) Format of Attribute9 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute9friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute9 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience for which assertion sent by IdP is applicable. This is typically entity name or url that represents ServiceProvider`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This group will be part of AAA session's internal group list. This will be helpful to admin in Nfactor flow to decide right AAA configuration for Relaying Party. In authentication policy AAA.USER.IS_MEMBER_OF("<default_auth_group>") is way to use this feature.`,
+				},
+				resource.Attribute{
+					Name:        "digestmethod",
+					Description: `(Optional) Algorithm to be used to compute/verify digest for SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "encryptassertion",
+					Description: `(Optional) Option to encrypt assertion when Citrix ADC IDP sends one.`,
+				},
+				resource.Attribute{
+					Name:        "encryptionalgorithm",
+					Description: `(Optional) Algorithm to be used to encrypt SAML assertion`,
+				},
+				resource.Attribute{
+					Name:        "keytransportalg",
+					Description: `(Optional) Key transport algorithm to be used in encryption of SAML assertion`,
+				},
+				resource.Attribute{
+					Name:        "logoutbinding",
+					Description: `(Optional) This element specifies the transport mechanism of saml logout messages.`,
+				},
+				resource.Attribute{
+					Name:        "metadatarefreshinterval",
+					Description: `(Optional) Interval in minute for fetching metadata from specified metadata URL`,
+				},
+				resource.Attribute{
+					Name:        "metadataurl",
+					Description: `(Optional) This URL is used for obtaining samlidp metadata`,
+				},
+				resource.Attribute{
+					Name:        "nameidexpr",
+					Description: `(Optional) Expression that will be evaluated to obtain NameIdentifier to be sent in assertion`,
+				},
+				resource.Attribute{
+					Name:        "nameidformat",
+					Description: `(Optional) Format of Name Identifier sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "rejectunsignedrequests",
+					Description: `(Optional) Option to Reject unsigned SAML Requests. ON option denies any authentication requests that arrive without signature.`,
+				},
+				resource.Attribute{
+					Name:        "samlbinding",
+					Description: `(Optional) This element specifies the transport mechanism of saml messages.`,
+				},
+				resource.Attribute{
+					Name:        "samlidpcertname",
+					Description: `(Optional) Name of the certificate used to sign the SAMLResposne that is sent to Relying Party or Service Provider after successful authentication`,
+				},
+				resource.Attribute{
+					Name:        "samlissuername",
+					Description: `(Optional) The name to be used in requests sent from Citrix ADC to IdP to uniquely identify Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "samlsigningcertversion",
+					Description: `(Optional) version of the certificate in signature service used to sign the SAMLResposne that is sent to Relying Party or Service Provider after successful authentication`,
+				},
+				resource.Attribute{
+					Name:        "samlspcertname",
+					Description: `(Optional) Name of the SSL certificate of SAML Relying Party. This certificate is used to verify signature of the incoming AuthnRequest from a Relying Party or Service Provider`,
+				},
+				resource.Attribute{
+					Name:        "samlspcertversion",
+					Description: `(Optional) version of the certificate in signature service used to verify the signature of the incoming AuthnRequest from a Relying Party or Service Provider`,
+				},
+				resource.Attribute{
+					Name:        "sendpassword",
+					Description: `(Optional) Option to send password in assertion.`,
+				},
+				resource.Attribute{
+					Name:        "serviceproviderid",
+					Description: `(Optional) Unique identifier of the Service Provider that sends SAML Request. Citrix ADC will ensure that the Issuer of the SAML Request matches this URI. In case of SP initiated sign-in scenarios, this value must be same as samlIssuerName configured in samlAction.`,
+				},
+				resource.Attribute{
+					Name:        "signassertion",
+					Description: `(Optional) Option to sign portions of assertion when Citrix ADC IDP sends one. Based on the user selection, either Assertion or Response or Both or none can be signed`,
+				},
+				resource.Attribute{
+					Name:        "signaturealg",
+					Description: `(Optional) Algorithm to be used to sign/verify SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "signatureservice",
+					Description: `(Optional) Name of the service in cloud used to sign the data`,
+				},
+				resource.Attribute{
+					Name:        "skewtime",
+					Description: `(Optional) This option specifies the number of minutes on either side of current time that the assertion would be valid. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all.`,
+				},
+				resource.Attribute{
+					Name:        "splogouturl",
+					Description: `(Optional) Endpoint on the ServiceProvider (SP) to which logout messages are to be sent ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlidpprofile.tf_samlidpprofile tf_samlidpprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlidpprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlidpprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlidpprofile.tf_samlidpprofile tf_samlidpprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationsamlpolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationsamlpolicy resource is used to create authentication samlprofile.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationsamlpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the SAML policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after SAML policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Required) Name of the SAML authentication action to be performed if the policy matches.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the SAML server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlpolicy.tf_samlpolicy tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationsamlpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationsamlpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationsamlpolicy.tf_samlpolicy tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationstorefrontauthaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationstorefrontauthaction resource is used to create authentication storefrontauthaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationstorefrontauthaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the Storefront Authentication action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "serverurl",
+					Description: `(Required) URL of the Storefront server. This is the FQDN of the Storefront server. example: https://storefront.com/. Authentication endpoints are learned dynamically by Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) Domain of the server that is used for authentication. If users enter name without domain, this parameter is added to username in the authentication request to server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationstorefrontauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationstorefrontauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationstorefrontauthaction.tf_storefront tf_storefront ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationstorefrontauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationstorefrontauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationstorefrontauthaction.tf_storefront tf_storefront ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationtacacsaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationtacacsaction resource is used to create authentication tacacsaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationtacacsaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the TACACS+ profile (action). Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after TACACS profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'y authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "accounting",
+					Description: `(Optional) Whether the TACACS+ server is currently accepting accounting messages.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '1' (where '1' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '10' (where '10' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '11' (where '11' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '12' (where '12' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '13' (where '13' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '14' (where '14' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '15' (where '15' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '16' (where '16' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '2' (where '2' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '3' (where '3' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '4' (where '4' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '5' (where '5' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '6' (where '6' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '7' (where '7' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '8' (where '8' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Name of the custom attribute to be extracted from server and stored at index '9' (where '9' changes for each attribute)`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) List of attribute names separated by ',' which needs to be fetched from tacacs server. Note that preceeding and trailing spaces will be removed. Attribute name can be 127 bytes and total length of this string should not cross 2047 bytes. These attributes have multi-value support separated by ',' and stored as key-value pair in AAA session`,
+				},
+				resource.Attribute{
+					Name:        "auditfailedcmds",
+					Description: `(Optional) The state of the TACACS+ server that will receive accounting messages.`,
+				},
+				resource.Attribute{
+					Name:        "authorization",
+					Description: `(Optional) Use streaming authorization on the TACACS+ server.`,
+				},
+				resource.Attribute{
+					Name:        "authtimeout",
+					Description: `(Optional) Number of seconds the Citrix ADC waits for a response from the TACACS+ server.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "groupattrname",
+					Description: `(Optional) TACACS+ group attribute name. Used for group extraction on the TACACS+ server.`,
+				},
+				resource.Attribute{
+					Name:        "serverip",
+					Description: `(Optional) IP address assigned to the TACACS+ server.`,
+				},
+				resource.Attribute{
+					Name:        "serverport",
+					Description: `(Optional) Port number on which the TACACS+ server listens for connections.`,
+				},
+				resource.Attribute{
+					Name:        "tacacssecret",
+					Description: `(Optional) Key shared between the TACACS+ server and the Citrix ADC. Required for allowing the Citrix ADC to communicate with the TACACS+ server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationtacacsaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationtacacsaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationtacacsaction.tf_tacacsaction tf_tacacsaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationtacacsaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationtacacsaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationtacacsaction.tf_tacacsaction tf_tacacsaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationtacacspolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationtacacspolicy resource is used to create authentication tacacspolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationtacacspolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the TACACS+ policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after TACACS+ policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the TACACS+ server.`,
+				},
+				resource.Attribute{
+					Name:        "reqaction",
+					Description: `(Optional) Name of the TACACS+ action to perform if the policy matches. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationtacacspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationtacacspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationtacacspolicy.tf_tacacspolicy tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationtacacspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationtacacspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationtacacspolicy.tf_tacacspolicy tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver resource is used to create authentication virtual server resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new authentication virtual server. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Can be changed after the authentication virtual server is added by using the rename authentication vserver command. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "appflowlog",
+					Description: `(Optional) Log AppFlow flow information.`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) Require users to be authenticated before sending traffic through this virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "authenticationdomain",
+					Description: `(Optional) The domain of the authentication cookie set by Authentication vserver`,
+				},
+				resource.Attribute{
+					Name:        "certkeynames",
+					Description: `(Optional) Name of the certificate key that was bound to the corresponding SSL virtual server as the Certificate Authority for the device certificate`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments associated with this virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "failedlogintimeout",
+					Description: `(Optional) Number of minutes an account will be locked if user exceeds maximum permissible attempts`,
+				},
+				resource.Attribute{
+					Name:        "ipv46",
+					Description: `(Optional) IP address of the authentication virtual server, if a single IP address is assigned to the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "maxloginattempts",
+					Description: `(Optional) Maximum Number of login Attempts`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name of the authentication virtual server. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, 'my authentication policy' or "my authentication policy").`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) TCP port on which the virtual server accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `(Optional) If you are creating a series of virtual servers with a range of IP addresses assigned to them, the length of the range. The new range of authentication virtual servers will have IP addresses consecutively numbered, starting with the primary address specified with the IP Address parameter.`,
+				},
+				resource.Attribute{
+					Name:        "samesite",
+					Description: `(Optional) SameSite attribute value for Cookies generated in AAATM context. This attribute value will be appended only for the cookies which are specified in the builtin patset ns_cookies_samesite`,
+				},
+				resource.Attribute{
+					Name:        "servicetype",
+					Description: `(Optional) Protocol type of the authentication virtual server. Always SSL.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Initial state of the new virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "td",
+					Description: `(Optional) Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver.tf_authenticationvserver tf_authenticationvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver.tf_authenticationvserver tf_authenticationvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_auditnslogpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_auditnslogpolicy_binding resource is used to bind authenticationvserver with auditnslogpolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"auditnslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_auditnslogpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_auditnslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_auditnslogpolicy_binding.tf_bind tf_authenticationvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_auditnslogpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_auditnslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_auditnslogpolicy_binding.tf_bind tf_authenticationvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_auditsyslogpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_auditsyslogpolicy_binding resource is used to bind auditsyslogpolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_auditsyslogpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_auditsyslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_auditsyslogpolicy_binding.tf_bind tf_authenticationvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_auditsyslogpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_auditsyslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_auditsyslogpolicy_binding.tf_bind tf_authenticationvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationcertpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationcertpolicy_binding resource is used to bind authenticationcertpolicy to the authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationcertpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationcertpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationcertpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationcertpolicy_binding.tf_bind tf_authenticationvserver,tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationcertpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationcertpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationcertpolicy_binding.tf_bind tf_authenticationvserver,tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationldappolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationldappolicy_binding resource is used to bind authenticationvserver to the authenticationldappolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationldappolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationldappolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationldappolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationldappolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationldappolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationldappolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationldappolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationlocalpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationlocalpolicy_binding resource is used to bind authenticationlocalpolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationlocalpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationlocalpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationlocalpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationlocalpolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationlocalpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationlocalpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationlocalpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationlocalpolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationlocalpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationloginschemapolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationloginschemapolicy_binding resource is used to bind authenticationloginschemapolicy to authenticationvserver.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationloginschemapolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationloginschemapolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationloginschemapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationloginschemapolicy_binding.tf_binding tf_authenticationvserver,tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationloginschemapolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationloginschemapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationloginschemapolicy_binding.tf_binding tf_authenticationvserver,tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationnegotiatepolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationnegotiatepolicy_binding resource is used to bind authenticationnegotiatepolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationnegotiatepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationnegotiatepolicy_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationnegotiatepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationnegotiatepolicy_binding.tf_binding tf_authenticationvserver,tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationnegotiatepolicy_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationnegotiatepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationnegotiatepolicy_binding.tf_binding tf_authenticationvserver,tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationoauthidppolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationoauthidppolicy_binding resource is used to bind authenticationoauthidppolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationoauthidppolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) On success invoke label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationoauthidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationoauthidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationoauthidppolicy_binding.tf_bind tf_authenticationvserver,tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationoauthidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationoauthidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationoauthidppolicy_binding.tf_bind tf_authenticationvserver,tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationpolicy_binding resource is used to bind authenticationvserver to authenticationpolicy.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) On success invoke label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationpolicy_binding.It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A authenticationvserver_authenticationpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationpolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationpolicy_binding.It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A authenticationvserver_authenticationpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationpolicy_binding.tf_bind tf_authenticationvserver,tf_authenticationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationradiuspolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationradiuspolicy_binding resource is used to bind authenticationradiuspolicy to authenticationvserver.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationradiuspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationradiuspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationradiuspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationradiuspolicy_binding.tf_bind tf_authenticationvserver,tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationradiuspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationradiuspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationradiuspolicy_binding.tf_bind tf_authenticationvserver,tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationsamlidppolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationsamlidppolicy_binding resource is used to bind authenticationsamlidppolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationsamlidppolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) On success invoke label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationsamlidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationsamlidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationsamlidppolicy_binding.tf_bind tf_authenticationvserver,tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationsamlidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationsamlidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationsamlidppolicy_binding.tf_bind tf_authenticationvserver,tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationsamlpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationsamlpolicy_binding resource is used to bind authenticationsamlpolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationsamlpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationsamlpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationsamlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationsamlpolicy_binding.tf_bind tf_authenticationvserver,tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationsamlpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationsamlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationsamlpolicy_binding.tf_bind tf_authenticationvserver,tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationtacacspolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationtacacspolicy_binding resource is used to bind authenticationtacacspolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationtacacspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationtacacspolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationtacacspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationtacacspolicy_binding.tf_bind tf_authenticationvserver,tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationtacacspolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationtacacspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationtacacspolicy_binding.tf_bind tf_authenticationvserver,tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_authenticationwebauthpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_authenticationwebauthpolicy_binding resource is used to bind authenticationwebauthpolicy to the authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"authenticationwebauthpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy to the secondary chain. Provides for multifactor authentication in which a user must authenticate via both a primary authentication method and, afterward, via a secondary authentication method. Because user groups are aggregated across authentication systems, usernames must be the same on all authentication servers. Passwords can be different. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationwebauthpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationwebauthpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationwebauthpolicy_binding.tf_bind tf_authenticationvserver,tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_authenticationwebauthpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_authenticationwebauthpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_authenticationwebauthpolicy_binding.tf_bind tf_authenticationvserver,tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_cachepolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_cachepolicy_binding resource is used to bind cachepolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"authenticationvserver",
+				"cachepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_cachepolicy_binding. It is concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_cachepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_cachepolicy_binding.tf_binding tf_authenticationvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_cachepolicy_binding. It is concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_cachepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_cachepolicy_binding.tf_binding tf_authenticationvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_cspolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_cspolicy_binding resource is used to bind the authenticationvserver to cspolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"cspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_cspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_cspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_cspolicy_binding.tf_bind tf_authenticationvserver,test_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_cspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_cspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_cspolicy_binding.tf_bind tf_authenticationvserver,test_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_responderpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_responderpolicy_binding resource is used to bind responderpolicy with the authenticationvserver.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"responderpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_responderpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_responderpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_responderpolicy_binding.tf_bind tf_authenticationvserver,tf_responder_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_responderpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_responderpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_responderpolicy_binding.tf_bind tf_authenticationvserver,tf_responder_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_rewritepolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_rewritepolicy_binding resource is used to bind the rewritepolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"rewritepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_rewritepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_rewritepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_rewritepolicy_binding.tf_bind tf_authenticationvserver,tf_rewrite_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_rewritepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_rewritepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_rewritepolicy_binding.tf_bind tf_authenticationvserver,tf_rewrite_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_tmsessionpolicy_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_tmsessionpolicy_binding resource is used to bind tmsessionpolicy to authenticationvserver resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"tmsessionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the authentication vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) Applicable only while binding advance authentication policy as classic authentication policy does not support nFactor`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority, if any, of the vpn vserver policy.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Applicable only while bindind classic authentication policy as advance authentication policy use nFactor ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_tmsessionpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_tmsessionpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_tmsessionpolicy_binding.tf_bind tf_authenticationvserver,tf_tmsesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_tmsessionpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_tmsessionpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_tmsessionpolicy_binding.tf_bind tf_authenticationvserver,tf_tmsesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationvserver_vpnportaltheme_binding",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationvserver_vpnportaltheme_binding resource is used to to bind authenticationvserver to vpnportaltheme resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationvserver",
+				"vpnportaltheme",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the authentication virtual server to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "portaltheme",
+					Description: `(Required) Theme for Authentication virtual server Login portal ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_vpnportaltheme_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `portaltheme` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_vpnportaltheme_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_vpnportaltheme_binding.tf_bind tf_authenticationvserver,tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationvserver_vpnportaltheme_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `portaltheme` + "`" + ` attributes seperated by comma. ## Import A authenticationvserver_vpnportaltheme_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationvserver_vpnportaltheme_binding.tf_bind tf_authenticationvserver,tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationwebauthaction",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationwebauthaction resource is used to create authentication webauthaction resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationwebauthaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the Web Authentication action. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication action" or 'my authentication action').`,
+				},
+				resource.Attribute{
+					Name:        "scheme",
+					Description: `(Required) Type of scheme for the web server.`,
+				},
+				resource.Attribute{
+					Name:        "serverip",
+					Description: `(Required) IP address of the web server to be used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "serverport",
+					Description: `(Required) Port on which the web server accepts connections.`,
+				},
+				resource.Attribute{
+					Name:        "successrule",
+					Description: `(Required) Expression, that checks to see if authentication is successful.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Expression that would be evaluated to extract attribute1 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Expression that would be evaluated to extract attribute10 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Expression that would be evaluated to extract attribute11 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Expression that would be evaluated to extract attribute12 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Expression that would be evaluated to extract attribute13 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Expression that would be evaluated to extract attribute14 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Expression that would be evaluated to extract attribute15 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Expression that would be evaluated to extract attribute16 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Expression that would be evaluated to extract attribute2 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Expression that would be evaluated to extract attribute3 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Expression that would be evaluated to extract attribute4 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Expression that would be evaluated to extract attribute5 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Expression that would be evaluated to extract attribute6 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Expression that would be evaluated to extract attribute7 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Expression that would be evaluated to extract attribute8 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Expression that would be evaluated to extract attribute9 from the webauth response`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthenticationgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "fullreqexpr",
+					Description: `(Optional) Exact HTTP request, in the form of an expression, which the Citrix ADC sends to the authentication server. The Citrix ADC does not check the validity of this request. One must manually validate the request. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationwebauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationwebauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationwebauthaction.tf_webauthaction tf_webauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationwebauthaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationwebauthaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationwebauthaction.tf_webauthaction tf_webauthaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authenticationwebauthpolicy",
+			Category:         "Authentication",
+			ShortDescription: ``,
+			Description: `
+
+The authenticationwebauthpolicy resource is used to create authentication webauthpolicy resource.
+
+
+`,
+			Keywords: []string{
+				"authentication",
+				"authenticationwebauthpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the WebAuth policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after LDAP policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authentication policy" or 'my authentication policy').`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the WebAuth action to perform if the policy matches.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Name of the Citrix ADC named rule, or an expression, that the policy uses to determine whether to attempt to authenticate the user with the Web server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationwebauthpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationwebauthpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationwebauthpolicy.tf_webauthpolicy tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the authenticationwebauthpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A authenticationwebauthpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_authenticationwebauthpolicy.tf_webauthpolicy tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_authorizationpolicy",
+			Category:         "Authorization",
+			ShortDescription: ``,
+			Description: `
+
+The ` + "`" + `authorizationpolicy` + "`" + ` resource is used to create Authorization Policy.
+
+`,
+			Keywords: []string{
+				"authorization",
+				"authorizationpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new authorization policy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) pound (#), space ( ), at (@), equals (=), colon (:), and underscore characters. Cannot be changed after the authorization policy is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my authorization policy" or 'my authorization policy').`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Name of the Citrix ADC named rule, or an expression, that the policy uses to perform the authentication.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Action to perform if the policy matches: either allow or deny the request. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ` + "`" + `authorizationpolicy` + "`" + `. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ` + "`" + `authorizationpolicy` + "`" + `. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botglobal_botpolicy_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botglobal_botpolicy_binding resource is used to bind botpolicy to botglobal.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botglobal",
+				"botpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the bot policy.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "globalbindtype",
+					Description: `(Optional) 0`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the policy label to invoke. If the current policy evaluates to TRUE, the invoke parameter is set, and Label Type is policylabel.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of invocation, Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Specifies the bind point whose policies you want to display. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botglobal_botpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A botglobal_botpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botglobal_botpolicy_binding.tf_binding tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botglobal_botpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A botglobal_botpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botglobal_botpolicy_binding.tf_binding tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_botpolicy",
 			Category:         "Bot",
 			ShortDescription: ``,
@@ -1269,6 +7501,64 @@ The botpolicylabel resource is used to create a user-defined bot policy label, t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_botpolicylabel_botpolicy_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botpolicylabel_botpolicy_binding resource is used to bind botpolicy to botpolicylabel.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botpolicylabel",
+				"botpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the bot policy label to which to bind the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the bot policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label and evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_labelname",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Specifies the priority of the policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botpolicylabel_botpolicy_binding. It is the concatenation of ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes seperated by comma. ## Import A botpolicylabel_botpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicylabel_botpolicy_binding.tf_binding labelname,policyname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botpolicylabel_botpolicy_binding. It is the concatenation of ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes seperated by comma. ## Import A botpolicylabel_botpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botpolicylabel_botpolicy_binding.tf_binding labelname,policyname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_botprofile",
 			Category:         "Bot",
 			ShortDescription: ``,
@@ -1353,6 +7643,514 @@ The Botprofile resource is used to create a collection of profile settings to co
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_botprofile_blacklist_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_blacklist_binding resource is used to bind blacklist to botprofile.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"blacklist",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_blacklist_value",
+					Description: `(Required) Value of the bot black-list entry.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_blacklist",
+					Description: `(Optional) Blacklist binding. Maximum 32 bindings can be configured per profile for Blacklist detection.`,
+				},
+				resource.Attribute{
+					Name:        "bot_blacklist_action",
+					Description: `(Optional) One or more actions to be taken if bot is detected based on this Blacklist binding. Only LOG action can be combined with DROP or RESET action.`,
+				},
+				resource.Attribute{
+					Name:        "bot_blacklist_enabled",
+					Description: `(Optional) Enabled or disbaled black-list binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_blacklist_type",
+					Description: `(Optional) Type of the black-list entry.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_blacklist_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_blacklist_value` + "`" + ` attributes separated by comma. ## Import A botprofile_blacklist_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_blacklist_binding.tf_binding tf_botprofile,1.3.5.7`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_blacklist_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_blacklist_value` + "`" + ` attributes separated by comma. ## Import A botprofile_blacklist_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_blacklist_binding.tf_binding tf_botprofile,1.3.5.7`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_captcha_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_captcha_binding resource is used to bind captcha to botprofile resource.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"captcha",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_captcha_url",
+					Description: `(Required) URL for which the Captcha action, if configured under IP reputation, TPS or device fingerprint, need to be applied.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_captcha_action",
+					Description: `(Optional) One or more actions to be taken when client fails captcha challenge. Only, log action can be configured with DROP, REDIRECT or RESET action.`,
+				},
+				resource.Attribute{
+					Name:        "bot_captcha_enabled",
+					Description: `(Optional) Enable or disable the captcha binding.`,
+				},
+				resource.Attribute{
+					Name:        "captcharesource",
+					Description: `(Optional) Captcha action binding. For each URL, only one binding is allowed. To update the values of an existing URL binding, user has to first unbind that binding, and then needs to bind the URL again with new values. Maximum 30 bindings can be configured per profile.`,
+				},
+				resource.Attribute{
+					Name:        "graceperiod",
+					Description: `(Optional) Time (in seconds) duration for which no new captcha challenge is sent after current captcha challenge has been answered successfully.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding.`,
+				},
+				resource.Attribute{
+					Name:        "muteperiod",
+					Description: `(Optional) Time (in seconds) duration for which client which failed captcha need to wait until allowed to try again. The requests from this client are silently dropped during the mute period.`,
+				},
+				resource.Attribute{
+					Name:        "requestsizelimit",
+					Description: `(Optional) Length of body request (in Bytes) up to (equal or less than) which captcha challenge will be provided to client. Above this length threshold the request will be dropped. This is to avoid DOS and DDOS attacks.`,
+				},
+				resource.Attribute{
+					Name:        "retryattempts",
+					Description: `(Optional) Number of times client can retry solving the captcha.`,
+				},
+				resource.Attribute{
+					Name:        "waittime",
+					Description: `(Optional) Wait time in seconds for which ADC needs to wait for the Captcha response. This is to avoid DOS attacks. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_captcha_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_captcha_url` + "`" + ` attributes seperated by comma. ## Import A botprofile_captcha_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_captcha_binding.tf_binding tf_botprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_captcha_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_captcha_url` + "`" + ` attributes seperated by comma. ## Import A botprofile_captcha_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_captcha_binding.tf_binding tf_botprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_ipreputation_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_ipreputation_binding resource is used to bind ipreputation to botprofile.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"ipreputation",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) IP Repuation category. Following IP Reuputation categories are allowed:`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_iprep_action",
+					Description: `(Optional) One or more actions to be taken if bot is detected based on this IP Reputation binding. Only LOG action can be combinded with DROP, RESET, REDIRECT or MITIGATION action.`,
+				},
+				resource.Attribute{
+					Name:        "bot_iprep_enabled",
+					Description: `(Optional) Enabled or disabled IP-repuation binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_ipreputation",
+					Description: `(Optional) IP reputation binding. For each category, only one binding is allowed. To update the values of an existing binding, user has to first unbind that binding, and then needs to bind again with the new values.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_ipreputation_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `category` + "`" + ` attributes separated by comma. ## Import A botprofile_ipreputation_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_ipreputation_binding.tf_binding tf_botprofile,BOTNETS ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_ipreputation_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `category` + "`" + ` attributes separated by comma. ## Import A botprofile_ipreputation_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_ipreputation_binding.tf_binding tf_botprofile,BOTNETS ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_logexpression_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_logexpression_binding resource is used to bind logexpression to botprofile resource.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"logexpression",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_log_expression_name",
+					Description: `(Required) Name of the log expression object.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_log_expression_enabled",
+					Description: `(Optional) Enable or disable the log expression binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_log_expression_value",
+					Description: `(Optional) Expression whose result to be logged when violation happened on the bot profile.`,
+				},
+				resource.Attribute{
+					Name:        "logexpression",
+					Description: `(Optional) Log expression binding.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_logexpression_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_log_expression_name` + "`" + ` attributes seperated by comma. ## Import A botprofile_logexpression_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_logexpression_binding.tf_binding tf_botprofile,tf_logname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_logexpression_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_log_expression_name` + "`" + ` attributes seperated by comma. ## Import A botprofile_logexpression_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_logexpression_binding.tf_binding tf_botprofile,tf_logname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_ratelimit_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_ratelimit_binding resource is used to bind ratelimit to botprofile resource.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"ratelimit",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_rate_limit_type",
+					Description: `(Required) Rate-limiting type Following rate-limiting types are allowed:`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_rate_limit_action",
+					Description: `(Optional) One or more actions to be taken when the current rate becomes more than the configured rate. Only LOG action can be combined with DROP, REDIRECT or RESET action.`,
+				},
+				resource.Attribute{
+					Name:        "bot_rate_limit_enabled",
+					Description: `(Optional) Enable or disable rate-limit binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_rate_limit_url",
+					Description: `(Optional) URL for the resource based rate-limiting.`,
+				},
+				resource.Attribute{
+					Name:        "bot_ratelimit",
+					Description: `(Optional) Rate-limit binding. Maximum 30 bindings can be configured per profile for rate-limit detection. For SOURCE_IP type, only one binding can be configured, and for URL type, only one binding is allowed per URL, and for SESSION type, only one binding is allowed for a cookie name. To update the values of an existing binding, user has to first unbind that binding, and then needs to bind again with new values.`,
+				},
+				resource.Attribute{
+					Name:        "cookiename",
+					Description: `(Optional) Cookie name which is used to identify the session for session rate-limiting.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding.`,
+				},
+				resource.Attribute{
+					Name:        "rate",
+					Description: `(Optional) Maximum number of requests that are allowed in this session in the given period time.`,
+				},
+				resource.Attribute{
+					Name:        "timeslice",
+					Description: `(Optional) Time interval during which requests are tracked to check if they cross the given rate. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_ratelimit_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_rate_limit_type` + "`" + ` attributes separated by comma, ## Import A botprofile_ratelimit_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_ratelimit_binding.tf_binding tf_botprofile,SESSION ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_ratelimit_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_rate_limit_type` + "`" + ` attributes separated by comma, ## Import A botprofile_ratelimit_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_ratelimit_binding.tf_binding tf_botprofile,SESSION ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_tps_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_tps_binding resource is used to bind tps to botprofile resource.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"tps",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_tps_type",
+					Description: `(Required) Type of TPS binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_tps",
+					Description: `(Optional) TPS binding. For each type only binding can be configured. To update the values of an existing binding, user has to first unbind that binding, and then needs to bind again with new values.`,
+				},
+				resource.Attribute{
+					Name:        "bot_tps_action",
+					Description: `(Optional) One to more actions to be taken if bot is detected based on this TPS binding. Only LOG action can be combined with DROP, RESET, REDIRECT, or MITIGIATION action.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Optional) Maximum percentage increase in the requests from (or to) a IP, Geolocation, URL or Host in 30 minutes interval.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Optional) Maximum number of requests that are allowed from (or to) a IP, Geolocation, URL or Host in 1 second time interval. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_tps_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_tps_type` + "`" + ` attributes seperated by comma. ## Import A botprofile_tps_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_tps_binding.tf_binding tf_botprofile,SOURCE_IP ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_tps_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_tps_type` + "`" + ` attributes seperated by comma. ## Import A botprofile_tps_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_tps_binding.tf_binding tf_botprofile,SOURCE_IP ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_trapinsertionurl_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_trapinsertionurl_binding resource is used to bind trapinsertionurl to botprofile.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"trapinsertionurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_trap_url",
+					Description: `(Required) Request URL regex pattern for which Trap URL is inserted.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_trap_url_insertion_enabled",
+					Description: `(Optional) Enable or disable the request URL pattern.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding.`,
+				},
+				resource.Attribute{
+					Name:        "trapinsertionurl",
+					Description: `(Optional) Bind the trap URL for the configured request URLs. Maximum 30 bindings can be configured per profile. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_trapinsertionurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_trap_url` + "`" + ` attributes seperated by comma. ## Import A botprofile_trapinsertionurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_trapinsertionurl_binding.tf_binding tf_botprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_trapinsertionurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_trap_url` + "`" + ` attributes seperated by comma. ## Import A botprofile_trapinsertionurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_trapinsertionurl_binding.tf_binding tf_botprofile,www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botprofile_whitelist_binding",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botprofile_whitelist_binding resource is used to bind whitelist to botprofile.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botprofile",
+				"whitelist",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the profile. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.), pound (#), space ( ), at (@), equals (=), colon (:), and underscore (_) characters. Cannot be changed after the profile is added. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "bot_whitelist_value",
+					Description: `(Required) Value of bot white-list entry.`,
+				},
+				resource.Attribute{
+					Name:        "bot_bind_comment",
+					Description: `(Optional) Any comments about this binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_whitelist",
+					Description: `(Optional) Whitelist binding. Maximum 32 bindings can be configured per profile for Whitelist detection.`,
+				},
+				resource.Attribute{
+					Name:        "bot_whitelist_enabled",
+					Description: `(Optional) Enabled or disabled white-list binding.`,
+				},
+				resource.Attribute{
+					Name:        "bot_whitelist_type",
+					Description: `(Optional) Type of the white-list entry.`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `(Optional) Enable logging for Whitelist binding.`,
+				},
+				resource.Attribute{
+					Name:        "logmessage",
+					Description: `(Optional) Message to be logged for this binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_whitelist_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_whitelist_value` + "`" + ` attributes seperated by comma. ## Import A botprofile_whitelist_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_whitelist_binding.tf_binding tf_botprofile,1.2.1.2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botprofile_whitelist_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `bot_whitelist_value` + "`" + ` attributes seperated by comma. ## Import A botprofile_whitelist_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botprofile_whitelist_binding.tf_binding tf_botprofile,1.2.1.2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_botsettings",
 			Category:         "Bot",
 			ShortDescription: ``,
@@ -1424,6 +8222,50 @@ The botsettings  resource is used to create and update the ADC BOT settings.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the botsettings.It is a unique string prefixed with "tf-botsettings". ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csaction.tf_csaction tf_csaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_botsignature",
+			Category:         "Bot",
+			ShortDescription: ``,
+			Description: `
+
+The botsignature resource is used Configuration for bot signatures resource.
+
+
+`,
+			Keywords: []string{
+				"bot",
+				"botsignature",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name to assign to the bot signature file object on the Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about the signature file object.`,
+				},
+				resource.Attribute{
+					Name:        "overwrite",
+					Description: `(Optional) Overwrites the existing file`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `(Optional) Local path to and name of, or URL (protocol, host, path, and file name) for, the file in which to store the imported signature file. NOTE: The import fails if the object to be imported is on an HTTPS server that requires client certificate authentication for access. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botsignature. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botsignature can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botsignature.tf_botsignature tf_botsignature ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the botsignature. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A botsignature can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_botsignature.tf_botsignature tf_botsignature ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1789,6 +8631,30 @@ The csaction resource is used to create content switching actions.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csparameter",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csparameter resource is used to modify the status of the state update parameter.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csparameter",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "stateupdate",
+					Description: `(Optional) Specifies whether the virtual server checks the attached load balancing server for state information. Possible values: [ ENABLED, DISABLED ]`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_cspolicy",
 			Category:         "Content Switching",
 			ShortDescription: ``,
@@ -1849,6 +8715,43 @@ The resource is used to configure content switching policies.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the cspolicy. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import An instance of the resource can be imported using its ` + "`" + `policyname` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_cspolicy.tf_cspolicy tf_cspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_cspolicylabel",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The cspolicylabel resource is used to create a content switching policy label.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"cspolicylabel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name for the policy label. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at sign (@), equal sign (=), and hyphen (-) characters. The label name must be unique within the list of policy labels for content switching. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policylabel" or 'my policylabel').`,
+				},
+				resource.Attribute{
+					Name:        "cspolicylabeltype",
+					Description: `(Required) Protocol supported by the policy label. All policies bound to the policy label must either match the specified protocol or be a subtype of that protocol. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the cspolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the cspolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute.`,
 				},
 			},
 		},
@@ -2191,6 +9094,45 @@ This resource is used to manage Content switching virtual servers.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csvserver_analyticsprofile_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_analyticsprofile_binding resource is used to bound Analytics Profile to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"analyticsprofile",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "analyticsprofile",
+					Description: `(Required) Name of the analytics profile bound to the LB vserver.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A csvserver_analyticsprofile_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shellterraform import terraform import citrixadc_csvserver_analyticsprofile_binding.tf_csvserver_analyticsprofile_binding tf_csvserver,ns_analytics_global_profile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A csvserver_analyticsprofile_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shellterraform import terraform import citrixadc_csvserver_analyticsprofile_binding.tf_csvserver_analyticsprofile_binding tf_csvserver,ns_analytics_global_profile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_csvserver_appfwpolicy_binding",
 			Category:         "Content Switching",
 			ShortDescription: ``,
@@ -2252,6 +9194,407 @@ The csvserver_appfwpolicy_binding resource is used to add csvserver_appfwpolicy_
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the csvserver_appfwpolicy_binding. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_appqoepolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_appqoepolicy_binding resource is used to add a appqoe policy to csvserver.
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"appqoepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke flag.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_appqoepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_appqoepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_appqoepolicy_binding.tf_csvserver_appqoepolicy_binding tf_csvserver,tf_appqoepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_appqoepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_appqoepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_appqoepolicy_binding.tf_csvserver_appqoepolicy_binding tf_csvserver,tf_appqoepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_auditnslogpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_auditnslogpolicy_binding resource is used to bind an audit nslog policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"auditnslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of label to be invoked. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label to be invoked. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_auditnslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_auditnslogpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_auditnslogpolicy_binding.tf_csvserver_auditnslogpolicy_binding tf_csvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_auditnslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_auditnslogpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_auditnslogpolicy_binding.tf_csvserver_auditnslogpolicy_binding tf_csvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_auditsyslogpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_auditsyslogpolicy_binding resource is used to bind an audit syslog policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of label to be invoked. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label to be invoked. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_auditsyslogpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_auditsyslogpolicy_binding.tf_csvserver_auditsyslogpolicy_binding tf_csvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_auditsyslogpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_auditsyslogpolicy_binding.tf_csvserver_auditsyslogpolicy_binding tf_csvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_authorizationpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_authorizationpolicy_binding resource is used to bind an authorization policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"authorizationpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke flag.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_authorizationpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_authorizationpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_authorizationpolicy_binding.tf_csvserver_authorizationpolicy_binding tf_csvserver,tf_authorizationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_authorizationpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_authorizationpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_authorizationpolicy_binding.tf_csvserver_authorizationpolicy_binding tf_csvserver,tf_authorizationpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_botpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_botpolicy_binding resource is used to bind a bot policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"botpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke flag.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_botpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_botpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_botpolicy_binding.tf_csvserver_botpolicy_binding tf_csvserver,tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_botpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_botpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_botpolicy_binding.tf_csvserver_botpolicy_binding tf_csvserver,tf_botpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_cachepolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_cachepolicy_binding resource is used to bind a cache policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"cachepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke flag.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_cachepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_cachepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_cachepolicy_binding.tf_csvserver_cachepolicy_binding tf_csvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_cachepolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_cachepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_cachepolicy_binding.tf_csvserver_cachepolicy_binding tf_csvserver,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2324,6 +9667,73 @@ The csvserver\_cmppolicy\_binding resource is used to create bindings between a 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csvserver_contentinspectionpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_contentinspectionpolicy_binding resource is used to bind a contentinspection policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"contentinspectionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke flag.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) The invocation type. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label invoked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_contentinspectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_contentinspectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_contentinspectionpolicy_binding.tf_csvserver_contentinspectionpolicy_binding tf_csvserver,tf_contentinspectionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_contentinspectionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_contentinspectionpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_contentinspectionpolicy_binding.tf_csvserver_contentinspectionpolicy_binding tf_csvserver,tf_contentinspectionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_csvserver_cspolicy_binding",
 			Category:         "Content Switching",
 			ShortDescription: ``,
@@ -2391,6 +9801,73 @@ The csvserver\_cspolicy\_binding resource is used to create bindings between a c
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csvserver_feopolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_feopolicy_binding resource is used to bind a feo policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"feopolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of label to be invoked. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label to be invoked. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_feopolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_feopolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_feopolicy_binding.tf_csvserver_feopolicy_binding tf_csvserver,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_feopolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_feopolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_feopolicy_binding.tf_csvserver_feopolicy_binding tf_csvserver,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_csvserver_filterpolicy_binding",
 			Category:         "Content Switching",
 			ShortDescription: ``,
@@ -2453,6 +9930,45 @@ The csvserver\_filterpolicy\_binding resource is used to bind content switching 
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the csvserver\_filterpolicy\_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver\_filterpolicy\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_filterpolicy_binding.tf_bind tf_csvserver,tf_filterpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_gslbvserver_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_gslbvserver_binding resource is used to bind a gslb vserver to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"gslbvserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `(Required) Name of the default gslb or vpn vserver bound to CS vserver of type GSLB/VPN. For Example: bind cs vserver cs1 -vserver gslb1 or bind cs vserver cs1 -vserver vpn1.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_gslbvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vserver` + "`" + ` attributes separated by a comma. ## Import A csvserver_gslbvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_gslbvserver_binding.tf_csvserver_gslbvserver_binding tf_csvserver,tf_gslbvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_gslbvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vserver` + "`" + ` attributes separated by a comma. ## Import A csvserver_gslbvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_gslbvserver_binding.tf_csvserver_gslbvserver_binding tf_csvserver,tf_gslbvserver ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2592,6 +10108,140 @@ The csvserver\_rewritepolicy\_binding resource is used to bind content switching
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csvserver_spilloverpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_spilloverpolicy_binding resource is used to bind a spillover policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"spilloverpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) The bindpoint to which the policy is bound. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of label to be invoked. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label to be invoked. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_spilloverpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_spilloverpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_spilloverpolicy_binding.tf_csvserver_spilloverpolicy_binding tf_csvserver,tf_spilloverpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_spilloverpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_spilloverpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_spilloverpolicy_binding.tf_csvserver_spilloverpolicy_binding tf_csvserver,tf_spilloverpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_csvserver_tmtrafficpolicy_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_tmtrafficpolicy_binding resource is used to bind a tmtraffic policy to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"tmtrafficpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Policies bound to this vserver.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies.`,
+				},
+				resource.Attribute{
+					Name:        "targetlbvserver",
+					Description: `(Optional) Name of the Load Balancing virtual server to which the content is switched, if policy rule is evaluated to be TRUE. Example: bind cs vs cs1 -policyname pol1 -priority 101 -targetLBVserver lb1 Note: Use this parameter only in case of Content Switching policy bind operations to a CS vserver.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) For a rewrite policy, the bind point to which to bind the policy. Note: This parameter applies only to rewrite policies, because content switching policies are evaluated only at request time. Possible values: [ REQUEST, RESPONSE, ICA_REQUEST, OTHERTCP_REQUEST ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke a policy label if this policy's rule evaluates to TRUE (valid only for default-syntax policies such as application firewall, transform, integrated cache, rewrite, responder, and content switching).`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of label to be invoked. Possible values: [ reqvserver, resvserver, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional) Name of the label to be invoked. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_tmtrafficpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_tmtrafficpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_tmtrafficpolicy_binding.tf_csvserver_tmtrafficpolicy_binding tf_csvserver,tf_tmttrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_tmtrafficpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A csvserver_tmtrafficpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_tmtrafficpolicy_binding.tf_csvserver_tmtrafficpolicy_binding tf_csvserver,tf_tmttrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_csvserver_transformpolicy_binding",
 			Category:         "Content Switching",
 			ShortDescription: ``,
@@ -2659,6 +10309,45 @@ The csvserver\_transformpolicy\_binding resource is used to bind content swtchin
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_csvserver_vpnvserver_binding",
+			Category:         "Content Switching",
+			ShortDescription: ``,
+			Description: `
+
+The csvserver_vpnvserver_binding resource is used to bind a vpnvserver to csvserver.
+
+
+`,
+			Keywords: []string{
+				"content",
+				"switching",
+				"csvserver",
+				"vpnvserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `(Required) Name of the default gslb or vpn vserver bound to CS vserver of type GSLB/VPN. For Example: bind cs vserver cs1 -vserver gslb1 or bind cs vserver cs1 -vserver vpn1.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the content switching virtual server to which the content switching policy applies. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_vpnvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vserver` + "`" + ` attributes separated by a comma. ## Import A csvserver_vpnvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_vpnvserver_binding.tf_csvserver_vpnvserver_binding tf_csvserver,tf_vpnvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the csvserver_vpnvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vserver` + "`" + ` attributes separated by a comma. ## Import A csvserver_vpnvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_csvserver_vpnvserver_binding.tf_csvserver_vpnvserver_binding tf_csvserver,tf_vpnvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_dnsnsrec",
 			Category:         "DNS",
 			ShortDescription: ``,
@@ -2694,6 +10383,118 @@ The dnsnsrec resource is used to create dns name server records.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the dnsnsrec. It is the concatenation of the ` + "`" + `domain` + "`" + ` and ` + "`" + `nameserver` + "`" + ` attributes separated by a comma. ## Import A dnsnsrec can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_dnsnsrec.tf_dnsnsrec www.test.com,192.168.1.100 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_dnsparameter",
+			Category:         "DNS",
+			ShortDescription: ``,
+			Description: `
+
+The dnsparameter resource is used to configure DNS parameters on the target ADC.
+
+
+`,
+			Keywords: []string{
+				"dns",
+				"dnsparameter",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cacheecszeroprefix",
+					Description: `(Optional) Cache ECS responses with a Scope Prefix length of zero. Such a cached response will be used for all queries with this domain name and any subnet. When disabled, ECS responses with Scope Prefix length of zero will be cached, but not tied to any subnet. This option has no effect if caching of ECS responses is disabled in the corresponding DNS profile.`,
+				},
+				resource.Attribute{
+					Name:        "cachehitbypass",
+					Description: `(Optional) This parameter is applicable only in proxy mode and if this parameter is enabled we will forward all the client requests to the backend DNS server and the response served will be cached on Citrix ADC`,
+				},
+				resource.Attribute{
+					Name:        "cachenoexpire",
+					Description: `(Optional) If this flag is set to YES, the existing entries in cache do not age out. On reaching the max limit the cache records are frozen`,
+				},
+				resource.Attribute{
+					Name:        "cacherecords",
+					Description: `(Optional) Cache resource records in the DNS cache. Applies to resource records obtained through proxy configurations only. End resolver and forwarder configurations always cache records in the DNS cache, and you cannot disable this behavior. When you disable record caching, the appliance stops caching server responses. However, cached records are not flushed. The appliance does not serve requests from the cache until record caching is enabled again.`,
+				},
+				resource.Attribute{
+					Name:        "dns64timeout",
+					Description: `(Optional) While doing DNS64 resolution, this parameter specifies the time to wait before sending an A query if no response is received from backend DNS server for AAAA query.`,
+				},
+				resource.Attribute{
+					Name:        "dnsrootreferral",
+					Description: `(Optional) Send a root referral if a client queries a domain name that is unrelated to the domains configured/cached on the Citrix ADC. If the setting is disabled, the appliance sends a blank response instead of a root referral. Applicable to domains for which the appliance is authoritative. Disable the parameter when the appliance is under attack from a client that is sending a flood of queries for unrelated domains.`,
+				},
+				resource.Attribute{
+					Name:        "dnssec",
+					Description: `(Optional) Enable or disable the Domain Name System Security Extensions (DNSSEC) feature on the appliance. Note: Even when the DNSSEC feature is enabled, forwarder configurations (used by internal Citrix ADC features such as SSL VPN and Cache Redirection for name resolution) do not support the DNSSEC OK (DO) bit in the EDNS0 OPT header.`,
+				},
+				resource.Attribute{
+					Name:        "ecsmaxsubnets",
+					Description: `(Optional) Maximum number of subnets that can be cached corresponding to a single domain. Subnet caching will occur for responses with EDNS Client Subnet (ECS) option. Caching of such responses can be disabled using DNS profile settings. A value of zero indicates that the number of subnets cached is limited only by existing memory constraints. The default value is zero.`,
+				},
+				resource.Attribute{
+					Name:        "maxcachesize",
+					Description: `(Optional) Maximum memory, in megabytes, that can be used for dns caching per Packet Engine.`,
+				},
+				resource.Attribute{
+					Name:        "maxnegativecachesize",
+					Description: `(Optional) Maximum memory, in megabytes, that can be used for caching of negative DNS responses per packet engine.`,
+				},
+				resource.Attribute{
+					Name:        "maxnegcachettl",
+					Description: `(Optional) Maximum time to live (TTL) for all negative records ( NXDONAIN and NODATA ) cached in the DNS cache by DNS proxy, end resolver, and forwarder configurations. If the TTL of a record that is to be cached is higher than the value configured for maxnegcacheTTL, the TTL of the record is set to the value of maxnegcacheTTL before caching. When you modify this setting, the new value is applied only to those records that are cached after the modification. The TTL values of existing records are not changed.`,
+				},
+				resource.Attribute{
+					Name:        "maxpipeline",
+					Description: `(Optional) Maximum number of concurrent DNS requests to allow on a single client connection, which is identified by the <clientip:port>-<vserver ip:port> tuple. A value of 0 (zero) applies no limit to the number of concurrent DNS requests allowed on a single client connection.`,
+				},
+				resource.Attribute{
+					Name:        "maxttl",
+					Description: `(Optional) Maximum time to live (TTL) for all records cached in the DNS cache by DNS proxy, end resolver, and forwarder configurations. If the TTL of a record that is to be cached is higher than the value configured for maxTTL, the TTL of the record is set to the value of maxTTL before caching. When you modify this setting, the new value is applied only to those records that are cached after the modification. The TTL values of existing records are not changed.`,
+				},
+				resource.Attribute{
+					Name:        "maxudppacketsize",
+					Description: `(Optional) Maximum UDP packet size that can be handled by Citrix ADC. This is the value advertised by Citrix ADC when responding as an authoritative server and it is also used when Citrix ADC queries other name servers as a forwarder. When acting as a proxy, requests from clients are limited by this parameter - if a request contains a size greater than this value in the OPT record, it will be replaced.`,
+				},
+				resource.Attribute{
+					Name:        "minttl",
+					Description: `(Optional) Minimum permissible time to live (TTL) for all records cached in the DNS cache by DNS proxy, end resolver, and forwarder configurations. If the TTL of a record that is to be cached is lower than the value configured for minTTL, the TTL of the record is set to the value of minTTL before caching. When you modify this setting, the new value is applied only to those records that are cached after the modification. The TTL values of existing records are not changed.`,
+				},
+				resource.Attribute{
+					Name:        "namelookuppriority",
+					Description: `(Optional) Type of lookup (DNS or WINS) to attempt first. If the first-priority lookup fails, the second-priority lookup is attempted. Used only by the SSL VPN feature.`,
+				},
+				resource.Attribute{
+					Name:        "nxdomainratelimitthreshold",
+					Description: `(Optional) Rate limit threshold for Non-Existant domain (NXDOMAIN) responses generated from Citrix ADC. Once the threshold is breached , DNS queries leading to NXDOMAIN response will be dropped. This threshold will not be applied for NXDOMAIN responses got from the backend. The threshold will be applied per packet engine and per second.`,
+				},
+				resource.Attribute{
+					Name:        "recursion",
+					Description: `(Optional) Function as an end resolver and recursively resolve queries for domains that are not hosted on the Citrix ADC. Also resolve queries recursively when the external name servers configured on the appliance (for a forwarder configuration) are unavailable. When external name servers are unavailable, the appliance queries a root server and resolves the request recursively, as it does for an end resolver configuration.`,
+				},
+				resource.Attribute{
+					Name:        "resolutionorder",
+					Description: `(Optional) Type of DNS queries (A, AAAA, or both) to generate during the routine functioning of certain Citrix ADC features, such as SSL VPN, cache redirection, and the integrated cache. The queries are sent to the external name servers that are configured for the forwarder function. If you specify both query types, you can also specify the order. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) Maximum number of retry attempts when no response is received for a query sent to a name server. Applies to end resolver and forwarder configurations.`,
+				},
+				resource.Attribute{
+					Name:        "splitpktqueryprocessing",
+					Description: `(Optional) Processing requests split across multiple packets ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the dnsparameter. It is a unique string prefixed with "tf-dnsparameter-".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the dnsparameter. It is a unique string prefixed with "tf-dnsparameter-".`,
 				},
 			},
 		},
@@ -2770,6 +10571,100 @@ The dnssoarec resource is used to create dns SOA records.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the dnssoarec. It has the same value as the ` + "`" + `domain` + "`" + ` attribute. ## Import A dnssoarec can be imported using its domain, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_dnssoarec.tf_dnssoarec hello.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_filteraction",
+			Category:         "Filter",
+			ShortDescription: ``,
+			Description: `
+
+The filteraction resource is used to create Filter Action Resource.
+
+
+`,
+			Keywords: []string{
+				"filter",
+				"filteraction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the filtering action. Must begin with a letter, number, or the underscore character (_). Other characters allowed, after the first character, are the hyphen (-), period (.) hash (#), space ( ), at sign (@), equals (=), and colon (:) characters. Choose a name that helps identify the type of action. The name of a filter action cannot be changed after it is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "qual",
+					Description: `(Required) Qualifier, which is the action to be performed. The qualifier cannot be changed after it is set. The available options function as follows: ADD - Adds the specified HTTP header. RESET - Terminates the connection, sending the appropriate termination notice to the user's browser. FORWARD - Redirects the request to the designated service. You must specify either a service name or a page, but not both. DROP - Silently deletes the request, without sending a response to the user's browser. CORRUPT - Modifies the designated HTTP header to prevent it from performing the function it was intended to perform, then sends the request/response to the server/browser. ERRORCODE. Returns the designated HTTP error code to the user's browser (for example, 404, the standard HTTP code for a non-existent Web page).`,
+				},
+				resource.Attribute{
+					Name:        "page",
+					Description: `(Optional) HTML page to return for HTTP requests (For use with the ERRORCODE qualifier).`,
+				},
+				resource.Attribute{
+					Name:        "respcode",
+					Description: `(Optional) Response code to be returned for HTTP requests (for use with the ERRORCODE qualifier).`,
+				},
+				resource.Attribute{
+					Name:        "servicename",
+					Description: `(Optional) Service to which to forward HTTP requests. Required if the qualifier is FORWARD.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) String containing the header_name and header_value. If the qualifier is ADD, specify <header_name>:<header_value>. If the qualifier is CORRUPT, specify only the header_name ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the filteraction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A filteraction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_filteraction.tf_filteraction tf_filteraction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the filteraction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A filteraction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_filteraction.tf_filteraction tf_filteraction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_filterglobal_filterpolicy_binding",
+			Category:         "Filter",
+			ShortDescription: ``,
+			Description: `
+
+The filterglobal_filterpolicy_binding resource is used to bind a filter policy globally.
+
+
+`,
+			Keywords: []string{
+				"filter",
+				"filterglobal",
+				"filterpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the filter policy.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) State of the binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the filterglobal_filterpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A filterglobal_filterpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_filterglobal_filterpolicy_binding.tf_filterglobal tf_filterpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the filterglobal_filterpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A filterglobal_filterpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_filterglobal_filterpolicy_binding.tf_filterglobal tf_filterpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3327,6 +11222,47 @@ This resource is used to manage Global Service Load Balancing vserver.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_hafailover",
+			Category:         "High Availability",
+			ShortDescription: ``,
+			Description: `
+
+The hafailover resource is used to trigger the high availability fail over operation.
+
+
+`,
+			Keywords: []string{
+				"high",
+				"availability",
+				"hafailover",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipaddress",
+					Description: `(Required) IP address of the target High Availability node.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Required) Desired High Availability node state. Can be either ` + "`" + `Primary` + "`" + ` or ` + "`" + `Secondary` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Force a failover without prompting for confirmation. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the hafailover resource. It is a unique string prefixed with "tf-hafailover-"`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the hafailover resource. It is a unique string prefixed with "tf-hafailover-"`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_inat",
 			Category:         "Network",
 			ShortDescription: ``,
@@ -3702,6 +11638,126 @@ The iptunnel resource is used to create ipv4 network tunnels.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the iptunnel. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A iptunnel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_iptunnel.tf_iptunnel tf_iptunnel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbgroup",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbgroup resource is used to create an lb group entity.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbgroup",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the load balancing virtual server group.`,
+				},
+				resource.Attribute{
+					Name:        "persistencetype",
+					Description: `(Optional) Type of persistence for the group. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "persistencebackup",
+					Description: `(Optional) Type of backup persistence for the group. Possible values: [ SOURCEIP, NONE ]`,
+				},
+				resource.Attribute{
+					Name:        "backuppersistencetimeout",
+					Description: `(Optional) Time period, in minutes, for which backup persistence is in effect.`,
+				},
+				resource.Attribute{
+					Name:        "persistmask",
+					Description: `(Optional) Persistence mask to apply to source IPv4 addresses when creating source IP based persistence sessions.`,
+				},
+				resource.Attribute{
+					Name:        "cookiename",
+					Description: `(Optional) Use this parameter to specify the cookie name for COOKIE peristence type. It specifies the name of cookie with a maximum of 32 characters. If not specified, cookie name is internally generated.`,
+				},
+				resource.Attribute{
+					Name:        "v6persistmasklen",
+					Description: `(Optional) Persistence mask to apply to source IPv6 addresses when creating source IP based persistence sessions.`,
+				},
+				resource.Attribute{
+					Name:        "cookiedomain",
+					Description: `(Optional) Domain attribute for the HTTP cookie.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Time period for which a persistence session is in effect.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Expression, or name of a named expression, against which traffic is evaluated. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "usevserverpersistency",
+					Description: `(Optional) Use this parameter to enable vserver level persistence on group members. This allows member vservers to have their own persistence, but need to be compatible with other members persistence rules. When this setting is enabled persistence sessions created by any of the members can be shared by other member vservers. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "mastervserver",
+					Description: `(Optional) When USE_VSERVER_PERSISTENCE is enabled, one can use this setting to designate a member vserver as master which is responsible to create the persistence sessions.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the load balancing virtual server group. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbgroup. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A lbgroup can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbgroup.tf_lbgroup tf_lbgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbgroup. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A lbgroup can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbgroup.tf_lbgroup tf_lbgroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbgroup_lbvserver_binding",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbgroup_lbvserver_binding resource is used to add a lbvserver to lbgroup.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbgroup",
+				"lbvserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Required) Virtual server name.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the load balancing virtual server group. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the virtual server is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my lbgroup" or 'my lbgroup'). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbgroup_lbvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vservername` + "`" + ` attributes separated by a comma. ## Import A lbgroup_lbvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbgroup_lbvserver_binding.tf_lbvserverbinding tf_lbgroup,tf_lbvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbgroup_lbvserver_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `vservername` + "`" + ` attributes separated by a comma. ## Import A lbgroup_lbvserver_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbgroup_lbvserver_binding.tf_lbvserverbinding tf_lbgroup,tf_lbvserver ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4444,6 +12500,92 @@ The Lbprofile resource is used to set load balancing parameters in a profile.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the lbprofile. It has the same value as the ` + "`" + `lbprofilename` + "`" + ` attribute. ## Import A lbprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbprofile.tf_lbprofile tf_lbprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbroute",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbroute resource is used to bind a route VIP to the route structure.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbroute",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Required) The IP address of the network to which the route belongs.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Required) The netmask to which the route belongs.`,
+				},
+				resource.Attribute{
+					Name:        "gatewayname",
+					Description: `(Required) The name of the route.`,
+				},
+				resource.Attribute{
+					Name:        "td",
+					Description: `(Optional) Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbroute. It is the concatenation of the ` + "`" + `network` + "`" + `, ` + "`" + `netmask` + "`" + ` and ` + "`" + `gatewayname` + "`" + ` attributes separated by commas. ## Import An lbroute can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbroute.tf_lbroute 55.0.0.0,255.0.0.0,tf_lbvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbroute. It is the concatenation of the ` + "`" + `network` + "`" + `, ` + "`" + `netmask` + "`" + ` and ` + "`" + `gatewayname` + "`" + ` attributes separated by commas. ## Import An lbroute can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbroute.tf_lbroute 55.0.0.0,255.0.0.0,tf_lbvserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_lbroute6",
+			Category:         "Load Balancing",
+			ShortDescription: ``,
+			Description: `
+
+The lbroute6 resource is used to configure lbroute6.
+
+
+`,
+			Keywords: []string{
+				"load",
+				"balancing",
+				"lbroute6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Required) The destination network.`,
+				},
+				resource.Attribute{
+					Name:        "gatewayname",
+					Description: `(Required) The name of the route.`,
+				},
+				resource.Attribute{
+					Name:        "td",
+					Description: `(Optional) Integer value that uniquely identifies the traffic domain in which you want to configure the entity. If you do not specify an ID, the entity becomes part of the default traffic domain, which has an ID of 0. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbroute6. It has the same value as the ` + "`" + `gatewayname` + "`" + ` attribute. ## Import A lbroute6 can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbroute6.tf_lbroute6 tf_lbroute6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the lbroute6. It has the same value as the ` + "`" + `gatewayname` + "`" + ` attribute. ## Import A lbroute6 can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_lbroute6.tf_lbroute6 tf_lbroute6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6389,6 +14531,60 @@ The netprofile resource is used to create nework profiles.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_nitro_resource",
+			Category:         "Generic",
+			ShortDescription: ``,
+			Description: `\_resource
+
+The nitro\_resource resource is used to generically create NITRO resources.
+
+It will handle the creation, update and deletion of the resource in the manner
+described by the workflow map entry referenced in the configuration block.
+
+The execution is governed by the data found in the corresponding workflow entry.
+
+Browse through the workflows.yaml file to see what endpoints are available.
+
+The workflows.yaml file can be found [here](https://github.com/citrix/terraform-provider-citrixadc/blob/master/citrixadc/testdata/workflows.yaml).
+
+
+`,
+			Keywords: []string{
+				"generic",
+				"nitro",
+				"resource",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "workflows_file",
+					Description: `(Required) The path to the workflows yaml file that contains the workflow definitions.`,
+				},
+				resource.Attribute{
+					Name:        "workflow",
+					Description: `(Required) The map key which points to the specific entry to use from the workflows map.`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) The map containing the attributes of the resource. Any change to these attribute values will trigger an update operation.`,
+				},
+				resource.Attribute{
+					Name:        "non_updateable_attributes",
+					Description: `(Optional) The map containing the non updateable attributes of the resource. Any change to these attribute values will trigger delete and re create of the resource. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the nitro\_resource. Depending on the workflow type this can be a single identifying attributes or a pair of attributes separated by a comma ` + "`" + `,` + "`" + `. ## Import A nitro\_resource can be imported using its id ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_nitro_resource.tf_object object_id terraform import citrixadc_nitro_resource.tf_biding primary_id,secondary_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the nitro\_resource. Depending on the workflow type this can be a single identifying attributes or a pair of attributes separated by a comma ` + "`" + `,` + "`" + `. ## Import A nitro\_resource can be imported using its id ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_nitro_resource.tf_object object_id terraform import citrixadc_nitro_resource.tf_biding primary_id,secondary_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_nsacl",
 			Category:         "NS",
 			ShortDescription: ``,
@@ -6896,119 +15092,119 @@ The nsfeature resource is used to enable or disable ADC features.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "wl",
-					Description: `(Optional)`,
+					Description: `(Optional) Web Logging.`,
 				},
 				resource.Attribute{
 					Name:        "sp",
-					Description: `(Optional)`,
+					Description: `(Optional) Surge Protection.`,
 				},
 				resource.Attribute{
 					Name:        "lb",
-					Description: `(Optional)`,
+					Description: `(Optional) Load Balancing.`,
 				},
 				resource.Attribute{
 					Name:        "cs",
-					Description: `(Optional)`,
+					Description: `(Optional) Content Switching.`,
 				},
 				resource.Attribute{
 					Name:        "cr",
-					Description: `(Optional)`,
+					Description: `(Optional) Cache Redirect.`,
 				},
 				resource.Attribute{
 					Name:        "cmp",
-					Description: `(Optional)`,
+					Description: `(Optional) Compression.`,
 				},
 				resource.Attribute{
 					Name:        "pq",
-					Description: `(Optional)`,
+					Description: `(Optional) Priority Queuing.`,
 				},
 				resource.Attribute{
 					Name:        "ssl",
-					Description: `(Optional)`,
+					Description: `(Optional) Secure Sockets Layer.`,
 				},
 				resource.Attribute{
 					Name:        "gslb",
-					Description: `(Optional)`,
+					Description: `(Optional) Global Server Load Balancing.`,
 				},
 				resource.Attribute{
 					Name:        "hdosp",
-					Description: `(Optional)`,
+					Description: `(Optional) HTTP DOS protection.`,
 				},
 				resource.Attribute{
 					Name:        "cf",
-					Description: `(Optional)`,
+					Description: `(Optional) Content Filter.`,
 				},
 				resource.Attribute{
 					Name:        "ic",
-					Description: `(Optional)`,
+					Description: `(Optional) Integrated Caching.`,
 				},
 				resource.Attribute{
 					Name:        "sslvpn",
-					Description: `(Optional)`,
+					Description: `(Optional) SSL VPN.`,
 				},
 				resource.Attribute{
 					Name:        "aaa",
-					Description: `(Optional)`,
+					Description: `(Optional) AAA.`,
 				},
 				resource.Attribute{
 					Name:        "ospf",
-					Description: `(Optional)`,
+					Description: `(Optional) OSPF Routing.`,
 				},
 				resource.Attribute{
 					Name:        "rip",
-					Description: `(Optional)`,
+					Description: `(Optional) RIP Routing.`,
 				},
 				resource.Attribute{
 					Name:        "bgp",
-					Description: `(Optional)`,
+					Description: `(Optional) BGP Routing.`,
 				},
 				resource.Attribute{
 					Name:        "rewrite",
-					Description: `(Optional)`,
+					Description: `(Optional) Rewrite.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6pt",
-					Description: `(Optional)`,
+					Description: `(Optional) IPv6 protocol translation.`,
 				},
 				resource.Attribute{
 					Name:        "appfw",
-					Description: `(Optional)`,
+					Description: `(Optional) Application Firewall.`,
 				},
 				resource.Attribute{
 					Name:        "responder",
-					Description: `(Optional)`,
+					Description: `(Optional) Responder.`,
 				},
 				resource.Attribute{
 					Name:        "htmlinjection",
-					Description: `(Optional)`,
+					Description: `(Optional) HTML Injection.`,
 				},
 				resource.Attribute{
 					Name:        "push",
-					Description: `(Optional)`,
+					Description: `(Optional) Citrix ADC Push.`,
 				},
 				resource.Attribute{
 					Name:        "appflow",
-					Description: `(Optional)`,
+					Description: `(Optional) AppFlow.`,
 				},
 				resource.Attribute{
 					Name:        "cloudbridge",
-					Description: `(Optional)`,
+					Description: `(Optional) CloudBridge.`,
 				},
 				resource.Attribute{
 					Name:        "isis",
-					Description: `(Optional)`,
+					Description: `(Optional) ISIS Routing.`,
 				},
 				resource.Attribute{
 					Name:        "ch",
-					Description: `(Optional)`,
+					Description: `(Optional) Call Home.`,
 				},
 				resource.Attribute{
 					Name:        "appqoe",
-					Description: `(Optional)`,
+					Description: `(Optional) AppQoS.`,
 				},
 				resource.Attribute{
 					Name:        "contentaccelerator",
-					Description: `(Optional)`,
+					Description: `(Optional) Transparent Integrated Caching.`,
 				},
 				resource.Attribute{
 					Name:        "rise",
@@ -7016,51 +15212,55 @@ The nsfeature resource is used to enable or disable ADC features.
 				},
 				resource.Attribute{
 					Name:        "feo",
-					Description: `(Optional)`,
+					Description: `(Optional) Optimize Web content (HTML, CSS, JavaScript, images).`,
 				},
 				resource.Attribute{
 					Name:        "lsn",
-					Description: `(Optional)`,
+					Description: `(Optional) Large Scale NAT.`,
 				},
 				resource.Attribute{
 					Name:        "rdpproxy",
-					Description: `(Optional)`,
+					Description: `(Optional) RDPPROXY.`,
 				},
 				resource.Attribute{
 					Name:        "rep",
-					Description: `(Optional)`,
+					Description: `(Optional) Reputation Services.`,
 				},
 				resource.Attribute{
 					Name:        "urlfiltering",
-					Description: `(Optional)`,
+					Description: `(Optional) URL Filtering.`,
 				},
 				resource.Attribute{
 					Name:        "videooptimization",
-					Description: `(Optional)`,
+					Description: `(Optional) Video Optimization.`,
 				},
 				resource.Attribute{
 					Name:        "forwardproxy",
-					Description: `(Optional)`,
+					Description: `(Optional) Forward Proxy.`,
 				},
 				resource.Attribute{
 					Name:        "sslinterception",
-					Description: `(Optional)`,
+					Description: `(Optional) SSL Interception.`,
 				},
 				resource.Attribute{
 					Name:        "adaptivetcp",
-					Description: `(Optional)`,
+					Description: `(Optional) Adaptive TCP.`,
 				},
 				resource.Attribute{
 					Name:        "cqa",
-					Description: `(Optional)`,
+					Description: `(Optional) Connection Quality Analytics.`,
 				},
 				resource.Attribute{
 					Name:        "ci",
-					Description: `(Optional)`,
+					Description: `(Optional) Content Inspection.`,
 				},
 				resource.Attribute{
 					Name:        "bot",
-					Description: `(Optional) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+					Description: `(Optional) Bot Management.`,
+				},
+				resource.Attribute{
+					Name:        "apigateway",
+					Description: `(Optional) API Gateway. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -7091,119 +15291,87 @@ The nshttpprofile resource is used to create HTTP profiles.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name for an HTTP profile.The name of a HTTP profile cannot be changed after it is created.`,
-				},
-				resource.Attribute{
-					Name:        "dropinvalreqs",
-					Description: `(Optional) Drop invalid HTTP requests or responses. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "markhttp09inval",
-					Description: `(Optional) Mark HTTP/0.9 requests as invalid. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "markconnreqinval",
-					Description: `(Optional) Mark CONNECT requests as invalid. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "marktracereqinval",
-					Description: `(Optional) Mark TRACE requests as invalid. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "cmponpush",
-					Description: `(Optional) Start data compression on receiving a TCP packet with PUSH flag set. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "conmultiplex",
-					Description: `(Optional) Reuse server connections for requests from more than one client connections. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "maxreusepool",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "dropextracrlf",
-					Description: `(Optional) Drop any extra 'CR' and 'LF' characters present after the header. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "incomphdrdelay",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "websocket",
-					Description: `(Optional) HTTP connection to be upgraded to a web socket connection. Once upgraded, Citrix ADC does not process Layer 7 traffic on this connection. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "rtsptunnel",
-					Description: `(Optional) Allow RTSP tunnel in HTTP. Once application/x-rtsp-tunnelled is seen in Accept or Content-Type header, Citrix ADC does not process Layer 7 traffic on this connection. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "reqtimeout",
-					Description: `(Optional) Time, in seconds, within which the HTTP request must complete. If the request does not complete within this time, the specified request timeout action is executed. Zero disables the timeout.`,
-				},
-				resource.Attribute{
 					Name:        "adpttimeout",
-					Description: `(Optional) Adapts the configured request timeout based on flow conditions. The timeout is increased or decreased internally and applied on the flow. Possible values: [ ENABLED, DISABLED ]`,
+					Description: `(Optional) Adapts the configured request timeout based on flow conditions. The timeout is increased or decreased internally and applied on the flow.`,
 				},
 				resource.Attribute{
-					Name:        "reqtimeoutaction",
-					Description: `(Optional) Action to take when the HTTP request does not complete within the specified request timeout duration. You can configure the following actions:`,
+					Name:        "altsvc",
+					Description: `(Optional) Choose whether to enable support for Alternative Services.`,
 				},
 				resource.Attribute{
-					Name:        "dropextradata",
-					Description: `(Optional) Drop any extra data when server sends more data than the specified content-length. Possible values: [ ENABLED, DISABLED ]`,
+					Name:        "altsvcvalue",
+					Description: `(Optional) Configure a custom Alternative Services header value that should be inserted in the response to advertise a HTTP/SSL/HTTP_QUIC vserver.`,
 				},
 				resource.Attribute{
-					Name:        "weblog",
-					Description: `(Optional) Enable or disable web logging. Possible values: [ ENABLED, DISABLED ]`,
+					Name:        "apdexcltresptimethreshold",
+					Description: `(Optional) This option sets the satisfactory threshold (T) for client response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4\`,
 				},
 				resource.Attribute{
 					Name:        "clientiphdrexpr",
 					Description: `(Optional) Name of the header that contains the real client IP address.`,
 				},
 				resource.Attribute{
-					Name:        "maxreq",
+					Name:        "cmponpush",
+					Description: `(Optional) Start data compression on receiving a TCP packet with PUSH flag set.`,
+				},
+				resource.Attribute{
+					Name:        "conmultiplex",
+					Description: `(Optional) Reuse server connections for requests from more than one client connections.`,
+				},
+				resource.Attribute{
+					Name:        "dropextracrlf",
+					Description: `(Optional) Drop any extra 'CR' and 'LF' characters present after the header.`,
+				},
+				resource.Attribute{
+					Name:        "dropextradata",
+					Description: `(Optional) Drop any extra data when server sends more data than the specified content-length.`,
+				},
+				resource.Attribute{
+					Name:        "dropinvalreqs",
+					Description: `(Optional) Drop invalid HTTP requests or responses.`,
+				},
+				resource.Attribute{
+					Name:        "grpcholdlimit",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "persistentetag",
-					Description: `(Optional) Generate the persistent Citrix ADC specific ETag for the HTTP response with ETag header. Possible values: [ ENABLED, DISABLED ]`,
+					Name:        "grpcholdtimeout",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "spdy",
-					Description: `(Optional) Enable SPDYv2 or SPDYv3 or both over SSL vserver. SSL will advertise SPDY support either during NPN Handshake or when client will advertises SPDY support during ALPN handshake. Both SPDY versions are enabled when this parameter is set to ENABLED. Possible values: [ DISABLED, ENABLED, V2, V3 ]`,
+					Name:        "grpclengthdelimitation",
+					Description: `(Optional) Set to DISABLED for gRPC without a length delimitation.`,
 				},
 				resource.Attribute{
 					Name:        "http2",
-					Description: `(Optional) Choose whether to enable support for HTTP/2. Possible values: [ ENABLED, DISABLED ]`,
+					Description: `(Optional) Choose whether to enable support for HTTP/2.`,
+				},
+				resource.Attribute{
+					Name:        "http2altsvcframe",
+					Description: `(Optional) Choose whether to enable support for sending HTTP/2 ALTSVC frames. When enabled, the ADC sends HTTP/2 ALTSVC frames to HTTP/2 clients, instead of the Alt-Svc response header field. Not applicable to servers.`,
 				},
 				resource.Attribute{
 					Name:        "http2direct",
-					Description: `(Optional) Choose whether to enable support for Direct HTTP/2. Possible values: [ ENABLED, DISABLED ]`,
+					Description: `(Optional) Choose whether to enable support for Direct HTTP/2.`,
 				},
 				resource.Attribute{
-					Name:        "http2strictcipher",
-					Description: `(Optional) Choose whether to enable strict HTTP/2 cipher selection. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "altsvc",
-					Description: `(Optional) Choose whether to enable support for Alternative Service. Possible values: [ ENABLED, DISABLED ]`,
-				},
-				resource.Attribute{
-					Name:        "reusepooltimeout",
-					Description: `(Optional) Idle timeout (in seconds) for server connections in re-use pool. Connections in the re-use pool are flushed, if they remain idle for the configured timeout.`,
-				},
-				resource.Attribute{
-					Name:        "maxheaderlen",
-					Description: `(Optional) Number of bytes to be queued to look for complete header before returning error. If complete header is not obtained after queuing these many bytes, request will be marked as invalid and no L7 processing will be done for that TCP connection.`,
-				},
-				resource.Attribute{
-					Name:        "minreusepool",
+					Name:        "http2headertablesize",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "http2maxheaderlistsize",
+					Name:        "http2initialconnwindowsize",
+					Description: `(Optional) Initial window size for connection level flow control, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "http2initialwindowsize",
+					Description: `(Optional) Initial window size for stream level flow control, in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "http2maxconcurrentstreams",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "http2maxemptyframespermin",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -7211,15 +15379,19 @@ The nshttpprofile resource is used to create HTTP profiles.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "http2maxconcurrentstreams",
+					Name:        "http2maxheaderlistsize",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "http2initialwindowsize",
-					Description: `(Optional) Initial window size for stream level flow control, in bytes.`,
+					Name:        "http2maxpingframespermin",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "http2headertablesize",
+					Name:        "http2maxresetframespermin",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "http2maxsettingsframespermin",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -7227,8 +15399,100 @@ The nshttpprofile resource is used to create HTTP profiles.
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "apdexcltresptimethreshold",
-					Description: `(Optional) This option sets the satisfactory threshold (T) for client response time in milliseconds to be used for APDEX calculations. This means a transaction responding in less than this threshold is considered satisfactory. Transaction responding between T and 4\`,
+					Name:        "http2strictcipher",
+					Description: `(Optional) Choose whether to enable strict HTTP/2 cipher selection`,
+				},
+				resource.Attribute{
+					Name:        "http3",
+					Description: `(Optional) Choose whether to enable support for HTTP/3.`,
+				},
+				resource.Attribute{
+					Name:        "http3maxheaderblockedstreams",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "http3maxheaderfieldsectionsize",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "http3maxheadertablesize",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "incomphdrdelay",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "markconnreqinval",
+					Description: `(Optional) Mark CONNECT requests as invalid.`,
+				},
+				resource.Attribute{
+					Name:        "markhttp09inval",
+					Description: `(Optional) Mark HTTP/0.9 requests as invalid.`,
+				},
+				resource.Attribute{
+					Name:        "markhttpheaderextrawserror",
+					Description: `(Optional) Mark Http header with extra white space as invalid`,
+				},
+				resource.Attribute{
+					Name:        "markrfc7230noncompliantinval",
+					Description: `(Optional) Mark RFC7230 non-compliant transaction as invalid`,
+				},
+				resource.Attribute{
+					Name:        "marktracereqinval",
+					Description: `(Optional) Mark TRACE requests as invalid.`,
+				},
+				resource.Attribute{
+					Name:        "maxheaderlen",
+					Description: `(Optional) Number of bytes to be queued to look for complete header before returning error. If complete header is not obtained after queuing these many bytes, request will be marked as invalid and no L7 processing will be done for that TCP connection.`,
+				},
+				resource.Attribute{
+					Name:        "maxreq",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "maxreusepool",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "minreusepool",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for an HTTP profile. Must begin with a letter, number, or the underscore \(\_\) character. Other characters allowed, after the first character, are the hyphen \(-\), period \(.\), hash \(\#\), space \( \), at \(@\), colon \(:\), and equal \(=\) characters. The name of a HTTP profile cannot be changed after it is created. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks \(for example, "my http profile" or 'my http profile'\).`,
+				},
+				resource.Attribute{
+					Name:        "persistentetag",
+					Description: `(Optional) Generate the persistent Citrix ADC specific ETag for the HTTP response with ETag header.`,
+				},
+				resource.Attribute{
+					Name:        "reqtimeout",
+					Description: `(Optional) Time, in seconds, within which the HTTP request must complete. If the request does not complete within this time, the specified request timeout action is executed. Zero disables the timeout.`,
+				},
+				resource.Attribute{
+					Name:        "reqtimeoutaction",
+					Description: `(Optional) Action to take when the HTTP request does not complete within the specified request timeout duration. You can configure the following actions:`,
+				},
+				resource.Attribute{
+					Name:        "reusepooltimeout",
+					Description: `(Optional) Idle timeout (in seconds) for server connections in re-use pool. Connections in the re-use pool are flushed, if they remain idle for the configured timeout.`,
+				},
+				resource.Attribute{
+					Name:        "rtsptunnel",
+					Description: `(Optional) Allow RTSP tunnel in HTTP. Once application/x-rtsp-tunnelled is seen in Accept or Content-Type header, Citrix ADC does not process Layer 7 traffic on this connection.`,
+				},
+				resource.Attribute{
+					Name:        "spdy",
+					Description: `(Optional) Enable SPDYv2 or SPDYv3 or both over SSL vserver. SSL will advertise SPDY support either during NPN Handshake or when client will advertises SPDY support during ALPN handshake. Both SPDY versions are enabled when this parameter is set to ENABLED.`,
+				},
+				resource.Attribute{
+					Name:        "weblog",
+					Description: `(Optional) Enable or disable web logging.`,
+				},
+				resource.Attribute{
+					Name:        "websocket",
+					Description: `(Optional) HTTP connection to be upgraded to a web socket connection. Once upgraded, Citrix ADC does not process Layer 7 traffic on this connection. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8691,6 +16955,169 @@ The policyexpression resource is used to create policy expressions.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_policyhttpcallout",
+			Category:         "Policy",
+			ShortDescription: ``,
+			Description: `
+
+The policyhttpcallout resource is used to create an expression element that, when evaluated, sends an HTTP request to a specified service and receives an HTTP response from the service.
+
+
+`,
+			Keywords: []string{
+				"policy",
+				"policyhttpcallout",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the HTTP callout. Not case sensitive. Must begin with an ASCII letter or underscore (_) character, and must consist only of ASCII alphanumeric or underscore characters. Must not begin with 're' or 'xp' or be a word reserved for use as an expression qualifier prefix (such as HTTP) or enumeration value (such as ASCII). Must not be the name of an existing named expression, pattern set, dataset, stringmap, or HTTP callout.`,
+				},
+				resource.Attribute{
+					Name:        "ipaddress",
+					Description: `(Optional) IP Address of the server (callout agent) to which the callout is sent. Can be an IPv4 or IPv6 address. Mutually exclusive with the Virtual Server parameter. Therefore, you cannot set the <IP Address, Port> and the Virtual Server in the same HTTP callout.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Server port to which the HTTP callout agent is mapped. Mutually exclusive with the Virtual Server parameter. Therefore, you cannot set the <IP Address, Port> and the Virtual Server in the same HTTP callout.`,
+				},
+				resource.Attribute{
+					Name:        "vserver",
+					Description: `(Optional) Name of the load balancing, content switching, or cache redirection virtual server (the callout agent) to which the HTTP callout is sent. The service type of the virtual server must be HTTP. Mutually exclusive with the IP address and port parameters. Therefore, you cannot set the <IP Address, Port> and the Virtual Server in the same HTTP callout.`,
+				},
+				resource.Attribute{
+					Name:        "returntype",
+					Description: `(Optional) Type of data that the target callout agent returns in response to the callout. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "httpmethod",
+					Description: `(Optional) Method used in the HTTP request that this callout sends. Mutually exclusive with the full HTTP request expression. Possible values: [ GET, POST ]`,
+				},
+				resource.Attribute{
+					Name:        "hostexpr",
+					Description: `(Optional) String expression to configure the Host header. Can contain a literal value (for example, 10.101.10.11) or a derived value (for example, http.req.header("Host")). The literal value can be an IP address or a fully qualified domain name. Mutually exclusive with the full HTTP request expression.`,
+				},
+				resource.Attribute{
+					Name:        "urlstemexpr",
+					Description: `(Optional) String expression for generating the URL stem. Can contain a literal string (for example, "/mysite/index.html") or an expression that derives the value (for example, http.req.url). Mutually exclusive with the full HTTP request expression.`,
+				},
+				resource.Attribute{
+					Name:        "headers",
+					Description: `(Optional) One or more headers to insert into the HTTP request. Each header is specified as "name(expr)", where expr is an expression that is evaluated at runtime to provide the value for the named header. You can configure a maximum of eight headers for an HTTP callout. Mutually exclusive with the full HTTP request expression.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) One or more query parameters to insert into the HTTP request URL (for a GET request) or into the request body (for a POST request). Each parameter is specified as "name(expr)", where expr is an expression that is evaluated at run time to provide the value for the named parameter (name=value). The parameter values are URL encoded. Mutually exclusive with the full HTTP request expression.`,
+				},
+				resource.Attribute{
+					Name:        "bodyexpr",
+					Description: `(Optional) An advanced string expression for generating the body of the request. The expression can contain a literal string or an expression that derives the value (for example, client.ip.src). Mutually exclusive with -fullReqExpr.`,
+				},
+				resource.Attribute{
+					Name:        "fullreqexpr",
+					Description: `(Optional) Exact HTTP request, in the form of an expression, which the Citrix ADC sends to the callout agent. If you set this parameter, you must not include HTTP method, host expression, URL stem expression, headers, or parameters. The request expression is constrained by the feature for which the callout is used. For example, an HTTP.RES expression cannot be used in a request-time policy bank or in a TCP content switching policy bank. The Citrix ADC does not check the validity of this request. You must manually validate the request.`,
+				},
+				resource.Attribute{
+					Name:        "scheme",
+					Description: `(Optional) Type of scheme for the callout server. Possible values: [ http, https ]`,
+				},
+				resource.Attribute{
+					Name:        "resultexpr",
+					Description: `(Optional) Expression that extracts the callout results from the response sent by the HTTP callout agent. Must be a response based expression, that is, it must begin with HTTP.RES. The operations in this expression must match the return type. For example, if you configure a return type of TEXT, the result expression must be a text based expression. If the return type is NUM, the result expression (resultExpr) must return a numeric value, as in the following example: http.res.body(10000).length.`,
+				},
+				resource.Attribute{
+					Name:        "cacheforsecs",
+					Description: `(Optional) Duration, in seconds, for which the callout response is cached. The cached responses are stored in an integrated caching content group named "calloutContentGroup". If no duration is configured, the callout responses will not be cached unless normal caching configuration is used to cache them. This parameter takes precedence over any normal caching configuration that would otherwise apply to these responses. Note that the calloutContentGroup definition may not be modified or removed nor may it be used with other cache policies.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this HTTP callout. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the policyhttpcallout. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A policyhttpcallout can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_policyhttpcallout.tf_policyhttpcallout tf_policyhttpcallout ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the policyhttpcallout. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A policyhttpcallout can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_policyhttpcallout.tf_policyhttpcallout tf_policyhttpcallout ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_policymap",
+			Category:         "Policy",
+			ShortDescription: ``,
+			Description: `
+
+The policymap resource is used to create a policy to map a publicly known domain name to a target domain name.
+
+
+`,
+			Keywords: []string{
+				"policy",
+				"policymap",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "mappolicyname",
+					Description: `(Required) Name for the map policy. Must begin with a letter, number, or the underscore (_) character and must consist only of letters, numbers, and the hash (#), period (.), colon (:), space ( ), at (@), equals (=), hyphen (-), and underscore (_) characters. CLI Users: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my map" or 'my map').`,
+				},
+				resource.Attribute{
+					Name:        "sd",
+					Description: `(Required) Publicly known source domain name. This is the domain name with which a client request arrives at a reverse proxy virtual server for cache redirection. If you specify a source domain, you must specify a target domain.`,
+				},
+				resource.Attribute{
+					Name:        "su",
+					Description: `(Optional) Source URL. Specify all or part of the source URL, in the following format: /[[prefix] [`,
+				},
+				resource.Attribute{
+					Name:        "td",
+					Description: `(Required) Target domain name sent to the server. The source domain name is replaced with this domain name.`,
+				},
+				resource.Attribute{
+					Name:        "tu",
+					Description: `(Optional) Target URL. Specify the target URL in the following format: /[[prefix] [`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the policymap. It has the same value as the ` + "`" + `mappolicyname` + "`" + ` attribute. ## Import A policymap can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_policymap.tf_policymap tf_policymap ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the policymap. It has the same value as the ` + "`" + `mappolicyname` + "`" + ` attribute. ## Import A policymap can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_policymap.tf_policymap tf_policymap ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_policyparam",
+			Category:         "Policy",
+			ShortDescription: ``,
+			Description: `
+
+The policyparam resource is used to configure the given policy parameter.
+
+
+`,
+			Keywords: []string{
+				"policy",
+				"policyparam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_policypatset",
 			Category:         "Policy",
 			ShortDescription: ``,
@@ -9018,6 +17445,81 @@ The responderaction resource is used to create responder actions.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_responderhtmlpage",
+			Category:         "Responder",
+			ShortDescription: ``,
+			Description: `
+
+The responderhtmlpage resource is used to create html pages to be used with the responder feature.
+
+
+`,
+			Keywords: []string{
+				"responder",
+				"responderhtmlpage",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cacertfile",
+					Description: `(Optional) CA certificate file name which will be used to verify the peer's certificate. The certificate should be imported using "import ssl certfile" CLI command or equivalent in API or GUI. If certificate name is not configured, then default root CA certificates are used for peer's certificate verification.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about the HTML page object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name to assign to the HTML page object on the Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "overwrite",
+					Description: `(Optional) Overwrites the existing file`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `(Optional) Local path to and name of, or URL (protocol, host, path, and file name) for, the file in which to store the imported HTML page. NOTE: The import fails if the object to be imported is on an HTTPS server that requires client certificate authentication for access. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the responderhtmlpage. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the responderhtmlpage. It has the same value as the ` + "`" + `name` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_responderparam",
+			Category:         "Responder",
+			ShortDescription: ``,
+			Description: `
+
+The responderparam resource is used to configure the given responder parameters.
+
+
+`,
+			Keywords: []string{
+				"responder",
+				"responderparam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform when policy evaluation creates an UNDEF condition. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_responderpolicy",
 			Category:         "Responder",
 			ShortDescription: ``,
@@ -9218,6 +17720,64 @@ The responderpolicylabel resource is used to create responder policy labels.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_responderpolicylabel_responderpolicy_binding",
+			Category:         "Responder",
+			ShortDescription: ``,
+			Description: `
+
+The responderpolicylabel_responderpolicy_binding resource is used to bind a responder policy to responder policy label.
+
+
+`,
+			Keywords: []string{
+				"responder",
+				"responderpolicylabel",
+				"responderpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the responder policy.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) If the current policy evaluates to TRUE, terminate evaluation of policies bound to the current policy label and evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label to invoke. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "invoke_labelname",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the responder policy label to which to bind the policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the responderpolicylabel_responderpolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A responderpolicylabel_responderpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_responderpolicylabel_responderpolicy_binding.tf_responderpolicylabel_responderpolicy_binding tf_responderpolicylabel,tf_responderpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the responderpolicylabel_responderpolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A responderpolicylabel_responderpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_responderpolicylabel_responderpolicy_binding.tf_responderpolicylabel_responderpolicy_binding tf_responderpolicylabel,tf_responderpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_rewriteaction",
 			Category:         "Rewrite",
 			ShortDescription: ``,
@@ -9279,6 +17839,95 @@ The rewriteaction resource is used to create rewrite actions.
 					Description: `The id of the rewriteaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A rewriteaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewriteaction.tf_rewrite_action tf_rewrite_action ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_rewriteglobal_rewritepolicy_binding",
+			Category:         "Rewrite",
+			ShortDescription: ``,
+			Description: `
+
+The rewriteglobal_rewritepolicy_binding resource is used to bind a rewrite policy to global, in order to apply it to the entire traffic handled by the Citrix ADC.
+
+
+`,
+			Keywords: []string{
+				"rewrite",
+				"rewriteglobal",
+				"rewritepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the rewrite policy.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The bindpoint to which to policy is bound. Possible values: [ REQ_OVERRIDE, REQ_DEFAULT, RES_OVERRIDE, RES_DEFAULT, OTHERTCP_REQ_OVERRIDE, OTHERTCP_REQ_DEFAULT, OTHERTCP_RES_OVERRIDE, OTHERTCP_RES_DEFAULT, SIPUDP_REQ_OVERRIDE, SIPUDP_REQ_DEFAULT, SIPUDP_RES_OVERRIDE, SIPUDP_RES_DEFAULT, SIPTCP_REQ_OVERRIDE, SIPTCP_REQ_DEFAULT, SIPTCP_RES_OVERRIDE, SIPTCP_RES_DEFAULT, DIAMETER_REQ_OVERRIDE, DIAMETER_REQ_DEFAULT, DIAMETER_RES_OVERRIDE, DIAMETER_RES_DEFAULT, RADIUS_REQ_OVERRIDE, RADIUS_REQ_DEFAULT, RADIUS_RES_OVERRIDE, RADIUS_RES_DEFAULT, DNS_REQ_OVERRIDE, DNS_REQ_DEFAULT, DNS_RES_OVERRIDE, DNS_RES_DEFAULT ]`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Terminate evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of invocation. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "globalbindtype",
+					Description: `(Optional) . Possible values: [ SYSTEM_GLOBAL, VPN_GLOBAL, RNAT_GLOBAL ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the rewriteglobal_rewritepolicy_binding. It is the concatenation of the ` + "`" + `policyname` + "`" + `, ` + "`" + `priority` + "`" + ` and ` + "`" + `type` + "`" + ` attributes separated by a comma. ## Import A rewriteglobal_rewritepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewriteglobal_rewritepolicy_binding.tf_rewriteglobal_rewritepolicy_binding tf_rewrite_policy,5,REQ_DEFAULT ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the rewriteglobal_rewritepolicy_binding. It is the concatenation of the ` + "`" + `policyname` + "`" + `, ` + "`" + `priority` + "`" + ` and ` + "`" + `type` + "`" + ` attributes separated by a comma. ## Import A rewriteglobal_rewritepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewriteglobal_rewritepolicy_binding.tf_rewriteglobal_rewritepolicy_binding tf_rewrite_policy,5,REQ_DEFAULT ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_rewriteparam",
+			Category:         "Rewrite",
+			ShortDescription: ``,
+			Description: `
+
+The rewriteparam resource is used to configure the given rewrite parameters.
+
+
+`,
+			Keywords: []string{
+				"rewrite",
+				"rewriteparam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "undefaction",
+					Description: `(Optional) Action to perform if the result of policy evaluation is undefined (UNDEF). An UNDEF event indicates an error condition in evaluating the expression. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9473,6 +18122,64 @@ The rewritepolicylabel resource is used to create rewrite policy labels.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the rewritepolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A rewritepolicylabel can be imported using its labelname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewritepolicylabel.tf_rewritepolicylabel tf_rewritepolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_rewritepolicylabel_rewritepolicy_binding",
+			Category:         "Rewrite",
+			ShortDescription: ``,
+			Description: `
+
+The rewritepolicylabel_rewritepolicy_binding resource is used to bind a rewrite policy to rewrite policy label.
+
+
+`,
+			Keywords: []string{
+				"rewrite",
+				"rewritepolicylabel",
+				"rewritepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the rewrite policy to bind to the policy label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Suspend evaluation of policies bound to the current policy label, and then forward the request to the specified virtual server or evaluate the specified policy label.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of invocation. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "invoke_labelname",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the rewrite policy label to which to bind the policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the rewritepolicylabel_rewritepolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A rewritepolicylabel_rewritepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewritepolicylabel_rewritepolicy_binding.tf_rewritepolicylabel_rewritepolicy_binding tf_rewritepolicylabel,policyname ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the rewritepolicylabel_rewritepolicy_binding. It is the concatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes separated by a comma. ## Import A rewritepolicylabel_rewritepolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_rewritepolicylabel_rewritepolicy_binding.tf_rewritepolicylabel_rewritepolicy_binding tf_rewritepolicylabel,policyname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9986,7 +18693,23 @@ The service resource is used to create services.
 				},
 				resource.Attribute{
 					Name:        "appflowlog",
-					Description: `(Optional) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "wait_until_disabled",
+					Description: `(Optional) Boolean flag to signify if the resource will wait for the service to be in a disabled state after the disable operation has been issued.`,
+				},
+				resource.Attribute{
+					Name:        "disabled_timeout",
+					Description: `(Optional) Time period to wait for the service to be in a disabled state after the disable operation.`,
+				},
+				resource.Attribute{
+					Name:        "disabled_poll_delay",
+					Description: `(Optional) Time period to wait before the first poll for the disabled state read.`,
+				},
+				resource.Attribute{
+					Name:        "disabled_poll_interval",
+					Description: `(Optional) Time period for disabled state read poll interval between tries. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10384,17 +19107,21 @@ The servicegroup\_servicegroupmember\_binding resource is used to bind service m
 				},
 				resource.Attribute{
 					Name:        "servicegroupname",
-					Description: `(Required) Name of the service group. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+					Description: `(Required) Name of the service group.`,
+				},
+				resource.Attribute{
+					Name:        "disable_read",
+					Description: `(Optional) When set to true the read operation is skipped. Useful when the read operation will cause errors such as the binding of an dns query server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the servicegroup\_servicegroupmember\_binding. It is the concatenation of three components separated by comma. First component is the ` + "`" + `servicegroupname` + "`" + `. Second component is the ` + "`" + `ip` + "`" + ` or the ` + "`" + `servername` + "`" + ` attribute. Last optional component is the ` + "`" + `port` + "`" + ` attribute.`,
+					Description: `The id of the servicegroup\_servicegroupmember\_binding. It is the concatenation of three components separated by comma. First component is the ` + "`" + `servicegroupname` + "`" + `. Second component is the ` + "`" + `ip` + "`" + ` or the ` + "`" + `servername` + "`" + ` attribute. Last optional component is the ` + "`" + `port` + "`" + ` attribute. ## Import A servicegroup\_servicegroupmember\_binding can be imported using its id. The id is either a 3-tuple consisting of the servicegroup name, the ip address or server name and the port separated by comma. In case of a server that port is not applicable for the binding, the id is a 2-tuple consisting of the servicegroup name and the server name separated by comma. ` + "`" + `` + "`" + `` + "`" + `shell # 3 tuple with ip address terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,10.78.22.33,80 # 3 tuple with server name terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,servername,80 # 2 tuple terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,servername_no_port ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the servicegroup\_servicegroupmember\_binding. It is the concatenation of three components separated by comma. First component is the ` + "`" + `servicegroupname` + "`" + `. Second component is the ` + "`" + `ip` + "`" + ` or the ` + "`" + `servername` + "`" + ` attribute. Last optional component is the ` + "`" + `port` + "`" + ` attribute.`,
+					Description: `The id of the servicegroup\_servicegroupmember\_binding. It is the concatenation of three components separated by comma. First component is the ` + "`" + `servicegroupname` + "`" + `. Second component is the ` + "`" + `ip` + "`" + ` or the ` + "`" + `servername` + "`" + ` attribute. Last optional component is the ` + "`" + `port` + "`" + ` attribute. ## Import A servicegroup\_servicegroupmember\_binding can be imported using its id. The id is either a 3-tuple consisting of the servicegroup name, the ip address or server name and the port separated by comma. In case of a server that port is not applicable for the binding, the id is a 2-tuple consisting of the servicegroup name and the server name separated by comma. ` + "`" + `` + "`" + `` + "`" + `shell # 3 tuple with ip address terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,10.78.22.33,80 # 3 tuple with server name terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,servername,80 # 2 tuple terraform import citrixadc_servicegroup_servicegroupmember_binding.tf_binding tf_servicegroup,servername_no_port ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10572,6 +19299,52 @@ The sslcacertgroup resource is used to configure a Group of CA certificate-key p
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "citrixadc_sslcacertgroup_sslcertkey_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslprofile_sslcipher_binding resource is used to create bindings between sslcacertgroup and sslcertkey.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslcacertgroup",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certkeyname",
+					Description: `(Required) Name for the certkey added to the Citrix ADC. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the certificate-key pair is created.The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my cert" or 'my cert').`,
+				},
+				resource.Attribute{
+					Name:        "crlcheck",
+					Description: `(Optional) The state of the CRL check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ocspcheck",
+					Description: `(Optional) The state of the OCSP check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "cacertgroupname",
+					Description: `(Required) Name given to the CA certificate group. The name will be used to add the CA certificates to the group. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my file" or 'my file'). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslcacertgroup_sslcertkey_binding. It has is the conatenation of the ` + "`" + `cacertgroupname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes. ## Import A sslcacertgroup_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslcacertgroup_sslcertkey_binding.tf_sslcacertgroup_sslcertkey_binding tf_sslcacertgroup_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslcacertgroup_sslcertkey_binding. It has is the conatenation of the ` + "`" + `cacertgroupname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes. ## Import A sslcacertgroup_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslcacertgroup_sslcertkey_binding.tf_sslcacertgroup_sslcertkey_binding tf_sslcacertgroup_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "citrixadc_sslcertkey",
 			Category:         "SSL",
 			ShortDescription: ``,
@@ -10735,6 +19508,262 @@ The ssldhparam resource is used to configure ssl DH parameters.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the ssldhparam. It has the same value as the ` + "`" + `dhfile` + "`" + ` attribute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_ssldtlsprofile",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The ssldtlsprofile resource is used to create a new DTLS profile.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"ssldtlsprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the DTLS profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@),equals sign (=), and hyphen (-) characters. Cannot be changed after the profile is created.`,
+				},
+				resource.Attribute{
+					Name:        "pmtudiscovery",
+					Description: `(Optional) Source for the maximum record size value. If ENABLED, the value is taken from the PMTU table. If DISABLED, the value is taken from the profile. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "maxrecordsize",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "maxretrytime",
+					Description: `(Optional) Wait for the specified time, in seconds, before resending the request.`,
+				},
+				resource.Attribute{
+					Name:        "helloverifyrequest",
+					Description: `(Optional) Send a Hello Verify request to validate the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "terminatesession",
+					Description: `(Optional) Terminate the session if the message authentication code (MAC) of the client and server do not match. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "maxpacketsize",
+					Description: `(Optional) ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ssldtlsprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A ssldtlsprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_ssldtlsprofile.tf_ssldtlsprofile tf_ssldtlsprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ssldtlsprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A ssldtlsprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_ssldtlsprofile.tf_ssldtlsprofile tf_ssldtlsprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslfipskey",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslfipskey resource is used to create SSL fips key.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslfipskey",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fipskeyname",
+					Description: `(Required) Name for the FIPS key. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the FIPS key is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my fipskey" or 'my fipskey').`,
+				},
+				resource.Attribute{
+					Name:        "keytype",
+					Description: `(Required) Only RSA key and ECDSA Key are supported. Possible values: [ RSA, ECDSA ]`,
+				},
+				resource.Attribute{
+					Name:        "exponent",
+					Description: `(Optional) Exponent value for the FIPS key to be created. Available values function as follows: 3=3 (hexadecimal) F4=10001 (hexadecimal). Possible values: [ 3, F4 ]`,
+				},
+				resource.Attribute{
+					Name:        "modulus",
+					Description: `(Optional) Modulus, in multiples of 64, of the FIPS key to be created.`,
+				},
+				resource.Attribute{
+					Name:        "curve",
+					Description: `(Optional) Only p_256 (prime256v1) and P_384 (secp384r1) are supported. Possible values: [ P_256, P_384 ]`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Name of and, optionally, path to the key file to be imported. /nsconfig/ssl/ is the default path.`,
+				},
+				resource.Attribute{
+					Name:        "inform",
+					Description: `(Optional) Input format of the key file. Available formats are: SIM - Secure Information Management; select when importing a FIPS key. If the external FIPS key is encrypted, first decrypt it, and then import it. PEM - Privacy Enhanced Mail; select when importing a non-FIPS key. Possible values: [ SIM, DER, PEM ]`,
+				},
+				resource.Attribute{
+					Name:        "wrapkeyname",
+					Description: `(Optional) Name of the wrap key to use for importing the key. Required for importing a non-FIPS key.`,
+				},
+				resource.Attribute{
+					Name:        "iv",
+					Description: `(Optional) Initialization Vector (IV) to use for importing the key. Required for importing a non-FIPS key. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslfipskey. It has the same value as the ` + "`" + `fipskeyname` + "`" + ` attribute. ## Import A sslfipskey can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslfipskey.tf_sslfipskey tf_sslfipskey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslfipskey. It has the same value as the ` + "`" + `fipskeyname` + "`" + ` attribute. ## Import A sslfipskey can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslfipskey.tf_sslfipskey tf_sslfipskey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_ssllogprofile",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The ssllogprofile resource is used to create the ADC SSL logprofile.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"ssllogprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ssllogprofile.`,
+				},
+				resource.Attribute{
+					Name:        "ssllogclauth",
+					Description: `(Optional) log all SSL ClAuth events. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ssllogclauthfailures",
+					Description: `(Optional) log all SSL ClAuth error events. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sslloghs",
+					Description: `(Optional) log all SSL HS events. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sslloghsfailures",
+					Description: `(Optional) log all SSL HS error events. Possible values: [ ENABLED, DISABLED ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ssllogprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A ssllogprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_ssllogprofile.tf_ssllogprofile tf_ssllogprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ssllogprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A ssllogprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_ssllogprofile.tf_ssllogprofile tf_ssllogprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslocspresponder",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslocspresponder resource is used to create a OCSP responder.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslocspresponder",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the OCSP responder. Cannot begin with a hash (#) or space character and must contain only ASCII alphanumeric, underscore (_), hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the responder is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my responder" or 'my responder').`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) URL of the OCSP responder.`,
+				},
+				resource.Attribute{
+					Name:        "cache",
+					Description: `(Optional) Enable caching of responses. Caching of responses received from the OCSP responder enables faster responses to the clients and reduces the load on the OCSP responder. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "cachetimeout",
+					Description: `(Optional) Timeout for caching the OCSP response. After the timeout, the Citrix ADC sends a fresh request to the OCSP responder for the certificate status. If a timeout is not specified, the timeout provided in the OCSP response applies.`,
+				},
+				resource.Attribute{
+					Name:        "batchingdepth",
+					Description: `(Optional) Number of client certificates to batch together into one OCSP request. Batching avoids overloading the OCSP responder. A value of 1 signifies that each request is queried independently. For a value greater than 1, specify a timeout (batching delay) to avoid inordinately delaying the processing of a single certificate.`,
+				},
+				resource.Attribute{
+					Name:        "batchingdelay",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "resptimeout",
+					Description: `(Optional) Time, in milliseconds, to wait for an OCSP response. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server. Includes Batching Delay time.`,
+				},
+				resource.Attribute{
+					Name:        "ocspurlresolvetimeout",
+					Description: `(Optional) Time, in milliseconds, to wait for an OCSP URL Resolution. When this time elapses, an error message appears or the transaction is forwarded, depending on the settings on the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "respondercert",
+					Description: `(Optional) .`,
+				},
+				resource.Attribute{
+					Name:        "trustresponder",
+					Description: `(Optional) A certificate to use to validate OCSP responses. Alternatively, if -trustResponder is specified, no verification will be done on the reponse. If both are omitted, only the response times (producedAt, lastUpdate, nextUpdate) will be verified.`,
+				},
+				resource.Attribute{
+					Name:        "producedattimeskew",
+					Description: `(Optional) Time, in seconds, for which the Citrix ADC waits before considering the response as invalid. The response is considered invalid if the Produced At time stamp in the OCSP response exceeds or precedes the current Citrix ADC clock time by the amount of time specified.`,
+				},
+				resource.Attribute{
+					Name:        "signingcert",
+					Description: `(Optional) Certificate-key pair that is used to sign OCSP requests. If this parameter is not set, the requests are not signed.`,
+				},
+				resource.Attribute{
+					Name:        "usenonce",
+					Description: `(Optional) Enable the OCSP nonce extension, which is designed to prevent replay attacks. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "insertclientcert",
+					Description: `(Optional) Include the complete client certificate in the OCSP request. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "httpmethod",
+					Description: `(Optional) HTTP method used to send ocsp request. POST is the default httpmethod. If request length is > 255, POST wil be used even if GET is set as httpMethod. Possible values: [ GET, POST ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslocspresponder. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A sslocspresponder can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslocspresponder.tf_sslocspresponder tf_sslocspresponder ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslocspresponder. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A sslocspresponder can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslocspresponder.tf_sslocspresponder tf_sslocspresponder ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10911,6 +19940,100 @@ The sslpolicy resource is used to create SSL policies.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the sslpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A sslpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslpolicy.tf_sslpolicy tf_sslpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslpolicylabel",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslpolicylabel resource is used to configure SSL policy label resource.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslpolicylabel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name for the SSL policy label. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the policy label is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my label" or 'my label').`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of policies that the policy label can contain. Possible values: [ CONTROL, DATA ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A sslpolicylabel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslpolicylabel.tf_sslpolicylabel tf_sslpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslpolicylabel. It has the same value as the ` + "`" + `labelname` + "`" + ` attribute. ## Import A sslpolicylabel can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslpolicylabel.tf_sslpolicylabel tf_sslpolicylabel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslpolicylabel_sslpolicy_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslpolicylabel_sslpolicy_bindingresource is used to create bindings between sslpolicylabel and sslpolicy.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslpolicylabel",
+				"sslpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) Name of the SSL policy to bind to the policy label.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Specifies the priority of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Expression specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "labeltype",
+					Description: `(Optional) Type of policy label invocation. Possible values: [ vserver, service, policylabel ]`,
+				},
+				resource.Attribute{
+					Name:        "invoke_labelname",
+					Description: `(Optional) Name of the label to invoke if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "labelname",
+					Description: `(Required) Name of the SSL policy label to which to bind policies.`,
+				},
+				resource.Attribute{
+					Name:        "invoke",
+					Description: `(Optional) Invoke policies bound to a policy label. After the invoked policies are evaluated, the flow returns to the policy with the next priority. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslpolicylabel_sslpolicy_binding. It has is the conatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes. ## Import A sslpolicylabel_sslpolicy_bindingcan be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslpolicylabel_sslpolicy_binding.tf_sslpolicylabel_sslpolicy_binding tf_sslpolicylabel_sslpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslpolicylabel_sslpolicy_binding. It has is the conatenation of the ` + "`" + `labelname` + "`" + ` and ` + "`" + `policyname` + "`" + ` attributes. ## Import A sslpolicylabel_sslpolicy_bindingcan be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslpolicylabel_sslpolicy_binding.tf_sslpolicylabel_sslpolicy_binding tf_sslpolicylabel_sslpolicy_binding ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11180,7 +20303,7 @@ The sslprofile resource is used to create SSL profiles.
 				},
 				resource.Attribute{
 					Name:        "ecccurvebindings",
-					Description: `(Optional) A set of ECC curve names to be bound to this SSL profile.`,
+					Description: `(Required) A set of ECC curve names to be bound to this SSL profile.`,
 				},
 				resource.Attribute{
 					Name:        "cipherbindings",
@@ -11203,6 +20326,48 @@ The sslprofile resource is used to create SSL profiles.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the sslprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A sslprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslprofile.tf_sslprofile tf_sslprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslprofile_sslcertkey_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslprofile_sslcertkey_binding resource is used to create bindings between sslprofile and sslcertkey.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslprofile",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sslicacertkey",
+					Description: `(Required) The certkey (CA certificate + private key) to be used for SSL interception.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the SSL profile.`,
+				},
+				resource.Attribute{
+					Name:        "cipherpriority",
+					Description: `(Optional) Priority of the cipher binding. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslprofile_sslcertkey_binding. IIt has is the conatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `sslicacertkey` + "`" + ` attributes. ## Import A sslprofile_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslprofile_sslcertkey_binding.tf_sslprofile_sslcertkey_binding tf_sslprofile_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslprofile_sslcertkey_binding. IIt has is the conatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `sslicacertkey` + "`" + ` attributes. ## Import A sslprofile_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslprofile_sslcertkey_binding.tf_sslprofile_sslcertkey_binding tf_sslprofile_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11248,6 +20413,756 @@ do not define the ` + "`" + `cipherbindings` + "`" + ` attribute in the sslprofi
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the sslprofile_sslcipher_binding. It has is the conatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes. ## Import A sslprofile_sslcipher_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslprofile_sslcipher_binding.tf_binding tf_sslprofile,HIGH ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservice",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservice resource is used to create SSL services.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservice",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "servicename",
+					Description: `(Required) Name of the SSL service.`,
+				},
+				resource.Attribute{
+					Name:        "dh",
+					Description: `(Optional) State of Diffie-Hellman (DH) key exchange. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dhfile",
+					Description: `(Optional) Name for and, optionally, path to the PEM-format DH parameter file to be installed. /nsconfig/ssl/ is the default path. This parameter is not applicable when configuring a backend service.`,
+				},
+				resource.Attribute{
+					Name:        "dhcount",
+					Description: `(Optional) Number of interactions, between the client and the Citrix ADC, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh). This parameter is not applicable when configuring a backend service. Allowed DH count values are 0 and >= 500.`,
+				},
+				resource.Attribute{
+					Name:        "dhkeyexpsizelimit",
+					Description: `(Optional) This option enables the use of NIST recommended (NIST Special Publication 800-56A) bit size for private-key size. For example, for DH params of size 2048bit, the private-key size recommended is 224bits. This is rounded-up to 256bits. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ersa",
+					Description: `(Optional) State of Ephemeral RSA (eRSA) key exchange. Ephemeral RSA allows clients that support only export ciphers to communicate with the secure server even if the server certificate does not support export clients. The ephemeral RSA key is automatically generated when you bind an export cipher to an SSL or TCP-based SSL virtual server or service. When you remove the export cipher, the eRSA key is not deleted. It is reused at a later date when another export cipher is bound to an SSL or TCP-based SSL virtual server or service. The eRSA key is deleted when the appliance restarts. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ersacount",
+					Description: `(Optional) Refresh count for regeneration of RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh). This parameter is not applicable when configuring a backend service.`,
+				},
+				resource.Attribute{
+					Name:        "sessreuse",
+					Description: `(Optional) State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sesstimeout",
+					Description: `(Optional) Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.`,
+				},
+				resource.Attribute{
+					Name:        "cipherredirect",
+					Description: `(Optional) State of Cipher Redirect. If this parameter is set to ENABLED, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a cipher mismatch between the virtual server or service and the client. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "cipherurl",
+					Description: `(Optional) URL of the page to which to redirect the client in case of a cipher mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from. This parameter is not applicable when configuring a backend service.`,
+				},
+				resource.Attribute{
+					Name:        "sslv2redirect",
+					Description: `(Optional) State of SSLv2 Redirect. If this parameter is set to ENABLED, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a protocol version mismatch between the virtual server or service and the client. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sslv2url",
+					Description: `(Optional) URL of the page to which to redirect the client in case of a protocol version mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from. This parameter is not applicable when configuring a backend service.`,
+				},
+				resource.Attribute{
+					Name:        "clientauth",
+					Description: `(Optional) State of client authentication. In service-based SSL offload, the service terminates the SSL handshake if the SSL client does not provide a valid certificate. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "clientcert",
+					Description: `(Optional) Type of client authentication. If this parameter is set to MANDATORY, the appliance terminates the SSL handshake if the SSL client does not provide a valid certificate. With the OPTIONAL setting, the appliance requests a certificate from the SSL clients but proceeds with the SSL transaction even if the client presents an invalid certificate. This parameter is not applicable when configuring a backend SSL service. Caution: Define proper access control policies before changing this setting to Optional. Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "sslredirect",
+					Description: `(Optional) State of HTTPS redirects for the SSL service. For an SSL session, if the client browser receives a redirect message, the browser tries to connect to the new location. However, the secure SSL session breaks if the object has moved from a secure site (https://) to an unsecure site (http://). Typically, a warning message appears on the screen, prompting the user to continue or disconnect. If SSL Redirect is ENABLED, the redirect message is automatically converted from http:// to https:// and the SSL session does not break. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "redirectportrewrite",
+					Description: `(Optional) State of the port rewrite while performing HTTPS redirect. If this parameter is set to ENABLED, and the URL from the server does not contain the standard port, the port is rewritten to the standard. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ssl2",
+					Description: `(Optional) State of SSLv2 protocol support for the SSL service. This parameter is not applicable when configuring a backend service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ssl3",
+					Description: `(Optional) State of SSLv3 protocol support for the SSL service. Note: On platforms with SSL acceleration chips, if the SSL chip does not support SSLv3, this parameter cannot be set to ENABLED. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls1",
+					Description: `(Optional) State of TLSv1.0 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls11",
+					Description: `(Optional) State of TLSv1.1 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls12",
+					Description: `(Optional) State of TLSv1.2 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls13",
+					Description: `(Optional) State of TLSv1.3 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dtls1",
+					Description: `(Optional) State of DTLSv1.0 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dtls12",
+					Description: `(Optional) State of DTLSv1.2 protocol support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "snienable",
+					Description: `(Optional) State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example,`,
+				},
+				resource.Attribute{
+					Name:        "ocspstapling",
+					Description: `(Optional) State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values: ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake. DISABLED: The appliance does not check the status of the server certificate. . Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "serverauth",
+					Description: `(Optional) State of server authentication support for the SSL service. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "commonname",
+					Description: `(Optional) Name to be checked against the CommonName (CN) field in the server certificate bound to the SSL server.`,
+				},
+				resource.Attribute{
+					Name:        "pushenctrigger",
+					Description: `(Optional) Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "sendclosenotify",
+					Description: `(Optional) Enable sending SSL Close-Notify at the end of a transaction. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "dtlsprofilename",
+					Description: `(Optional) Name of the DTLS profile that contains DTLS settings for the service.`,
+				},
+				resource.Attribute{
+					Name:        "sslprofile",
+					Description: `(Optional) Name of the SSL profile that contains SSL settings for the service.`,
+				},
+				resource.Attribute{
+					Name:        "strictsigdigestcheck",
+					Description: `(Optional) Parameter indicating to check whether peer's certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Citrix ADC. Possible values: [ ENABLED, DISABLED ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice. It has the same value as the ` + "`" + `servicename` + "`" + ` attribute. ## Import A sslservice can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice.tf_sslservice tf_sslservice ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice. It has the same value as the ` + "`" + `servicename` + "`" + ` attribute. ## Import A sslservice can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice.tf_sslservice tf_sslservice ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservice_ecccurve_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservice_ecccurve_binding resource is used to bind sslservice and ecccurve.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservice",
+				"ecccurve",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ecccurvename",
+					Description: `(Required) Named ECC curve bound to service/vserver. Possible values: [ ALL, P_224, P_256, P_384, P_521 ]`,
+				},
+				resource.Attribute{
+					Name:        "servicename",
+					Description: `(Required) Name of the SSL service for which to set advanced configuration. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_ecccurve_binding. It is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslservice_ecccurve_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_ecccurve_binding.tf_sslservice_ecccurve_binding tf_sslservice_ecccurve_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_ecccurve_binding. It is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslservice_ecccurve_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_ecccurve_binding.tf_sslservice_ecccurve_binding tf_sslservice_ecccurve_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservice_sslcertkey_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservice_sslcertkey_binding resource is used to create binding between sslservice and sslcertkey.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservice",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certkeyname",
+					Description: `(Required) The certificate key pair binding.`,
+				},
+				resource.Attribute{
+					Name:        "crlcheck",
+					Description: `(Optional) The state of the CRL check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ocspcheck",
+					Description: `(Optional) Rule to use for the OCSP responder associated with the CA certificate during client authentication. If MANDATORY is specified, deny all SSL clients if the OCSP check fails because of connectivity issues with the remote OCSP server, or any other reason that prevents the OCSP check. With the OPTIONAL setting, allow SSL clients even if the OCSP check fails except when the client certificate is revoked. Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ca",
+					Description: `(Optional) CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "snicert",
+					Description: `(Optional) The name of the CertKey. Use this option to bind Certkey(s) which will be used in SNI processing.`,
+				},
+				resource.Attribute{
+					Name:        "skipcaname",
+					Description: `(Optional) The flag is used to indicate whether this particular CA certificate's CA_Name needs to be sent to the SSL client while requesting for client certificate in a SSL handshake.`,
+				},
+				resource.Attribute{
+					Name:        "servicename",
+					Description: `(Required) Name of the SSL service for which to set advanced configuration. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_sslcertkey_binding. It is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A sslservice_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_sslcertkey_binding.tf_sslservice_sslcertkey_binding tf_sslservice_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_sslcertkey_binding. It is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A sslservice_sslcertkey_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_sslcertkey_binding.tf_sslservice_sslcertkey_binding tf_sslservice_sslcertkey_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservice_sslciphersuite_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservice_sslciphersuite_binding resource is used to create binding between sslservice and sslciphersuite.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservice",
+				"sslciphersuite",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphername",
+					Description: `(Required) The cipher group/alias/individual cipher configuration.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The cipher suite description.`,
+				},
+				resource.Attribute{
+					Name:        "servicename",
+					Description: `(Required) Name of the SSL service for which to set advanced configuration. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_sslciphersuite_binding. t is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslservice_sslciphersuite_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_sslciphersuite_binding.tf_sslservice_sslciphersuite_binding tf_sslservice_sslciphersuite_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservice_sslciphersuite_binding. t is the concatenation of the ` + "`" + `servicename` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslservice_sslciphersuite_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservice_sslciphersuite_binding.tf_sslservice_sslciphersuite_binding tf_sslservice_sslciphersuite_binding ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservicegroup",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservicegroup resource is used to set the advanced SSL configuration for an SSL service group.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservicegroup",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "servicegroupname",
+					Description: `(Required) Name of the SSL service group for which to set advanced configuration.`,
+				},
+				resource.Attribute{
+					Name:        "sslprofile",
+					Description: `(Optional) Name of the SSL profile that contains SSL settings for the Service Group.`,
+				},
+				resource.Attribute{
+					Name:        "sessreuse",
+					Description: `(Optional) State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sesstimeout",
+					Description: `(Optional) Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.`,
+				},
+				resource.Attribute{
+					Name:        "ssl3",
+					Description: `(Optional) State of SSLv3 protocol support for the SSL service group. Note: On platforms with SSL acceleration chips, if the SSL chip does not support SSLv3, this parameter cannot be set to ENABLED. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls1",
+					Description: `(Optional) State of TLSv1.0 protocol support for the SSL service group. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls11",
+					Description: `(Optional) State of TLSv1.1 protocol support for the SSL service group. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls12",
+					Description: `(Optional) State of TLSv1.2 protocol support for the SSL service group. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls13",
+					Description: `(Optional) State of TLSv1.3 protocol support for the SSL service group. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "snienable",
+					Description: `(Optional) State of the Server Name Indication (SNI) feature on the service. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example,`,
+				},
+				resource.Attribute{
+					Name:        "ocspstapling",
+					Description: `(Optional) State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values: ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake. DISABLED: The appliance does not check the status of the server certificate. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "serverauth",
+					Description: `(Optional) State of server authentication support for the SSL service group. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "commonname",
+					Description: `(Optional) Name to be checked against the CommonName (CN) field in the server certificate bound to the SSL server.`,
+				},
+				resource.Attribute{
+					Name:        "sendclosenotify",
+					Description: `(Optional) Enable sending SSL Close-Notify at the end of a transaction. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "strictsigdigestcheck",
+					Description: `(Optional) Parameter indicating to check whether peer's certificate is signed with one of signature-hash combination supported by Citrix ADC. Possible values: [ ENABLED, DISABLED ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup. It has the same value as the ` + "`" + `servicegroupname` + "`" + ` attribute. ## Import A sslservicegroup can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup.tf_sslservicegroup tf_servicegroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup. It has the same value as the ` + "`" + `servicegroupname` + "`" + ` attribute. ## Import A sslservicegroup can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup.tf_sslservicegroup tf_servicegroup ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservicegroup_ecccurve_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservicegroup_ecccurve_binding resource is used to add an ecc curve to ssl service group.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservicegroup",
+				"ecccurve",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ecccurvename",
+					Description: `(Required) Named ECC curve bound to servicegroup. Possible values: [ ALL, P_224, P_256, P_384, P_521 ]`,
+				},
+				resource.Attribute{
+					Name:        "servicegroupname",
+					Description: `(Required) The name of the SSL service to which the SSL policy needs to be bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_ecccurve_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_ecccurve_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_ecccurve_binding.tf_sslservicegroup_ecccurve_binding tf_servicegroup,P_256 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_ecccurve_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_ecccurve_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_ecccurve_binding.tf_sslservicegroup_ecccurve_binding tf_servicegroup,P_256 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservicegroup_sslcertkey_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservicegroup_sslcertkey_binding resource is used to add an sslcertkey to sslservicegroup.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservicegroup",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certkeyname",
+					Description: `(Required) The name of the certificate bound to the SSL service group.`,
+				},
+				resource.Attribute{
+					Name:        "crlcheck",
+					Description: `(Optional) The state of the CRL check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ocspcheck",
+					Description: `(Optional) The state of the OCSP check parameter. (Mandatory/Optional). Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "ca",
+					Description: `(Optional) CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "snicert",
+					Description: `(Optional) The name of the CertKey. Use this option to bind Certkey(s) which will be used in SNI processing.`,
+				},
+				resource.Attribute{
+					Name:        "servicegroupname",
+					Description: `(Required) The name of the SSL service to which the SSL policy needs to be bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_sslcertkey_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_sslcertkey_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_sslcertkey_binding.tf_sslservicegroup_sslcertkey_binding tf_servicegroup,tf_sslcertkey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_sslcertkey_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_sslcertkey_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_sslcertkey_binding.tf_sslservicegroup_sslcertkey_binding tf_servicegroup,tf_sslcertkey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslservicegroup_sslciphersuite_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslservicegroup_sslciphersuite_binding resource is used to add a sslciphersuite to sslservicegroup.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslservicegroup",
+				"sslciphersuite",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphername",
+					Description: `(Required) The name of the cipher group/alias/name configured for the SSL service group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the cipher.`,
+				},
+				resource.Attribute{
+					Name:        "servicegroupname",
+					Description: `(Required) The name of the SSL service to which the SSL policy needs to be bound. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_sslciphersuite_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_sslciphersuite_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_sslciphersuite_binding.tf_sslservicegroup_sslciphersuite_binding tf_servicegroup,tf_sslcipher ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslservicegroup_sslciphersuite_binding. It is the concatenation of the ` + "`" + `servicegroupname` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslservicegroup_sslciphersuite_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslservicegroup_sslciphersuite_binding.tf_sslservicegroup_sslciphersuite_binding tf_servicegroup,tf_sslcipher ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslvserver",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslvserver resource is used to set advanced SSL configuration for an SSL virtual server.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslvserver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Required) Name of the SSL virtual server for which to set advanced configuration.`,
+				},
+				resource.Attribute{
+					Name:        "cleartextport",
+					Description: `(Optional) Port on which clear-text data is sent by the appliance to the server. Do not specify this parameter for SSL offloading with end-to-end encryption.`,
+				},
+				resource.Attribute{
+					Name:        "dh",
+					Description: `(Optional) State of Diffie-Hellman (DH) key exchange. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dhfile",
+					Description: `(Optional) Name of and, optionally, path to the DH parameter file, in PEM format, to be installed. /nsconfig/ssl/ is the default path.`,
+				},
+				resource.Attribute{
+					Name:        "dhcount",
+					Description: `(Optional) Number of interactions, between the client and the Citrix ADC, after which the DH private-public pair is regenerated. A value of zero (0) specifies infinite use (no refresh).`,
+				},
+				resource.Attribute{
+					Name:        "dhkeyexpsizelimit",
+					Description: `(Optional) This option enables the use of NIST recommended (NIST Special Publication 800-56A) bit size for private-key size. For example, for DH params of size 2048bit, the private-key size recommended is 224bits. This is rounded-up to 256bits. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ersa",
+					Description: `(Optional) State of Ephemeral RSA (eRSA) key exchange. Ephemeral RSA allows clients that support only export ciphers to communicate with the secure server even if the server certificate does not support export clients. The ephemeral RSA key is automatically generated when you bind an export cipher to an SSL or TCP-based SSL virtual server or service. When you remove the export cipher, the eRSA key is not deleted. It is reused at a later date when another export cipher is bound to an SSL or TCP-based SSL virtual server or service. The eRSA key is deleted when the appliance restarts. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ersacount",
+					Description: `(Optional) Refresh count for regeneration of the RSA public-key and private-key pair. Zero (0) specifies infinite usage (no refresh).`,
+				},
+				resource.Attribute{
+					Name:        "sessreuse",
+					Description: `(Optional) State of session reuse. Establishing the initial handshake requires CPU-intensive public key encryption operations. With the ENABLED setting, session key exchange is avoided for session resumption requests received from the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sesstimeout",
+					Description: `(Optional) Time, in seconds, for which to keep the session active. Any session resumption request received after the timeout period will require a fresh SSL handshake and establishment of a new SSL session.`,
+				},
+				resource.Attribute{
+					Name:        "cipherredirect",
+					Description: `(Optional) State of Cipher Redirect. If cipher redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a cipher mismatch between the virtual server or service and the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "cipherurl",
+					Description: `(Optional) The redirect URL to be used with the Cipher Redirect feature.`,
+				},
+				resource.Attribute{
+					Name:        "sslv2redirect",
+					Description: `(Optional) State of SSLv2 Redirect. If SSLv2 redirect is enabled, you can configure an SSL virtual server or service to display meaningful error messages if the SSL handshake fails because of a protocol version mismatch between the virtual server or service and the client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "sslv2url",
+					Description: `(Optional) URL of the page to which to redirect the client in case of a protocol version mismatch. Typically, this page has a clear explanation of the error or an alternative location that the transaction can continue from.`,
+				},
+				resource.Attribute{
+					Name:        "clientauth",
+					Description: `(Optional) State of client authentication. If client authentication is enabled, the virtual server terminates the SSL handshake if the SSL client does not provide a valid certificate. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "clientcert",
+					Description: `(Optional) Type of client authentication. If this parameter is set to MANDATORY, the appliance terminates the SSL handshake if the SSL client does not provide a valid certificate. With the OPTIONAL setting, the appliance requests a certificate from the SSL clients but proceeds with the SSL transaction even if the client presents an invalid certificate. Caution: Define proper access control policies before changing this setting to Optional. Possible values: [ Mandatory, Optional ]`,
+				},
+				resource.Attribute{
+					Name:        "sslredirect",
+					Description: `(Optional) State of HTTPS redirects for the SSL virtual server. For an SSL session, if the client browser receives a redirect message, the browser tries to connect to the new location. However, the secure SSL session breaks if the object has moved from a secure site (https://) to an unsecure site (http://). Typically, a warning message appears on the screen, prompting the user to continue or disconnect. If SSL Redirect is ENABLED, the redirect message is automatically converted from http:// to https:// and the SSL session does not break. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "redirectportrewrite",
+					Description: `(Optional) State of the port rewrite while performing HTTPS redirect. If this parameter is ENABLED and the URL from the server does not contain the standard port, the port is rewritten to the standard. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ssl2",
+					Description: `(Optional) State of SSLv2 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "ssl3",
+					Description: `(Optional) State of SSLv3 protocol support for the SSL Virtual Server. Note: On platforms with SSL acceleration chips, if the SSL chip does not support SSLv3, this parameter cannot be set to ENABLED. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls1",
+					Description: `(Optional) State of TLSv1.0 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls11",
+					Description: `(Optional) State of TLSv1.1 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls12",
+					Description: `(Optional) State of TLSv1.2 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls13",
+					Description: `(Optional) State of TLSv1.3 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dtls1",
+					Description: `(Optional) State of DTLSv1.0 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "dtls12",
+					Description: `(Optional) State of DTLSv1.2 protocol support for the SSL Virtual Server. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "snienable",
+					Description: `(Optional) State of the Server Name Indication (SNI) feature on the virtual server and service-based offload. SNI helps to enable SSL encryption on multiple domains on a single virtual server or service if the domains are controlled by the same organization and share the same second-level domain name. For example,`,
+				},
+				resource.Attribute{
+					Name:        "ocspstapling",
+					Description: `(Optional) State of OCSP stapling support on the SSL virtual server. Supported only if the protocol used is higher than SSLv3. Possible values: ENABLED: The appliance sends a request to the OCSP responder to check the status of the server certificate and caches the response for the specified time. If the response is valid at the time of SSL handshake with the client, the OCSP-based server certificate status is sent to the client during the handshake. DISABLED: The appliance does not check the status of the server certificate. . Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "pushenctrigger",
+					Description: `(Optional) Trigger encryption on the basis of the PUSH flag value. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "sendclosenotify",
+					Description: `(Optional) Enable sending SSL Close-Notify at the end of a transaction. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "dtlsprofilename",
+					Description: `(Optional) Name of the DTLS profile whose settings are to be applied to the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "sslprofile",
+					Description: `(Optional) Name of the SSL profile that contains SSL settings for the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "hsts",
+					Description: `(Optional) State of HSTS protocol support for the SSL Virtual Server. Using HSTS, a server can enforce the use of an HTTPS connection for all communication with a client. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "maxage",
+					Description: `(Optional) Set the maximum time, in seconds, in the strict transport security (STS) header during which the client must send only HTTPS requests to the server.`,
+				},
+				resource.Attribute{
+					Name:        "includesubdomains",
+					Description: `(Optional) Enable HSTS for subdomains. If set to Yes, a client must send only HTTPS requests for subdomains. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "preload",
+					Description: `(Optional) Flag indicates the consent of the site owner to have their domain preloaded. Possible values: [ YES, NO ]`,
+				},
+				resource.Attribute{
+					Name:        "strictsigdigestcheck",
+					Description: `(Optional) Parameter indicating to check whether peer entity certificate during TLS1.2 handshake is signed with one of signature-hash combination supported by Citrix ADC. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "zerorttearlydata",
+					Description: `(Optional) State of TLS 1.3 0-RTT early data support for the SSL Virtual Server. This setting only has an effect if resumption is enabled, as early data cannot be sent along with an initial handshake. Early application data has significantly different security properties - in particular there is no guarantee that the data cannot be replayed. Possible values: [ ENABLED, DISABLED ]`,
+				},
+				resource.Attribute{
+					Name:        "tls13sessionticketsperauthcontext",
+					Description: `(Optional) Number of tickets the SSL Virtual Server will issue anytime TLS 1.3 is negotiated, ticket-based resumption is enabled, and either (1) a handshake completes or (2) post-handhsake client auth completes. This value can be increased to enable clients to open multiple parallel connections using a fresh ticket for each connection. No tickets are sent if resumption is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "dhekeyexchangewithpsk",
+					Description: `(Optional) Whether or not the SSL Virtual Server will require a DHE key exchange to occur when a PSK is accepted during a TLS 1.3 resumption handshake. A DHE key exchange ensures forward secrecy even in the event that ticket keys are compromised, at the expense of an additional round trip and resources required to carry out the DHE key exchange. If disabled, a DHE key exchange will be performed when a PSK is accepted but only if requested by the client. If enabled, the server will require a DHE key exchange when a PSK is accepted regardless of whether the client supports combined PSK-DHE key exchange. This setting only has an effect when resumption is enabled. Possible values: [ YES, NO ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver. It has the same value as the ` + "`" + `vservername` + "`" + ` attribute. ## Import A sslvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver.tf_sslvserver tf_vserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver. It has the same value as the ` + "`" + `vservername` + "`" + ` attribute. ## Import A sslvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver.tf_sslvserver tf_vserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslvserver_ecccurve_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslvserver_ecccurve_binding resource is used to add an ecc curve to ssl vserver.
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslvserver",
+				"ecccurve",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ecccurvename",
+					Description: `(Required) Named ECC curve bound to vserver/service. Possible values: [ ALL, P_224, P_256, P_384, P_521 ]`,
+				},
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Required) Name of the SSL virtual server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver_ecccurve_binding. It is the concatenation of the ` + "`" + `vservername` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslvserver_ecccurve_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver_ecccurve_binding.tf_sslvserver_ecccurve_binding tf_sslvserver,P_256 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver_ecccurve_binding. It is the concatenation of the ` + "`" + `vservername` + "`" + ` and ` + "`" + `ecccurvename` + "`" + ` attributes separated by a comma. ## Import A sslvserver_ecccurve_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver_ecccurve_binding.tf_sslvserver_ecccurve_binding tf_sslvserver,P_256 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11306,6 +21221,49 @@ The sslvserver\_sslcertkey\_binding resource is used to bind ssl certificates to
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the sslvserver\_sslcertkey\_binding. It is the concatenation of the ` + "`" + `vservername` + "`" + ` and ` + "`" + `certkeyname` + "`" + ` attributes separated by a comma. ## Import A sslvserver\_sslcertkey\_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver_sslcertkey_binding.tf_binding tf_lbvserver,tf_sslcertkey ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_sslvserver_sslciphersuite_binding",
+			Category:         "SSL",
+			ShortDescription: ``,
+			Description: `
+
+The sslvserver_sslciphersuite_binding resource is used to add an ssl cipher suite to sslvserver.
+
+
+
+`,
+			Keywords: []string{
+				"ssl",
+				"sslvserver",
+				"sslciphersuite",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphername",
+					Description: `(Required) The cipher group/alias/individual cipher configuration.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The cipher suite description.`,
+				},
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Required) Name of the SSL virtual server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver_sslciphersuite_binding. It is the concatenation of the ` + "`" + `vservername` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslvserver_sslciphersuite_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver_sslciphersuite_binding.tf_sslvserver_sslciphersuite_binding tf_sslvserver,TLS1.2-ECDHE-RSA-AES128-GCM-SHA256 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the sslvserver_sslciphersuite_binding. It is the concatenation of the ` + "`" + `vservername` + "`" + ` and ` + "`" + `ciphername` + "`" + ` attributes separated by a comma. ## Import A sslvserver_sslciphersuite_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_sslvserver_sslciphersuite_binding.tf_sslvserver_sslciphersuite_binding tf_sslvserver,TLS1.2-ECDHE-RSA-AES128-GCM-SHA256 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11504,6 +21462,64 @@ The systemfile resource is used to upload files to the target ADC.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the systemfile. It is the fullpath of the system file. ## Import A systemfile can be imported using its full path, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_systemfile.tf_file /var/tmp/hello.txt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_systemglobal_authenticationldappolicy_binding",
+			Category:         "System",
+			ShortDescription: ``,
+			Description: `
+
+The systemglobal_authenticationldappolicy_binding resource is used to bind authenticationldappolicy to systemglobal.
+
+
+`,
+			Keywords: []string{
+				"system",
+				"systemglobal",
+				"authenticationldappolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the command policy.`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Optional) Indicates that a variable is a built-in (SYSTEM INTERNAL) type.`,
+				},
+				resource.Attribute{
+					Name:        "feature",
+					Description: `(Optional) The feature to be checked while applying this config`,
+				},
+				resource.Attribute{
+					Name:        "globalbindtype",
+					Description: `(Optional) 0`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance authentication policy. Expression or other value specifying the next policy to be evaluated if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "nextfactor",
+					Description: `(Optional) On success invoke label. Applicable for advanced authentication policy binding`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the command policy. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the systemglobal_authenticationldappolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A systemglobal_authenticationldappolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_systemglobal_authenticationldappolicy_binding.tf_bind tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the systemglobal_authenticationldappolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A systemglobal_authenticationldappolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_systemglobal_authenticationldappolicy_binding.tf_bind tf_authenticationldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11947,149 +21963,5784 @@ The vlan\_nsip\_binding resource is used to bind vlan to ipv4 nsip address.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnalwaysonprofile",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnalwaysonprofile resource is used to ensure that users are always connected to the enterprise network.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnalwaysonprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of AlwaysON profile.`,
+				},
+				resource.Attribute{
+					Name:        "networkaccessonvpnfailure",
+					Description: `(Optional) Option to block network traffic when tunnel is not established(and the config requires that tunnel be established). When set to onlyToGateway, the network traffic to and from the client (except Gateway IP) is blocked. When set to fullAccess, the network traffic is not blocked. Possible values: [ onlyToGateway, fullAccess ]`,
+				},
+				resource.Attribute{
+					Name:        "clientcontrol",
+					Description: `(Optional) Allow/Deny user to log off and connect to another Gateway. Possible values: [ ALLOW, DENY ]`,
+				},
+				resource.Attribute{
+					Name:        "locationbasedvpn",
+					Description: `(Optional) Option to decide if tunnel should be established when in enterprise network. When locationBasedVPN is remote, client tries to detect if it is located in enterprise network or not and establishes the tunnel if not in enterprise network. Dns suffixes configured using -add dns suffix- are used to decide if the client is in the enterprise network or not. If the resolution of the DNS suffix results in private IP, client is said to be in enterprise network. When set to EveryWhere, the client skips the check to detect if it is on the enterprise network and tries to establish the tunnel. Possible values: [ Remote, Everywhere ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnalwaysonprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnalwaysonprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnalwaysonprofile.tf_vpnalwaysonprofile tf_vpnalwaysonprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnalwaysonprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnalwaysonprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnalwaysonprofile.tf_vpnalwaysonprofile tf_vpnalwaysonprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnclientlessaccesspolicy",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnclientlessaccesspolicy resource, when configured for a resource on the Citrix ADC appliance, allows end-users to access the resource without using the Citrix Gateway client software.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnclientlessaccesspolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new clientless access policy.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Expression, or name of a named expression, specifying the traffic that matches the policy. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "profilename",
+					Description: `(Optional) Name of the profile to invoke for the clientless access. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnclientlessaccesspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnclientlessaccesspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnclientlessaccesspolicy.tf_vpnclientlessaccesspolicy tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnclientlessaccesspolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnclientlessaccesspolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnclientlessaccesspolicy.tf_vpnclientlessaccesspolicy tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnclientlessaccessprofile",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnclientlessaccessprofile resource is used to ads a collection of settings that allows clientless access to a given application..
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnclientlessaccessprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "profilename",
+					Description: `(Required) Name for the Citrix Gateway clientless access profile. Must begin with an ASCII alphabetic or underscore (_) character, and must consist only of ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my profile" or 'my profile').`,
+				},
+				resource.Attribute{
+					Name:        "urlrewritepolicylabel",
+					Description: `(Optional) Name of the configured URL rewrite policy label. If you do not specify a policy label name, then URLs are not rewritten.`,
+				},
+				resource.Attribute{
+					Name:        "javascriptrewritepolicylabel",
+					Description: `(Optional) Name of the configured JavaScript rewrite policy label. If you do not specify a policy label name, then JAVA scripts are not rewritten.`,
+				},
+				resource.Attribute{
+					Name:        "reqhdrrewritepolicylabel",
+					Description: `(Optional) Name of the configured Request rewrite policy label. If you do not specify a policy label name, then requests are not rewritten.`,
+				},
+				resource.Attribute{
+					Name:        "reshdrrewritepolicylabel",
+					Description: `(Optional) Name of the configured Response rewrite policy label.`,
+				},
+				resource.Attribute{
+					Name:        "regexforfindingurlinjavascript",
+					Description: `(Optional) Name of the pattern set that contains the regular expressions, which match the URL in Java script.`,
+				},
+				resource.Attribute{
+					Name:        "regexforfindingurlincss",
+					Description: `(Optional) Name of the pattern set that contains the regular expressions, which match the URL in the CSS.`,
+				},
+				resource.Attribute{
+					Name:        "regexforfindingurlinxcomponent",
+					Description: `(Optional) Name of the pattern set that contains the regular expressions, which match the URL in X Component.`,
+				},
+				resource.Attribute{
+					Name:        "regexforfindingurlinxml",
+					Description: `(Optional) Name of the pattern set that contains the regular expressions, which match the URL in XML.`,
+				},
+				resource.Attribute{
+					Name:        "regexforfindingcustomurls",
+					Description: `(Optional) Name of the pattern set that contains the regular expressions, which match the URLs in the custom content type other than HTML, CSS, XML, XCOMP, and JavaScript. The custom content type should be included in the patset ns_cvpn_custom_content_types.`,
+				},
+				resource.Attribute{
+					Name:        "clientconsumedcookies",
+					Description: `(Optional) Specify the name of the pattern set containing the names of the cookies, which are allowed between the client and the server. If a pattern set is not specified, Citrix Gateway does not allow any cookies between the client and the server. A cookie that is not specified in the pattern set is handled by Citrix Gateway on behalf of the client.`,
+				},
+				resource.Attribute{
+					Name:        "requirepersistentcookie",
+					Description: `(Optional) Specify whether a persistent session cookie is set and accepted for clientless access. If this parameter is set to ON, COM objects, such as MSOffice, which are invoked by the browser can access the files using clientless access. Use caution because the persistent cookie is stored on the disk. Possible values: [ on, off ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnclientlessaccessprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnclientlessaccessprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnclientlessaccessprofile.tf_vpnclientlessaccessprofile tf_vpnclientlessaccessprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnclientlessaccessprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnclientlessaccessprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnclientlessaccessprofile.tf_vpnclientlessaccessprofile tf_vpnclientlessaccessprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpneula",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpneula resource is used to create a new eula entity.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpneula",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the eula. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpneula. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpneula can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpneula.tf_vpneula tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpneula. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpneula can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpneula.tf_vpneula tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnformssoaction",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnformssoaction resource is used to create a form-based single sign-on profile.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnformssoaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the form based single sign-on profile.`,
+				},
+				resource.Attribute{
+					Name:        "actionurl",
+					Description: `(Required) Root-relative URL to which the completed form is submitted.`,
+				},
+				resource.Attribute{
+					Name:        "userfield",
+					Description: `(Required) Name of the form field in which the user types in the user ID.`,
+				},
+				resource.Attribute{
+					Name:        "passwdfield",
+					Description: `(Required) Name of the form field in which the user types in the password.`,
+				},
+				resource.Attribute{
+					Name:        "ssosuccessrule",
+					Description: `(Required) Expression that defines the criteria for SSO success. Expression such as checking for cookie in the response is a common example.`,
+				},
+				resource.Attribute{
+					Name:        "namevaluepair",
+					Description: `(Optional) Other name-value pair attributes to send to the server, in addition to sending the user name and password. Value names are separated by an ampersand (&), such as in name1=value1&name2=value2.`,
+				},
+				resource.Attribute{
+					Name:        "responsesize",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "nvtype",
+					Description: `(Optional) How to process the name-value pair. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "submitmethod",
+					Description: `(Optional) HTTP method (GET or POST) used by the single sign-on form to send the logon credentials to the logon server. Possible values: [ GET, POST ] ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnformssoaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnformssoaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnformssoaction.tf_vpnformssoaction tf_vpnformssoaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnformssoaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnformssoaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnformssoaction.tf_vpnformssoaction tf_vpnformssoaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_appcontroller_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_appcontroller_binding resource is used to bind an App Controller server to the global configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"appcontroller",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "appcontroller",
+					Description: `(Optional) Configured App Controller server.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_appcontroller_binding. It has the same value as the ` + "`" + `appcontroller` + "`" + ` attribute. ## Import A vpnglobal_appcontroller_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_appcontroller_binding.tf_vpnglobal_appcontroller_binding http://www.citrix.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_appcontroller_binding. It has the same value as the ` + "`" + `appcontroller` + "`" + ` attribute. ## Import A vpnglobal_appcontroller_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_appcontroller_binding.tf_vpnglobal_appcontroller_binding http://www.citrix.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_auditsyslogpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_auditsyslogpolicy_binding resource is used to bind auditsyslogpolicy to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_auditsyslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_auditsyslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_auditsyslogpolicy_binding.tf_bind new_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_auditsyslogpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_auditsyslogpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_auditsyslogpolicy_binding.tf_bind new_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationcertpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationcertpolicy_binding resource is used to bind authenticationcertpolicy to vpnglobal configuration..
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationcertpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationcertpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationcertpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationcertpolicy_binding.tf_bind tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationcertpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationcertpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationcertpolicy_binding.tf_bind tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationldappolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationldappolicy_binding resource is used to bind authentication ldappolicy to global configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationldappolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationldappolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationldappolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationldappolicy_binding.tf_bind tf_ldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationldappolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationldappolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationldappolicy_binding.tf_bind tf_ldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationlocalpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationlocalpolicy_binding resource is used to bind authentication localpolicy to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationlocalpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationlocalpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationlocalpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationlocalpolicy_binding.tf_bind tf_localpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationlocalpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationlocalpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationlocalpolicy_binding.tf_bind tf_localpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationnegotiatepolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationnegotiatepolicy_binding resource is used to bind authenticationnegotiatepolicy to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationnegotiatepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationnegotiatepolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationnegotiatepolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationnegotiatepolicy_binding.tf_binding tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationnegotiatepolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationnegotiatepolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationnegotiatepolicy_binding.tf_binding tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationradiuspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationradiuspolicy_binding resource is used to bind authenticationradiuspolicy to vpnglobal configuration resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationradiuspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationradiuspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationradiuspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationradiuspolicy_binding.tf_bind tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationradiuspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationradiuspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationradiuspolicy_binding.tf_bind tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationsamlpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationsamlpolicy_binding resource is used ti bind authenticationsamlpolicy to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationsamlpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationsamlpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationsamlpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationsamlpolicy_binding.tf_bind tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationsamlpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationsamlpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationsamlpolicy_binding.tf_bind tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_authenticationtacacspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_authenticationtacacspolicy_binding resource is used to bind authenticationtacacspolicy to the vpnglobal resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"authenticationtacacspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationtacacspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationtacacspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationtacacspolicy_binding.tf_bind tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_authenticationtacacspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_authenticationtacacspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_authenticationtacacspolicy_binding.tf_bind tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_domain_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_domain_binding resource is used to domain to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"domain",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetdomain",
+					Description: `(Required) The conflicting intranet domain name.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_domain_binding. It has the same value as the ` + "`" + `intranetdomain` + "`" + ` attribute. ## Import A vpnglobal_domain_binding can be imported using its intranetdomain, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_domain_binding.tf_bind http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_domain_binding. It has the same value as the ` + "`" + `intranetdomain` + "`" + ` attribute. ## Import A vpnglobal_domain_binding can be imported using its intranetdomain, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_domain_binding.tf_bind http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_intranetip6_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_intranetip6_binding resource is used to bind intranetip6 to vpnglobal congiguration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"intranetip6",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetip6",
+					Description: `(Required) The intranet ip address or range.`,
+				},
+				resource.Attribute{
+					Name:        "numaddr",
+					Description: `(Optional) The intranet ip address or range's netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_intranetip6_binding. It has the same value as the ` + "`" + `intranetip6` + "`" + ` attribute. ## Import A vpnglobal_intranetip6_binding can be imported using its intranetip6, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_intranetip6_binding.tf_bind 2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_intranetip6_binding. It has the same value as the ` + "`" + `intranetip6` + "`" + ` attribute. ## Import A vpnglobal_intranetip6_binding can be imported using its intranetip6, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_intranetip6_binding.tf_bind 2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_intranetip_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_intranetip_binding resource is used to bind intranetip to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"intranetip",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetip",
+					Description: `(Required) The intranet ip address or range.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Required) The intranet ip address or range's netmask.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_intranetip_binding. It has the same value as the ` + "`" + `intranetip` + "`" + ` attribute. ## Import A vpnglobal_intranetip_binding can be imported using its intranetip, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_intranetip_binding.tf_bind 2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_intranetip_binding. It has the same value as the ` + "`" + `intranetip` + "`" + ` attribute. ## Import A vpnglobal_intranetip_binding can be imported using its intranetip, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_intranetip_binding.tf_bind 2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_sharefileserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_sharefileserver_binding resource is used to bind sharefileserver to vpnglobal congiguration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"sharefileserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sharefile",
+					Description: `(Required) Configured Sharefile server, in the format IP:PORT / FQDN:PORT`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_sharefileserver_binding. It has the same value as the ` + "`" + `sharefile` + "`" + ` attribute. ## Import A vpnglobal_sharefileserver_binding can be imported using its sharefile, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_sharefileserver_binding.tf_bind 3.4.5.2:8080 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_sharefileserver_binding. It has the same value as the ` + "`" + `sharefile` + "`" + ` attribute. ## Import A vpnglobal_sharefileserver_binding can be imported using its sharefile, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_sharefileserver_binding.tf_bind 3.4.5.2:8080 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_sslcertkey_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_sslcertkey_binding resource is used to bind an ssl CertKey to the global configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"sslcertkey",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certkeyname",
+					Description: `(Required) SSL certkey to use in signing tokens.`,
+				},
+				resource.Attribute{
+					Name:        "cacert",
+					Description: `(Optional) The name of the CA certificate binding.`,
+				},
+				resource.Attribute{
+					Name:        "crlcheck",
+					Description: `(Optional) The state of the CRL check parameter (Mandatory/Optional).`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "ocspcheck",
+					Description: `(Optional) The state of the OCSP check parameter (Mandatory/Optional).`,
+				},
+				resource.Attribute{
+					Name:        "userdataencryptionkey",
+					Description: `(Optional) Certificate to be used for encrypting user data like KB Question and Answers, Alternate Email Address, etc. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_sslcertkey_binding. It has the same value as the ` + "`" + `certkeyname` + "`" + ` attribute. ## Import A vpnglobal_sslcertkey_binding can be imported using its certkeyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_sslcertkey_binding.tf_vpnglobal_slcertkey_binding sample_ssl_cert ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_sslcertkey_binding. It has the same value as the ` + "`" + `certkeyname` + "`" + ` attribute. ## Import A vpnglobal_sslcertkey_binding can be imported using its certkeyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_sslcertkey_binding.tf_vpnglobal_slcertkey_binding sample_ssl_cert ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_staserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_staserver_binding resource is used to bind staserver to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"staserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "staserver",
+					Description: `(Required) Configured Secure Ticketing Authority (STA) server.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "staaddresstype",
+					Description: `(Optional) Type of the STA server address(ipv4/v6). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_staserver_binding. It has the same value as the ` + "`" + `staserver` + "`" + ` attribute. ## Import A vpnglobal_staserver_binding can be imported using its staserver, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_staserver_binding.tf_bind http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_staserver_binding. It has the same value as the ` + "`" + `staserver` + "`" + ` attribute. ## Import A vpnglobal_staserver_binding can be imported using its staserver, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_staserver_binding.tf_bind http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnclientlessaccesspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnclientlessaccesspolicy_binding resource is used to bind vpnclientlessaccesspolicy to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnclientlessaccesspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Optional) Indicates that a variable is a built-in (SYSTEM INTERNAL) type.`,
+				},
+				resource.Attribute{
+					Name:        "feature",
+					Description: `(Optional) The feature to be checked while applying this config`,
+				},
+				resource.Attribute{
+					Name:        "globalbindtype",
+					Description: `(Optional) 0`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Bindpoint to which the policy is bound ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnclientlessaccesspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnclientlessaccesspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnclientlessaccesspolicy_binding.tf_bind tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnclientlessaccesspolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnclientlessaccesspolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnclientlessaccesspolicy_binding.tf_bind tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpneula_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpneula_binding resource is used to bind vpneula to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpneula",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "eula",
+					Description: `(Required) Name of the EULA bound to vpnglobal`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpneula_binding. It has the same value as the ` + "`" + `eula` + "`" + ` attribute. ## Import A vpnglobal_vpneula_binding can be imported using its eula, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpneula_binding.tf_bind tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpneula_binding. It has the same value as the ` + "`" + `eula` + "`" + ` attribute. ## Import A vpnglobal_vpneula_binding can be imported using its eula, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpneula_binding.tf_bind tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnintranetapplication_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnintranetapplication_binding resource is used to bind vpnintranetapplication to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnintranetapplication",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetapplication",
+					Description: `(Required) The intranet vpn application.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnintranetapplication_binding. It has the same value as the ` + "`" + `intranetapplication` + "`" + ` attribute. ## Import A vpnglobal_vpnintranetapplication_binding can be imported using its intranetapplication, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnintranetapplication_binding.tf_bind tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnintranetapplication_binding. It has the same value as the ` + "`" + `intranetapplication` + "`" + ` attribute. ## Import A vpnglobal_vpnintranetapplication_binding can be imported using its intranetapplication, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnintranetapplication_binding.tf_bind tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnnexthopserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnnexthopserver_binding resource is used to bind vpnnexthopserver to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnnexthopserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nexthopserver",
+					Description: `(Required) The name of the next hop server bound to vpn global.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnnexthopserver_binding. It has the same value as the ` + "`" + `nexthopserver` + "`" + ` attribute. ## Import A vpnglobal_vpnnexthopserver_binding can be imported using its nexthopserver, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnnexthopserver_binding.tf_bind tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnnexthopserver_binding. It has the same value as the ` + "`" + `nexthopserver` + "`" + ` attribute. ## Import A vpnglobal_vpnnexthopserver_binding can be imported using its nexthopserver, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnnexthopserver_binding.tf_bind tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnportaltheme_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnportaltheme_binding resource is used to bind the vpnportaltheme to the vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnportaltheme",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "portaltheme",
+					Description: `(Required) Name of the portal theme bound to vpnglobal`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnportaltheme_binding. It has the same value as the ` + "`" + `portaltheme` + "`" + ` attribute. ## Import A vpnglobal_vpnportaltheme_binding can be imported using its portaltheme, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnportaltheme_binding.tf_bind tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnportaltheme_binding. It has the same value as the ` + "`" + `portaltheme` + "`" + ` attribute. ## Import A vpnglobal_vpnportaltheme_binding can be imported using its portaltheme, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnportaltheme_binding.tf_bind tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnsessionpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnsessionpolicy_binding resource is used to bind vpn sessionpolicy to the global configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnsessionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Optional) Indicates that a variable is a built-in (SYSTEM INTERNAL) type.`,
+				},
+				resource.Attribute{
+					Name:        "feature",
+					Description: `(Optional) The feature to be checked while applying this config`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnsessionpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnsessionpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnsessionpolicy_binding.tf_bind tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnsessionpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnsessionpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnsessionpolicy_binding.tf_bind tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpntrafficpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpntrafficpolicy_binding resource is used to bind vpn trafficpolicy to the global configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpntrafficpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpntrafficpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpntrafficpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpngobal_vpntrafficpolicy_binding.tf_bond tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpntrafficpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpntrafficpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpngobal_vpntrafficpolicy_binding.tf_bond tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnurl_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnurl_binding resource is used to bind vpnurl to global configuraton.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "urlname",
+					Description: `(Required) The intranet url.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnurl_binding. It has the same value as the ` + "`" + `urlname` + "`" + ` attribute. ## Import A vpnglobal_vpnurl_binding can be imported using its urlname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnurl_binding.tf_bind Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnurl_binding. It has the same value as the ` + "`" + `urlname` + "`" + ` attribute. ## Import A vpnglobal_vpnurl_binding can be imported using its urlname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnurl_binding.tf_bind Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnglobal_vpnurlpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnglobal_vpnurlpolicy_binding resource is used to bind vpnurlpolicy  to vpnglobal configuration.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnglobal",
+				"vpnurlpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policyname",
+					Description: `(Required) The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Optional) Indicates that a variable is a built-in (SYSTEM INTERNAL) type.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. An expression or other value specifying the priority of the next policy which will get evaluated if the current policy rule evaluates to TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Bind the Authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called it primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the priority number, the higher the policy's priority. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Bind the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only to a primary authentication server but also to a secondary authentication server. User groups are aggregated across both authentication servers. The user name must be exactly the same on both authentication servers, but the authentication servers can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnurlpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnurlpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnurlpolicy_binding.tf_bind new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnglobal_vpnurlpolicy_binding. It has the same value as the ` + "`" + `policyname` + "`" + ` attribute. ## Import A vpnglobal_vpnurlpolicy_binding can be imported using its policyname, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnglobal_vpnurlpolicy_binding.tf_bind new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnintranetapplication",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnintranetapplication resource is used to create vpn intranet application resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnintranetapplication",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetapplication",
+					Description: `(Required) Name of the intranet application.`,
+				},
+				resource.Attribute{
+					Name:        "clientapplication",
+					Description: `(Optional) Names of the client applications, such as PuTTY and Xshell.`,
+				},
+				resource.Attribute{
+					Name:        "destip",
+					Description: `(Optional) Destination IP address, IP range, or host name of the intranet application. This address is the server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "destport",
+					Description: `(Optional) Destination TCP or UDP port number for the intranet application. Use a hyphen to specify a range of port numbers, for example 90-95.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Optional) Name of the host for which to configure interception. The names are resolved during interception when users log on with the Citrix Gateway Plug-in.`,
+				},
+				resource.Attribute{
+					Name:        "interception",
+					Description: `(Optional) Interception mode for the intranet application or resource. Correct value depends on the type of client software used to make connections. If the interception mode is set to TRANSPARENT, users connect with the Citrix Gateway Plug-in for Windows. With the PROXY setting, users connect with the Citrix Gateway Plug-in for Java.`,
+				},
+				resource.Attribute{
+					Name:        "iprange",
+					Description: `(Optional) If you have multiple servers in your network, such as web, email, and file shares, configure an intranet application that includes the IP range for all the network applications. This allows users to access all the intranet applications contained in the IP address range.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) Destination subnet mask for the intranet application.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol used by the intranet application. If protocol is set to BOTH, TCP and UDP traffic is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "spoofiip",
+					Description: `(Optional) IP address that the intranet application will use to route the connection through the virtual adapter.`,
+				},
+				resource.Attribute{
+					Name:        "srcip",
+					Description: `(Optional) Source IP address. Required if interception mode is set to PROXY. Default is the loopback address, 127.0.0.1.`,
+				},
+				resource.Attribute{
+					Name:        "srcport",
+					Description: `(Optional) Source port for the application for which the Citrix Gateway virtual server proxies the traffic. If users are connecting from a device that uses the Citrix Gateway Plug-in for Java, applications must be configured manually by using the source IP address and TCP port values specified in the intranet application profile. If a port value is not set, the destination port value is used. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnintranetapplication. It has the same value as the ` + "`" + `intranetapplication` + "`" + ` attribute. ## Import A vpnintranetapplication can be imported using its intranetapplication, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnintranetapplication.tf_vpnintranetapplication tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnintranetapplication. It has the same value as the ` + "`" + `intranetapplication` + "`" + ` attribute. ## Import A vpnintranetapplication can be imported using its intranetapplication, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnintranetapplication.tf_vpnintranetapplication tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnnexthopserver",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnnexthopserver resource is used to create Next Hop Server resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnnexthopserver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the Citrix Gateway appliance in the first DMZ.`,
+				},
+				resource.Attribute{
+					Name:        "nexthopport",
+					Description: `(Required) Port number of the Citrix Gateway proxy in the second DMZ.`,
+				},
+				resource.Attribute{
+					Name:        "nexthopfqdn",
+					Description: `(Optional) FQDN of the Citrix Gateway proxy in the second DMZ.`,
+				},
+				resource.Attribute{
+					Name:        "nexthopip",
+					Description: `(Optional) IP address of the Citrix Gateway proxy in the second DMZ.`,
+				},
+				resource.Attribute{
+					Name:        "resaddresstype",
+					Description: `(Optional) Address Type (IPV4/IPv6) of DNS name of nextHopServer FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "secure",
+					Description: `(Optional) Use of a secure port, such as 443, for the double-hop configuration. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnnexthopserver. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnnexthopserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnnexthopserver.tf_vpnnexthopserver tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnnexthopserver. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnnexthopserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnnexthopserver.tf_vpnnexthopserver tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnparameter",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnparameter resource is used to update the ADC VPN parameters.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnparameter",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "advancedclientlessvpnmode",
+					Description: `(Optional) Option to enable/disable Advanced ClientlessVpnMode. Additionaly, it can be set to STRICT to block Classic ClientlessVpnMode while in AdvancedClientlessMode.`,
+				},
+				resource.Attribute{
+					Name:        "allowedlogingroups",
+					Description: `(Optional) Specify groups that have permission to log on to Citrix Gateway. Users who do not belong to this group or groups are denied access even if they have valid credentials.`,
+				},
+				resource.Attribute{
+					Name:        "allprotocolproxy",
+					Description: `(Optional) IP address of the proxy server to use for all protocols supported by Citrix Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "alwaysonprofilename",
+					Description: `(Optional) Name of the AlwaysON profile. The builtin profile named none can be used to explicitly disable AlwaysON.`,
+				},
+				resource.Attribute{
+					Name:        "apptokentimeout",
+					Description: `(Optional) The timeout value in seconds for tokens to access XenMobile applications`,
+				},
+				resource.Attribute{
+					Name:        "authorizationgroup",
+					Description: `(Optional) Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on Citrix Gateway. The authorization policy can be bound to these groups to control access to the resources.`,
+				},
+				resource.Attribute{
+					Name:        "autoproxyurl",
+					Description: `(Optional) URL to auto proxy config file`,
+				},
+				resource.Attribute{
+					Name:        "backendcertvalidation",
+					Description: `(Optional) enables backend server certificate validation`,
+				},
+				resource.Attribute{
+					Name:        "backendserversni",
+					Description: `(Optional) enables sni extension for backend server handshakes`,
+				},
+				resource.Attribute{
+					Name:        "citrixreceiverhome",
+					Description: `(Optional) Web address for the Citrix Receiver home page. Configure Citrix Gateway so that when users log on to the appliance, the Citrix Gateway Plug-in opens a web browser that allows single sign-on to the Citrix Receiver home page.`,
+				},
+				resource.Attribute{
+					Name:        "clientchoices",
+					Description: `(Optional) Provide users with multiple logon options. With client choices, users have the option of logging on by using the Citrix Gateway Plug-in for Windows, Citrix Gateway Plug-in for Java, the Web Interface, or clientless access from one location. Depending on how Citrix Gateway is configured, users are presented with up to three icons for logon choices. The most common are the Citrix Gateway Plug-in for Windows, Web Interface, and clientless access.`,
+				},
+				resource.Attribute{
+					Name:        "clientcleanupprompt",
+					Description: `(Optional) Prompt for client-side cache clean-up when a client-initiated session closes.`,
+				},
+				resource.Attribute{
+					Name:        "clientconfiguration",
+					Description: `(Optional) Allow users to change client Debug logging level in Configuration tab of the Citrix Gateway Plug-in for Windows.`,
+				},
+				resource.Attribute{
+					Name:        "clientdebug",
+					Description: `(Optional) Set the trace level on Citrix Gateway. Technical support technicians use these debug logs for in-depth debugging and troubleshooting purposes. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientidletimeout",
+					Description: `(Optional) Time, in minutes, after which to time out the user session if Citrix Gateway does not detect mouse or keyboard activity.`,
+				},
+				resource.Attribute{
+					Name:        "clientlessmodeurlencoding",
+					Description: `(Optional) When clientless access is enabled, you can choose to encode the addresses of internal web applications or to leave the address as clear text. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientlesspersistentcookie",
+					Description: `(Optional) State of persistent cookies in clientless access mode. Persistent cookies are required for accessing certain features of SharePoint, such as opening and editing Microsoft Word, Excel, and PowerPoint documents hosted on the SharePoint server. A persistent cookie remains on the user device and is sent with each HTTP request. Citrix Gateway encrypts the persistent cookie before sending it to the plug-in on the user device, and refreshes the cookie periodically as long as the session exists. The cookie becomes stale if the session ends. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientlessvpnmode",
+					Description: `(Optional) Enable clientless access for web, XenApp or XenDesktop, and FileShare resources without installing the Citrix Gateway Plug-in. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientoptions",
+					Description: `(Optional) Display only the configured menu options when you select the "Configure Citrix Gateway" option in the Citrix Gateway Plug-in's system tray icon for Windows.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecurity",
+					Description: `(Optional) Specify the client security check for the user device to permit a Citrix Gateway session. The web address or IP address is not included in the expression for the client security check.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritygroup",
+					Description: `(Optional) The client security group that will be assigned on failure of the client security check. Users can in general be organized into Groups. In this case, the Client Security Group may have a more restrictive security policy.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritylog",
+					Description: `(Optional) Specifies whether or not to display all failed Client Security scans to the end user`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritymessage",
+					Description: `(Optional) The client security message that will be displayed on failure of the client security check.`,
+				},
+				resource.Attribute{
+					Name:        "clientversions",
+					Description: `(Optional) checkversion api`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthorizationaction",
+					Description: `(Optional) Specify the network resources that users have access to when they log on to the internal network. The default setting for authorization is to deny access to all network resources. Citrix recommends using the default global setting and then creating authorization policies to define the network resources users can access. If you set the default authorization policy to DENY, you must explicitly authorize access to any network resource, which improves security.`,
+				},
+				resource.Attribute{
+					Name:        "dnsvservername",
+					Description: `(Optional) Name of the DNS virtual server for the user session.`,
+				},
+				resource.Attribute{
+					Name:        "emailhome",
+					Description: `(Optional) Web address for the web-based email, such as Outlook Web Access.`,
+				},
+				resource.Attribute{
+					Name:        "encryptcsecexp",
+					Description: `(Optional) Enable encryption of client security expressions.`,
+				},
+				resource.Attribute{
+					Name:        "epaclienttype",
+					Description: `(Optional) Choose between two types of End point Windows Client a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed b) Activex Control - ActiveX control run by Microsoft Internet Explorer.`,
+				},
+				resource.Attribute{
+					Name:        "forcecleanup",
+					Description: `(Optional) Force cache clean-up when the user closes a session. You can specify all, none, or any combination of the client-side items.`,
+				},
+				resource.Attribute{
+					Name:        "forcedtimeout",
+					Description: `(Optional) Force a disconnection from the Citrix Gateway Plug-in with Citrix Gateway after a specified number of minutes. If the session closes, the user must log on again.`,
+				},
+				resource.Attribute{
+					Name:        "forcedtimeoutwarning",
+					Description: `(Optional) Number of minutes to warn a user before the user session is disconnected.`,
+				},
+				resource.Attribute{
+					Name:        "fqdnspoofedip",
+					Description: `(Optional) Spoofed IP address range that can be used by client for FQDN based split tunneling`,
+				},
+				resource.Attribute{
+					Name:        "ftpproxy",
+					Description: `(Optional) IP address of the proxy server to be used for FTP access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "gopherproxy",
+					Description: `(Optional) IP address of the proxy server to be used for GOPHER access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "homepage",
+					Description: `(Optional) Web address of the home page that appears when users log on. Otherwise, users receive the default home page for Citrix Gateway, which is the Access Interface.`,
+				},
+				resource.Attribute{
+					Name:        "httpport",
+					Description: `(Optional) Destination port numbers other than port 80, added as a comma-separated list. Traffic to these ports is processed as HTTP traffic, which allows functionality, such as HTTP authorization and single sign-on to a web application to work.`,
+				},
+				resource.Attribute{
+					Name:        "httpproxy",
+					Description: `(Optional) IP address of the proxy server to be used for HTTP access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "icaproxy",
+					Description: `(Optional) Enable ICA proxy to configure secure Internet access to servers running Citrix XenApp or XenDesktop by using Citrix Receiver instead of the Citrix Gateway Plug-in.`,
+				},
+				resource.Attribute{
+					Name:        "icasessiontimeout",
+					Description: `(Optional) Enable or disable ica session timeout. If enabled and in case AAA session gets terminated, ICA connections associated with that will also get terminated`,
+				},
+				resource.Attribute{
+					Name:        "icauseraccounting",
+					Description: `(Optional) The name of the radiusPolicy to use for RADIUS user accounting info on the session.`,
+				},
+				resource.Attribute{
+					Name:        "iconwithreceiver",
+					Description: `(Optional) Option to decide whether to show plugin icon along with receiver icon`,
+				},
+				resource.Attribute{
+					Name:        "iipdnssuffix",
+					Description: `(Optional) An intranet IP DNS suffix. When a user logs on to Citrix Gateway and is assigned an IP address, a DNS record for the user name and IP address combination is added to the Citrix Gateway DNS cache. You can configure a DNS suffix to append to the user name when the DNS record is added to the cache. You can reach to the host from where the user is logged on by using the user's name, which can be easier to remember than an IP address. When the user logs off from Citrix Gateway, the record is removed from the DNS cache.`,
+				},
+				resource.Attribute{
+					Name:        "kcdaccount",
+					Description: `(Optional) The KCD account details to be used in SSO`,
+				},
+				resource.Attribute{
+					Name:        "killconnections",
+					Description: `(Optional) Specify whether the Citrix Gateway Plug-in should disconnect all preexisting connections, such as the connections existing before the user logged on to Citrix Gateway, and prevent new incoming connections on the Citrix Gateway Plug-in for Windows and MAC when the user is connected to Citrix Gateway and split tunneling is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "linuxpluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Linux`,
+				},
+				resource.Attribute{
+					Name:        "locallanaccess",
+					Description: `(Optional) Set local LAN access. If split tunneling is OFF, and you set local LAN access to ON, the local client can route traffic to its local interface. When the local area network switch is specified, this combination of switches is useful. The client can allow local LAN access to devices that commonly have non-routable addresses, such as local printers or local file servers.`,
+				},
+				resource.Attribute{
+					Name:        "loginscript",
+					Description: `(Optional) Path to the logon script that is run when a session is established. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "logoutscript",
+					Description: `(Optional) Path to the logout script. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "macpluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Mac`,
+				},
+				resource.Attribute{
+					Name:        "mdxtokentimeout",
+					Description: `(Optional) Validity of MDX Token in minutes. This token is used for mdx services to access backend and valid HEAD and GET request.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) The netmask for the spoofed ip address`,
+				},
+				resource.Attribute{
+					Name:        "ntdomain",
+					Description: `(Optional) Single sign-on domain to use for single sign-on to applications in the internal network. This setting can be overwritten by the domain that users specify at the time of logon or by the domain that the authentication server returns.`,
+				},
+				resource.Attribute{
+					Name:        "pcoipprofilename",
+					Description: `(Optional) Name of the PCOIP profile.`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) Set options to apply proxy for accessing the internal resources. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "proxyexception",
+					Description: `(Optional) Proxy exception string that will be configured in the browser for bypassing the previously configured proxies. Allowed only if proxy type is Browser.`,
+				},
+				resource.Attribute{
+					Name:        "proxylocalbypass",
+					Description: `(Optional) Bypass proxy server for local addresses option in Internet Explorer and Firefox proxy server settings.`,
+				},
+				resource.Attribute{
+					Name:        "rdpclientprofilename",
+					Description: `(Optional) Name of the RDP profile associated with the vserver.`,
+				},
+				resource.Attribute{
+					Name:        "rfc1918",
+					Description: `(Optional) As defined in the local area network, allow only the following local area network addresses to bypass the VPN tunnel when the local LAN access feature is enabled:`,
+				},
+				resource.Attribute{
+					Name:        "samesite",
+					Description: `(Optional) SameSite attribute value for Cookies generated in VPN context. This attribute value will be appended only for the cookies which are specified in the builtin patset ns_cookies_samesite`,
+				},
+				resource.Attribute{
+					Name:        "securebrowse",
+					Description: `(Optional) Allow users to connect through Citrix Gateway to network resources from iOS and Android mobile devices with Citrix Receiver. Users do not need to establish a full VPN tunnel to access resources in the secure network.`,
+				},
+				resource.Attribute{
+					Name:        "sesstimeout",
+					Description: `(Optional) Number of minutes after which the session times out.`,
+				},
+				resource.Attribute{
+					Name:        "smartgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "socksproxy",
+					Description: `(Optional) IP address of the proxy server to be used for SOCKS access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "splitdns",
+					Description: `(Optional) Route the DNS requests to the local DNS server configured on the user device, or Citrix Gateway (remote), or both.`,
+				},
+				resource.Attribute{
+					Name:        "splittunnel",
+					Description: `(Optional) Send, through the tunnel, traffic only for intranet applications that are defined in Citrix Gateway. Route all other traffic directly to the Internet. The OFF setting routes all traffic through Citrix Gateway. With the REVERSE setting, intranet applications define the network traffic that is not intercepted. All network traffic directed to internal IP addresses bypasses the VPN tunnel, while other traffic goes through Citrix Gateway. Reverse split tunneling can be used to log all non-local LAN traffic. For example, if users have a home network and are logged on through the Citrix Gateway Plug-in, network traffic destined to a printer or another device within the home network is not intercepted.`,
+				},
+				resource.Attribute{
+					Name:        "spoofiip",
+					Description: `(Optional) Indicate whether or not the application requires IP spoofing, which routes the connection to the intranet application through the virtual adapter.`,
+				},
+				resource.Attribute{
+					Name:        "sslproxy",
+					Description: `(Optional) IP address of the proxy server to be used for SSL access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "sso",
+					Description: `(Optional) Set single sign-on (SSO) for the session. When the user accesses a server, the user's logon credentials are passed to the server for authentication. NOTE : This configuration does not honor the following authentication types for security reason. BASIC, DIGEST, and NTLM (without Negotiate NTLM2 Key or Negotiate Sign Flag). Use VPN TrafficAction to configure SSO for these authentication types.`,
+				},
+				resource.Attribute{
+					Name:        "ssocredential",
+					Description: `(Optional) Specify whether to use the primary or secondary authentication credentials for single sign-on to the server.`,
+				},
+				resource.Attribute{
+					Name:        "storefronturl",
+					Description: `(Optional) Web address for StoreFront to be used in this session for enumeration of resources from XenApp or XenDesktop.`,
+				},
+				resource.Attribute{
+					Name:        "transparentinterception",
+					Description: `(Optional) Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the Citrix Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the Citrix Gateway Plug-in for Java, set this parameter to OFF.`,
+				},
+				resource.Attribute{
+					Name:        "uitheme",
+					Description: `(Optional) Set VPN UI Theme to Green-Bubble, Caxton or Custom; default is Caxton.`,
+				},
+				resource.Attribute{
+					Name:        "useiip",
+					Description: `(Optional) Define IP address pool options. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "usemip",
+					Description: `(Optional) Enable or disable the use of a unique IP address alias, or a mapped IP address, as the client IP address for each client session. Allow Citrix Gateway to use the mapped IP address as an intranet IP address when all other IP addresses are not available. When IP pooling is configured and the mapped IP is used as an intranet IP address, the mapped IP address is used when an intranet IP address cannot be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "userdomains",
+					Description: `(Optional) List of user domains specified as comma seperated value`,
+				},
+				resource.Attribute{
+					Name:        "wihome",
+					Description: `(Optional) Web address of the Web Interface server, such as http://<ipAddress>/Citrix/XenApp, or Receiver for Web, which enumerates the virtualized resources, such as XenApp, XenDesktop, and cloud applications. This web address is used as the home page in ICA proxy mode. If Client Choices is ON, you must configure this setting. Because the user can choose between FullClient and ICAProxy, the user may see a different home page. An Internet web site may appear if the user gets the FullClient option, or a Web Interface site if the user gets the ICAProxy option. If the setting is not configured, the XenApp option does not appear as a client choice.`,
+				},
+				resource.Attribute{
+					Name:        "wihomeaddresstype",
+					Description: `(Optional) Type of the wihome address(IPV4/V6)`,
+				},
+				resource.Attribute{
+					Name:        "windowsautologon",
+					Description: `(Optional) Enable or disable the Windows Auto Logon for the session. If a VPN session is established after this setting is enabled, the user is automatically logged on by using Windows credentials after the system is restarted.`,
+				},
+				resource.Attribute{
+					Name:        "windowsclienttype",
+					Description: `(Optional) The Windows client type. Choose between two types of Windows Client\ a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed\ b) Activex Control - ActiveX control run by Microsoft Internet Explorer.`,
+				},
+				resource.Attribute{
+					Name:        "windowspluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Win`,
+				},
+				resource.Attribute{
+					Name:        "winsip",
+					Description: `(Optional) WINS server IP address to add to Citrix Gateway for name resolution.`,
+				},
+				resource.Attribute{
+					Name:        "wiportalmode",
+					Description: `(Optional) Layout on the Access Interface. The COMPACT value indicates the use of small icons. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnparameter. It is a unique string prefixed with "tf-vpnparameter-"`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnparameter. It is a unique string prefixed with "tf-vpnparameter-"`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnpcoipprofile",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnpcoipprofile resource is used to create vpn PCoIP profile resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnpcoipprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of PCoIP profile`,
+				},
+				resource.Attribute{
+					Name:        "conserverurl",
+					Description: `(Required) Connection server URL`,
+				},
+				resource.Attribute{
+					Name:        "icvverification",
+					Description: `(Optional) ICV verification for PCOIP transport packets.`,
+				},
+				resource.Attribute{
+					Name:        "sessionidletimeout",
+					Description: `(Optional) PCOIP Idle Session timeout ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnpcoipprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnpcoipprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnpcoipprofile.tf_vpnpcoipprofile tf_vpnpcoipprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnpcoipprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnpcoipprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnpcoipprofile.tf_vpnpcoipprofile tf_vpnpcoipprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnpcoipvserverprofile",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnpcoipvserverprofile resource is used to create PCoIP vserver profile resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnpcoipvserverprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of PCoIP vserver profile`,
+				},
+				resource.Attribute{
+					Name:        "logindomain",
+					Description: `(Required) Login domain for PCoIP users`,
+				},
+				resource.Attribute{
+					Name:        "udpport",
+					Description: `(Optional) UDP port for PCoIP data traffic ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnpcoipvserverprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnpcoipvserverprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnpcoipvserverprofile.tf_vpnpcoipvserverprofile tf_vpnpcoipvserverprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnpcoipvserverprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnpcoipvserverprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnpcoipvserverprofile.tf_vpnpcoipvserverprofile tf_vpnpcoipvserverprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnportaltheme",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnportaltheme resource is used to create vpn portal theme resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnportaltheme",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the uitheme`,
+				},
+				resource.Attribute{
+					Name:        "basetheme",
+					Description: `(Required) 0 ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnportaltheme. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnportaltheme can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnportaltheme.tf_vpnportaltheme tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnportaltheme. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnportaltheme can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnportaltheme.tf_vpnportaltheme tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnsamlssoprofile",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnsamlssoprofile resource is used to create of vpn SAML sso profile resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnsamlssoprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new saml single sign-on profile. Must begin with an ASCII alphanumeric or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after an SSO action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "assertionconsumerserviceurl",
+					Description: `(Required) URL to which the assertion is to be sent.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1",
+					Description: `(Optional) Name of attribute1 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10",
+					Description: `(Optional) Name of attribute10 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute10's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute10format",
+					Description: `(Optional) Format of Attribute10 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute10friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute10 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11",
+					Description: `(Optional) Name of attribute11 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute11's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute11format",
+					Description: `(Optional) Format of Attribute11 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute11friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute11 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12",
+					Description: `(Optional) Name of attribute12 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute12's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute12format",
+					Description: `(Optional) Format of Attribute12 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute12friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute12 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13",
+					Description: `(Optional) Name of attribute13 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute13's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute13format",
+					Description: `(Optional) Format of Attribute13 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute13friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute13 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14",
+					Description: `(Optional) Name of attribute14 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute14's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute14format",
+					Description: `(Optional) Format of Attribute14 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute14friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute14 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15",
+					Description: `(Optional) Name of attribute15 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute15's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute15format",
+					Description: `(Optional) Format of Attribute15 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute15friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute15 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16",
+					Description: `(Optional) Name of attribute16 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute16's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute16format",
+					Description: `(Optional) Format of Attribute16 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute16friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute16 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute1expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute1's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute1format",
+					Description: `(Optional) Format of Attribute1 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute1friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute1 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2",
+					Description: `(Optional) Name of attribute2 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute2's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute2format",
+					Description: `(Optional) Format of Attribute2 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute2friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute2 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3",
+					Description: `(Optional) Name of attribute3 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute3's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute3format",
+					Description: `(Optional) Format of Attribute3 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute3friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute3 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4",
+					Description: `(Optional) Name of attribute4 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute4's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute4format",
+					Description: `(Optional) Format of Attribute4 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute4friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute4 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5",
+					Description: `(Optional) Name of attribute5 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute5's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute5format",
+					Description: `(Optional) Format of Attribute5 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute5friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute5 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6",
+					Description: `(Optional) Name of attribute6 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute6's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute6format",
+					Description: `(Optional) Format of Attribute6 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute6friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute6 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7",
+					Description: `(Optional) Name of attribute7 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute7's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute7format",
+					Description: `(Optional) Format of Attribute7 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute7friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute7 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8",
+					Description: `(Optional) Name of attribute8 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute8's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute8format",
+					Description: `(Optional) Format of Attribute8 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute8friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute8 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9",
+					Description: `(Optional) Name of attribute9 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9expr",
+					Description: `(Optional) Expression that will be evaluated to obtain attribute9's value to be sent in Assertion`,
+				},
+				resource.Attribute{
+					Name:        "attribute9format",
+					Description: `(Optional) Format of Attribute9 to be sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "attribute9friendlyname",
+					Description: `(Optional) User-Friendly Name of attribute9 that needs to be sent in SAML Assertion`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience for which assertion sent by IdP is applicable. This is typically entity name or url that represents ServiceProvider`,
+				},
+				resource.Attribute{
+					Name:        "digestmethod",
+					Description: `(Optional) Algorithm to be used to compute/verify digest for SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "encryptassertion",
+					Description: `(Optional) Option to encrypt assertion when Citrix ADC sends one.`,
+				},
+				resource.Attribute{
+					Name:        "encryptionalgorithm",
+					Description: `(Optional) Algorithm to be used to encrypt SAML assertion`,
+				},
+				resource.Attribute{
+					Name:        "nameidexpr",
+					Description: `(Optional) Expression that will be evaluated to obtain NameIdentifier to be sent in assertion`,
+				},
+				resource.Attribute{
+					Name:        "nameidformat",
+					Description: `(Optional) Format of Name Identifier sent in Assertion.`,
+				},
+				resource.Attribute{
+					Name:        "relaystaterule",
+					Description: `(Optional) Expression to extract relaystate to be sent along with assertion. Evaluation of this expression should return TEXT content. This is typically a target url to which user is redirected after the recipient validates SAML token`,
+				},
+				resource.Attribute{
+					Name:        "samlissuername",
+					Description: `(Optional) The name to be used in requests sent from Citrix ADC to IdP to uniquely identify Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "samlsigningcertname",
+					Description: `(Optional) Name of the signing authority as given in the SAML server's SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "samlspcertname",
+					Description: `(Optional) Name of the SSL certificate of peer/receving party using which Assertion is encrypted.`,
+				},
+				resource.Attribute{
+					Name:        "sendpassword",
+					Description: `(Optional) Option to send password in assertion.`,
+				},
+				resource.Attribute{
+					Name:        "signassertion",
+					Description: `(Optional) Option to sign portions of assertion when Citrix ADC IDP sends one. Based on the user selection, either Assertion or Response or Both or none can be signed`,
+				},
+				resource.Attribute{
+					Name:        "signaturealg",
+					Description: `(Optional) Algorithm to be used to sign/verify SAML transactions`,
+				},
+				resource.Attribute{
+					Name:        "signatureservice",
+					Description: `(Optional) Name of the service in cloud used to sign the data`,
+				},
+				resource.Attribute{
+					Name:        "skewtime",
+					Description: `(Optional) This option specifies the number of minutes on either side of current time that the assertion would be valid. For example, if skewTime is 10, then assertion would be valid from (current time - 10) min to (current time + 10) min, ie 20min in all. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsamlssoprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsamlssoprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsamlssoprofile.tf_vpnsamlssoprofile tf_vpnsamlssoprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsamlssoprofile. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsamlssoprofile can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsamlssoprofile.tf_vpnsamlssoprofile tf_vpnsamlssoprofile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnsessionaction",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnsessionaction resource is used to create vpn session action.
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnsessionaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the Citrix Gateway profile (action). Must begin with an ASCII alphabetic or underscore (_) character, and must consist only of ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the profile is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "advancedclientlessvpnmode",
+					Description: `(Optional) Option to enable/disable Advanced ClientlessVpnMode. Additionaly, it can be set to STRICT to block Classic ClientlessVpnMode while in AdvancedClientlessMode.`,
+				},
+				resource.Attribute{
+					Name:        "allowedlogingroups",
+					Description: `(Optional) Specify groups that have permission to log on to Citrix Gateway. Users who do not belong to this group or groups are denied access even if they have valid credentials.`,
+				},
+				resource.Attribute{
+					Name:        "allprotocolproxy",
+					Description: `(Optional) IP address of the proxy server to use for all protocols supported by Citrix Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "alwaysonprofilename",
+					Description: `(Optional) Name of the AlwaysON profile associated with the session action. The builtin profile named none can be used to explicitly disable AlwaysON for the session action.`,
+				},
+				resource.Attribute{
+					Name:        "authorizationgroup",
+					Description: `(Optional) Comma-separated list of groups in which the user is placed when none of the groups that the user is a part of is configured on Citrix Gateway. The authorization policy can be bound to these groups to control access to the resources.`,
+				},
+				resource.Attribute{
+					Name:        "autoproxyurl",
+					Description: `(Optional) URL to auto proxy config file`,
+				},
+				resource.Attribute{
+					Name:        "citrixreceiverhome",
+					Description: `(Optional) Web address for the Citrix Receiver home page. Configure Citrix Gateway so that when users log on to the appliance, the Citrix Gateway Plug-in opens a web browser that allows single sign-on to the Citrix Receiver home page.`,
+				},
+				resource.Attribute{
+					Name:        "clientchoices",
+					Description: `(Optional) Provide users with multiple logon options. With client choices, users have the option of logging on by using the Citrix Gateway Plug-in for Windows, Citrix Gateway Plug-in for Java, the Web Interface, or clientless access from one location. Depending on how Citrix Gateway is configured, users are presented with up to three icons for logon choices. The most common are the Citrix Gateway Plug-in for Windows, Web Interface, and clientless access.`,
+				},
+				resource.Attribute{
+					Name:        "clientcleanupprompt",
+					Description: `(Optional) Prompt for client-side cache clean-up when a client-initiated session closes.`,
+				},
+				resource.Attribute{
+					Name:        "clientconfiguration",
+					Description: `(Optional) Allow users to change client Debug logging level in Configuration tab of the Citrix Gateway Plug-in for Windows.`,
+				},
+				resource.Attribute{
+					Name:        "clientdebug",
+					Description: `(Optional) Set the trace level on Citrix Gateway. Technical support technicians use these debug logs for in-depth debugging and troubleshooting purposes. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientidletimeout",
+					Description: `(Optional) Time, in minutes, after which to time out the user session if Citrix Gateway does not detect mouse or keyboard activity.`,
+				},
+				resource.Attribute{
+					Name:        "clientlessmodeurlencoding",
+					Description: `(Optional) When clientless access is enabled, you can choose to encode the addresses of internal web applications or to leave the address as clear text. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientlesspersistentcookie",
+					Description: `(Optional) State of persistent cookies in clientless access mode. Persistent cookies are required for accessing certain features of SharePoint, such as opening and editing Microsoft Word, Excel, and PowerPoint documents hosted on the SharePoint server. A persistent cookie remains on the user device and is sent with each HTTP request. Citrix Gateway encrypts the persistent cookie before sending it to the plug-in on the user device, and refreshes the cookie periodically as long as the session exists. The cookie becomes stale if the session ends. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientlessvpnmode",
+					Description: `(Optional) Enable clientless access for web, XenApp or XenDesktop, and FileShare resources without installing the Citrix Gateway Plug-in. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "clientoptions",
+					Description: `(Optional) Display only the configured menu options when you select the "Configure Citrix Gateway" option in the Citrix Gateway Plug-in system tray icon for Windows.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecurity",
+					Description: `(Optional) Specify the client security check for the user device to permit a Citrix Gateway session. The web address or IP address is not included in the expression for the client security check.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritygroup",
+					Description: `(Optional) The client security group that will be assigned on failure of the client security check. Users can in general be organized into Groups. In this case, the Client Security Group may have a more restrictive security policy.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritylog",
+					Description: `(Optional) Set the logging of client security checks.`,
+				},
+				resource.Attribute{
+					Name:        "clientsecuritymessage",
+					Description: `(Optional) The client security message that will be displayed on failure of the client security check.`,
+				},
+				resource.Attribute{
+					Name:        "defaultauthorizationaction",
+					Description: `(Optional) Specify the network resources that users have access to when they log on to the internal network. The default setting for authorization is to deny access to all network resources. Citrix recommends using the default global setting and then creating authorization policies to define the network resources users can access. If you set the default authorization policy to DENY, you must explicitly authorize access to any network resource, which improves security.`,
+				},
+				resource.Attribute{
+					Name:        "dnsvservername",
+					Description: `(Optional) Name of the DNS virtual server for the user session.`,
+				},
+				resource.Attribute{
+					Name:        "emailhome",
+					Description: `(Optional) Web address for the web-based email, such as Outlook Web Access.`,
+				},
+				resource.Attribute{
+					Name:        "epaclienttype",
+					Description: `(Optional) Choose between two types of End point Windows Client a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed b) Activex Control - ActiveX control run by Microsoft Internet Explorer.`,
+				},
+				resource.Attribute{
+					Name:        "forcecleanup",
+					Description: `(Optional) Force cache clean-up when the user closes a session. You can specify all, none, or any combination of the client-side items.`,
+				},
+				resource.Attribute{
+					Name:        "forcedtimeout",
+					Description: `(Optional) Force a disconnection from the Citrix Gateway Plug-in with Citrix Gateway after a specified number of minutes. If the session closes, the user must log on again.`,
+				},
+				resource.Attribute{
+					Name:        "forcedtimeoutwarning",
+					Description: `(Optional) Number of minutes to warn a user before the user session is disconnected.`,
+				},
+				resource.Attribute{
+					Name:        "fqdnspoofedip",
+					Description: `(Optional) Spoofed IP address range that can be used by client for FQDN based split tunneling`,
+				},
+				resource.Attribute{
+					Name:        "ftpproxy",
+					Description: `(Optional) IP address of the proxy server to be used for FTP access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "gopherproxy",
+					Description: `(Optional) IP address of the proxy server to be used for GOPHER access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "homepage",
+					Description: `(Optional) Web address of the home page that appears when users log on. Otherwise, users receive the default home page for Citrix Gateway, which is the Access Interface.`,
+				},
+				resource.Attribute{
+					Name:        "httpport",
+					Description: `(Optional) Destination port numbers other than port 80, added as a comma-separated list. Traffic to these ports is processed as HTTP traffic, which allows functionality, such as HTTP authorization and single sign-on to a web application to work.`,
+				},
+				resource.Attribute{
+					Name:        "httpproxy",
+					Description: `(Optional) IP address of the proxy server to be used for HTTP access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "icaproxy",
+					Description: `(Optional) Enable ICA proxy to configure secure Internet access to servers running Citrix XenApp or XenDesktop by using Citrix Receiver instead of the Citrix Gateway Plug-in.`,
+				},
+				resource.Attribute{
+					Name:        "iconwithreceiver",
+					Description: `(Optional) Option to decide whether to show plugin icon along with receiver`,
+				},
+				resource.Attribute{
+					Name:        "iipdnssuffix",
+					Description: `(Optional) An intranet IP DNS suffix. When a user logs on to Citrix Gateway and is assigned an IP address, a DNS record for the user name and IP address combination is added to the Citrix Gateway DNS cache. You can configure a DNS suffix to append to the user name when the DNS record is added to the cache. You can reach to the host from where the user is logged on by using the user's name, which can be easier to remember than an IP address. When the user logs off from Citrix Gateway, the record is removed from the DNS cache.`,
+				},
+				resource.Attribute{
+					Name:        "kcdaccount",
+					Description: `(Optional) The kcd account details to be used in SSO`,
+				},
+				resource.Attribute{
+					Name:        "killconnections",
+					Description: `(Optional) Specify whether the Citrix Gateway Plug-in should disconnect all preexisting connections, such as the connections existing before the user logged on to Citrix Gateway, and prevent new incoming connections on the Citrix Gateway Plug-in for Windows and MAC when the user is connected to Citrix Gateway and split tunneling is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "linuxpluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Linux`,
+				},
+				resource.Attribute{
+					Name:        "locallanaccess",
+					Description: `(Optional) Set local LAN access. If split tunneling is OFF, and you set local LAN access to ON, the local client can route traffic to its local interface. When the local area network switch is specified, this combination of switches is useful. The client can allow local LAN access to devices that commonly have non-routable addresses, such as local printers or local file servers.`,
+				},
+				resource.Attribute{
+					Name:        "loginscript",
+					Description: `(Optional) Path to the logon script that is run when a session is established. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "logoutscript",
+					Description: `(Optional) Path to the logout script. Separate multiple scripts by using comma. A "$" in the path signifies that the word following the "$" is an environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "macpluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Mac`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) The netmask for the spoofed ip address`,
+				},
+				resource.Attribute{
+					Name:        "ntdomain",
+					Description: `(Optional) Single sign-on domain to use for single sign-on to applications in the internal network. This setting can be overwritten by the domain that users specify at the time of logon or by the domain that the authentication server returns.`,
+				},
+				resource.Attribute{
+					Name:        "pcoipprofilename",
+					Description: `(Optional) Name of the PCOIP profile associated with the session action. The builtin profile named none can be used to explicitly disable PCOIP for the session action.`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) Set options to apply proxy for accessing the internal resources. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "proxyexception",
+					Description: `(Optional) Proxy exception string that will be configured in the browser for bypassing the previously configured proxies. Allowed only if proxy type is Browser.`,
+				},
+				resource.Attribute{
+					Name:        "proxylocalbypass",
+					Description: `(Optional) Bypass proxy server for local addresses option in Internet Explorer and Firefox proxy server settings.`,
+				},
+				resource.Attribute{
+					Name:        "rdpclientprofilename",
+					Description: `(Optional) Name of the RDP profile associated with the vserver.`,
+				},
+				resource.Attribute{
+					Name:        "rfc1918",
+					Description: `(Optional) As defined in the local area network, allow only the following local area network addresses to bypass the VPN tunnel when the local LAN access feature is enabled:`,
+				},
+				resource.Attribute{
+					Name:        "securebrowse",
+					Description: `(Optional) Allow users to connect through Citrix Gateway to network resources from iOS and Android mobile devices with Citrix Receiver. Users do not need to establish a full VPN tunnel to access resources in the secure network.`,
+				},
+				resource.Attribute{
+					Name:        "sesstimeout",
+					Description: `(Optional) Number of minutes after which the session times out.`,
+				},
+				resource.Attribute{
+					Name:        "sfgatewayauthtype",
+					Description: `(Optional) The authentication type configured for the Citrix Gateway on StoreFront.`,
+				},
+				resource.Attribute{
+					Name:        "smartgroup",
+					Description: `(Optional) This is the default group that is chosen when the authentication succeeds in addition to extracted groups.`,
+				},
+				resource.Attribute{
+					Name:        "socksproxy",
+					Description: `(Optional) IP address of the proxy server to be used for SOCKS access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "splitdns",
+					Description: `(Optional) Route the DNS requests to the local DNS server configured on the user device, or Citrix Gateway (remote), or both.`,
+				},
+				resource.Attribute{
+					Name:        "splittunnel",
+					Description: `(Optional) Send, through the tunnel, traffic only for intranet applications that are defined in Citrix Gateway. Route all other traffic directly to the Internet. The OFF setting routes all traffic through Citrix Gateway. With the REVERSE setting, intranet applications define the network traffic that is not intercepted. All network traffic directed to internal IP addresses bypasses the VPN tunnel, while other traffic goes through Citrix Gateway. Reverse split tunneling can be used to log all non-local LAN traffic. For example, if users have a home network and are logged on through the Citrix Gateway Plug-in, network traffic destined to a printer or another device within the home network is not intercepted.`,
+				},
+				resource.Attribute{
+					Name:        "spoofiip",
+					Description: `(Optional) IP address that the intranet application uses to route the connection through the virtual adapter.`,
+				},
+				resource.Attribute{
+					Name:        "sslproxy",
+					Description: `(Optional) IP address of the proxy server to be used for SSL access for all subsequent connections to the internal network.`,
+				},
+				resource.Attribute{
+					Name:        "sso",
+					Description: `(Optional) Set single sign-on (SSO) for the session. When the user accesses a server, the user's logon credentials are passed to the server for authentication. NOTE : This configuration does not honor the following authentication types for security reason. BASIC, DIGEST, and NTLM (without Negotiate NTLM2 Key or Negotiate Sign Flag). Use VPN TrafficAction to configure SSO for these authentication types.`,
+				},
+				resource.Attribute{
+					Name:        "ssocredential",
+					Description: `(Optional) Specify whether to use the primary or secondary authentication credentials for single sign-on to the server.`,
+				},
+				resource.Attribute{
+					Name:        "storefronturl",
+					Description: `(Optional) Web address for StoreFront to be used in this session for enumeration of resources from XenApp or XenDesktop.`,
+				},
+				resource.Attribute{
+					Name:        "transparentinterception",
+					Description: `(Optional) Allow access to network resources by using a single IP address and subnet mask or a range of IP addresses. The OFF setting sets the mode to proxy, in which you configure destination and source IP addresses and port numbers. If you are using the Citrix Gateway Plug-in for Windows, set this parameter to ON, in which the mode is set to transparent. If you are using the Citrix Gateway Plug-in for Java, set this parameter to OFF.`,
+				},
+				resource.Attribute{
+					Name:        "useiip",
+					Description: `(Optional) Define IP address pool options. Available settings function as follows:`,
+				},
+				resource.Attribute{
+					Name:        "usemip",
+					Description: `(Optional) Enable or disable the use of a unique IP address alias, or a mapped IP address, as the client IP address for each client session. Allow Citrix Gateway to use the mapped IP address as an intranet IP address when all other IP addresses are not available. When IP pooling is configured and the mapped IP is used as an intranet IP address, the mapped IP address is used when an intranet IP address cannot be assigned.`,
+				},
+				resource.Attribute{
+					Name:        "useraccounting",
+					Description: `(Optional) The name of the radiusPolicy to use for RADIUS user accounting info on the session.`,
+				},
+				resource.Attribute{
+					Name:        "wihome",
+					Description: `(Optional) Web address of the Web Interface server, such as http://<ipAddress>/Citrix/XenApp, or Receiver for Web, which enumerates the virtualized resources, such as XenApp, XenDesktop, and cloud applications. This web address is used as the home page in ICA proxy mode. If Client Choices is ON, you must configure this setting. Because the user can choose between FullClient and ICAProxy, the user may see a different home page. An Internet web site may appear if the user gets the FullClient option, or a Web Interface site if the user gets the ICAProxy option. If the setting is not configured, the XenApp option does not appear as a client choice.`,
+				},
+				resource.Attribute{
+					Name:        "wihomeaddresstype",
+					Description: `(Optional) Type of the wihome address(IPV4/V6)`,
+				},
+				resource.Attribute{
+					Name:        "windowsautologon",
+					Description: `(Optional) Enable or disable the Windows Auto Logon for the session. If a VPN session is established after this setting is enabled, the user is automatically logged on by using Windows credentials after the system is restarted.`,
+				},
+				resource.Attribute{
+					Name:        "windowsclienttype",
+					Description: `(Optional) Choose between two types of Windows Client\ a) Application Agent - which always runs in the task bar as a standalone application and also has a supporting service which runs permanently when installed\ b) Activex Control - ActiveX control run by Microsoft Internet Explorer.`,
+				},
+				resource.Attribute{
+					Name:        "windowspluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Win`,
+				},
+				resource.Attribute{
+					Name:        "winsip",
+					Description: `(Optional) WINS server IP address to add to Citrix Gateway for name resolution.`,
+				},
+				resource.Attribute{
+					Name:        "wiportalmode",
+					Description: `(Optional) Layout on the Access Interface. The COMPACT value indicates the use of small icons. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsessionaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsessionaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsessionaction.tf_sessionaction newsession ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsessionaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsessionaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsessionaction.tf_sessionaction newsession ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnsessionpolicy",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnsessionpolicy resource is used to create vpn session policy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnsessionpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new session policy that is applied after the user logs on to Citrix Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action to be applied by the new session policy if the rule criteria are met.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression, or name of a named expression, specifying the traffic that matches the policy. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsessionpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsessionpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsessionpolicy.tf_vpnsessionpolicy tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnsessionpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnsessionpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnsessionpolicy.tf_vpnsessionpolicy tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpntrafficaction",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpntrafficaction resource is used to create vpn traffic action.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpntrafficaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the traffic action. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after a traffic action is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my action" or 'my action').`,
+				},
+				resource.Attribute{
+					Name:        "qual",
+					Description: `(Required) Protocol, either HTTP or TCP, to be used with the action.`,
+				},
+				resource.Attribute{
+					Name:        "apptimeout",
+					Description: `(Optional) Maximum amount of time, in minutes, a user can stay logged on to the web application.`,
+				},
+				resource.Attribute{
+					Name:        "formssoaction",
+					Description: `(Optional) Name of the form-based single sign-on profile. Form-based single sign-on allows users to log on one time to all protected applications in your network, instead of requiring them to log on separately to access each one.`,
+				},
+				resource.Attribute{
+					Name:        "fta",
+					Description: `(Optional) Specify file type association, which is a list of file extensions that users are allowed to open.`,
+				},
+				resource.Attribute{
+					Name:        "hdx",
+					Description: `(Optional) Provide hdx proxy to the ICA traffic`,
+				},
+				resource.Attribute{
+					Name:        "kcdaccount",
+					Description: `(Optional) Kerberos constrained delegation account name`,
+				},
+				resource.Attribute{
+					Name:        "passwdexpression",
+					Description: `(Optional) expression that will be evaluated to obtain password for SingleSignOn`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) IP address and Port of the proxy server to be used for HTTP access for this request.`,
+				},
+				resource.Attribute{
+					Name:        "samlssoprofile",
+					Description: `(Optional) Profile to be used for doing SAML SSO to remote relying party`,
+				},
+				resource.Attribute{
+					Name:        "sso",
+					Description: `(Optional) Provide single sign-on to the web application. NOTE : Authentication mechanisms like Basic-authentication require the user credentials to be sent in plaintext which is not secure if the server is running on HTTP (instead of HTTPS).`,
+				},
+				resource.Attribute{
+					Name:        "userexpression",
+					Description: `(Optional) expression that will be evaluated to obtain username for SingleSignOn`,
+				},
+				resource.Attribute{
+					Name:        "wanscaler",
+					Description: `(Optional) Use the Repeater Plug-in to optimize network traffic. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpntrafficaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpntrafficaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpntrafficaction.tf_vpntrafficaction Testing ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpntrafficaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpntrafficaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpntrafficaction.tf_vpntrafficaction Testing ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpntrafficpolicy",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpntrafficpolicy resource is used to create vpn traffic policy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpntrafficpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the traffic policy. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Cannot be changed after the policy is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my policy" or 'my policy').`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action to apply to traffic that matches the policy.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression, or name of a named expression, against which traffic is evaluated. The following requirements apply only to the Citrix ADC CLI:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpntrafficpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpntrafficpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpntrafficpolicy.tf_vpntrafficpolicy tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpntrafficpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpntrafficpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpntrafficpolicy.tf_vpntrafficpolicy tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnurl",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnurl resource is used to create a new vpn-url.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnurl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "urlname",
+					Description: `(Required) Name of the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "actualurl",
+					Description: `(Required) Web address for the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "linkname",
+					Description: `(Required) Description of the bookmark link. The description appears in the Access Interface.`,
+				},
+				resource.Attribute{
+					Name:        "appjson",
+					Description: `(Optional) To store the template details in the json format.`,
+				},
+				resource.Attribute{
+					Name:        "applicationtype",
+					Description: `(Optional) The type of application this VPN URL represents. Possible values are CVPN/SaaS/VPN`,
+				},
+				resource.Attribute{
+					Name:        "clientlessaccess",
+					Description: `(Optional) If clientless access to the resource hosting the link is allowed, also use clientless access for the bookmarked web address in the Secure Client Access based session. Allows single sign-on and other HTTP processing on Citrix Gateway for HTTPS resources.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments associated with the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "iconurl",
+					Description: `(Optional) URL to fetch icon file for displaying this resource.`,
+				},
+				resource.Attribute{
+					Name:        "samlssoprofile",
+					Description: `(Optional) Profile to be used for doing SAML SSO`,
+				},
+				resource.Attribute{
+					Name:        "ssotype",
+					Description: `(Optional) Single sign on type for unified gateway`,
+				},
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Optional) Name of the associated LB/CS vserver ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurl. It has the same value as the ` + "`" + `urlname` + "`" + ` attribute. ## Import A vpnurl can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurl.tf_vpnurl Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurl. It has the same value as the ` + "`" + `urlname` + "`" + ` attribute. ## Import A vpnurl can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurl.tf_vpnurl Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnurlaction",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnurlaction resource is used to create vpn url action.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnurlaction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "linkname",
+					Description: `(Required) Description of the bookmark link. The description appears in the Access Interface.`,
+				},
+				resource.Attribute{
+					Name:        "actualurl",
+					Description: `(Required) Web address for the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "applicationtype",
+					Description: `(Optional) The type of application this VPN URL represents. Possible values are CVPN/SaaS/VPN`,
+				},
+				resource.Attribute{
+					Name:        "clientlessaccess",
+					Description: `(Optional) If clientless access to the resource hosting the link is allowed, also use clientless access for the bookmarked web address in the Secure Client Access based session. Allows single sign-on and other HTTP processing on NetScaler Gateway for HTTPS resources.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments associated with the bookmark link.`,
+				},
+				resource.Attribute{
+					Name:        "iconurl",
+					Description: `(Optional) URL to fetch icon file for displaying this resource.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the vpn urlAction. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vpnurl action" or 'my vpnurl action').`,
+				},
+				resource.Attribute{
+					Name:        "samlssoprofile",
+					Description: `(Optional) Profile to be used for doing SAML SSO`,
+				},
+				resource.Attribute{
+					Name:        "ssotype",
+					Description: `(Optional) Single sign on type for unified gateway`,
+				},
+				resource.Attribute{
+					Name:        "vservername",
+					Description: `(Optional) Name of the associated vserver to handle selfAuth SSO ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurlaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnurlaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurlaction.tf_vpnurlaction tf_vpnurlaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurlaction. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnurlaction can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurlaction.tf_vpnurlaction tf_vpnurlaction ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnurlpolicy",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnurlpolicy resource is used to create vpn url policy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnurlpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the new urlPolicy.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action to be applied by the new urlPolicy if the rule criteria are met.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) Expression, or name of a named expression, specifying the traffic that matches the policy. The following requirements apply only to the NetScaler CLI:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments to preserve information about this policy.`,
+				},
+				resource.Attribute{
+					Name:        "logaction",
+					Description: `(Optional) Name of messagelog action to use when a request matches this policy.`,
+				},
+				resource.Attribute{
+					Name:        "newname",
+					Description: `(Optional) New name for the vpn urlPolicy. Must begin with a letter, number, or the underscore character (_), and must contain only letters, numbers, and the hyphen (-), period (.) hash (#), space ( ), at (@), equals (=), colon (:), and underscore characters. The following requirement applies only to the NetScaler CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my vpnurl policy" or 'my vpnurl policy'). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurlpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnurlpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurlpolicy.tf_vpnurlpolicy new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnurlpolicy. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnurlpolicy can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnurlpolicy.tf_vpnurlpolicy new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The ` + "`" + `vpnvserver` + "`" + ` resource is used to create SSL VPN virtual server.
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name for the Citrix Gateway virtual server. Must begin with an ASCII alphabetic or underscore (_) character, and must contain only ASCII alphanumeric, underscore, hash (#), period (.), space, colon (:), at (@), equals (=), and hyphen (-) characters. Can be changed after the virtual server is created. The following requirement applies only to the Citrix ADC CLI: If the name includes one or more spaces, enclose the name in double or single quotation marks (for example, "my server" or 'my server').`,
+				},
+				resource.Attribute{
+					Name:        "servicetype",
+					Description: `(Required) Protocol used by the Citrix Gateway virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "advancedepa",
+					Description: `(Optional) This option tells whether advanced EPA is enabled on this virtual server`,
+				},
+				resource.Attribute{
+					Name:        "appflowlog",
+					Description: `(Optional) Log AppFlow records that contain standard NetFlow or IPFIX information, such as time stamps for the beginning and end of a flow, packet count, and byte count. Also log records that contain application-level information, such as HTTP web addresses, HTTP request methods and response status codes, server response time, and latency.`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `(Optional) Require authentication for users connecting to Citrix Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "authnprofile",
+					Description: `(Optional) Authentication Profile entity on virtual server. This entity can be used to offload authentication to AAA vserver for multi-factor(nFactor) authentication`,
+				},
+				resource.Attribute{
+					Name:        "certkeynames",
+					Description: `(Optional) Name of the certificate key that was bound to the corresponding SSL virtual server as the Certificate Authority for the device certificate`,
+				},
+				resource.Attribute{
+					Name:        "cginfrahomepageredirect",
+					Description: `(Optional) When client requests ShareFile resources and Citrix Gateway detects that the user is unauthenticated or the user session has expired, disabling this option takes the user to the originally requested ShareFile resource after authentication (instead of taking the user to the default VPN home page)`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Any comments associated with the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "deploymenttype",
+					Description: `(Optional) 0`,
+				},
+				resource.Attribute{
+					Name:        "devicecert",
+					Description: `(Optional) Indicates whether device certificate check as a part of EPA is on or off.`,
+				},
+				resource.Attribute{
+					Name:        "doublehop",
+					Description: `(Optional) Use the Citrix Gateway appliance in a double-hop configuration. A double-hop deployment provides an extra layer of security for the internal network by using three firewalls to divide the DMZ into two stages. Such a deployment can have one appliance in the DMZ and one appliance in the secure network.`,
+				},
+				resource.Attribute{
+					Name:        "downstateflush",
+					Description: `(Optional) Close existing connections when the virtual server is marked DOWN, which means the server might have timed out. Disconnecting existing connections frees resources and in certain cases speeds recovery of overloaded load balancing setups. Enable this setting on servers in which the connections can safely be closed when they are marked DOWN. Do not enable DOWN state flush on servers that must complete their transactions.`,
+				},
+				resource.Attribute{
+					Name:        "dtls",
+					Description: `(Optional) This option starts/stops the turn service on the vserver`,
+				},
+				resource.Attribute{
+					Name:        "failedlogintimeout",
+					Description: `(Optional) Number of minutes an account will be locked if user exceeds maximum permissible attempts`,
+				},
+				resource.Attribute{
+					Name:        "httpprofilename",
+					Description: `(Optional) Name of the HTTP profile to assign to this virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "icaonly",
+					Description: `(Optional) - When set to ON, it implies Basic mode where the user can log on using either Citrix Receiver or a browser and get access to the published apps configured at the XenApp/XenDEsktop environment pointed out by the WIHome parameter. Users are not allowed to connect using the Citrix Gateway Plug-in and end point scans cannot be configured. Number of users that can log in and access the apps are not limited by the license in this mode. - When set to OFF, it implies Smart Access mode where the user can log on using either Citrix Receiver or a browser or a Citrix Gateway Plug-in. The admin can configure end point scans to be run on the client systems and then use the results to control access to the published apps. In this mode, the client can connect to the gateway in other client modes namely VPN and CVPN. Number of users that can log in and access the resources are limited by the CCU licenses in this mode.`,
+				},
+				resource.Attribute{
+					Name:        "icaproxysessionmigration",
+					Description: `(Optional) This option determines if an existing ICA Proxy session is transferred when the user logs on from another device.`,
+				},
+				resource.Attribute{
+					Name:        "icmpvsrresponse",
+					Description: `(Optional) Criterion for responding to PING requests sent to this virtual server. If this parameter is set to ACTIVE, respond only if the virtual server is available. With the PASSIVE setting, respond even if the virtual server is not available.`,
+				},
+				resource.Attribute{
+					Name:        "ipset",
+					Description: `(Optional) The list of IPv4/IPv6 addresses bound to ipset would form a part of listening service on the current vpn vserver`,
+				},
+				resource.Attribute{
+					Name:        "ipv46",
+					Description: `(Optional) IPv4 or IPv6 address of the Citrix Gateway virtual server. Usually a public IP address. User devices send connection requests to this IP address.`,
+				},
+				resource.Attribute{
+					Name:        "l2conn",
+					Description: `(Optional) Use Layer 2 parameters (channel number, MAC address, and VLAN ID) in addition to the 4-tuple (<source IP>:<source port>::<destination IP>:<destination port>) that is used to identify a connection. Allows multiple TCP and non-TCP connections with the same 4-tuple to coexist on the Citrix ADC.`,
+				},
+				resource.Attribute{
+					Name:        "linuxepapluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Linux`,
+				},
+				resource.Attribute{
+					Name:        "listenpolicy",
+					Description: `(Optional) String specifying the listen policy for the Citrix Gateway virtual server. Can be either a named expression or an expression. The Citrix Gateway virtual server processes only the traffic for which the expression evaluates to true.`,
+				},
+				resource.Attribute{
+					Name:        "listenpriority",
+					Description: `(Optional) Integer specifying the priority of the listen policy. A higher number specifies a lower priority. If a request matches the listen policies of more than one virtual server, the virtual server whose listen policy has the highest priority (the lowest priority number) accepts the request.`,
+				},
+				resource.Attribute{
+					Name:        "loginonce",
+					Description: `(Optional) This option enables/disables seamless SSO for this Vserver.`,
+				},
+				resource.Attribute{
+					Name:        "logoutonsmartcardremoval",
+					Description: `(Optional) Option to VPN plugin behavior when smartcard or its reader is removed`,
+				},
+				resource.Attribute{
+					Name:        "macepapluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Mac`,
+				},
+				resource.Attribute{
+					Name:        "maxaaausers",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "maxloginattempts",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "netprofile",
+					Description: `(Optional) The name of the network profile.`,
+				},
+				resource.Attribute{
+					Name:        "pcoipvserverprofilename",
+					Description: `(Optional) Name of the PCoIP vserver profile associated with the vserver.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) TCP port on which the virtual server listens.`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `(Optional) Range of Citrix Gateway virtual server IP addresses. The consecutively numbered range of IP addresses begins with the address specified by the IP Address parameter. In the configuration utility, select Network VServer to enter a range.`,
+				},
+				resource.Attribute{
+					Name:        "rdpserverprofilename",
+					Description: `(Optional) Name of the RDP server profile associated with the vserver.`,
+				},
+				resource.Attribute{
+					Name:        "rhistate",
+					Description: `(Optional) A host route is injected according to the setting on the virtual servers.`,
+				},
+				resource.Attribute{
+					Name:        "samesite",
+					Description: `(Optional) SameSite attribute value for Cookies generated in VPN context. This attribute value will be appended only for the cookies which are specified in the builtin patset ns_cookies_samesite`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) State of the virtual server. If the virtual server is disabled, requests are not processed.`,
+				},
+				resource.Attribute{
+					Name:        "tcpprofilename",
+					Description: `(Optional) Name of the TCP profile to assign to this virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "userdomains",
+					Description: `(Optional) List of user domains specified as comma seperated value`,
+				},
+				resource.Attribute{
+					Name:        "vserverfqdn",
+					Description: `(Optional) Fully qualified domain name for a VPN virtual server. This is used during StoreFront configuration generation.`,
+				},
+				resource.Attribute{
+					Name:        "windowsepapluginupgrade",
+					Description: `(Optional) Option to set plugin upgrade behaviour for Win ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ` + "`" + `vpnvserver` + "`" + `. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver.tf_vpnserver tf.citrix.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the ` + "`" + `vpnvserver` + "`" + `. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vpnvserver can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver.tf_vpnserver tf.citrix.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_aaapreauthenticationpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_aaapreauthenticationpolicy_binding resource is used to to bind aaapreauthenticationpolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"aaapreauthenticationpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_aaapreauthenticationpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_aaapreauthenticationpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_aaapreauthenticationpolicy_binding.tf_binding tf_vpnvserverexample,tf_aaapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_aaapreauthenticationpolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_aaapreauthenticationpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_aaapreauthenticationpolicy_binding.tf_binding tf_vpnvserverexample,tf_aaapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_analyticsprofile_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_analyticsprofile_binding resource is used to bind analyticsprofile to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"analyticsprofile",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "analyticsprofile",
+					Description: `(Required) Name of the analytics profile bound to the VPN Vserver ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_analyticsprofile_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_analyticsprofile_binding.tf_bind tf_vserver,new_profile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_analyticsprofile_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `analyticsprofile` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_analyticsprofile_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_analyticsprofile_binding.tf_bind tf_vserver,new_profile ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_appcontroller_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_appcontroller_binding resource is used to bind appcontroller to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"appcontroller",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "appcontroller",
+					Description: `(Required) Configured App Controller server in XenMobile deployment. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_appcontroller_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `appcontroller` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_appcontroller_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_appcontroller_binding.tf_bind tf_newvserver,http://www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_appcontroller_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `appcontroller` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_appcontroller_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_appcontroller_binding.tf_bind tf_newvserver,http://www.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_appflowpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_appflowpolicy_binding resource is used to bind appflowpolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"appflowpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_appflowpolicy_binding. t is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_appflowpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_appflowpolicy_binding.tf_bind tf_vpnvserver,tf_appflowpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_appflowpolicy_binding. t is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_appflowpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_appflowpolicy_binding.tf_bind tf_vpnvserver,tf_appflowpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_auditnslogpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_auditnslogpolicy_binding resource is used to bind auditnslogpolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"auditnslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_auditnslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_auditnslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_auditnslogpolicy_binding.tf_bind tf_vpnvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_auditnslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_auditnslogpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_auditnslogpolicy_binding.tf_bind tf_vpnvserver,tf_auditnslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_auditsyslogpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_auditsyslogpolicy_binding resource is used to bind vpnvserver to auditsyslogpolicy resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"auditsyslogpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_auditsyslogpolicy_binding can be imported using its id , e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_auditsyslogpolicy_binding.tf_bind tf_vpnvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_auditsyslogpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_auditsyslogpolicy_binding can be imported using its id , e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_auditsyslogpolicy_binding.tf_bind tf_vpnvserver,tf_auditsyslogpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationcertpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationcertpolicy_binding resource is used to bing the authenticationcertpolicy to the vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationcertpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationcertpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationcertpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationcertpolicy_binding.tf_bind tf_vserver,tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationcertpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationcertpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationcertpolicy_binding.tf_bind tf_vserver,tf_certpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationdfapolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationdfapolicy_binding resource is used to bind authenticationdfapolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationdfapolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationdfapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationdfapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationdfapolicy_binding.tf_bind tf_vpnvserver,td_dfapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationdfapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationdfapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationdfapolicy_binding.tf_bind tf_vpnvserver,td_dfapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationldappolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationldappolicy_binding resource is used to bind vpnvserver to authentication ldap policy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationldappolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationldappolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_authenticationldappolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationldappolicy_binding.tf_bind vpn_vserver,tf_ldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationldappolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_authenticationldappolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationldappolicy_binding.tf_bind vpn_vserver,tf_ldappolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationlocalpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationlocalpolicy_binding resource is used to bind authenticationlocalpolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationlocalpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationlocalpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationlocalpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationlocalpolicy_binding.tf_bind tfvserver_example,tf_localpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationlocalpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationlocalpolicy_binding can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationlocalpolicy_binding.tf_bind tfvserver_example,tf_localpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationloginschemapolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationloginschemapolicy_binding resource is used to bind authenticationloginschemapolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationloginschemapolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationloginschemapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationloginschemapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationloginschemapolicy_binding.tf_bind tf_vserver_example,tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationloginschemapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationloginschemapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationloginschemapolicy_binding.tf_bind tf_vserver_example,tf_loginschemapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationnegotiatepolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationnegotiatepolicy_binding resource is used to bind authenticationnegotiatepolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationnegotiatepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationnegotiatepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationnegotiatepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationnegotiatepolicy_binding.tf_binding tf_vpnvserver,tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationnegotiatepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationnegotiatepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationnegotiatepolicy_binding.tf_binding tf_vpnvserver,tf_negotiatepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationoauthidppolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationoauthidppolicy_binding resource is used to bind authenticationoauthidppolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationoauthidppolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationoauthidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationoauthidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationoauthidppolicy_binding.tf_bind tf_vpnvserver,tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationoauthidppolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationoauthidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationoauthidppolicy_binding.tf_bind tf_vpnvserver,tf_idppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationradiuspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationradiuspolicy_binding resource is used to bind vpnvserver to authentication Radiuspolicy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationradiuspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationradiuspolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_authenticationradiuspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationradiuspolicy_binding.tf_bind tf_vpnvserver,tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationradiuspolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_authenticationradiuspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationradiuspolicy_binding.tf_bind tf_vpnvserver,tf_radiuspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationsamlidppolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationsamlidppolicy_binding resource is used to bind authenticationsamlidppolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationsamlidppolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationsamlidppolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationsamlidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationsamlidppolicy_binding.tf_binding tf_vserver,tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationsamlidppolicy_binding. It is the concatenation of both ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationsamlidppolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationsamlidppolicy_binding.tf_binding tf_vserver,tf_samlidppolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationsamlpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationsamlpolicy_binding resource is used to bind the authenticationsamlpolicy to the vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationsamlpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationsamlpolicy_binding. It id the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationsamlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationsamlpolicy_binding.tf_bind tf_vserver_examples,tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationsamlpolicy_binding. It id the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationsamlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationsamlpolicy_binding.tf_bind tf_vserver_examples,tf_samlpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationtacacspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationtacacspolicy_binding resource is used to bind authenticationtacacspolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationtacacspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationtacacspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationtacacspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationtacacspolicy_binding.tf_bind tf_examplecom,tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationtacacspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationtacacspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationtacacspolicy_binding.tf_bind tf_examplecom,tf_tacacspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_authenticationwebauthpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_authenticationwebauthpolicy_binding resource is used to bind the authenticationwebpolicy with the vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"authenticationwebauthpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationwebauthpolicy_binding. It is the concateation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationwebauthpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationwebauthpolicy_binding.tf_bind tf_examplevserver,tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_authenticationwebauthpolicy_binding. It is the concateation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_authenticationwebauthpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_authenticationwebauthpolicy_binding.tf_bind tf_examplevserver,tf_webauthpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_cachepolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_cachepolicy_binding resource is used to bind cachepolicy to the vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"cachepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_cachepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_cachepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_cachepolicy_binding.tf_bind tf_examplecom,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_cachepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_cachepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_cachepolicy_binding.tf_bind tf_examplecom,tf_cachepolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_cspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_cspolicy_binding resource is used to bind cspolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"cspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_cspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_cspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_cspolicy_binding.tf_bind tf_example,test_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_cspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_cspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_cspolicy_binding.tf_bind tf_example,test_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_feopolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_feopolicy_binding resource is used to bind feopolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"feopolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) Name of a policy to bind to the virtual server (for example, the name of an authentication, session, or endpoint analysis policy).`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_feopolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_feopolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_feopolicy_binding.tf_bind tf_vservercom,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_feopolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_feopolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_feopolicy_binding.tf_bind tf_vservercom,tf_feopolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_icapolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_icapolicy_binding resource is used to bind icapolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"icapolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_icapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_icapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_icapolicy_binding.tf_binding tf_vpnvserverexample,tf_icapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_icapolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_icapolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_icapolicy_binding.tf_binding tf_vpnvserverexample,tf_icapolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_intranetip6_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_intranetip6_binding resource is used to bind intranetip6 to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"intranetip6",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "intranetip6",
+					Description: `(Required) The network id for the range of intranet IP6 addresses or individual intranet ip to be bound to the vserver.`,
+				},
+				resource.Attribute{
+					Name:        "numaddr",
+					Description: `(Optional) The number of ipv6 addresses ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_intranetip6_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetip6` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_intranetip6_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_intranetip6_binding.tf_bind tf_vserverexample,2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_intranetip6_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetip6` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_intranetip6_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_intranetip6_binding.tf_bind tf_vserverexample,2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_intranetip_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_intranetip_binding resource is used to bind intranetip to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"intranetip",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "intranetip",
+					Description: `(Required) The network ID for the range of intranet IP addresses or individual intranet IP addresses to be bound to the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) The netmask of the intranet IP address or range. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_intranetip_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetip` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_intranetip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_intranetip_binding.tf_bind tf_vserverexample,2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_intranetip_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetip` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_intranetip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_intranetip_binding.tf_bind tf_vserverexample,2.3.4.5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_responderpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_responderpolicy_binding resource is used to bind responderpolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"responderpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_responderpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_responderpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_responderpolicy_binding.tf_bind tf_examplevserver,tf_responder_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_responderpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_responderpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_responderpolicy_binding.tf_bind tf_examplevserver,tf_responder_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_rewritepolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_rewritepolicy_binding resource is used to bind vpnvserver to rewrite policy.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"rewritepolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_rewritepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_rewritepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_rewritepolicy_binding.tf_bind tf_example_server,tf_test_rewrite_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_rewritepolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_rewritepolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_rewritepolicy_binding.tf_bind tf_example_server,tf_test_rewrite_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_sharefileserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_sharefileserver_binding resource is used to bind sharefileserver to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"sharefileserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "sharefile",
+					Description: `(Required) Configured ShareFile server in XenMobile deployment. Format IP:PORT / FQDN:PORT ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_sharefileserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `sharefile` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_sharefileserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_sharefileserver_binding.tf_bind tf_vpnvserver,3.3.4.3:90 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_sharefileserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `sharefile` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_sharefileserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_sharefileserver_binding.tf_bind tf_vpnvserver,3.3.4.3:90 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_staserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_staserver_binding resource is used to bind staserver to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"staserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "staserver",
+					Description: `(Required) Configured Secure Ticketing Authority (STA) server.`,
+				},
+				resource.Attribute{
+					Name:        "staaddresstype",
+					Description: `(Optional) Type of the STA server address(ipv4/v6). ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_staserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `staserver` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_staserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_staserver_binding.tf_binding tf_vserver,http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_staserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `staserver` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_staserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_staserver_binding.tf_binding tf_vserver,http://www.example.com/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnclientlessaccesspolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnclientlessaccesspolicy_binding resource is used to bind vpnclientlessaccesspolicy to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnclientlessaccesspolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bindpoint to which the policy is bound.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnclientlessaccesspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnclientlessaccesspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnclientlessaccesspolicy_binding.tf_bind tf_example.com,tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnclientlessaccesspolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnclientlessaccesspolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnclientlessaccesspolicy_binding.tf_bind tf_example.com,tf_vpnclientlessaccesspolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpneula_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpneula_binding resource is used to bind vpneula to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpneula",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "eula",
+					Description: `(Required) Name of the EULA bound to VPN vserver. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpneula_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `eula` + "`" + ` attributes serprated by comma. ## Import A vpnvserver_vpneula_binding can be imported using its id , e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpneula_binding.tf_bind tf_examplevserver,tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpneula_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `eula` + "`" + ` attributes serprated by comma. ## Import A vpnvserver_vpneula_binding can be imported using its id , e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpneula_binding.tf_bind tf_examplevserver,tf_vpneula ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnintranetapplication_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnintranetapplication_binding resource is used to bind vpnintranetapplication to vpnvserver Resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnintranetapplication",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "intranetapplication",
+					Description: `(Required) The intranet VPN application. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnintranetapplication_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetapplication` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnintranetapplication_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnintranetapplication_binding.tf_bind tf_examplevserver,tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnintranetapplication_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `intranetapplication` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnintranetapplication_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnintranetapplication_binding.tf_bind tf_examplevserver,tf_vpnintranetapplication ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnnexthopserver_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnnexthopserver_binding resource is used to bind vpnnexthopserver to vpnvserver.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnnexthopserver",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "nexthopserver",
+					Description: `(Required) The name of the next hop server bound to the VPN virtual server. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnnexthopserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `nexthopserver` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnnexthopserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnnexthopserver_binding.tf_bind tf_exampleserver,tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnnexthopserver_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `nexthopserver` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnnexthopserver_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnnexthopserver_binding.tf_bind tf_exampleserver,tf_vpnnexthopserver ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnportaltheme_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnportaltheme_binding resource is used to bind vpnportaltheme to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnportaltheme",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "portaltheme",
+					Description: `(Required) Name of the portal theme bound to VPN vserver ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnportaltheme_binding. It is the concatenation ` + "`" + `name` + "`" + ` and ` + "`" + `portaltheme` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnportaltheme_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnportaltheme_binding.tf_bind tf_exampleserver,tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnportaltheme_binding. It is the concatenation ` + "`" + `name` + "`" + ` and ` + "`" + `portaltheme` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnportaltheme_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnportaltheme_binding.tf_bind tf_exampleserver,tf_vpnportaltheme ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnsessionpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnsessionpolicy_binding resource is used to bind vpnvserver to vpnsessionpolicy
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnsessionpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnsessionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_vpnsessionpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnsessionpolicy_binding.tf_bind vpn_vserver,tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnsessionpolicy_binding. It is the concatenation of the ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes separated by a comma. ## Import A vpnvserver_vpnsessionpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnsessionpolicy_binding.tf_bind vpn_vserver,tf_vpnsessionpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpntrafficpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpntrafficpolicy_binding resource is used to bind vpntrafficpolicy to vpnvserver
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpntrafficpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Applicable only to advance vpn session policy. Expression or other value specifying the next policy to evaluate if the current policy evaluates to TRUE. Specify one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpntrafficpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpntrafficpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpntrafficpolicy_binding.tf_bind tf_examplevserver,tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpntrafficpolicy_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpntrafficpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpntrafficpolicy_binding.tf_bind tf_examplevserver,tf_vpntrafficpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnurl_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnurl_binding resource is used to bind vpnurl to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnurl",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "urlname",
+					Description: `(Required) The intranet URL. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `urlname` + "`" + ` attribute seperated by comma. ## Import A vpnvserver_vpnurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnurl_binding.tf_bind tf_examplevserver,Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnurl_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `urlname` + "`" + ` attribute seperated by comma. ## Import A vpnvserver_vpnurl_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnurl_binding.tf_bind tf_examplevserver,Firsturl ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vpnvserver_vpnurlpolicy_binding",
+			Category:         "Vpn",
+			ShortDescription: ``,
+			Description: `
+
+The vpnvserver_vpnurlpolicy_binding resource is used to bind vpnurlpolicy to vpnvserver resource.
+
+
+`,
+			Keywords: []string{
+				"vpn",
+				"vpnvserver",
+				"vpnurlpolicy",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy, if any, bound to the VPN virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "bindpoint",
+					Description: `(Optional) Bind point to which to bind the policy. Applies only to rewrite and cache policies. If you do not set this parameter, the policy is bound to REQ_DEFAULT or RES_DEFAULT, depending on whether the policy rule is a response-time or a request-time expression.`,
+				},
+				resource.Attribute{
+					Name:        "gotopriorityexpression",
+					Description: `(Optional) Next priority expression.`,
+				},
+				resource.Attribute{
+					Name:        "groupextraction",
+					Description: `(Optional) Binds the authentication policy to a tertiary chain which will be used only for group extraction. The user will not authenticate against this server, and this will only be called if primary and/or secondary authentication has succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Integer specifying the policy's priority. The lower the number, the higher the priority. Policies are evaluated in the order of their priority numbers. Maximum value for default syntax policies is 2147483647 and for classic policies is 64000.`,
+				},
+				resource.Attribute{
+					Name:        "secondary",
+					Description: `(Optional) Binds the authentication policy as the secondary policy to use in a two-factor configuration. A user must then authenticate not only via a primary authentication method but also via a secondary authentication method. User groups are aggregated across both. The user name must be exactly the same for both authentication methods, but they can require different passwords. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnurlpolicy_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnurlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnurlpolicy_binding.tf_bind tf_example_vserver,new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vpnvserver_vpnurlpolicy_binding. It is concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `policy` + "`" + ` attributes seperated by comma. ## Import A vpnvserver_vpnurlpolicy_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vpnvserver_vpnurlpolicy_binding.tf_bind tf_example_vserver,new_policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlan",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlan resource is used to create vxlan resource.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vxlanid",
+					Description: `(Required) A positive integer, which is also called VXLAN Network Identifier (VNI), that uniquely identifies a VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "dynamicrouting",
+					Description: `(Optional) Enable dynamic routing on this VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "innervlantagging",
+					Description: `(Optional) Specifies whether Citrix ADC should generate VXLAN packets with inner VLAN tag.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6dynamicrouting",
+					Description: `(Optional) Enable all IPv6 dynamic routing protocols on this VXLAN. Note: For the ENABLED setting to work, you must configure IPv6 dynamic routing protocols from the VTYSH command line.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Specifies UDP destination port for VXLAN packets.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) VXLAN-GPE next protocol. RESERVED, IPv4, IPv6, ETHERNET, NSH`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) VXLAN encapsulation type. VXLAN, VXLANGPE`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `(Optional) ID of VLANs whose traffic is allowed over this VXLAN. If you do not specify any VLAN IDs, the Citrix ADC allows traffic of all VLANs that are not part of any other VXLANs. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan. It has the same value as the ` + "`" + `vxlanid` + "`" + ` attribute. ## Import A vxlan can be imported using its vxlanid, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan.tf_vxlan 123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan. It has the same value as the ` + "`" + `vxlanid` + "`" + ` attribute. ## Import A vxlan can be imported using its vxlanid, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan.tf_vxlan 123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlan_nsip6_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlan_nsip6_binding resource is used to bind nsip6 to vxlan resource.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlan",
+				"nsip6",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vxlanid",
+					Description: `(Required) A positive integer, which is also called VXLAN Network Identifier (VNI), that uniquely identifies a VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "ipaddress",
+					Description: `(Required) The IP address assigned to the VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) Subnet mask for the network address defined for this VXLAN. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_nsip6_binding. It is the concatenation of ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes seperated by comma. ## Import A vxlan_nsip6_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_nsip6_binding.tf_binding 123,2001:db8:100::fb/64 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_nsip6_binding. It is the concatenation of ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes seperated by comma. ## Import A vxlan_nsip6_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_nsip6_binding.tf_binding 123,2001:db8:100::fb/64 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlan_nsip_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlan_nsip_binding resource is used to bind nsip to vxlan resource.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlan",
+				"nsip",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vxlanid",
+					Description: `(Required) A positive integer, which is also called VXLAN Network Identifier (VNI), that uniquely identifies a VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "ipaddress",
+					Description: `(Required) The IP address assigned to the VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `(Optional) Subnet mask for the network address defined for this VXLAN. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_nsip_binding. It has the same value as the ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes seperated by comma. ## Import A vxlan_nsip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_nsip_binding.tf_binding 123,10.222.74.146 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_nsip_binding. It has the same value as the ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `ipaddress` + "`" + ` attributes seperated by comma. ## Import A vxlan_nsip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_nsip_binding.tf_binding 123,10.222.74.146 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlan_srcip_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlan_srcip_binding resource is used to bind srcip to vxlan resource.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlan",
+				"srcip",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vxlanid",
+					Description: `(Required) A positive integer, which is also called VXLAN Network Identifier (VNI), that uniquely identifies a VXLAN.`,
+				},
+				resource.Attribute{
+					Name:        "srcip",
+					Description: `(Required) The source IP address to use in outgoing vxlan packets. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_srcip_binding. It is the concatenation of ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `srcip` + "`" + ` attributes seperated by comma. ## Import A vxlan_srcip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_srcip_binding.tf_binding 123,11.22.33.44 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlan_srcip_binding. It is the concatenation of ` + "`" + `vxlanid` + "`" + ` and ` + "`" + `srcip` + "`" + ` attributes seperated by comma. ## Import A vxlan_srcip_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlan_srcip_binding.tf_binding 123,11.22.33.44 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlanvlanmap",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlanvlanmap resource is used to create vxlanvlanmap.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlanvlanmap",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the mapping table. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlanvlanmap. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vxlanvlanmap can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlanvlanmap.tf_vxlanvlanmp tf_vxlanvlanmp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlanvlanmap. It has the same value as the ` + "`" + `name` + "`" + ` attribute. ## Import A vxlanvlanmap can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlanvlanmap.tf_vxlanvlanmp tf_vxlanvlanmp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "citrixadc_vxlanvlanmap_vxlan_binding",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description: `
+
+The vxlanvlanmap_vxlan_binding resource is used to bind vxlan to vxlanvlanmap resource.
+
+
+`,
+			Keywords: []string{
+				"network",
+				"vxlanvlanmap",
+				"vxlan",
+				"binding",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the mapping table.`,
+				},
+				resource.Attribute{
+					Name:        "vxlan",
+					Description: `(Required) The VXLAN assigned to the vlan inside the cloud.`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `(Optional) The vlan id or the range of vlan ids in the on-premise network. ## Attribute Reference In addition to the arguments, the following attributes are available:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlanvlanmap_vxlan_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `vxlan` + "`" + ` attributes seperated by comma. ## Import A vxlanvlanmap_vxlan_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlanvlanmap_vxlan_binding.tf_binding tf_vxlanvlanmp,123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the vxlanvlanmap_vxlan_binding. It is the concatenation of ` + "`" + `name` + "`" + ` and ` + "`" + `vxlan` + "`" + ` attributes seperated by comma. ## Import A vxlanvlanmap_vxlan_binding can be imported using its id, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import citrixadc_vxlanvlanmap_vxlan_binding.tf_binding tf_vxlanvlanmp,123 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"citrixadc_appfwfieldtype":                                     0,
-		"citrixadc_appfwjsoncontenttype":                               1,
-		"citrixadc_appfwpolicy":                                        2,
-		"citrixadc_appfwpolicylabel":                                   3,
-		"citrixadc_appfwprofile":                                       4,
-		"citrixadc_appfwprofile_cookieconsistency_binding":             5,
-		"citrixadc_appfwprofile_crosssitescripting_binding":            6,
-		"citrixadc_appfwprofile_denyurl_binding":                       7,
-		"citrixadc_appfwprofile_sqlinjection_binding":                  8,
-		"citrixadc_appfwprofile_starturl_binding":                      9,
-		"citrixadc_appfwxmlcontenttype":                                10,
-		"citrixadc_auditmessageaction":                                 11,
-		"citrixadc_auditsyslogaction":                                  12,
-		"citrixadc_auditsyslogpolicy":                                  13,
-		"citrixadc_botpolicy":                                          14,
-		"citrixadc_botpolicylabel":                                     15,
-		"citrixadc_botprofile":                                         16,
-		"citrixadc_botsettings":                                        17,
-		"citrixadc_cluster":                                            18,
-		"citrixadc_clusterfiles_syncer":                                19,
-		"citrixadc_cmppolicy":                                          20,
-		"citrixadc_csaction":                                           21,
-		"citrixadc_cspolicy":                                           22,
-		"citrixadc_csvserver":                                          23,
-		"citrixadc_csvserver_appfwpolicy_binding":                      24,
-		"citrixadc_csvserver_cmppolicy_binding":                        25,
-		"citrixadc_csvserver_cspolicy_binding":                         26,
-		"citrixadc_csvserver_filterpolicy_binding":                     27,
-		"citrixadc_csvserver_responderpolicy_binding":                  28,
-		"citrixadc_csvserver_rewritepolicy_binding":                    29,
-		"citrixadc_csvserver_transformpolicy_binding":                  30,
-		"citrixadc_dnsnsrec":                                           31,
-		"citrixadc_dnssoarec":                                          32,
-		"citrixadc_filterpolicy":                                       33,
-		"citrixadc_gslbservice":                                        34,
-		"citrixadc_gslbsite":                                           35,
-		"citrixadc_gslbvserver":                                        36,
-		"citrixadc_inat":                                               37,
-		"citrixadc_installer":                                          38,
-		"citrixadc_interface":                                          39,
-		"citrixadc_ipset":                                              40,
-		"citrixadc_iptunnel":                                           41,
-		"citrixadc_lbmetrictable":                                      42,
-		"citrixadc_lbmonitor":                                          43,
-		"citrixadc_lbmonitor_metric_binding":                           44,
-		"citrixadc_lbmonitor_sslcertkey_binding":                       45,
-		"citrixadc_lbparameter":                                        46,
-		"citrixadc_lbprofile":                                          47,
-		"citrixadc_lbsipparameters":                                    48,
-		"citrixadc_lbvserver":                                          49,
-		"citrixadc_lbvserver_analyticsprofile_binding":                 50,
-		"citrixadc_lbvserver_appflowpolicy_binding":                    51,
-		"citrixadc_lbvserver_appfwpolicy_binding":                      52,
-		"citrixadc_lbvserver_appqoepolicy_binding":                     53,
-		"citrixadc_lbvserver_auditsyslogpolicy_binding":                54,
-		"citrixadc_lbvserver_authorizationpolicy_binding":              55,
-		"citrixadc_lbvserver_botpolicy_binding":                        56,
-		"citrixadc_lbvserver_cachepolicy_binding":                      57,
-		"citrixadc_lbvserver_cmppolicy_binding":                        58,
-		"citrixadc_lbvserver_contentinspectionpolicy_binding":          59,
-		"citrixadc_lbvserver_dnspolicy64_binding":                      60,
-		"citrixadc_lbvserver_feopolicy_binding":                        61,
-		"citrixadc_lbvserver_filterpolicy_binding":                     62,
-		"citrixadc_lbvserver_responderpolicy_binding":                  63,
-		"citrixadc_lbvserver_rewritepolicy_binding":                    64,
-		"citrixadc_lbvserver_service_binding":                          65,
-		"citrixadc_lbvserver_servicegroup_binding":                     66,
-		"citrixadc_lbvserver_spilloverpolicy_binding":                  67,
-		"citrixadc_lbvserver_tmtrafficpolicy_binding":                  68,
-		"citrixadc_lbvserver_transformpolicy_binding":                  69,
-		"citrixadc_lbvserver_videooptimizationdetectionpolicy_binding": 70,
-		"citrixadc_lbvserver_videooptimizationpacingpolicy_binding":    71,
-		"citrixadc_linkset":                                            72,
-		"citrixadc_netprofile":                                         73,
-		"citrixadc_nsacl":                                              74,
-		"citrixadc_nsacls":                                             75,
-		"citrixadc_nscapacity":                                         76,
-		"citrixadc_nsconfig_clear":                                     77,
-		"citrixadc_nsconfig_save":                                      78,
-		"citrixadc_nsconfig_update":                                    79,
-		"citrixadc_nsfeature":                                          80,
-		"citrixadc_nshttpprofile":                                      81,
-		"citrixadc_nsip":                                               82,
-		"citrixadc_nsip6":                                              83,
-		"citrixadc_nslicense":                                          84,
-		"citrixadc_nslicenseserver":                                    85,
-		"citrixadc_nsmode":                                             86,
-		"citrixadc_nsparam":                                            87,
-		"citrixadc_nsrpcnode":                                          88,
-		"citrixadc_nstcpparam":                                         89,
-		"citrixadc_nstcpprofile":                                       90,
-		"citrixadc_nsvpxparam":                                         91,
-		"citrixadc_password_resetter":                                  92,
-		"citrixadc_pinger":                                             93,
-		"citrixadc_policydataset":                                      94,
-		"citrixadc_policydataset_value_binding":                        95,
-		"citrixadc_policyexpression":                                   96,
-		"citrixadc_policypatset":                                       97,
-		"citrixadc_policypatset_pattern_binding":                       98,
-		"citrixadc_policystringmap":                                    99,
-		"citrixadc_policystringmap_pattern_binding":                    100,
-		"citrixadc_quicbridgeprofile":                                  101,
-		"citrixadc_rebooter":                                           102,
-		"citrixadc_responderaction":                                    103,
-		"citrixadc_responderpolicy":                                    104,
-		"citrixadc_responderpolicylabel":                               105,
-		"citrixadc_rewriteaction":                                      106,
-		"citrixadc_rewritepolicy":                                      107,
-		"citrixadc_rewritepolicylabel":                                 108,
-		"citrixadc_rnat":                                               109,
-		"citrixadc_route":                                              110,
-		"citrixadc_routerdynamicrouting":                               111,
-		"citrixadc_server":                                             112,
-		"citrixadc_service":                                            113,
-		"citrixadc_servicegroup":                                       114,
-		"citrixadc_servicegroup_lbmonitor_binding":                     115,
-		"citrixadc_servicegroup_servicegroupmember_binding":            116,
-		"citrixadc_sslaction":                                          117,
-		"citrixadc_sslcacertgroup":                                     118,
-		"citrixadc_sslcertkey":                                         119,
-		"citrixadc_sslcipher":                                          120,
-		"citrixadc_ssldhparam":                                         121,
-		"citrixadc_sslparameter":                                       122,
-		"citrixadc_sslpolicy":                                          123,
-		"citrixadc_sslprofile":                                         124,
-		"citrixadc_sslprofile_sslcipher_binding":                       125,
-		"citrixadc_sslvserver_sslcertkey_binding":                      126,
-		"citrixadc_sslvserver_sslpolicy_binding":                       127,
-		"citrixadc_systemcmdpolicy":                                    128,
-		"citrixadc_systemextramgmtcpu":                                 129,
-		"citrixadc_systemfile":                                         130,
-		"citrixadc_systemgroup":                                        131,
-		"citrixadc_systemuser":                                         132,
-		"citrixadc_transformaction":                                    133,
-		"citrixadc_transformpolicy":                                    134,
-		"citrixadc_transformprofile":                                   135,
-		"citrixadc_vlan":                                               136,
-		"citrixadc_vlan_interface_binding":                             137,
-		"citrixadc_vlan_nsip_binding":                                  138,
+		"citrixadc_appfwconfidfield":                                              0,
+		"citrixadc_appfwfieldtype":                                                1,
+		"citrixadc_appfwglobal_appfwpolicy_binding":                               2,
+		"citrixadc_appfwglobal_auditnslogpolicy_binding":                          3,
+		"citrixadc_appfwglobal_auditsyslogpolicy_binding":                         4,
+		"citrixadc_appfwjsoncontenttype":                                          5,
+		"citrixadc_appfwpolicy":                                                   6,
+		"citrixadc_appfwpolicylabel":                                              7,
+		"citrixadc_appfwpolicylabel_appfwpolicy_binding":                          8,
+		"citrixadc_appfwprofile":                                                  9,
+		"citrixadc_appfwprofile_cmdinjection_binding":                             10,
+		"citrixadc_appfwprofile_contenttype_binding":                              11,
+		"citrixadc_appfwprofile_cookieconsistency_binding":                        12,
+		"citrixadc_appfwprofile_creditcardnumber_binding":                         13,
+		"citrixadc_appfwprofile_crosssitescripting_binding":                       14,
+		"citrixadc_appfwprofile_csrftag_binding":                                  15,
+		"citrixadc_appfwprofile_denyurl_binding":                                  16,
+		"citrixadc_appfwprofile_excluderescontenttype_binding":                    17,
+		"citrixadc_appfwprofile_fieldconsistency_binding":                         18,
+		"citrixadc_appfwprofile_fieldformat_binding":                              19,
+		"citrixadc_appfwprofile_fileuploadtype_binding":                           20,
+		"citrixadc_appfwprofile_jsoncmdurl_binding":                               21,
+		"citrixadc_appfwprofile_jsondosurl_binding":                               22,
+		"citrixadc_appfwprofile_jsonsqlurl_binding":                               23,
+		"citrixadc_appfwprofile_jsonxssurl_binding":                               24,
+		"citrixadc_appfwprofile_logexpression_binding":                            25,
+		"citrixadc_appfwprofile_safeobject_binding":                               26,
+		"citrixadc_appfwprofile_sqlinjection_binding":                             27,
+		"citrixadc_appfwprofile_starturl_binding":                                 28,
+		"citrixadc_appfwprofile_trustedlearningclients_binding":                   29,
+		"citrixadc_appfwprofile_xmlattachmenturl_binding":                         30,
+		"citrixadc_appfwprofile_xmldosurl_binding":                                31,
+		"citrixadc_appfwprofile_xmlsqlinjection_binding":                          32,
+		"citrixadc_appfwprofile_xmlwsiurl_binding":                                33,
+		"citrixadc_appfwprofile_xmlxss_binding":                                   34,
+		"citrixadc_appfwsettings":                                                 35,
+		"citrixadc_appfwurlencodedformcontenttype":                                36,
+		"citrixadc_appfwxmlcontenttype":                                           37,
+		"citrixadc_auditmessageaction":                                            38,
+		"citrixadc_auditsyslogaction":                                             39,
+		"citrixadc_auditsyslogpolicy":                                             40,
+		"citrixadc_authenticationauthnprofile":                                    41,
+		"citrixadc_authenticationcaptchaaction":                                   42,
+		"citrixadc_authenticationcertaction":                                      43,
+		"citrixadc_authenticationcertpolicy":                                      44,
+		"citrixadc_authenticationcitrixauthaction":                                45,
+		"citrixadc_authenticationdfaaction":                                       46,
+		"citrixadc_authenticationdfapolicy":                                       47,
+		"citrixadc_authenticationemailaction":                                     48,
+		"citrixadc_authenticationepaaction":                                       49,
+		"citrixadc_authenticationldapaction":                                      50,
+		"citrixadc_authenticationldappolicy":                                      51,
+		"citrixadc_authenticationlocalpolicy":                                     52,
+		"citrixadc_authenticationloginschema":                                     53,
+		"citrixadc_authenticationloginschemapolicy":                               54,
+		"citrixadc_authenticationnegotiateaction":                                 55,
+		"citrixadc_authenticationnegotiatepolicy":                                 56,
+		"citrixadc_authenticationnoauthaction":                                    57,
+		"citrixadc_authenticationoauthaction":                                     58,
+		"citrixadc_authenticationoauthidppolicy":                                  59,
+		"citrixadc_authenticationoauthidpprofile":                                 60,
+		"citrixadc_authenticationpolicy":                                          61,
+		"citrixadc_authenticationpolicylabel":                                     62,
+		"citrixadc_authenticationpolicylabel_authenticationpolicy_binding":        63,
+		"citrixadc_authenticationpushservice":                                     64,
+		"citrixadc_authenticationradiusaction":                                    65,
+		"citrixadc_authenticationradiuspolicy":                                    66,
+		"citrixadc_authenticationsamlaction":                                      67,
+		"citrixadc_authenticationsamlidppolicy":                                   68,
+		"citrixadc_authenticationsamlidpprofile":                                  69,
+		"citrixadc_authenticationsamlpolicy":                                      70,
+		"citrixadc_authenticationstorefrontauthaction":                            71,
+		"citrixadc_authenticationtacacsaction":                                    72,
+		"citrixadc_authenticationtacacspolicy":                                    73,
+		"citrixadc_authenticationvserver":                                         74,
+		"citrixadc_authenticationvserver_auditnslogpolicy_binding":                75,
+		"citrixadc_authenticationvserver_auditsyslogpolicy_binding":               76,
+		"citrixadc_authenticationvserver_authenticationcertpolicy_binding":        77,
+		"citrixadc_authenticationvserver_authenticationldappolicy_binding":        78,
+		"citrixadc_authenticationvserver_authenticationlocalpolicy_binding":       79,
+		"citrixadc_authenticationvserver_authenticationloginschemapolicy_binding": 80,
+		"citrixadc_authenticationvserver_authenticationnegotiatepolicy_binding":   81,
+		"citrixadc_authenticationvserver_authenticationoauthidppolicy_binding":    82,
+		"citrixadc_authenticationvserver_authenticationpolicy_binding":            83,
+		"citrixadc_authenticationvserver_authenticationradiuspolicy_binding":      84,
+		"citrixadc_authenticationvserver_authenticationsamlidppolicy_binding":     85,
+		"citrixadc_authenticationvserver_authenticationsamlpolicy_binding":        86,
+		"citrixadc_authenticationvserver_authenticationtacacspolicy_binding":      87,
+		"citrixadc_authenticationvserver_authenticationwebauthpolicy_binding":     88,
+		"citrixadc_authenticationvserver_cachepolicy_binding":                     89,
+		"citrixadc_authenticationvserver_cspolicy_binding":                        90,
+		"citrixadc_authenticationvserver_responderpolicy_binding":                 91,
+		"citrixadc_authenticationvserver_rewritepolicy_binding":                   92,
+		"citrixadc_authenticationvserver_tmsessionpolicy_binding":                 93,
+		"citrixadc_authenticationvserver_vpnportaltheme_binding":                  94,
+		"citrixadc_authenticationwebauthaction":                                   95,
+		"citrixadc_authenticationwebauthpolicy":                                   96,
+		"citrixadc_authorizationpolicy":                                           97,
+		"citrixadc_botglobal_botpolicy_binding":                                   98,
+		"citrixadc_botpolicy":                                                     99,
+		"citrixadc_botpolicylabel":                                                100,
+		"citrixadc_botpolicylabel_botpolicy_binding":                              101,
+		"citrixadc_botprofile":                                                    102,
+		"citrixadc_botprofile_blacklist_binding":                                  103,
+		"citrixadc_botprofile_captcha_binding":                                    104,
+		"citrixadc_botprofile_ipreputation_binding":                               105,
+		"citrixadc_botprofile_logexpression_binding":                              106,
+		"citrixadc_botprofile_ratelimit_binding":                                  107,
+		"citrixadc_botprofile_tps_binding":                                        108,
+		"citrixadc_botprofile_trapinsertionurl_binding":                           109,
+		"citrixadc_botprofile_whitelist_binding":                                  110,
+		"citrixadc_botsettings":                                                   111,
+		"citrixadc_botsignature":                                                  112,
+		"citrixadc_cluster":                                                       113,
+		"citrixadc_clusterfiles_syncer":                                           114,
+		"citrixadc_cmppolicy":                                                     115,
+		"citrixadc_csaction":                                                      116,
+		"citrixadc_csparameter":                                                   117,
+		"citrixadc_cspolicy":                                                      118,
+		"citrixadc_cspolicylabel":                                                 119,
+		"citrixadc_csvserver":                                                     120,
+		"citrixadc_csvserver_analyticsprofile_binding":                            121,
+		"citrixadc_csvserver_appfwpolicy_binding":                                 122,
+		"citrixadc_csvserver_appqoepolicy_binding":                                123,
+		"citrixadc_csvserver_auditnslogpolicy_binding":                            124,
+		"citrixadc_csvserver_auditsyslogpolicy_binding":                           125,
+		"citrixadc_csvserver_authorizationpolicy_binding":                         126,
+		"citrixadc_csvserver_botpolicy_binding":                                   127,
+		"citrixadc_csvserver_cachepolicy_binding":                                 128,
+		"citrixadc_csvserver_cmppolicy_binding":                                   129,
+		"citrixadc_csvserver_contentinspectionpolicy_binding":                     130,
+		"citrixadc_csvserver_cspolicy_binding":                                    131,
+		"citrixadc_csvserver_feopolicy_binding":                                   132,
+		"citrixadc_csvserver_filterpolicy_binding":                                133,
+		"citrixadc_csvserver_gslbvserver_binding":                                 134,
+		"citrixadc_csvserver_responderpolicy_binding":                             135,
+		"citrixadc_csvserver_rewritepolicy_binding":                               136,
+		"citrixadc_csvserver_spilloverpolicy_binding":                             137,
+		"citrixadc_csvserver_tmtrafficpolicy_binding":                             138,
+		"citrixadc_csvserver_transformpolicy_binding":                             139,
+		"citrixadc_csvserver_vpnvserver_binding":                                  140,
+		"citrixadc_dnsnsrec":                                                      141,
+		"citrixadc_dnsparameter":                                                  142,
+		"citrixadc_dnssoarec":                                                     143,
+		"citrixadc_filteraction":                                                  144,
+		"citrixadc_filterglobal_filterpolicy_binding":                             145,
+		"citrixadc_filterpolicy":                                                  146,
+		"citrixadc_gslbservice":                                                   147,
+		"citrixadc_gslbsite":                                                      148,
+		"citrixadc_gslbvserver":                                                   149,
+		"citrixadc_hafailover":                                                    150,
+		"citrixadc_inat":                                                          151,
+		"citrixadc_installer":                                                     152,
+		"citrixadc_interface":                                                     153,
+		"citrixadc_ipset":                                                         154,
+		"citrixadc_iptunnel":                                                      155,
+		"citrixadc_lbgroup":                                                       156,
+		"citrixadc_lbgroup_lbvserver_binding":                                     157,
+		"citrixadc_lbmetrictable":                                                 158,
+		"citrixadc_lbmonitor":                                                     159,
+		"citrixadc_lbmonitor_metric_binding":                                      160,
+		"citrixadc_lbmonitor_sslcertkey_binding":                                  161,
+		"citrixadc_lbparameter":                                                   162,
+		"citrixadc_lbprofile":                                                     163,
+		"citrixadc_lbroute":                                                       164,
+		"citrixadc_lbroute6":                                                      165,
+		"citrixadc_lbsipparameters":                                               166,
+		"citrixadc_lbvserver":                                                     167,
+		"citrixadc_lbvserver_analyticsprofile_binding":                            168,
+		"citrixadc_lbvserver_appflowpolicy_binding":                               169,
+		"citrixadc_lbvserver_appfwpolicy_binding":                                 170,
+		"citrixadc_lbvserver_appqoepolicy_binding":                                171,
+		"citrixadc_lbvserver_auditsyslogpolicy_binding":                           172,
+		"citrixadc_lbvserver_authorizationpolicy_binding":                         173,
+		"citrixadc_lbvserver_botpolicy_binding":                                   174,
+		"citrixadc_lbvserver_cachepolicy_binding":                                 175,
+		"citrixadc_lbvserver_cmppolicy_binding":                                   176,
+		"citrixadc_lbvserver_contentinspectionpolicy_binding":                     177,
+		"citrixadc_lbvserver_dnspolicy64_binding":                                 178,
+		"citrixadc_lbvserver_feopolicy_binding":                                   179,
+		"citrixadc_lbvserver_filterpolicy_binding":                                180,
+		"citrixadc_lbvserver_responderpolicy_binding":                             181,
+		"citrixadc_lbvserver_rewritepolicy_binding":                               182,
+		"citrixadc_lbvserver_service_binding":                                     183,
+		"citrixadc_lbvserver_servicegroup_binding":                                184,
+		"citrixadc_lbvserver_spilloverpolicy_binding":                             185,
+		"citrixadc_lbvserver_tmtrafficpolicy_binding":                             186,
+		"citrixadc_lbvserver_transformpolicy_binding":                             187,
+		"citrixadc_lbvserver_videooptimizationdetectionpolicy_binding":            188,
+		"citrixadc_lbvserver_videooptimizationpacingpolicy_binding":               189,
+		"citrixadc_linkset":                                                       190,
+		"citrixadc_netprofile":                                                    191,
+		"citrixadc_nitro_resource":                                                192,
+		"citrixadc_nsacl":                                                         193,
+		"citrixadc_nsacls":                                                        194,
+		"citrixadc_nscapacity":                                                    195,
+		"citrixadc_nsconfig_clear":                                                196,
+		"citrixadc_nsconfig_save":                                                 197,
+		"citrixadc_nsconfig_update":                                               198,
+		"citrixadc_nsfeature":                                                     199,
+		"citrixadc_nshttpprofile":                                                 200,
+		"citrixadc_nsip":                                                          201,
+		"citrixadc_nsip6":                                                         202,
+		"citrixadc_nslicense":                                                     203,
+		"citrixadc_nslicenseserver":                                               204,
+		"citrixadc_nsmode":                                                        205,
+		"citrixadc_nsparam":                                                       206,
+		"citrixadc_nsrpcnode":                                                     207,
+		"citrixadc_nstcpparam":                                                    208,
+		"citrixadc_nstcpprofile":                                                  209,
+		"citrixadc_nsvpxparam":                                                    210,
+		"citrixadc_password_resetter":                                             211,
+		"citrixadc_pinger":                                                        212,
+		"citrixadc_policydataset":                                                 213,
+		"citrixadc_policydataset_value_binding":                                   214,
+		"citrixadc_policyexpression":                                              215,
+		"citrixadc_policyhttpcallout":                                             216,
+		"citrixadc_policymap":                                                     217,
+		"citrixadc_policyparam":                                                   218,
+		"citrixadc_policypatset":                                                  219,
+		"citrixadc_policypatset_pattern_binding":                                  220,
+		"citrixadc_policystringmap":                                               221,
+		"citrixadc_policystringmap_pattern_binding":                               222,
+		"citrixadc_quicbridgeprofile":                                             223,
+		"citrixadc_rebooter":                                                      224,
+		"citrixadc_responderaction":                                               225,
+		"citrixadc_responderhtmlpage":                                             226,
+		"citrixadc_responderparam":                                                227,
+		"citrixadc_responderpolicy":                                               228,
+		"citrixadc_responderpolicylabel":                                          229,
+		"citrixadc_responderpolicylabel_responderpolicy_binding":                  230,
+		"citrixadc_rewriteaction":                                                 231,
+		"citrixadc_rewriteglobal_rewritepolicy_binding":                           232,
+		"citrixadc_rewriteparam":                                                  233,
+		"citrixadc_rewritepolicy":                                                 234,
+		"citrixadc_rewritepolicylabel":                                            235,
+		"citrixadc_rewritepolicylabel_rewritepolicy_binding":                      236,
+		"citrixadc_rnat":                                                          237,
+		"citrixadc_route":                                                         238,
+		"citrixadc_routerdynamicrouting":                                          239,
+		"citrixadc_server":                                                        240,
+		"citrixadc_service":                                                       241,
+		"citrixadc_servicegroup":                                                  242,
+		"citrixadc_servicegroup_lbmonitor_binding":                                243,
+		"citrixadc_servicegroup_servicegroupmember_binding":                       244,
+		"citrixadc_sslaction":                                                     245,
+		"citrixadc_sslcacertgroup":                                                246,
+		"citrixadc_sslcacertgroup_sslcertkey_binding":                             247,
+		"citrixadc_sslcertkey":                                                    248,
+		"citrixadc_sslcipher":                                                     249,
+		"citrixadc_ssldhparam":                                                    250,
+		"citrixadc_ssldtlsprofile":                                                251,
+		"citrixadc_sslfipskey":                                                    252,
+		"citrixadc_ssllogprofile":                                                 253,
+		"citrixadc_sslocspresponder":                                              254,
+		"citrixadc_sslparameter":                                                  255,
+		"citrixadc_sslpolicy":                                                     256,
+		"citrixadc_sslpolicylabel":                                                257,
+		"citrixadc_sslpolicylabel_sslpolicy_binding":                              258,
+		"citrixadc_sslprofile":                                                    259,
+		"citrixadc_sslprofile_sslcertkey_binding":                                 260,
+		"citrixadc_sslprofile_sslcipher_binding":                                  261,
+		"citrixadc_sslservice":                                                    262,
+		"citrixadc_sslservice_ecccurve_binding":                                   263,
+		"citrixadc_sslservice_sslcertkey_binding":                                 264,
+		"citrixadc_sslservice_sslciphersuite_binding":                             265,
+		"citrixadc_sslservicegroup":                                               266,
+		"citrixadc_sslservicegroup_ecccurve_binding":                              267,
+		"citrixadc_sslservicegroup_sslcertkey_binding":                            268,
+		"citrixadc_sslservicegroup_sslciphersuite_binding":                        269,
+		"citrixadc_sslvserver":                                                    270,
+		"citrixadc_sslvserver_ecccurve_binding":                                   271,
+		"citrixadc_sslvserver_sslcertkey_binding":                                 272,
+		"citrixadc_sslvserver_sslciphersuite_binding":                             273,
+		"citrixadc_sslvserver_sslpolicy_binding":                                  274,
+		"citrixadc_systemcmdpolicy":                                               275,
+		"citrixadc_systemextramgmtcpu":                                            276,
+		"citrixadc_systemfile":                                                    277,
+		"citrixadc_systemglobal_authenticationldappolicy_binding":                 278,
+		"citrixadc_systemgroup":                                                   279,
+		"citrixadc_systemuser":                                                    280,
+		"citrixadc_transformaction":                                               281,
+		"citrixadc_transformpolicy":                                               282,
+		"citrixadc_transformprofile":                                              283,
+		"citrixadc_vlan":                                                          284,
+		"citrixadc_vlan_interface_binding":                                        285,
+		"citrixadc_vlan_nsip_binding":                                             286,
+		"citrixadc_vpnalwaysonprofile":                                            287,
+		"citrixadc_vpnclientlessaccesspolicy":                                     288,
+		"citrixadc_vpnclientlessaccessprofile":                                    289,
+		"citrixadc_vpneula":                                                       290,
+		"citrixadc_vpnformssoaction":                                              291,
+		"citrixadc_vpnglobal_appcontroller_binding":                               292,
+		"citrixadc_vpnglobal_auditsyslogpolicy_binding":                           293,
+		"citrixadc_vpnglobal_authenticationcertpolicy_binding":                    294,
+		"citrixadc_vpnglobal_authenticationldappolicy_binding":                    295,
+		"citrixadc_vpnglobal_authenticationlocalpolicy_binding":                   296,
+		"citrixadc_vpnglobal_authenticationnegotiatepolicy_binding":               297,
+		"citrixadc_vpnglobal_authenticationradiuspolicy_binding":                  298,
+		"citrixadc_vpnglobal_authenticationsamlpolicy_binding":                    299,
+		"citrixadc_vpnglobal_authenticationtacacspolicy_binding":                  300,
+		"citrixadc_vpnglobal_domain_binding":                                      301,
+		"citrixadc_vpnglobal_intranetip6_binding":                                 302,
+		"citrixadc_vpnglobal_intranetip_binding":                                  303,
+		"citrixadc_vpnglobal_sharefileserver_binding":                             304,
+		"citrixadc_vpnglobal_sslcertkey_binding":                                  305,
+		"citrixadc_vpnglobal_staserver_binding":                                   306,
+		"citrixadc_vpnglobal_vpnclientlessaccesspolicy_binding":                   307,
+		"citrixadc_vpnglobal_vpneula_binding":                                     308,
+		"citrixadc_vpnglobal_vpnintranetapplication_binding":                      309,
+		"citrixadc_vpnglobal_vpnnexthopserver_binding":                            310,
+		"citrixadc_vpnglobal_vpnportaltheme_binding":                              311,
+		"citrixadc_vpnglobal_vpnsessionpolicy_binding":                            312,
+		"citrixadc_vpnglobal_vpntrafficpolicy_binding":                            313,
+		"citrixadc_vpnglobal_vpnurl_binding":                                      314,
+		"citrixadc_vpnglobal_vpnurlpolicy_binding":                                315,
+		"citrixadc_vpnintranetapplication":                                        316,
+		"citrixadc_vpnnexthopserver":                                              317,
+		"citrixadc_vpnparameter":                                                  318,
+		"citrixadc_vpnpcoipprofile":                                               319,
+		"citrixadc_vpnpcoipvserverprofile":                                        320,
+		"citrixadc_vpnportaltheme":                                                321,
+		"citrixadc_vpnsamlssoprofile":                                             322,
+		"citrixadc_vpnsessionaction":                                              323,
+		"citrixadc_vpnsessionpolicy":                                              324,
+		"citrixadc_vpntrafficaction":                                              325,
+		"citrixadc_vpntrafficpolicy":                                              326,
+		"citrixadc_vpnurl":                                                        327,
+		"citrixadc_vpnurlaction":                                                  328,
+		"citrixadc_vpnurlpolicy":                                                  329,
+		"citrixadc_vpnvserver":                                                    330,
+		"citrixadc_vpnvserver_aaapreauthenticationpolicy_binding":                 331,
+		"citrixadc_vpnvserver_analyticsprofile_binding":                           332,
+		"citrixadc_vpnvserver_appcontroller_binding":                              333,
+		"citrixadc_vpnvserver_appflowpolicy_binding":                              334,
+		"citrixadc_vpnvserver_auditnslogpolicy_binding":                           335,
+		"citrixadc_vpnvserver_auditsyslogpolicy_binding":                          336,
+		"citrixadc_vpnvserver_authenticationcertpolicy_binding":                   337,
+		"citrixadc_vpnvserver_authenticationdfapolicy_binding":                    338,
+		"citrixadc_vpnvserver_authenticationldappolicy_binding":                   339,
+		"citrixadc_vpnvserver_authenticationlocalpolicy_binding":                  340,
+		"citrixadc_vpnvserver_authenticationloginschemapolicy_binding":            341,
+		"citrixadc_vpnvserver_authenticationnegotiatepolicy_binding":              342,
+		"citrixadc_vpnvserver_authenticationoauthidppolicy_binding":               343,
+		"citrixadc_vpnvserver_authenticationradiuspolicy_binding":                 344,
+		"citrixadc_vpnvserver_authenticationsamlidppolicy_binding":                345,
+		"citrixadc_vpnvserver_authenticationsamlpolicy_binding":                   346,
+		"citrixadc_vpnvserver_authenticationtacacspolicy_binding":                 347,
+		"citrixadc_vpnvserver_authenticationwebauthpolicy_binding":                348,
+		"citrixadc_vpnvserver_cachepolicy_binding":                                349,
+		"citrixadc_vpnvserver_cspolicy_binding":                                   350,
+		"citrixadc_vpnvserver_feopolicy_binding":                                  351,
+		"citrixadc_vpnvserver_icapolicy_binding":                                  352,
+		"citrixadc_vpnvserver_intranetip6_binding":                                353,
+		"citrixadc_vpnvserver_intranetip_binding":                                 354,
+		"citrixadc_vpnvserver_responderpolicy_binding":                            355,
+		"citrixadc_vpnvserver_rewritepolicy_binding":                              356,
+		"citrixadc_vpnvserver_sharefileserver_binding":                            357,
+		"citrixadc_vpnvserver_staserver_binding":                                  358,
+		"citrixadc_vpnvserver_vpnclientlessaccesspolicy_binding":                  359,
+		"citrixadc_vpnvserver_vpneula_binding":                                    360,
+		"citrixadc_vpnvserver_vpnintranetapplication_binding":                     361,
+		"citrixadc_vpnvserver_vpnnexthopserver_binding":                           362,
+		"citrixadc_vpnvserver_vpnportaltheme_binding":                             363,
+		"citrixadc_vpnvserver_vpnsessionpolicy_binding":                           364,
+		"citrixadc_vpnvserver_vpntrafficpolicy_binding":                           365,
+		"citrixadc_vpnvserver_vpnurl_binding":                                     366,
+		"citrixadc_vpnvserver_vpnurlpolicy_binding":                               367,
+		"citrixadc_vxlan":                                                         368,
+		"citrixadc_vxlan_nsip6_binding":                                           369,
+		"citrixadc_vxlan_nsip_binding":                                            370,
+		"citrixadc_vxlan_srcip_binding":                                           371,
+		"citrixadc_vxlanvlanmap":                                                  372,
+		"citrixadc_vxlanvlanmap_vxlan_binding":                                    373,
 	}
 )
 

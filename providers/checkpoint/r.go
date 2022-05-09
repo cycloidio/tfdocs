@@ -228,11 +228,11 @@ This resource allows you to execute Check Point Access Role.
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) Active Directory name or UID or Identity Tag.`,
+					Description: `(Optional) any, all identified, Active Directory name or UID or Identity Tag. default value = "any"`,
 				},
 				resource.Attribute{
 					Name:        "selection",
-					Description: `(Optional) Name or UID of an object selected from source.selection blocks are documented below.`,
+					Description: `(Optional) Name or UID of an object selected from source. selection blocks are documented below. default value = ["any"]`,
 				},
 				resource.Attribute{
 					Name:        "base_dn",
@@ -240,11 +240,11 @@ This resource allows you to execute Check Point Access Role.
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) Active Directory name or UID or Identity Tag or Internal User Groups or LDAP groups or Guests.`,
+					Description: `(Optional) any, all identified, UID or Identity Tag or Internal User Groups or LDAP groups or Guests. default value = "any", supports only one AD group named CpmiAdGroup due to API limitations.`,
 				},
 				resource.Attribute{
 					Name:        "selection",
-					Description: `(Optional) Name or UID of an object selected from source.selection blocks are documented below.`,
+					Description: `(Optional) Name or UID of an object selected from source. selection blocks are documented below. default value = ["any"], on ad groups: Adds ad_group prefix to the selection, and removes spaces due to API limitations.`,
 				},
 				resource.Attribute{
 					Name:        "base_dn",
@@ -279,7 +279,7 @@ This resource allows you to add/update/delete Check Point Access Rule.
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Rule name.`,
+					Description: `(Optional) Rule name.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -451,7 +451,7 @@ This resource allows you to add/update/delete Check Point Access Rule.
 				},
 				resource.Attribute{
 					Name:        "unit",
-					Description: `(Optional) N/A. ## Import ` + "`" + `checkpoint_management_access_rule` + "`" + ` can be imported by using the following format: LAYER_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_access_rule.example Network;9423d36f-2d66-4754-b9e2-e9f4493751d3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) N/A. ## Import ` + "`" + `checkpoint_management_access_rule` + "`" + ` can be imported by using the following format: LAYER_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_access_rule.example "Network;9423d36f-2d66-4754-b9e2-e9f4493751d3" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -490,7 +490,76 @@ This resource allows you to execute Check Point Access Section.
 				},
 				resource.Attribute{
 					Name:        "position",
-					Description: `(Required) Position in the rulebase.`,
+					Description: `(Required) Position in the rulebase. ## Import ` + "`" + `checkpoint_management_access_section` + "`" + ` can be imported by using the following format: LAYER_NAME;SECTION_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_access_section.example "Network;354e184c-2f42-485c-b62d-ff9b3d29ee3e" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_aci_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point aci data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Cisco APIC Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"aci",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "urls",
+					Description: `(Required) Address of APIC cluster members. Example: http(s)://<host1 ip/url>.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) User ID of the Cisco APIC server. When using Login Domains use the following syntax:apic:<domain>\<username>.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the Cisco APIC server.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the Cisco APIC server encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_fingerprint",
+					Description: `(Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -952,6 +1021,156 @@ This command resource allows you to execute Check Point Assign Global Assignment
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_aws_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point aws data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point AWS Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"aws",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `(Required) user-authentication Uses the Access keys to authenticate. role-authentication Uses the AWS IAM role to authenticate. This option requires the Security Management Server be deployed in AWS and has an IAM Role.`,
+				},
+				resource.Attribute{
+					Name:        "access_key_id",
+					Description: `(Required for authentication-method: user-authentication) Access key ID for the AWS account. Required for authentication-method:user-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required for authentication-method: user-authentication) Secret access key for the AWS account. Required for authentication-method:user-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Select the AWS region.`,
+				},
+				resource.Attribute{
+					Name:        "enable_sts_assume_role",
+					Description: `(Optional) Enables the STS Assume Role option. After it is enabled, the sts-role field is mandatory, whereas the sts-external-id is optional.`,
+				},
+				resource.Attribute{
+					Name:        "sts_role",
+					Description: `(Required for enable-sts-assume-role: true) Enables the STS Assume Role option. After it is enabled, the sts-role field is mandatory, whereas the sts-external-id is optional.`,
+				},
+				resource.Attribute{
+					Name:        "sts_external_id",
+					Description: `(Optional) An optional STS External-Id to use when assuming the role.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_azure_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point azure data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Azure Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"azure",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `(Required) user-authentication Uses the Azure AD User to authenticate. service-principal-authentication Uses the Service Principal to authenticate.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required for authentication-method: user-authentication) An Azure Active Directory user Format <username>@<domain>. Required for authentication-method: user-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the Azure account. Required for authentication-method: user-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the Azure account encoded in Base64. Required for authentication-method: user-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `(Required for authentication-method: service-principal-authentication) The Application ID of the Service Principal, in UUID format. Required for authentication-method: service-principal-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "application_key",
+					Description: `(Required for authentication-method: service-principal-authentication) The key created for the Service Principal. Required for authentication-method: service-principal-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "directory_id",
+					Description: `(Required for authentication-method: service-principal-authentication) The Directory ID of the Azure AD, in UUID format. Required for authentication-method: service-principal-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Optional) Select the Azure Cloud Environment.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_backup_domain",
 			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Backup Domain.`,
@@ -1293,6 +1512,66 @@ This resource allows you to execute Check Point Checkpoint Host.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_data_center_query",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point Data Center Query.`,
+			Description:      ``,
+			Keywords: []string{
+				"management",
+				"data",
+				"center",
+				"query",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "data_centers",
+					Description: `(Optional) Collection of Data Center servers identified by the name or UID. Use "All" to select all data centers.data_centers blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "query_rules",
+					Description: `(Optional) Data Center Query Rules.<br>There is an 'AND' operation between multiple Query Rules.query_rules blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers.tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `query_rules` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `(Optional) The type of the "key" parameter.<br>Use "predefined" for these keys: type-in-data-center, name-in-data-center, and ip-address.<br>Use "tag" to query the Data Center tag�s property.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Defines in which Data Center property to query.<br>For key-type "predefined", use these keys:type-in-data-center, name-in-data-center, and ip-address.<br>For key-type "tag", use the Data Center tag key to query.<br>Keys are case-insensitive.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) The value(s) of the Data Center property to match the Query Rule.<br>Values are case-insensitive.<br>There is an 'OR' operation between multiple values.<br>For key-type "predefined" and key 'ip-address', the values must be an IPv4 or IPv6 address.<br>For key-type "tag", the values must be the Data Center tag values.values blocks are documented below.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_delete_api_key",
 			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Delete Api Key.`,
@@ -1473,7 +1752,7 @@ This resource allows you to execute Check Point Dns Domain.
 				},
 				resource.Attribute{
 					Name:        "is_sub_domain",
-					Description: `(Optional) Whether to match sub-domains in addition to the domain itself.`,
+					Description: `(Required) Whether to match sub-domains in addition to the domain itself.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1654,6 +1933,124 @@ This command resource allows you to execute Check Point Export.
 				resource.Attribute{
 					Name:        "task_id",
 					Description: `(Computed) Asynchronous task unique identifier. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_gcp_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point gcp data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Google Cloud Platform Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"gcp",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `(Required) key-authentication Uses the Service Account private key file to authenticate. vm-instance-authentication Uses the Service Account VM Instance to authenticate. This option requires the Security Management Server deployed in a GCP, and runs as a Service Account with the required permissions.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required for authentication-method: key-authentication) A Service Account Key JSON file, encoded in base64. Required for authentication-method:key-authentication.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_generic_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point generic data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Generic Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"generic",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) URL of the JSON feed (e.g. https://example.com/file.json).`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Required) Update interval of the feed in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "custom_header",
+					Description: `(Optional) When set to false, The admin is not using Key and Value for a Custom Header in order to connect to the feed server. When set to true, The admin is using Key and Value for a Custom Header in order to connect to the feed server.`,
+				},
+				resource.Attribute{
+					Name:        "custom_key",
+					Description: `(Optional) Key for the Custom Header, relevant and required only when custom_header set to true.`,
+				},
+				resource.Attribute{
+					Name:        "custom_value",
+					Description: `(Optional) Value for the Custom Header, relevant and required only when custom_header set to true.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2409,6 +2806,75 @@ This command resource allows you to execute Check Point Install Software Package
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_ise_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point Cisco ISE data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Cisco ISE Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"ise",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "hostnames",
+					Description: `(Required) IP address or hostname of the Cisco ISE administration Node(s).`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username of the ISE administrator.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the ISE administrator.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the ISE administrator encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_fingerprint",
+					Description: `(Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_keepalive",
 			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Keepalive.`,
@@ -2422,6 +2888,67 @@ This command resource allows you to execute Check Point Keepalive.
 				"keepalive",
 			},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_kubernetes_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point kubernetes data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Kubernetes Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"kubernetes",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) IP address or hostname of the Kubernetes server.`,
+				},
+				resource.Attribute{
+					Name:        "token_file",
+					Description: `(Required) Kubernetes access token encoded in base64.`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate",
+					Description: `(Optional) The Kubernetes public certificate key encoded in base64.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -2840,7 +3367,7 @@ This resource allows you to add/update/delete Check Point NAT Rule.
 				},
 				resource.Attribute{
 					Name:        "bottom",
-					Description: `(Optional) Add rule at the bottom of the rulebase. ## Import ` + "`" + `checkpoint_management_nat_rule` + "`" + ` can be imported by using the following format: PACKAGE_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_nat_rule.example Standard;9423d36f-2d66-4754-b9e2-e9f4493751d3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Add rule at the bottom of the rulebase. ## Import ` + "`" + `checkpoint_management_nat_rule` + "`" + ` can be imported by using the following format: PACKAGE_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_nat_rule.example "Standard;9423d36f-2d66-4754-b9e2-e9f4493751d3" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2986,6 +3513,148 @@ This resource allows you to add/update/delete Check Point Network Object.
 				resource.Attribute{
 					Name:        "method",
 					Description: `(Optional) NAT translation method.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_nuage_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point nuage data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point Nuage Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"nuage",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) IP address or hostname of the Nuage server.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username of the Nuage administrator.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required) Organization name or enterprise.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the Nuage administrator.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the Nuage administrator encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_fingerprint",
+					Description: `(Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_openstack_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point openstack data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point OpenStack Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"openstack",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) URL of the OpenStack server. http(s)://<host>:<port>/<version>Example: https://1.2.3.4:5000/v2.0`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username of the OpenStack server. To login to specific domain insert domain name before username. Example: <domain>/<username>`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the OpenStack server.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the OpenStack server encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_fingerprint",
+					Description: `(Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5490,16 +6159,12 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `(Optional) Interface for Visitor Mode. Must be set when "support-visitor-mode" is true. Insert IPV4 Address of existing interface or "All IPs" when you want all interfaces. ` + "`" + `logs_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "free_disk_space_metrics",
-					Description: `(Optional) Free disk space metrics.`,
-				},
-				resource.Attribute{
-					Name:        "accept_syslog_messages",
-					Description: `(Optional) Enable accept syslog messages.`,
-				},
-				resource.Attribute{
 					Name:        "alert_when_free_disk_space_below",
 					Description: `(Optional) Enable alert when free disk space is below threshold.`,
+				},
+				resource.Attribute{
+					Name:        "alert_when_free_disk_space_below_metrics",
+					Description: `(Optional) Free disk space metrics.`,
 				},
 				resource.Attribute{
 					Name:        "alert_when_free_disk_space_below_threshold",
@@ -5534,6 +6199,14 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `(Optional) Delete index files older than days threshold.`,
 				},
 				resource.Attribute{
+					Name:        "delete_index_files_when_index_size_above",
+					Description: `(Optional) Enable delete index files when index size is above.`,
+				},
+				resource.Attribute{
+					Name:        "delete_index_files_when_index_size_above_threshold",
+					Description: `(Optional) Delete index files when index size is above threshold.`,
+				},
+				resource.Attribute{
 					Name:        "delete_when_free_disk_space_below",
 					Description: `(Optional) Enable delete when free disk space below.`,
 				},
@@ -5554,12 +6227,20 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `(Optional) Enable forward logs to log server.`,
 				},
 				resource.Attribute{
-					Name:        "forward_logs_to_log_server_name",
-					Description: `(Optional) Forward logs to log server name.`,
+					Name:        "perform_log_rotate_before_log_forwarding",
+					Description: `(Optional) Enable perform log rotate before log forwarding.`,
 				},
 				resource.Attribute{
-					Name:        "forward_logs_to_log_server_schedule_name",
-					Description: `(Optional) Forward logs to log server schedule name.`,
+					Name:        "reject_connections_when_free_disk_space_below_threshold",
+					Description: `(Optional) Enable reject connections when free disk space below threshold.`,
+				},
+				resource.Attribute{
+					Name:        "reserve_for_packet_capture_metrics",
+					Description: `(Optional) Reserve for packet capture metrics.`,
+				},
+				resource.Attribute{
+					Name:        "reserve_for_packet_capture_threshold",
+					Description: `(Optional) Reserve for packet capture threshold.`,
 				},
 				resource.Attribute{
 					Name:        "rotate_log_by_file_size",
@@ -5572,10 +6253,6 @@ This resource allows you to execute Check Point Simple Gateway.
 				resource.Attribute{
 					Name:        "rotate_log_on_schedule",
 					Description: `(Optional) Enable rotate log on schedule.`,
-				},
-				resource.Attribute{
-					Name:        "rotate_log_schedule_name",
-					Description: `(Optional) Rotate log schedule name.`,
 				},
 				resource.Attribute{
 					Name:        "stop_logging_when_free_disk_space_below",
@@ -6251,7 +6928,7 @@ This resource allows you to add/update/delete Check Point Threat Rule.
 				},
 				resource.Attribute{
 					Name:        "packet_capture",
-					Description: `(Optional) Packet capture. ## Import ` + "`" + `checkpoint_management_threat_rule` + "`" + ` can be imported by using the following format: LAYER_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_threat_rule.example Layer_Name;9423d36f-2d66-4754-b9e2-e9f4493751d3 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Packet capture. ## Import ` + "`" + `checkpoint_management_threat_rule` + "`" + ` can be imported by using the following format: LAYER_NAME;RULE_UID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import checkpoint_management_threat_rule.example "Layer_Name;9423d36f-2d66-4754-b9e2-e9f4493751d3" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6772,6 +7449,79 @@ This command resource allows you to execute Check Point Verify Software Package.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_vmware_data_center_server",
+			Category:         "Management Resources",
+			ShortDescription: `This resource allows you to execute Check Point vmware data center server.`,
+			Description: `
+
+This resource allows you to execute Check Point VMware Data Center Server.
+
+`,
+			Keywords: []string{
+				"management",
+				"vmware",
+				"data",
+				"center",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Object type. nsx or nsxt or vcenter.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) IP Address or hostname of the VMware server.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username of the VMware server.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password of the VMware server.`,
+				},
+				resource.Attribute{
+					Name:        "password_base64",
+					Description: `(Optional) Password of the VMware server encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_fingerprint",
+					Description: `(Optional) Specify the SHA-1 or SHA-256 fingerprint of the Data Center Server's certificate.`,
+				},
+				resource.Attribute{
+					Name:        "unsafe_auto_accept",
+					Description: `(Optional) When set to false, the current Data Center Server's certificate should be trusted, either by providing the certificate-fingerprint argument or by relying on a previously trusted certificate of this hostname. When set to true, trust the current Data Center Server's certificate as-is.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Collection of tag identifiers. tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `(Optional) Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `(Optional) Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_vpn_community_meshed",
 			Category:         "Management Resources",
 			ShortDescription: `This resource allows you to execute Check Point Vpn Community Meshed.`,
@@ -7276,101 +8026,112 @@ This resource allows you to add a new file to a Check Point machine.
 		"checkpoint_management_access_role":                                    3,
 		"checkpoint_management_access_rule":                                    4,
 		"checkpoint_management_access_section":                                 5,
-		"checkpoint_management_add_api_key":                                    6,
-		"checkpoint_management_add_data_center_object":                         7,
-		"checkpoint_management_add_threat_protections":                         8,
-		"checkpoint_management_add_updatable_object":                           9,
-		"checkpoint_management_address_range":                                  10,
-		"checkpoint_management_application_site":                               11,
-		"checkpoint_management_application_site_category":                      12,
-		"checkpoint_management_application_site_group":                         13,
-		"checkpoint_management_assign_global_assignment":                       14,
-		"checkpoint_management_backup_domain":                                  15,
-		"checkpoint_management_checkpoint_host":                                16,
-		"checkpoint_management_delete_api_key":                                 17,
-		"checkpoint_management_delete_data_center_object":                      18,
-		"checkpoint_management_delete_threat_protections":                      19,
-		"checkpoint_management_delete_updatable_object":                        20,
-		"checkpoint_management_discard":                                        21,
-		"checkpoint_management_disconnect":                                     22,
-		"checkpoint_management_dns_domain":                                     23,
-		"checkpoint_management_dynamic_object":                                 24,
-		"checkpoint_management_exception_group":                                25,
-		"checkpoint_management_export":                                         26,
-		"checkpoint_management_get_attachment":                                 27,
-		"checkpoint_management_group":                                          28,
-		"checkpoint_management_group_with_exclusion":                           29,
-		"checkpoint_management_gsn_handover_group":                             30,
-		"checkpoint_management_ha_full_sync":                                   31,
-		"checkpoint_management_host":                                           32,
-		"checkpoint_management_https_layer":                                    33,
-		"checkpoint_management_https_rule":                                     34,
-		"checkpoint_management_https_section":                                  35,
-		"checkpoint_management_identity_tag":                                   36,
-		"checkpoint_management_install_database":                               37,
-		"checkpoint_management_install_policy":                                 38,
-		"checkpoint_management_install_software_package":                       39,
-		"checkpoint_management_keepalive":                                      40,
-		"checkpoint_management_login":                                          41,
-		"checkpoint_management_logout":                                         42,
-		"checkpoint_management_mds":                                            43,
-		"checkpoint_management_migrate_export_domain":                          44,
-		"checkpoint_management_migrate_import_domain":                          45,
-		"checkpoint_management_multicast_address_range":                        46,
-		"checkpoint_management_nat_rule":                                       47,
-		"checkpoint_management_nat_section":                                    48,
-		"checkpoint_management_network":                                        49,
-		"checkpoint_management_opsec_application":                              50,
-		"checkpoint_management_package":                                        51,
-		"checkpoint_management_publish":                                        52,
-		"checkpoint_management_put_file":                                       53,
-		"checkpoint_management_restore_domain":                                 54,
-		"checkpoint_management_revert_to_revision":                             55,
-		"checkpoint_management_run_ips_update":                                 56,
-		"checkpoint_management_run_script":                                     57,
-		"checkpoint_management_run_threat_emulation_file_types_offline_update": 58,
-		"checkpoint_management_security_zone":                                  59,
-		"checkpoint_management_service_citrix_tcp":                             60,
-		"checkpoint_management_service_compound_tcp":                           61,
-		"checkpoint_management_service_dce_rpc":                                62,
-		"checkpoint_management_service_group":                                  63,
-		"checkpoint_management_service_icmp":                                   64,
-		"checkpoint_management_service_icmp6":                                  65,
-		"checkpoint_management_service_other":                                  66,
-		"checkpoint_management_service_rpc":                                    67,
-		"checkpoint_management_service_sctp":                                   68,
-		"checkpoint_management_service_tcp":                                    69,
-		"checkpoint_management_service_udp":                                    70,
-		"checkpoint_management_set_api_settings":                               71,
-		"checkpoint_management_set_automatic_purge":                            72,
-		"checkpoint_management_set_global_domain":                              73,
-		"checkpoint_management_set_ha_state":                                   74,
-		"checkpoint_management_set_ips_update_schedule":                        75,
-		"checkpoint_management_set_login_message":                              76,
-		"checkpoint_management_set_threat_protection":                          77,
-		"checkpoint_management_simple_cluster":                                 78,
-		"checkpoint_management_simple_gateway":                                 79,
-		"checkpoint_management_threat_exception":                               80,
-		"checkpoint_management_threat_indicator":                               81,
-		"checkpoint_management_threat_profile":                                 82,
-		"checkpoint_management_threat_rule":                                    83,
-		"checkpoint_management_time_group":                                     84,
-		"checkpoint_management_uninstall_software_package":                     85,
-		"checkpoint_management_unlock_administrator":                           86,
-		"checkpoint_management_update_updatable_objects_repository_content":    87,
-		"checkpoint_management_user":                                           88,
-		"checkpoint_management_user_group":                                     89,
-		"checkpoint_management_user_template":                                  90,
-		"checkpoint_management_verify_policy":                                  91,
-		"checkpoint_management_verify_revert":                                  92,
-		"checkpoint_management_verify_software_package":                        93,
-		"checkpoint_management_vpn_community_meshed":                           94,
-		"checkpoint_management_vpn_community_remote_access":                    95,
-		"checkpoint_management_vpn_community_star":                             96,
-		"checkpoint_management_where_used":                                     97,
-		"checkpoint_management_wildcard":                                       98,
-		"checkpoint_physical_interface":                                        99,
-		"checkpoint_put_file":                                                  100,
+		"checkpoint_management_aci_data_center_server":                         6,
+		"checkpoint_management_add_api_key":                                    7,
+		"checkpoint_management_add_data_center_object":                         8,
+		"checkpoint_management_add_threat_protections":                         9,
+		"checkpoint_management_add_updatable_object":                           10,
+		"checkpoint_management_address_range":                                  11,
+		"checkpoint_management_application_site":                               12,
+		"checkpoint_management_application_site_category":                      13,
+		"checkpoint_management_application_site_group":                         14,
+		"checkpoint_management_assign_global_assignment":                       15,
+		"checkpoint_management_aws_data_center_server":                         16,
+		"checkpoint_management_azure_data_center_server":                       17,
+		"checkpoint_management_backup_domain":                                  18,
+		"checkpoint_management_checkpoint_host":                                19,
+		"checkpoint_management_data_center_query":                              20,
+		"checkpoint_management_delete_api_key":                                 21,
+		"checkpoint_management_delete_data_center_object":                      22,
+		"checkpoint_management_delete_threat_protections":                      23,
+		"checkpoint_management_delete_updatable_object":                        24,
+		"checkpoint_management_discard":                                        25,
+		"checkpoint_management_disconnect":                                     26,
+		"checkpoint_management_dns_domain":                                     27,
+		"checkpoint_management_dynamic_object":                                 28,
+		"checkpoint_management_exception_group":                                29,
+		"checkpoint_management_export":                                         30,
+		"checkpoint_management_gcp_data_center_server":                         31,
+		"checkpoint_management_generic_data_center_server":                     32,
+		"checkpoint_management_get_attachment":                                 33,
+		"checkpoint_management_group":                                          34,
+		"checkpoint_management_group_with_exclusion":                           35,
+		"checkpoint_management_gsn_handover_group":                             36,
+		"checkpoint_management_ha_full_sync":                                   37,
+		"checkpoint_management_host":                                           38,
+		"checkpoint_management_https_layer":                                    39,
+		"checkpoint_management_https_rule":                                     40,
+		"checkpoint_management_https_section":                                  41,
+		"checkpoint_management_identity_tag":                                   42,
+		"checkpoint_management_install_database":                               43,
+		"checkpoint_management_install_policy":                                 44,
+		"checkpoint_management_install_software_package":                       45,
+		"checkpoint_management_ise_data_center_server":                         46,
+		"checkpoint_management_keepalive":                                      47,
+		"checkpoint_management_kubernetes_data_center_server":                  48,
+		"checkpoint_management_login":                                          49,
+		"checkpoint_management_logout":                                         50,
+		"checkpoint_management_mds":                                            51,
+		"checkpoint_management_migrate_export_domain":                          52,
+		"checkpoint_management_migrate_import_domain":                          53,
+		"checkpoint_management_multicast_address_range":                        54,
+		"checkpoint_management_nat_rule":                                       55,
+		"checkpoint_management_nat_section":                                    56,
+		"checkpoint_management_network":                                        57,
+		"checkpoint_management_nuage_data_center_server":                       58,
+		"checkpoint_management_openstack_data_center_server":                   59,
+		"checkpoint_management_opsec_application":                              60,
+		"checkpoint_management_package":                                        61,
+		"checkpoint_management_publish":                                        62,
+		"checkpoint_management_put_file":                                       63,
+		"checkpoint_management_restore_domain":                                 64,
+		"checkpoint_management_revert_to_revision":                             65,
+		"checkpoint_management_run_ips_update":                                 66,
+		"checkpoint_management_run_script":                                     67,
+		"checkpoint_management_run_threat_emulation_file_types_offline_update": 68,
+		"checkpoint_management_security_zone":                                  69,
+		"checkpoint_management_service_citrix_tcp":                             70,
+		"checkpoint_management_service_compound_tcp":                           71,
+		"checkpoint_management_service_dce_rpc":                                72,
+		"checkpoint_management_service_group":                                  73,
+		"checkpoint_management_service_icmp":                                   74,
+		"checkpoint_management_service_icmp6":                                  75,
+		"checkpoint_management_service_other":                                  76,
+		"checkpoint_management_service_rpc":                                    77,
+		"checkpoint_management_service_sctp":                                   78,
+		"checkpoint_management_service_tcp":                                    79,
+		"checkpoint_management_service_udp":                                    80,
+		"checkpoint_management_set_api_settings":                               81,
+		"checkpoint_management_set_automatic_purge":                            82,
+		"checkpoint_management_set_global_domain":                              83,
+		"checkpoint_management_set_ha_state":                                   84,
+		"checkpoint_management_set_ips_update_schedule":                        85,
+		"checkpoint_management_set_login_message":                              86,
+		"checkpoint_management_set_threat_protection":                          87,
+		"checkpoint_management_simple_cluster":                                 88,
+		"checkpoint_management_simple_gateway":                                 89,
+		"checkpoint_management_threat_exception":                               90,
+		"checkpoint_management_threat_indicator":                               91,
+		"checkpoint_management_threat_profile":                                 92,
+		"checkpoint_management_threat_rule":                                    93,
+		"checkpoint_management_time_group":                                     94,
+		"checkpoint_management_uninstall_software_package":                     95,
+		"checkpoint_management_unlock_administrator":                           96,
+		"checkpoint_management_update_updatable_objects_repository_content":    97,
+		"checkpoint_management_user":                                           98,
+		"checkpoint_management_user_group":                                     99,
+		"checkpoint_management_user_template":                                  100,
+		"checkpoint_management_verify_policy":                                  101,
+		"checkpoint_management_verify_revert":                                  102,
+		"checkpoint_management_verify_software_package":                        103,
+		"checkpoint_management_vmware_data_center_server":                      104,
+		"checkpoint_management_vpn_community_meshed":                           105,
+		"checkpoint_management_vpn_community_remote_access":                    106,
+		"checkpoint_management_vpn_community_star":                             107,
+		"checkpoint_management_where_used":                                     108,
+		"checkpoint_management_wildcard":                                       109,
+		"checkpoint_physical_interface":                                        110,
+		"checkpoint_put_file":                                                  111,
 	}
 )
 

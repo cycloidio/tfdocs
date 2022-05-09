@@ -680,6 +680,377 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_application_object",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"application",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `The device group (default: ` + "`" + `shared` + "`" + `). The following NGFW arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The object's vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The object's name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "defaults",
+					Description: `The application's defaults spec (defined below). This section is omitted for a "defaults" of ` + "`" + `None` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `The category.`,
+				},
+				resource.Attribute{
+					Name:        "subcategory",
+					Description: `The subcategory.`,
+				},
+				resource.Attribute{
+					Name:        "technology",
+					Description: `The technology.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The object's description.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_settings",
+					Description: `The timeout spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `(int) The risk (default: 1).`,
+				},
+				resource.Attribute{
+					Name:        "parent_app",
+					Description: `The parent application.`,
+				},
+				resource.Attribute{
+					Name:        "able_to_file_transfer",
+					Description: `(bool) Able to file transfer.`,
+				},
+				resource.Attribute{
+					Name:        "excessive_bandwidth",
+					Description: `(bool) Excessive bandwidth use.`,
+				},
+				resource.Attribute{
+					Name:        "tunnels_other_applications",
+					Description: `(bool) This application tunnels other apps.`,
+				},
+				resource.Attribute{
+					Name:        "has_known_vulnerability",
+					Description: `(bool) Has known vulnerabilities.`,
+				},
+				resource.Attribute{
+					Name:        "used_by_malware",
+					Description: `(bool) App is used by malware.`,
+				},
+				resource.Attribute{
+					Name:        "evasive_behavior",
+					Description: `(bool) App is evasive.`,
+				},
+				resource.Attribute{
+					Name:        "pervasive_use",
+					Description: `(bool) App is pervasive.`,
+				},
+				resource.Attribute{
+					Name:        "prone_to_misuse",
+					Description: `(bool) Prone to misuse.`,
+				},
+				resource.Attribute{
+					Name:        "continue_scanning_for_other_applications",
+					Description: `(bool) Continue scanning for other applications.`,
+				},
+				resource.Attribute{
+					Name:        "scanning",
+					Description: `The scanning spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "alg_disable_capability",
+					Description: `The alg disable capability.`,
+				},
+				resource.Attribute{
+					Name:        "no_app_id_caching",
+					Description: `(bool) No appid caching. ` + "`" + `defaults` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `The ip protocol spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "icmp",
+					Description: `The ICMP spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "icmp6",
+					Description: `The ICMP6 spec (defined below) ` + "`" + `defaults.port` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of ports. ` + "`" + `defaults.ip_protocol` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The IP protocol value. ` + "`" + `defaults.icmp` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(int) The type.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(int) The code. ` + "`" + `defaults.icmp6` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(int) The type.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(int) The code. ` + "`" + `timeout_settings` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(int) The timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_timeout",
+					Description: `(int) TCP timeout.`,
+				},
+				resource.Attribute{
+					Name:        "udp_timeout",
+					Description: `(int) UDP timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_half_closed",
+					Description: `(int) TCP half closed timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_time_wait",
+					Description: `(int) TCP time wait timeout. ` + "`" + `scanning` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "file_types",
+					Description: `(bool) File type scanning.`,
+				},
+				resource.Attribute{
+					Name:        "viruses",
+					Description: `(bool) Virus scanning.`,
+				},
+				resource.Attribute{
+					Name:        "data_patterns",
+					Description: `(bool) Data pattern scanning.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "defaults",
+					Description: `The application's defaults spec (defined below). This section is omitted for a "defaults" of ` + "`" + `None` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `The category.`,
+				},
+				resource.Attribute{
+					Name:        "subcategory",
+					Description: `The subcategory.`,
+				},
+				resource.Attribute{
+					Name:        "technology",
+					Description: `The technology.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The object's description.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_settings",
+					Description: `The timeout spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "risk",
+					Description: `(int) The risk (default: 1).`,
+				},
+				resource.Attribute{
+					Name:        "parent_app",
+					Description: `The parent application.`,
+				},
+				resource.Attribute{
+					Name:        "able_to_file_transfer",
+					Description: `(bool) Able to file transfer.`,
+				},
+				resource.Attribute{
+					Name:        "excessive_bandwidth",
+					Description: `(bool) Excessive bandwidth use.`,
+				},
+				resource.Attribute{
+					Name:        "tunnels_other_applications",
+					Description: `(bool) This application tunnels other apps.`,
+				},
+				resource.Attribute{
+					Name:        "has_known_vulnerability",
+					Description: `(bool) Has known vulnerabilities.`,
+				},
+				resource.Attribute{
+					Name:        "used_by_malware",
+					Description: `(bool) App is used by malware.`,
+				},
+				resource.Attribute{
+					Name:        "evasive_behavior",
+					Description: `(bool) App is evasive.`,
+				},
+				resource.Attribute{
+					Name:        "pervasive_use",
+					Description: `(bool) App is pervasive.`,
+				},
+				resource.Attribute{
+					Name:        "prone_to_misuse",
+					Description: `(bool) Prone to misuse.`,
+				},
+				resource.Attribute{
+					Name:        "continue_scanning_for_other_applications",
+					Description: `(bool) Continue scanning for other applications.`,
+				},
+				resource.Attribute{
+					Name:        "scanning",
+					Description: `The scanning spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "alg_disable_capability",
+					Description: `The alg disable capability.`,
+				},
+				resource.Attribute{
+					Name:        "no_app_id_caching",
+					Description: `(bool) No appid caching. ` + "`" + `defaults` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocol",
+					Description: `The ip protocol spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "icmp",
+					Description: `The ICMP spec (defined below)`,
+				},
+				resource.Attribute{
+					Name:        "icmp6",
+					Description: `The ICMP6 spec (defined below) ` + "`" + `defaults.port` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `List of ports. ` + "`" + `defaults.ip_protocol` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The IP protocol value. ` + "`" + `defaults.icmp` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(int) The type.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(int) The code. ` + "`" + `defaults.icmp6` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(int) The type.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(int) The code. ` + "`" + `timeout_settings` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(int) The timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_timeout",
+					Description: `(int) TCP timeout.`,
+				},
+				resource.Attribute{
+					Name:        "udp_timeout",
+					Description: `(int) UDP timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_half_closed",
+					Description: `(int) TCP half closed timeout.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_time_wait",
+					Description: `(int) TCP time wait timeout. ` + "`" + `scanning` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "file_types",
+					Description: `(bool) File type scanning.`,
+				},
+				resource.Attribute{
+					Name:        "viruses",
+					Description: `(bool) Virus scanning.`,
+				},
+				resource.Attribute{
+					Name:        "data_patterns",
+					Description: `(bool) Data pattern scanning.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_application_objects",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"application",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group location (default: ` + "`" + `shared` + "`" + `) ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_arp",
 			Category:         "Network",
 			ShortDescription: ``,
@@ -755,6 +1126,323 @@ var (
 				resource.Attribute{
 					Name:        "subinterface_name",
 					Description: `The subinterface name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_audit_comment_history",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"audit",
+				"comment",
+				"history",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys. (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `The device group location (default: ` + "`" + `shared` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `The rulebase. Valid values are ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `rulebase` + "`" + `, or ` + "`" + `post-rulebase` + "`" + `. The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `The rule type. Valid values are ` + "`" + `security` + "`" + ` (default), ` + "`" + `pbf` + "`" + `, ` + "`" + `nat` + "`" + `, and ` + "`" + `decryption` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The rule's name.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `Valid values are ` + "`" + `backward` + "`" + ` (default) to see newest logs first, or ` + "`" + `forward` + "`" + ` to see oldest first.`,
+				},
+				resource.Attribute{
+					Name:        "nlogs",
+					Description: `(int) Number of audit comments to return, max 5000 (default: ` + "`" + `100` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "skip",
+					Description: `(int) Specify the number of logs to skip when doing log retrieval. This is useful when retrieving logs in batches to skip previously retrieved logs. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `(repeated) A log entry spec, defined below. Each ` + "`" + `log` + "`" + ` section has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "admin",
+					Description: `The admin who made the change.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `The audit comment.`,
+				},
+				resource.Attribute{
+					Name:        "config_version",
+					Description: `The config version.`,
+				},
+				resource.Attribute{
+					Name:        "time_generated",
+					Description: `The time generated, as reported by PAN-OS.`,
+				},
+				resource.Attribute{
+					Name:        "time_generated_rfc3339",
+					Description: `An opportunistic representation of ` + "`" + `time_generated` + "`" + ` in RFC3339. This is created by combining the ` + "`" + `time_generated` + "`" + ` with the timezone information of PAN-OS.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "log",
+					Description: `(repeated) A log entry spec, defined below. Each ` + "`" + `log` + "`" + ` section has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "admin",
+					Description: `The admin who made the change.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `The audit comment.`,
+				},
+				resource.Attribute{
+					Name:        "config_version",
+					Description: `The config version.`,
+				},
+				resource.Attribute{
+					Name:        "time_generated",
+					Description: `The time generated, as reported by PAN-OS.`,
+				},
+				resource.Attribute{
+					Name:        "time_generated_rfc3339",
+					Description: `An opportunistic representation of ` + "`" + `time_generated` + "`" + ` in RFC3339. This is created by combining the ` + "`" + `time_generated` + "`" + ` with the timezone information of PAN-OS.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_certificate_profile",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"certificate",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "username_field",
+					Description: `Username field. Valid values are an empty string for ` + "`" + `None` + "`" + `, ` + "`" + `subject` + "`" + `, or ` + "`" + `subject-alt` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username_field_value",
+					Description: `The value.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `User domain.`,
+				},
+				resource.Attribute{
+					Name:        "use_crl",
+					Description: `(bool) Use CRL.`,
+				},
+				resource.Attribute{
+					Name:        "use_ocsp",
+					Description: `(bool) Use OCSP.`,
+				},
+				resource.Attribute{
+					Name:        "crl_receive_timeout",
+					Description: `(int) CRL receive timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_receive_timeout",
+					Description: `(int) OCSP receive timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_status_timeout",
+					Description: `(int) Certificate status timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "block_unknown_certificate",
+					Description: `(bool) Block session if certificate status is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "block_certificate_timeout",
+					Description: `(bool) Block session if certificate status cannot be retrieved within timeout.`,
+				},
+				resource.Attribute{
+					Name:        "block_unauthenticated_certificate",
+					Description: `(bool) Block session if the certificate was not issued to the authenticating device.`,
+				},
+				resource.Attribute{
+					Name:        "block_expired_certificate",
+					Description: `(bool) Block sessions with expired certificates.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_exclude_nonce",
+					Description: `(bool) OCSP exclude nonce.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(repeated) List of CA certificates, defined below. ` + "`" + `certificate` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "default_ocsp_url",
+					Description: `Default OCSP URL.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_verify_certificate",
+					Description: `OCSP verify certificate.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `Template name/OID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "username_field",
+					Description: `Username field. Valid values are an empty string for ` + "`" + `None` + "`" + `, ` + "`" + `subject` + "`" + `, or ` + "`" + `subject-alt` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username_field_value",
+					Description: `The value.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `User domain.`,
+				},
+				resource.Attribute{
+					Name:        "use_crl",
+					Description: `(bool) Use CRL.`,
+				},
+				resource.Attribute{
+					Name:        "use_ocsp",
+					Description: `(bool) Use OCSP.`,
+				},
+				resource.Attribute{
+					Name:        "crl_receive_timeout",
+					Description: `(int) CRL receive timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_receive_timeout",
+					Description: `(int) OCSP receive timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_status_timeout",
+					Description: `(int) Certificate status timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "block_unknown_certificate",
+					Description: `(bool) Block session if certificate status is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "block_certificate_timeout",
+					Description: `(bool) Block session if certificate status cannot be retrieved within timeout.`,
+				},
+				resource.Attribute{
+					Name:        "block_unauthenticated_certificate",
+					Description: `(bool) Block session if the certificate was not issued to the authenticating device.`,
+				},
+				resource.Attribute{
+					Name:        "block_expired_certificate",
+					Description: `(bool) Block sessions with expired certificates.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_exclude_nonce",
+					Description: `(bool) OCSP exclude nonce.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(repeated) List of CA certificates, defined below. ` + "`" + `certificate` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "default_ocsp_url",
+					Description: `Default OCSP URL.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_verify_certificate",
+					Description: `OCSP verify certificate.`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `Template name/OID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_certificate_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"certificate",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
 				},
 				resource.Attribute{
 					Name:        "total",
@@ -961,6 +1649,100 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_custom_url_categories",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"custom",
+				"url",
+				"categories",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `The device group location (default: ` + "`" + `shared` + "`" + `) ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_custom_url_category",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"custom",
+				"url",
+				"category",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "sites",
+					Description: `(list) The site list.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The custom URL category type.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "sites",
+					Description: `(list) The site list.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The custom URL category type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_data_filtering_security_profile",
 			Category:         "Objects",
 			ShortDescription: ``,
@@ -1121,6 +1903,374 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_decryption_rule",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"decryption",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The rule name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). ` + "`" + `rule` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_source",
+					Description: `(bool) If the source should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "source_users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "destination_zones",
+					Description: `List of destination zones.`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_destination",
+					Description: `(bool) Negate the destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of administrative tags.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services.`,
+				},
+				resource.Attribute{
+					Name:        "url_categories",
+					Description: `List of URL categories.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action to take.`,
+				},
+				resource.Attribute{
+					Name:        "decryption_type",
+					Description: `The decryption type.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificate",
+					Description: `The SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "decryption_profile",
+					Description: `The decryption profile.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_profile",
+					Description: `Forwarding profile.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "source_hips",
+					Description: `List of source HIP devices.`,
+				},
+				resource.Attribute{
+					Name:        "destination_hips",
+					Description: `List of destination HIP devices.`,
+				},
+				resource.Attribute{
+					Name:        "log_successful_tls_handshakes",
+					Description: `Log successful TLS handshakes.`,
+				},
+				resource.Attribute{
+					Name:        "log_failed_tls_handshakes",
+					Description: `Log failed TLS handshakes.`,
+				},
+				resource.Attribute{
+					Name:        "log_setting",
+					Description: `The log setting.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(repeatable, Panorama only) A target definition (see below). If there are no target sections, then the rule will apply to every vsys of every device in the device group.`,
+				},
+				resource.Attribute{
+					Name:        "negate_target",
+					Description: `(bool, Panorama only) Instead of applying the rule for the given serial numbers, apply it to everything except them. ` + "`" + `rule.target` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Required) The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A listing of vsys to apply this rule to. If ` + "`" + `serial` + "`" + ` is a VM, then this parameter should just be omitted.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). ` + "`" + `rule` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_source",
+					Description: `(bool) If the source should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "source_users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "destination_zones",
+					Description: `List of destination zones.`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_destination",
+					Description: `(bool) Negate the destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of administrative tags.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services.`,
+				},
+				resource.Attribute{
+					Name:        "url_categories",
+					Description: `List of URL categories.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action to take.`,
+				},
+				resource.Attribute{
+					Name:        "decryption_type",
+					Description: `The decryption type.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificate",
+					Description: `The SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "decryption_profile",
+					Description: `The decryption profile.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_profile",
+					Description: `Forwarding profile.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "source_hips",
+					Description: `List of source HIP devices.`,
+				},
+				resource.Attribute{
+					Name:        "destination_hips",
+					Description: `List of destination HIP devices.`,
+				},
+				resource.Attribute{
+					Name:        "log_successful_tls_handshakes",
+					Description: `Log successful TLS handshakes.`,
+				},
+				resource.Attribute{
+					Name:        "log_failed_tls_handshakes",
+					Description: `Log failed TLS handshakes.`,
+				},
+				resource.Attribute{
+					Name:        "log_setting",
+					Description: `The log setting.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(repeatable, Panorama only) A target definition (see below). If there are no target sections, then the rule will apply to every vsys of every device in the device group.`,
+				},
+				resource.Attribute{
+					Name:        "negate_target",
+					Description: `(bool, Panorama only) Instead of applying the rule for the given serial numbers, apply it to everything except them. ` + "`" + `rule.target` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Required) The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A listing of vsys to apply this rule to. If ` + "`" + `serial` + "`" + ` is a VM, then this parameter should just be omitted.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_decryption_rules",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"decryption",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_device_group",
+			Category:         "Panorama",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"panorama",
+				"device",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The device group's name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The device group's description.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `The device definition (see below). The following arguments are valid for each ` + "`" + `device` + "`" + ` section:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A subset of all available vsys on the firewall that should be in this device group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The device group's description.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `The device definition (see below). The following arguments are valid for each ` + "`" + `device` + "`" + ` section:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A subset of all available vsys on the firewall that should be in this device group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_device_group_parent",
 			Category:         "Panorama",
 			ShortDescription: ``,
@@ -1140,6 +2290,29 @@ var (
 				resource.Attribute{
 					Name:        "entries",
 					Description: `(map of strings) Map of strings where the key is the device group name and the value is the parent for that device group. An empty string for the value means that the parent is the "shared" device group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_device_groups",
+			Category:         "Panorama",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"panorama",
+				"device",
+				"groups",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
 				},
 			},
 		},
@@ -1538,15 +2711,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
-					Description: `(Optional) The vsys to put the address object into (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
 				},
 				resource.Attribute{
 					Name:        "device_group",
-					Description: `(Optional) The device group location (default: ` + "`" + `shared` + "`" + `) The following arguments are supported:`,
+					Description: `The device group location (default: ` + "`" + `shared` + "`" + `) The following arguments are supported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name. ## Attribute Reference The following attributes are supported:`,
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1591,11 +2764,165 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
-					Description: `(Optional) The vsys to put the address object into (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). Panorama:`,
 				},
 				resource.Attribute{
 					Name:        "device_group",
-					Description: `(Optional) The device group location (default: ` + "`" + `shared` + "`" + `) ## Attribute Reference The following attributes are supported:`,
+					Description: `The device group location (default: ` + "`" + `shared` + "`" + `) ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_edl",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"edl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `). NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The object's name ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of EDL.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The object's description.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The EDL source URL`,
+				},
+				resource.Attribute{
+					Name:        "certificate_profile",
+					Description: `Profile for authenticating client certificates`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `EDL username`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `EDL password`,
+				},
+				resource.Attribute{
+					Name:        "repeat",
+					Description: `How often to retrieve the EDL.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_at",
+					Description: `The time at which to retrieve the EDL.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_day_of_week",
+					Description: `Repeat day of week.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_day_of_month",
+					Description: `(int) If ` + "`" + `repeat` + "`" + ` is ` + "`" + `monthly` + "`" + `, then the repeat day of month.`,
+				},
+				resource.Attribute{
+					Name:        "exceptions",
+					Description: `(list) List of exceptions.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of EDL.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The object's description.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The EDL source URL`,
+				},
+				resource.Attribute{
+					Name:        "certificate_profile",
+					Description: `Profile for authenticating client certificates`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `EDL username`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `EDL password`,
+				},
+				resource.Attribute{
+					Name:        "repeat",
+					Description: `How often to retrieve the EDL.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_at",
+					Description: `The time at which to retrieve the EDL.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_day_of_week",
+					Description: `Repeat day of week.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_day_of_month",
+					Description: `(int) If ` + "`" + `repeat` + "`" + ` is ` + "`" + `monthly` + "`" + `, then the repeat day of month.`,
+				},
+				resource.Attribute{
+					Name:        "exceptions",
+					Description: `(list) List of exceptions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_edls",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"edls",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `) NGFW:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
 				},
 				resource.Attribute{
 					Name:        "total",
@@ -1748,11 +3075,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "panos_ip_tag",
-			Category:         "NGFW User-ID",
+			Category:         "User-ID",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"ngfw",
 				"user",
 				"id",
 				"ip",
@@ -1804,6 +3130,530 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(list) List of tags.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_local_user_db_group",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"local",
+				"user",
+				"db",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of users in this group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of users in this group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_local_user_db_groups",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"local",
+				"user",
+				"db",
+				"groups",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_nat_rule",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"nat",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The rule name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). Each ` + "`" + `rule` + "`" + ` defined supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The NAT rule's name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(PAN-OS 9.0+) The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `(PAN-OS 9.0+) The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `NAT type.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of administrative tags.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "original_packet",
+					Description: `The original packet specification (see below).`,
+				},
+				resource.Attribute{
+					Name:        "translated_packet",
+					Description: `The translated packet spec (see below). ` + "`" + `original_packet` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `The list of source zone(s).`,
+				},
+				resource.Attribute{
+					Name:        "destination_zone",
+					Description: `The destination zone.`,
+				},
+				resource.Attribute{
+					Name:        "destination_interface",
+					Description: `Egress interface from route lookup.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source address(es).`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination address(es). ` + "`" + `translated_packet` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `The destination spec (see below). ` + "`" + `translated_packet.source` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_ip_and_port",
+					Description: `Dynamic IP and port source translation spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_ip",
+					Description: `Dynamic IP source translation spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "static_ip",
+					Description: `Static IP source translation spec (see below). ` + "`" + `translated_packet.source.dynamic_ip_and_port` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `Translated address source translation type spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "interface_address",
+					Description: `Interface address source translation type spec (see below). ` + "`" + `translated_packet.source.dynamic_ip_and_port.translated_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `List of translated addresses. ` + "`" + `translated_packet.source.dynamic_ip_and_port.interface_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `The interface.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address. ` + "`" + `translated_packet.source.dynamic_ip` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `The list of translated addresses.`,
+				},
+				resource.Attribute{
+					Name:        "fallback",
+					Description: `The fallback spec (see below). ` + "`" + `translated_packet.source.dynamic_ip.fallback` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `The translated address fallback spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "interface_address",
+					Description: `The interface address fallback spec (see below). ` + "`" + `translated_packet.source.dynamic_ip.fallback.translated_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `List of source address translation fallback translated addresses. ` + "`" + `translated_packet.source.dynamic_ip.fallback.interface_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Source address translation fallback interface.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of interface fallback.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the fallback interface. ` + "`" + `translated_packet.source.static_ip` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `The statically translated source address.`,
+				},
+				resource.Attribute{
+					Name:        "bi_directional",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to enable bi-directional source address translation. ` + "`" + `translated_packet.destination` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "static_translation",
+					Description: `Specifies a static destination NAT (see below).`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_translation",
+					Description: `(PAN-OS 8.1+) Specify a dynamic destination NAT (see below).`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Destination address translation address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Destination address translation port number. ` + "`" + `translated_packet.destination.dynamic` + "`" + ` and ` + "`" + `translated_packet.destination.dynamic_translation` + "`" + ` support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Destination address translation address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Destination address translation port number.`,
+				},
+				resource.Attribute{
+					Name:        "distribution",
+					Description: `(PAN-OS 8.1+) Distribution algorithm for destination address pool. The PAN-OS 8.1 GUI doesn't seem to set this anywhere, but this is added here for completeness' sake. The GUI sets this to ` + "`" + `round-robin` + "`" + ` currently.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). Each ` + "`" + `rule` + "`" + ` defined supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The NAT rule's name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(PAN-OS 9.0+) The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `(PAN-OS 9.0+) The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `NAT type.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of administrative tags.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "original_packet",
+					Description: `The original packet specification (see below).`,
+				},
+				resource.Attribute{
+					Name:        "translated_packet",
+					Description: `The translated packet spec (see below). ` + "`" + `original_packet` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `The list of source zone(s).`,
+				},
+				resource.Attribute{
+					Name:        "destination_zone",
+					Description: `The destination zone.`,
+				},
+				resource.Attribute{
+					Name:        "destination_interface",
+					Description: `Egress interface from route lookup.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source address(es).`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination address(es). ` + "`" + `translated_packet` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `The destination spec (see below). ` + "`" + `translated_packet.source` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_ip_and_port",
+					Description: `Dynamic IP and port source translation spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_ip",
+					Description: `Dynamic IP source translation spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "static_ip",
+					Description: `Static IP source translation spec (see below). ` + "`" + `translated_packet.source.dynamic_ip_and_port` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `Translated address source translation type spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "interface_address",
+					Description: `Interface address source translation type spec (see below). ` + "`" + `translated_packet.source.dynamic_ip_and_port.translated_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `List of translated addresses. ` + "`" + `translated_packet.source.dynamic_ip_and_port.interface_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `The interface.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address. ` + "`" + `translated_packet.source.dynamic_ip` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `The list of translated addresses.`,
+				},
+				resource.Attribute{
+					Name:        "fallback",
+					Description: `The fallback spec (see below). ` + "`" + `translated_packet.source.dynamic_ip.fallback` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `The translated address fallback spec (see below).`,
+				},
+				resource.Attribute{
+					Name:        "interface_address",
+					Description: `The interface address fallback spec (see below). ` + "`" + `translated_packet.source.dynamic_ip.fallback.translated_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_addresses",
+					Description: `List of source address translation fallback translated addresses. ` + "`" + `translated_packet.source.dynamic_ip.fallback.interface_address` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Source address translation fallback interface.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of interface fallback.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the fallback interface. ` + "`" + `translated_packet.source.static_ip` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `The statically translated source address.`,
+				},
+				resource.Attribute{
+					Name:        "bi_directional",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to enable bi-directional source address translation. ` + "`" + `translated_packet.destination` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "static_translation",
+					Description: `Specifies a static destination NAT (see below).`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_translation",
+					Description: `(PAN-OS 8.1+) Specify a dynamic destination NAT (see below).`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Destination address translation address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Destination address translation port number. ` + "`" + `translated_packet.destination.dynamic` + "`" + ` and ` + "`" + `translated_packet.destination.dynamic_translation` + "`" + ` support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Destination address translation address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Destination address translation port number.`,
+				},
+				resource.Attribute{
+					Name:        "distribution",
+					Description: `(PAN-OS 8.1+) Distribution algorithm for destination address pool. The PAN-OS 8.1 GUI doesn't seem to set this anywhere, but this is added here for completeness' sake. The GUI sets this to ` + "`" + `round-robin` + "`" + ` currently.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_nat_rules",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"nat",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
 				},
 			},
 		},
@@ -2543,6 +4393,346 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_pbf_rule",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"pbf",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The rule name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). The ` + "`" + `rule` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(PAN-OS 9.0+) The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `(PAN-OS 9.0+) The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The rule description.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of tags for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "active_active_device_binding",
+					Description: `The active-active device binding.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `The schedule.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `The destination spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "forwarding",
+					Description: `The forwarding spec (defined below). ` + "`" + `rule.source` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `List of source interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `List of source IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to negate the source. ` + "`" + `rule.destination` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Required) The list of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) The list of applications.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Required) The list of services.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to negate the destination. ` + "`" + `rule.forwarding` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `The action to take.`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `If ` + "`" + `action=forward-to-vsys` + "`" + `, the vsys to forward to.`,
+				},
+				resource.Attribute{
+					Name:        "egress_interface",
+					Description: `If ` + "`" + `action=forward` + "`" + `, the egress interface.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_type",
+					Description: `If ` + "`" + `action=forward` + "`" + `, the next hop type.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_value",
+					Description: `If ` + "`" + `action=forward` + "`" + ` and ` + "`" + `next_hop_type` + "`" + ` is defined, then the next hop address.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `The monitor spec (defined below) if monitoring is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "symmetric_return",
+					Description: `The symmetric return spec (defined below) if it's enforced. ` + "`" + `rule.forwarding.monitor` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `The montior profile to use.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The monitor IP address.`,
+				},
+				resource.Attribute{
+					Name:        "disable_if_unreachable",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule if nexthop/monitor IP is unreachable. ` + "`" + `rule.forwarding.symmetric_return` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to enforce symmetric return.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `List of next hop addresses.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The rule definition (see below). The ` + "`" + `rule` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(PAN-OS 9.0+) The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `(PAN-OS 9.0+) The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The rule description.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of tags for this rule.`,
+				},
+				resource.Attribute{
+					Name:        "active_active_device_binding",
+					Description: `The active-active device binding.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `The schedule.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `The source spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `The destination spec (defined below).`,
+				},
+				resource.Attribute{
+					Name:        "forwarding",
+					Description: `The forwarding spec (defined below). ` + "`" + `rule.source` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `List of source interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `List of source IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to negate the source. ` + "`" + `rule.destination` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Required) The list of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) The list of applications.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Required) The list of services.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to negate the destination. ` + "`" + `rule.forwarding` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `The action to take.`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `If ` + "`" + `action=forward-to-vsys` + "`" + `, the vsys to forward to.`,
+				},
+				resource.Attribute{
+					Name:        "egress_interface",
+					Description: `If ` + "`" + `action=forward` + "`" + `, the egress interface.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_type",
+					Description: `If ` + "`" + `action=forward` + "`" + `, the next hop type.`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_value",
+					Description: `If ` + "`" + `action=forward` + "`" + ` and ` + "`" + `next_hop_type` + "`" + ` is defined, then the next hop address.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `The monitor spec (defined below) if monitoring is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "symmetric_return",
+					Description: `The symmetric return spec (defined below) if it's enforced. ` + "`" + `rule.forwarding.monitor` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `The montior profile to use.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The monitor IP address.`,
+				},
+				resource.Attribute{
+					Name:        "disable_if_unreachable",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule if nexthop/monitor IP is unreachable. ` + "`" + `rule.forwarding.symmetric_return` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to enforce symmetric return.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `List of next hop addresses.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_pbf_rules",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"pbf",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_plugin",
 			Category:         "Operational State",
 			ShortDescription: ``,
@@ -2839,6 +5029,644 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_security_profile_group",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"security",
+				"profile",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `) NGFW:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "antivirus_profile",
+					Description: `The AV profile name.`,
+				},
+				resource.Attribute{
+					Name:        "anti_spyware_profile",
+					Description: `Anti Spyware profile name.`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability_profile",
+					Description: `Vulnerability profile name.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering_profile",
+					Description: `URL filtering profile name.`,
+				},
+				resource.Attribute{
+					Name:        "file_blocking_profile",
+					Description: `File blocking profile name.`,
+				},
+				resource.Attribute{
+					Name:        "data_filtering_profile",
+					Description: `Data filtering profile name.`,
+				},
+				resource.Attribute{
+					Name:        "wildfire_analysis_profile",
+					Description: `Wildfire analysis profile name.`,
+				},
+				resource.Attribute{
+					Name:        "gtp_profile",
+					Description: `GTP profile name.`,
+				},
+				resource.Attribute{
+					Name:        "sctp_profile",
+					Description: `SCTP profile name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "antivirus_profile",
+					Description: `The AV profile name.`,
+				},
+				resource.Attribute{
+					Name:        "anti_spyware_profile",
+					Description: `Anti Spyware profile name.`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability_profile",
+					Description: `Vulnerability profile name.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering_profile",
+					Description: `URL filtering profile name.`,
+				},
+				resource.Attribute{
+					Name:        "file_blocking_profile",
+					Description: `File blocking profile name.`,
+				},
+				resource.Attribute{
+					Name:        "data_filtering_profile",
+					Description: `Data filtering profile name.`,
+				},
+				resource.Attribute{
+					Name:        "wildfire_analysis_profile",
+					Description: `Wildfire analysis profile name.`,
+				},
+				resource.Attribute{
+					Name:        "gtp_profile",
+					Description: `GTP profile name.`,
+				},
+				resource.Attribute{
+					Name:        "sctp_profile",
+					Description: `SCTP profile name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_security_profile_groups",
+			Category:         "Objects",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"objects",
+				"security",
+				"profile",
+				"groups",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group location (default: ` + "`" + `shared` + "`" + `) NGFW:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_security_rule",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"security",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The rule name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The security rule definition (see below). ` + "`" + `rule` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The security rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Rule type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of tags for this security rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_source",
+					Description: `(bool) If the source should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "source_users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "hip_profiles",
+					Description: `List of HIP profiles.`,
+				},
+				resource.Attribute{
+					Name:        "destination_zones",
+					Description: `List of destination zones.`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_destination",
+					Description: `(bool) If the destination should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `List of applications.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services.`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `List of categories.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action for the matched traffic.`,
+				},
+				resource.Attribute{
+					Name:        "log_setting",
+					Description: `Log forwarding profile.`,
+				},
+				resource.Attribute{
+					Name:        "log_start",
+					Description: `(bool) Log the start of the traffic flow.`,
+				},
+				resource.Attribute{
+					Name:        "log_end",
+					Description: `(bool) Log the end of the traffic flow.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `The security rule schedule.`,
+				},
+				resource.Attribute{
+					Name:        "icmp_unreachable",
+					Description: `(bool) ICMP unreachable.`,
+				},
+				resource.Attribute{
+					Name:        "disable_server_response_inspection",
+					Description: `(bool) If server response inspection is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Profile Setting: ` + "`" + `Group` + "`" + ` - The group profile name.`,
+				},
+				resource.Attribute{
+					Name:        "virus",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The antivirus setting.`,
+				},
+				resource.Attribute{
+					Name:        "spyware",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The anti-spyware setting.`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Vulnerability Protection setting.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The URL filtering setting.`,
+				},
+				resource.Attribute{
+					Name:        "file_blocking",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The file blocking setting.`,
+				},
+				resource.Attribute{
+					Name:        "wildfire_analysis",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The WildFire Analysis setting.`,
+				},
+				resource.Attribute{
+					Name:        "data_filtering",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Data Filtering setting.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(repeatable, Panorama only) A target definition (see below). If there are no target sections, then the rule will apply to every vsys of every device in the device group.`,
+				},
+				resource.Attribute{
+					Name:        "negate_target",
+					Description: `(bool, Panorama only) Instead of applying the rule for the given serial numbers, apply it to everything except them. ` + "`" + `rule.target` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Required) The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A listing of vsys to apply this rule to. If ` + "`" + `serial` + "`" + ` is a VM, then this parameter should just be omitted.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule",
+					Description: `The security rule definition (see below). ` + "`" + `rule` + "`" + ` has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The security rule name.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The PAN-OS UUID.`,
+				},
+				resource.Attribute{
+					Name:        "group_tag",
+					Description: `The group tag.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Rule type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `List of tags for this security rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_zones",
+					Description: `List of source zones.`,
+				},
+				resource.Attribute{
+					Name:        "source_addresses",
+					Description: `List of source addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_source",
+					Description: `(bool) If the source should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "source_users",
+					Description: `List of source users.`,
+				},
+				resource.Attribute{
+					Name:        "hip_profiles",
+					Description: `List of HIP profiles.`,
+				},
+				resource.Attribute{
+					Name:        "destination_zones",
+					Description: `List of destination zones.`,
+				},
+				resource.Attribute{
+					Name:        "destination_addresses",
+					Description: `List of destination addresses.`,
+				},
+				resource.Attribute{
+					Name:        "negate_destination",
+					Description: `(bool) If the destination should be negated.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `List of applications.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services.`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `List of categories.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action for the matched traffic.`,
+				},
+				resource.Attribute{
+					Name:        "log_setting",
+					Description: `Log forwarding profile.`,
+				},
+				resource.Attribute{
+					Name:        "log_start",
+					Description: `(bool) Log the start of the traffic flow.`,
+				},
+				resource.Attribute{
+					Name:        "log_end",
+					Description: `(bool) Log the end of the traffic flow.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(bool) Set to ` + "`" + `true` + "`" + ` to disable this rule.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `The security rule schedule.`,
+				},
+				resource.Attribute{
+					Name:        "icmp_unreachable",
+					Description: `(bool) ICMP unreachable.`,
+				},
+				resource.Attribute{
+					Name:        "disable_server_response_inspection",
+					Description: `(bool) If server response inspection is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Profile Setting: ` + "`" + `Group` + "`" + ` - The group profile name.`,
+				},
+				resource.Attribute{
+					Name:        "virus",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The antivirus setting.`,
+				},
+				resource.Attribute{
+					Name:        "spyware",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The anti-spyware setting.`,
+				},
+				resource.Attribute{
+					Name:        "vulnerability",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Vulnerability Protection setting.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The URL filtering setting.`,
+				},
+				resource.Attribute{
+					Name:        "file_blocking",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The file blocking setting.`,
+				},
+				resource.Attribute{
+					Name:        "wildfire_analysis",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The WildFire Analysis setting.`,
+				},
+				resource.Attribute{
+					Name:        "data_filtering",
+					Description: `Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Data Filtering setting.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(repeatable, Panorama only) A target definition (see below). If there are no target sections, then the rule will apply to every vsys of every device in the device group.`,
+				},
+				resource.Attribute{
+					Name:        "negate_target",
+					Description: `(bool, Panorama only) Instead of applying the rule for the given serial numbers, apply it to everything except them. ` + "`" + `rule.target` + "`" + ` supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "serial",
+					Description: `(Required) The serial number of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vsys_list",
+					Description: `A listing of vsys to apply this rule to. If ` + "`" + `serial` + "`" + ` is a VM, then this parameter should just be omitted.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_security_rules",
+			Category:         "Policies",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"policies",
+				"security",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "device_group",
+					Description: `(Optional) The device group (default: ` + "`" + `shared` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "rulebase",
+					Description: `(Optional) The rulebase. This can be ` + "`" + `pre-rulebase` + "`" + ` (default), ` + "`" + `post-rulebase` + "`" + `, or ` + "`" + `rulebase` + "`" + `. NGFW specific arguments:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `vsys1` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_ssl_decrypt",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"ssl",
+				"decrypt",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "forward_trust_certificate_rsa",
+					Description: `Forward trust RSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_trust_certificate_ecdsa",
+					Description: `Forward trust ECDSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_untrust_certificate_rsa",
+					Description: `Forward untrust RSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_untrust_certificate_ecdsa",
+					Description: `Forward untrust ECDSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "root_ca_excludes",
+					Description: `List of root CA excludes.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_root_cas",
+					Description: `List of trusted root CAs.`,
+				},
+				resource.Attribute{
+					Name:        "disabled_predefined_exclude_certificates",
+					Description: `List of disabled predefined exclude certificates.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_decrypt_exclude_certificate",
+					Description: `(repeatable) List of SSL decrypt exclude certificates specs (specified below). ` + "`" + `ssl_decrypt_exclude_certificate` + "`" + ` sections support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(bool) Exclude or not.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "forward_trust_certificate_rsa",
+					Description: `Forward trust RSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_trust_certificate_ecdsa",
+					Description: `Forward trust ECDSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_untrust_certificate_rsa",
+					Description: `Forward untrust RSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "forward_untrust_certificate_ecdsa",
+					Description: `Forward untrust ECDSA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "root_ca_excludes",
+					Description: `List of root CA excludes.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_root_cas",
+					Description: `List of trusted root CAs.`,
+				},
+				resource.Attribute{
+					Name:        "disabled_predefined_exclude_certificates",
+					Description: `List of disabled predefined exclude certificates.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_decrypt_exclude_certificate",
+					Description: `(repeatable) List of SSL decrypt exclude certificates specs (specified below). ` + "`" + `ssl_decrypt_exclude_certificate` + "`" + ` sections support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description.`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(bool) Exclude or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_system_info",
 			Category:         "Operational State",
 			ShortDescription: ``,
@@ -2866,6 +5694,56 @@ var (
 				resource.Attribute{
 					Name:        "version_patch",
 					Description: `Patch version number.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_tech_support_file",
+			Category:         "Operational State",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"operational",
+				"state",
+				"tech",
+				"support",
+				"file",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(int) Timeout for retrieving the tech support file in seconds (default: ` + "`" + `600` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "save_to_local_file_system",
+					Description: `(bool) Save the tech support file to the local file system where Terraform is running.`,
+				},
+				resource.Attribute{
+					Name:        "file_system_path",
+					Description: `When ` + "`" + `save_to_local_file_system=true` + "`" + `, the file system path to place the tech support file.`,
+				},
+				resource.Attribute{
+					Name:        "save_to_state",
+					Description: `(bool) Save the tech support file to the state. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "filename",
+					Description: `The tech support file filename.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `For ` + "`" + `save_to_state=true` + "`" + `, the content of the .tgz tech support file.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filename",
+					Description: `The tech support file filename.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `For ` + "`" + `save_to_state=true` + "`" + `, the content of the .tgz tech support file.`,
 				},
 			},
 		},
@@ -3240,11 +6118,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "panos_user_tag",
-			Category:         "NGFW User-ID",
+			Category:         "User-ID",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"ngfw",
 				"user",
 				"id",
 				"tag",
@@ -3283,6 +6160,226 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(list) List of tags.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_virtual_router",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"virtual",
+				"router",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The virtual router's name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `List of interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "static_dist",
+					Description: `(int) Admin distance - Static.`,
+				},
+				resource.Attribute{
+					Name:        "static_ipv6_dist",
+					Description: `(int) Admin distance - Static IPv6.`,
+				},
+				resource.Attribute{
+					Name:        "ospf_int_dist",
+					Description: `(int) Admin distance - OSPF Int.`,
+				},
+				resource.Attribute{
+					Name:        "ospf_ext_dist",
+					Description: `(int) Admin distance - OSPF Ext.`,
+				},
+				resource.Attribute{
+					Name:        "ospfv3_int_dist",
+					Description: `(int) Admin distance - OSPFv3 Int.`,
+				},
+				resource.Attribute{
+					Name:        "ospfv3_ext_dist",
+					Description: `(int) Admin distance - OSPFv3 Ext.`,
+				},
+				resource.Attribute{
+					Name:        "ibgp_dist",
+					Description: `(int) Admin distance - IBGP.`,
+				},
+				resource.Attribute{
+					Name:        "ebgp_dist",
+					Description: `(int) Admin distance - EBGP.`,
+				},
+				resource.Attribute{
+					Name:        "rip_dist",
+					Description: `(int) Admin distance - RIP.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ecmp",
+					Description: `(bool) Enable ECMP.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_max_path",
+					Description: `(int) Maximum number of ECMP paths supported.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_symmetric_return",
+					Description: `(bool) Allows return packets to egress out of the ingress interface of the flow.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_strict_source_path",
+					Description: `(bool) Force VPN traffic to exit interface that the source-ip belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_load_balance_method",
+					Description: `Load balancing algorithm.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_source_only",
+					Description: `(bool) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: Only use source address for hash.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_use_port",
+					Description: `(bool) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: Use source/destination port for hash.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_seed",
+					Description: `(int) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: User-specified hash seed.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_weighted_round_robin_interfaces",
+					Description: `(Map of ints) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `weighted-round-robin` + "`" + `: Interface weight used in weighted ECMP load balancing.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `List of interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "static_dist",
+					Description: `(int) Admin distance - Static.`,
+				},
+				resource.Attribute{
+					Name:        "static_ipv6_dist",
+					Description: `(int) Admin distance - Static IPv6.`,
+				},
+				resource.Attribute{
+					Name:        "ospf_int_dist",
+					Description: `(int) Admin distance - OSPF Int.`,
+				},
+				resource.Attribute{
+					Name:        "ospf_ext_dist",
+					Description: `(int) Admin distance - OSPF Ext.`,
+				},
+				resource.Attribute{
+					Name:        "ospfv3_int_dist",
+					Description: `(int) Admin distance - OSPFv3 Int.`,
+				},
+				resource.Attribute{
+					Name:        "ospfv3_ext_dist",
+					Description: `(int) Admin distance - OSPFv3 Ext.`,
+				},
+				resource.Attribute{
+					Name:        "ibgp_dist",
+					Description: `(int) Admin distance - IBGP.`,
+				},
+				resource.Attribute{
+					Name:        "ebgp_dist",
+					Description: `(int) Admin distance - EBGP.`,
+				},
+				resource.Attribute{
+					Name:        "rip_dist",
+					Description: `(int) Admin distance - RIP.`,
+				},
+				resource.Attribute{
+					Name:        "enable_ecmp",
+					Description: `(bool) Enable ECMP.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_max_path",
+					Description: `(int) Maximum number of ECMP paths supported.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_symmetric_return",
+					Description: `(bool) Allows return packets to egress out of the ingress interface of the flow.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_strict_source_path",
+					Description: `(bool) Force VPN traffic to exit interface that the source-ip belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_load_balance_method",
+					Description: `Load balancing algorithm.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_source_only",
+					Description: `(bool) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: Only use source address for hash.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_use_port",
+					Description: `(bool) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: Use source/destination port for hash.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_hash_seed",
+					Description: `(int) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `ip-hash` + "`" + `: User-specified hash seed.`,
+				},
+				resource.Attribute{
+					Name:        "ecmp_weighted_round_robin_interfaces",
+					Description: `(Map of ints) For ` + "`" + `ecmp_load_balance_method` + "`" + ` = ` + "`" + `weighted-round-robin` + "`" + `: Interface weight used in weighted ECMP load balancing.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_virtual_routers",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"virtual",
+				"routers",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
 				},
 			},
 		},
@@ -3686,44 +6783,71 @@ var (
 		"panos_antivirus_security_profile":          4,
 		"panos_antivirus_security_profiles":         5,
 		"panos_api_key":                             6,
-		"panos_arp":                                 7,
-		"panos_arps":                                8,
-		"panos_custom_data_pattern_object":          9,
-		"panos_custom_data_pattern_objects":         10,
-		"panos_data_filtering_security_profile":     11,
-		"panos_data_filtering_security_profiles":    12,
-		"panos_device_group_parent":                 13,
-		"panos_dhcp_interface_info":                 14,
-		"panos_dos_protection_profile":              15,
-		"panos_dos_protection_profiles":             16,
-		"panos_dynamic_user_group":                  17,
-		"panos_dynamic_user_groups":                 18,
-		"panos_file_blocking_security_profile":      19,
-		"panos_file_blocking_security_profiles":     20,
-		"panos_ip_tag":                              21,
-		"panos_ospf":                                22,
-		"panos_ospf_area":                           23,
-		"panos_ospf_area_interface":                 24,
-		"panos_ospf_area_interfaces":                25,
-		"panos_ospf_area_virtual_link":              26,
-		"panos_ospf_area_virtual_links":             27,
-		"panos_ospf_areas":                          28,
-		"panos_ospf_auth_profiles":                  29,
-		"panos_ospf_export":                         30,
-		"panos_ospf_exports":                        31,
-		"panos_plugin":                              32,
-		"panos_predefined_dlp_file_type":            33,
-		"panos_predefined_tdb_file_type":            34,
-		"panos_predefined_threat":                   35,
-		"panos_system_info":                         36,
-		"panos_url_filtering_security_profile":      37,
-		"panos_url_filtering_security_profiles":     38,
-		"panos_user_tag":                            39,
-		"panos_vm_auth_key":                         40,
-		"panos_vulnerability_security_profile":      41,
-		"panos_vulnerability_security_profiles":     42,
-		"panos_wildfire_analysis_security_profile":  43,
-		"panos_wildfire_analysis_security_profiles": 44,
+		"panos_application_object":                  7,
+		"panos_application_objects":                 8,
+		"panos_arp":                                 9,
+		"panos_arps":                                10,
+		"panos_audit_comment_history":               11,
+		"panos_certificate_profile":                 12,
+		"panos_certificate_profiles":                13,
+		"panos_custom_data_pattern_object":          14,
+		"panos_custom_data_pattern_objects":         15,
+		"panos_custom_url_categories":               16,
+		"panos_custom_url_category":                 17,
+		"panos_data_filtering_security_profile":     18,
+		"panos_data_filtering_security_profiles":    19,
+		"panos_decryption_rule":                     20,
+		"panos_decryption_rules":                    21,
+		"panos_device_group":                        22,
+		"panos_device_group_parent":                 23,
+		"panos_device_groups":                       24,
+		"panos_dhcp_interface_info":                 25,
+		"panos_dos_protection_profile":              26,
+		"panos_dos_protection_profiles":             27,
+		"panos_dynamic_user_group":                  28,
+		"panos_dynamic_user_groups":                 29,
+		"panos_edl":                                 30,
+		"panos_edls":                                31,
+		"panos_file_blocking_security_profile":      32,
+		"panos_file_blocking_security_profiles":     33,
+		"panos_ip_tag":                              34,
+		"panos_local_user_db_group":                 35,
+		"panos_local_user_db_groups":                36,
+		"panos_nat_rule":                            37,
+		"panos_nat_rules":                           38,
+		"panos_ospf":                                39,
+		"panos_ospf_area":                           40,
+		"panos_ospf_area_interface":                 41,
+		"panos_ospf_area_interfaces":                42,
+		"panos_ospf_area_virtual_link":              43,
+		"panos_ospf_area_virtual_links":             44,
+		"panos_ospf_areas":                          45,
+		"panos_ospf_auth_profiles":                  46,
+		"panos_ospf_export":                         47,
+		"panos_ospf_exports":                        48,
+		"panos_pbf_rule":                            49,
+		"panos_pbf_rules":                           50,
+		"panos_plugin":                              51,
+		"panos_predefined_dlp_file_type":            52,
+		"panos_predefined_tdb_file_type":            53,
+		"panos_predefined_threat":                   54,
+		"panos_security_profile_group":              55,
+		"panos_security_profile_groups":             56,
+		"panos_security_rule":                       57,
+		"panos_security_rules":                      58,
+		"panos_ssl_decrypt":                         59,
+		"panos_system_info":                         60,
+		"panos_tech_support_file":                   61,
+		"panos_url_filtering_security_profile":      62,
+		"panos_url_filtering_security_profiles":     63,
+		"panos_user_tag":                            64,
+		"panos_virtual_router":                      65,
+		"panos_virtual_routers":                     66,
+		"panos_vm_auth_key":                         67,
+		"panos_vulnerability_security_profile":      68,
+		"panos_vulnerability_security_profiles":     69,
+		"panos_wildfire_analysis_security_profile":  70,
+		"panos_wildfire_analysis_security_profiles": 71,
 	}
 )
 

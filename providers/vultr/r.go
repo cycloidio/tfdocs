@@ -23,27 +23,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The ID of the region that the server is to be created in.`,
+					Description: `(Required) The ID of the region that the server is to be created in. [See List Regions](https://www.vultr.com/api/#operation/list-regions)`,
 				},
 				resource.Attribute{
 					Name:        "plan",
-					Description: `(Required) The ID of the plan that you want the server to subscribe to.`,
+					Description: `(Required) The ID of the plan that you want the server to subscribe to. [See List Plans](https://www.vultr.com/api/#tag/plans)`,
 				},
 				resource.Attribute{
 					Name:        "os_id",
-					Description: `(Optional) The ID of the operating system to be installed on the server.`,
+					Description: `(Optional) The ID of the operating system to be installed on the server. [See List OS](https://www.vultr.com/api/#operation/list-os)`,
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
+					Description: `(Optional) The ID of the Vultr application to be installed on the server. [See List Applications](https://www.vultr.com/api/#operation/list-applications)`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server.`,
+					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server. [See List Applications](https://www.vultr.com/api/#operation/list-applications) Note marketplace applications are denoted by type: ` + "`" + `marketplace` + "`" + ` and you must use the ` + "`" + `image_id` + "`" + ` not the id.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
-					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
+					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation. [See List Snapshots](https://www.vultr.com/api/#operation/list-snapshots)`,
 				},
 				resource.Attribute{
 					Name:        "script_id",
@@ -345,6 +345,10 @@ var (
 					Description: `(Optional) Label that is given to your block storage.`,
 				},
 				resource.Attribute{
+					Name:        "block_type",
+					Description: `(Optional) Determines on the type of block storage volume that will be created. Soon to become a required parameter. Options are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "live",
 					Description: `(Optional) Boolean value that will allow attachment of the volume to an instance without a restart. Default is false. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -386,7 +390,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_id",
-					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
+				},
+				resource.Attribute{
+					Name:        "block_type",
+					Description: `The type of block storage volume. Values are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -428,7 +436,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_id",
-					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `An ID associated with the instance, when mounted the ID can be found in /dev/disk/by-id prefixed with virtio.`,
+				},
+				resource.Attribute{
+					Name:        "block_type",
+					Description: `The type of block storage volume. Values are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -449,7 +461,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `(Optional) instance IP you want associated to domain. If omitted this will create a domain with no records. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Instance IP you want associated to domain. If omitted this will create a domain with no records.`,
+				},
+				resource.Attribute{
+					Name:        "dns_sec",
+					Description: `(Optional) The Domain's DNSSEC status. Valid options are ` + "`" + `enabled` + "`" + ` or ` + "`" + `disabled` + "`" + `. Note ` + "`" + `disabled` + "`" + ` is default ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -461,7 +477,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the domain was added to your account. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date the domain was added to your account.`,
+				},
+				resource.Attribute{
+					Name:        "dns_sec",
+					Description: `The Domain's DNSSEC status ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -475,7 +495,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "date_created",
-					Description: `The date the domain was added to your account. ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The date the domain was added to your account.`,
+				},
+				resource.Attribute{
+					Name:        "dns_sec",
+					Description: `The Domain's DNSSEC status ## Import DNS Domains can be imported using the Dns Domain ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_dns_domain.name domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -764,31 +788,31 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The ID of the region that the instance is to be created in.`,
+					Description: `(Required) The ID of the region that the instance is to be created in. [See List Regions](https://www.vultr.com/api/#operation/list-regions)`,
 				},
 				resource.Attribute{
 					Name:        "plan",
-					Description: `(Required) The ID of the plan that you want the instance to subscribe to.`,
+					Description: `(Required) The ID of the plan that you want the instance to subscribe to. [See List Plans](https://www.vultr.com/api/#tag/plans)`,
 				},
 				resource.Attribute{
 					Name:        "os_id",
-					Description: `(Optional) The ID of the operating system to be installed on the server.`,
+					Description: `(Optional) The ID of the operating system to be installed on the server. [See List OS](https://www.vultr.com/api/#operation/list-os)`,
 				},
 				resource.Attribute{
 					Name:        "iso_id",
-					Description: `(Optional) The ID of the ISO file to be installed on the server.`,
+					Description: `(Optional) The ID of the ISO file to be installed on the server. [See List ISO](https://www.vultr.com/api/#operation/list-isos)`,
 				},
 				resource.Attribute{
 					Name:        "app_id",
-					Description: `(Optional) The ID of the Vultr application to be installed on the server.`,
+					Description: `(Optional) The ID of the Vultr application to be installed on the server. [See List Applications](https://www.vultr.com/api/#operation/list-applications)`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
-					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server.`,
+					Description: `(Optional) The ID of the Vultr marketplace application to be installed on the server. [See List Applications](https://www.vultr.com/api/#operation/list-applications) Note marketplace applications are denoted by type: ` + "`" + `marketplace` + "`" + ` and you must use the ` + "`" + `image_id` + "`" + ` not the id.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
-					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation.`,
+					Description: `(Optional) The ID of the Vultr snapshot that the server will restore for the initial installation. [See List Snapshots](https://www.vultr.com/api/#operation/list-snapshots)`,
 				},
 				resource.Attribute{
 					Name:        "script_id",
@@ -800,7 +824,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network_ids",
-					Description: `(Optional) A list of private network IDs to be attached to the server.`,
+					Description: `(Optional) (Deprecated: use ` + "`" + `vpc_ids` + "`" + ` instead) A list of private network IDs to be attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_ids",
+					Description: `(Optional) A list of VPC IDs to be attached to the server.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_ids",
@@ -817,10 +845,6 @@ var (
 				resource.Attribute{
 					Name:        "enable_ipv6",
 					Description: `(Optional) Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `(Optional) Whether the server has private networking support enabled.`,
 				},
 				resource.Attribute{
 					Name:        "activation_email",
@@ -980,7 +1004,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network_ids",
-					Description: `A list of private network IDs attached to the server.`,
+					Description: `(Deprecated: Use ` + "`" + `vpc_ids` + "`" + ` instead) A list of private network IDs attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_ids",
+					Description: `A list of VPC IDs attached to the server.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_ids",
@@ -997,10 +1025,6 @@ var (
 				resource.Attribute{
 					Name:        "enable_ipv6",
 					Description: `Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `(Deprecated) Whether the server has private networking support enabled.`,
 				},
 				resource.Attribute{
 					Name:        "activation_email",
@@ -1146,7 +1170,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network_ids",
-					Description: `A list of private network IDs attached to the server.`,
+					Description: `(Deprecated: Use ` + "`" + `vpc_ids` + "`" + ` instead) A list of private network IDs attached to the server.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_ids",
+					Description: `A list of VPC IDs attached to the server.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_ids",
@@ -1163,10 +1191,6 @@ var (
 				resource.Attribute{
 					Name:        "enable_ipv6",
 					Description: `Whether the server has IPv6 networking activated.`,
-				},
-				resource.Attribute{
-					Name:        "enable_private_network",
-					Description: `(Deprecated) Whether the server has private networking support enabled.`,
 				},
 				resource.Attribute{
 					Name:        "activation_email",
@@ -1353,6 +1377,236 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vultr_kubernetes",
+			Category:         "Resources",
+			ShortDescription: `Provides a Vultr Kubernetes Engine (VKE) resource. This can be used to create, read, modify, and delete VKE clusters on your Vultr account.`,
+			Description:      ``,
+			Keywords: []string{
+				"kubernetes",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region your VKE cluster will be deployed in. Currently, supported values are ` + "`" + `ewr` + "`" + ` and ` + "`" + `lax` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version your VKE cluster you want deployed. [See Available Version](https://www.vultr.com/api/#operation/get-kubernetes-versions)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The VKE clusters label. ` + "`" + `node_pools` + "`" + ` (Required) There must be 1 node pool with the kubernetes resource. It supports the following fields`,
+				},
+				resource.Attribute{
+					Name:        "node_quantity",
+					Description: `(Required) The number of nodes in this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) The plan to be used in this node pool. [See Plans List](https://www.vultr.com/api/#operation/list-plans) Note the minimum plan requirements must have at least 1 core and 2 gbs of memory.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label to be used as a prefix for nodes in this node pool. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VKE cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The VKE clusters label.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region your VKE cluster is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current kubernetes version your VKE cluster is running on.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The overall status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_subnet",
+					Description: `IP range that services will run on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_subnet",
+					Description: `IP range that your pods will run on in this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Domain for your Kubernetes clusters control plane.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of VKE cluster control plane.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of VKE cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of node pool creation.`,
+				},
+				resource.Attribute{
+					Name:        "date_updated",
+					Description: `Date of node pool updates.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "node_quantity",
+					Description: `Number of nodes within node pool.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Node plan that nodes are using within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag for node pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date node was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of node.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The VKE cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The VKE clusters label.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region your VKE cluster is deployed in.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current kubernetes version your VKE cluster is running on.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The overall status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_subnet",
+					Description: `IP range that services will run on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_subnet",
+					Description: `IP range that your pods will run on in this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `Domain for your Kubernetes clusters control plane.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of VKE cluster control plane.`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of VKE cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date of node pool creation.`,
+				},
+				resource.Attribute{
+					Name:        "date_updated",
+					Description: `Date of node pool updates.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "node_quantity",
+					Description: `Number of nodes within node pool.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `Node plan that nodes are using within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node pool.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Tag for node pool.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `Date node was created.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of node.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `Label of node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vultr_load_balancer",
 			Category:         "Resources",
 			ShortDescription: `Get information about a Vultr Load Balancer.`,
@@ -1532,7 +1786,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network",
-					Description: `Defines the private network the load balancer is attached to.`,
+					Description: `(Deprecated: use ` + "`" + `vpc` + "`" + ` instead) Defines the private network the load balancer is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `Defines the VPC the load balancer is attached to. ## Import Load Balancers can be imported using the load balancer ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_load_balancer.lb b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1598,7 +1856,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_network",
-					Description: `Defines the private network the load balancer is attached to.`,
+					Description: `(Deprecated: use ` + "`" + `vpc` + "`" + ` instead) Defines the private network the load balancer is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `Defines the VPC the load balancer is attached to. ## Import Load Balancers can be imported using the load balancer ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_load_balancer.lb b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2016,7 +2278,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vps_id",
+					Name:        "instance_id",
 					Description: `(Required) ID of a given instance that you want to create a snapshot from.`,
 				},
 				resource.Attribute{
@@ -2371,6 +2633,84 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vultr_vpc",
+			Category:         "Resources",
+			ShortDescription: `Provides a Vultr VPC resource. This can be used to create, read, and delete VPCs on your Vultr account.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region ID that you want the VPC to be created in.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description you want to give your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `(Optional) The IPv4 subnet to be used when attaching instances to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32 ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID that the VPC operates in.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 subnet used when attaching instances to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date that the VPC was added to your Vultr account. ## Import VPCs can be imported using the VPC ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_vpc.my_vpc 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region ID that the VPC operates in.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet",
+					Description: `The IPv4 subnet used when attaching instances to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "v4_subnet_mask",
+					Description: `The number of bits for the netmask in CIDR notation. Example: 32`,
+				},
+				resource.Attribute{
+					Name:        "date_created",
+					Description: `The date that the VPC was added to your Vultr account. ## Import VPCs can be imported using the VPC ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_vpc.my_vpc 0e04f918-575e-41cb-86f6-d729b354a5a1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -2384,17 +2724,19 @@ var (
 		"vultr_instance":          6,
 		"vultr_instance_ipv4":     7,
 		"vultr_iso":               8,
-		"vultr_load_balancer":     9,
-		"vultr_object_storage":    10,
-		"vultr_private_network":   11,
-		"vultr_reserved_ip":       12,
-		"vultr_reverse_ipv4":      13,
-		"vultr_reverse_ipv6":      14,
-		"vultr_snapshot":          15,
-		"vultr_snapshot_from_url": 16,
-		"vultr_ssh_key":           17,
-		"vultr_startup_script":    18,
-		"vultr_user":              19,
+		"vultr_kubernetes":        9,
+		"vultr_load_balancer":     10,
+		"vultr_object_storage":    11,
+		"vultr_private_network":   12,
+		"vultr_reserved_ip":       13,
+		"vultr_reverse_ipv4":      14,
+		"vultr_reverse_ipv6":      15,
+		"vultr_snapshot":          16,
+		"vultr_snapshot_from_url": 17,
+		"vultr_ssh_key":           18,
+		"vultr_startup_script":    19,
+		"vultr_user":              20,
+		"vultr_vpc":               21,
 	}
 )
 
