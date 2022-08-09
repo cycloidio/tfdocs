@@ -195,7 +195,7 @@ func unkGenerate(provider string) {
 		b, err := format.Source(buff.Bytes())
 		if err != nil {
 			buff = &bytes.Buffer{}
-			log.Printf("ERROR: could not import for provider %q and type %q setting empty", provider, t)
+			log.Printf("ERROR: could not import for provider %q and type %q setting empty, error: %s", provider, t, err)
 			td.Resources = nil
 			err = resourceTmpl.Execute(buff, td)
 			if err != nil {
@@ -669,7 +669,7 @@ func getArguments(b []byte) []resource.Attribute {
 	attributes := make([]resource.Attribute, 0, len(atts))
 	for _, at := range atts {
 		attributes = append(attributes, resource.Attribute{
-			Name:        standardizeSpaces(string(at[1])),
+			Name:        removeQuotes(standardizeSpaces(string(at[1]))),
 			Description: escapeRawStringQuotes(standardizeSpaces(string(at[2]))),
 		})
 	}
@@ -687,7 +687,7 @@ func getAttributes(b []byte) []resource.Attribute {
 	attributes := make([]resource.Attribute, 0, len(atts))
 	for _, at := range atts {
 		attributes = append(attributes, resource.Attribute{
-			Name:        standardizeSpaces(string(at[1])),
+			Name:        removeQuotes(standardizeSpaces(string(at[1]))),
 			Description: escapeRawStringQuotes(standardizeSpaces(string(at[2]))),
 		})
 	}
@@ -696,6 +696,10 @@ func getAttributes(b []byte) []resource.Attribute {
 
 func standardizeSpaces(s string) string {
 	return strings.Join(strings.Fields(s), " ")
+}
+
+func removeQuotes(s string) string {
+	return strings.Replace(s, `"`, "", -1)
 }
 
 func escapeRawStringQuotes(s string) string {
