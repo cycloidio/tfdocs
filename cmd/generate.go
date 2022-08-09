@@ -142,8 +142,11 @@ func unkGenerate(provider string) {
 				panic(err)
 			}
 
+			rt := strings.Split(f.Name(), ".")[0]
 			// The filename is the resource without the Provider
-			rt := fmt.Sprintf("%s_%s", provider, strings.Split(f.Name(), ".")[0])
+			if !strings.HasPrefix(f.Name(), provider) {
+				rt = fmt.Sprintf("%s_%s", provider, rt)
+			}
 
 			r := resource.Resource{
 				Type:             rt,
