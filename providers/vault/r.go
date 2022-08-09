@@ -22,6 +22,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `ad` + "`" + `.`,
 				},
@@ -174,6 +178,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AD secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -208,6 +216,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AD secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -257,6 +269,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required; Forces new resource) Name of the role. Must correspond with the name of the role reflected in the arn.`,
@@ -321,6 +337,10 @@ var (
 				"login",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role_id",
 					Description: `(Required) The ID of the role to log in with.`,
@@ -407,6 +427,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
 				},
@@ -489,6 +513,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to create the SecretID for.`,
 				},
@@ -551,6 +579,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) Type of the audit device, such as 'file'.`,
 				},
@@ -585,16 +617,20 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The name of the auth method type`,
+					Description: `(Required) The name of the auth method type.`,
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) The path to mount the auth method — this defaults to the name of the type`,
+					Description: `(Optional) The path to mount the auth method — this defaults to the name of the type.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A description of the auth method`,
+					Description: `(Optional) A description of the auth method.`,
 				},
 				resource.Attribute{
 					Name:        "local",
@@ -662,6 +698,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "cert_name",
 					Description: `(Required) The name of the certificate.`,
 				},
@@ -693,6 +733,10 @@ var (
 				"client",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path the AWS auth backend being configured was mounted at. Defaults to ` + "`" + `aws` + "`" + `.`,
@@ -743,6 +787,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path of the AWS backend being configured.`,
 				},
@@ -770,6 +818,10 @@ var (
 				"login",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name of the AWS auth backend. Defaults to 'aws'.`,
@@ -891,6 +943,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role.`,
@@ -1018,6 +1074,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the AWS auth backend role to read role tags from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -1080,6 +1140,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AWS auth backend being configured was mounted at.`,
 				},
@@ -1109,6 +1173,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Optional) The AWS account ID to configure the STS role for.`,
 				},
@@ -1135,6 +1203,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "access_key",
 					Description: `(Optional) The AWS Access Key ID this backend should use to issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.`,
@@ -1173,7 +1245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username_template",
-					Description: `(Optional) Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template: ` + "`" + `` + "`" + `` + "`" + ` {{ if (eq .Type "STS") }} {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }} {{ else }} {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }} {{ end }} ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template: ` + "`" + `` + "`" + `` + "`" + ` {{ if (eq .Type "STS") }} {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }} {{ else }} {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }} {{ end }} ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/terraform/secrets-vault) tutorial for a step-by-step usage example.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1191,6 +1263,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AWS secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -1248,6 +1324,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `(Required) The tenant id for the Azure Active Directory organization.`,
 				},
@@ -1287,6 +1367,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role.`,
@@ -1365,7 +1449,12 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -1381,6 +1470,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) Name of the Azure role`,
@@ -1418,6 +1511,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the role`,
 				},
@@ -1446,8 +1543,8 @@ var (
 					Description: `(Optional) Allowed URIs for authenticated client certificates`,
 				},
 				resource.Attribute{
-					Name:        "allowed_organization_units",
-					Description: `(Optional) Allowed organization units for authenticated client certificates`,
+					Name:        "allowed_organizational_units",
+					Description: `(Optional) Allowed organization units for authenticated client certificates.`,
 				},
 				resource.Attribute{
 					Name:        "required_extensions",
@@ -1513,6 +1610,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "token",
 					Description: `(Required) The Consul management token this backend should use to issue new tokens. ~>`,
 				},
@@ -1573,6 +1674,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name of an existing Consul secrets backend mount. Must not begin or end with a ` + "`" + `/` + "`" + `. One of ` + "`" + `path` + "`" + ` or ` + "`" + `backend` + "`" + ` is required.`,
 				},
@@ -1581,20 +1686,32 @@ var (
 					Description: `(Required) The name of the Consul secrets engine role to create.`,
 				},
 				resource.Attribute{
-					Name:        "consul_namespace",
-					Description: `(Optional) The Consul namespace that the token will be created in. Applicable for Vault 1.10+ and Consul 1.7+",`,
-				},
-				resource.Attribute{
-					Name:        "partition",
-					Description: `(Optional) The admin partition that the token will be created in. Applicable for Vault 1.10+ and Consul 1.11+",`,
-				},
-				resource.Attribute{
 					Name:        "policies",
-					Description: `(Required when ` + "`" + `consul_roles` + "`" + ` is unset) The list of Consul ACL policies to associate with these roles.`,
+					Description: `(Optional) The list of Consul ACL policies to associate with these roles.`,
+				},
+				resource.Attribute{
+					Name:        "consul_policies",
+					Description: `(Optional)<sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> The list of Consul ACL policies to associate with these roles.`,
 				},
 				resource.Attribute{
 					Name:        "consul_roles",
-					Description: `(Required when ` + "`" + `policies` + "`" + ` is unset) Set of Consul roles to attach to the token. Applicable for Vault 1.10+ with Consul 1.5+.`,
+					Description: `(Optional)<sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul roles to attach to the token. Applicable for Vault 1.10+ with Consul 1.5+.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `(Optional)<sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.`,
+				},
+				resource.Attribute{
+					Name:        "node_identities",
+					Description: `(Optional)<sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.`,
+				},
+				resource.Attribute{
+					Name:        "consul_namespace",
+					Description: `(Optional) The Consul namespace that the token will be created in. Applicable for Vault 1.10+ and Consul 1.7+".`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) The admin partition that the token will be created in. Applicable for Vault 1.10+ and Consul 1.11+".`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
@@ -1610,7 +1727,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "local",
-					Description: `(Optional) Indicates that the token should not be replicated globally and instead be local to the current datacenter. ## Attributes Reference No additional attributes are exported by this resource. ## Import Consul secret backend roles can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/roles/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_consul_secret_backend_role.example consul/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Indicates that the token should not be replicated globally and instead be local to the current datacenter. ## Attributes Reference No additional attributes are exported by this resource. ## Import Consul secret backend roles can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/roles/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_consul_secret_backend_role.example consul/roles/my-role ` + "`" + `` + "`" + `` + "`" + ` ## Note About Required Arguments`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1628,6 +1745,10 @@ var (
 				"connection",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name to give the database connection.`,
@@ -2133,6 +2254,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name to give the role.`,
 				},
@@ -2185,6 +2310,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name to give the static role.`,
@@ -2772,6 +2901,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
 				},
@@ -2803,6 +2936,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "credentials",
 					Description: `A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.`,
 				},
@@ -2816,7 +2953,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "local",
-					Description: `(Optional) Specifies if the auth method is local only. For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure). ## Attribute Reference In addition to the fields above, the following attributes are also exposed:`,
+					Description: `(Optional) Specifies if the auth method is local only.`,
+				},
+				resource.Attribute{
+					Name:        "custom_endpoint",
+					Description: `(Optional) Specifies overrides to [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint) used when making API requests. This allows specific requests made during authentication to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access) environments. Requires Vault 1.11+. Overrides are set at the subdomain level using the following keys: - ` + "`" + `api` + "`" + ` - Replaces the service endpoint used in API requests to ` + "`" + `https://www.googleapis.com` + "`" + `. - ` + "`" + `iam` + "`" + ` - Replaces the service endpoint used in API requests to ` + "`" + `https://iam.googleapis.com` + "`" + `. - ` + "`" + `crm` + "`" + ` - Replaces the service endpoint used in API requests to ` + "`" + `https://cloudresourcemanager.googleapis.com` + "`" + `. - ` + "`" + `compute` + "`" + ` - Replaces the service endpoint used in API requests to ` + "`" + `https://compute.googleapis.com` + "`" + `. The endpoint value provided for a given key has the form of ` + "`" + `scheme://host:port` + "`" + `. The ` + "`" + `scheme://` + "`" + ` and ` + "`" + `:port` + "`" + ` portions of the endpoint value are optional. For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure). ## Attribute Reference In addition to the fields above, the following attributes are also exposed:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -2867,6 +3008,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) Name of the GCP role`,
@@ -2967,6 +3112,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "credentials",
 					Description: `(Optional) The GCP service account credentials in JSON format. ~>`,
 				},
@@ -3005,6 +3154,10 @@ var (
 				"roleset",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required, Forces new resource) Path where the GCP Secrets Engine is mounted`,
@@ -3053,6 +3206,10 @@ var (
 				"account",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required, Forces new resource) Path where the GCP Secrets Engine is mounted`,
@@ -3109,6 +3266,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path at which to write the given data. Consult each backend's documentation to see which endpoints support the ` + "`" + `PUT` + "`" + ` methods and to determine whether they also support ` + "`" + `DELETE` + "`" + ` and ` + "`" + `GET` + "`" + `.`,
 				},
@@ -3134,6 +3295,10 @@ var (
 				"secret",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path at which to write the given data. To write data into the "generic" secret backend mounted in Vault by default, this should be prefixed with ` + "`" + `secret/` + "`" + `. Writing to other backends with this resource is possible; consult each backend's documentation to see which endpoints support the ` + "`" + `PUT` + "`" + ` and ` + "`" + `DELETE` + "`" + ` methods.`,
@@ -3174,6 +3339,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) Path where the auth backend is mounted. Defaults to ` + "`" + `auth/github` + "`" + ` if not specified.`,
@@ -3322,6 +3491,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) Path where the github auth backend is mounted. Defaults to ` + "`" + `github` + "`" + ` if not specified.`,
 				},
@@ -3348,6 +3521,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) Path where the github auth backend is mounted. Defaults to ` + "`" + `github` + "`" + ` if not specified.`,
 				},
@@ -3373,6 +3550,10 @@ var (
 				"entity",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the identity entity to create.`,
@@ -3418,6 +3599,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.`,
 				},
@@ -3454,6 +3639,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "policies",
 					Description: `(Required) List of policies to assign to the entity`,
 				},
@@ -3488,6 +3677,10 @@ var (
 				"group",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces new resource) Name of the identity group to create.`,
@@ -3545,6 +3738,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces new resource) Name of the group alias to create.`,
 				},
@@ -3583,6 +3780,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "member_entity_ids",
 					Description: `(Required) List of member entities that belong to the group`,
 				},
@@ -3619,6 +3820,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "policies",
 					Description: `(Required) List of policies to assign to the group`,
 				},
@@ -3654,6 +3859,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "issuer",
 					Description: `(Optional) Issuer URL to be used in the iss claim of the token. If not set, Vault's ` + "`" + `api_addr` + "`" + ` will be used. The issuer is a case sensitive URL using the https scheme that contains scheme, host, and optionally, port number and path components, but no query or fragment components. ## Attributes Reference No additional attributes are exposed by this resource.`,
 				},
@@ -3672,6 +3881,10 @@ var (
 				"assignment",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the assignment.`,
@@ -3699,6 +3912,10 @@ var (
 				"client",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the client.`,
@@ -3743,6 +3960,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required; Forces new resource) Name of the OIDC Key to create.`,
 				},
@@ -3786,6 +4007,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Required; Forces new resource) Name of the OIDC Key allow the Client ID.`,
 				},
@@ -3808,6 +4033,10 @@ var (
 				"provider",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the provider.`,
@@ -3853,6 +4082,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required; Forces new resource) Name of the OIDC Role to create.`,
 				},
@@ -3897,6 +4130,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the scope. The ` + "`" + `openid` + "`" + ` scope name is reserved.`,
 				},
@@ -3923,6 +4160,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Path to mount the JWT/OIDC auth backend`,
@@ -4053,6 +4294,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
 				},
@@ -4067,6 +4312,10 @@ var (
 				resource.Attribute{
 					Name:        "user_claim",
 					Description: `(Required) The claim to use to uniquely identify the user; this will be used as the name for the Identity entity alias created due to a successful login.`,
+				},
+				resource.Attribute{
+					Name:        "user_claim_json_pointer",
+					Description: `(Optional) Specifies if the ` + "`" + `user_claim` + "`" + ` value uses [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer) syntax for referencing claims. By default, the ` + "`" + `user_claim` + "`" + ` value will not use JSON pointer. Requires Vault 1.11+.`,
 				},
 				resource.Attribute{
 					Name:        "bound_subject",
@@ -4114,7 +4363,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "verbose_oidc_logging",
-					Description: `(Optional) Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `(Optional) Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses.`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Specifies the allowable elapsed time in seconds since the last time the user was actively authenticated with the OIDC provider. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -4167,6 +4420,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
@@ -4226,6 +4483,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
@@ -4322,6 +4583,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
 				},
@@ -4349,6 +4614,10 @@ var (
 				"config",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "kubernetes_host",
 					Description: `(Required) Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.`,
@@ -4393,6 +4662,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) Name of the role.`,
@@ -4454,6 +4727,180 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_kubernetes_secret_backend",
+			Category:         "Resources",
+			ShortDescription: `Creates a Kubernetes Secrets Engine in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"kubernetes",
+				"secret",
+				"backend",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_host",
+					Description: `(Optional) The Kubernetes API URL to connect to. Required if the standard pod environment variables ` + "`" + `KUBERNETES_SERVICE_HOST` + "`" + ` or ` + "`" + `KUBERNETES_SERVICE_PORT` + "`" + ` are not set on the host that Vault is running on.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_ca_cert",
+					Description: `(Optional) A PEM-encoded CA certificate used by the secrets engine to verify the Kubernetes API server certificate. Defaults to the local pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where Vault is running.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_jwt",
+					Description: `(Optional) The JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault is running in Kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "disable_local_ca_jwt",
+					Description: `(Optional) Disable defaulting to the local CA certificate and service account JWT when Vault is running in a Kubernetes pod. ## Attributes Reference No additional attributes are exported by this resource. ## Import The Kubernetes secret backend can be imported using its ` + "`" + `path` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kubernetes_secret_backend.config kubernetes ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kubernetes_secret_backend_role",
+			Category:         "Resources",
+			ShortDescription: `Creates a role for the Kubernetes Secrets Engine in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"kubernetes",
+				"secret",
+				"backend",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required) The path of the Kubernetes Secrets Engine backend mount to create the role in.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_kubernetes_namespaces",
+					Description: `(Required) The list of Kubernetes namespaces this role can generate credentials for. If set to ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "token_max_ttl",
+					Description: `(Optional) The maximum TTL for generated Kubernetes tokens in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "token_default_ttl",
+					Description: `(Optional) The default TTL for generated Kubernetes tokens in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_name",
+					Description: `(Optional) The pre-existing service account to generate tokens for. Mutually exclusive with ` + "`" + `kubernetes_role_name` + "`" + ` and ` + "`" + `generated_role_rules` + "`" + `. If set, only a Kubernetes token will be created when credentials are requested.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_role_name",
+					Description: `(Optional) The pre-existing Role or ClusterRole to bind a generated service account to. Mutually exclusive with ` + "`" + `service_account_name` + "`" + ` and ` + "`" + `generated_role_rules` + "`" + `. If set, Kubernetes token, service account, and role binding objects will be created when credentials are requested.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_role_type",
+					Description: `(Optional) Specifies whether the Kubernetes role is a Role or ClusterRole.`,
+				},
+				resource.Attribute{
+					Name:        "generated_role_rules",
+					Description: `(Optional) The Role or ClusterRole rules to use when generating a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with ` + "`" + `service_account_name` + "`" + ` and ` + "`" + `kubernetes_role_name` + "`" + `. If set, the entire chain of Kubernetes objects will be generated when credentials are requested.`,
+				},
+				resource.Attribute{
+					Name:        "name_template",
+					Description: `(Optional) The name template to use when generating service accounts, roles and role bindings. If unset, a default template is used.`,
+				},
+				resource.Attribute{
+					Name:        "extra_annotations",
+					Description: `(Optional) Additional annotations to apply to all generated Kubernetes objects.`,
+				},
+				resource.Attribute{
+					Name:        "extra_labels",
+					Description: `(Optional) Additional labels to apply to all generated Kubernetes objects. This resource also directly accepts all [vault_mount](mount.html.md) fields. ## Attributes Reference No additional attributes are exported by this resource. ## Import The Kubernetes secret backend role can be imported using the full path to the role of the form: ` + "`" + `<backend_path>/roles/<role_name>` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kubernetes_secret_backend_role.example kubernetes kubernetes/roles/example-role ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secret",
+			Category:         "Resources",
+			ShortDescription: `Writes a KV-V1 secret to a given path in Vault`,
+			Description:      ``,
+			Keywords: []string{
+				"kv",
+				"secret",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Full path of the KV-V1 secret.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `(Required) String containing a JSON-encoded object that will be written as the secret data at the given path. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference The following attributes are exported in addition to the above:`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON. ## Import KV-V1 secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret.secret kvv1/secret ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON. ## Import KV-V1 secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret.secret kvv1/secret ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secret_backend_v2",
+			Category:         "Resources",
+			ShortDescription: `Configures KV-V2 backend level settings that are applied to every key in the key-value store.`,
+			Description:      ``,
+			Keywords: []string{
+				"kv",
+				"secret",
+				"backend",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where KV-V2 engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "max_versions",
+					Description: `(Optional) The number of versions to keep per key.`,
+				},
+				resource.Attribute{
+					Name:        "cas_required",
+					Description: `(Optional) If true, all keys will require the cas parameter to be set on all write requests.`,
+				},
+				resource.Attribute{
+					Name:        "delete_version_after",
+					Description: `(Optional) If set, specifies the length of time before a version is deleted. Accepts duration in integer seconds. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference No additional attributes are exported by this resource. ## Import The KV-V2 secret backend can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret_backend_v2.config kvv2/config ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_ldap_auth_backend",
 			Category:         "Resources",
 			ShortDescription: `Managing LDAP auth backends in Vault`,
@@ -4464,6 +4911,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "url",
 					Description: `(Required) The URL of the LDAP server`,
@@ -4527,6 +4978,10 @@ var (
 				resource.Attribute{
 					Name:        "groupattr",
 					Description: `(Optional) LDAP attribute to follow on objects returned by groupfilter`,
+				},
+				resource.Attribute{
+					Name:        "username_as_alias",
+					Description: `(Optional) Force the auth method to use the username passed by the user as the alias name.`,
 				},
 				resource.Attribute{
 					Name:        "use_token_groups",
@@ -4606,6 +5061,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "groupname",
 					Description: `(Required) The LDAP groupname`,
 				},
@@ -4633,6 +5092,10 @@ var (
 				"user",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The LDAP username`,
@@ -4662,7 +5125,12 @@ var (
 				"mfa",
 				"duo",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -4675,7 +5143,12 @@ var (
 				"mfa",
 				"okta",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -4688,7 +5161,12 @@ var (
 				"mfa",
 				"pingid",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -4701,7 +5179,12 @@ var (
 				"mfa",
 				"totp",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -4714,6 +5197,10 @@ var (
 				"mount",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Where the secret backend will be mounted`,
@@ -4781,18 +5268,30 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path of the namespace. Must not have a trailing ` + "`" + `/` + "`" + ` ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the namespace. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "path_fq",
+					Description: `The fully qualified path to the namespace. Useful when provisioning resources in a child ` + "`" + `namespace` + "`" + `. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the namespace. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the namespace.`,
+				},
+				resource.Attribute{
+					Name:        "path_fq",
+					Description: `The fully qualified path to the namespace. Useful when provisioning resources in a child ` + "`" + `namespace` + "`" + `. ## Import Namespaces can be imported using its ` + "`" + `name` + "`" + ` as accessor id ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_namespace.example <name> ` + "`" + `` + "`" + `` + "`" + ` If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. ` + "`" + `` + "`" + `` + "`" + ` provider "vault" { # Configuration options namespace = "example" alias = "example" } resource vault_namespace "example2" { provider = vault.example } $ terraform import vault_namespace.example2 example2 $ terraform state show vault_namespace.example2 # vault_namespace.example2 resource "vault_namespace" "example2" { id = "example/example2/" namespace_id = <known after import> path = "example2" } ` + "`" + `` + "`" + `` + "`" + ` ## Tutorials Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.`,
 				},
 			},
 		},
@@ -4808,6 +5307,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Path to mount the Okta auth backend`,
@@ -4894,6 +5397,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path where the Okta auth backend is mounted`,
 				},
@@ -4921,6 +5428,10 @@ var (
 				"user",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path where the Okta auth backend is mounted`,
@@ -4953,6 +5464,10 @@ var (
 				"cert",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -5037,10 +5552,6 @@ var (
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
 				},
-				resource.Attribute{
-					Name:        "revoke",
-					Description: `Boolean value denoting whether the certificate will be revoked on resource destruction.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -5071,10 +5582,6 @@ var (
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
 				},
-				resource.Attribute{
-					Name:        "revoke",
-					Description: `Boolean value denoting whether the certificate will be revoked on resource destruction.`,
-				},
 			},
 		},
 		&resource.Resource{
@@ -5091,6 +5598,10 @@ var (
 				"ca",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -5117,6 +5628,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -5130,7 +5645,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ocsp_servers",
-					Description: `(Optional) Specifies the URL values for the OCSP Servers field. ## Attributes Reference No additional attributes are exported by this resource.`,
+					Description: `(Optional) Specifies the URL values for the OCSP Servers field. ## Attributes Reference No additional attributes are exported by this resource. ## Import The PKI config URLs can be imported using the resource's ` + "`" + `id` + "`" + `. In the case of the example above the ` + "`" + `id` + "`" + ` would be ` + "`" + `pki-root/config/urls` + "`" + `, where the ` + "`" + `pki-root` + "`" + ` component is the resource's ` + "`" + `backend` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend_config_urls.example pki-root/config/urls ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5149,6 +5664,10 @@ var (
 				"config",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -5179,6 +5698,10 @@ var (
 				"request",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -5307,6 +5830,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
 				},
@@ -5331,6 +5858,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -5340,11 +5871,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional) The TTL`,
+					Description: `(Optional, integer) The TTL, in seconds, for any certificate issued against this role.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional) The maximum TTL`,
+					Description: `(Optional, integer) The maximum lease TTL, in seconds, for the role.`,
 				},
 				resource.Attribute{
 					Name:        "allow_localhost",
@@ -5472,7 +6003,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_identifiers",
-					Description: `(Optional) Specify the list of allowed policies IODs`,
+					Description: `(Optional) Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use ` + "`" + `policy_identifier` + "`" + ` blocks instead`,
+				},
+				resource.Attribute{
+					Name:        "policy_identifier",
+					Description: `(Optional) (Vault 1.11+ only) A block for specifying policy identifers. The ` + "`" + `policy_identifier` + "`" + ` block can be repeated, and supports the following arguments: - ` + "`" + `oid` + "`" + ` - (Required) The OID for the policy identifier - ` + "`" + `notice` + "`" + ` - (Optional) A notice for the policy identifier - ` + "`" + `cps` + "`" + ` - (Optional) The URL of the CPS for the policy identifier Example usage: ` + "`" + `` + "`" + `` + "`" + `hcl resource "vault_mount" "pki" { path = "pki" type = "pki" default_lease_ttl_seconds = 3600 max_lease_ttl_seconds = 86400 } resource "vault_pki_secret_backend_role" "role" { backend = vault_mount.pki.path name = "my_role" ttl = 3600 allow_ip_sans = true key_type = "rsa" key_bits = 4096 allowed_domains = ["example.com", "my.domain"] allow_subdomains = true policy_identifier { oid = "1.3.6.1.4.1.7.8" notice= "I am a user Notice" } policy_identifier { oid = "1.3.6.1.4.1.44947.1.2.4" cps ="https://example.com" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "basic_constraints_valid_for_non_ca",
@@ -5480,7 +6015,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "not_before_duration",
-					Description: `(Optional) Specifies the duration by which to backdate the NotBefore property. ## Attributes Reference No additional attributes are exported by this resource. ## Import PKI secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend_role.role pki/roles/my_role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies the duration by which to backdate the NotBefore property.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_serial_numbers",
+					Description: `(Optional) An array of allowed serial numbers to put in Subject ## Attributes Reference No additional attributes are exported by this resource. ## Import PKI secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend_role.role pki/roles/my_role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5499,6 +6038,10 @@ var (
 				"cert",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -5639,6 +6182,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
 				},
@@ -5716,7 +6263,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "postal_code",
-					Description: `(Optional) The postal code ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) The postal code`,
+				},
+				resource.Attribute{
+					Name:        "revoke",
+					Description: `If set to ` + "`" + `true` + "`" + `, the certificate will be revoked on resource destruction. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certificate",
@@ -5735,8 +6286,12 @@ var (
 					Description: `The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). Requires the ` + "`" + `format` + "`" + ` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.`,
 				},
 				resource.Attribute{
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted. ## Deprecations`,
+				},
+				resource.Attribute{
 					Name:        "serial",
-					Description: `The serial`,
+					Description: `Use ` + "`" + `serial_number` + "`" + ` instead.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5757,8 +6312,12 @@ var (
 					Description: `The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). Requires the ` + "`" + `format` + "`" + ` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.`,
 				},
 				resource.Attribute{
+					Name:        "serial_number",
+					Description: `The certificate's serial number, hex formatted. ## Deprecations`,
+				},
+				resource.Attribute{
 					Name:        "serial",
-					Description: `The serial`,
+					Description: `Use ` + "`" + `serial_number` + "`" + ` instead.`,
 				},
 			},
 		},
@@ -5775,6 +6334,10 @@ var (
 				"sign",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -5805,7 +6368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uri_sans",
-					Description: `(Optional) List of alterative URIs`,
+					Description: `(Optional) List of alternative URIs`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -5890,6 +6453,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
 				},
@@ -5912,6 +6479,10 @@ var (
 				"count",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the rate limit quota`,
@@ -5940,6 +6511,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the rate limit quota`,
 				},
@@ -5949,7 +6524,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rate",
-					Description: `(Required) The maximum number of requests at any given second to be allowed by the quota rule. The ` + "`" + `rate` + "`" + ` must be positive. ## Attributes Reference No additional attributes are exported by this resource. ## Import Rate limit quotas can be imported using their names ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_quota_rate_limit.global global ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The maximum number of requests at any given second to be allowed by the quota rule. The ` + "`" + `rate` + "`" + ` must be positive.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) The duration in seconds to enforce rate limiting for.`,
+				},
+				resource.Attribute{
+					Name:        "block_interval",
+					Description: `(Optional) If set, when a client reaches a rate limit threshold, the client will be prohibited from any further requests until after the 'block_interval' in seconds has elapsed. ## Attributes Reference No additional attributes are exported by this resource. ## Import Rate limit quotas can be imported using their names ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_quota_rate_limit.global global ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5966,6 +6549,10 @@ var (
 				"backend",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "connection_uri",
 					Description: `(Required) Specifies the RabbitMQ connection URI.`,
@@ -6023,6 +6610,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the RabbitMQ secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -6057,6 +6648,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
 				},
@@ -6084,6 +6679,10 @@ var (
 				"ca",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path where the SSH secret backend is mounted. Defaults to 'ssh'`,
@@ -6116,6 +6715,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the role to create.`,
@@ -6230,6 +6833,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Optional) The token role name`,
 				},
@@ -6275,7 +6882,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "renew_increment",
-					Description: `(Optional) The renew increment ## Attributes Reference`,
+					Description: `(Optional) The renew increment`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) Metadata to be set on this token ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "lease_duration",
@@ -6318,6 +6929,10 @@ var (
 				"role",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
@@ -6369,6 +6984,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Path to where the back-end is mounted within Vault.`,
 				},
@@ -6412,6 +7031,10 @@ var (
 				"key",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the transit secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -6615,40 +7238,44 @@ var (
 		"vault_kmip_secret_scope":                            60,
 		"vault_kubernetes_auth_backend_config":               61,
 		"vault_kubernetes_auth_backend_role":                 62,
-		"vault_ldap_auth_backend":                            63,
-		"vault_ldap_auth_backend_group":                      64,
-		"vault_ldap_auth_backend_user":                       65,
-		"vault_mfa_duo":                                      66,
-		"vault_mfa_okta":                                     67,
-		"vault_mfa_pingid":                                   68,
-		"vault_mfa_totp":                                     69,
-		"vault_mount":                                        70,
-		"vault_namespace":                                    71,
-		"vault_okta_auth_backend":                            72,
-		"vault_okta_auth_backend_group":                      73,
-		"vault_okta_auth_backend_user":                       74,
-		"vault_pki_secret_backend_cert":                      75,
-		"vault_pki_secret_backend_config_ca":                 76,
-		"vault_pki_secret_backend_config_urls":               77,
-		"vault_pki_secret_backend_crl_config":                78,
-		"vault_pki_secret_backend_intermediate_cert_request": 79,
-		"vault_pki_secret_backend_intermediate_set_signed":   80,
-		"vault_pki_secret_backend_role":                      81,
-		"vault_pki_secret_backend_root_cert":                 82,
-		"vault_pki_secret_backend_root_sign_intermediate":    83,
-		"vault_pki_secret_backend_sign":                      84,
-		"vault_policy":                                       85,
-		"vault_quota_lease_count":                            86,
-		"vault_quota_rate_limit":                             87,
-		"vault_rabbitmq_secret_backend":                      88,
-		"vault_rabbitmq_secret_backend_role":                 89,
-		"vault_rgp_policy":                                   90,
-		"vault_ssh_secret_backend_ca":                        91,
-		"vault_ssh_secret_backend_role":                      92,
-		"vault_token":                                        93,
-		"vault_token_auth_backend_role":                      94,
-		"vault_transform_template":                           95,
-		"vault_transit_secret_backend_key":                   96,
+		"vault_kubernetes_secret_backend":                    63,
+		"vault_kubernetes_secret_backend_role":               64,
+		"vault_kv_secret":                                    65,
+		"vault_kv_secret_backend_v2":                         66,
+		"vault_ldap_auth_backend":                            67,
+		"vault_ldap_auth_backend_group":                      68,
+		"vault_ldap_auth_backend_user":                       69,
+		"vault_mfa_duo":                                      70,
+		"vault_mfa_okta":                                     71,
+		"vault_mfa_pingid":                                   72,
+		"vault_mfa_totp":                                     73,
+		"vault_mount":                                        74,
+		"vault_namespace":                                    75,
+		"vault_okta_auth_backend":                            76,
+		"vault_okta_auth_backend_group":                      77,
+		"vault_okta_auth_backend_user":                       78,
+		"vault_pki_secret_backend_cert":                      79,
+		"vault_pki_secret_backend_config_ca":                 80,
+		"vault_pki_secret_backend_config_urls":               81,
+		"vault_pki_secret_backend_crl_config":                82,
+		"vault_pki_secret_backend_intermediate_cert_request": 83,
+		"vault_pki_secret_backend_intermediate_set_signed":   84,
+		"vault_pki_secret_backend_role":                      85,
+		"vault_pki_secret_backend_root_cert":                 86,
+		"vault_pki_secret_backend_root_sign_intermediate":    87,
+		"vault_pki_secret_backend_sign":                      88,
+		"vault_policy":                                       89,
+		"vault_quota_lease_count":                            90,
+		"vault_quota_rate_limit":                             91,
+		"vault_rabbitmq_secret_backend":                      92,
+		"vault_rabbitmq_secret_backend_role":                 93,
+		"vault_rgp_policy":                                   94,
+		"vault_ssh_secret_backend_ca":                        95,
+		"vault_ssh_secret_backend_role":                      96,
+		"vault_token":                                        97,
+		"vault_token_auth_backend_role":                      98,
+		"vault_transform_template":                           99,
+		"vault_transit_secret_backend_key":                   100,
 	}
 )
 

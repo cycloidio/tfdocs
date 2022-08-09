@@ -11,15 +11,40 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_availability_zones",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The ` + "`" + `region` + "`" + ` to fetch availability zones from, defaults to the provider's ` + "`" + `region` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) The ` + "`" + `state` + "`" + ` of the availability zones to match, default ("available"). ## Attributes Reference ` + "`" + `id` + "`" + ` is set to hash of the returned zone list. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_blockstorage_availability_zones_v3",
-			Category:         "Elastic Volume Service (EVS)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
-				"volume",
-				"service",
-				"evs",
+				"deprecated",
 				"blockstorage",
 				"availability",
 				"zones",
@@ -99,6 +124,100 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the volume.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_cbr_vaults",
+			Category:         "Cloud Backup and Recovery (CBR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"backup",
+				"and",
+				"recovery",
+				"cbr",
+				"vaults",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in hashcode format.`,
+				},
+				resource.Attribute{
+					Name:        "vaults",
+					Description: `List of CBR vault details. The object structure of each CBR vault is documented below. The ` + "`" + `vaults` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The vault ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The CBR vault name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The object type of the CBR vault.`,
+				},
+				resource.Attribute{
+					Name:        "consistent_level",
+					Description: `The backup specifications. The valid value is`,
+				},
+				resource.Attribute{
+					Name:        "protection_type",
+					Description: `The protection type of the CBR vault.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The vault capacity, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "auto_expand_enabled",
+					Description: `Whether to enable automatic expansion of the backup protection type vault.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `The policy associated with the CBR vault.`,
+				},
+				resource.Attribute{
+					Name:        "allocated",
+					Description: `The allocated capacity of the vault, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "used",
+					Description: `The used capacity, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The specification code.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The vault status.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `The name of the bucket for the vault.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The key/value pairs to associate with the CBR vault.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `An array of one or more resources to attach to the CBR vault. The object structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `The ID of the ECS instance to be backed up.`,
+				},
+				resource.Attribute{
+					Name:        "includes",
+					Description: `An array of disk or SFS file system IDs which will be included in the backup.`,
 				},
 			},
 		},
@@ -543,14 +662,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_compute_availability_zones_v2",
-			Category:         "Elastic Cloud Server (ECS)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
-				"cloud",
-				"server",
-				"ecs",
+				"deprecated",
 				"compute",
 				"availability",
 				"zones",
@@ -2551,6 +2667,192 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_elb_certificate",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to obtain the Dedicated ELB certificate. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) The name of certificate. The value is case sensitive and does not supports fuzzy matching. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The certificate ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `The domain of the certificate. This parameter is valid only when ` + "`" + `type` + "`" + ` is "server".`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Specifies the certificate type. The value can be one of the following: + ` + "`" + `server` + "`" + `: indicates the server certificate. + ` + "`" + `client` + "`" + `: indicates the CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Human-readable description for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Indicates the time when the certificate expires.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The certificate ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `The domain of the certificate. This parameter is valid only when ` + "`" + `type` + "`" + ` is "server".`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Specifies the certificate type. The value can be one of the following: + ` + "`" + `server` + "`" + `: indicates the server certificate. + ` + "`" + `client` + "`" + `: indicates the CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Human-readable description for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Indicates the time when the certificate expires.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_elb_flavors",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"flavors",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to obtain the flavors. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, String) Specifies the flavor type. Valid values are`,
+				},
+				resource.Attribute{
+					Name:        "max_connections",
+					Description: `(Optional, Int) Specifies the maximum connections in the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional, Int) Specifies the bandwidth size(Mbit/s) in the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "cps",
+					Description: `(Optional, Int) Specifies the cps in the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "qps",
+					Description: `(Optional, Int) Specifies the qps in the L7 flavor. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of flavor IDs.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `A list of flavors. Each element contains the following attributes: + ` + "`" + `id` + "`" + ` - ID of the flavor. + ` + "`" + `name` + "`" + ` - Name of the flavor. + ` + "`" + `type` + "`" + ` - Type of the flavor. + ` + "`" + `max_connections` + "`" + ` - Maximum connections of the flavor. + ` + "`" + `cps` + "`" + ` - Cps of the flavor. + ` + "`" + `qps` + "`" + ` - Qps of the L7 flavor. + ` + "`" + `bandwidth` + "`" + ` - Bandwidth size(Mbit/s) of the flavor.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of flavor IDs.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `A list of flavors. Each element contains the following attributes: + ` + "`" + `id` + "`" + ` - ID of the flavor. + ` + "`" + `name` + "`" + ` - Name of the flavor. + ` + "`" + `type` + "`" + ` - Type of the flavor. + ` + "`" + `max_connections` + "`" + ` - Maximum connections of the flavor. + ` + "`" + `cps` + "`" + ` - Cps of the flavor. + ` + "`" + `qps` + "`" + ` - Qps of the L7 flavor. + ` + "`" + `bandwidth` + "`" + ` - Bandwidth size(Mbit/s) of the flavor.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_enterprise_project",
+			Category:         "Enterprise Project Management Service (EPS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"enterprise",
+				"project",
+				"management",
+				"service",
+				"eps",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the enterprise project name. Fuzzy search is supported.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) Specifies the ID of an enterprise project. The value "0" indicates the default enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, Int) Specifies the status of an enterprise project. + 1 indicates Enabled. + 2 indicates Disabled. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The supplementary information about the enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The UTC time when the enterprise project was created. Example: 2018-05-18T06:49:06Z`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The UTC time when the enterprise project was modified. Example: 2018-05-28T02:21:36Z`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The supplementary information about the enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The UTC time when the enterprise project was created. Example: 2018-05-18T06:49:06Z`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The UTC time when the enterprise project was modified. Example: 2018-05-28T02:21:36Z`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_fgs_dependencies",
 			Category:         "FunctionGraph",
 			ShortDescription: ``,
@@ -3029,7 +3331,11 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "realm",
-					Description: `(Optional) Region where a key resides. Changing this gets a new key. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found key. In addition, the following attributes are exported:`,
+					Description: `(Optional) Region where a key resides. Changing this gets a new key. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
 				},
 				resource.Attribute{
 					Name:        "creation_date",
@@ -3038,16 +3344,44 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "scheduled_deletion_date",
 					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_enabled",
+					Description: `Indicates whether the key rotation is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_interval",
+					Description: `The key rotation interval. It's valid when rotation is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_number",
+					Description: `The total number of key rotations. It's valid when rotation is enabled.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
+				},
+				resource.Attribute{
 					Name:        "creation_date",
 					Description: `Creation time (time stamp) of a key.`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_deletion_date",
 					Description: `Scheduled deletion time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_enabled",
+					Description: `Indicates whether the key rotation is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_interval",
+					Description: `The key rotation interval. It's valid when rotation is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_number",
+					Description: `The total number of key rotations. It's valid when rotation is enabled.`,
 				},
 			},
 		},
@@ -4517,13 +4851,7 @@ This resource can be useful for getting back a list of route ids for a vpc.
 			Type:             "flexibleengine_vpc_subnet_ids_v1",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
-			Description: `
-
-` + "`" + `flexibleengine_vpc_subnet_ids_v1` + "`" + ` provides a list of subnet ids for a vpc_id
-
-This resource can be useful for getting back a list of subnet ids for a vpc.
-
-`,
+			Description:      ``,
 			Keywords: []string{
 				"virtual",
 				"private",
@@ -4551,16 +4879,8 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 			Type:             "flexibleengine_vpc_subnet_v1",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
-			Description: `
-
-` + "`" + `flexibleengine_vpc_subnet_v1` + "`" + ` provides details about a specific VPC subnet.
-
-This resource can prove useful when a module accepts a subnet id as
-an input variable and needs to, for example, determine the id of the
-VPC that the subnet belongs to.
-
-`,
-			Icon: "subnet.svg",
+			Description:      ``,
+			Icon:             "subnet.svg",
 			Keywords: []string{
 				"virtual",
 				"private",
@@ -4572,7 +4892,7 @@ VPC that the subnet belongs to.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) - Specifies a resource ID in UUID format.`,
+					Description: `(Optional) - Specifies the ID in UUID format.`,
 				},
 				resource.Attribute{
 					Name:        "dns_list",
@@ -4585,6 +4905,22 @@ VPC that the subnet belongs to.
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `Specifies the subnet (Native OpenStack API) ID.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Whether the IPv6 is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_subnet_id",
+					Description: `The ID of the IPv6 subnet (Native OpenStack API).`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr",
+					Description: `The IPv6 subnet CIDR block.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_gateway",
+					Description: `The IPv6 subnet gateway.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4959,61 +5295,66 @@ VPC that the subnet belongs to.
 
 	dataSourcesMap = map[string]int{
 
-		"flexibleengine_blockstorage_availability_zones_v3": 0,
-		"flexibleengine_blockstorage_volume_v2":             1,
-		"flexibleengine_cce_addon_template":                 2,
-		"flexibleengine_cce_cluster_v3":                     3,
-		"flexibleengine_cce_node_ids_v3":                    4,
-		"flexibleengine_cce_node_v3":                        5,
-		"flexibleengine_compute_availability_zones_v2":      6,
-		"flexibleengine_compute_bms_flavors_v2":             7,
-		"flexibleengine_compute_bms_keypairs_v2":            8,
-		"flexibleengine_compute_bms_nic_v2":                 9,
-		"flexibleengine_compute_bms_server_v2":              10,
-		"flexibleengine_compute_flavors_v2":                 11,
-		"flexibleengine_compute_instance_v2":                12,
-		"flexibleengine_compute_instances":                  13,
-		"flexibleengine_csbs_backup_policy_v1":              14,
-		"flexibleengine_csbs_backup_v1":                     15,
-		"flexibleengine_cts_tracker_v1":                     16,
-		"flexibleengine_dcs_az_v1":                          17,
-		"flexibleengine_dcs_maintainwindow_v1":              18,
-		"flexibleengine_dcs_product_v1":                     19,
-		"flexibleengine_dds_flavor_v3":                      20,
-		"flexibleengine_dds_flavors_v3":                     21,
-		"flexibleengine_dms_product":                        22,
-		"flexibleengine_dns_zone_v2":                        23,
-		"flexibleengine_fgs_dependencies":                   24,
-		"flexibleengine_identity_custom_role_v3":            25,
-		"flexibleengine_identity_project_v3":                26,
-		"flexibleengine_identity_role_v3":                   27,
-		"flexibleengine_images_image_v2":                    28,
-		"flexibleengine_kms_data_key_v1":                    29,
-		"flexibleengine_kms_key_v1":                         30,
-		"flexibleengine_lb_certificate_v2":                  31,
-		"flexibleengine_lb_loadbalancer_v2":                 32,
-		"flexibleengine_nat_gateway_v2":                     33,
-		"flexibleengine_networking_network_v2":              34,
-		"flexibleengine_networking_secgroup_v2":             35,
-		"flexibleengine_rds_flavors_v1":                     36,
-		"flexibleengine_rds_flavors_v3":                     37,
-		"flexibleengine_rts_software_config":                38,
-		"flexibleengine_rts_stack_resource_v1":              39,
-		"flexibleengine_rts_stack_v1":                       40,
-		"flexibleengine_s3_bucket_object":                   41,
-		"flexibleengine_sdrs_domain_v1":                     42,
-		"flexibleengine_sfs_file_system_v2":                 43,
-		"flexibleengine_vbs_backup_policy_v2":               44,
-		"flexibleengine_vbs_backup_v2":                      45,
-		"flexibleengine_vpc_eip_v1":                         46,
-		"flexibleengine_vpc_peering_v2":                     47,
-		"flexibleengine_vpc_route_ids_v2":                   48,
-		"flexibleengine_vpc_route_v2":                       49,
-		"flexibleengine_vpc_subnet_ids_v1":                  50,
-		"flexibleengine_vpc_subnet_v1":                      51,
-		"flexibleengine_vpc_v1":                             52,
-		"flexibleengine_vpcep_endpoints":                    53,
-		"flexibleengine_vpcep_public_services":              54,
+		"flexibleengine_availability_zones":                 0,
+		"flexibleengine_blockstorage_availability_zones_v3": 1,
+		"flexibleengine_blockstorage_volume_v2":             2,
+		"flexibleengine_cbr_vaults":                         3,
+		"flexibleengine_cce_addon_template":                 4,
+		"flexibleengine_cce_cluster_v3":                     5,
+		"flexibleengine_cce_node_ids_v3":                    6,
+		"flexibleengine_cce_node_v3":                        7,
+		"flexibleengine_compute_availability_zones_v2":      8,
+		"flexibleengine_compute_bms_flavors_v2":             9,
+		"flexibleengine_compute_bms_keypairs_v2":            10,
+		"flexibleengine_compute_bms_nic_v2":                 11,
+		"flexibleengine_compute_bms_server_v2":              12,
+		"flexibleengine_compute_flavors_v2":                 13,
+		"flexibleengine_compute_instance_v2":                14,
+		"flexibleengine_compute_instances":                  15,
+		"flexibleengine_csbs_backup_policy_v1":              16,
+		"flexibleengine_csbs_backup_v1":                     17,
+		"flexibleengine_cts_tracker_v1":                     18,
+		"flexibleengine_dcs_az_v1":                          19,
+		"flexibleengine_dcs_maintainwindow_v1":              20,
+		"flexibleengine_dcs_product_v1":                     21,
+		"flexibleengine_dds_flavor_v3":                      22,
+		"flexibleengine_dds_flavors_v3":                     23,
+		"flexibleengine_dms_product":                        24,
+		"flexibleengine_dns_zone_v2":                        25,
+		"flexibleengine_elb_certificate":                    26,
+		"flexibleengine_elb_flavors":                        27,
+		"flexibleengine_enterprise_project":                 28,
+		"flexibleengine_fgs_dependencies":                   29,
+		"flexibleengine_identity_custom_role_v3":            30,
+		"flexibleengine_identity_project_v3":                31,
+		"flexibleengine_identity_role_v3":                   32,
+		"flexibleengine_images_image_v2":                    33,
+		"flexibleengine_kms_data_key_v1":                    34,
+		"flexibleengine_kms_key_v1":                         35,
+		"flexibleengine_lb_certificate_v2":                  36,
+		"flexibleengine_lb_loadbalancer_v2":                 37,
+		"flexibleengine_nat_gateway_v2":                     38,
+		"flexibleengine_networking_network_v2":              39,
+		"flexibleengine_networking_secgroup_v2":             40,
+		"flexibleengine_rds_flavors_v1":                     41,
+		"flexibleengine_rds_flavors_v3":                     42,
+		"flexibleengine_rts_software_config":                43,
+		"flexibleengine_rts_stack_resource_v1":              44,
+		"flexibleengine_rts_stack_v1":                       45,
+		"flexibleengine_s3_bucket_object":                   46,
+		"flexibleengine_sdrs_domain_v1":                     47,
+		"flexibleengine_sfs_file_system_v2":                 48,
+		"flexibleengine_vbs_backup_policy_v2":               49,
+		"flexibleengine_vbs_backup_v2":                      50,
+		"flexibleengine_vpc_eip_v1":                         51,
+		"flexibleengine_vpc_peering_v2":                     52,
+		"flexibleengine_vpc_route_ids_v2":                   53,
+		"flexibleengine_vpc_route_v2":                       54,
+		"flexibleengine_vpc_subnet_ids_v1":                  55,
+		"flexibleengine_vpc_subnet_v1":                      56,
+		"flexibleengine_vpc_v1":                             57,
+		"flexibleengine_vpcep_endpoints":                    58,
+		"flexibleengine_vpcep_public_services":              59,
 	}
 )
 

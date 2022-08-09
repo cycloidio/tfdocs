@@ -52,6 +52,273 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_api_gateway_api",
+			Category:         "API Gateway",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the API resource. If omitted, the provider-level region will be used. Changing this creates a new API resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the name of the API. An API name consists of 3–64 characters, starting with a letter. Only letters, digits, and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required, String, ForceNew) Specifies the ID of the API group. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Required, Int) Specifies whether the API is available to the public. The value can only be 1 (public).`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Required, String) Specifies the security authentication mode. The value can be 'APP', 'IAM', and ' NONE'.`,
+				},
+				resource.Attribute{
+					Name:        "request_protocol",
+					Description: `(Optional, String) Specifies the request protocol. The value can be 'HTTP', 'HTTPS', and 'BOTH' which means the API can be accessed through both 'HTTP' and 'HTTPS'. Defaults to 'HTTPS'.`,
+				},
+				resource.Attribute{
+					Name:        "request_method",
+					Description: `(Required, String) Specifies the request method, including 'GET','POST','PUT' and etc..`,
+				},
+				resource.Attribute{
+					Name:        "request_uri",
+					Description: `(Required, String) Specifies the request path of the API. The value must comply with URI specifications.`,
+				},
+				resource.Attribute{
+					Name:        "backend_type",
+					Description: `(Required, String) Specifies the service backend type. The value can be: + 'HTTP': the web service backend + 'FUNCTION': the FunctionGraph service backend + 'MOCK': the Mock service backend`,
+				},
+				resource.Attribute{
+					Name:        "http_backend",
+					Description: `(Optional, List) Specifies the configuration when backend_type selected 'HTTP' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "function_backend",
+					Description: `(Optional, List) Specifies the configuration when backend_type selected 'FUNCTION' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "mock_backend",
+					Description: `(Optional, List) Specifies the configuration when backend_type selected 'MOCK' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "request_parameter",
+					Description: `(Optional, List) the request parameter list (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "backend_parameter",
+					Description: `(Optional, List) the backend parameter list (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, List) the tags of API in format of string list.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the API. The description cannot exceed 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, String) Specifies the version of the API. A maximum of 16 characters are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `(Optional, Bool) Specifies whether CORS is supported or not.`,
+				},
+				resource.Attribute{
+					Name:        "example_success_response",
+					Description: `(Required, String) Specifies the example response for a successful request. The length cannot exceed 20,480 characters.`,
+				},
+				resource.Attribute{
+					Name:        "example_failure_response",
+					Description: `(Optional, String) Specifies the example response for a failed request The length cannot exceed 20,480 characters. The ` + "`" + `http_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required, String) Specifies the backend request protocol. The value can be 'HTTP' and 'HTTPS'.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional, String) Specifies the backend request method, including 'GET','POST','PUT' and etc..`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required, String) Specifies the backend request path. The value must comply with URI specifications.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_channel",
+					Description: `(Optional, String) Specifies the VPC channel ID. This parameter and ` + "`" + `url_domain` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "url_domain",
+					Description: `(Optional, String) Specifies the backend service address. An endpoint URL is in the format of "domain name (or IP address):port number", with up to 255 characters. This parameter and ` + "`" + `vpc_channel` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional, Int) Timeout duration (in ms) for API Gateway to request for the backend service. Defaults to 50000. The ` + "`" + `function_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "function_urn",
+					Description: `(Required, String) Specifies the function URN.`,
+				},
+				resource.Attribute{
+					Name:        "invocation_type",
+					Description: `(Required, String) Specifies the invocation mode, which can be 'async' or 'sync'.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, String) Specifies the function version.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional, Int) Timeout duration (in ms) for API Gateway to request for FunctionGraph. Defaults to 50000. The ` + "`" + `mock_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "result_content",
+					Description: `(Optional, String) Specifies the return result.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, String) Specifies the version of the Mock backend.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the Mock backend. The description cannot exceed 255 characters. The ` + "`" + `request_parameter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the input parameter name. A parameter name consists of 1–32 characters, starting with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required, String) Specifies the input parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, String) Specifies the input parameter type, which can be 'STRING' or 'NUMBER'.`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional, Bool) Specifies whether the parameter is mandatory or not.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional, String) Specifies the default value when the parameter is optional.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the parameter. The description cannot exceed 255 characters. The ` + "`" + `backend_parameter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the parameter name. A parameter name consists of 1–32 characters, starting with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required, String) Specifies the parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, String) Specifies the parameter type, which can be 'REQUEST', 'CONSTANT', or 'SYSTEM'.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required, String) Specifies the parameter value, which is a string of not more than 255 characters. The value varies depending on the parameter type: + 'REQUEST': parameter name in ` + "`" + `request_parameter` + "`" + ` + 'CONSTANT': real value of the parameter + 'SYSTEM': gateway parameter name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the parameter. The description cannot exceed 255 characters. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the API group to which the API belongs. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 10 minute. ## Import API can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_api_gateway_api.api "774438a28a574ac8a496325d1bf51807" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the API group to which the API belongs. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 10 minute. ## Import API can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_api_gateway_api.api "774438a28a574ac8a496325d1bf51807" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_api_gateway_group",
+			Category:         "API Gateway",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"gateway",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the API gateway group resource. If omitted, the provider-level region will be used. Changing this creates a new gateway group resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the name of the API group. An API group name consists of 3–64 characters, starting with a letter. Only letters, digits, and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the API group. The description cannot exceed 255 characters. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the API group. ## Import API groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_api_gateway_group.apigw_group "c8738f7c-a4b0-4c5f-a202-bda7dc4018a4" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the API group. ## Import API groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_api_gateway_group.apigw_group "c8738f7c-a4b0-4c5f-a202-bda7dc4018a4" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_as_configuration_v1",
 			Category:         "Auto Scaling (AS)",
 			ShortDescription: ``,
@@ -747,6 +1014,147 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_cbr_policy",
+			Category:         "Cloud Backup and Recovery (CBR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"backup",
+				"and",
+				"recovery",
+				"cbr",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the CBR policy. If omitted, the provider-level region will be used. Changing this will create a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies a unique name of the CBR policy. This parameter can contain a maximum of 64 characters, which may consist of chinese charactors, letters, digits, underscores(_) and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, String, ForceNew) Specifies the protection type of the CBR policy. Valid values are`,
+				},
+				resource.Attribute{
+					Name:        "backup_cycle",
+					Description: `(Required, List) Specifies the scheduling rule for the CBR policy backup execution. The [object](#cbr_policy_backup_cycle) structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional, Bool) Specifies whether to enable the CBR policy. Default to`,
+				},
+				resource.Attribute{
+					Name:        "destination_region",
+					Description: `(Optional, String) Specifies the name of the replication destination region, which is mandatory for cross-region replication. Required if ` + "`" + `protection_type` + "`" + ` is`,
+				},
+				resource.Attribute{
+					Name:        "destination_project_id",
+					Description: `(Optional, String) Specifies the ID of the replication destination project, which is mandatory for cross-region replication. Required if ` + "`" + `protection_type` + "`" + ` is`,
+				},
+				resource.Attribute{
+					Name:        "backup_quantity",
+					Description: `(Optional, Int) Specifies the maximum number of retained backups. The value ranges from ` + "`" + `2` + "`" + ` to ` + "`" + `99,999` + "`" + `. This parameter and ` + "`" + `time_period` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "time_period",
+					Description: `(Optional, Int) Specifies the duration (in days) for retained backups. The value ranges from ` + "`" + `2` + "`" + ` to ` + "`" + `99,999` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "long_term_retention",
+					Description: `(Optional, List) Specifies the long-term retention rules, which is an advanced options of the ` + "`" + `backup_quantity` + "`" + `. The [object](#cbr_policy_long_term_retention) structure is documented below. -> The configuration of ` + "`" + `long_term_retention` + "`" + ` and ` + "`" + `backup_quantity` + "`" + ` will take effect together. When the number of retained backups exceeds the preset value (number of ` + "`" + `backup_quantity` + "`" + `), the system automatically deletes the earliest backups. By default, the system automatically clears data every other day.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Optional, String) Specifies the UTC time zone, e.g.: ` + "`" + `UTC+08:00` + "`" + `. Required if ` + "`" + `long_term_retention` + "`" + ` is set. <a name="cbr_policy_backup_cycle"></a> The ` + "`" + `backup_cycle` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Optional, String) Specifies the weekly backup day of backup schedule. It supports seven days a week (MO, TU, WE, TH, FR, SA, SU) and this parameter is separated by a comma (,) without spaces, between date and date during the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional, Int) Specifies the interval (in days) of backup schedule. The value range is ` + "`" + `1` + "`" + ` to ` + "`" + `30` + "`" + `. This parameter and ` + "`" + `days` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "execution_times",
+					Description: `(Required, List) Specifies the backup time. Automated backups will be triggered at the backup time. The current time is in the UTC format (HH:MM). The minutes in the list must be set to`,
+				},
+				resource.Attribute{
+					Name:        "daily",
+					Description: `(Optional, Int) - Specifies the latest backup of each day is saved in the long term.`,
+				},
+				resource.Attribute{
+					Name:        "weekly",
+					Description: `(Optional, Int) - Specifies the latest backup of each week is saved in the long term.`,
+				},
+				resource.Attribute{
+					Name:        "monthly",
+					Description: `(Optional, Int) - Specifies the latest backup of each month is saved in the long term.`,
+				},
+				resource.Attribute{
+					Name:        "yearly",
+					Description: `(Optional, Int) - Specifies the latest backup of each year is saved in the long term. -> A maximum of 10 backups are retained for failed periodic backup tasks. They are retained for one month and can be manually deleted on the web console. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `A resource ID in UUID format. ## Import Policies can be imported by their ` + "`" + `id` + "`" + `. For example, ` + "`" + `` + "`" + `` + "`" + ` terraform import flexibleengine_cbr_policy.test 4d2c2939-774f-42ef-ab15-e5b126b11ace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A resource ID in UUID format. ## Import Policies can be imported by their ` + "`" + `id` + "`" + `. For example, ` + "`" + `` + "`" + `` + "`" + ` terraform import flexibleengine_cbr_policy.test 4d2c2939-774f-42ef-ab15-e5b126b11ace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_cbr_vault",
+			Category:         "Cloud Backup and Recovery (CBR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"backup",
+				"and",
+				"recovery",
+				"cbr",
+				"vault",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A resource ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "allocated",
+					Description: `The allocated capacity of the vault, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "used",
+					Description: `The used capacity, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `The specification code.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The vault status.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `The name of the bucket for the vault. ## Import Vaults can be imported by their ` + "`" + `id` + "`" + `. For example, ` + "`" + `` + "`" + `` + "`" + ` terraform import flexibleengine_cbr_vault.test 01c33779-7c83-4182-8b6b-24a671fcedf8 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_cce_addon_v3",
 			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: ``,
@@ -1094,6 +1502,80 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_cce_namespace",
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"namespace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the namespace resource. If omitted, the provider-level region will be used. Changing this will create a new namespace resource.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required, String, ForceNew) Specifies the cluster ID to which the CCE namespace belongs. Changing this will create a new namespace resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String, ForceNew) Specifies the unique name of the namespace. This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and hyphens (-), and must start and end with lowercase letters and digits. Changing this will create a new namespace resource. Exactly one of ` + "`" + `name` + "`" + ` or ` + "`" + `prefix` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional, String, ForceNew) Specifies a prefix used by the server to generate a unique name. This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and hyphens (-), and must start and end with lowercase letters and digits. Changing this will create a new namespace resource. Exactly one of ` + "`" + `name` + "`" + ` or ` + "`" + `prefix` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional, Map, ForceNew) Specifies an unstructured key value map for external parameters. Changing this will create a new namespace resource.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, Map, ForceNew) Specifies the map of string keys and values for labels. Changing this will create a new namespace resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The namespace ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `The server time when namespace was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current phase of the namespace. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import CCE namespace can be imported using the cluster ID and namespace name separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_namespace.test bb6923e4-b16e-11eb-b0cd-0255ac101da1/test-namespace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The namespace ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `The server time when namespace was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current phase of the namespace. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import CCE namespace can be imported using the cluster ID and namespace name separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_namespace.test bb6923e4-b16e-11eb-b0cd-0255ac101da1/test-namespace ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_cce_node_pool_v3",
 			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: ``,
@@ -1123,6 +1605,10 @@ var (
 				resource.Attribute{
 					Name:        "flavor_id",
 					Description: `(Required, String, ForceNew) Specifies the flavor id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, String, ForceNew) Node Pool type. Possible values are: "vm" and "ElasticBMS".`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -1198,27 +1684,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required, Int) Disk size in GB.`,
+					Description: `(Required, Int) Specifies the disk size in GB.`,
 				},
 				resource.Attribute{
 					Name:        "volumetype",
-					Description: `(Required, String) Disk type.`,
+					Description: `(Required, String) Specifies the disk type.`,
 				},
 				resource.Attribute{
 					Name:        "extend_params",
-					Description: `(Optional, Map) Disk expansion parameters in key/value pair format. The ` + "`" + `data_volumes` + "`" + ` block supports:`,
+					Description: `(Optional, Map) Specifies the disk expansion parameters in key/value pair format. The ` + "`" + `data_volumes` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required, Int) Disk size in GB.`,
+					Description: `(Required, Int) Specifies the disk size in GB.`,
 				},
 				resource.Attribute{
 					Name:        "volumetype",
-					Description: `(Required, String) Disk type.`,
+					Description: `(Required, String) Specifies the disk type.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `(Optional, String) Specifies the KMS key ID. This is used to encrypt the volume.`,
 				},
 				resource.Attribute{
 					Name:        "extend_params",
-					Description: `(Optional, Map) Disk expansion parameters in key/value pair format. The ` + "`" + `taints` + "`" + ` block supports:`,
+					Description: `(Optional, Map) Specifies the disk expansion parameters in key/value pair format. The ` + "`" + `taints` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1242,7 +1732,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "billing_mode",
-					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 20 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1256,23 +1754,30 @@ var (
 				},
 				resource.Attribute{
 					Name:        "billing_mode",
-					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Billing mode of a node. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 20 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 20 minute. ## Import Node_pool can be imported using the cluster and node_pool id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import flexibleengine_cce_node_pool_v3.node_pool_1 <cluster-id>/<node_pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_cce_nodes_v3",
+			Type:             "flexibleengine_cce_node_v3",
 			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: ``,
 			Description:      ``,
-			Icon:             "Computing-CCE.svg",
 			Keywords: []string{
 				"cloud",
 				"container",
 				"engine",
 				"cce",
-				"nodes",
+				"node",
 				"v3",
 			},
 			Arguments: []resource.Attribute{
@@ -1314,7 +1819,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip_ids",
-					Description: `(Optional) List of existing elastic IP IDs. Changing this parameter will create a new resource. ->`,
+					Description: `(Optional) List of existing elastic IP IDs. Changing this parameter will create a new resource. -> If the ` + "`" + `eip_ids` + "`" + ` parameter is configured, you do not need to configure the ` + "`" + `eip_count` + "`" + ` and bandwidth parameters: ` + "`" + `iptype` + "`" + `, ` + "`" + `bandwidth_charge_mode` + "`" + `, ` + "`" + `bandwidth_size` + "`" + ` and ` + "`" + `share_type` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "eip_count",
@@ -1362,43 +1867,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "extend_param",
-					Description: `(Optional, Map, ForceNew) Extended parameter. Changing this parameter will create a new resource. Availiable keys :`,
-				},
-				resource.Attribute{
-					Name:        "agency_name",
-					Description: `Specifies the agency name to provide temporary credentials for CCE node to access other cloud services.`,
-				},
-				resource.Attribute{
-					Name:        "dockerBaseSize",
-					Description: `The available disk space of a single docker container on the node in device mapper mode.`,
-				},
-				resource.Attribute{
-					Name:        "DockerLVMConfigOverride",
-					Description: `Docker data disk configurations. The following is an example default configuration: ` + "`" + `` + "`" + `` + "`" + `hcl extend_param = { DockerLVMConfigOverride = "dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Map, ForceNew) Extended parameter. Changing this parameter will create a new resource. Availiable keys: + ` + "`" + `agency_name` + "`" + ` - Specifies the agency name to provide temporary credentials for CCE node to access other cloud services. + ` + "`" + `dockerBaseSize` + "`" + ` - The available disk space of a single docker container on the node in device mapper mode. + ` + "`" + `DockerLVMConfigOverride` + "`" + ` - Docker data disk configurations. The following is an example default configuration: ` + "`" + `` + "`" + `` + "`" + `hcl extend_param = { DockerLVMConfigOverride = "dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Disk size in GB.`,
+					Description: `(Required) Specifies the disk size in GB.`,
 				},
 				resource.Attribute{
 					Name:        "volumetype",
-					Description: `(Required) Disk type.`,
+					Description: `(Required) Specifies the disk type.`,
 				},
 				resource.Attribute{
 					Name:        "extend_params",
-					Description: `(Optional) Disk expansion parameters in key/value pair format.`,
+					Description: `(Optional) Specifies the disk expansion parameters in key/value pair format.`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Disk size in GB.`,
+					Description: `(Required) Specifies the disk size in GB.`,
 				},
 				resource.Attribute{
 					Name:        "volumetype",
-					Description: `(Required) Disk type.`,
+					Description: `(Required) Specifies the disk type.`,
 				},
 				resource.Attribute{
 					Name:        "extend_params",
-					Description: `(Optional) Disk expansion parameters in key/value pair format.`,
+					Description: `(Optional) Specifies the disk expansion parameters in key/value pair format.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `(Optional) Specifies the ID of a KMS key. This is used to encrypt the volume. -> You need to create an agency (EVSAccessKMS) when disk encryption is used in the current project for the first time ever. The account and permission of the created agency are ` + "`" + `op_svc_evs` + "`" + ` and`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1453,6 +1950,100 @@ var (
 				resource.Attribute{
 					Name:        "public_ip",
 					Description: `Public IP of the CCE node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_cce_pvc",
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"pvc",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the PVC resource. If omitted, the provider-level region will be used. Changing this will create a new PVC resource.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required, String, ForceNew) Specifies the cluster ID to which the CCE PVC belongs.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required, String, ForceNew) Specifies the namespace to logically divide your containers into different group. Changing this will create a new PVC resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String, ForceNew) Specifies the unique name of the PVC resource. This parameter can contain a maximum of 63 characters, which may consist of lowercase letters, digits and hyphens (-), and must start and end with lowercase letters and digits. Changing this will create a new PVC resource.`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional, Map, ForceNew) Specifies the unstructured key value map for external parameters. Changing this will create a new PVC resource.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional, Map, ForceNew) Specifies the map of string keys and values for labels. Changing this will create a new PVC resource.`,
+				},
+				resource.Attribute{
+					Name:        "storage_class_name",
+					Description: `(Required, String, ForceNew) Specifies the type of the storage bound to the CCE PVC. The valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "access_modes",
+					Description: `(Required, List, ForceNew) Specifies the desired access modes the volume should have. The valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Required, String, ForceNew) Specifies the minimum amount of storage resources required. Changing this creates a new PVC resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PVC ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `The server time when PVC was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current phase of the PVC. +`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 5 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 3 minute. ## Import CCE PVC can be imported using the cluster ID, namespace and name separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_pvc.test 5c20fdad-7288-11eb-b817-0255ac10158b/default/pvc_name ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include: ` + "`" + `annotations` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a PVC. You can then decide if changes should be applied to the PVC, or the resource definition should be updated to align with the PVC. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_cce_pvc" "test" { ... lifecycle { ignore_changes = [ annotations, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The PVC ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `The server time when PVC was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current phase of the PVC. +`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 5 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 3 minute. ## Import CCE PVC can be imported using the cluster ID, namespace and name separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_pvc.test 5c20fdad-7288-11eb-b817-0255ac10158b/default/pvc_name ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attributes missing from the API response, security or some other reason. The missing attributes include: ` + "`" + `annotations` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a PVC. You can then decide if changes should be applied to the PVC, or the resource definition should be updated to align with the PVC. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_cce_pvc" "test" { ... lifecycle { ignore_changes = [ annotations, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1943,7 +2534,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `network` + "`" + ` block supports:`,
+					Description: `(Optional) Specifies the key/value pairs to associate with the instance. The ` + "`" + `network` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -1999,27 +2590,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `(Optional) A UUID of a Server Group. The instance will be placed into that group.`,
+					Description: `(Optional) Specifies the`,
 				},
 				resource.Attribute{
-					Name:        "different_host",
-					Description: `(Optional) A list of instance UUIDs. The instance will be scheduled on a different host than all other instances.`,
+					Name:        "tenancy",
+					Description: `(Optional) Specifies whether the ECS is created on a Dedicated Host (DeH) or in a shared pool (default). The value can be`,
 				},
 				resource.Attribute{
-					Name:        "same_host",
-					Description: `(Optional) A list of instance UUIDs. The instance will be scheduled on the same host of those specified.`,
-				},
-				resource.Attribute{
-					Name:        "query",
-					Description: `(Optional) A conditional query that a compute node must pass in order to host an instance.`,
-				},
-				resource.Attribute{
-					Name:        "target_cell",
-					Description: `(Optional) The name of a cell to host the instance.`,
-				},
-				resource.Attribute{
-					Name:        "build_near_host_ip",
-					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. ## Attributes Reference The following attributes are exported:`,
+					Name:        "deh_id",
+					Description: `(Optional) Specifies the DeH ID. This parameter takes effect only when the value of tenancy is dedicated. If you do not specify this parameter, the system will automatically assign a DeH to you to deploy ECSs. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -2031,7 +2610,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_ip_v4",
-					Description: `The first detected Fixed IPv4 address _or_ the Floating IP.`,
+					Description: `The first detected Fixed IPv4 address`,
 				},
 				resource.Attribute{
 					Name:        "access_ip_v6",
@@ -2137,7 +2716,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_ip_v4",
-					Description: `The first detected Fixed IPv4 address _or_ the Floating IP.`,
+					Description: `The first detected Fixed IPv4 address`,
 				},
 				resource.Attribute{
 					Name:        "access_ip_v6",
@@ -3647,6 +4226,14 @@ var (
 					Description: `(Optional, String, ForceNew) Specifies the storage I/O specification. Value range: + When bandwidth is`,
 				},
 				resource.Attribute{
+					Name:        "manager_user",
+					Description: `(Optional, String, ForceNew) Specifies the username for logging in to the Kafka Manager. The username consists of 4 to 64 characters and can contain letters, digits, hyphens (-), and underscores (_). Changing this creates a new instance resource.`,
+				},
+				resource.Attribute{
+					Name:        "manager_password",
+					Description: `(Optional, String, ForceNew) Specifies the password for logging in to the Kafka Manager. The password must meet the following complexity requirements: Must be 8 to 32 characters long. Must contain at least 2 of the following character types: lowercase letters, uppercase letters, digits, and special characters (` + "`" + `~!@#$%^&`,
+				},
+				resource.Attribute{
 					Name:        "access_user",
 					Description: `(Optional, String, ForceNew) Specifies a username who can accesse the instance with SASL authentication. A username consists of 4 to 64 characters and supports only letters, digits, and hyphens (-). Changing this creates a new instance resource.`,
 				},
@@ -3707,6 +4294,10 @@ var (
 					Description: `Indicates the count of ECS instances.`,
 				},
 				resource.Attribute{
+					Name:        "manegement_connect_address",
+					Description: `Indicates the connection address of the Kafka Manager of a Kafka instance.`,
+				},
+				resource.Attribute{
 					Name:        "connect_address",
 					Description: `Indicates the IP addresses of the DMS Kafka instance.`,
 				},
@@ -3720,7 +4311,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Indicates the creation time of the DMS Kafka instance. ## Import DMS Kafka instance can be imported using the instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dms_kafka_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, because of ` + "`" + `access_user` + "`" + ` and ` + "`" + `password` + "`" + ` are missing from the API response due to security reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a DMS Kafka instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_dms_kafka_instance" "instance_1" { ... lifecycle { ignore_changes = [ access_user, password, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Indicates the creation time of the DMS Kafka instance. ## Import DMS Kafka instance can be imported using the instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dms_kafka_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, because of ` + "`" + `access_user` + "`" + `, ` + "`" + `password` + "`" + `, ` + "`" + `manager_user` + "`" + ` and ` + "`" + `manager_password` + "`" + ` are missing from the API response due to security reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a DMS Kafka instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_dms_kafka_instance" "instance_1" { ... lifecycle { ignore_changes = [ access_user, password, manager_user, manager_password, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3769,6 +4360,10 @@ var (
 					Description: `Indicates the count of ECS instances.`,
 				},
 				resource.Attribute{
+					Name:        "manegement_connect_address",
+					Description: `Indicates the connection address of the Kafka Manager of a Kafka instance.`,
+				},
+				resource.Attribute{
 					Name:        "connect_address",
 					Description: `Indicates the IP addresses of the DMS Kafka instance.`,
 				},
@@ -3782,7 +4377,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Indicates the creation time of the DMS Kafka instance. ## Import DMS Kafka instance can be imported using the instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dms_kafka_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, because of ` + "`" + `access_user` + "`" + ` and ` + "`" + `password` + "`" + ` are missing from the API response due to security reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a DMS Kafka instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_dms_kafka_instance" "instance_1" { ... lifecycle { ignore_changes = [ access_user, password, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Indicates the creation time of the DMS Kafka instance. ## Import DMS Kafka instance can be imported using the instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dms_kafka_instance.instance_1 8d3c7938-dc47-4937-a30f-c80de381c5e3 ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, because of ` + "`" + `access_user` + "`" + `, ` + "`" + `password` + "`" + `, ` + "`" + `manager_user` + "`" + ` and ` + "`" + `manager_password` + "`" + ` are missing from the API response due to security reason. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a DMS Kafka instance. You can then decide if changes should be applied to the instance, or the resource definition should be updated to align with the instance. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_dms_kafka_instance" "instance_1" { ... lifecycle { ignore_changes = [ access_user, password, manager_user, manager_password, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4723,6 +5318,108 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_elb_certificate",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the ELB certificate resource. If omitted, the provider-level region will be used. Changing this creates a new certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the certificate. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, String, ForceNew) Specifies the certificate type. The default value is "server". The value can be one of the following: + server: indicates the server certificate. + client: indicates the CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required, String) Specifies the public encrypted key of the certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional, String) Specifies the private encrypted key of the certificate, PEM format. This parameter is valid and mandatory only when ` + "`" + `type` + "`" + ` is set to "server".`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional, String) Specifies the domain of the certificate. The value contains a maximum of 100 characters. This parameter is valid only when ` + "`" + `type` + "`" + ` is set to "server". ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a resource ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Indicates the expire time. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import ELB certificate can be imported using the certificate ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_elb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Specifies a resource ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Indicates the expire time. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import ELB certificate can be imported using the certificate ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_elb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_elb_health",
 			Category:         "Deprecated",
 			ShortDescription: ``,
@@ -4851,6 +5548,80 @@ var (
 				resource.Attribute{
 					Name:        "healthcheck_interval",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_elb_ipgroup",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"ipgroup",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the ip group resource. If omitted, the provider-level region will be used. Changing this creates a new ip group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Specifies the name of the ip group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the ip group.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `(Required, List) Specifies an array of one or more ip addresses. The ip_list object structure is documented below. The ` + "`" + `ip_list` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required, String) IP address or CIDR block.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Human-readable description for the ip. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The uuid of the ip group. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ELB IP group can be imported using the IP group ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_elb_ipgroup.group_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The uuid of the ip group. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ELB IP group can be imported using the IP group ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_elb_ipgroup.group_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5281,6 +6052,68 @@ var (
 				resource.Attribute{
 					Name:        "tenantid",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_enterprise_project",
+			Category:         "Enterprise Project Management Service (EPS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"enterprise",
+				"project",
+				"management",
+				"service",
+				"eps",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the enterprise project. This parameter can contain 1 to 64 characters. Only letters, digits, underscores (_), and hyphens (-) are allowed. The name must be unique in the domain and cannot include any form of the word "default" ("deFaulT", for instance).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Optional, Bool) Specifies whether to enable the enterprise project. Default to`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an enterprise project. + 1 indicates Enabled. + 2 indicates Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the type of the enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the UTC time when the enterprise project was created. Example: 2018-05-18T06:49:06Z`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Indicates the UTC time when the enterprise project was modified. Example: 2018-05-28T02:21:36Z ## Import Enterprise projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_enterprise_project.test 88f889c7-270e-4e77-8230-bf7db08d9b0e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an enterprise project. + 1 indicates Enabled. + 2 indicates Disabled.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the type of the enterprise project.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the UTC time when the enterprise project was created. Example: 2018-05-18T06:49:06Z`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Indicates the UTC time when the enterprise project was modified. Example: 2018-05-28T02:21:36Z ## Import Enterprise projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_enterprise_project.test 88f889c7-270e-4e77-8230-bf7db08d9b0e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6918,11 +7751,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
-					Description: `(Required) The alias in which to create the key. It is required when we create a new key. Changing this updates the alias of key.`,
+					Description: `(Required) Specifies the name of a KMS key.`,
 				},
 				resource.Attribute{
 					Name:        "key_description",
-					Description: `(Optional) The description of the key as viewed in FlexibleEngine console. Changing this updates the description of key.`,
+					Description: `(Optional) Specifies the description of a KMS key.`,
 				},
 				resource.Attribute{
 					Name:        "realm",
@@ -6930,11 +7763,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pending_days",
-					Description: `(Optional) Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 1096 days. Defaults to 7. It only be used when delete a key.`,
+					Description: `(Optional) Specifies the duration in days after which the key is deleted after destruction of the resource, must be between 7 and 1096 days. Defaults to 7. It only be used when delete a key.`,
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional) Specifies whether the key is enabled. Defaults to true. Changing this updates the state of existing key. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Specifies whether the key is enabled. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_enabled",
+					Description: `(Optional) Specifies whether the key rotation is enabled. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_interval",
+					Description: `(Optional) Specifies the key rotation interval. The valid value is range from 30 to 365, defaults to 365. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6954,7 +7795,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `Creation time (time stamp) of a key. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_number",
+					Description: `The total number of key rotations. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6976,21 +7821,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "creation_date",
-					Description: `Creation time (time stamp) of a key. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Creation time (time stamp) of a key.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_number",
+					Description: `The total number of key rotations. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_lb_certificate_v2",
-			Category:         "Elastic Load Balance (ELB)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
-				"load",
-				"balance",
-				"elb",
+				"deprecated",
 				"lb",
 				"certificate",
 				"v2",
@@ -7554,6 +8400,134 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_lb_listener_v3",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"lb",
+				"listener",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the listener resource. If omitted, the provider-level region will be used. Changing this creates a new listener.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_id",
+					Description: `(Required, String, ForceNew) The load balancer on which to provision this listener. Changing this creates a new listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required, String, ForceNew) The protocol can either be`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required, Int, ForceNew) The port on which to listen for client traffic. Changing this creates a new listener.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Human-readable name for the listener.`,
+				},
+				resource.Attribute{
+					Name:        "default_pool_id",
+					Description: `(Optional, String) The ID of the default pool with which the listener is associated. Changing this creates a new listener.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Human-readable description for the listener.`,
+				},
+				resource.Attribute{
+					Name:        "http2_enable",
+					Description: `(Optional, Bool) Specifies whether to use HTTP/2. The default value is false. This parameter is valid only when the protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "forward_eip",
+					Description: `(Optional, Bool) Specifies whether transfer the load balancer EIP in the X-Forward-EIP header to backend servers. The default value is false. This parameter is valid only when the protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "access_policy",
+					Description: `(Optional, String) Specifies the access policy for the listener. Valid options are`,
+				},
+				resource.Attribute{
+					Name:        "ip_group",
+					Description: `(Optional, String) Specifies the ip group id for the listener.`,
+				},
+				resource.Attribute{
+					Name:        "server_certificate",
+					Description: `(Optional, String) Specifies the ID of the server certificate used by the listener. This parameter is mandatory when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "sni_certificate",
+					Description: `(Optional, List) Lists the IDs of SNI certificates (server certificates with a domain name) used by the listener. This parameter is valid when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "ca_certificate",
+					Description: `(Optional, String) Specifies the ID of the CA certificate used by the listener. This parameter is valid when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "tls_ciphers_policy",
+					Description: `(Optional, String) Specifies the TLS cipher policy for the listener. Valid options are: tls-1-0-inherit, tls-1-0, tls-1-1, tls-1-2, tls-1-2-strict, tls-1-2-fs, tls-1-0-with-1-3, and tls-1-2-fs-with-1-3. This parameter is valid when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout",
+					Description: `(Optional, Int) Specifies the idle timeout for the listener. Value range: 0 to 4000.`,
+				},
+				resource.Attribute{
+					Name:        "request_timeout",
+					Description: `(Optional, Int) Specifies the request timeout for the listener. Value range: 1 to 300. This parameter is valid when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout",
+					Description: `(Optional, Int) Specifies the response timeout for the listener. Value range: 1 to 300. This parameter is valid when protocol is set to`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Map) The key/value pairs to associate with the listener. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the listener. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 10 minute. ## Import ELB listener can be imported using the listener ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_listener_v3.listener_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the listener. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 10 minute. ## Import ELB listener can be imported using the listener ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_listener_v3.listener_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_lb_loadbalancer_v2",
 			Category:         "Elastic Load Balance (ELB)",
 			ShortDescription: ``,
@@ -7698,6 +8672,154 @@ var (
 				resource.Attribute{
 					Name:        "vip_port_id",
 					Description: `The Port ID of the Load Balancer IP. ## Import Loadbalancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_loadbalancer_v2.loadbalancer_1 3e3632db-36c6-4b28-a92e-e72e6562daa6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_lb_loadbalancer_v3",
+			Category:         "Elastic Load Balance (ELB)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"elb",
+				"lb",
+				"loadbalancer",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the loadbalancer resource. If omitted, the provider-level region will be used. Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required, List, ForceNew) Specifies the list of AZ names. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String) Human-readable name for the loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Human-readable description for the loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "cross_vpc_backend",
+					Description: `(Optional, Bool) Enable this if you want to associate the IP addresses of backend servers with your load balancer. Can only be true when updating.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, String, ForceNew) The vpc on which to create the loadbalancer. Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_subnet_id",
+					Description: `(Optional, String) The subnet on which to allocate the loadbalancer's ipv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_network_id",
+					Description: `(Optional, String) The network on which to allocate the loadbalancer's ipv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_bandwidth_id",
+					Description: `(Optional, String) The ipv6 bandwidth id. Only support shared bandwidth.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `(Optional, String) The ipv4 address of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_eip_id",
+					Description: `(Optional, String, ForceNew) The ID of the EIP. Changing this parameter will create a new resource. ->`,
+				},
+				resource.Attribute{
+					Name:        "iptype",
+					Description: `(Optional, String, ForceNew) Elastic IP type. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_charge_mode",
+					Description: `(Optional, String, ForceNew) Bandwidth billing type. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "sharetype",
+					Description: `(Optional, String, ForceNew) Bandwidth sharing type. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_size",
+					Description: `(Optional, Int, ForceNew) Bandwidth size. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "l4_flavor_id",
+					Description: `(Optional, String) The L4 flavor id of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "l7_flavor_id",
+					Description: `(Optional, String) The L7 flavor id of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Map) The key/value pairs to associate with the loadbalancer. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_eip",
+					Description: `The ipv4 eip address of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_eip",
+					Description: `The ipv6 eip address of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_eip_id",
+					Description: `The ipv6 eip id of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `The ipv6 address of the Load Balancer. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import ELB loadbalancer can be imported using the loadbalancer ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_loadbalancer_v3.loadbalancer_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the API response, security or some other reason. The missing attributes include: ` + "`" + `ipv6_bandwidth_id` + "`" + `, ` + "`" + `iptype` + "`" + `, ` + "`" + `bandwidth_charge_mode` + "`" + `, ` + "`" + `sharetype` + "`" + ` and ` + "`" + `bandwidth_size` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a loadbalancer. You can then decide if changes should be applied to the loadbalancer, or the resource definition should be updated to align with the loadbalancer. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_lb_loadbalancer_v3" "loadbalancer_1" { ... lifecycle { ignore_changes = [ ipv6_bandwidth_id, iptype, bandwidth_charge_mode, sharetype, bandwidth_size, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipv4_eip",
+					Description: `The ipv4 eip address of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_eip",
+					Description: `The ipv6 eip address of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_eip_id",
+					Description: `The ipv6 eip id of the Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `The ipv6 address of the Load Balancer. ## Timeouts This resource provides the following timeouts configuration options:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `Default is 10 minute.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `Default is 5 minute. ## Import ELB loadbalancer can be imported using the loadbalancer ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_loadbalancer_v3.loadbalancer_1 5c20fdad-7288-11eb-b817-0255ac10158b ` + "`" + `` + "`" + `` + "`" + ` Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the API response, security or some other reason. The missing attributes include: ` + "`" + `ipv6_bandwidth_id` + "`" + `, ` + "`" + `iptype` + "`" + `, ` + "`" + `bandwidth_charge_mode` + "`" + `, ` + "`" + `sharetype` + "`" + ` and ` + "`" + `bandwidth_size` + "`" + `. It is generally recommended running ` + "`" + `terraform plan` + "`" + ` after importing a loadbalancer. You can then decide if changes should be applied to the loadbalancer, or the resource definition should be updated to align with the loadbalancer. Also you can ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_lb_loadbalancer_v3" "loadbalancer_1" { ... lifecycle { ignore_changes = [ ipv6_bandwidth_id, iptype, bandwidth_charge_mode, sharetype, bandwidth_size, ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9727,7 +10849,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter is mandatory in Direct Connect scenario. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter is mandatory in Direct Connect scenario. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the description of the dnat rule. The value is a string of no more than 255 characters, and angle brackets (<>) are not allowed. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10844,7 +11970,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_group_id",
-					Description: `(Optional) The remote group id, the value needs to be an FlexibleEngine ID of a security group in the same tenant. Changing this creates a new security group rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The remote group id, the value needs to be an FlexibleEngine ID of a security group in the same tenant. Changing this creates a new security group rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the supplementary information about the security group rule. This parameter can contain a maximum of 255 characters and cannot contain angle brackets (< or >). Changing this creates a new security group rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10888,46 +12018,18 @@ var (
 					Description: `(Optional) A unique name for the security group.`,
 				},
 				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `(Optional) The owner of the security group. Required if admin wants to create a port for another tenant. Changing this creates a new security group.`,
-				},
-				resource.Attribute{
 					Name:        "delete_default_rules",
-					Description: `(Optional) Whether or not to delete the default egress security rules. This is ` + "`" + `false` + "`" + ` by default. See the below note for more information. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Whether or not to delete the default egress security rules. This is ` + "`" + `false` + "`" + ` by default. See the below note for more information. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `See Argument Reference above. ## Default Security Group Rules In most cases, FlexibleEngine will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
+					Name:        "id",
+					Description: `The resource ID in UUID format. ## Default Security Group Rules In most cases, FlexibleEngine will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "region",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "tenant_id",
-					Description: `See Argument Reference above. ## Default Security Group Rules In most cases, FlexibleEngine will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
+					Name:        "id",
+					Description: `The resource ID in UUID format. ## Default Security Group Rules In most cases, FlexibleEngine will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
 				},
 			},
 		},
@@ -11564,6 +12666,89 @@ var (
 				resource.Attribute{
 					Name:        "rule/id",
 					Description: `The ID of a rule in UUID format. ## Import OBS bucket cross-region replication can be imported using the`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_rds_account",
+			Category:         "Relational Database Service (RDS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"relational",
+				"database",
+				"service",
+				"rds",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the rds account resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, String, ForceNew) Specifies the rds instance id. Changing this will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String, ForceNew) Specifies the username of the db account. Only lowercase letters, digits, hyphens (-), and userscores (_) are allowed. Changing this will create a new resource. + If the database version is MySQL 5.6, the username consists of 1 to 16 characters. + If the database version is MySQL 5.7 or 8.0, the username consists of 1 to 32 characters.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required, String) Specifies the password of the db account. The parameter must be 8 to 32 characters long and contain only letters(case-sensitive), digits, and special characters(~!@#$%^`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of account which is formatted ` + "`" + `<instance_id>/<account_name>` + "`" + `. ## Import RDS account can be imported using the ` + "`" + `instance id` + "`" + ` and ` + "`" + `account name` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_account.user_1 instance_id/account_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of account which is formatted ` + "`" + `<instance_id>/<account_name>` + "`" + `. ## Import RDS account can be imported using the ` + "`" + `instance id` + "`" + ` and ` + "`" + `account name` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_account.user_1 instance_id/account_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_rds_database",
+			Category:         "Relational Database Service (RDS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"relational",
+				"database",
+				"service",
+				"rds",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) The region in which to create the RDS database resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, String, ForceNew) Specifies the RDS instance ID. Changing this will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String, ForceNew) Specifies the database name. The database name contains`,
+				},
+				resource.Attribute{
+					Name:        "character_set",
+					Description: `(Required, String, ForceNew) Specifies the character set used by the database, For example`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of database which is formatted ` + "`" + `<instance_id>/<database_name>` + "`" + `. ## Import RDS database can be imported using the ` + "`" + `instance id` + "`" + ` and ` + "`" + `database name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_database.database_1 instance_id/database_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of database which is formatted ` + "`" + `<instance_id>/<database_name>` + "`" + `. ## Import RDS database can be imported using the ` + "`" + `instance id` + "`" + ` and ` + "`" + `database name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_database.database_1 instance_id/database_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13516,6 +14701,310 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_swr_organization",
+			Category:         "Software Repository for Container (SWR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"software",
+				"repository",
+				"for",
+				"container",
+				"swr",
+				"organization",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String, ForceNew) Specifies the name of the organization. The organization name must be globally unique. Changing this creates a new resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator user name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `The permission of the organization, the value can be Manage, Write, and Read.`,
+				},
+				resource.Attribute{
+					Name:        "login_server",
+					Description: `The URL that can be used to log into the container registry. ## Import Organizations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_organization.test org-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator user name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `The permission of the organization, the value can be Manage, Write, and Read.`,
+				},
+				resource.Attribute{
+					Name:        "login_server",
+					Description: `The URL that can be used to log into the container registry. ## Import Organizations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_organization.test org-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_swr_organization_users",
+			Category:         "Software Repository for Container (SWR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"software",
+				"repository",
+				"for",
+				"container",
+				"swr",
+				"organization",
+				"users",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required, String, ForceNew) Specifies the name of the organization (namespace) to be accessed. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Required, List) Specifies the users to access to the organization (namespace). Structure is documented below. The ` + "`" + `users` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Required, String) Specifies the permission of the existing IAM user. The values can be`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required, String) Specifies the ID of the existing IAM user.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `(Optional, String) Specifies the name of the existing IAM user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. The value is the name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator user name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "self_permission",
+					Description: `The permission informations of current user. The ` + "`" + `self_permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The name of current user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of current user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `The permission of current user. ## Import Organization Permissions can be imported using the ` + "`" + `id` + "`" + ` (organization name), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_organization_users.test org-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource. The value is the name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator user name of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "self_permission",
+					Description: `The permission informations of current user. The ` + "`" + `self_permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The name of current user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The ID of current user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `The permission of current user. ## Import Organization Permissions can be imported using the ` + "`" + `id` + "`" + ` (organization name), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_organization_users.test org-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_swr_repository",
+			Category:         "Software Repository for Container (SWR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"software",
+				"repository",
+				"for",
+				"container",
+				"swr",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required, String, ForceNew) Specifies the name of the organization (namespace) the repository belongs. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, String, ForceNew) Specifies the name of the repository. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `(Optional, Bool) Specifies whether the repository is public. Default is ` + "`" + `false` + "`" + `. + ` + "`" + `true` + "`" + ` - Indicates the repository is`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Optional, String) Specifies the category of the repository. The value can be ` + "`" + `app_server` + "`" + `, ` + "`" + `linux` + "`" + `, ` + "`" + `framework_app` + "`" + `, ` + "`" + `database` + "`" + `, ` + "`" + `lang` + "`" + `, ` + "`" + `other` + "`" + `, ` + "`" + `windows` + "`" + `, ` + "`" + `arm` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the repository. The value is the name of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "repository_id",
+					Description: `Numeric ID of the repository`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Image address for docker pull.`,
+				},
+				resource.Attribute{
+					Name:        "internal_path",
+					Description: `Intra-cluster image address for docker pull.`,
+				},
+				resource.Attribute{
+					Name:        "num_images",
+					Description: `Number of image tags in a repository.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Repository size. ## Import Repository can be imported using the organization name and repository name separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_repository.test org-name/repo-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the repository. The value is the name of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "repository_id",
+					Description: `Numeric ID of the repository`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Image address for docker pull.`,
+				},
+				resource.Attribute{
+					Name:        "internal_path",
+					Description: `Intra-cluster image address for docker pull.`,
+				},
+				resource.Attribute{
+					Name:        "num_images",
+					Description: `Number of image tags in a repository.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Repository size. ## Import Repository can be imported using the organization name and repository name separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_repository.test org-name/repo-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_swr_repository_sharing",
+			Category:         "Software Repository for Container (SWR)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"software",
+				"repository",
+				"for",
+				"container",
+				"swr",
+				"sharing",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the resource. If omitted, the provider-level region will be used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "organization",
+					Description: `(Required, String, ForceNew) Specifies the name of the organization (namespace) the repository belongs. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required, String, ForceNew) Specifies the name of the repository to be shared. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "sharing_account",
+					Description: `(Required, String, ForceNew) Specifies the name of the account for repository sharing. Changing this creates a new resource. ->`,
+				},
+				resource.Attribute{
+					Name:        "deadline",
+					Description: `(Required, String) Specifies the end date of image sharing (UTC time in YYYY-MM-DD format, for example ` + "`" + `2021-10-01` + "`" + `). When the value is set to`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Optional, String) Specifies the permission to be granted. Currently, only the`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the repository sharing. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the repository sharing. The value is the value of ` + "`" + `sharing_account` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the repository sharing is valid (true) or expired (false). ## Import Repository sharing can be imported using the organization name, repository name and sharing account separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_repository_sharing.test org-name/repo-name/sharing-account ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the repository sharing. The value is the value of ` + "`" + `sharing_account` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the repository sharing is valid (true) or expired (false). ## Import Repository sharing can be imported using the organization name, repository name and sharing account separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_swr_repository_sharing.test org-name/repo-name/sharing-account ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_vbs_backup_policy_v2",
 			Category:         "Volume Backup Service (VBS)",
 			ShortDescription: ``,
@@ -13906,8 +15395,66 @@ var (
 				"subnet",
 				"v1",
 			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String, ForceNew) Specifies the region in which to create the vpc subnet. If omitted, the provider-level region will be used. Changing this creates a new subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Map) The key/value pairs to associate with the subnet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the subnet. The value can be ACTIVE, DOWN, UNKNOWN, or ERROR.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The subnet (Native OpenStack API) ID.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_subnet_id",
+					Description: `The ID of the IPv6 subnet (Native OpenStack API).`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr",
+					Description: `The IPv6 subnet CIDR block.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_gateway",
+					Description: `The IPv6 subnet gateway. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_subnet_v1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the subnet. The value can be ACTIVE, DOWN, UNKNOWN, or ERROR.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The subnet (Native OpenStack API) ID.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_subnet_id",
+					Description: `The ID of the IPv6 subnet (Native OpenStack API).`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_cidr",
+					Description: `The IPv6 subnet CIDR block.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_gateway",
+					Description: `The IPv6 subnet gateway. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_subnet_v1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14756,139 +16303,156 @@ var (
 	resourcesMap = map[string]int{
 
 		"flexibleengine_antiddos_v1":                        0,
-		"flexibleengine_as_configuration_v1":                1,
-		"flexibleengine_as_group_v1":                        2,
-		"flexibleengine_as_lifecycle_hook_v1":               3,
-		"flexibleengine_as_policy_v1":                       4,
-		"flexibleengine_blockstorage_volume_v2":             5,
-		"flexibleengine_cce_addon_v3":                       6,
-		"flexibleengine_cce_cluster_v3":                     7,
-		"flexibleengine_cce_node_pool_v3":                   8,
-		"flexibleengine_cce_nodes_v3":                       9,
-		"flexibleengine_ces_alarmrule":                      10,
-		"flexibleengine_compute_bms_server_v2":              11,
-		"flexibleengine_compute_floatingip_associate_v2":    12,
-		"flexibleengine_compute_floatingip_v2":              13,
-		"flexibleengine_compute_instance_v2":                14,
-		"flexibleengine_compute_interface_attach_v2":        15,
-		"flexibleengine_compute_keypair_v2":                 16,
-		"flexibleengine_compute_servergroup_v2":             17,
-		"flexibleengine_compute_volume_attach_v2":           18,
-		"flexibleengine_csbs_backup_policy_v1":              19,
-		"flexibleengine_csbs_backup_v1":                     20,
-		"flexibleengine_css_cluster_v1":                     21,
-		"flexibleengine_css_snapshot_v1":                    22,
-		"flexibleengine_cts_tracker_v1":                     23,
-		"flexibleengine_dcs_instance_v1":                    24,
-		"flexibleengine_dds_instance_v3":                    25,
-		"flexibleengine_dis_stream":                         26,
-		"flexibleengine_dli_queue":                          27,
-		"flexibleengine_dms_kafka_instance":                 28,
-		"flexibleengine_dms_kafka_topic":                    29,
-		"flexibleengine_dns_ptrrecord_v2":                   30,
-		"flexibleengine_dns_recordset_v2":                   31,
-		"flexibleengine_dns_zone_v2":                        32,
-		"flexibleengine_drs_replication_v2":                 33,
-		"flexibleengine_drs_replicationconsistencygroup_v2": 34,
-		"flexibleengine_dws_cluster_v1":                     35,
-		"flexibleengine_elb_backend":                        36,
-		"flexibleengine_elb_health":                         37,
-		"flexibleengine_elb_listener":                       38,
-		"flexibleengine_elb_loadbalancer":                   39,
-		"flexibleengine_fgs_dependency":                     40,
-		"flexibleengine_fgs_function":                       41,
-		"flexibleengine_fgs_trigger":                        42,
-		"flexibleengine_fw_firewall_group_v2":               43,
-		"flexibleengine_fw_policy_v2":                       44,
-		"flexibleengine_fw_rule_v2":                         45,
-		"flexibleengine_identity_agency_v3":                 46,
-		"flexibleengine_identity_group_membership_v3":       47,
-		"flexibleengine_identity_group_v3":                  48,
-		"flexibleengine_identity_project_v3":                49,
-		"flexibleengine_identity_provider":                  50,
-		"flexibleengine_identity_provider_conversion":       51,
-		"flexibleengine_identity_role_assignment_v3":        52,
-		"flexibleengine_identity_role_v3":                   53,
-		"flexibleengine_identity_user_v3":                   54,
-		"flexibleengine_images_image_v2":                    55,
-		"flexibleengine_kms_key_v1":                         56,
-		"flexibleengine_lb_certificate_v2":                  57,
-		"flexibleengine_lb_l7policy_v2":                     58,
-		"flexibleengine_lb_l7rule_v2":                       59,
-		"flexibleengine_lb_listener_v2":                     60,
-		"flexibleengine_lb_loadbalancer_v2":                 61,
-		"flexibleengine_lb_member_v2":                       62,
-		"flexibleengine_lb_monitor_v2":                      63,
-		"flexibleengine_lb_pool_v2":                         64,
-		"flexibleengine_lb_whitelist_v2":                    65,
-		"flexibleengine_lts_group":                          66,
-		"flexibleengine_lts_topic":                          67,
-		"flexibleengine_mls_instance_v1":                    68,
-		"flexibleengine_mrs_cluster_v1":                     69,
-		"flexibleengine_mrs_cluster_v2":                     70,
-		"flexibleengine_mrs_hybrid_cluster_v1":              71,
-		"flexibleengine_mrs_job_v1":                         72,
-		"flexibleengine_mrs_job_v2":                         73,
-		"flexibleengine_nat_dnat_rule_v2":                   74,
-		"flexibleengine_nat_gateway_v2":                     75,
-		"flexibleengine_nat_snat_rule_v2":                   76,
-		"flexibleengine_network_acl":                        77,
-		"flexibleengine_network_acl_rule":                   78,
-		"flexibleengine_networking_floatingip_associate_v2": 79,
-		"flexibleengine_networking_floatingip_v2":           80,
-		"flexibleengine_networking_network_v2":              81,
-		"flexibleengine_networking_port_v2":                 82,
-		"flexibleengine_networking_router_interface_v2":     83,
-		"flexibleengine_networking_router_route_v2":         84,
-		"flexibleengine_networking_router_v2":               85,
-		"flexibleengine_networking_secgroup_rule_v2":        86,
-		"flexibleengine_networking_secgroup_v2":             87,
-		"flexibleengine_networking_subnet_v2":               88,
-		"flexibleengine_networking_vip_associate_v2":        89,
-		"flexibleengine_networking_vip_v2":                  90,
-		"flexibleengine_obs_bucket":                         91,
-		"flexibleengine_obs_bucket_object":                  92,
-		"flexibleengine_obs_bucket_replication":             93,
-		"flexibleengine_rds_instance_v1":                    94,
-		"flexibleengine_rds_instance_v3":                    95,
-		"flexibleengine_rds_parametergroup_v3":              96,
-		"flexibleengine_rds_read_replica_v3":                97,
-		"flexibleengine_rts_software_config_v1":             98,
-		"flexibleengine_rts_stack_v1":                       99,
-		"flexibleengine_s3_bucket":                          100,
-		"flexibleengine_s3_bucket_object":                   101,
-		"flexibleengine_s3_bucket_policy":                   102,
-		"flexibleengine_sdrs_drill_v1":                      103,
-		"flexibleengine_sdrs_protectedinstance_v1":          104,
-		"flexibleengine_sdrs_protectiongroup_v1":            105,
-		"flexibleengine_sdrs_replication_attach_v1":         106,
-		"flexibleengine_sdrs_replication_pair_v1":           107,
-		"flexibleengine_sfs_access_rule_v2":                 108,
-		"flexibleengine_sfs_file_system_v2":                 109,
-		"flexibleengine_sfs_turbo":                          110,
-		"flexibleengine_smn_subscription_v2":                111,
-		"flexibleengine_smn_topic_v2":                       112,
-		"flexibleengine_vbs_backup_policy_v2":               113,
-		"flexibleengine_vbs_backup_v2":                      114,
-		"flexibleengine_vpc_eip_v1":                         115,
-		"flexibleengine_vpc_flow_log_v1":                    116,
-		"flexibleengine_vpc_peering_accepter_v2":            117,
-		"flexibleengine_vpc_peering_v2":                     118,
-		"flexibleengine_vpc_route_v2":                       119,
-		"flexibleengine_vpc_subnet_v1":                      120,
-		"flexibleengine_vpc_v1":                             121,
-		"flexibleengine_vpcep_approval":                     122,
-		"flexibleengine_vpcep_endpoint":                     123,
-		"flexibleengine_vpcep_service":                      124,
-		"flexibleengine_waf_certificate":                    125,
-		"flexibleengine_waf_domain":                         126,
-		"flexibleengine_waf_policy":                         127,
-		"flexibleengine_waf_rule_alarm_masking":             128,
-		"flexibleengine_waf_rule_blacklist":                 129,
-		"flexibleengine_waf_rule_cc_protection":             130,
-		"flexibleengine_waf_rule_data_masking":              131,
-		"flexibleengine_waf_rule_precise_protection":        132,
-		"flexibleengine_waf_rule_web_tamper_protection":     133,
+		"flexibleengine_api_gateway_api":                    1,
+		"flexibleengine_api_gateway_group":                  2,
+		"flexibleengine_as_configuration_v1":                3,
+		"flexibleengine_as_group_v1":                        4,
+		"flexibleengine_as_lifecycle_hook_v1":               5,
+		"flexibleengine_as_policy_v1":                       6,
+		"flexibleengine_blockstorage_volume_v2":             7,
+		"flexibleengine_cbr_policy":                         8,
+		"flexibleengine_cbr_vault":                          9,
+		"flexibleengine_cce_addon_v3":                       10,
+		"flexibleengine_cce_cluster_v3":                     11,
+		"flexibleengine_cce_namespace":                      12,
+		"flexibleengine_cce_node_pool_v3":                   13,
+		"flexibleengine_cce_node_v3":                        14,
+		"flexibleengine_cce_pvc":                            15,
+		"flexibleengine_ces_alarmrule":                      16,
+		"flexibleengine_compute_bms_server_v2":              17,
+		"flexibleengine_compute_floatingip_associate_v2":    18,
+		"flexibleengine_compute_floatingip_v2":              19,
+		"flexibleengine_compute_instance_v2":                20,
+		"flexibleengine_compute_interface_attach_v2":        21,
+		"flexibleengine_compute_keypair_v2":                 22,
+		"flexibleengine_compute_servergroup_v2":             23,
+		"flexibleengine_compute_volume_attach_v2":           24,
+		"flexibleengine_csbs_backup_policy_v1":              25,
+		"flexibleengine_csbs_backup_v1":                     26,
+		"flexibleengine_css_cluster_v1":                     27,
+		"flexibleengine_css_snapshot_v1":                    28,
+		"flexibleengine_cts_tracker_v1":                     29,
+		"flexibleengine_dcs_instance_v1":                    30,
+		"flexibleengine_dds_instance_v3":                    31,
+		"flexibleengine_dis_stream":                         32,
+		"flexibleengine_dli_queue":                          33,
+		"flexibleengine_dms_kafka_instance":                 34,
+		"flexibleengine_dms_kafka_topic":                    35,
+		"flexibleengine_dns_ptrrecord_v2":                   36,
+		"flexibleengine_dns_recordset_v2":                   37,
+		"flexibleengine_dns_zone_v2":                        38,
+		"flexibleengine_drs_replication_v2":                 39,
+		"flexibleengine_drs_replicationconsistencygroup_v2": 40,
+		"flexibleengine_dws_cluster_v1":                     41,
+		"flexibleengine_elb_backend":                        42,
+		"flexibleengine_elb_certificate":                    43,
+		"flexibleengine_elb_health":                         44,
+		"flexibleengine_elb_ipgroup":                        45,
+		"flexibleengine_elb_listener":                       46,
+		"flexibleengine_elb_loadbalancer":                   47,
+		"flexibleengine_enterprise_project":                 48,
+		"flexibleengine_fgs_dependency":                     49,
+		"flexibleengine_fgs_function":                       50,
+		"flexibleengine_fgs_trigger":                        51,
+		"flexibleengine_fw_firewall_group_v2":               52,
+		"flexibleengine_fw_policy_v2":                       53,
+		"flexibleengine_fw_rule_v2":                         54,
+		"flexibleengine_identity_agency_v3":                 55,
+		"flexibleengine_identity_group_membership_v3":       56,
+		"flexibleengine_identity_group_v3":                  57,
+		"flexibleengine_identity_project_v3":                58,
+		"flexibleengine_identity_provider":                  59,
+		"flexibleengine_identity_provider_conversion":       60,
+		"flexibleengine_identity_role_assignment_v3":        61,
+		"flexibleengine_identity_role_v3":                   62,
+		"flexibleengine_identity_user_v3":                   63,
+		"flexibleengine_images_image_v2":                    64,
+		"flexibleengine_kms_key_v1":                         65,
+		"flexibleengine_lb_certificate_v2":                  66,
+		"flexibleengine_lb_l7policy_v2":                     67,
+		"flexibleengine_lb_l7rule_v2":                       68,
+		"flexibleengine_lb_listener_v2":                     69,
+		"flexibleengine_lb_listener_v3":                     70,
+		"flexibleengine_lb_loadbalancer_v2":                 71,
+		"flexibleengine_lb_loadbalancer_v3":                 72,
+		"flexibleengine_lb_member_v2":                       73,
+		"flexibleengine_lb_monitor_v2":                      74,
+		"flexibleengine_lb_pool_v2":                         75,
+		"flexibleengine_lb_whitelist_v2":                    76,
+		"flexibleengine_lts_group":                          77,
+		"flexibleengine_lts_topic":                          78,
+		"flexibleengine_mls_instance_v1":                    79,
+		"flexibleengine_mrs_cluster_v1":                     80,
+		"flexibleengine_mrs_cluster_v2":                     81,
+		"flexibleengine_mrs_hybrid_cluster_v1":              82,
+		"flexibleengine_mrs_job_v1":                         83,
+		"flexibleengine_mrs_job_v2":                         84,
+		"flexibleengine_nat_dnat_rule_v2":                   85,
+		"flexibleengine_nat_gateway_v2":                     86,
+		"flexibleengine_nat_snat_rule_v2":                   87,
+		"flexibleengine_network_acl":                        88,
+		"flexibleengine_network_acl_rule":                   89,
+		"flexibleengine_networking_floatingip_associate_v2": 90,
+		"flexibleengine_networking_floatingip_v2":           91,
+		"flexibleengine_networking_network_v2":              92,
+		"flexibleengine_networking_port_v2":                 93,
+		"flexibleengine_networking_router_interface_v2":     94,
+		"flexibleengine_networking_router_route_v2":         95,
+		"flexibleengine_networking_router_v2":               96,
+		"flexibleengine_networking_secgroup_rule_v2":        97,
+		"flexibleengine_networking_secgroup_v2":             98,
+		"flexibleengine_networking_subnet_v2":               99,
+		"flexibleengine_networking_vip_associate_v2":        100,
+		"flexibleengine_networking_vip_v2":                  101,
+		"flexibleengine_obs_bucket":                         102,
+		"flexibleengine_obs_bucket_object":                  103,
+		"flexibleengine_obs_bucket_replication":             104,
+		"flexibleengine_rds_account":                        105,
+		"flexibleengine_rds_database":                       106,
+		"flexibleengine_rds_instance_v1":                    107,
+		"flexibleengine_rds_instance_v3":                    108,
+		"flexibleengine_rds_parametergroup_v3":              109,
+		"flexibleengine_rds_read_replica_v3":                110,
+		"flexibleengine_rts_software_config_v1":             111,
+		"flexibleengine_rts_stack_v1":                       112,
+		"flexibleengine_s3_bucket":                          113,
+		"flexibleengine_s3_bucket_object":                   114,
+		"flexibleengine_s3_bucket_policy":                   115,
+		"flexibleengine_sdrs_drill_v1":                      116,
+		"flexibleengine_sdrs_protectedinstance_v1":          117,
+		"flexibleengine_sdrs_protectiongroup_v1":            118,
+		"flexibleengine_sdrs_replication_attach_v1":         119,
+		"flexibleengine_sdrs_replication_pair_v1":           120,
+		"flexibleengine_sfs_access_rule_v2":                 121,
+		"flexibleengine_sfs_file_system_v2":                 122,
+		"flexibleengine_sfs_turbo":                          123,
+		"flexibleengine_smn_subscription_v2":                124,
+		"flexibleengine_smn_topic_v2":                       125,
+		"flexibleengine_swr_organization":                   126,
+		"flexibleengine_swr_organization_users":             127,
+		"flexibleengine_swr_repository":                     128,
+		"flexibleengine_swr_repository_sharing":             129,
+		"flexibleengine_vbs_backup_policy_v2":               130,
+		"flexibleengine_vbs_backup_v2":                      131,
+		"flexibleengine_vpc_eip_v1":                         132,
+		"flexibleengine_vpc_flow_log_v1":                    133,
+		"flexibleengine_vpc_peering_accepter_v2":            134,
+		"flexibleengine_vpc_peering_v2":                     135,
+		"flexibleengine_vpc_route_v2":                       136,
+		"flexibleengine_vpc_subnet_v1":                      137,
+		"flexibleengine_vpc_v1":                             138,
+		"flexibleengine_vpcep_approval":                     139,
+		"flexibleengine_vpcep_endpoint":                     140,
+		"flexibleengine_vpcep_service":                      141,
+		"flexibleengine_waf_certificate":                    142,
+		"flexibleengine_waf_domain":                         143,
+		"flexibleengine_waf_policy":                         144,
+		"flexibleengine_waf_rule_alarm_masking":             145,
+		"flexibleengine_waf_rule_blacklist":                 146,
+		"flexibleengine_waf_rule_cc_protection":             147,
+		"flexibleengine_waf_rule_data_masking":              148,
+		"flexibleengine_waf_rule_precise_protection":        149,
+		"flexibleengine_waf_rule_web_tamper_protection":     150,
 	}
 )
 

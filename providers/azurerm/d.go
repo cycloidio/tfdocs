@@ -65,7 +65,7 @@ Use this data source to access information about an existing AAD B2C Directory.
 
 Gets information about an Active Directory Domain Service.
 
--> **Supported Modes:** At present this data source only supports **User Forest** mode and _not_ **Resource Forest** mode. [Read more](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/concepts-resource-forest) about the different operation modes for this service.
+-> **Supported Modes:** At present this data source only supports **User Forest** mode and _not_ **Resource Forest** mode. [Read more](https://docs.microsoft.com/azure/active-directory-domain-services/concepts-resource-forest) about the different operation modes for this service.
 
 `,
 			Keywords: []string{},
@@ -92,7 +92,7 @@ Gets information about an Active Directory Domain Service.
 				},
 				resource.Attribute{
 					Name:        "domain_name",
-					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
+					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
 				},
 				resource.Attribute{
 					Name:        "filtered_sync_enabled",
@@ -196,7 +196,7 @@ Gets information about an Active Directory Domain Service.
 				},
 				resource.Attribute{
 					Name:        "tls_v1_enabled",
-					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -218,7 +218,7 @@ Gets information about an Active Directory Domain Service.
 				},
 				resource.Attribute{
 					Name:        "domain_name",
-					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/en-us/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
+					Description: `The Active Directory domain of the Domain Service. See [official documentation](https://docs.microsoft.com/azure/active-directory-domain-services/tutorial-create-instance#create-a-managed-domain) for constraints and recommendations.`,
 				},
 				resource.Attribute{
 					Name:        "filtered_sync_enabled",
@@ -322,7 +322,7 @@ Gets information about an Active Directory Domain Service.
 				},
 				resource.Attribute{
 					Name:        "tls_v1_enabled",
-					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether legacy TLS v1 support is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -385,7 +385,7 @@ Use this data source to access information about an existing Advisor Recommendat
 				},
 				resource.Attribute{
 					Name:        "updated_time",
-					Description: `The most recent time that Advisor checked the validity of the recommendation.. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The most recent time that Advisor checked the validity of the recommendation.. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -627,7 +627,7 @@ Use this data source to access information about an existing API Management Serv
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `Specifies the number of units associated with this API Management service. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the number of units associated with this API Management service. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -849,7 +849,7 @@ Use this data source to access information about an existing API Management Serv
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `Specifies the number of units associated with this API Management service. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the number of units associated with this API Management service. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -951,7 +951,7 @@ Use this data source to access information about an existing API Management API.
 				},
 				resource.Attribute{
 					Name:        "endpoint_name",
-					Description: `The name of endpoint (port) to import from WSDL. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of endpoint (port) to import from WSDL. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1025,7 +1025,7 @@ Use this data source to access information about an existing API Management API.
 				},
 				resource.Attribute{
 					Name:        "endpoint_name",
-					Description: `The name of endpoint (port) to import from WSDL. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of endpoint (port) to import from WSDL. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1079,7 +1079,7 @@ Uses this data source to access information about an API Version Set within an A
 				},
 				resource.Attribute{
 					Name:        "version_query_name",
-					Description: `The name of the Query String which should be read from Inbound Requests which defines the API Version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of the Query String which should be read from Inbound Requests which defines the API Version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1109,7 +1109,7 @@ Uses this data source to access information about an API Version Set within an A
 				},
 				resource.Attribute{
 					Name:        "version_query_name",
-					Description: `The name of the Query String which should be read from Inbound Requests which defines the API Version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of the Query String which should be read from Inbound Requests which defines the API Version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1156,7 +1156,7 @@ Use this data source to access information about an existing API Management Gate
 				},
 				resource.Attribute{
 					Name:        "country",
-					Description: `The country or region where the resource is located. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The country or region where the resource is located. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1206,7 +1206,7 @@ Use this data source to access information about an existing API Management Grou
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of this API Management Group, such as ` + "`" + `custom` + "`" + ` or ` + "`" + `external` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The type of this API Management Group, such as ` + "`" + `custom` + "`" + ` or ` + "`" + `external` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1232,7 +1232,7 @@ Use this data source to access information about an existing API Management Grou
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of this API Management Group, such as ` + "`" + `custom` + "`" + ` or ` + "`" + `external` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The type of this API Management Group, such as ` + "`" + `custom` + "`" + ` or ` + "`" + `external` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1294,7 +1294,7 @@ Use this data source to access information about an existing API Management Prod
 				},
 				resource.Attribute{
 					Name:        "terms",
-					Description: `Any Terms and Conditions for this Product, which must be accepted by Developers before they can begin the Subscription process. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any Terms and Conditions for this Product, which must be accepted by Developers before they can begin the Subscription process. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1332,7 +1332,7 @@ Use this data source to access information about an existing API Management Prod
 				},
 				resource.Attribute{
 					Name:        "terms",
-					Description: `Any Terms and Conditions for this Product, which must be accepted by Developers before they can begin the Subscription process. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any Terms and Conditions for this Product, which must be accepted by Developers before they can begin the Subscription process. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1386,7 +1386,7 @@ Use this data source to access information about an existing API Management User
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The current state of this User, for example ` + "`" + `active` + "`" + `, ` + "`" + `blocked` + "`" + ` or ` + "`" + `pending` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The current state of this User, for example ` + "`" + `active` + "`" + `, ` + "`" + `blocked` + "`" + ` or ` + "`" + `pending` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1416,7 +1416,7 @@ Use this data source to access information about an existing API Management User
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The current state of this User, for example ` + "`" + `active` + "`" + `, ` + "`" + `blocked` + "`" + ` or ` + "`" + `pending` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The current state of this User, for example ` + "`" + `active` + "`" + `, ` + "`" + `blocked` + "`" + ` or ` + "`" + `pending` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1519,7 +1519,7 @@ Use this data source to access information about an existing App Configuration.
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `The Secret of the Access Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secret of the Access Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1567,7 +1567,7 @@ Use this data source to access information about an existing Azure App Configura
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
+					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
 				},
 				resource.Attribute{
 					Name:        "vault_key_reference",
@@ -1583,7 +1583,7 @@ Use this data source to access information about an existing Azure App Configura
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1605,7 +1605,7 @@ Use this data source to access information about an existing Azure App Configura
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/en-us/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
+					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
 				},
 				resource.Attribute{
 					Name:        "vault_key_reference",
@@ -1621,7 +1621,133 @@ Use this data source to access information about an existing Azure App Configura
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the App Configuration Key.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_app_configuration_keys",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about existing Azure App Configuration Keys.`,
+			Description: `
+
+Use this data source to access information about existing Azure App Configuration Keys.
+
+-> **Note:** App Configuration Keys are provisioned using a Data Plane API which requires the role ` + "`" + `App Configuration Data Owner` + "`" + ` on either the App Configuration or a parent scope (such as the Resource Group/Subscription). [More information can be found in the Azure Documentation for App Configuration](https://docs.microsoft.com/azure/azure-app-configuration/concept-enable-rbac#azure-built-in-roles-for-azure-app-configuration).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configuration_store_id",
+					Description: `(Required) Specifies the id of the App Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The name of the App Configuration Keys to look up.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The label of the App Configuration Keys tp look up. ## Attributes Reference In addition to the Arguments listed above - the following Attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "items",
+					Description: `A list of ` + "`" + `items` + "`" + ` blocks as defined below. --- Each element in ` + "`" + `items` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `The content type of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `Is this App Configuration Key be Locked to prevent changes.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
+				},
+				resource.Attribute{
+					Name:        "vault_key_reference",
+					Description: `The ID of the vault secret this App Configuration Key refers to, when ` + "`" + `type` + "`" + ` is ` + "`" + `vault` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Configuration Key ID.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the App Configuration Key.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "items",
+					Description: `A list of ` + "`" + `items` + "`" + ` blocks as defined below. --- Each element in ` + "`" + `items` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The label of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `The content type of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the App Configuration Key.`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `Is this App Configuration Key be Locked to prevent changes.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the App Configuration Key. It can either be ` + "`" + `kv` + "`" + ` (simple [key/value](https://docs.microsoft.com/azure/azure-app-configuration/concept-key-value)) or ` + "`" + `vault` + "`" + ` (where the value is a reference to a [Key Vault Secret](https://azure.microsoft.com/en-gb/services/key-vault/).`,
+				},
+				resource.Attribute{
+					Name:        "vault_key_reference",
+					Description: `The ID of the vault secret this App Configuration Key refers to, when ` + "`" + `type` + "`" + ` is ` + "`" + `vault` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Configuration Key ID.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `The ETag of the key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -1930,7 +2056,7 @@ Use this data source to access information about an existing App Service.
 				},
 				resource.Attribute{
 					Name:        "use_mercurial",
-					Description: `Uses Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Uses Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2216,7 +2342,7 @@ Use this data source to access information about an existing App Service.
 				},
 				resource.Attribute{
 					Name:        "use_mercurial",
-					Description: `Uses Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Uses Mercurial if ` + "`" + `true` + "`" + `, otherwise uses Git. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2274,7 +2400,7 @@ Use this data source to access information about an App Service Certificate.
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The thumbprint for the certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The thumbprint for the certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2312,7 +2438,7 @@ Use this data source to access information about an App Service Certificate.
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The thumbprint for the certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The thumbprint for the certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2426,7 +2552,7 @@ Use this data source to access information about an existing App Service Certifi
 				},
 				resource.Attribute{
 					Name:        "provisioning_state",
-					Description: `Status of the Key Vault secret. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Status of the Key Vault secret. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2520,7 +2646,7 @@ Use this data source to access information about an existing App Service Certifi
 				},
 				resource.Attribute{
 					Name:        "provisioning_state",
-					Description: `Status of the Key Vault secret. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Status of the Key Vault secret. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2583,7 +2709,7 @@ Use this data source to access information about an existing App Service Environ
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value for the Cluster Setting. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions: - ` + "`" + `read` + "`" + ` - (Defaults to 5 minutes) Used when retrieving the App Service Environment.`,
+					Description: `The value for the Cluster Setting. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions: - ` + "`" + `read` + "`" + ` - (Defaults to 5 minutes) Used when retrieving the App Service Environment.`,
 				},
 			},
 		},
@@ -2682,7 +2808,7 @@ Use this data source to access information about an existing 3rd Generation (v3)
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `The ports that network traffic will arrive to the App Service Environment V3 on. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ports that network traffic will arrive to the App Service Environment V3 on. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2774,7 +2900,7 @@ Use this data source to access information about an existing App Service Plan (f
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `Specifies the number of workers associated with this App Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the number of workers associated with this App Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2844,7 +2970,7 @@ Use this data source to access information about an existing App Service Plan (f
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `Specifies the number of workers associated with this App Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the number of workers associated with this App Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2888,7 +3014,7 @@ Use this data source to access information about an existing Application Gateway
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of Managed Identity assigned to this Application Gateway. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The type of Managed Identity assigned to this Application Gateway. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2951,7 +3077,7 @@ Use this data source to access information about an existing Application Insight
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Tags applied to the component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Tags applied to the component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2993,7 +3119,7 @@ Use this data source to access information about an existing Application Insight
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Tags applied to the component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Tags applied to the component. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3032,7 +3158,7 @@ Use this data source to access information about an existing Application Securit
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3050,7 +3176,7 @@ Use this data source to access information about an existing Application Securit
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3089,7 +3215,7 @@ Use this data source to access information about an existing Attestation Provide
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Attestation Provider. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Attestation Provider. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3132,7 +3258,7 @@ Use this data source to access information about an existing Automation Account.
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint for this Automation Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Endpoint for this Automation Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3154,7 +3280,7 @@ Use this data source to access information about an existing Automation Account.
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint for this Automation Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Endpoint for this Automation Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3201,7 +3327,7 @@ Use this data source to access information about an existing Automation Bool Var
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `boolean` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `boolean` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3223,7 +3349,7 @@ Use this data source to access information about an existing Automation Bool Var
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `boolean` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `boolean` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3270,7 +3396,7 @@ Use this data source to access information about an existing Automation Datetime
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable in the [RFC3339 Section 5.6 Internet Date/Time Format](https://tools.ietf.org/html/rfc3339#section-5.6). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable in the [RFC3339 Section 5.6 Internet Date/Time Format](https://tools.ietf.org/html/rfc3339#section-5.6). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3292,7 +3418,7 @@ Use this data source to access information about an existing Automation Datetime
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable in the [RFC3339 Section 5.6 Internet Date/Time Format](https://tools.ietf.org/html/rfc3339#section-5.6). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable in the [RFC3339 Section 5.6 Internet Date/Time Format](https://tools.ietf.org/html/rfc3339#section-5.6). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3339,7 +3465,7 @@ Use this data source to access information about an existing Automation Int Vari
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `integer` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `integer` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3361,7 +3487,7 @@ Use this data source to access information about an existing Automation Int Vari
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `integer` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `integer` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3408,7 +3534,7 @@ Use this data source to access information about an existing Automation String V
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `string` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `string` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3430,7 +3556,7 @@ Use this data source to access information about an existing Automation String V
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the Automation Variable as a ` + "`" + `string` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of the Automation Variable as a ` + "`" + `string` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3481,7 +3607,7 @@ Use this data source to access information about an existing Availability Set.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3511,7 +3637,7 @@ Use this data source to access information about an existing Availability Set.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3559,7 +3685,7 @@ Use this data source to access information about an existing VM Backup Policy.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Backup VM Protection Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Backup VM Protection Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3569,7 +3695,7 @@ Use this data source to access information about an existing VM Backup Policy.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Backup VM Protection Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Backup VM Protection Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3644,7 +3770,7 @@ Use this data source to access information about an existing Batch Account.
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The HTTPS URL of the Azure KeyVault reference. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The HTTPS URL of the Azure KeyVault reference. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3698,7 +3824,7 @@ Use this data source to access information about an existing Batch Account.
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The HTTPS URL of the Azure KeyVault reference. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The HTTPS URL of the Azure KeyVault reference. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3748,7 +3874,7 @@ Use this data source to access information about an existing Batch Application i
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `The display name for the application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The display name for the application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3774,7 +3900,7 @@ Use this data source to access information about an existing Batch Application i
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `The display name for the application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The display name for the application. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3824,7 +3950,7 @@ Use this data source to access information about an existing certificate in a Ba
 				},
 				resource.Attribute{
 					Name:        "thumbprint_algorithm",
-					Description: `The algorithm of the certificate thumbprint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The algorithm of the certificate thumbprint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -3850,7 +3976,7 @@ Use this data source to access information about an existing certificate in a Ba
 				},
 				resource.Attribute{
 					Name:        "thumbprint_algorithm",
-					Description: `The algorithm of the certificate thumbprint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The algorithm of the certificate thumbprint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4077,7 +4203,7 @@ Use this data source to access information about an existing certificate in a Ba
 				},
 				resource.Attribute{
 					Name:        "source_address_prefix",
-					Description: `The source address prefix or tag to match for the rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The source address prefix or tag to match for the rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4100,7 +4226,7 @@ Use this data source to access information about an existing Enrollment Account 
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Enrollment Account Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Enrollment Account Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4123,7 +4249,7 @@ Use this data source to access an ID for your MCA Account billing scope.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4146,7 +4272,7 @@ Use this data source to access an ID for your MPA Account billing scope.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Billing Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4202,7 +4328,7 @@ Use this data source to access information about an existing Azure Blueprint Def
 				},
 				resource.Attribute{
 					Name:        "versions",
-					Description: `A list of versions published for this Blueprint Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of versions published for this Blueprint Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4236,7 +4362,7 @@ Use this data source to access information about an existing Azure Blueprint Def
 				},
 				resource.Attribute{
 					Name:        "versions",
-					Description: `A list of versions published for this Blueprint Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of versions published for this Blueprint Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4288,7 +4414,7 @@ Use this data source to access information about an existing Blueprint Published
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the Blueprint Published Version ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The description of the Blueprint Published Version ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4314,11 +4440,245 @@ Use this data source to access information about an existing Blueprint Published
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `The description of the Blueprint Published Version ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The description of the Blueprint Published Version ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Blueprint Published Version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cdn_frontdoor_endpoint",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing CDN FrontDoor Endpoint.`,
+			Description: `
+
+Use this data source to access information about an existing CDN FrontDoor Endpoint.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the FrontDoor Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "profile_name",
+					Description: `(Required) The name of the FrontDoor Profile within which CDN FrontDoor Endpoint exists.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group where the CDN FrontDoor Profile exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this CDN FrontDoor Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Specifies whether this CDN FrontDoor Endpoint is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "host_name",
+					Description: `Specifies the host name of the CDN FrontDoor Endpoint, in the format ` + "`" + `{endpointName}.{dnsZone}` + "`" + ` (for example, ` + "`" + `contoso.azureedge.net` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Specifies a mapping of Tags assigned to this CDN FrontDoor Endpoint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Endpoint.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this CDN FrontDoor Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Specifies whether this CDN FrontDoor Endpoint is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "host_name",
+					Description: `Specifies the host name of the CDN FrontDoor Endpoint, in the format ` + "`" + `{endpointName}.{dnsZone}` + "`" + ` (for example, ` + "`" + `contoso.azureedge.net` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Specifies a mapping of Tags assigned to this CDN FrontDoor Endpoint. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Endpoint.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cdn_frontdoor_origin_group",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing CDN FrontDoor Origin Group.`,
+			Description: `
+
+Use this data source to access information about an existing CDN FrontDoor Origin Group.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the CDN FrontDoor Origin Group.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_frontdoor_profile_id",
+					Description: `Specifies the ID of the CDN FrontDoor Profile within which this CDN FrontDoor Origin Group exists.`,
+				},
+				resource.Attribute{
+					Name:        "health_probe",
+					Description: `A ` + "`" + `health_probe` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing",
+					Description: `A ` + "`" + `load_balancing` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_enabled",
+					Description: `Specifies whether session affinity is enabled on this host. --- A ` + "`" + `health_probe` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Specifies the protocol to use for health probe.`,
+				},
+				resource.Attribute{
+					Name:        "request_type",
+					Description: `Specifies the type of health probe request that is made.`,
+				},
+				resource.Attribute{
+					Name:        "interval_in_seconds",
+					Description: `Specifies the number of seconds between health probes.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Specifies the path relative to the origin that is used to determine the health of the origin. --- A ` + "`" + `load_balancing` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "additional_latency_in_milliseconds",
+					Description: `Specifies the additional latency in milliseconds for probes to fall into the lowest latency bucket.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size",
+					Description: `Specifies the number of samples to consider for load balancing decisions.`,
+				},
+				resource.Attribute{
+					Name:        "successful_samples_required",
+					Description: `Specifies the number of samples within the sample period that must succeed. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Origin Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cdn_frontdoor_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing CDN FrontDoor Profile.`,
+			Description: `
+
+Use this data source to access information about an existing CDN FrontDoor Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group where this FrontDoor Profile exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "resource_guid",
+					Description: `The UUID of this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `Specifies the SKU for this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout_seconds",
+					Description: `Specifies the maximum response timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Specifies a mapping of Tags assigned to this CDN FrontDoor Profile. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Profile.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "resource_guid",
+					Description: `The UUID of this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `Specifies the SKU for this CDN FrontDoor Profile.`,
+				},
+				resource.Attribute{
+					Name:        "response_timeout_seconds",
+					Description: `Specifies the maximum response timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Specifies a mapping of Tags assigned to this CDN FrontDoor Profile. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Profile.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cdn_frontdoor_rule_set",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing CDN FrontDoor Rule Set.`,
+			Description: `
+
+Gets information about an existing CDN FrontDoor Rule Set.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the CDN FrontDoor Rule Set.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_frontdoor_profile_id",
+					Description: `The ID of the CDN FrontDoor Profile within which this CDN FrontDoor Rule Set exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the CDN FrontDoor Rule Set.`,
 				},
 			},
 		},
@@ -4353,7 +4713,7 @@ Use this data source to access information about an existing CDN Profile.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4371,7 +4731,7 @@ Use this data source to access information about an existing CDN Profile.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4453,7 +4813,7 @@ Use this data source to access information about an existing Cognitive Services 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4491,11 +4851,147 @@ Use this data source to access information about an existing Cognitive Services 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Cognitive Services Account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_confidential_ledger",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Confidential Ledger.`,
+			Description: `
+
+Gets information about an existing Confidential Ledger.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the Resource Group where this Confidential Ledger exists. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "azuread_service_principal",
+					Description: `A list of ` + "`" + `azuread_service_principal` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "cert_based_security_principals",
+					Description: `A list of ` + "`" + `cert_based_security_principals` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "identity_service_endpoint",
+					Description: `The Identity Service Endpoint for this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "ledger_endpoint",
+					Description: `The Endpoint for this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the Confidential Ledger exists.`,
+				},
+				resource.Attribute{
+					Name:        "ledger_type",
+					Description: `The type of Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the Confidential Ledger. --- A ` + "`" + `azuread_based_service_principal` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ledger_role_name",
+					Description: `The Ledger Role to grant this AzureAD Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID of the AzureAD Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for this AzureAD Service Principal. --- A ` + "`" + `certificate_based_security_principal` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ledger_role_name",
+					Description: `The Ledger Role to grant this Certificate Security Principal.`,
+				},
+				resource.Attribute{
+					Name:        "pem_public_key",
+					Description: `The public key, in PEM format, of the certificate used by this identity to authenticate with the Confidential Ledger. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Confidential Ledger.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "azuread_service_principal",
+					Description: `A list of ` + "`" + `azuread_service_principal` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "cert_based_security_principals",
+					Description: `A list of ` + "`" + `cert_based_security_principals` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "identity_service_endpoint",
+					Description: `The Identity Service Endpoint for this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "ledger_endpoint",
+					Description: `The Endpoint for this Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the Confidential Ledger exists.`,
+				},
+				resource.Attribute{
+					Name:        "ledger_type",
+					Description: `The type of Confidential Ledger.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the Confidential Ledger. --- A ` + "`" + `azuread_based_service_principal` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ledger_role_name",
+					Description: `The Ledger Role to grant this AzureAD Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID of the AzureAD Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for this AzureAD Service Principal. --- A ` + "`" + `certificate_based_security_principal` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ledger_role_name",
+					Description: `The Ledger Role to grant this Certificate Security Principal.`,
+				},
+				resource.Attribute{
+					Name:        "pem_public_key",
+					Description: `The public key, in PEM format, of the certificate used by this identity to authenticate with the Confidential Ledger. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Confidential Ledger.`,
 				},
 			},
 		},
@@ -4610,7 +5106,7 @@ Use this data source to access information about an existing Consumption Budget 
 				},
 				resource.Attribute{
 					Name:        "start_date",
-					Description: `The start date for the budget. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The start date for the budget. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4729,7 +5225,7 @@ Use this data source to access information about an existing Consumption Budget 
 				},
 				resource.Attribute{
 					Name:        "start_date",
-					Description: `The start date for the budget. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The start date for the budget. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4768,7 +5264,7 @@ Use this data source to access information about an existing Container Group ins
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Container Group instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Container Group instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4814,6 +5310,10 @@ Use this data source to access information about an existing Container Registry.
 					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "data_endpoint_enabled",
+					Description: `Whether dedicated data endpoints for this Container Registry are enabled?`,
+				},
+				resource.Attribute{
 					Name:        "location",
 					Description: `The Azure Region in which this Container Registry exists.`,
 				},
@@ -4827,7 +5327,7 @@ Use this data source to access information about an existing Container Registry.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the Container Registry. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to the Container Registry. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4852,6 +5352,10 @@ Use this data source to access information about an existing Container Registry.
 					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "data_endpoint_enabled",
+					Description: `Whether dedicated data endpoints for this Container Registry are enabled?`,
+				},
+				resource.Attribute{
 					Name:        "location",
 					Description: `The Azure Region in which this Container Registry exists.`,
 				},
@@ -4865,7 +5369,7 @@ Use this data source to access information about an existing Container Registry.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the Container Registry. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to the Container Registry. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4903,7 +5407,7 @@ Use this data source to access information about an existing Container Registry 
 				},
 				resource.Attribute{
 					Name:        "actions",
-					Description: `The actions for the Scope Map. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The actions for the Scope Map. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4917,7 +5421,7 @@ Use this data source to access information about an existing Container Registry 
 				},
 				resource.Attribute{
 					Name:        "actions",
-					Description: `The actions for the Scope Map. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The actions for the Scope Map. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4959,7 +5463,7 @@ Use this data source to access information about an existing Container Registry 
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `Whether this Token is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether this Token is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -4977,7 +5481,7 @@ Use this data source to access information about an existing Container Registry 
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `Whether this Token is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether this Token is enabled. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5111,7 +5615,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "secondary_readonly_key",
-					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5225,7 +5729,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 				},
 				resource.Attribute{
 					Name:        "secondary_readonly_key",
-					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary read-only key for the CosmosDB Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5252,7 +5756,7 @@ Use this data source to access information about an existing Cosmos DB Mongo Dat
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Cosmos DB Mongo Database. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Cosmos DB Mongo Database. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5315,7 +5819,7 @@ Use this data source to access information about Cosmos DB Restorable Database A
 				},
 				resource.Attribute{
 					Name:        "regional_database_account_instance_id",
-					Description: `The instance ID of the regional Cosmos DB Restorable Database Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The instance ID of the regional Cosmos DB Restorable Database Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5351,7 +5855,7 @@ Use this data source to access information about an existing Azure Data Factory 
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Data Factory. --- A ` + "`" + `vsts_configuration` + "`" + ` block exports the following: - ` + "`" + `account_name` + "`" + ` - The VSTS account name. - ` + "`" + `branch_name` + "`" + ` - The branch of the repository to get code from. - ` + "`" + `project_name` + "`" + ` - The name of the VSTS project. - ` + "`" + `repository_name` + "`" + ` - The name of the git repository. - ` + "`" + `root_folder` + "`" + ` - The root folder within the repository. - ` + "`" + `tenant_id` + "`" + ` - The Tenant ID associated with the VSTS account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions: - ` + "`" + `read` + "`" + ` - (Defaults to 5 minutes) Used when retrieving the Azure Data Factory.`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Data Factory. --- A ` + "`" + `vsts_configuration` + "`" + ` block exports the following: - ` + "`" + `account_name` + "`" + ` - The VSTS account name. - ` + "`" + `branch_name` + "`" + ` - The branch of the repository to get code from. - ` + "`" + `project_name` + "`" + ` - The name of the VSTS project. - ` + "`" + `repository_name` + "`" + ` - The name of the git repository. - ` + "`" + `root_folder` + "`" + ` - The root folder within the repository. - ` + "`" + `tenant_id` + "`" + ` - The Tenant ID associated with the VSTS account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions: - ` + "`" + `read` + "`" + ` - (Defaults to 5 minutes) Used when retrieving the Azure Data Factory.`,
 				},
 			},
 		},
@@ -5402,7 +5906,7 @@ Use this data source to access information about an existing Backup Vault.
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID of the System Assigned Managed Service Identity that is configured on this Backup Vault. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID of the System Assigned Managed Service Identity that is configured on this Backup Vault. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5454,7 +5958,7 @@ Use this data source to access information about an existing Data Share.
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `The synchronization with the source data's start time. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The synchronization with the source data's start time. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5497,7 +6001,7 @@ Use this data source to access information about an existing Data Share Account.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5552,7 +6056,7 @@ Use this data source to access information about an existing Data Share Blob Sto
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
-					Description: `The subscription id of the storage account to be shared with the receiver. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The subscription id of the storage account to be shared with the receiver. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5595,7 +6099,7 @@ Use this data source to access information about an existing Data Share Data Lak
 				},
 				resource.Attribute{
 					Name:        "storage_account_id",
-					Description: `The resource ID of the storage account of the data lake file system to be shared with the receiver. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The resource ID of the storage account of the data lake file system to be shared with the receiver. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5630,7 +6134,7 @@ Use this data source to access information about an existing Data Share Kusto Cl
 				},
 				resource.Attribute{
 					Name:        "kusto_cluster_location",
-					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5665,7 +6169,7 @@ Use this data source to access information about an existing Data Share Kusto Da
 				},
 				resource.Attribute{
 					Name:        "kusto_cluster_location",
-					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The location of the Kusto Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5715,7 +6219,7 @@ Use this data source to access information about an existing Database Migration 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5741,7 +6245,7 @@ Use this data source to access information about an existing Database Migration 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5788,7 +6292,7 @@ Use this data source to access information about an existing Database Migration 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5814,7 +6318,7 @@ Use this data source to access information about an existing Database Migration 
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5864,7 +6368,7 @@ Use this data source to access information about an existing Databricks workspac
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5894,7 +6398,7 @@ Use this data source to access information about an existing Databricks workspac
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the Databricks Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5952,7 +6456,7 @@ Use this data source to access information on an existing Databricks Workspace p
 				},
 				resource.Attribute{
 					Name:        "action_required",
-					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -5990,7 +6494,7 @@ Use this data source to access information on an existing Databricks Workspace p
 				},
 				resource.Attribute{
 					Name:        "action_required",
-					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Actions required for a private endpoint connection. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6032,7 +6536,7 @@ Use this data source to access information about an existing Dedicated Host.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Dedicated Host. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Dedicated Host. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6050,7 +6554,7 @@ Use this data source to access information about an existing Dedicated Host.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Dedicated Host. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Dedicated Host. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6100,7 +6604,7 @@ Use this data source to access information about an existing Dedicated Host Grou
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6130,7 +6634,7 @@ Use this data source to access information about an existing Dedicated Host Grou
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6197,7 +6701,7 @@ Use this data source to access information about an existing Dev Test Lab.
 				},
 				resource.Attribute{
 					Name:        "unique_identifier",
-					Description: `The unique immutable identifier of the Dev Test Lab. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The unique immutable identifier of the Dev Test Lab. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6243,7 +6747,7 @@ Use this data source to access information about an existing Dev Test Lab.
 				},
 				resource.Attribute{
 					Name:        "unique_identifier",
-					Description: `The unique immutable identifier of the Dev Test Lab. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The unique immutable identifier of the Dev Test Lab. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6317,7 +6821,7 @@ Use this data source to access information about an existing Dev Test Lab Virtua
 				},
 				resource.Attribute{
 					Name:        "virtual_network_pool_name",
-					Description: `The virtual network pool associated with this subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The virtual network pool associated with this subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6367,7 +6871,7 @@ Use this data source to access information about an existing Dev Test Lab Virtua
 				},
 				resource.Attribute{
 					Name:        "virtual_network_pool_name",
-					Description: `The virtual network pool associated with this subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The virtual network pool associated with this subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6402,7 +6906,7 @@ Use this data source to access information about an existing Digital Twins insta
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Digital Twins instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Digital Twins instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6425,7 +6929,7 @@ Use this data source to access information about an existing Disk Access.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Disk Access. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Disk Access. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6468,7 +6972,7 @@ Use this data source to access information about an existing Disk Encryption Set
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Disk Encryption Set. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Disk Encryption Set. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6490,7 +6994,7 @@ Use this data source to access information about an existing Disk Encryption Set
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Disk Encryption Set. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Disk Encryption Set. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6537,7 +7041,7 @@ Use this data source to access information about an existing DNS Zone.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the EventHub Namespace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the EventHub Namespace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6563,11 +7067,110 @@ Use this data source to access information about an existing DNS Zone.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the EventHub Namespace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the EventHub Namespace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the DNS Zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_elastic_cloud_elasticsearch",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Elasticsearch resource.`,
+			Description: `
+
+Use this data source to access information about an existing Elasticsearch resource.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_cloud_deployment_id",
+					Description: `The ID of the Deployment within Elastic Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_cloud_email_address",
+					Description: `The Email Address which is associated with this Elasticsearch account.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_cloud_sso_default_url",
+					Description: `The Default URL used for Single Sign On (SSO) to Elastic Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_cloud_user_id",
+					Description: `The ID of the User Account within Elastic Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "elasticsearch_service_url",
+					Description: `The URL to the Elasticsearch Service associated with this Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_service_url",
+					Description: `The URL to the Kibana Dashboard associated with this Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_sso_uri",
+					Description: `The URI used for SSO to the Kibana Dashboard associated with this Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region in which this Elasticsearch exists.`,
+				},
+				resource.Attribute{
+					Name:        "logs",
+					Description: `A ` + "`" + `logs` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_enabled",
+					Description: `Specifies if monitoring is enabled on this Elasticsearch or not.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The name of the SKU used for this Elasticsearch.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Elasticsearch. --- The ` + "`" + `filtering_tag` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `The type of action which is taken when the Tag matches the ` + "`" + `name` + "`" + ` and ` + "`" + `value` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name (key) of the Tag which should be filtered.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the Tag which should be filtered. --- The ` + "`" + `logs` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "filtering_tag",
+					Description: `A list of ` + "`" + `filtering_tag` + "`" + ` blocks as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "send_activity_logs",
+					Description: `Should the Azure Activity Logs should be sent to the Elasticsearch cluster?`,
+				},
+				resource.Attribute{
+					Name:        "send_azuread_logs",
+					Description: `Should the AzureAD Logs should be sent to the Elasticsearch cluster?`,
+				},
+				resource.Attribute{
+					Name:        "send_subscription_logs",
+					Description: `Should the Azure Subscription Logs should be sent to the Elasticsearch cluster? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Elasticsearch.`,
 				},
 			},
 		},
@@ -6671,7 +7274,7 @@ Use this data source to access information about an existing EventGrid Domain
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `The action to take when the rule is matched. Possible values are ` + "`" + `Allow` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The action to take when the rule is matched. Possible values are ` + "`" + `Allow` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6709,7 +7312,7 @@ Use this data source to access information about an existing EventGrid Domain To
 				},
 				resource.Attribute{
 					Name:        "domain_name",
-					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6723,7 +7326,7 @@ Use this data source to access information about an existing EventGrid Domain To
 				},
 				resource.Attribute{
 					Name:        "domain_name",
-					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The EventGrid Domain Topic Domain name. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6789,7 +7392,7 @@ Use this data source to access information about an existing EventGrid System To
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Event Grid System Topic. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Event Grid System Topic. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6835,7 +7438,7 @@ Use this data source to access information about an existing EventGrid System To
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Event Grid System Topic. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Event Grid System Topic. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6878,7 +7481,7 @@ Use this data source to access information about an existing EventGrid Topic
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The Secondary Shared Access Key associated with the EventGrid Topic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Shared Access Key associated with the EventGrid Topic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6900,7 +7503,7 @@ Use this data source to access information about an existing EventGrid Topic
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The Secondary Shared Access Key associated with the EventGrid Topic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Shared Access Key associated with the EventGrid Topic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6932,7 +7535,7 @@ Use this data source to access information about an existing EventHub.
 				},
 				resource.Attribute{
 					Name:        "partition_ids",
-					Description: `The identifiers for the partitions of this EventHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identifiers for the partitions of this EventHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -6990,7 +7593,7 @@ Use this data source to access information about an existing EventHub.
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The Secondary Key for the Event Hubs Authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Key for the Event Hubs Authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7024,7 +7627,7 @@ Use this data source to access information about an existing EventHub.
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The Secondary Key for the Event Hubs Authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Key for the Event Hubs Authorization Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7055,7 +7658,7 @@ Use this data source to access information about an existing EventHub.
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `Location of the EventHub Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Location of the EventHub Cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7097,7 +7700,7 @@ Use this data source to access information about an existing Event Hubs Consumer
 				},
 				resource.Attribute{
 					Name:        "user_metadata",
-					Description: `Specifies the user metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the user metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7111,7 +7714,7 @@ Use this data source to access information about an existing Event Hubs Consumer
 				},
 				resource.Attribute{
 					Name:        "user_metadata",
-					Description: `Specifies the user metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the user metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7172,6 +7775,10 @@ Use this data source to access information about an existing EventHub Namespace.
 					Description: `The ID of the EventHub Dedicated Cluster where this Namespace exists.`,
 				},
 				resource.Attribute{
+					Name:        "local_authentication_enabled",
+					Description: `Is this EventHub Namespace SAS authentication enabled?`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assign to the EventHub Namespace. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
 				},
@@ -7197,7 +7804,7 @@ Use this data source to access information about an existing EventHub Namespace.
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7238,6 +7845,10 @@ Use this data source to access information about an existing EventHub Namespace.
 					Description: `The ID of the EventHub Dedicated Cluster where this Namespace exists.`,
 				},
 				resource.Attribute{
+					Name:        "local_authentication_enabled",
+					Description: `Is this EventHub Namespace SAS authentication enabled?`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assign to the EventHub Namespace. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
 				},
@@ -7263,7 +7874,7 @@ Use this data source to access information about an existing EventHub Namespace.
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7333,7 +7944,7 @@ Use this data source to access information about an Authorization Rule for an Ev
 				},
 				resource.Attribute{
 					Name:        "send",
-					Description: `Does this Authorization Rule have permissions to Send to the Event Hub? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Does this Authorization Rule have permissions to Send to the Event Hub? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7379,7 +7990,7 @@ Use this data source to access information about an Authorization Rule for an Ev
 				},
 				resource.Attribute{
 					Name:        "send",
-					Description: `Does this Authorization Rule have permissions to Send to the Event Hub? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Does this Authorization Rule have permissions to Send to the Event Hub? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7422,7 +8033,7 @@ Use this data source to access information about an existing ExpressRoute circui
 				},
 				resource.Attribute{
 					Name:        "service_provider_provisioning_state",
-					Description: `The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are "NotProvisioned", "Provisioning", "Provisioned", and "Deprovisioning".`,
+					Description: `The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are ` + "`" + `NotProvisioned` + "`" + `, ` + "`" + `Provisioning` + "`" + `, ` + "`" + `Provisioned` + "`" + `, and ` + "`" + `Deprovisioning` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "service_key",
@@ -7482,7 +8093,7 @@ Use this data source to access information about an existing ExpressRoute circui
 				},
 				resource.Attribute{
 					Name:        "family",
-					Description: `The billing mode for bandwidth. Possible values are ` + "`" + `MeteredData` + "`" + ` or ` + "`" + `UnlimitedData` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The billing mode for bandwidth. Possible values are ` + "`" + `MeteredData` + "`" + ` or ` + "`" + `UnlimitedData` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7504,7 +8115,7 @@ Use this data source to access information about an existing ExpressRoute circui
 				},
 				resource.Attribute{
 					Name:        "service_provider_provisioning_state",
-					Description: `The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are "NotProvisioned", "Provisioning", "Provisioned", and "Deprovisioning".`,
+					Description: `The ExpressRoute circuit provisioning state from your chosen service provider. Possible values are ` + "`" + `NotProvisioned` + "`" + `, ` + "`" + `Provisioning` + "`" + `, ` + "`" + `Provisioned` + "`" + `, and ` + "`" + `Deprovisioning` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "service_key",
@@ -7564,7 +8175,7 @@ Use this data source to access information about an existing ExpressRoute circui
 				},
 				resource.Attribute{
 					Name:        "family",
-					Description: `The billing mode for bandwidth. Possible values are ` + "`" + `MeteredData` + "`" + ` or ` + "`" + `UnlimitedData` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The billing mode for bandwidth. Possible values are ` + "`" + `MeteredData` + "`" + ` or ` + "`" + `UnlimitedData` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7594,7 +8205,7 @@ This data source return the available Extended Locations for a specific Azure Re
 				},
 				resource.Attribute{
 					Name:        "extended_locations",
-					Description: `The available extended locations for the Azure Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The available extended locations for the Azure Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7608,7 +8219,7 @@ This data source return the available Extended Locations for a specific Azure Re
 				},
 				resource.Attribute{
 					Name:        "extended_locations",
-					Description: `The available extended locations for the Azure Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The available extended locations for the Azure Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7662,7 +8273,7 @@ Use this data source to access information about an existing Azure Firewall.
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
-					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to the for name resolution.`,
+					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to for name resolution.`,
 				},
 				resource.Attribute{
 					Name:        "management_ip_configuration",
@@ -7714,7 +8325,7 @@ Use this data source to access information about an existing Azure Firewall.
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7748,7 +8359,7 @@ Use this data source to access information about an existing Azure Firewall.
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
-					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to the for name resolution.`,
+					Description: `The list of DNS servers that the Azure Firewall will direct DNS traffic to for name resolution.`,
 				},
 				resource.Attribute{
 					Name:        "management_ip_configuration",
@@ -7800,7 +8411,7 @@ Use this data source to access information about an existing Azure Firewall.
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The private IP address associated with the Azure Firewall. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -7827,7 +8438,7 @@ Use this data source to access information about an existing Firewall Policy.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8092,7 +8703,7 @@ Use this data source to access information about a Function App.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the Function App. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the Function App. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8334,7 +8945,7 @@ Use this data source to access information about a Function App.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the Function App. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the Function App. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8435,7 +9046,7 @@ Use this data source to access information about an existing HDInsight Cluster.
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `The password used for the Ambari Portal. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The password used for the Ambari Portal. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8501,7 +9112,7 @@ Use this data source to access information about an existing HDInsight Cluster.
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `The password used for the Ambari Portal. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The password used for the Ambari Portal. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8555,7 +9166,7 @@ Use this data source to access information about an existing Healthcare DICOM Se
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `The intended audience to receive authentication tokens for the service. The default value is https://dicom.azurehealthcareapis.azure.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The intended audience to receive authentication tokens for the service. The default value is https://dicom.azurehealthcareapis.azure.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8589,11 +9200,211 @@ Use this data source to access information about an existing Healthcare DICOM Se
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `The intended audience to receive authentication tokens for the service. The default value is https://dicom.azurehealthcareapis.azure.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The intended audience to receive authentication tokens for the service. The default value is https://dicom.azurehealthcareapis.azure.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Healthcare DICOM Service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_healthcare_fhir_service",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about an existing Healthcare FHIR (Fast Healthcare Interoperability Resources) Service.`,
+			Description: `
+
+Use this data source to access information about an existing Healthcare FHIR Service(Fast Healthcare Interoperability Resources).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Healthcare FHIR Service.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `The name of the Healthcare Workspace in which the Healthcare FHIR Service exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Healthcare FHIR Service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Healthcare FHIR Service is located.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the Healthcare FHIR Service.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `The ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy_object_ids",
+					Description: `The list of the access policies of the service instance.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The ` + "`" + `cors` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "container_registry_login_server_url",
+					Description: `The list of azure container registry settings used for convert data operation of the service instance.`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `The ` + "`" + `authentication` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_export_storage_account_name",
+					Description: `The name of the storage account which the operation configuration information is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `Is public networks access enabled when data plane traffic coming from public networks while private endpoint is enabled?`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The map of tags assigned to the Healthcare FHIR Service. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of identity used for the Healthcare FHIR service.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID associated with this System Assigned Managed Service Identity.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID associated with this System Assigned Managed Service Identity. --- A ` + "`" + `cors` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `The set of origins to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `The set of headers to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `The methods to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "max_age_in_seconds",
+					Description: `The max age to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "credentials_allowed",
+					Description: `Are credentials allowed via CORS? --- An ` + "`" + `authentication` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authority",
+					Description: `The Azure Active Directory (tenant) that serves as the authentication authority to access the service. The default authority is the Directory defined in the authentication scheme in use when running Terraform. Authority must be registered to Azure AD and in the following format: https://{Azure-AD-endpoint}/{tenant-id}.`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `The intended audience to receive authentication tokens for the service. The default value is https://<name>.fhir.azurehealthcareapis.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Healthcare FHIR Service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Healthcare FHIR Service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Healthcare FHIR Service is located.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the Healthcare FHIR Service.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `The ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy_object_ids",
+					Description: `The list of the access policies of the service instance.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The ` + "`" + `cors` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "container_registry_login_server_url",
+					Description: `The list of azure container registry settings used for convert data operation of the service instance.`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `The ` + "`" + `authentication` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_export_storage_account_name",
+					Description: `The name of the storage account which the operation configuration information is exported to.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access_enabled",
+					Description: `Is public networks access enabled when data plane traffic coming from public networks while private endpoint is enabled?`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The map of tags assigned to the Healthcare FHIR Service. --- An ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of identity used for the Healthcare FHIR service.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID associated with this System Assigned Managed Service Identity.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID associated with this System Assigned Managed Service Identity. --- A ` + "`" + `cors` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `The set of origins to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `The set of headers to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `The methods to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "max_age_in_seconds",
+					Description: `The max age to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "credentials_allowed",
+					Description: `Are credentials allowed via CORS? --- An ` + "`" + `authentication` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authority",
+					Description: `The Azure Active Directory (tenant) that serves as the authentication authority to access the service. The default authority is the Directory defined in the authentication scheme in use when running Terraform. Authority must be registered to Azure AD and in the following format: https://{Azure-AD-endpoint}/{tenant-id}.`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `The intended audience to receive authentication tokens for the service. The default value is https://<name>.fhir.azurehealthcareapis.com ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Healthcare FHIR Service.`,
 				},
 			},
 		},
@@ -8675,7 +9486,7 @@ Use this data source to access information about an existing Healthcare Service
 				},
 				resource.Attribute{
 					Name:        "allow_credentials",
-					Description: `Are credentials are allowed via CORS? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Are credentials are allowed via CORS? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8741,7 +9552,7 @@ Use this data source to access information about an existing Healthcare Service
 				},
 				resource.Attribute{
 					Name:        "allow_credentials",
-					Description: `Are credentials are allowed via CORS? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Are credentials are allowed via CORS? ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8779,7 +9590,7 @@ Use this data source to access information about an existing Healthcare Workspac
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the Healthcare Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to the Healthcare Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8797,7 +9608,7 @@ Use this data source to access information about an existing Healthcare Workspac
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the Healthcare Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to the Healthcare Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8900,7 +9711,7 @@ Use this data source to access information about an existing Image.
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -8974,7 +9785,7 @@ Use this data source to access information about an existing Image.
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9072,7 +9883,7 @@ Use this data source to access information about existing Images within a Resour
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9150,7 +9961,7 @@ Use this data source to access information about existing Images within a Resour
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the size of this Data Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9177,7 +9988,7 @@ Use this data source to access information about an existing IoTHub.
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `The Hostname of the IoTHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Hostname of the IoTHub. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9227,7 +10038,7 @@ Use this data source to access information about an existing IotHub Device Provi
 				},
 				resource.Attribute{
 					Name:        "service_operations_host_name",
-					Description: `The service endpoint of the IoT Device Provisioning Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The service endpoint of the IoT Device Provisioning Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9257,7 +10068,7 @@ Use this data source to access information about an existing IotHub Device Provi
 				},
 				resource.Attribute{
 					Name:        "service_operations_host_name",
-					Description: `The service endpoint of the IoT Device Provisioning Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The service endpoint of the IoT Device Provisioning Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9307,7 +10118,7 @@ Use this data source to access information about an existing IotHub Device Provi
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9333,7 +10144,7 @@ Use this data source to access information about an existing IotHub Device Provi
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9383,7 +10194,7 @@ Use this data source to access information about an existing IotHub Shared Acces
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9409,7 +10220,7 @@ Use this data source to access information about an existing IotHub Shared Acces
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the Shared Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9451,7 +10262,7 @@ Use this data source to access information about an existing IP Group.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9473,7 +10284,7 @@ Use this data source to access information about an existing IP Group.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9575,7 +10386,7 @@ Use this data source to access information about an existing Key Vault.
 				},
 				resource.Attribute{
 					Name:        "storage_permissions",
-					Description: `A list of storage permissions applicable to this Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of storage permissions applicable to this Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9657,7 +10468,7 @@ Use this data source to access information about an existing Key Vault.
 				},
 				resource.Attribute{
 					Name:        "storage_permissions",
-					Description: `A list of storage permissions applicable to this Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of storage permissions applicable to this Access Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9695,7 +10506,7 @@ Use this data source to access information about the permissions from the Manage
 				},
 				resource.Attribute{
 					Name:        "certificate_permissions",
-					Description: `the certificate permissions for the access policy ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the certificate permissions for the access policy ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9717,7 +10528,7 @@ Use this data source to access information about the permissions from the Manage
 				},
 				resource.Attribute{
 					Name:        "certificate_permissions",
-					Description: `the certificate permissions for the access policy ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `the certificate permissions for the access policy ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -9898,7 +10709,7 @@ Use this data source to access information about an existing Key Vault Certifica
 				},
 				resource.Attribute{
 					Name:        "upns",
-					Description: `A list of User Principal Names identified by the Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of User Principal Names identified by the Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10052,7 +10863,7 @@ Use this data source to access information about an existing Key Vault Certifica
 				},
 				resource.Attribute{
 					Name:        "upns",
-					Description: `A list of User Principal Names identified by the Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of User Principal Names identified by the Certificate. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10115,7 +10926,7 @@ Use this data source to access data stored in an existing Key Vault Certificate.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10149,7 +10960,7 @@ Use this data source to access data stored in an existing Key Vault Certificate.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10204,7 +11015,7 @@ Use this data source to access information about an existing Key Vault Certifica
 				},
 				resource.Attribute{
 					Name:        "phone",
-					Description: `Phone number of the admin. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Phone number of the admin. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10227,7 +11038,7 @@ Encrypts or Decrypts a value using a Key Vault Key.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of this Encrypted Value ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of this Encrypted Value ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10295,6 +11106,14 @@ Use this data source to access information about an existing Key Vault Key.
 					Description: `The OpenSSH encoded public key of this Key Vault Key.`,
 				},
 				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The (Versioned) ID for this Key Vault Key. This property points to a specific version of a Key Vault Key, as such using this won't auto-rotate values if used in other Azure Services.`,
+				},
+				resource.Attribute{
+					Name:        "resource_versionless_id",
+					Description: `The Versionless ID of the Key Vault Key. This property allows other Azure Services (that support it) to auto-rotate their value when the Key Vault Key is updated.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to this Key Vault Key.`,
 				},
@@ -10312,7 +11131,7 @@ Use this data source to access information about an existing Key Vault Key.
 				},
 				resource.Attribute{
 					Name:        "y",
-					Description: `The EC Y component of this Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The EC Y component of this Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10357,6 +11176,14 @@ Use this data source to access information about an existing Key Vault Key.
 					Description: `The OpenSSH encoded public key of this Key Vault Key.`,
 				},
 				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The (Versioned) ID for this Key Vault Key. This property points to a specific version of a Key Vault Key, as such using this won't auto-rotate values if used in other Azure Services.`,
+				},
+				resource.Attribute{
+					Name:        "resource_versionless_id",
+					Description: `The Versionless ID of the Key Vault Key. This property allows other Azure Services (that support it) to auto-rotate their value when the Key Vault Key is updated.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags assigned to this Key Vault Key.`,
 				},
@@ -10374,7 +11201,7 @@ Use this data source to access information about an existing Key Vault Key.
 				},
 				resource.Attribute{
 					Name:        "y",
-					Description: `The EC Y component of this Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The EC Y component of this Key Vault Key. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10436,7 +11263,7 @@ Use this data source to access information about an existing Key Vault Managed H
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Key Vault Managed Hardware Security Module. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Key Vault Managed Hardware Security Module. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10478,7 +11305,7 @@ Use this data source to access information about an existing Key Vault Managed H
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Key Vault Managed Hardware Security Module. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Key Vault Managed Hardware Security Module. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10514,6 +11341,14 @@ Use this data source to access information about an existing Key Vault Secret.
 					Description: `The Key Vault Secret ID.`,
 				},
 				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The (Versioned) ID for this Key Vault Secret. This property points to a specific version of a Key Vault Secret, as such using this won't auto-rotate values if used in other Azure Services.`,
+				},
+				resource.Attribute{
+					Name:        "resource_versionless_id",
+					Description: `The Versionless ID of the Key Vault Secret. This property allows other Azure Services (that support it) to auto-rotate their value when the Key Vault Secret is updated.`,
+				},
+				resource.Attribute{
 					Name:        "value",
 					Description: `The value of the Key Vault Secret.`,
 				},
@@ -10527,7 +11362,7 @@ Use this data source to access information about an existing Key Vault Secret.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Any tags assigned to this resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any tags assigned to this resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10540,6 +11375,14 @@ Use this data source to access information about an existing Key Vault Secret.
 					Description: `The Key Vault Secret ID.`,
 				},
 				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The (Versioned) ID for this Key Vault Secret. This property points to a specific version of a Key Vault Secret, as such using this won't auto-rotate values if used in other Azure Services.`,
+				},
+				resource.Attribute{
+					Name:        "resource_versionless_id",
+					Description: `The Versionless ID of the Key Vault Secret. This property allows other Azure Services (that support it) to auto-rotate their value when the Key Vault Secret is updated.`,
+				},
+				resource.Attribute{
 					Name:        "value",
 					Description: `The value of the Key Vault Secret.`,
 				},
@@ -10553,7 +11396,7 @@ Use this data source to access information about an existing Key Vault Secret.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Any tags assigned to this resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any tags assigned to this resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10583,7 +11426,7 @@ Use this data source to retrieve a list of secret names from an existing Key Vau
 				},
 				resource.Attribute{
 					Name:        "key_vault_id",
-					Description: `The Key Vault ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Key Vault ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10597,7 +11440,7 @@ Use this data source to retrieve a list of secret names from an existing Key Vau
 				},
 				resource.Attribute{
 					Name:        "key_vault_id",
-					Description: `The Key Vault ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Key Vault ID. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -10793,6 +11636,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `If the Public IPs for the nodes in this Agent Pool are enabled.`,
 				},
 				resource.Attribute{
+					Name:        "host_group_id",
+					Description: `The ID of a Dedicated Host Group that this Node Pool should be run on. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
 					Name:        "min_count",
 					Description: `Minimum number of nodes for auto-scaling`,
 				},
@@ -11030,7 +11877,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Kubernetes Cluster. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Kubernetes Cluster. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -11046,7 +11893,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "key_data",
-					Description: `The Public SSH Key used to access the cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Public SSH Key used to access the cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11219,6 +12066,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `If the Public IPs for the nodes in this Agent Pool are enabled.`,
 				},
 				resource.Attribute{
+					Name:        "host_group_id",
+					Description: `The ID of a Dedicated Host Group that this Node Pool should be run on. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
 					Name:        "min_count",
 					Description: `Minimum number of nodes for auto-scaling`,
 				},
@@ -11456,7 +12307,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Kubernetes Cluster. --- The ` + "`" + `kubelet_identity` + "`" + ` block exports the following:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Kubernetes Cluster. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -11472,7 +12323,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "key_data",
-					Description: `The Public SSH Key used to access the cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Public SSH Key used to access the cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11508,6 +12359,10 @@ Use this data source to access information about an existing Kubernetes Cluster 
 				resource.Attribute{
 					Name:        "eviction_policy",
 					Description: `The eviction policy used for Virtual Machines in the Virtual Machine Scale Set, when ` + "`" + `priority` + "`" + ` is set to ` + "`" + `Spot` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "host_group_id",
+					Description: `The ID of a Dedicated Host Group that this Node Pool should be run on. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "max_count",
@@ -11591,7 +12446,7 @@ Use this data source to access information about an existing Kubernetes Cluster 
 				},
 				resource.Attribute{
 					Name:        "max_surge",
-					Description: `The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The maximum number or percentage of nodes which will be added to the Node Pool size during an upgrade. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11629,7 +12484,7 @@ Use this data source to retrieve the version of Kubernetes supported by Azure Ku
 				},
 				resource.Attribute{
 					Name:        "latest_version",
-					Description: `The most recent version available. If ` + "`" + `include_preview == false` + "`" + `, this is the most recent non-preview version available. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The most recent version available. If ` + "`" + `include_preview == false` + "`" + `, this is the most recent non-preview version available. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11643,7 +12498,7 @@ Use this data source to retrieve the version of Kubernetes supported by Azure Ku
 				},
 				resource.Attribute{
 					Name:        "latest_version",
-					Description: `The most recent version available. If ` + "`" + `include_preview == false` + "`" + `, this is the most recent non-preview version available. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The most recent version available. If ` + "`" + `include_preview == false` + "`" + `, this is the most recent non-preview version available. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11681,7 +12536,7 @@ Use this data source to access information about an existing Kusto (also known a
 				},
 				resource.Attribute{
 					Name:        "data_ingestion_uri",
-					Description: `The Kusto Cluster URI to be used for data ingestion. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Kusto Cluster URI to be used for data ingestion. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11699,7 +12554,7 @@ Use this data source to access information about an existing Kusto (also known a
 				},
 				resource.Attribute{
 					Name:        "data_ingestion_uri",
-					Description: `The Kusto Cluster URI to be used for data ingestion. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Kusto Cluster URI to be used for data ingestion. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11749,7 +12604,7 @@ Use this data source to access information about an existing Kusto Database
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The size of the database in bytes. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the database in bytes. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11775,7 +12630,7 @@ Use this data source to access information about an existing Kusto Database
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The size of the database in bytes. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the database in bytes. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11862,7 +12717,7 @@ Use this data source to access information about an existing Load Balancer
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones which the Load Balancer's IP Addresses should be created in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones which the Load Balancer's IP Addresses should be created in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11928,7 +12783,7 @@ Use this data source to access information about an existing Load Balancer
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones which the Load Balancer's IP Addresses should be created in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones which the Load Balancer's IP Addresses should be created in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -11977,6 +12832,10 @@ Use this data source to access information about an existing Load Balancer's Bac
 					Description: `A list of the Load Balancing Rules associated with this Backend Address Pool.`,
 				},
 				resource.Attribute{
+					Name:        "inbound_nat_rules",
+					Description: `A list of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool.`,
+				},
+				resource.Attribute{
 					Name:        "outbound_rules",
 					Description: `A list of the Load Balancing Outbound Rules associated with this Backend Address Pool. --- A ` + "`" + `backend_address` + "`" + ` block exports the following:`,
 				},
@@ -11990,7 +12849,23 @@ Use this data source to access information about an existing Load Balancer's Bac
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The Static IP address for this Load Balancer within the Virtual Network. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Static IP address for this Load Balancer within the Virtual Network.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_nat_rule_port_mapping",
+					Description: `A list of ` + "`" + `inbound_nat_rule_port_mapping` + "`" + ` block as defined below. --- A ` + "`" + `inbound_nat_rule_port_mapping` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "inbound_nat_rule_name",
+					Description: `The name of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `The Frontend Port of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address.`,
+				},
+				resource.Attribute{
+					Name:        "backend_port",
+					Description: `The Backend Port of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -12019,6 +12894,10 @@ Use this data source to access information about an existing Load Balancer's Bac
 					Description: `A list of the Load Balancing Rules associated with this Backend Address Pool.`,
 				},
 				resource.Attribute{
+					Name:        "inbound_nat_rules",
+					Description: `A list of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool.`,
+				},
+				resource.Attribute{
 					Name:        "outbound_rules",
 					Description: `A list of the Load Balancing Outbound Rules associated with this Backend Address Pool. --- A ` + "`" + `backend_address` + "`" + ` block exports the following:`,
 				},
@@ -12032,7 +12911,23 @@ Use this data source to access information about an existing Load Balancer's Bac
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The Static IP address for this Load Balancer within the Virtual Network. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Static IP address for this Load Balancer within the Virtual Network.`,
+				},
+				resource.Attribute{
+					Name:        "inbound_nat_rule_port_mapping",
+					Description: `A list of ` + "`" + `inbound_nat_rule_port_mapping` + "`" + ` block as defined below. --- A ` + "`" + `inbound_nat_rule_port_mapping` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "inbound_nat_rule_name",
+					Description: `The name of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_port",
+					Description: `The Frontend Port of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address.`,
+				},
+				resource.Attribute{
+					Name:        "backend_port",
+					Description: `The Backend Port of the Load Balancing Inbound NAT Rules associated with this Backend Address Pool Address. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -12099,7 +12994,7 @@ Use this data source to access information about an existing Load Balancer Rule.
 				},
 				resource.Attribute{
 					Name:        "enable_tcp_reset",
-					Description: `If TCP Reset is enabled for this Load Balancer Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `If TCP Reset is enabled for this Load Balancer Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -12129,20 +13024,8 @@ Use this data source to access information about an existing Linux Function App.
 					Description: `The Azure Region where the Linux Function App exists.`,
 				},
 				resource.Attribute{
-					Name:        "service_plan_id",
-					Description: `The ID of the App Service Plan within which this Function App has been created.`,
-				},
-				resource.Attribute{
-					Name:        "site_config",
-					Description: `A ` + "`" + `site_config` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "storage_account_name",
-					Description: `The backend storage account name used by this Function App.`,
-				},
-				resource.Attribute{
 					Name:        "app_settings",
-					Description: `A map of key-value pairs for [App Settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-app-settings) and custom values.`,
+					Description: `A map of key-value pairs for [App Settings](https://docs.microsoft.com/azure/azure-functions/functions-app-settings) and custom values.`,
 				},
 				resource.Attribute{
 					Name:        "auth_settings",
@@ -12169,16 +13052,24 @@ Use this data source to access information about an existing Linux Function App.
 					Description: `A ` + "`" + `connection_string` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "content_share_force_disabled",
+					Description: `Are the settings for linking the Function App to storage suppressed?`,
+				},
+				resource.Attribute{
+					Name:        "custom_domain_verification_id",
+					Description: `The identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
+				},
+				resource.Attribute{
 					Name:        "daily_memory_time_quota",
 					Description: `The amount of memory in gigabyte-seconds that your application is allowed to consume per day.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Is the Function App enabled?`,
+					Name:        "default_hostname",
+					Description: `The default hostname of the Linux Function App.`,
 				},
 				resource.Attribute{
-					Name:        "force_disable_content_share",
-					Description: `Are the settings for linking the Function App to storage suppressed?`,
+					Name:        "enabled",
+					Description: `Is the Function App enabled?`,
 				},
 				resource.Attribute{
 					Name:        "functions_extension_version",
@@ -12191,34 +13082,6 @@ Use this data source to access information about an existing Linux Function App.
 				resource.Attribute{
 					Name:        "identity",
 					Description: `A ` + "`" + `identity` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "sticky_settings",
-					Description: `A ` + "`" + `sticky_settings` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "storage_account_access_key",
-					Description: `The access key used to access the backend storage account for the Function App.`,
-				},
-				resource.Attribute{
-					Name:        "storage_key_vault_secret_id",
-					Description: `The Key Vault Secret ID, including version, that contains the Connection String to connect to the storage account for this Function App.`,
-				},
-				resource.Attribute{
-					Name:        "storage_uses_managed_identity",
-					Description: `Does the Function App use Managed Identity to access the storage account?`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A mapping of tags which are assigned to the Linux Function App.`,
-				},
-				resource.Attribute{
-					Name:        "custom_domain_verification_id",
-					Description: `The identifier used by App Service to perform domain ownership verification via DNS TXT record.`,
-				},
-				resource.Attribute{
-					Name:        "default_hostname",
-					Description: `The default hostname of the Linux Function App.`,
 				},
 				resource.Attribute{
 					Name:        "kind",
@@ -12241,8 +13104,44 @@ Use this data source to access information about an existing Linux Function App.
 					Description: `A comma separated list of possible outbound IP addresses as a string. For example ` + "`" + `52.23.25.3,52.143.43.12,52.143.43.17` + "`" + `. This is a superset of ` + "`" + `outbound_ip_addresses` + "`" + `. For example ` + "`" + `["52.23.25.3", "52.143.43.12","52.143.43.17"]` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "service_plan_id",
+					Description: `The ID of the App Service Plan within which this Function App has been created.`,
+				},
+				resource.Attribute{
+					Name:        "site_config",
+					Description: `A ` + "`" + `site_config` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "site_credential",
-					Description: `A ` + "`" + `site_credential` + "`" + ` block as defined below. --- An ` + "`" + `active_directory` + "`" + ` block exports the following:`,
+					Description: `A ` + "`" + `site_credential` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "sticky_settings",
+					Description: `A ` + "`" + `sticky_settings` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_name",
+					Description: `The backend storage account name used by this Function App.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_access_key",
+					Description: `The access key used to access the backend storage account for the Function App.`,
+				},
+				resource.Attribute{
+					Name:        "storage_key_vault_secret_id",
+					Description: `The Key Vault Secret ID, including version, that contains the Connection String to connect to the storage account for this Function App.`,
+				},
+				resource.Attribute{
+					Name:        "storage_uses_managed_identity",
+					Description: `Does the Function App use Managed Identity to access the storage account?`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags which are assigned to the Linux Function App.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `The subnet id which the Linux Function App is vNet Integrated with. --- An ` + "`" + `active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -12718,7 +13617,7 @@ Use this data source to access information about an existing Linux Function App.
 				},
 				resource.Attribute{
 					Name:        "vnet_route_all_enabled",
-					Description: `Does all outbound traffic have Virtual Network Security Groups and User Defined Routes applied?`,
+					Description: `Are all outbound traffic to NAT Gateways, Network Security Groups and User Defined Routes applied?`,
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
@@ -12746,7 +13645,7 @@ Use this data source to access information about an existing Linux Function App.
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `The Site Credentials Password used for publishing. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Site Credentials Password used for publishing. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13300,7 +14199,7 @@ Use this data source to access information about an existing Linux Web App.
 					Description: `The Minimum version of TLS for requests.`,
 				},
 				resource.Attribute{
-					Name:        "remote_debugging",
+					Name:        "remote_debugging_enabled",
 					Description: `Is Remote Debugging enabled.`,
 				},
 				resource.Attribute{
@@ -13326,6 +14225,10 @@ Use this data source to access information about an existing Linux Web App.
 				resource.Attribute{
 					Name:        "use_32_bit_worker",
 					Description: `Does the Linux Web App use a 32-bit worker.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_route_all_enabled",
+					Description: `Are all outbound traffic to NAT Gateways, Network Security Groups and User Defined Routes applied?`,
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
@@ -13437,7 +14340,7 @@ Use this data source to access information about an existing Linux Web App.
 				},
 				resource.Attribute{
 					Name:        "consumer_secret_setting_name",
-					Description: `The app setting name that contains the OAuth 1.0a consumer secret of the Twitter application used for sign-in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The app setting name that contains the OAuth 1.0a consumer secret of the Twitter application used for sign-in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13496,7 +14399,7 @@ Use this data source to access information about an existing Local Network Gatew
 				},
 				resource.Attribute{
 					Name:        "peer_weight",
-					Description: `The weight added to routes learned from this BGP speaker. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The weight added to routes learned from this BGP speaker. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13555,7 +14458,7 @@ Use this data source to access information about an existing Log Analytics (form
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13593,7 +14496,7 @@ Use this data source to access information about an existing Log Analytics (form
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13628,7 +14531,7 @@ Use this data source to access information about an existing Logic App Integrati
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Logic App Integration Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Logic App Integration Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13671,7 +14574,7 @@ Use this data source to access information about an existing Logic App Standard 
 				},
 				resource.Attribute{
 					Name:        "principal_id",
-					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Logic App Workflow. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Logic App Workflow. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13765,7 +14668,7 @@ Use this data source to access information about an existing Logic App Workflow.
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this API Management Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this API Management Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13839,7 +14742,7 @@ Use this data source to access information about an existing Logic App Workflow.
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this API Management Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this API Management Service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13897,7 +14800,7 @@ Use this data source to access information about an existing Machine Learning Wo
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID of the System Assigned Managed Identity assigned to this Machine Learning Workspace. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID of the System Assigned Managed Identity assigned to this Machine Learning Workspace. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -13935,7 +14838,7 @@ Use this data source to access information about an existing Machine Learning Wo
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID of the System Assigned Managed Identity assigned to this Machine Learning Workspace. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID of the System Assigned Managed Identity assigned to this Machine Learning Workspace. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14077,7 +14980,7 @@ Uses this data source to access information about an existing Managed API.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Managed API. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Managed API. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14087,7 +14990,7 @@ Uses this data source to access information about an existing Managed API.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Managed API. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Managed API. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14121,7 +15024,7 @@ Uses this data source to access information about an existing Managed Applicatio
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Managed Application Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Managed Application Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14131,7 +15034,7 @@ Uses this data source to access information about an existing Managed Applicatio
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Managed Application Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Managed Application Definition. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14213,7 +15116,35 @@ Use this data source to access information about an existing Managed Disk.
 				},
 				resource.Attribute{
 					Name:        "disk_access_id",
-					Description: `The ID of the disk access resource for using private endpoints on disks. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the disk access resource for using private endpoints on disks.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_settings",
+					Description: `A ` + "`" + `encryption_settings` + "`" + ` block as defined below. --- The ` + "`" + `encryption_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_key",
+					Description: `A ` + "`" + `disk_encryption_key` + "`" + ` block as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "key_encryption_key",
+					Description: `A ` + "`" + `key_encryption_key` + "`" + ` block as defined below. --- The ` + "`" + `disk_encryption_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "secret_url",
+					Description: `The URL to the Key Vault Secret used as the Disk Encryption Key.`,
+				},
+				resource.Attribute{
+					Name:        "source_vault_id",
+					Description: `The ID of the source Key Vault. --- The ` + "`" + `key_encryption_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "key_url",
+					Description: `The URL to the Key Vault Key used as the Key Encryption Key.`,
+				},
+				resource.Attribute{
+					Name:        "source_vault_id",
+					Description: `The ID of the source Key Vault. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14275,7 +15206,35 @@ Use this data source to access information about an existing Managed Disk.
 				},
 				resource.Attribute{
 					Name:        "disk_access_id",
-					Description: `The ID of the disk access resource for using private endpoints on disks. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the disk access resource for using private endpoints on disks.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_settings",
+					Description: `A ` + "`" + `encryption_settings` + "`" + ` block as defined below. --- The ` + "`" + `encryption_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_key",
+					Description: `A ` + "`" + `disk_encryption_key` + "`" + ` block as defined above.`,
+				},
+				resource.Attribute{
+					Name:        "key_encryption_key",
+					Description: `A ` + "`" + `key_encryption_key` + "`" + ` block as defined below. --- The ` + "`" + `disk_encryption_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "secret_url",
+					Description: `The URL to the Key Vault Secret used as the Disk Encryption Key.`,
+				},
+				resource.Attribute{
+					Name:        "source_vault_id",
+					Description: `The ID of the source Key Vault. --- The ` + "`" + `key_encryption_key` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "key_url",
+					Description: `The URL to the Key Vault Key used as the Key Encryption Key.`,
+				},
+				resource.Attribute{
+					Name:        "source_vault_id",
+					Description: `The ID of the source Key Vault. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14313,7 +15272,7 @@ Use this data source to access information about an existing Management Group.
 				},
 				resource.Attribute{
 					Name:        "subscription_ids",
-					Description: `A list of Subscription IDs which are assigned to the Management Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Subscription IDs which are assigned to the Management Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14331,11 +15290,38 @@ Use this data source to access information about an existing Management Group.
 				},
 				resource.Attribute{
 					Name:        "subscription_ids",
-					Description: `A list of Subscription IDs which are assigned to the Management Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Subscription IDs which are assigned to the Management Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Management Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_management_group_template_deployment",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Management Group Template Deployment.`,
+			Description: `
+
+Use this data source to access information about an existing Management Group Template Deployment.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Management Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Management Group Template Deployment.`,
 				},
 			},
 		},
@@ -14377,7 +15363,7 @@ Use this data source to access information about an existing Azure Maps Account.
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",
-					Description: `A unique identifier for the Maps Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A unique identifier for the Maps Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14403,7 +15389,7 @@ Use this data source to access information about an existing Azure Maps Account.
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",
-					Description: `A unique identifier for the Maps Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A unique identifier for the Maps Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14482,7 +15468,7 @@ Use this data source to access information about an existing MariaDB Server.
 				},
 				resource.Attribute{
 					Name:        "auto_grow",
-					Description: `Whether autogrow is enabled or disabled for the storage. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether autogrow is enabled or disabled for the storage. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14540,7 +15526,7 @@ Use this data source to access information about an existing MariaDB Server.
 				},
 				resource.Attribute{
 					Name:        "auto_grow",
-					Description: `Whether autogrow is enabled or disabled for the storage. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Whether autogrow is enabled or disabled for the storage. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -14790,7 +15776,7 @@ Use this data source to access the properties of an Action Group.
 				},
 				resource.Attribute{
 					Name:        "use_common_alert_schema",
-					Description: `Indicates whether to use common alert schema. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Indicates whether to use common alert schema. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15020,7 +16006,7 @@ Use this data source to access the properties of an Action Group.
 				},
 				resource.Attribute{
 					Name:        "use_common_alert_schema",
-					Description: `Indicates whether to use common alert schema. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Indicates whether to use common alert schema. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15054,7 +16040,7 @@ Use this data source to access information about the Monitor Diagnostics Categor
 				},
 				resource.Attribute{
 					Name:        "metrics",
-					Description: `A list of the Metric Categories supported for this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of the Metric Categories supported for this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15072,7 +16058,7 @@ Use this data source to access information about the Monitor Diagnostics Categor
 				},
 				resource.Attribute{
 					Name:        "metrics",
-					Description: `A list of the Metric Categories supported for this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of the Metric Categories supported for this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15122,7 +16108,7 @@ Use this data source to access the properties of a Log Profile.
 				},
 				resource.Attribute{
 					Name:        "days",
-					Description: `The number of days for the retention policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The number of days for the retention policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15156,7 +16142,7 @@ Use this data source to access the properties of a Log Profile.
 				},
 				resource.Attribute{
 					Name:        "days",
-					Description: `The number of days for the retention policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The number of days for the retention policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15270,7 +16256,7 @@ Use this data source to access the properties of an AlertingAction scheduled que
 				},
 				resource.Attribute{
 					Name:        "threshold",
-					Description: `Result or count threshold based on which rule should be triggered. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Result or count threshold based on which rule should be triggered. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15364,7 +16350,7 @@ Use this data source to access the properties of an AlertingAction scheduled que
 				},
 				resource.Attribute{
 					Name:        "threshold",
-					Description: `Result or count threshold based on which rule should be triggered. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Result or count threshold based on which rule should be triggered. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15430,7 +16416,7 @@ Use this data source to access the properties of a LogToMetricAction scheduled q
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `List of dimension values. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of dimension values. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15476,7 +16462,7 @@ Use this data source to access the properties of a LogToMetricAction scheduled q
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `List of dimension values. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of dimension values. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15542,7 +16528,7 @@ Use this data source to access information about an existing SQL database.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15588,7 +16574,7 @@ Use this data source to access information about an existing SQL database.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assign to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15671,7 +16657,7 @@ Use this data source to access information about an existing SQL elastic pool.
 				},
 				resource.Attribute{
 					Name:        "family",
-					Description: `The ` + "`" + `family` + "`" + ` of hardware. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ` + "`" + `family` + "`" + ` of hardware. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15729,7 +16715,7 @@ Use this data source to access information about an existing SQL elastic pool.
 				},
 				resource.Attribute{
 					Name:        "family",
-					Description: `The ` + "`" + `family` + "`" + ` of hardware. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ` + "`" + `family` + "`" + ` of hardware. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15851,7 +16837,7 @@ Use this data source to access information about an existing Microsoft SQL Azure
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -15941,7 +16927,7 @@ Use this data source to access information about an existing Microsoft SQL Azure
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16008,7 +16994,7 @@ Use this data source to access information about an existing Microsoft SQL Serve
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `The list of User Assigned Managed Identity IDs assigned to this Microsoft SQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of User Assigned Managed Identity IDs assigned to this Microsoft SQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16127,7 +17113,7 @@ Use this data source to access information about an existing Microsoft SQL Serve
 				},
 				resource.Attribute{
 					Name:        "size_gb",
-					Description: `The max storage allowed for the MySQL Flexible Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The max storage allowed for the MySQL Flexible Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16258,7 +17244,7 @@ Use this data source to access information about an existing Microsoft SQL Serve
 				},
 				resource.Attribute{
 					Name:        "storage_endpoint",
-					Description: `Specifies the blob storage endpoint (e.g. https://example.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the blob storage endpoint (e.g. https://example.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16372,7 +17358,7 @@ Use this data source to access information about an existing Microsoft SQL Serve
 				},
 				resource.Attribute{
 					Name:        "storage_endpoint",
-					Description: `Specifies the blob storage endpoint (e.g. https://example.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the blob storage endpoint (e.g. https://example.blob.core.windows.net). This blob storage will hold all Threat Detection audit logs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16498,7 +17484,7 @@ Uses this data source to access information about an existing NetApp Account.
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure Region where the NetApp Account exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure Region where the NetApp Account exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16508,7 +17494,7 @@ Uses this data source to access information about an existing NetApp Account.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure Region where the NetApp Account exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure Region where the NetApp Account exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16551,7 +17537,7 @@ Uses this data source to access information about an existing NetApp Pool.
 				},
 				resource.Attribute{
 					Name:        "size_in_tb",
-					Description: `Provisioned size of the pool in TB. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Provisioned size of the pool in TB. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16569,7 +17555,7 @@ Uses this data source to access information about an existing NetApp Pool.
 				},
 				resource.Attribute{
 					Name:        "size_in_tb",
-					Description: `Provisioned size of the pool in TB. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Provisioned size of the pool in TB. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16611,7 +17597,7 @@ Uses this data source to access information about an existing NetApp Snapshot.
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure Region where the NetApp Snapshot exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure Region where the NetApp Snapshot exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16621,7 +17607,7 @@ Uses this data source to access information about an existing NetApp Snapshot.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure Region where the NetApp Snapshot exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure Region where the NetApp Snapshot exists. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16743,7 +17729,7 @@ Uses this data source to access information about an existing NetApp Snapshot Po
 				},
 				resource.Attribute{
 					Name:        "minute",
-					Description: `Minute of the hour that the snapshots will be created. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Minute of the hour that the snapshots will be created. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16841,7 +17827,7 @@ Uses this data source to access information about an existing NetApp Snapshot Po
 				},
 				resource.Attribute{
 					Name:        "minute",
-					Description: `Minute of the hour that the snapshots will be created. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Minute of the hour that the snapshots will be created. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16898,6 +17884,10 @@ Uses this data source to access information about an existing NetApp Volume.
 					Description: `The ID of a Subnet in which the NetApp Volume resides.`,
 				},
 				resource.Attribute{
+					Name:        "network_features",
+					Description: `Network features in use ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "storage_quota_in_gb",
 					Description: `The maximum Storage Quota in Gigabytes allowed for a file system.`,
 				},
@@ -16927,7 +17917,7 @@ Uses this data source to access information about an existing NetApp Volume.
 				},
 				resource.Attribute{
 					Name:        "replication_frequency",
-					Description: `Frequency of replication. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Frequency of replication. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -16956,6 +17946,10 @@ Uses this data source to access information about an existing NetApp Volume.
 					Description: `The ID of a Subnet in which the NetApp Volume resides.`,
 				},
 				resource.Attribute{
+					Name:        "network_features",
+					Description: `Network features in use ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "storage_quota_in_gb",
 					Description: `The maximum Storage Quota in Gigabytes allowed for a file system.`,
 				},
@@ -16985,7 +17979,7 @@ Uses this data source to access information about an existing NetApp Volume.
 				},
 				resource.Attribute{
 					Name:        "replication_frequency",
-					Description: `Frequency of replication. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Frequency of replication. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17027,7 +18021,7 @@ Use this data source to access information about an existing Azure Network DDoS 
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `A list of IDs of the Virtual Networks associated with this DDoS Protection Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of IDs of the Virtual Networks associated with this DDoS Protection Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17049,7 +18043,7 @@ Use this data source to access information about an existing Azure Network DDoS 
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `A list of IDs of the Virtual Networks associated with this DDoS Protection Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of IDs of the Virtual Networks associated with this DDoS Protection Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17172,7 +18166,7 @@ Use this data source to access information about an existing Network Interface.
 				},
 				resource.Attribute{
 					Name:        "gateway_load_balancer_frontend_ip_configuration_id",
-					Description: `The Frontend IP Configuration ID of a Gateway SKU Load Balancer the Network Interface is consuming. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Frontend IP Configuration ID of a Gateway SKU Load Balancer the Network Interface is consuming. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17274,7 +18268,7 @@ Use this data source to access information about an existing Network Interface.
 				},
 				resource.Attribute{
 					Name:        "gateway_load_balancer_frontend_ip_configuration_id",
-					Description: `The Frontend IP Configuration ID of a Gateway SKU Load Balancer the Network Interface is consuming. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Frontend IP Configuration ID of a Gateway SKU Load Balancer the Network Interface is consuming. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17373,7 +18367,7 @@ Use this data source to access information about an existing Network Security Gr
 				},
 				resource.Attribute{
 					Name:        "direction",
-					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17451,7 +18445,7 @@ Use this data source to access information about an existing Network Security Gr
 				},
 				resource.Attribute{
 					Name:        "direction",
-					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17486,7 +18480,7 @@ Use this data source to access information about Service Tags.
 				},
 				resource.Attribute{
 					Name:        "ipv6_cidrs",
-					Description: `List of IPv6 addresses for the service type (and optionally a specific region) ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of IPv6 addresses for the service type (and optionally a specific region) ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17525,7 +18519,7 @@ Use this data source to access information about an existing Network Watcher.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17543,7 +18537,7 @@ Use this data source to access information about an existing Network Watcher.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17618,7 +18612,7 @@ Use this data source to access information about an existing Notification Hub wi
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `The API Key associated with the Google Cloud Messaging service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The API Key associated with the Google Cloud Messaging service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17668,7 +18662,7 @@ Use this data source to access information about an existing Notification Hub wi
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `The API Key associated with the Google Cloud Messaging service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The API Key associated with the Google Cloud Messaging service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17723,7 +18717,7 @@ Use this data source to access information about an existing Notification Hub Na
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the SKU to use for this Notification Hub Namespace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard.` + "`" + ` ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of the SKU to use for this Notification Hub Namespace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard.` + "`" + ` ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17757,7 +18751,7 @@ Use this data source to access information about an existing Notification Hub Na
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the SKU to use for this Notification Hub Namespace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard.` + "`" + ` ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of the SKU to use for this Notification Hub Namespace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard.` + "`" + ` ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17799,7 +18793,7 @@ Use this data source to access information about a Platform Image.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Platform Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Platform Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17809,11 +18803,98 @@ Use this data source to access information about a Platform Image.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Platform Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Platform Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Platform Image.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_policy_assignment",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Policy Assignment.`,
+			Description: `
+
+Use this data source to access information about an existing Policy Assignment.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Policy Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this Policy Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of this Policy Assignment.`,
+				},
+				resource.Attribute{
+					Name:        "enforce",
+					Description: `Whether this Policy is enforced or not?`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `A ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Policy Assignment exists.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `A JSON mapping of any Metadata for this Policy.`,
+				},
+				resource.Attribute{
+					Name:        "non_compliance_message",
+					Description: `A ` + "`" + `non_compliance_message` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "not_scopes",
+					Description: `A ` + "`" + `not_scopes` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `A JSON mapping of any Parameters for this Policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_definition_id",
+					Description: `The ID of the assigned Policy Definition. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `A ` + "`" + `identity_ids` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID of the Policy Assignment for this Resource.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID of the Policy Assignment for this Resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The Type of Managed Identity which is added to this Policy Assignment. --- A ` + "`" + `non_compliance_message` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `The non-compliance message text.`,
+				},
+				resource.Attribute{
+					Name:        "policy_definition_reference_id",
+					Description: `The ID of the Policy Definition that the non-compliance message applies to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Policy Assignment.`,
 				},
 			},
 		},
@@ -17855,7 +18936,7 @@ Use this data source to access information about a Policy Definition, both custo
 				},
 				resource.Attribute{
 					Name:        "policy_type",
-					Description: `The Type of the Policy. Possible values are "BuiltIn", "Custom" and "NotSpecified".`,
+					Description: `The Type of the Policy. Possible values are ` + "`" + `BuiltIn` + "`" + `, ` + "`" + `Custom` + "`" + ` and ` + "`" + `NotSpecified` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "policy_rule",
@@ -17867,7 +18948,7 @@ Use this data source to access information about a Policy Definition, both custo
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Any Metadata defined in the Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any Metadata defined in the Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -17889,7 +18970,7 @@ Use this data source to access information about a Policy Definition, both custo
 				},
 				resource.Attribute{
 					Name:        "policy_type",
-					Description: `The Type of the Policy. Possible values are "BuiltIn", "Custom" and "NotSpecified".`,
+					Description: `The Type of the Policy. Possible values are ` + "`" + `BuiltIn` + "`" + `, ` + "`" + `Custom` + "`" + ` and ` + "`" + `NotSpecified` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "policy_rule",
@@ -17901,7 +18982,7 @@ Use this data source to access information about a Policy Definition, both custo
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Any Metadata defined in the Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Any Metadata defined in the Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18003,7 +19084,7 @@ Use this data source to access information about an existing Policy Set Definiti
 				},
 				resource.Attribute{
 					Name:        "additional_metadata_resource_id",
-					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18081,7 +19162,7 @@ Use this data source to access information about an existing Policy Set Definiti
 				},
 				resource.Attribute{
 					Name:        "additional_metadata_resource_id",
-					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of a resource that contains additional metadata about this policy definition group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18139,7 +19220,7 @@ Use this data source to access information about an existing Guest Configuration
 				},
 				resource.Attribute{
 					Name:        "latest_report_id",
-					Description: `The ID of the latest report for the guest configuration assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the latest report for the guest configuration assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18173,7 +19254,7 @@ Use this data source to access information about an existing Guest Configuration
 				},
 				resource.Attribute{
 					Name:        "latest_report_id",
-					Description: `The ID of the latest report for the guest configuration assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the latest report for the guest configuration assignment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18208,7 +19289,7 @@ Use this data source to access information about an existing shared dashboard in
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the shared Azure Portal dashboard. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the shared Azure Portal dashboard. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18271,7 +19352,7 @@ Use this data source to access information about an existing PostgreSQL Flexible
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the PostgreSQL Flexible Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the PostgreSQL Flexible Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18342,7 +19423,7 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18392,7 +19473,7 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the PostgreSQL Server. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18442,7 +19523,7 @@ Use this data source to access information about an existing Private DNS Zone.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags for the zone. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags for the zone. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18472,7 +19553,7 @@ Use this data source to access information about an existing Private DNS Zone.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags for the zone. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags for the zone. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18530,7 +19611,7 @@ Use this data source to access the connection status information about an existi
 				},
 				resource.Attribute{
 					Name:        "request_response",
-					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18568,7 +19649,7 @@ Use this data source to access the connection status information about an existi
 				},
 				resource.Attribute{
 					Name:        "request_response",
-					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18651,7 +19732,7 @@ Use this data source to access information about an existing Private Link Servic
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `Value that indicates if the IP configuration is the primary configuration or not. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Value that indicates if the IP configuration is the primary configuration or not. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18713,7 +19794,7 @@ Use this data source to access information about an existing Private Link Servic
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `Value that indicates if the IP configuration is the primary configuration or not. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Value that indicates if the IP configuration is the primary configuration or not. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18771,7 +19852,7 @@ Use this data source to access endpoint connection information about an existing
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Indicates the state of the connection between the private link service and the private link endpoint, possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + ` or ` + "`" + `Rejected` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Indicates the state of the connection between the private link service and the private link endpoint, possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + ` or ` + "`" + `Rejected` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18809,7 +19890,7 @@ Use this data source to access endpoint connection information about an existing
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Indicates the state of the connection between the private link service and the private link endpoint, possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + ` or ` + "`" + `Rejected` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Indicates the state of the connection between the private link service and the private link endpoint, possible values are ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + ` or ` + "`" + `Rejected` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18840,7 +19921,7 @@ Use this data source to access information about an existing Proximity Placement
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Proximity Placement Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Proximity Placement Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18850,7 +19931,7 @@ Use this data source to access information about an existing Proximity Placement
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Proximity Placement Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Proximity Placement Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18916,7 +19997,7 @@ Use this data source to access information about an existing Public IP Address.
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones in which this Public IP is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones in which this Public IP is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -18962,7 +20043,7 @@ Use this data source to access information about an existing Public IP Address.
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones in which this Public IP is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones in which this Public IP is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19017,7 +20098,7 @@ Use this data source to access information about an existing Public IP Prefix.
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones in which this Public IP Prefix is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones in which this Public IP Prefix is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19051,7 +20132,7 @@ Use this data source to access information about an existing Public IP Prefix.
 				},
 				resource.Attribute{
 					Name:        "zones",
-					Description: `A list of Availability Zones in which this Public IP Prefix is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A list of Availability Zones in which this Public IP Prefix is located. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19109,7 +20190,7 @@ Use this data source to access information about a set of existing Public IP Add
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19139,11 +20220,119 @@ Use this data source to access information about a set of existing Public IP Add
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IP address of the Public IP Address ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Public IP Addresses.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_public_maintenance_configurations",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about existing Public Maintenance Configurations.`,
+			Description: `
+
+Use this data source to access information about existing Public Maintenance Configurations.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location to filter the list of Public Maintenance Configurations against.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `The scope to filter the list of Public Maintenance Configurations against. Possible values are ` + "`" + `All` + "`" + `, ` + "`" + `Extension` + "`" + `, ` + "`" + `Host` + "`" + `, ` + "`" + `InGuestPatch` + "`" + `, ` + "`" + `OSImage` + "`" + `, ` + "`" + `SQLDB` + "`" + ` and ` + "`" + `SQLManagedInstance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "recur_every",
+					Description: `The recurring window to filter the list of Public Maintenance Configurations against. Possible values are ` + "`" + `Monday-Thursday` + "`" + ` and ` + "`" + `Friday-Sunday` + "`" + ` ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "configs",
+					Description: `A ` + "`" + `configs` + "`" + ` block as defined below. --- A ` + "`" + `configs` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `The duration of the Public Maintenance Configuration window.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_scope",
+					Description: `The scope of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `The time zone for the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "recur_every",
+					Description: `The rate at which a maintenance window is expected to recur. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Public Maintenance Configuration.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configs",
+					Description: `A ` + "`" + `configs` + "`" + ` block as defined below. --- A ` + "`" + `configs` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure location of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `The duration of the Public Maintenance Configuration window.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_scope",
+					Description: `The scope of the Public Maintenance Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `The time zone for the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "recur_every",
+					Description: `The rate at which a maintenance window is expected to recur. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Public Maintenance Configuration.`,
 				},
 			},
 		},
@@ -19182,7 +20371,7 @@ Use this data source to access information about an existing Recovery Services V
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `The vault's current SKU. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The vault's current SKU. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19204,7 +20393,7 @@ Use this data source to access information about an existing Recovery Services V
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `The vault's current SKU. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The vault's current SKU. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19527,7 +20716,7 @@ Use this data source to access information about an existing Redis Enterprise Da
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The Secondary Access Key for the Redis Enterprise Database instance. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Access Key for the Redis Enterprise Database instance. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19561,7 +20750,7 @@ Use this data source to access information about an existing Redis Enterprise Da
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The Secondary Access Key for the Redis Enterprise Database instance. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Secondary Access Key for the Redis Enterprise Database instance. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19592,11 +20781,38 @@ Use this data source to access information about an existing Resource Group.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Resource Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Resource Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Resource Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_resource_group_template_deployment",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Resource Group Template Deployment.`,
+			Description: `
+
+Use this data source to access information about an existing Resource Group Template Deployment.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Resource Group Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Resource Group Template Deployment.`,
 				},
 			},
 		},
@@ -19622,7 +20838,7 @@ Use this data source to access information about existing resources.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The Resource Type of the Resources you want to list (e.g. ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `). A full list of available Resource Types can be found [here](https://docs.microsoft.com/en-us/azure/azure-resource-manager/azure-services-resource-providers).`,
+					Description: `(Optional) The Resource Type of the Resources you want to list (e.g. ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `). A full list of available Resource Types can be found [here](https://docs.microsoft.com/azure/azure-resource-manager/azure-services-resource-providers).`,
 				},
 				resource.Attribute{
 					Name:        "required_tags",
@@ -19650,7 +20866,7 @@ Use this data source to access information about existing resources.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19680,7 +20896,7 @@ Use this data source to access information about existing resources.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of tags assigned to this Resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19738,7 +20954,7 @@ Use this data source to access information about an existing Role Definition.
 				},
 				resource.Attribute{
 					Name:        "not_actions",
-					Description: `a list of actions which are denied by this role ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `a list of actions which are denied by this role ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19772,7 +20988,7 @@ Use this data source to access information about an existing Role Definition.
 				},
 				resource.Attribute{
 					Name:        "not_actions",
-					Description: `a list of actions which are denied by this role ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `a list of actions which are denied by this role ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19824,7 +21040,7 @@ Use this data source to access information about an existing Route Filter.
 				},
 				resource.Attribute{
 					Name:        "rule_type",
-					Description: `The Route Filter Rule Type. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Route Filter Rule Type. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19886,7 +21102,7 @@ Use this data source to access information about an existing Route Table.
 				},
 				resource.Attribute{
 					Name:        "next_hop_in_ip_address",
-					Description: `Contains the IP address packets should be forwarded to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Contains the IP address packets should be forwarded to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -19928,7 +21144,7 @@ Use this data source to access information about an existing Route Table.
 				},
 				resource.Attribute{
 					Name:        "next_hop_in_ip_address",
-					Description: `Contains the IP address packets should be forwarded to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Contains the IP address packets should be forwarded to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20004,7 +21220,7 @@ Use this data source to access information about an existing Route Table.
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Tenant the Service Principal is assigned in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20027,7 +21243,7 @@ Use this data source to access information about an existing Sentinel Alert Rule
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Sentinel Alert Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Sentinel Alert Rule. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20098,7 +21314,7 @@ Use this data source to access information about an existing Sentinel Alert Rule
 				},
 				resource.Attribute{
 					Name:        "trigger_threshold",
-					Description: `The baseline number of query results generated, combined with ` + "`" + `trigger_operator` + "`" + `, setting alert threshold of this Sentinel Scheduled Alert Rule Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The baseline number of query results generated, combined with ` + "`" + `trigger_operator` + "`" + `, setting alert threshold of this Sentinel Scheduled Alert Rule Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20165,7 +21381,7 @@ Use this data source to access information about an existing Service Plan.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Service Plan. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20227,7 +21443,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20269,7 +21485,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20327,7 +21543,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string_alias",
-					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20361,7 +21577,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string_alias",
-					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20420,7 +21636,7 @@ Use this data source to access information about an existing Service Bus Queue.
 				},
 				resource.Attribute{
 					Name:        "forward_to",
-					Description: `The name of a Queue or Topic to automatically forward messages to. Please [see the documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-auto-forwarding) for more information.`,
+					Description: `The name of a Queue or Topic to automatically forward messages to. Please [see the documentation](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-auto-forwarding) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "lock_duration",
@@ -20432,7 +21648,7 @@ Use this data source to access information about an existing Service Bus Queue.
 				},
 				resource.Attribute{
 					Name:        "max_size_in_megabytes",
-					Description: `Integer value which controls the size of memory allocated for the queue. For supported values see the "Queue or topic size" section of [Service Bus Quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).`,
+					Description: `Integer value which controls the size of memory allocated for the queue. For supported values see the "Queue or topic size" section of [Service Bus Quotas](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-quotas).`,
 				},
 				resource.Attribute{
 					Name:        "requires_duplicate_detection",
@@ -20444,7 +21660,7 @@ Use this data source to access information about an existing Service Bus Queue.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the Queue. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Creating` + "`" + `, ` + "`" + `Deleting` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `ReceiveDisabled` + "`" + `, ` + "`" + `Renaming` + "`" + `, ` + "`" + `SendDisabled` + "`" + `, ` + "`" + `Unknown` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The status of the Queue. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Creating` + "`" + `, ` + "`" + `Deleting` + "`" + `, ` + "`" + `Disabled` + "`" + `, ` + "`" + `ReceiveDisabled` + "`" + `, ` + "`" + `Renaming` + "`" + `, ` + "`" + `SendDisabled` + "`" + `, ` + "`" + `Unknown` + "`" + `. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20491,7 +21707,7 @@ Use this data source to access information about an existing ServiceBus Queue Au
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string_alias",
-					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20565,7 +21781,7 @@ Use this data source to access information about an existing ServiceBus Subscrip
 				},
 				resource.Attribute{
 					Name:        "forward_dead_lettered_messages_to",
-					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20611,7 +21827,7 @@ Use this data source to access information about an existing ServiceBus Subscrip
 				},
 				resource.Attribute{
 					Name:        "forward_dead_lettered_messages_to",
-					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The name of a Queue or Topic to automatically forward Dead Letter messages to. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20662,7 +21878,7 @@ Use this data source to access information about an existing Service Bus Topic.
 				},
 				resource.Attribute{
 					Name:        "max_size_in_megabytes",
-					Description: `Integer value which controls the size of memory allocated for the topic. For supported values see the "Queue/topic size" section of [this document](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).`,
+					Description: `Integer value which controls the size of memory allocated for the topic. For supported values see the "Queue/topic size" section of [this document](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-quotas).`,
 				},
 				resource.Attribute{
 					Name:        "requires_duplicate_detection",
@@ -20674,7 +21890,7 @@ Use this data source to access information about an existing Service Bus Topic.
 				},
 				resource.Attribute{
 					Name:        "support_ordering",
-					Description: `Boolean flag which controls whether the Topic supports ordering. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Boolean flag which controls whether the Topic supports ordering. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20736,7 +21952,7 @@ Use this data source to access information about a ServiceBus Topic Authorizatio
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string_alias",
-					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20770,7 +21986,7 @@ Use this data source to access information about a ServiceBus Topic Authorizatio
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string_alias",
-					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The alias Secondary Connection String for the ServiceBus Namespace ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20856,7 +22072,7 @@ Use this data source to access information about an existing Shared Image within
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `The Name of the SKU for this Gallery Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Name of the SKU for this Gallery Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20918,7 +22134,7 @@ Use this data source to access information about an existing Shared Image within
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `The Name of the SKU for this Gallery Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Name of the SKU for this Gallery Image. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20961,7 +22177,7 @@ Use this data source to access information about an existing Shared Image Galler
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags which are assigned to the Shared Image Gallery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags which are assigned to the Shared Image Gallery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -20983,7 +22199,7 @@ Use this data source to access information about an existing Shared Image Galler
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags which are assigned to the Shared Image Gallery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags which are assigned to the Shared Image Gallery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21065,7 +22281,7 @@ Use this data source to access information about an existing Version of a Shared
 				},
 				resource.Attribute{
 					Name:        "storage_account_type",
-					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21115,7 +22331,7 @@ Use this data source to access information about an existing Version of a Shared
 				},
 				resource.Attribute{
 					Name:        "storage_account_type",
-					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21186,7 +22402,7 @@ Use this data source to access information about existing Versions of a Shared I
 				},
 				resource.Attribute{
 					Name:        "storage_account_type",
-					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21228,7 +22444,7 @@ Use this data source to access information about existing Versions of a Shared I
 				},
 				resource.Attribute{
 					Name:        "storage_account_type",
-					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The storage account type for the image version. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21294,7 +22510,7 @@ Use this data source to access information about an existing Azure SignalR servi
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the SignalR service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the SignalR service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21340,7 +22556,7 @@ Use this data source to access information about an existing Azure SignalR servi
 				},
 				resource.Attribute{
 					Name:        "secondary_connection_string",
-					Description: `The secondary connection string of the SignalR service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The secondary connection string of the SignalR service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21378,7 +22594,7 @@ Use this data source to access information about an existing Site Recovery Repli
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure location where the Site Recovery Replication Fabric resides. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure location where the Site Recovery Replication Fabric resides. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21392,7 +22608,7 @@ Use this data source to access information about an existing Site Recovery Repli
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The Azure location where the Site Recovery Replication Fabric resides. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Azure location where the Site Recovery Replication Fabric resides. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21430,7 +22646,7 @@ Use this data source to access information about an existing site recovery servi
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the protection container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the protection container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21440,7 +22656,7 @@ Use this data source to access information about an existing site recovery servi
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the protection container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the protection container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21482,7 +22698,7 @@ Use this data source to access information about an existing Azure Site Recovery
 				},
 				resource.Attribute{
 					Name:        "application_consistent_snapshot_frequency_in_minutes",
-					Description: `Specifies the frequency (in minutes) at which to create application consistent recovery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the frequency (in minutes) at which to create application consistent recovery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21500,7 +22716,7 @@ Use this data source to access information about an existing Azure Site Recovery
 				},
 				resource.Attribute{
 					Name:        "application_consistent_snapshot_frequency_in_minutes",
-					Description: `Specifies the frequency (in minutes) at which to create application consistent recovery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `Specifies the frequency (in minutes) at which to create application consistent recovery. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21550,7 +22766,11 @@ Use this data source to access information about an existing Snapshot.
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `The size of the Snapshotted Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the Snapshotted Disk in GB.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_launch_enabled",
+					Description: `Whether Trusted Launch is enabled for the Snapshot. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21580,7 +22800,11 @@ Use this data source to access information about an existing Snapshot.
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `The size of the Snapshotted Disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the Snapshotted Disk in GB.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_launch_enabled",
+					Description: `Whether Trusted Launch is enabled for the Snapshot. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21610,7 +22834,7 @@ Use this data source to access information about an existing App Service Source 
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `The GitHub Token value. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The GitHub Token value. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21644,7 +22868,11 @@ Use this data source to access information about an existing App Service Source 
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `The account ID of the Spatial Anchors Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The account ID of the Spatial Anchors Account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The Tags assigned to this Spatial Anchors Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21662,7 +22890,11 @@ Use this data source to access information about an existing App Service Source 
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `The account ID of the Spatial Anchors Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The account ID of the Spatial Anchors Account.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The Tags assigned to this Spatial Anchors Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21744,7 +22976,7 @@ Use this data source to access information about an existing Spring Cloud Applic
 				},
 				resource.Attribute{
 					Name:        "size_in_gb",
-					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21802,7 +23034,7 @@ Use this data source to access information about an existing Spring Cloud Applic
 				},
 				resource.Attribute{
 					Name:        "size_in_gb",
-					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The size of the persistent disk in GB. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -21939,7 +23171,7 @@ Use this data source to access information about an existing Spring Cloud Servic
 					Description: `The FQDN list of required traffic.`,
 				},
 				resource.Attribute{
-					Name:        "ips",
+					Name:        "ip_addresses",
 					Description: `The IP list of required traffic.`,
 				},
 				resource.Attribute{
@@ -21948,7 +23180,7 @@ Use this data source to access information about an existing Spring Cloud Servic
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol of required traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The protocol of required traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22065,7 +23297,7 @@ Use this data source to access information about an existing Spring Cloud Servic
 					Description: `The FQDN list of required traffic.`,
 				},
 				resource.Attribute{
-					Name:        "ips",
+					Name:        "ip_addresses",
 					Description: `The IP list of required traffic.`,
 				},
 				resource.Attribute{
@@ -22074,7 +23306,7 @@ Use this data source to access information about an existing Spring Cloud Servic
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `The protocol of required traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The protocol of required traffic. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22167,7 +23399,7 @@ Use this data source to access information about an existing SQL Azure Database.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22233,7 +23465,7 @@ Use this data source to access information about an existing SQL Azure Database.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22341,7 +23573,7 @@ Use this data source to access information about an existing SQL Managed Instanc
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22427,7 +23659,7 @@ Use this data source to access information about an existing SQL Managed Instanc
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Managed Instance. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22496,7 +23728,7 @@ Use this data source to access information about an existing SQL Azure Database 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22542,7 +23774,7 @@ Use this data source to access information about an existing SQL Azure Database 
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22569,7 +23801,7 @@ Use this data source to access information about an existing SSH Public Key.
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `The SSH public key used to authenticate to a virtual machine through ssh. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The SSH public key used to authenticate to a virtual machine through ssh. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22607,6 +23839,10 @@ Use this data source to access information about an existing Storage Account.
 					Description: `The Azure location where the Storage Account exists`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "account_kind",
 					Description: `The Kind of account.`,
 				},
@@ -22624,7 +23860,7 @@ Use this data source to access information about an existing Storage Account.
 				},
 				resource.Attribute{
 					Name:        "enable_https_traffic_only",
-					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
+					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/azure/storage/storage-require-secure-transfer/) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "min_tls_version",
@@ -22788,11 +24024,27 @@ Use this data source to access information about an existing Storage Account.
 				},
 				resource.Attribute{
 					Name:        "infrastructure_encryption_enabled",
-					Description: `Is infrastructure encryption enabled? See [here](https://docs.microsoft.com/en-us/azure/storage/common/infrastructure-encryption-enable/) for more information. ---`,
+					Description: `Is infrastructure encryption enabled? See [here](https://docs.microsoft.com/azure/storage/common/infrastructure-encryption-enable/) for more information. ---`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The Custom Domain Name used for the Storage Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Custom Domain Name used for the Storage Account. --- ` + "`" + `identity` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of Managed Service Identity that is configured on this Storage Account`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `A list of User Assigned Managed Identity IDs assigned with the Identity of this Storage Account.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Identity of this Storage Account.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -22809,6 +24061,10 @@ Use this data source to access information about an existing Storage Account.
 					Description: `The Azure location where the Storage Account exists`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "account_kind",
 					Description: `The Kind of account.`,
 				},
@@ -22826,7 +24082,7 @@ Use this data source to access information about an existing Storage Account.
 				},
 				resource.Attribute{
 					Name:        "enable_https_traffic_only",
-					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information.`,
+					Description: `Is traffic only allowed via HTTPS? See [here](https://docs.microsoft.com/azure/storage/storage-require-secure-transfer/) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "min_tls_version",
@@ -22990,11 +24246,27 @@ Use this data source to access information about an existing Storage Account.
 				},
 				resource.Attribute{
 					Name:        "infrastructure_encryption_enabled",
-					Description: `Is infrastructure encryption enabled? See [here](https://docs.microsoft.com/en-us/azure/storage/common/infrastructure-encryption-enable/) for more information. ---`,
+					Description: `Is infrastructure encryption enabled? See [here](https://docs.microsoft.com/azure/storage/common/infrastructure-encryption-enable/) for more information. ---`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The Custom Domain Name used for the Storage Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Custom Domain Name used for the Storage Account. --- ` + "`" + `identity` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of Managed Service Identity that is configured on this Storage Account`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `A list of User Assigned Managed Identity IDs assigned with the Identity of this Storage Account.`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Identity of this Storage Account.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23086,11 +24358,11 @@ Shared access signatures allow fine-grained, ephemeral access control to various
 				},
 				resource.Attribute{
 					Name:        "list",
-					Description: `Should List permissions be enabled for this SAS? Refer to the [SAS creation reference from Azure](https://docs.microsoft.com/en-us/rest/api/storageservices/create-service-sas) for additional details on the fields above. ## Attributes Reference`,
+					Description: `Should List permissions be enabled for this SAS? Refer to the [SAS creation reference from Azure](https://docs.microsoft.com/rest/api/storageservices/create-service-sas) for additional details on the fields above. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "sas",
-					Description: `The computed Blob Container Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The computed Blob Container Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23100,7 +24372,7 @@ Shared access signatures allow fine-grained, ephemeral access control to various
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sas",
-					Description: `The computed Blob Container Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The computed Blob Container Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23119,8 +24391,8 @@ Use this data source to obtain a Shared Access Signature (SAS Token) for an exis
 
 Shared access signatures allow fine-grained, ephemeral access control to various aspects of an Azure Storage Account.
 
-Note that this is an [Account SAS](https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-an-account-sas)
-and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas).
+Note that this is an [Account SAS](https://docs.microsoft.com/rest/api/storageservices/constructing-an-account-sas)
+and *not* a [Service SAS](https://docs.microsoft.com/rest/api/storageservices/constructing-a-service-sas).
 
 `,
 			Keywords: []string{},
@@ -23227,11 +24499,11 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `Should Filter by Index Tags permissions be enabled for this SAS? Refer to the [SAS creation reference from Azure](https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-an-account-sas) for additional details on the fields above. ## Attributes Reference`,
+					Description: `Should Filter by Index Tags permissions be enabled for this SAS? Refer to the [SAS creation reference from Azure](https://docs.microsoft.com/rest/api/storageservices/constructing-an-account-sas) for additional details on the fields above. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "sas",
-					Description: `The computed Account Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The computed Account Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23241,7 +24513,7 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sas",
-					Description: `The computed Account Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The computed Account Shared Access Signature (SAS). ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23299,7 +24571,7 @@ Use this data source to access information about an existing Storage Blob.
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A map of custom blob metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of custom blob metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23333,7 +24605,7 @@ Use this data source to access information about an existing Storage Blob.
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A map of custom blob metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of custom blob metadata. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23376,7 +24648,7 @@ Use this data source to access information about an existing Storage Container.
 				},
 				resource.Attribute{
 					Name:        "resource_manager_id",
-					Description: `The Resource Manager ID of this Storage Container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Resource Manager ID of this Storage Container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23398,7 +24670,7 @@ Use this data source to access information about an existing Storage Container.
 				},
 				resource.Attribute{
 					Name:        "resource_manager_id",
-					Description: `The Resource Manager ID of this Storage Container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Resource Manager ID of this Storage Container. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23429,7 +24701,7 @@ Use this data source to access information about an existing Storage Encryption 
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `The source of the Storage Encryption Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The source of the Storage Encryption Scope. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23506,12 +24778,24 @@ Use this data source to access information about an existing Storage Management 
 					Description: `The age in days after last modification to tier blobs to cool storage. Supports blob currently at Hot tier.`,
 				},
 				resource.Attribute{
+					Name:        "tier_to_cool_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to tier blobs to cool storage. Supports blob currently at Hot tier.`,
+				},
+				resource.Attribute{
 					Name:        "tier_to_archive_after_days_since_modification_greater_than",
 					Description: `The age in days after last modification to tier blobs to archive storage. Supports blob currently at Hot or Cool tier.`,
 				},
 				resource.Attribute{
+					Name:        "tier_to_archive_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to tier blobs to archive storage. Supports blob currently at Hot or Cool tier.`,
+				},
+				resource.Attribute{
 					Name:        "delete_after_days_since_modification_greater_than",
-					Description: `The age in days after last modification to delete the blob. --- ` + "`" + `snapshot` + "`" + ` supports the following:`,
+					Description: `The age in days after last modification to delete the blob.`,
+				},
+				resource.Attribute{
+					Name:        "delete_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to delete the blob. --- ` + "`" + `snapshot` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "change_tier_to_archive_after_days_since_creation",
@@ -23547,7 +24831,7 @@ Use this data source to access information about an existing Storage Management 
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The filter tag value used for tag based filtering for blob objects. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The filter tag value used for tag based filtering for blob objects. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23608,12 +24892,24 @@ Use this data source to access information about an existing Storage Management 
 					Description: `The age in days after last modification to tier blobs to cool storage. Supports blob currently at Hot tier.`,
 				},
 				resource.Attribute{
+					Name:        "tier_to_cool_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to tier blobs to cool storage. Supports blob currently at Hot tier.`,
+				},
+				resource.Attribute{
 					Name:        "tier_to_archive_after_days_since_modification_greater_than",
 					Description: `The age in days after last modification to tier blobs to archive storage. Supports blob currently at Hot or Cool tier.`,
 				},
 				resource.Attribute{
+					Name:        "tier_to_archive_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to tier blobs to archive storage. Supports blob currently at Hot or Cool tier.`,
+				},
+				resource.Attribute{
 					Name:        "delete_after_days_since_modification_greater_than",
-					Description: `The age in days after last modification to delete the blob. --- ` + "`" + `snapshot` + "`" + ` supports the following:`,
+					Description: `The age in days after last modification to delete the blob.`,
+				},
+				resource.Attribute{
+					Name:        "delete_after_days_since_last_access_time_greater_than",
+					Description: `The age in days after last access time to delete the blob. --- ` + "`" + `snapshot` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "change_tier_to_archive_after_days_since_creation",
@@ -23649,7 +24945,7 @@ Use this data source to access information about an existing Storage Management 
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The filter tag value used for tag based filtering for blob objects. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The filter tag value used for tag based filtering for blob objects. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23679,10 +24975,6 @@ Use this data source to access information about an existing File Share.
 					Description: `The quota of the File Share in GB.`,
 				},
 				resource.Attribute{
-					Name:        "access_tier",
-					Description: `The tier of the File Share. Can be one of ` + "`" + `Hot` + "`" + `, ` + "`" + `Cool` + "`" + `, ` + "`" + `TransactionOptimized` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "metadata",
 					Description: `A map of custom file share metadata.`,
 				},
@@ -23708,7 +25000,7 @@ Use this data source to access information about an existing File Share.
 				},
 				resource.Attribute{
 					Name:        "expiry",
-					Description: `The time at which this Access Policy should be valid until, in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) format. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The time at which this Access Policy should be valid until, in [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) format. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23743,7 +25035,7 @@ Use this data source to access information about an existing Storage Sync.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Storage Sync. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Storage Sync. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23766,7 +25058,7 @@ Use this data source to access information about an existing Storage Sync Group.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Storage Sync Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Storage Sync Group. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23808,7 +25100,7 @@ Use this data source to access information about an existing Storage Table Entit
 				},
 				resource.Attribute{
 					Name:        "entity",
-					Description: `A map of key/value pairs that describe the entity to be stored in the storage table. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of key/value pairs that describe the entity to be stored in the storage table. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23822,7 +25114,7 @@ Use this data source to access information about an existing Storage Table Entit
 				},
 				resource.Attribute{
 					Name:        "entity",
-					Description: `A map of key/value pairs that describe the entity to be stored in the storage table. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A map of key/value pairs that describe the entity to be stored in the storage table. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23921,7 +25213,7 @@ Use this data source to access information about an existing Stream Analytics Jo
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -23999,7 +25291,7 @@ Use this data source to access information about an existing Stream Analytics Jo
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of this Managed Service Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24036,16 +25328,8 @@ Use this data source to access information about an existing Subnet within a Vir
 					Description: `The ID of the Subnet.`,
 				},
 				resource.Attribute{
-					Name:        "address_prefix",
-					Description: `(Deprecated) The address prefix used for the subnet.`,
-				},
-				resource.Attribute{
 					Name:        "address_prefixes",
 					Description: `The address prefixes for the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "enforce_private_link_service_network_policies",
-					Description: `Enable or Disable network policies on private link service in the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "network_security_group_id",
@@ -24060,12 +25344,12 @@ Use this data source to access information about an existing Subnet within a Vir
 					Description: `A list of Service Endpoints within this subnet.`,
 				},
 				resource.Attribute{
-					Name:        "enforce_private_link_endpoint_network_policies",
-					Description: `Enable or Disable network policies for the private link endpoint on the subnet.`,
+					Name:        "private_endpoint_network_policies_enabled",
+					Description: `Enable or Disable network policies for the private endpoint on the subnet.`,
 				},
 				resource.Attribute{
-					Name:        "enforce_private_link_service_network_policies",
-					Description: `Enable or Disable network policies for the private link service on the subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Name:        "private_link_service_network_policies_enabled",
+					Description: `Enable or Disable network policies for the private link service on the subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24078,16 +25362,8 @@ Use this data source to access information about an existing Subnet within a Vir
 					Description: `The ID of the Subnet.`,
 				},
 				resource.Attribute{
-					Name:        "address_prefix",
-					Description: `(Deprecated) The address prefix used for the subnet.`,
-				},
-				resource.Attribute{
 					Name:        "address_prefixes",
 					Description: `The address prefixes for the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "enforce_private_link_service_network_policies",
-					Description: `Enable or Disable network policies on private link service in the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "network_security_group_id",
@@ -24102,12 +25378,12 @@ Use this data source to access information about an existing Subnet within a Vir
 					Description: `A list of Service Endpoints within this subnet.`,
 				},
 				resource.Attribute{
-					Name:        "enforce_private_link_endpoint_network_policies",
-					Description: `Enable or Disable network policies for the private link endpoint on the subnet.`,
+					Name:        "private_endpoint_network_policies_enabled",
+					Description: `Enable or Disable network policies for the private endpoint on the subnet.`,
 				},
 				resource.Attribute{
-					Name:        "enforce_private_link_service_network_policies",
-					Description: `Enable or Disable network policies for the private link service on the subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Name:        "private_link_service_network_policies_enabled",
+					Description: `Enable or Disable network policies for the private link service on the subnet. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24165,7 +25441,7 @@ Use this data source to access information about an existing Subscription.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24207,11 +25483,38 @@ Use this data source to access information about an existing Subscription.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Subscription. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Subscription.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_subscription_template_deployment",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Subscription Template Deployment.`,
+			Description: `
+
+Use this data source to access information about an existing Subscription Template Deployment.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Subscription Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Subscription Template Deployment.`,
 				},
 			},
 		},
@@ -24273,7 +25576,7 @@ Use this data source to access information about all the Subscriptions currently
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24319,7 +25622,7 @@ Use this data source to access information about all the Subscriptions currently
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24370,7 +25673,7 @@ Use this data source to access information about an existing Synapse Workspace.
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Synapse Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this Synapse Workspace. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24401,11 +25704,38 @@ Use this data source to access information about an existing Template Spec Versi
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the Template. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Template.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_tenant_template_deployment",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Tenant Template Deployment.`,
+			Description: `
+
+Use this data source to access information about an existing Tenant Template Deployment.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Tenant Template Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "output_content",
+					Description: `The JSON Content of the Outputs of the ARM Template Deployment. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Tenant Template Deployment.`,
 				},
 			},
 		},
@@ -24427,7 +25757,7 @@ Use this data source to access the ID of a specified Traffic Manager Geographica
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24437,7 +25767,7 @@ Use this data source to access the ID of a specified Traffic Manager Geographica
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24548,7 +25878,7 @@ Use this data source to access information about an existing Traffic Manager Pro
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of custom header. Applicable for HTTP and HTTPS protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of custom header. Applicable for HTTP and HTTPS protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24638,7 +25968,7 @@ Use this data source to access information about an existing Traffic Manager Pro
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of custom header. Applicable for HTTP and HTTPS protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The value of custom header. Applicable for HTTP and HTTPS protocol. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24688,7 +26018,7 @@ Use this data source to access information about an existing User Assigned Ident
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the User Assigned Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the User Assigned Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24718,7 +26048,7 @@ Use this data source to access information about an existing User Assigned Ident
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the User Assigned Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags assigned to the User Assigned Identity. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24772,7 +26102,7 @@ Uses this data source to access information about an existing Virtual Hub.
 				},
 				resource.Attribute{
 					Name:        "virtual_router_ips",
-					Description: `The IP addresses of the Virtual Hub BGP router. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IP addresses of the Virtual Hub BGP router. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24806,7 +26136,7 @@ Uses this data source to access information about an existing Virtual Hub.
 				},
 				resource.Attribute{
 					Name:        "virtual_router_ips",
-					Description: `The IP addresses of the Virtual Hub BGP router. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The IP addresses of the Virtual Hub BGP router. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24873,7 +26203,7 @@ Use this data source to access information about an existing Virtual Machine.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the Virtual Machine. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the Virtual Machine. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -24919,7 +26249,7 @@ Use this data source to access information about an existing Virtual Machine.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The identity type of the Managed Identity assigned to the Virtual Machine. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The identity type of the Managed Identity assigned to the Virtual Machine. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25055,7 +26385,7 @@ Use this data source to access information about an existing Virtual Machine Sca
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The Type of IP Tag. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Type of IP Tag. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25118,7 +26448,7 @@ Use this data source to access information about an existing Virtual Network.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25160,7 +26490,7 @@ Use this data source to access information about an existing Virtual Network.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `A mapping of tags to assigned to the resource. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25242,6 +26572,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `A mapping of tags assigned to the resource. The ` + "`" + `ip_configuration` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the IP configuration.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A user-defined name of the IP configuration.`,
 				},
@@ -25323,7 +26657,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "public_cert_data",
-					Description: `The SHA1 thumbprint of the certificate to be revoked. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The SHA1 thumbprint of the certificate to be revoked. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25384,6 +26718,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `A mapping of tags assigned to the resource. The ` + "`" + `ip_configuration` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the IP configuration.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A user-defined name of the IP configuration.`,
 				},
@@ -25465,7 +26803,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "public_cert_data",
-					Description: `The SHA1 thumbprint of the certificate to be revoked. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The SHA1 thumbprint of the certificate to be revoked. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25546,6 +26884,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `If ` + "`" + `true` + "`" + `, BGP (Border Gateway Protocol) is enabled for this connection.`,
 				},
 				resource.Attribute{
+					Name:        "custom_bgp_addresses",
+					Description: `(Optional) A ` + "`" + `custom_bgp_addresses` + "`" + ` (Border Gateway Protocol custom IP Addresses) block which is documented below. The block can only be used on ` + "`" + `IPSec` + "`" + ` / ` + "`" + `activeactive` + "`" + ` connections, For details about see [the relevant section in the Azure documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).`,
+				},
+				resource.Attribute{
 					Name:        "express_route_gateway_bypass",
 					Description: `If ` + "`" + `true` + "`" + `, data packets will bypass ExpressRoute Gateway for data forwarding. This is only valid for ExpressRoute connections.`,
 				},
@@ -25555,7 +26897,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. The ` + "`" + `ipsec_policy` + "`" + ` block supports:`,
+					Description: `A mapping of tags to assign to the resource. The ` + "`" + `custom_bgp_addresses` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "dh_group",
@@ -25595,7 +26937,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "remote_address_cidrs",
-					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25656,6 +26998,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `If ` + "`" + `true` + "`" + `, BGP (Border Gateway Protocol) is enabled for this connection.`,
 				},
 				resource.Attribute{
+					Name:        "custom_bgp_addresses",
+					Description: `(Optional) A ` + "`" + `custom_bgp_addresses` + "`" + ` (Border Gateway Protocol custom IP Addresses) block which is documented below. The block can only be used on ` + "`" + `IPSec` + "`" + ` / ` + "`" + `activeactive` + "`" + ` connections, For details about see [the relevant section in the Azure documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-aws-bgp).`,
+				},
+				resource.Attribute{
 					Name:        "express_route_gateway_bypass",
 					Description: `If ` + "`" + `true` + "`" + `, data packets will bypass ExpressRoute Gateway for data forwarding. This is only valid for ExpressRoute connections.`,
 				},
@@ -25665,7 +27011,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. The ` + "`" + `ipsec_policy` + "`" + ` block supports:`,
+					Description: `A mapping of tags to assign to the resource. The ` + "`" + `custom_bgp_addresses` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "dh_group",
@@ -25705,7 +27051,7 @@ Use this data source to access information about an existing Virtual Network Gat
 				},
 				resource.Attribute{
 					Name:        "remote_address_cidrs",
-					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `List of remote CIDRs. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25830,7 +27176,7 @@ Use this data source to access information about an existing VMware Private Clou
 				},
 				resource.Attribute{
 					Name:        "hosts",
-					Description: `The list of the hosts in the management cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of the hosts in the management cluster. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -25928,7 +27274,7 @@ Use this data source to access information about an existing VPN Gateway within 
 				},
 				resource.Attribute{
 					Name:        "tunnel_ips",
-					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -26006,7 +27352,7 @@ Use this data source to access information about an existing VPN Gateway within 
 				},
 				resource.Attribute{
 					Name:        "tunnel_ips",
-					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The list of tunnel public IP addresses which belong to the pre-defined VPN Gateway IP configuration. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -26030,7 +27376,7 @@ Use this data source to access information about an existing Web Application Fir
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Web Application Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The ID of the Web Application Firewall Policy. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -26116,7 +27462,7 @@ Use this data source to access information about an existing Azure Web Pubsub se
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The tenant id of the system assigned identity. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The tenant id of the system assigned identity. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -26182,11 +27528,71 @@ Use this data source to access information about an existing Azure Web Pubsub se
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The tenant id of the system assigned identity. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The tenant id of the system assigned identity. --- ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
 					Description: `(Defaults to 5 minutes) Used when retrieving the Web Pubsub service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_web_pubsub_private_link_resource",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about the Private Link Resource supported by the Web Pubsub Resource.`,
+			Description: `
+
+Use this data source to access information about the Private Link Resource supported by the Web Pubsub Resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "web_pubsub_id",
+					Description: `The ID of an existing Web Pubsub Resource which Private Link Resource should be retrieved for. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of an existing Web Pubsub Resource which supports the retrieved Private Link Resource list.`,
+				},
+				resource.Attribute{
+					Name:        "shared_private_link_resource_types",
+					Description: `A ` + "`" + `shared_private_link_resource_types` + "`" + ` block as defined below. --- A ` + "`" + `shared_private_link_resource_types` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "subresource_name",
+					Description: `The name for the resource that has been onboarded to private link service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource type that has been onboarded to private link service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Private Link Resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of an existing Web Pubsub Resource which supports the retrieved Private Link Resource list.`,
+				},
+				resource.Attribute{
+					Name:        "shared_private_link_resource_types",
+					Description: `A ` + "`" + `shared_private_link_resource_types` + "`" + ` block as defined below. --- A ` + "`" + `shared_private_link_resource_types` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "subresource_name",
+					Description: `The name for the resource that has been onboarded to private link service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource type that has been onboarded to private link service. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the Private Link Resource.`,
 				},
 			},
 		},
@@ -26325,7 +27731,11 @@ Use this data source to access information about an existing Windows Function Ap
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Windows Function App. --- A ` + "`" + `active_directory` + "`" + ` block exports the following:`,
+					Description: `A mapping of tags assigned to the Windows Function App.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `The subnet id which the Windows Function App is vNet Integrated with. --- A ` + "`" + `active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "allowed_audiences",
@@ -26689,7 +28099,7 @@ Use this data source to access information about an existing Windows Function Ap
 				},
 				resource.Attribute{
 					Name:        "vnet_route_all_enabled",
-					Description: `Are all outbound traffic to Virtual Network Security Groups and User Defined Routes applied?`,
+					Description: `Are all outbound traffic to NAT Gateways, Network Security Groups and User Defined Routes applied?`,
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
@@ -26729,7 +28139,7 @@ Use this data source to access information about an existing Windows Function Ap
 				},
 				resource.Attribute{
 					Name:        "consumer_secret_setting_name",
-					Description: `The app setting name that contains the OAuth 1.0a consumer secret of the Twitter application used for sign-in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The app setting name that contains the OAuth 1.0a consumer secret of the Twitter application used for sign-in. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -26852,7 +28262,11 @@ Use this data source to access information about an existing Windows Web App.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags assigned to the Windows Web App. --- A ` + "`" + `action` + "`" + ` block exports the following:`,
+					Description: `A mapping of tags assigned to the Windows Web App.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `The subnet id which the Windows Web App is vNet Integrated with. --- A ` + "`" + `action` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "action_type",
@@ -27204,7 +28618,7 @@ Use this data source to access information about an existing Windows Web App.
 				},
 				resource.Attribute{
 					Name:        "always_on",
-					Description: `Is this Linux Web App is Always On enabled.`,
+					Description: `Is this Windows Web App is Always On enabled.`,
 				},
 				resource.Attribute{
 					Name:        "api_definition_url",
@@ -27323,6 +28737,10 @@ Use this data source to access information about an existing Windows Web App.
 					Description: `A ` + "`" + `virtual_application` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "vnet_route_all_enabled",
+					Description: `Are all outbound traffic to NAT Gateways, Network Security Groups and User Defined Routes applied?`,
+				},
+				resource.Attribute{
 					Name:        "websockets_enabled",
 					Description: `Are Web Sockets enabled?`,
 				},
@@ -27384,11 +28802,11 @@ Use this data source to access information about an existing Windows Web App.
 				},
 				resource.Attribute{
 					Name:        "app_setting_names",
-					Description: `A list of ` + "`" + `app_setting` + "`" + ` names that the Linux Web App will not swap between Slots when a swap operation is triggered.`,
+					Description: `A list of ` + "`" + `app_setting` + "`" + ` names that the Windows Web App will not swap between Slots when a swap operation is triggered.`,
 				},
 				resource.Attribute{
 					Name:        "connection_string_names",
-					Description: `A list of ` + "`" + `connection_string` + "`" + ` names that the Linux Web App will not swap between Slots when a swap operation is triggered. --- A ` + "`" + `storage_account` + "`" + ` block exports the following:`,
+					Description: `A list of ` + "`" + `connection_string` + "`" + ` names that the Windows Web App will not swap between Slots when a swap operation is triggered. --- A ` + "`" + `storage_account` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -27464,7 +28882,7 @@ Use this data source to access information about an existing Windows Web App.
 				},
 				resource.Attribute{
 					Name:        "virtual_path",
-					Description: `The Virtual Path of the Virtual Directory. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:`,
+					Description: `The Virtual Path of the Virtual Directory. ## Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -27488,233 +28906,248 @@ Use this data source to access information about an existing Windows Web App.
 		"azurerm_api_management_user":                              9,
 		"azurerm_app_configuration":                                10,
 		"azurerm_app_configuration_key":                            11,
-		"azurerm_app_service":                                      12,
-		"azurerm_app_service_certificate":                          13,
-		"azurerm_app_service_certificate_order":                    14,
-		"azurerm_app_service_environment":                          15,
-		"azurerm_app_service_environment_v3":                       16,
-		"azurerm_app_service_plan":                                 17,
-		"azurerm_application_gateway":                              18,
-		"azurerm_application_insights":                             19,
-		"azurerm_application_security_group":                       20,
-		"azurerm_attestation":                                      21,
-		"azurerm_automation_account":                               22,
-		"azurerm_automation_variable_bool":                         23,
-		"azurerm_automation_variable_datetime":                     24,
-		"azurerm_automation_variable_int":                          25,
-		"azurerm_automation_variable_string":                       26,
-		"azurerm_availability_set":                                 27,
-		"azurerm_backup_policy_file_share":                         28,
-		"azurerm_backup_policy_vm":                                 29,
-		"azurerm_batch_account":                                    30,
-		"azurerm_batch_application":                                31,
-		"azurerm_batch_certificate":                                32,
-		"azurerm_batch_pool":                                       33,
-		"azurerm_billing_enrollment_account_scope":                 34,
-		"azurerm_billing_mca_account_scope":                        35,
-		"azurerm_billing_mpa_account_scope":                        36,
-		"azurerm_blueprint_definition":                             37,
-		"azurerm_blueprint_published_version":                      38,
-		"azurerm_cdn_profile":                                      39,
-		"azurerm_client_config":                                    40,
-		"azurerm_cognitive_account":                                41,
-		"azurerm_consumption_budget_resource_group":                42,
-		"azurerm_consumption_budget_subscription":                  43,
-		"azurerm_container_group":                                  44,
-		"azurerm_container_registry":                               45,
-		"azurerm_container_registry_scope_map":                     46,
-		"azurerm_container_registry_token":                         47,
-		"azurerm_cosmosdb_account":                                 48,
-		"azurerm_cosmosdb_mongo_database":                          49,
-		"azurerm_cosmosdb_restorable_database_accounts":            50,
-		"azurerm_data_factory":                                     51,
-		"azurerm_data_protection_backup_vault":                     52,
-		"azurerm_data_share":                                       53,
-		"azurerm_data_share_account":                               54,
-		"azurerm_data_share_dataset_blob_storage":                  55,
-		"azurerm_data_share_dataset_data_lake_gen2":                56,
-		"azurerm_data_share_dataset_kusto_cluster":                 57,
-		"azurerm_data_share_dataset_kusto_database":                58,
-		"azurerm_database_migration_project":                       59,
-		"azurerm_database_migration_service":                       60,
-		"azurerm_databricks_workspace":                             61,
-		"azurerm_databricks_workspace_private_endpoint_connection": 62,
-		"azurerm_dedicated_host":                                   63,
-		"azurerm_dedicated_host_group":                             64,
-		"azurerm_dev_test_lab":                                     65,
-		"azurerm_dev_test_virtual_network":                         66,
-		"azurerm_digital_twins_instance":                           67,
-		"azurerm_disk_access":                                      68,
-		"azurerm_disk_encryption_set":                              69,
-		"azurerm_dns_zone":                                         70,
-		"azurerm_eventgrid_domain":                                 71,
-		"azurerm_eventgrid_domain_topic":                           72,
-		"azurerm_eventgrid_system_topic":                           73,
-		"azurerm_eventgrid_topic":                                  74,
-		"azurerm_eventhub":                                         75,
-		"azurerm_eventhub_authorization_rule":                      76,
-		"azurerm_eventhub_cluster":                                 77,
-		"azurerm_eventhub_consumer_group":                          78,
-		"azurerm_eventhub_namespace":                               79,
-		"azurerm_eventhub_namespace_authorization_rule":            80,
-		"azurerm_express_route_circuit":                            81,
-		"azurerm_extended_locations":                               82,
-		"azurerm_firewall":                                         83,
-		"azurerm_firewall_policy":                                  84,
-		"azurerm_function_app":                                     85,
-		"azurerm_function_app_host_keys":                           86,
-		"azurerm_hdinsight_cluster":                                87,
-		"azurerm_healthcare_dicom":                                 88,
-		"azurerm_healthcare_service":                               89,
-		"azurerm_healthcare_workspace":                             90,
-		"azurerm_image":                                            91,
-		"azurerm_images":                                           92,
-		"azurerm_iothub":                                           93,
-		"azurerm_iothub_dps":                                       94,
-		"azurerm_iothub_dps_shared_access_policy":                  95,
-		"azurerm_iothub_shared_access_policy":                      96,
-		"azurerm_ip_group":                                         97,
-		"azurerm_key_vault":                                        98,
-		"azurerm_key_vault_access_policy":                          99,
-		"azurerm_key_vault_certificate":                            100,
-		"azurerm_key_vault_certificate_data":                       101,
-		"azurerm_key_vault_certificate_issuer":                     102,
-		"azurerm_key_vault_encrypted_value":                        103,
-		"azurerm_key_vault_key":                                    104,
-		"azurerm_key_vault_managed_hardware_security_module":       105,
-		"azurerm_key_vault_secret":                                 106,
-		"azurerm_key_vault_secrets":                                107,
-		"azurerm_kubernetes_cluster":                               108,
-		"azurerm_kubernetes_cluster_node_pool":                     109,
-		"azurerm_kubernetes_service_versions":                      110,
-		"azurerm_kusto_cluster":                                    111,
-		"azurerm_kusto_database":                                   112,
-		"azurerm_lb":                                               113,
-		"azurerm_lb_backend_address_pool":                          114,
-		"azurerm_lb_rule":                                          115,
-		"azurerm_linux_function_app":                               116,
-		"azurerm_linux_web_app":                                    117,
-		"azurerm_local_network_gateway":                            118,
-		"azurerm_log_analytics_workspace":                          119,
-		"azurerm_logic_app_integration_account":                    120,
-		"azurerm_logic_app_standard":                               121,
-		"azurerm_logic_app_workflow":                               122,
-		"azurerm_machine_learning_workspace":                       123,
-		"azurerm_maintenance_configuration":                        124,
-		"azurerm_managed_api":                                      125,
-		"azurerm_managed_application_definition":                   126,
-		"azurerm_managed_disk":                                     127,
-		"azurerm_management_group":                                 128,
-		"azurerm_maps_account":                                     129,
-		"azurerm_mariadb_server":                                   130,
-		"azurerm_monitor_action_group":                             131,
-		"azurerm_monitor_diagnostic_categories":                    132,
-		"azurerm_monitor_log_profile":                              133,
-		"azurerm_monitor_scheduled_query_rules_alert":              134,
-		"azurerm_monitor_scheduled_query_rules_log":                135,
-		"azurerm_mssql_database":                                   136,
-		"azurerm_mssql_elasticpool":                                137,
-		"azurerm_mssql_managed_instance":                           138,
-		"azurerm_mssql_server":                                     139,
-		"azurerm_mysql_flexible_server":                            140,
-		"azurerm_mysql_server":                                     141,
-		"azurerm_nat_gateway":                                      142,
-		"azurerm_netapp_account":                                   143,
-		"azurerm_netapp_pool":                                      144,
-		"azurerm_netapp_snapshot":                                  145,
-		"azurerm_netapp_snapshot_policy":                           146,
-		"azurerm_netapp_volume":                                    147,
-		"azurerm_network_ddos_protection_plan":                     148,
-		"azurerm_network_interface":                                149,
-		"azurerm_network_security_group":                           150,
-		"azurerm_network_service_tags":                             151,
-		"azurerm_network_watcher":                                  152,
-		"azurerm_notification_hub":                                 153,
-		"azurerm_notification_hub_namespace":                       154,
-		"azurerm_platform_image":                                   155,
-		"azurerm_policy_definition":                                156,
-		"azurerm_policy_set_definition":                            157,
-		"azurerm_policy_virtual_machine_configuration_assignment":  158,
-		"azurerm_portal_dashboard":                                 159,
-		"azurerm_postgresql_flexible_server":                       160,
-		"azurerm_postgresql_server":                                161,
-		"azurerm_private_dns_zone":                                 162,
-		"azurerm_private_endpoint_connection":                      163,
-		"azurerm_private_link_service":                             164,
-		"azurerm_private_link_service_endpoint_connections":        165,
-		"azurerm_proximity_placement_group":                        166,
-		"azurerm_public_ip":                                        167,
-		"azurerm_public_ip_prefix":                                 168,
-		"azurerm_public_ips":                                       169,
-		"azurerm_recovery_services_vault":                          170,
-		"azurerm_redis_cache":                                      171,
-		"azurerm_redis_enterprise_database":                        172,
-		"azurerm_resource_group":                                   173,
-		"azurerm_resources":                                        174,
-		"azurerm_role_definition":                                  175,
-		"azurerm_route_filter":                                     176,
-		"azurerm_route_table":                                      177,
-		"azurerm_search_service":                                   178,
-		"azurerm_sentinel_alert_rule":                              179,
-		"azurerm_sentinel_alert_rule_template":                     180,
-		"azurerm_service_plan":                                     181,
-		"azurerm_servicebus_namespace":                             182,
-		"azurerm_servicebus_namespace_authorization_rule":          183,
-		"azurerm_servicebus_queue":                                 184,
-		"azurerm_servicebus_queue_authorization_rule":              185,
-		"azurerm_servicebus_subscription":                          186,
-		"azurerm_servicebus_topic":                                 187,
-		"azurerm_servicebus_topic_authorization_rule":              188,
-		"azurerm_shared_image":                                     189,
-		"azurerm_shared_image_gallery":                             190,
-		"azurerm_shared_image_version":                             191,
-		"azurerm_shared_image_versions":                            192,
-		"azurerm_signalr_service":                                  193,
-		"azurerm_site_recovery_fabric":                             194,
-		"azurerm_site_recovery_protection_container":               195,
-		"azurerm_site_recovery_replication_policy":                 196,
-		"azurerm_snapshot":                                         197,
-		"azurerm_source_control_token":                             198,
-		"azurerm_spatial_anchors_account":                          199,
-		"azurerm_spring_cloud_app":                                 200,
-		"azurerm_spring_cloud_service":                             201,
-		"azurerm_sql_database":                                     202,
-		"azurerm_sql_managed_instance":                             203,
-		"azurerm_sql_server":                                       204,
-		"azurerm_ssh_public_key":                                   205,
-		"azurerm_storage_account":                                  206,
-		"azurerm_storage_account_blob_container_sas":               207,
-		"azurerm_storage_account_sas":                              208,
-		"azurerm_storage_blob":                                     209,
-		"azurerm_storage_container":                                210,
-		"azurerm_storage_encryption_scope":                         211,
-		"azurerm_storage_management_policy":                        212,
-		"azurerm_storage_share":                                    213,
-		"azurerm_storage_sync":                                     214,
-		"azurerm_storage_sync_group":                               215,
-		"azurerm_storage_table_entity":                             216,
-		"azurerm_stream_analytics_job":                             217,
-		"azurerm_subnet":                                           218,
-		"azurerm_subscription":                                     219,
-		"azurerm_subscriptions":                                    220,
-		"azurerm_synapse_workspace":                                221,
-		"azurerm_template_spec_version":                            222,
-		"azurerm_traffic_manager_geographical_location":            223,
-		"azurerm_traffic_manager_profile":                          224,
-		"azurerm_user_assigned_identity":                           225,
-		"azurerm_virtual_hub":                                      226,
-		"azurerm_virtual_machine":                                  227,
-		"azurerm_virtual_machine_scale_set":                        228,
-		"azurerm_virtual_network":                                  229,
-		"azurerm_virtual_network_gateway":                          230,
-		"azurerm_virtual_network_gateway_connection":               231,
-		"azurerm_virtual_wan":                                      232,
-		"azurerm_vmware_private_cloud":                             233,
-		"azurerm_vpn_gateway":                                      234,
-		"azurerm_web_application_firewall_policy":                  235,
-		"azurerm_web_pubsub":                                       236,
-		"azurerm_windows_function_app":                             237,
-		"azurerm_windows_web_app":                                  238,
+		"azurerm_app_configuration_keys":                           12,
+		"azurerm_app_service":                                      13,
+		"azurerm_app_service_certificate":                          14,
+		"azurerm_app_service_certificate_order":                    15,
+		"azurerm_app_service_environment":                          16,
+		"azurerm_app_service_environment_v3":                       17,
+		"azurerm_app_service_plan":                                 18,
+		"azurerm_application_gateway":                              19,
+		"azurerm_application_insights":                             20,
+		"azurerm_application_security_group":                       21,
+		"azurerm_attestation":                                      22,
+		"azurerm_automation_account":                               23,
+		"azurerm_automation_variable_bool":                         24,
+		"azurerm_automation_variable_datetime":                     25,
+		"azurerm_automation_variable_int":                          26,
+		"azurerm_automation_variable_string":                       27,
+		"azurerm_availability_set":                                 28,
+		"azurerm_backup_policy_file_share":                         29,
+		"azurerm_backup_policy_vm":                                 30,
+		"azurerm_batch_account":                                    31,
+		"azurerm_batch_application":                                32,
+		"azurerm_batch_certificate":                                33,
+		"azurerm_batch_pool":                                       34,
+		"azurerm_billing_enrollment_account_scope":                 35,
+		"azurerm_billing_mca_account_scope":                        36,
+		"azurerm_billing_mpa_account_scope":                        37,
+		"azurerm_blueprint_definition":                             38,
+		"azurerm_blueprint_published_version":                      39,
+		"azurerm_cdn_frontdoor_endpoint":                           40,
+		"azurerm_cdn_frontdoor_origin_group":                       41,
+		"azurerm_cdn_frontdoor_profile":                            42,
+		"azurerm_cdn_frontdoor_rule_set":                           43,
+		"azurerm_cdn_profile":                                      44,
+		"azurerm_client_config":                                    45,
+		"azurerm_cognitive_account":                                46,
+		"azurerm_confidential_ledger":                              47,
+		"azurerm_consumption_budget_resource_group":                48,
+		"azurerm_consumption_budget_subscription":                  49,
+		"azurerm_container_group":                                  50,
+		"azurerm_container_registry":                               51,
+		"azurerm_container_registry_scope_map":                     52,
+		"azurerm_container_registry_token":                         53,
+		"azurerm_cosmosdb_account":                                 54,
+		"azurerm_cosmosdb_mongo_database":                          55,
+		"azurerm_cosmosdb_restorable_database_accounts":            56,
+		"azurerm_data_factory":                                     57,
+		"azurerm_data_protection_backup_vault":                     58,
+		"azurerm_data_share":                                       59,
+		"azurerm_data_share_account":                               60,
+		"azurerm_data_share_dataset_blob_storage":                  61,
+		"azurerm_data_share_dataset_data_lake_gen2":                62,
+		"azurerm_data_share_dataset_kusto_cluster":                 63,
+		"azurerm_data_share_dataset_kusto_database":                64,
+		"azurerm_database_migration_project":                       65,
+		"azurerm_database_migration_service":                       66,
+		"azurerm_databricks_workspace":                             67,
+		"azurerm_databricks_workspace_private_endpoint_connection": 68,
+		"azurerm_dedicated_host":                                   69,
+		"azurerm_dedicated_host_group":                             70,
+		"azurerm_dev_test_lab":                                     71,
+		"azurerm_dev_test_virtual_network":                         72,
+		"azurerm_digital_twins_instance":                           73,
+		"azurerm_disk_access":                                      74,
+		"azurerm_disk_encryption_set":                              75,
+		"azurerm_dns_zone":                                         76,
+		"azurerm_elastic_cloud_elasticsearch":                      77,
+		"azurerm_eventgrid_domain":                                 78,
+		"azurerm_eventgrid_domain_topic":                           79,
+		"azurerm_eventgrid_system_topic":                           80,
+		"azurerm_eventgrid_topic":                                  81,
+		"azurerm_eventhub":                                         82,
+		"azurerm_eventhub_authorization_rule":                      83,
+		"azurerm_eventhub_cluster":                                 84,
+		"azurerm_eventhub_consumer_group":                          85,
+		"azurerm_eventhub_namespace":                               86,
+		"azurerm_eventhub_namespace_authorization_rule":            87,
+		"azurerm_express_route_circuit":                            88,
+		"azurerm_extended_locations":                               89,
+		"azurerm_firewall":                                         90,
+		"azurerm_firewall_policy":                                  91,
+		"azurerm_function_app":                                     92,
+		"azurerm_function_app_host_keys":                           93,
+		"azurerm_hdinsight_cluster":                                94,
+		"azurerm_healthcare_dicom":                                 95,
+		"azurerm_healthcare_fhir_service":                          96,
+		"azurerm_healthcare_service":                               97,
+		"azurerm_healthcare_workspace":                             98,
+		"azurerm_image":                                            99,
+		"azurerm_images":                                           100,
+		"azurerm_iothub":                                           101,
+		"azurerm_iothub_dps":                                       102,
+		"azurerm_iothub_dps_shared_access_policy":                  103,
+		"azurerm_iothub_shared_access_policy":                      104,
+		"azurerm_ip_group":                                         105,
+		"azurerm_key_vault":                                        106,
+		"azurerm_key_vault_access_policy":                          107,
+		"azurerm_key_vault_certificate":                            108,
+		"azurerm_key_vault_certificate_data":                       109,
+		"azurerm_key_vault_certificate_issuer":                     110,
+		"azurerm_key_vault_encrypted_value":                        111,
+		"azurerm_key_vault_key":                                    112,
+		"azurerm_key_vault_managed_hardware_security_module":       113,
+		"azurerm_key_vault_secret":                                 114,
+		"azurerm_key_vault_secrets":                                115,
+		"azurerm_kubernetes_cluster":                               116,
+		"azurerm_kubernetes_cluster_node_pool":                     117,
+		"azurerm_kubernetes_service_versions":                      118,
+		"azurerm_kusto_cluster":                                    119,
+		"azurerm_kusto_database":                                   120,
+		"azurerm_lb":                                               121,
+		"azurerm_lb_backend_address_pool":                          122,
+		"azurerm_lb_rule":                                          123,
+		"azurerm_linux_function_app":                               124,
+		"azurerm_linux_web_app":                                    125,
+		"azurerm_local_network_gateway":                            126,
+		"azurerm_log_analytics_workspace":                          127,
+		"azurerm_logic_app_integration_account":                    128,
+		"azurerm_logic_app_standard":                               129,
+		"azurerm_logic_app_workflow":                               130,
+		"azurerm_machine_learning_workspace":                       131,
+		"azurerm_maintenance_configuration":                        132,
+		"azurerm_managed_api":                                      133,
+		"azurerm_managed_application_definition":                   134,
+		"azurerm_managed_disk":                                     135,
+		"azurerm_management_group":                                 136,
+		"azurerm_management_group_template_deployment":             137,
+		"azurerm_maps_account":                                     138,
+		"azurerm_mariadb_server":                                   139,
+		"azurerm_monitor_action_group":                             140,
+		"azurerm_monitor_diagnostic_categories":                    141,
+		"azurerm_monitor_log_profile":                              142,
+		"azurerm_monitor_scheduled_query_rules_alert":              143,
+		"azurerm_monitor_scheduled_query_rules_log":                144,
+		"azurerm_mssql_database":                                   145,
+		"azurerm_mssql_elasticpool":                                146,
+		"azurerm_mssql_managed_instance":                           147,
+		"azurerm_mssql_server":                                     148,
+		"azurerm_mysql_flexible_server":                            149,
+		"azurerm_mysql_server":                                     150,
+		"azurerm_nat_gateway":                                      151,
+		"azurerm_netapp_account":                                   152,
+		"azurerm_netapp_pool":                                      153,
+		"azurerm_netapp_snapshot":                                  154,
+		"azurerm_netapp_snapshot_policy":                           155,
+		"azurerm_netapp_volume":                                    156,
+		"azurerm_network_ddos_protection_plan":                     157,
+		"azurerm_network_interface":                                158,
+		"azurerm_network_security_group":                           159,
+		"azurerm_network_service_tags":                             160,
+		"azurerm_network_watcher":                                  161,
+		"azurerm_notification_hub":                                 162,
+		"azurerm_notification_hub_namespace":                       163,
+		"azurerm_platform_image":                                   164,
+		"azurerm_policy_assignment":                                165,
+		"azurerm_policy_definition":                                166,
+		"azurerm_policy_set_definition":                            167,
+		"azurerm_policy_virtual_machine_configuration_assignment":  168,
+		"azurerm_portal_dashboard":                                 169,
+		"azurerm_postgresql_flexible_server":                       170,
+		"azurerm_postgresql_server":                                171,
+		"azurerm_private_dns_zone":                                 172,
+		"azurerm_private_endpoint_connection":                      173,
+		"azurerm_private_link_service":                             174,
+		"azurerm_private_link_service_endpoint_connections":        175,
+		"azurerm_proximity_placement_group":                        176,
+		"azurerm_public_ip":                                        177,
+		"azurerm_public_ip_prefix":                                 178,
+		"azurerm_public_ips":                                       179,
+		"azurerm_public_maintenance_configurations":                180,
+		"azurerm_recovery_services_vault":                          181,
+		"azurerm_redis_cache":                                      182,
+		"azurerm_redis_enterprise_database":                        183,
+		"azurerm_resource_group":                                   184,
+		"azurerm_resource_group_template_deployment":               185,
+		"azurerm_resources":                                        186,
+		"azurerm_role_definition":                                  187,
+		"azurerm_route_filter":                                     188,
+		"azurerm_route_table":                                      189,
+		"azurerm_search_service":                                   190,
+		"azurerm_sentinel_alert_rule":                              191,
+		"azurerm_sentinel_alert_rule_template":                     192,
+		"azurerm_service_plan":                                     193,
+		"azurerm_servicebus_namespace":                             194,
+		"azurerm_servicebus_namespace_authorization_rule":          195,
+		"azurerm_servicebus_queue":                                 196,
+		"azurerm_servicebus_queue_authorization_rule":              197,
+		"azurerm_servicebus_subscription":                          198,
+		"azurerm_servicebus_topic":                                 199,
+		"azurerm_servicebus_topic_authorization_rule":              200,
+		"azurerm_shared_image":                                     201,
+		"azurerm_shared_image_gallery":                             202,
+		"azurerm_shared_image_version":                             203,
+		"azurerm_shared_image_versions":                            204,
+		"azurerm_signalr_service":                                  205,
+		"azurerm_site_recovery_fabric":                             206,
+		"azurerm_site_recovery_protection_container":               207,
+		"azurerm_site_recovery_replication_policy":                 208,
+		"azurerm_snapshot":                                         209,
+		"azurerm_source_control_token":                             210,
+		"azurerm_spatial_anchors_account":                          211,
+		"azurerm_spring_cloud_app":                                 212,
+		"azurerm_spring_cloud_service":                             213,
+		"azurerm_sql_database":                                     214,
+		"azurerm_sql_managed_instance":                             215,
+		"azurerm_sql_server":                                       216,
+		"azurerm_ssh_public_key":                                   217,
+		"azurerm_storage_account":                                  218,
+		"azurerm_storage_account_blob_container_sas":               219,
+		"azurerm_storage_account_sas":                              220,
+		"azurerm_storage_blob":                                     221,
+		"azurerm_storage_container":                                222,
+		"azurerm_storage_encryption_scope":                         223,
+		"azurerm_storage_management_policy":                        224,
+		"azurerm_storage_share":                                    225,
+		"azurerm_storage_sync":                                     226,
+		"azurerm_storage_sync_group":                               227,
+		"azurerm_storage_table_entity":                             228,
+		"azurerm_stream_analytics_job":                             229,
+		"azurerm_subnet":                                           230,
+		"azurerm_subscription":                                     231,
+		"azurerm_subscription_template_deployment":                 232,
+		"azurerm_subscriptions":                                    233,
+		"azurerm_synapse_workspace":                                234,
+		"azurerm_template_spec_version":                            235,
+		"azurerm_tenant_template_deployment":                       236,
+		"azurerm_traffic_manager_geographical_location":            237,
+		"azurerm_traffic_manager_profile":                          238,
+		"azurerm_user_assigned_identity":                           239,
+		"azurerm_virtual_hub":                                      240,
+		"azurerm_virtual_machine":                                  241,
+		"azurerm_virtual_machine_scale_set":                        242,
+		"azurerm_virtual_network":                                  243,
+		"azurerm_virtual_network_gateway":                          244,
+		"azurerm_virtual_network_gateway_connection":               245,
+		"azurerm_virtual_wan":                                      246,
+		"azurerm_vmware_private_cloud":                             247,
+		"azurerm_vpn_gateway":                                      248,
+		"azurerm_web_application_firewall_policy":                  249,
+		"azurerm_web_pubsub":                                       250,
+		"azurerm_web_pubsub_private_link_resource":                 251,
+		"azurerm_windows_function_app":                             252,
+		"azurerm_windows_web_app":                                  253,
 	}
 )
 

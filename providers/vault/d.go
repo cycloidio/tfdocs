@@ -18,6 +18,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path to the AD secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
 				},
@@ -62,6 +66,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to retrieve the Role ID for.`,
 				},
@@ -89,6 +97,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The auth backend mount point. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
@@ -119,7 +131,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The accessor for this auth method`,
+					Description: `The accessor for this auth method.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -149,7 +161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The accessor for this auth method`,
+					Description: `The accessor for this auth method.`,
 				},
 			},
 		},
@@ -161,6 +173,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path to the AWS secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -249,6 +265,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path to the Azure secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -346,6 +366,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path from which to request data. To read data from the "generic" secret backend mounted in Vault by default, this should be prefixed with ` + "`" + `secret/` + "`" + `. Reading from other backends with this data source is possible; consult each backend's documentation to see which endpoints support the ` + "`" + `GET` + "`" + ` method.`,
 				},
@@ -417,6 +441,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "entity_name",
 					Description: `(Optional) Name of the entity.`,
@@ -626,6 +654,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "group_name",
 					Description: `(Optional) Name of the group.`,
 				},
@@ -802,6 +834,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the OIDC Client in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -833,6 +869,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the OIDC Provider in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
@@ -946,6 +986,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the OIDC Provider in Vault. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
@@ -969,6 +1013,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name for the Kubernetes backend the config to retrieve Role attributes for resides in. Defaults to "kubernetes". ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
@@ -1017,6 +1065,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to retrieve the Role attributes for.`,
@@ -1135,6 +1187,250 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_kv_secret",
+			Category:         "Data Sources",
+			ShortDescription: `Reads a KV-V1 secret from a given path in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Full path of the KV-V1 secret. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "lease_id",
+					Description: `The lease identifier assigned by Vault, if any.`,
+				},
+				resource.Attribute{
+					Name:        "lease_duration",
+					Description: `The duration of the secret lease, in seconds. Once this time has passed any plan generated with this data may fail to apply.`,
+				},
+				resource.Attribute{
+					Name:        "lease_renewable",
+					Description: `True if the duration of this lease can be extended through renewal.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "lease_id",
+					Description: `The lease identifier assigned by Vault, if any.`,
+				},
+				resource.Attribute{
+					Name:        "lease_duration",
+					Description: `The duration of the secret lease, in seconds. Once this time has passed any plan generated with this data may fail to apply.`,
+				},
+				resource.Attribute{
+					Name:        "lease_renewable",
+					Description: `True if the duration of this lease can be extended through renewal.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secret_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Reads a KV-V2 secret from a given path in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where KV-V2 engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Full name of the secret. For a nested secret the name is the nested path excluding the mount and data prefix. For example, for a secret at ` + "`" + `kvv2/data/foo/bar/baz` + "`" + ` the name is ` + "`" + `foo/bar/baz` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version of the secret to retrieve. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KVV2 secret is written.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Time at which secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "custom_metadata",
+					Description: `Custom metadata for the secret.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_time",
+					Description: `Deletion time for the secret.`,
+				},
+				resource.Attribute{
+					Name:        "destroyed",
+					Description: `Indicates whether the secret has been destroyed.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KVV2 secret is written.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Time at which secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "custom_metadata",
+					Description: `Custom metadata for the secret.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_time",
+					Description: `Deletion time for the secret.`,
+				},
+				resource.Attribute{
+					Name:        "destroyed",
+					Description: `Indicates whether the secret has been destroyed.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secrets_list",
+			Category:         "Data Sources",
+			ShortDescription: `Lists KV-V1 secrets at a given path in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Full KV-V1 path where secrets will be listed. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `List of all secret names listed under the given path.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `List of all secret names listed under the given path.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secrets_list_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Lists KV-V2 secrets at a given path in Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where KV-V2 engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Full name of the secret. For a nested secret the name is the nested path excluding the mount and data prefix. For example, for a secret at ` + "`" + `kvv2/data/foo/bar/baz` + "`" + ` the name is ` + "`" + `foo/bar/baz` + "`" + `. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secrets are listed.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `List of all secret names listed under the given path.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secrets are listed.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `List of all secret names listed under the given path.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_subkeys_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Reads the subkeys for a KV-V2 secret written to Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where KV-V2 engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Full name of the secret. For a nested secret the name is the nested path excluding the mount and data prefix. For example, for a secret at ` + "`" + `kvv2/data/foo/bar/baz` + "`" + ` the name is ` + "`" + `foo/bar/baz` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the version to return. If not set the latest version is returned.`,
+				},
+				resource.Attribute{
+					Name:        "depth",
+					Description: `(Optional) Specifies the deepest nesting level to provide in the output. If non-zero, keys that reside at the specified depth value will be artificially treated as leaves and will thus be ` + "`" + `null` + "`" + ` even if further underlying sub-keys exist. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secrets are listed.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `Subkeys for the KV-V2 secret read from Vault..`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secrets are listed.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `Subkeys for the KV-V2 secret read from Vault..`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_policy_document",
 			Category:         "Data Sources",
 			ShortDescription: `Generates an Vault policy document in HCL format.`,
@@ -1210,7 +1506,12 @@ var (
 		"vault_identity_oidc_public_keys":      10,
 		"vault_kubernetes_auth_backend_config": 11,
 		"vault_kubernetes_auth_backend_role":   12,
-		"vault_policy_document":                13,
+		"vault_kv_secret":                      13,
+		"vault_kv_secret_v2":                   14,
+		"vault_kv_secrets_list":                15,
+		"vault_kv_secrets_list_v2":             16,
+		"vault_kv_subkeys_v2":                  17,
+		"vault_policy_document":                18,
 	}
 )
 

@@ -57,6 +57,14 @@ it by domain without having to hard code the ARNs as input.
 					Description: `Status of the found certificate.`,
 				},
 				resource.Attribute{
+					Name:        "certificate",
+					Description: `The ACM-issued certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `Certificates forming the requested ACM-issued certificate's chain of trust. The chain consists of the certificate of the issuing CA and the intermediate certificates of any other subordinate CAs.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags for the resource.`,
 				},
@@ -73,6 +81,14 @@ it by domain without having to hard code the ARNs as input.
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the found certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The ACM-issued certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `Certificates forming the requested ACM-issued certificate's chain of trust. The chain consists of the certificate of the issuing CA and the intermediate certificates of any other subordinate CAs.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -190,6 +206,14 @@ Get information on a AWS Certificate Manager Private Certificate Authority (ACM 
 					Description: `Whether the CRL is publicly readable or privately held in the CRL Amazon S3 bucket.`,
 				},
 				resource.Attribute{
+					Name:        "revocation_configuration.0.ocsp_configuration.0.enabled",
+					Description: `Boolean value that specifies whether a custom OCSP responder is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "revocation_configuration.0.ocsp_configuration.0.ocsp_custom_cname",
+					Description: `A CNAME specifying a customized OCSP domain.`,
+				},
+				resource.Attribute{
 					Name:        "serial",
 					Description: `Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.`,
 				},
@@ -260,6 +284,14 @@ Get information on a AWS Certificate Manager Private Certificate Authority (ACM 
 					Description: `Whether the CRL is publicly readable or privately held in the CRL Amazon S3 bucket.`,
 				},
 				resource.Attribute{
+					Name:        "revocation_configuration.0.ocsp_configuration.0.enabled",
+					Description: `Boolean value that specifies whether a custom OCSP responder is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "revocation_configuration.0.ocsp_configuration.0.ocsp_custom_cname",
+					Description: `A CNAME specifying a customized OCSP domain.`,
+				},
+				resource.Attribute{
 					Name:        "serial",
 					Description: `Serial number of the certificate authority. Only available after the certificate authority certificate has been imported.`,
 				},
@@ -293,7 +325,7 @@ resources.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owners",
-					Description: `(Required) List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, ` + "`" + `self` + "`" + ` (the current account), or an AWS owner alias (e.g., ` + "`" + `amazon` + "`" + `, ` + "`" + `aws-marketplace` + "`" + `, ` + "`" + `microsoft` + "`" + `).`,
+					Description: `(Optional) List of AMI owners to limit search. Valid values: an AWS account ID, ` + "`" + `self` + "`" + ` (the current account), or an AWS owner alias (e.g., ` + "`" + `amazon` + "`" + `, ` + "`" + `aws-marketplace` + "`" + `, ` + "`" + `microsoft` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "most_recent",
@@ -304,12 +336,16 @@ resources.
 					Description: `(Optional) Limit search to users with`,
 				},
 				resource.Attribute{
+					Name:        "include_deprecated",
+					Description: `(Optional) If true, all deprecated AMIs are included in the response. If false, no deprecated AMIs are included in the response. If no value is specified, the default value is false.`,
+				},
+				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-images in the AWS CLI reference][1].`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
-					Description: `(Optional) A regex string to apply to the AMI list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. It is recommended to combine this with other options to narrow down the list AWS returns. ~>`,
+					Description: `(Optional) A regex string to apply to the AMI list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. Combine this with other options to narrow down the list AWS returns. ~>`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -484,6 +520,10 @@ resources.
 					Description: `The value of the tag.`,
 				},
 				resource.Attribute{
+					Name:        "tpm_support",
+					Description: `If the image is configured for NitroTPM support, the value is ` + "`" + `v2.0` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "virtualization_type",
 					Description: `The type of virtualization of the AMI (ie: ` + "`" + `hvm` + "`" + ` or ` + "`" + `paravirtual` + "`" + `).`,
 				},
@@ -497,7 +537,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "ena_support",
-					Description: `Specifies whether enhanced networking with ENA is enabled. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html`,
+					Description: `Specifies whether enhanced networking with ENA is enabled. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -674,6 +714,10 @@ resources.
 					Description: `The value of the tag.`,
 				},
 				resource.Attribute{
+					Name:        "tpm_support",
+					Description: `If the image is configured for NitroTPM support, the value is ` + "`" + `v2.0` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "virtualization_type",
 					Description: `The type of virtualization of the AMI (ie: ` + "`" + `hvm` + "`" + ` or ` + "`" + `paravirtual` + "`" + `).`,
 				},
@@ -687,7 +731,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "ena_support",
-					Description: `Specifies whether enhanced networking with ENA is enabled. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html`,
+					Description: `Specifies whether enhanced networking with ENA is enabled. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html`,
 				},
 			},
 		},
@@ -717,7 +761,7 @@ Use this data source to get a list of AMI IDs matching the specified criteria.
 				},
 				resource.Attribute{
 					Name:        "name_regex",
-					Description: `(Optional) A regex string to apply to the AMI list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. It is recommended to combine this with other options to narrow down the list AWS returns.`,
+					Description: `(Optional) A regex string to apply to the AMI list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. Combine this with other options to narrow down the list AWS returns.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1857,6 +1901,10 @@ Use this data source to get information on an existing autoscaling group.
 					Description: `The desired size of the group.`,
 				},
 				resource.Attribute{
+					Name:        "enabled_metrics",
+					Description: `The list of metrics enabled for collection.`,
+				},
+				resource.Attribute{
 					Name:        "health_check_grace_period",
 					Description: `The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service.`,
 				},
@@ -1929,6 +1977,10 @@ Use this data source to get information on an existing autoscaling group.
 				resource.Attribute{
 					Name:        "desired_capacity",
 					Description: `The desired size of the group.`,
+				},
+				resource.Attribute{
+					Name:        "enabled_metrics",
+					Description: `The list of metrics enabled for collection.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_grace_period",
@@ -2125,7 +2177,7 @@ which provides a list of the available zones.
 				},
 				resource.Attribute{
 					Name:        "zone_type",
-					Description: `The type of zone. Values are ` + "`" + `availability-zone` + "`" + `, ` + "`" + `local-zone` + "`" + `, and ` + "`" + `wavelength-zone` + "`" + `.`,
+					Description: `The type of zone. Values are ` + "`" + `availability-zone` + "`" + `, ` + "`" + `local-zone` + "`" + `, and ` + "`" + `wavelength-zone` + "`" + `. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2159,7 +2211,7 @@ which provides a list of the available zones.
 				},
 				resource.Attribute{
 					Name:        "zone_type",
-					Description: `The type of zone. Values are ` + "`" + `availability-zone` + "`" + `, ` + "`" + `local-zone` + "`" + `, and ` + "`" + `wavelength-zone` + "`" + `.`,
+					Description: `The type of zone. Values are ` + "`" + `availability-zone` + "`" + `, ` + "`" + `local-zone` + "`" + `, and ` + "`" + `wavelength-zone` + "`" + `. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -2220,7 +2272,7 @@ which provides some details about a specific availability zone.
 				},
 				resource.Attribute{
 					Name:        "zone_ids",
-					Description: `A list of the Availability Zone IDs available to the account. Note that the indexes of Availability Zone names and IDs correspond.`,
+					Description: `A list of the Availability Zone IDs available to the account. Note that the indexes of Availability Zone names and IDs correspond. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2234,7 +2286,7 @@ which provides some details about a specific availability zone.
 				},
 				resource.Attribute{
 					Name:        "zone_ids",
-					Description: `A list of the Availability Zone IDs available to the account. Note that the indexes of Availability Zone names and IDs correspond.`,
+					Description: `A list of the Availability Zone IDs available to the account. Note that the indexes of Availability Zone names and IDs correspond. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -3087,7 +3139,11 @@ Provides details about a specific CostExplorer Cost Category.
 				},
 				resource.Attribute{
 					Name:        "split_charge_rule",
-					Description: `Configuration block for the split charge rules used to allocate your charges between your Cost Category values. See below. ### ` + "`" + `rule` + "`" + ``,
+					Description: `Configuration block for the split charge rules used to allocate your charges between your Cost Category values. See below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Resource tags. ### ` + "`" + `rule` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "inherited_value",
@@ -3225,7 +3281,11 @@ Provides details about a specific CostExplorer Cost Category.
 				},
 				resource.Attribute{
 					Name:        "split_charge_rule",
-					Description: `Configuration block for the split charge rules used to allocate your charges between your Cost Category values. See below. ### ` + "`" + `rule` + "`" + ``,
+					Description: `Configuration block for the split charge rules used to allocate your charges between your Cost Category values. See below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Resource tags. ### ` + "`" + `rule` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "inherited_value",
@@ -4425,7 +4485,11 @@ Provides a CloudFront real-time log configuration resource.
 				},
 				resource.Attribute{
 					Name:        "security_headers_config",
-					Description: `A configuration for a set of security-related HTTP response headers. See [Security Headers Config](#security-headers-config) for more information. ### Cors Config`,
+					Description: `A configuration for a set of security-related HTTP response headers. See [Security Headers Config](#security-headers-config) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "server_timing_headers_config",
+					Description: `(Optional) A configuration for enabling the Server-Timing header in HTTP responses sent from CloudFront. See [Server Timing Headers Config](#server-timing-headers-config) for more information. ### Cors Config`,
 				},
 				resource.Attribute{
 					Name:        "access_control_allow_credentials",
@@ -4545,7 +4609,15 @@ Provides a CloudFront real-time log configuration resource.
 				},
 				resource.Attribute{
 					Name:        "report_uri",
-					Description: `A Boolean value that determines whether CloudFront sets a reporting URI in the X-XSS-Protection header.`,
+					Description: `A Boolean value that determines whether CloudFront sets a reporting URI in the X-XSS-Protection header. ### Server Timing Headers Config`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `A Boolean that determines whether CloudFront adds the ` + "`" + `Server-Timing` + "`" + ` header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy.`,
+				},
+				resource.Attribute{
+					Name:        "sampling_rate",
+					Description: `A number 0–100 (inclusive) that specifies the percentage of responses that you want CloudFront to add the Server-Timing header to.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4567,7 +4639,11 @@ Provides a CloudFront real-time log configuration resource.
 				},
 				resource.Attribute{
 					Name:        "security_headers_config",
-					Description: `A configuration for a set of security-related HTTP response headers. See [Security Headers Config](#security-headers-config) for more information. ### Cors Config`,
+					Description: `A configuration for a set of security-related HTTP response headers. See [Security Headers Config](#security-headers-config) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "server_timing_headers_config",
+					Description: `(Optional) A configuration for enabling the Server-Timing header in HTTP responses sent from CloudFront. See [Server Timing Headers Config](#server-timing-headers-config) for more information. ### Cors Config`,
 				},
 				resource.Attribute{
 					Name:        "access_control_allow_credentials",
@@ -4687,7 +4763,15 @@ Provides a CloudFront real-time log configuration resource.
 				},
 				resource.Attribute{
 					Name:        "report_uri",
-					Description: `A Boolean value that determines whether CloudFront sets a reporting URI in the X-XSS-Protection header.`,
+					Description: `A Boolean value that determines whether CloudFront sets a reporting URI in the X-XSS-Protection header. ### Server Timing Headers Config`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `A Boolean that determines whether CloudFront adds the ` + "`" + `Server-Timing` + "`" + ` header to HTTP responses that it sends in response to requests that match a cache behavior that's associated with this response headers policy.`,
+				},
+				resource.Attribute{
+					Name:        "sampling_rate",
+					Description: `A number 0–100 (inclusive) that specifies the percentage of responses that you want CloudFront to add the Server-Timing header to.`,
 				},
 			},
 		},
@@ -5031,7 +5115,7 @@ Use this data source to get a list of AWS Cloudwatch Log Groups
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "log_group_name_prefix",
-					Description: `(Required) The group prefix of the Cloudwatch log groups to list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The group prefix of the Cloudwatch log groups to list ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "arns",
@@ -5304,7 +5388,7 @@ Provides details about CodeStar Connection.
 				},
 				resource.Attribute{
 					Name:        "provider_type",
-					Description: `The name of the external provider where your third-party code repository is configured. Possible values are ` + "`" + `Bitbucket` + "`" + `, ` + "`" + `GitHub` + "`" + `, or ` + "`" + `GitHubEnterpriseServer` + "`" + `.`,
+					Description: `The name of the external provider where your third-party code repository is configured. Possible values are ` + "`" + `Bitbucket` + "`" + ` and ` + "`" + `GitHub` + "`" + `. For connections to a GitHub Enterprise Server instance, you must create an [aws_codestarconnections_host](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codestarconnections_host) resource and use ` + "`" + `host_arn` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -5330,7 +5414,7 @@ Provides details about CodeStar Connection.
 				},
 				resource.Attribute{
 					Name:        "provider_type",
-					Description: `The name of the external provider where your third-party code repository is configured. Possible values are ` + "`" + `Bitbucket` + "`" + `, ` + "`" + `GitHub` + "`" + `, or ` + "`" + `GitHubEnterpriseServer` + "`" + `.`,
+					Description: `The name of the external provider where your third-party code repository is configured. Possible values are ` + "`" + `Bitbucket` + "`" + ` and ` + "`" + `GitHub` + "`" + `. For connections to a GitHub Enterprise Server instance, you must create an [aws_codestarconnections_host](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codestarconnections_host) resource and use ` + "`" + `host_arn` + "`" + ` instead.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6460,6 +6544,454 @@ Provides details about a specific Amazon Connect Quick Connect.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_connect_routing_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Connect Routing Profile.`,
+			Description: `
+
+Provides details about a specific Amazon Connect Routing Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Reference to the hosting Amazon Connect Instance`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Returns information on a specific Routing Profile by name`,
+				},
+				resource.Attribute{
+					Name:        "routing_profile_id",
+					Description: `(Optional) Returns information on a specific Routing Profile by Routing Profile id ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "default_outbound_queue_id",
+					Description: `Specifies the default outbound queue for the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the Routing Profile separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "media_concurrencies",
+					Description: `One or more ` + "`" + `media_concurrencies` + "`" + ` blocks that specify the channels that agents can handle in the Contact Control Panel (CCP) for this Routing Profile. The ` + "`" + `media_concurrencies` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "queue_configs",
+					Description: `One or more ` + "`" + `queue_configs` + "`" + ` blocks that specify the inbound queues associated with the routing profile. If no queue is added, the agent only can make outbound calls. The ` + "`" + `queue_configs` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the Routing Profile. A ` + "`" + `media_concurrencies` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `Specifies the channels that agents can handle in the Contact Control Panel (CCP). Valid values are ` + "`" + `VOICE` + "`" + `, ` + "`" + `CHAT` + "`" + `, ` + "`" + `TASK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "concurrency",
+					Description: `Specifies the number of contacts an agent can have on a channel simultaneously. Valid Range for ` + "`" + `VOICE` + "`" + `: Minimum value of 1. Maximum value of 1. Valid Range for ` + "`" + `CHAT` + "`" + `: Minimum value of 1. Maximum value of 10. Valid Range for ` + "`" + `TASK` + "`" + `: Minimum value of 1. Maximum value of 10. A ` + "`" + `queue_configs` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `Specifies the channels agents can handle in the Contact Control Panel (CCP) for this routing profile. Valid values are ` + "`" + `VOICE` + "`" + `, ` + "`" + `CHAT` + "`" + `, ` + "`" + `TASK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `Specifies the delay, in seconds, that a contact should be in the queue before they are routed to an available agent`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Specifies the order in which contacts are to be handled for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_arn",
+					Description: `Specifies the ARN for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_id",
+					Description: `Specifies the identifier for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_name",
+					Description: `Specifies the name for the queue.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "default_outbound_queue_id",
+					Description: `Specifies the default outbound queue for the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of the Routing Profile.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the Routing Profile separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "media_concurrencies",
+					Description: `One or more ` + "`" + `media_concurrencies` + "`" + ` blocks that specify the channels that agents can handle in the Contact Control Panel (CCP) for this Routing Profile. The ` + "`" + `media_concurrencies` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "queue_configs",
+					Description: `One or more ` + "`" + `queue_configs` + "`" + ` blocks that specify the inbound queues associated with the routing profile. If no queue is added, the agent only can make outbound calls. The ` + "`" + `queue_configs` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the Routing Profile. A ` + "`" + `media_concurrencies` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `Specifies the channels that agents can handle in the Contact Control Panel (CCP). Valid values are ` + "`" + `VOICE` + "`" + `, ` + "`" + `CHAT` + "`" + `, ` + "`" + `TASK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "concurrency",
+					Description: `Specifies the number of contacts an agent can have on a channel simultaneously. Valid Range for ` + "`" + `VOICE` + "`" + `: Minimum value of 1. Maximum value of 1. Valid Range for ` + "`" + `CHAT` + "`" + `: Minimum value of 1. Maximum value of 10. Valid Range for ` + "`" + `TASK` + "`" + `: Minimum value of 1. Maximum value of 10. A ` + "`" + `queue_configs` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `Specifies the channels agents can handle in the Contact Control Panel (CCP) for this routing profile. Valid values are ` + "`" + `VOICE` + "`" + `, ` + "`" + `CHAT` + "`" + `, ` + "`" + `TASK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `Specifies the delay, in seconds, that a contact should be in the queue before they are routed to an available agent`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Specifies the order in which contacts are to be handled for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_arn",
+					Description: `Specifies the ARN for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_id",
+					Description: `Specifies the identifier for the queue.`,
+				},
+				resource.Attribute{
+					Name:        "queue_name",
+					Description: `Specifies the name for the queue.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_connect_security_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Connect Security Profile.`,
+			Description: `
+
+Provides details about a specific Amazon Connect Security Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "security_profile_id",
+					Description: `(Optional) Returns information on a specific Security Profile by Security Profile id`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) Reference to the hosting Amazon Connect Instance`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Returns information on a specific Security Profile by name ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Security Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of the Security Profile.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the Security Profile separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "organization_resource_id",
+					Description: `The organization resource identifier for the security profile.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `Specifies a list of permissions assigned to the security profile.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the Security Profile.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Security Profile.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of the Security Profile.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the Security Profile separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "organization_resource_id",
+					Description: `The organization resource identifier for the security profile.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `Specifies a list of permissions assigned to the security profile.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the Security Profile.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_connect_user_hierarchy_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Connect User Hierarchy Group.`,
+			Description: `
+
+Provides details about a specific Amazon Connect User Hierarchy Group.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hierarchy_group_id",
+					Description: `(Optional) Returns information on a specific hierarchy group by hierarchy group id`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) Reference to the hosting Amazon Connect Instance`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Returns information on a specific hierarchy group by name ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_path",
+					Description: `A block that contains information about the levels in the hierarchy group. The ` + "`" + `hierarchy_path` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_id",
+					Description: `The identifier of the level in the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the hierarchy group separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the hierarchy group. A ` + "`" + `hierarchy_path` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "level_one",
+					Description: `A block that defines the details of level one. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_two",
+					Description: `A block that defines the details of level two. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_three",
+					Description: `A block that defines the details of level three. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_four",
+					Description: `A block that defines the details of level four. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_five",
+					Description: `A block that defines the details of level five. The level block is documented below. A level block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the hierarchy group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_path",
+					Description: `A block that contains information about the levels in the hierarchy group. The ` + "`" + `hierarchy_path` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_id",
+					Description: `The identifier of the level in the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hosting Amazon Connect Instance and identifier of the hierarchy group separated by a colon (` + "`" + `:` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the hierarchy group. A ` + "`" + `hierarchy_path` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "level_one",
+					Description: `A block that defines the details of level one. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_two",
+					Description: `A block that defines the details of level two. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_three",
+					Description: `A block that defines the details of level three. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_four",
+					Description: `A block that defines the details of level four. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_five",
+					Description: `A block that defines the details of level five. The level block is documented below. A level block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hierarchy group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the hierarchy group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_connect_user_hierarchy_structure",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Connect User Hierarchy Structure`,
+			Description: `
+
+Provides details about a specific Amazon Connect User Hierarchy Structure
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) Reference to the hosting Amazon Connect Instance ## Attributes Reference In addition to all of the argument above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_structure",
+					Description: `A block that defines the hierarchy structure's levels. The ` + "`" + `hierarchy_structure` + "`" + ` block is documented below. A ` + "`" + `hierarchy_structure` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "level_one",
+					Description: `A block that defines the details of level one. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_two",
+					Description: `A block that defines the details of level two. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_three",
+					Description: `A block that defines the details of level three. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_four",
+					Description: `A block that defines the details of level four. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_five",
+					Description: `A block that defines the details of level five. The level block is documented below. Each level block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy level.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hierarchy level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user hierarchy level. Must not be more than 50 characters.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hierarchy_structure",
+					Description: `A block that defines the hierarchy structure's levels. The ` + "`" + `hierarchy_structure` + "`" + ` block is documented below. A ` + "`" + `hierarchy_structure` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "level_one",
+					Description: `A block that defines the details of level one. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_two",
+					Description: `A block that defines the details of level two. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_three",
+					Description: `A block that defines the details of level three. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_four",
+					Description: `A block that defines the details of level four. The level block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "level_five",
+					Description: `A block that defines the details of level five. The level block is documented below. Each level block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the hierarchy level.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the hierarchy level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user hierarchy level. Must not be more than 50 characters.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_cur_report_definition",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an AWS Cost and Usage Report Definition.`,
@@ -6609,7 +7141,7 @@ Get an existing AWS Customer Gateway.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of customer gateway. The only type AWS supports at this time is "ipsec.1".`,
+					Description: `The type of customer gateway. The only type AWS supports at this time is "ipsec.1". ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6639,7 +7171,7 @@ Get an existing AWS Customer Gateway.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of customer gateway. The only type AWS supports at this time is "ipsec.1".`,
+					Description: `The type of customer gateway. The only type AWS supports at this time is "ipsec.1". ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8173,6 +8705,10 @@ These are the locations that can be specified when configuring [` + "`" + `aws_d
 					Description: `(Required) The code for the location to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "available_macsec_port_speeds",
+					Description: `The available MAC Security (MACsec) port speeds for the location.`,
+				},
+				resource.Attribute{
 					Name:        "available_port_speeds",
 					Description: `The available port speeds for the location.`,
 				},
@@ -8186,6 +8722,10 @@ These are the locations that can be specified when configuring [` + "`" + `aws_d
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "available_macsec_port_speeds",
+					Description: `The available MAC Security (MACsec) port speeds for the location.`,
+				},
 				resource.Attribute{
 					Name:        "available_port_speeds",
 					Description: `The available port speeds for the location.`,
@@ -8266,7 +8806,7 @@ Use this data source to get the default EBS encryption KMS key in the current re
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Region of the default KMS Key.`,
+					Description: `Region of the default KMS Key. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8289,7 +8829,7 @@ Provides a way to check whether default EBS encryption is enabled for your AWS a
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Region of default EBS encryption.`,
+					Description: `Region of default EBS encryption. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8384,7 +8924,7 @@ Use this data source to get information about an EBS Snapshot for use when provi
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags for the resource. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
+					Description: `A map of tags for the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8446,7 +8986,7 @@ Use this data source to get information about an EBS Snapshot for use when provi
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags for the resource. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
+					Description: `A map of tags for the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
 		},
@@ -8481,7 +9021,7 @@ criteria.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of EBS snapshot IDs, sorted by creation time in descending order. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
+					Description: `Set of EBS snapshot IDs, sorted by creation time in descending order. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8491,7 +9031,7 @@ criteria.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of EBS snapshot IDs, sorted by creation time in descending order. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
+					Description: `Set of EBS snapshot IDs, sorted by creation time in descending order. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
 		},
@@ -8571,7 +9111,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `The throughput that the volume supports, in MiB/s. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
+					Description: `The throughput that the volume supports, in MiB/s. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8629,7 +9169,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "throughput",
-					Description: `The throughput that the volume supports, in MiB/s. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
+					Description: `The throughput that the volume supports, in MiB/s. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
 				},
 			},
 		},
@@ -8669,7 +9209,7 @@ This data source can be useful for getting a list of volume IDs with (for exampl
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A set of all the EBS Volume IDs found. This data source will fail if no volumes match the provided criteria.`,
+					Description: `A set of all the EBS Volume IDs found. This data source will fail if no volumes match the provided criteria. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8679,7 +9219,7 @@ This data source can be useful for getting a list of volume IDs with (for exampl
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A set of all the EBS Volume IDs found. This data source will fail if no volumes match the provided criteria.`,
+					Description: `A set of all the EBS Volume IDs found. This data source will fail if no volumes match the provided criteria. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8781,7 +9321,7 @@ Get information on an EC2 Client VPN endpoint.
 				},
 				resource.Attribute{
 					Name:        "vpn_port",
-					Description: `The port number for the Client VPN endpoint.`,
+					Description: `The port number for the Client VPN endpoint. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8851,7 +9391,7 @@ Get information on an EC2 Client VPN endpoint.
 				},
 				resource.Attribute{
 					Name:        "vpn_port",
-					Description: `The port number for the Client VPN endpoint.`,
+					Description: `The port number for the Client VPN endpoint. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8897,7 +9437,7 @@ COIP Pool.
 				},
 				resource.Attribute{
 					Name:        "pool_cidrs",
-					Description: `Set of CIDR blocks in pool`,
+					Description: `Set of CIDR blocks in pool ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8907,7 +9447,7 @@ COIP Pool.
 				},
 				resource.Attribute{
 					Name:        "pool_cidrs",
-					Description: `Set of CIDR blocks in pool`,
+					Description: `Set of CIDR blocks in pool ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -8945,7 +9485,7 @@ Provides information for multiple EC2 Customer-Owned IP Pools, such as their ide
 				},
 				resource.Attribute{
 					Name:        "pool_ids",
-					Description: `Set of COIP Pool Identifiers`,
+					Description: `Set of COIP Pool Identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8955,7 +9495,7 @@ Provides information for multiple EC2 Customer-Owned IP Pools, such as their ide
 				},
 				resource.Attribute{
 					Name:        "pool_ids",
-					Description: `Set of COIP Pool Identifiers`,
+					Description: `Set of COIP Pool Identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9020,6 +9560,10 @@ Use this data source to get information about an EC2 Dedicated Host.
 					Description: `The instance type supported by the Dedicated Host. For example, "m5.large". If the host supports multiple instance types, no instanceType is returned.`,
 				},
 				resource.Attribute{
+					Name:        "outpost_arn",
+					Description: `The Amazon Resource Name (ARN) of the AWS Outpost on which the Dedicated Host is allocated.`,
+				},
+				resource.Attribute{
 					Name:        "owner_id",
 					Description: `The ID of the AWS account that owns the Dedicated Host.`,
 				},
@@ -9029,7 +9573,7 @@ Use this data source to get information about an EC2 Dedicated Host.
 				},
 				resource.Attribute{
 					Name:        "total_vcpus",
-					Description: `The total number of vCPUs on the Dedicated Host.`,
+					Description: `The total number of vCPUs on the Dedicated Host. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9066,6 +9610,10 @@ Use this data source to get information about an EC2 Dedicated Host.
 					Description: `The instance type supported by the Dedicated Host. For example, "m5.large". If the host supports multiple instance types, no instanceType is returned.`,
 				},
 				resource.Attribute{
+					Name:        "outpost_arn",
+					Description: `The Amazon Resource Name (ARN) of the AWS Outpost on which the Dedicated Host is allocated.`,
+				},
+				resource.Attribute{
 					Name:        "owner_id",
 					Description: `The ID of the AWS account that owns the Dedicated Host.`,
 				},
@@ -9075,7 +9623,7 @@ Use this data source to get information about an EC2 Dedicated Host.
 				},
 				resource.Attribute{
 					Name:        "total_vcpus",
-					Description: `The total number of vCPUs on the Dedicated Host.`,
+					Description: `The total number of vCPUs on the Dedicated Host. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9325,7 +9873,7 @@ Get characteristics for a single EC2 Instance Type.
 				},
 				resource.Attribute{
 					Name:        "valid_threads_per_core",
-					Description: `List of the valid number of threads per core that can be configured for the instance type.`,
+					Description: `List of the valid number of threads per core that can be configured for the instance type. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9559,7 +10107,7 @@ Get characteristics for a single EC2 Instance Type.
 				},
 				resource.Attribute{
 					Name:        "valid_threads_per_core",
-					Description: `List of the valid number of threads per core that can be configured for the instance type.`,
+					Description: `List of the valid number of threads per core that can be configured for the instance type. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9601,7 +10149,7 @@ Information about single EC2 Instance Type Offering.
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `EC2 Instance Type.`,
+					Description: `EC2 Instance Type. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9611,7 +10159,7 @@ Information about single EC2 Instance Type Offering.
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `EC2 Instance Type.`,
+					Description: `EC2 Instance Type. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9657,7 +10205,7 @@ Information about EC2 Instance Type Offerings.
 				},
 				resource.Attribute{
 					Name:        "location_types",
-					Description: `List of location types. Note that the indexes of Instance Type Offering instance types, locations and location types correspond.`,
+					Description: `List of location types. Note that the indexes of Instance Type Offering instance types, locations and location types correspond. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9675,7 +10223,7 @@ Information about EC2 Instance Type Offerings.
 				},
 				resource.Attribute{
 					Name:        "location_types",
-					Description: `List of location types. Note that the indexes of Instance Type Offering instance types, locations and location types correspond.`,
+					Description: `List of location types. Note that the indexes of Instance Type Offering instance types, locations and location types correspond. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9709,7 +10257,7 @@ Information about EC2 Instance Types.
 				},
 				resource.Attribute{
 					Name:        "instance_types",
-					Description: `List of EC2 Instance Types.`,
+					Description: `List of EC2 Instance Types. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9719,7 +10267,7 @@ Information about EC2 Instance Types.
 				},
 				resource.Attribute{
 					Name:        "instance_types",
-					Description: `List of EC2 Instance Types.`,
+					Description: `List of EC2 Instance Types. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9769,7 +10317,7 @@ Provides details about an EC2 Local Gateway.
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the local gateway.`,
+					Description: `State of the local gateway. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9783,7 +10331,7 @@ Provides details about an EC2 Local Gateway.
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the local gateway.`,
+					Description: `State of the local gateway. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9828,7 +10376,7 @@ an input variable and needs to, for example, find the associated Outpost or Loca
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) Set of values that are accepted for the given field. A local gateway route table will be selected if any one of the given values matches.`,
+					Description: `(Required) Set of values that are accepted for the given field. A local gateway route table will be selected if any one of the given values matches. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9867,7 +10415,7 @@ Provides information for multiple EC2 Local Gateway Route Tables, such as their 
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of Local Gateway Route Table identifiers`,
+					Description: `Set of Local Gateway Route Table identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9877,7 +10425,7 @@ Provides information for multiple EC2 Local Gateway Route Tables, such as their 
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of Local Gateway Route Table identifiers`,
+					Description: `Set of Local Gateway Route Table identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -9935,7 +10483,7 @@ Provides details about an EC2 Local Gateway Virtual Interface. More information 
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `Virtual Local Area Network.`,
+					Description: `Virtual Local Area Network. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9961,7 +10509,7 @@ Provides details about an EC2 Local Gateway Virtual Interface. More information 
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `Virtual Local Area Network.`,
+					Description: `Virtual Local Area Network. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10003,13 +10551,13 @@ Provides details about an EC2 Local Gateway Virtual Interface Group. More inform
 				},
 				resource.Attribute{
 					Name:        "local_gateway_virtual_interface_ids",
-					Description: `Set of EC2 Local Gateway Virtual Interface identifiers.`,
+					Description: `Set of EC2 Local Gateway Virtual Interface identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "local_gateway_virtual_interface_ids",
-					Description: `Set of EC2 Local Gateway Virtual Interface identifiers.`,
+					Description: `Set of EC2 Local Gateway Virtual Interface identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10051,7 +10599,7 @@ Provides details about multiple EC2 Local Gateway Virtual Interface Groups, such
 				},
 				resource.Attribute{
 					Name:        "local_gateway_virtual_interface_ids",
-					Description: `Set of EC2 Local Gateway Virtual Interface identifiers.`,
+					Description: `Set of EC2 Local Gateway Virtual Interface identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10065,7 +10613,7 @@ Provides details about multiple EC2 Local Gateway Virtual Interface Groups, such
 				},
 				resource.Attribute{
 					Name:        "local_gateway_virtual_interface_ids",
-					Description: `Set of EC2 Local Gateway Virtual Interface identifiers.`,
+					Description: `Set of EC2 Local Gateway Virtual Interface identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10103,7 +10651,7 @@ Provides information for multiple EC2 Local Gateways, such as their identifiers.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of all the Local Gateway identifiers`,
+					Description: `Set of all the Local Gateway identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10113,7 +10661,7 @@ Provides information for multiple EC2 Local Gateways, such as their identifiers.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of all the Local Gateway identifiers`,
+					Description: `Set of all the Local Gateway identifiers ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10180,7 +10728,7 @@ customer-managed prefix list in the current region.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the resource.`,
+					Description: `A map of tags assigned to the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10214,7 +10762,7 @@ customer-managed prefix list in the current region.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags assigned to the resource.`,
+					Description: `A map of tags assigned to the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10237,7 +10785,7 @@ Provides a way to check whether serial console access is enabled for your AWS ac
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Region of serial console access.`,
+					Description: `Region of serial console access. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10283,7 +10831,7 @@ Information about most recent Spot Price for a given EC2 instance.
 				},
 				resource.Attribute{
 					Name:        "spot_price_timestamp",
-					Description: `The timestamp at which the Spot Price value was published.`,
+					Description: `The timestamp at which the Spot Price value was published. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10297,7 +10845,7 @@ Information about most recent Spot Price for a given EC2 instance.
 				},
 				resource.Attribute{
 					Name:        "spot_price_timestamp",
-					Description: `The timestamp at which the Spot Price value was published.`,
+					Description: `The timestamp at which the Spot Price value was published. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10387,7 +10935,7 @@ Get information on an EC2 Transit Gateway.
 				},
 				resource.Attribute{
 					Name:        "vpn_ecmp_support",
-					Description: `Whether VPN Equal Cost Multipath Protocol support is enabled`,
+					Description: `Whether VPN Equal Cost Multipath Protocol support is enabled ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10449,7 +10997,7 @@ Get information on an EC2 Transit Gateway.
 				},
 				resource.Attribute{
 					Name:        "vpn_ecmp_support",
-					Description: `Whether VPN Equal Cost Multipath Protocol support is enabled`,
+					Description: `Whether VPN Equal Cost Multipath Protocol support is enabled ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10495,7 +11043,7 @@ Get information on an EC2 Transit Gateway Connect.
 				},
 				resource.Attribute{
 					Name:        "transport_attachment_id",
-					Description: `The underlaying VPC attachment`,
+					Description: `The underlaying VPC attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10513,7 +11061,7 @@ Get information on an EC2 Transit Gateway Connect.
 				},
 				resource.Attribute{
 					Name:        "transport_attachment_id",
-					Description: `The underlaying VPC attachment`,
+					Description: `The underlaying VPC attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10571,7 +11119,7 @@ Get information on an EC2 Transit Gateway Connect Peer.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_attachment_id",
-					Description: `The Transit Gateway Connect`,
+					Description: `The Transit Gateway Connect ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10601,7 +11149,7 @@ Get information on an EC2 Transit Gateway Connect Peer.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_attachment_id",
-					Description: `The Transit Gateway Connect`,
+					Description: `The Transit Gateway Connect ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10647,7 +11195,7 @@ Get information on an EC2 Transit Gateway's attachment to a Direct Connect Gatew
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway Attachment`,
+					Description: `Key-value tags for the EC2 Transit Gateway Attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10657,7 +11205,7 @@ Get information on an EC2 Transit Gateway's attachment to a Direct Connect Gatew
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway Attachment`,
+					Description: `Key-value tags for the EC2 Transit Gateway Attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10755,7 +11303,7 @@ Get information on an EC2 Transit Gateway Multicast Domain.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_id",
-					Description: `EC2 Transit Gateway identifier.`,
+					Description: `EC2 Transit Gateway identifier. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10825,7 +11373,7 @@ Get information on an EC2 Transit Gateway Multicast Domain.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_id",
-					Description: `EC2 Transit Gateway identifier.`,
+					Description: `EC2 Transit Gateway identifier. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10875,7 +11423,7 @@ Get information on an EC2 Transit Gateway Peering Attachment.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_id",
-					Description: `Identifier of the local EC2 Transit Gateway`,
+					Description: `Identifier of the local EC2 Transit Gateway ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10893,7 +11441,7 @@ Get information on an EC2 Transit Gateway Peering Attachment.
 				},
 				resource.Attribute{
 					Name:        "transit_gateway_id",
-					Description: `Identifier of the local EC2 Transit Gateway`,
+					Description: `Identifier of the local EC2 Transit Gateway ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -10947,7 +11495,7 @@ Get information on an EC2 Transit Gateway Route Table.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway Route Table`,
+					Description: `Key-value tags for the EC2 Transit Gateway Route Table ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10973,7 +11521,7 @@ Get information on an EC2 Transit Gateway Route Table.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway Route Table`,
+					Description: `Key-value tags for the EC2 Transit Gateway Route Table ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -11011,7 +11559,7 @@ Provides information for multiple EC2 Transit Gateway Route Tables, such as thei
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of Transit Gateway Route Table identifiers.`,
+					Description: `Set of Transit Gateway Route Table identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11021,7 +11569,7 @@ Provides information for multiple EC2 Transit Gateway Route Tables, such as thei
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `Set of Transit Gateway Route Table identifiers.`,
+					Description: `Set of Transit Gateway Route Table identifiers. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -11087,7 +11635,7 @@ Get information on an EC2 Transit Gateway VPC Attachment.
 				},
 				resource.Attribute{
 					Name:        "vpc_owner_id",
-					Description: `Identifier of the AWS account that owns the EC2 VPC.`,
+					Description: `Identifier of the AWS account that owns the EC2 VPC. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11125,7 +11673,7 @@ Get information on an EC2 Transit Gateway VPC Attachment.
 				},
 				resource.Attribute{
 					Name:        "vpc_owner_id",
-					Description: `Identifier of the AWS account that owns the EC2 VPC.`,
+					Description: `Identifier of the AWS account that owns the EC2 VPC. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -11200,7 +11748,7 @@ Get information on an EC2 Transit Gateway VPN Attachment.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway VPN Attachment`,
+					Description: `Key-value tags for the EC2 Transit Gateway VPN Attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11210,7 +11758,7 @@ Get information on an EC2 Transit Gateway VPN Attachment.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Key-value tags for the EC2 Transit Gateway VPN Attachment`,
+					Description: `Key-value tags for the EC2 Transit Gateway VPN Attachment ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -11679,6 +12227,10 @@ Service within a AWS ECS Cluster.
 					Name:        "task_definition",
 					Description: `The family for the latest ACTIVE revision`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Resource tags.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -11701,6 +12253,10 @@ Service within a AWS ECS Cluster.
 					Name:        "task_definition",
 					Description: `The family for the latest ACTIVE revision`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Resource tags.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -11721,6 +12277,10 @@ a specific AWS ECS task definition.
 				resource.Attribute{
 					Name:        "task_definition",
 					Description: `(Required) The family for the latest ACTIVE revision, family and revision (family:revision) for a specific revision in the family, the ARN of the task definition to access to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ARN of the task definition`,
 				},
 				resource.Attribute{
 					Name:        "arn",
@@ -11748,6 +12308,10 @@ a specific AWS ECS task definition.
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ARN of the task definition`,
+				},
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the task definition`,
@@ -12367,7 +12931,7 @@ Provides a list of Elastic IPs in a region.
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `A list of all the Elastic IP addresses.`,
+					Description: `A list of all the Elastic IP addresses. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -12381,7 +12945,7 @@ Provides a list of Elastic IPs in a region.
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `A list of all the Elastic IP addresses.`,
+					Description: `A list of all the Elastic IP addresses. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -14848,15 +15412,15 @@ IAM policy.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
-					Description: `(Optional) The ARN of the IAM policy.`,
+					Description: `(Optional) The ARN of the IAM policy. Conflicts with ` + "`" + `name` + "`" + ` and ` + "`" + `path_prefix` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the IAM policy.`,
+					Description: `(Optional) The name of the IAM policy. Conflicts with ` + "`" + `arn` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "path_prefix",
-					Description: `(Optional) The prefix of the path to the IAM policy. Defaults to a slash (` + "`" + `/` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The prefix of the path to the IAM policy. Defaults to a slash (` + "`" + `/` + "`" + `). Conflicts with ` + "`" + `arn` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -15049,7 +15613,7 @@ Use this data source to get the ARNs and Names of IAM Roles.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
-					Description: `(Optional) A regex string to apply to the IAM roles list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. It is recommended to combine this with other options to narrow down the list AWS returns.`,
+					Description: `(Optional) A regex string to apply to the IAM roles list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. Combine this with other options to narrow down the list AWS returns.`,
 				},
 				resource.Attribute{
 					Name:        "path_prefix",
@@ -15362,7 +15926,7 @@ Use this data source to get the ARNs and Names of IAM Users.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
-					Description: `(Optional) A regex string to apply to the IAM users list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. It is recommended to combine this with other options to narrow down the list AWS returns.`,
+					Description: `(Optional) Regex string to apply to the IAM users list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. Combine this with other options to narrow down the list AWS returns.`,
 				},
 				resource.Attribute{
 					Name:        "path_prefix",
@@ -15757,6 +16321,10 @@ Provides details about an Image builder Container Recipe.
 					Description: `Identifier of the EC2 Volume Snapshot.`,
 				},
 				resource.Attribute{
+					Name:        "throughput",
+					Description: `For GP3 volumes only. The throughput in MiB/s that the volume supports.`,
+				},
+				resource.Attribute{
 					Name:        "volume_size",
 					Description: `Size of the volume, in GiB.`,
 				},
@@ -15897,6 +16465,10 @@ Provides details about an Image builder Container Recipe.
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `Identifier of the EC2 Volume Snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "throughput",
+					Description: `For GP3 volumes only. The throughput in MiB/s that the volume supports.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
@@ -16109,6 +16681,46 @@ Provides details about an Image Builder Distribution Configuration.
 					Description: `Service in which the image is registered.`,
 				},
 				resource.Attribute{
+					Name:        "fast_launch_configuration",
+					Description: `Nested list of Windows faster-launching configurations to use for AMI distribution.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The owner account ID for the fast-launch enabled Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `A Boolean that represents the current state of faster launching for the Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template",
+					Description: `Nested list of launch templates that the fast-launch enabled Windows AMI uses when it launches Windows instances to create pre-provisioned snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_id",
+					Description: `The ID of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_name",
+					Description: `The name of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_version",
+					Description: `The version of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "max_parallel_launches",
+					Description: `The maximum number of parallel instances that are launched for creating resources.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_configuration",
+					Description: `Nested list of configurations for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when faster launching is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "target_resource_count",
+					Description: `The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.`,
+				},
+				resource.Attribute{
 					Name:        "launch_template_configuration",
 					Description: `Nested list of launch template configurations.`,
 				},
@@ -16221,6 +16833,46 @@ Provides details about an Image Builder Distribution Configuration.
 				resource.Attribute{
 					Name:        "service",
 					Description: `Service in which the image is registered.`,
+				},
+				resource.Attribute{
+					Name:        "fast_launch_configuration",
+					Description: `Nested list of Windows faster-launching configurations to use for AMI distribution.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `The owner account ID for the fast-launch enabled Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `A Boolean that represents the current state of faster launching for the Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template",
+					Description: `Nested list of launch templates that the fast-launch enabled Windows AMI uses when it launches Windows instances to create pre-provisioned snapshots.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_id",
+					Description: `The ID of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_name",
+					Description: `The name of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "launch_template_version",
+					Description: `The version of the launch template to use for faster launching for a Windows AMI.`,
+				},
+				resource.Attribute{
+					Name:        "max_parallel_launches",
+					Description: `The maximum number of parallel instances that are launched for creating resources.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_configuration",
+					Description: `Nested list of configurations for managing the number of snapshots that are created from pre-provisioned instances for the Windows AMI when faster launching is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "target_resource_count",
+					Description: `The number of pre-provisioned snapshots to keep on hand for a fast-launch enabled Windows AMI.`,
 				},
 				resource.Attribute{
 					Name:        "launch_template_configuration",
@@ -16769,6 +17421,10 @@ Provides details about an Image Builder Image Recipe.
 					Description: `Identifier of the EC2 Volume Snapshot.`,
 				},
 				resource.Attribute{
+					Name:        "throughput",
+					Description: `For GP3 volumes only. The throughput in MiB/s that the volume supports.`,
+				},
+				resource.Attribute{
 					Name:        "volume_size",
 					Description: `Size of the volume, in GiB.`,
 				},
@@ -16877,6 +17533,10 @@ Provides details about an Image Builder Image Recipe.
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `Identifier of the EC2 Volume Snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "throughput",
+					Description: `For GP3 volumes only. The throughput in MiB/s that the volume supports.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
@@ -17304,6 +17964,14 @@ resources.
 					Description: `The availability zone of the Instance.`,
 				},
 				resource.Attribute{
+					Name:        "disable_api_stop",
+					Description: `Whether or not EC2 Instance Stop Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection) is enabled (Boolean).`,
+				},
+				resource.Attribute{
+					Name:        "disable_api_termination",
+					Description: `Whether or not [EC2 Instance Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination) is enabled (Boolean).`,
+				},
+				resource.Attribute{
 					Name:        "ebs_block_device",
 					Description: `The EBS block device mappings of the Instance.`,
 				},
@@ -17406,6 +18074,22 @@ resources.
 				resource.Attribute{
 					Name:        "private_dns",
 					Description: `The private DNS name assigned to the Instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "private_dns_name_options",
+					Description: `The options for the instance hostname.`,
+				},
+				resource.Attribute{
+					Name:        "enable_resource_name_dns_aaaa_record",
+					Description: `Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.`,
+				},
+				resource.Attribute{
+					Name:        "enable_resource_name_dns_a_record",
+					Description: `Indicates whether to respond to DNS queries for instance hostnames with DNS A records.`,
+				},
+				resource.Attribute{
+					Name:        "hostname_type",
+					Description: `The type of hostname for EC2 instances.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -17537,7 +18221,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
-					Description: `The automatic recovery behavior of the instance. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
+					Description: `The automatic recovery behavior of the instance. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -17558,6 +18242,14 @@ resources.
 					Description: `The availability zone of the Instance.`,
 				},
 				resource.Attribute{
+					Name:        "disable_api_stop",
+					Description: `Whether or not EC2 Instance Stop Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection) is enabled (Boolean).`,
+				},
+				resource.Attribute{
+					Name:        "disable_api_termination",
+					Description: `Whether or not [EC2 Instance Termination Protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination) is enabled (Boolean).`,
+				},
+				resource.Attribute{
 					Name:        "ebs_block_device",
 					Description: `The EBS block device mappings of the Instance.`,
 				},
@@ -17660,6 +18352,22 @@ resources.
 				resource.Attribute{
 					Name:        "private_dns",
 					Description: `The private DNS name assigned to the Instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "private_dns_name_options",
+					Description: `The options for the instance hostname.`,
+				},
+				resource.Attribute{
+					Name:        "enable_resource_name_dns_aaaa_record",
+					Description: `Indicates whether to respond to DNS queries for instance hostnames with DNS AAAA records.`,
+				},
+				resource.Attribute{
+					Name:        "enable_resource_name_dns_a_record",
+					Description: `Indicates whether to respond to DNS queries for instance hostnames with DNS A records.`,
+				},
+				resource.Attribute{
+					Name:        "hostname_type",
+					Description: `The type of hostname for EC2 instances.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -17791,7 +18499,7 @@ resources.
 				},
 				resource.Attribute{
 					Name:        "auto_recovery",
-					Description: `The automatic recovery behavior of the instance. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
+					Description: `The automatic recovery behavior of the instance. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
 		},
@@ -17844,7 +18552,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Public IP addresses of instances found through the filter [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
+					Description: `Public IP addresses of instances found through the filter ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -17862,7 +18570,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 				resource.Attribute{
 					Name:        "public_ips",
-					Description: `Public IP addresses of instances found through the filter [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
+					Description: `Public IP addresses of instances found through the filter ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `) [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
 		},
@@ -17913,7 +18621,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `The ID of an attached VPC.`,
+					Description: `The ID of an attached VPC. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -17931,7 +18639,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `The ID of an attached VPC.`,
+					Description: `The ID of an attached VPC. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -18025,6 +18733,1050 @@ Use this data source to get the IP ranges of various AWS products and services. 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_kendra_experience",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Kendra Experience.`,
+			Description: `
+
+Provides details about a specific Amazon Kendra Experience.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "experience_id",
+					Description: `(Required) The identifier of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `(Required) The identifier of the index that contains the Experience. ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `A block that specifies the configuration information for your Amazon Kendra Experience. This includes ` + "`" + `content_source_configuration` + "`" + `, which specifies the data source IDs and/or FAQ IDs, and ` + "`" + `user_identity_configuration` + "`" + `, which specifies the user or group information to grant access to your Amazon Kendra Experience. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the Experience was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `Shows the endpoint URLs for your Amazon Kendra Experiences. The URLs are unique and fully hosted by AWS. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `The reason your Amazon Kendra Experience could not properly process.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the Experience and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Shows the Amazon Resource Name (ARN) of a role with permission to access ` + "`" + `Query` + "`" + ` API, ` + "`" + `QuerySuggestions` + "`" + ` API, ` + "`" + `SubmitFeedback` + "`" + ` API, and AWS SSO that stores your user and group information.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current processing status of your Amazon Kendra Experience. When the status is ` + "`" + `ACTIVE` + "`" + `, your Amazon Kendra Experience is ready to use. When the status is ` + "`" + `FAILED` + "`" + `, the ` + "`" + `error_message` + "`" + ` field contains the reason that this failed.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the Experience was last updated. The ` + "`" + `configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "content_source_configuration",
+					Description: `The identifiers of your data sources and FAQs. This is the content you want to use for your Amazon Kendra Experience. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user_identity_configuration",
+					Description: `The AWS SSO field name that contains the identifiers of your users, such as their emails. Documented below. The ` + "`" + `content_source_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_source_ids",
+					Description: `The identifiers of the data sources you want to use for your Amazon Kendra Experience.`,
+				},
+				resource.Attribute{
+					Name:        "direct_put_content",
+					Description: `Whether to use documents you indexed directly using the ` + "`" + `BatchPutDocument API` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "faq_ids",
+					Description: `The identifier of the FAQs that you want to use for your Amazon Kendra Experience. The ` + "`" + `user_identity_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "identity_attribute_name",
+					Description: `The AWS SSO field name that contains the identifiers of your users, such as their emails. The ` + "`" + `endpoints` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The endpoint of your Amazon Kendra Experience.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_type",
+					Description: `The type of endpoint for your Amazon Kendra Experience.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `A block that specifies the configuration information for your Amazon Kendra Experience. This includes ` + "`" + `content_source_configuration` + "`" + `, which specifies the data source IDs and/or FAQ IDs, and ` + "`" + `user_identity_configuration` + "`" + `, which specifies the user or group information to grant access to your Amazon Kendra Experience. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the Experience was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `Shows the endpoint URLs for your Amazon Kendra Experiences. The URLs are unique and fully hosted by AWS. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `The reason your Amazon Kendra Experience could not properly process.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the Experience and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Experience.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Shows the Amazon Resource Name (ARN) of a role with permission to access ` + "`" + `Query` + "`" + ` API, ` + "`" + `QuerySuggestions` + "`" + ` API, ` + "`" + `SubmitFeedback` + "`" + ` API, and AWS SSO that stores your user and group information.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current processing status of your Amazon Kendra Experience. When the status is ` + "`" + `ACTIVE` + "`" + `, your Amazon Kendra Experience is ready to use. When the status is ` + "`" + `FAILED` + "`" + `, the ` + "`" + `error_message` + "`" + ` field contains the reason that this failed.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the Experience was last updated. The ` + "`" + `configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "content_source_configuration",
+					Description: `The identifiers of your data sources and FAQs. This is the content you want to use for your Amazon Kendra Experience. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user_identity_configuration",
+					Description: `The AWS SSO field name that contains the identifiers of your users, such as their emails. Documented below. The ` + "`" + `content_source_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_source_ids",
+					Description: `The identifiers of the data sources you want to use for your Amazon Kendra Experience.`,
+				},
+				resource.Attribute{
+					Name:        "direct_put_content",
+					Description: `Whether to use documents you indexed directly using the ` + "`" + `BatchPutDocument API` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "faq_ids",
+					Description: `The identifier of the FAQs that you want to use for your Amazon Kendra Experience. The ` + "`" + `user_identity_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "identity_attribute_name",
+					Description: `The AWS SSO field name that contains the identifiers of your users, such as their emails. The ` + "`" + `endpoints` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The endpoint of your Amazon Kendra Experience.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_type",
+					Description: `The type of endpoint for your Amazon Kendra Experience.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_kendra_faq",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Kendra Faq.`,
+			Description: `
+
+Provides details about a specific Amazon Kendra Faq.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "faq_id",
+					Description: `(Required) The identifier of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `(Required) The identifier of the index that contains the FAQ. ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the faq was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the ` + "`" + `status` + "`" + ` field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "file_format",
+					Description: `The file format used by the input files for the FAQ. Valid Values are ` + "`" + `CSV` + "`" + `, ` + "`" + `CSV_WITH_HEADER` + "`" + `, ` + "`" + `JSON` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the FAQ and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "language_code",
+					Description: `The code for a language. This shows a supported language for the FAQ document. For more information on supported languages, including their codes, see [Adding documents in languages other than English](https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "s3_path",
+					Description: `The S3 location of the FAQ input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the FAQ. It is ready to use when the status is ACTIVE.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the FAQ was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the FAQs you create. The ` + "`" + `s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the faq was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the ` + "`" + `status` + "`" + ` field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "file_format",
+					Description: `The file format used by the input files for the FAQ. Valid Values are ` + "`" + `CSV` + "`" + `, ` + "`" + `CSV_WITH_HEADER` + "`" + `, ` + "`" + `JSON` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the FAQ and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "language_code",
+					Description: `The code for a language. This shows a supported language for the FAQ document. For more information on supported languages, including their codes, see [Adding documents in languages other than English](https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the FAQ.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "s3_path",
+					Description: `The S3 location of the FAQ input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the FAQ. It is ready to use when the status is ACTIVE.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the FAQ was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the FAQs you create. The ` + "`" + `s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_kendra_index",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Kendra Index.`,
+			Description: `
+
+Provides details about a specific Amazon Kendra Index.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Returns information on a specific Index by id. ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "capacity_units",
+					Description: `A block that sets the number of additional document storage and query capacity units that should be used by the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the index was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "document_metadata_configuration_updates",
+					Description: `One or more blocks that specify the configuration settings for any metadata applied to the documents in the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "edition",
+					Description: `The Amazon Kendra edition for the index.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the Status field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "index_statistics",
+					Description: `A block that provides information about the number of FAQ questions and answers and the number of text documents indexed. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the ` + "`" + `BatchPutDocument` + "`" + ` API to index documents from an Amazon S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "server_side_encryption_configuration",
+					Description: `A block that specifies the identifier of the AWS KMS customer managed key (CMK) that's used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the index. When the value is ` + "`" + `ACTIVE` + "`" + `, the index is ready for use. If the Status field value is ` + "`" + `FAILED` + "`" + `, the ` + "`" + `error_message` + "`" + ` field contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The Unix datetime that the index was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "user_context_policy",
+					Description: `The user context policy. Valid values are ` + "`" + `ATTRIBUTE_FILTER` + "`" + ` or ` + "`" + `USER_TOKEN` + "`" + `. For more information, refer to [UserContextPolicy](https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex. html#Kendra-CreateIndex-request-UserContextPolicy).`,
+				},
+				resource.Attribute{
+					Name:        "user_group_resolution_configuration",
+					Description: `A block that enables fetching access levels of groups and users from an AWS Single Sign-On identity source. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user_token_configurations",
+					Description: `A block that specifies the user token configuration. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the Indices you create. A ` + "`" + `capacity_units` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "query_capacity_units",
+					Description: `The amount of extra query capacity for an index and GetQuerySuggestions capacity. For more information, refer to [QueryCapacityUnits](https://docs.aws.amazon.com/kendra/latest/dg/API_CapacityUnitsConfiguration.html#Kendra-Type-CapacityUnitsConfiguration-QueryCapacityUnits).`,
+				},
+				resource.Attribute{
+					Name:        "storage_capacity_units",
+					Description: `The amount of extra storage capacity for an index. A single capacity unit provides 30 GB of storage space or 100,000 documents, whichever is reached first. Minimum value of 0. A ` + "`" + `document_metadata_configuration_updates` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the index field. Minimum length of 1. Maximum length of 30.`,
+				},
+				resource.Attribute{
+					Name:        "relevance",
+					Description: `A block that provides manual tuning parameters to determine how the field affects the search results. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "search",
+					Description: `A block that provides information about how the field is used during a search. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The data type of the index field. Valid values are ` + "`" + `STRING_VALUE` + "`" + `, ` + "`" + `STRING_LIST_VALUE` + "`" + `, ` + "`" + `LONG_VALUE` + "`" + `, ` + "`" + `DATE_VALUE` + "`" + `. A ` + "`" + `relevance` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Specifies the time period that the boost applies to. For more information, refer to [Duration](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-Duration).`,
+				},
+				resource.Attribute{
+					Name:        "freshness",
+					Description: `Indicates that this field determines how "fresh" a document is. For more information, refer to [Freshness](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-Freshness).`,
+				},
+				resource.Attribute{
+					Name:        "importance",
+					Description: `The relative importance of the field in the search. Larger numbers provide more of a boost than smaller numbers. Minimum value of 1. Maximum value of 10.`,
+				},
+				resource.Attribute{
+					Name:        "rank_order",
+					Description: `Determines how values should be interpreted. For more information, refer to [RankOrder](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-RankOrder).`,
+				},
+				resource.Attribute{
+					Name:        "values_importance_map",
+					Description: `A list of values that should be given a different boost when they appear in the result list. For more information, refer to [ValueImportanceMap](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-ValueImportanceMap). A ` + "`" + `search` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "displayable",
+					Description: `Determines whether the field is returned in the query response. The default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "facetable",
+					Description: `Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "searchable",
+					Description: `Determines whether the field is used in the search. If the Searchable field is true, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is ` + "`" + `true` + "`" + ` for ` + "`" + `string` + "`" + ` fields and ` + "`" + `false` + "`" + ` for ` + "`" + `number` + "`" + ` and ` + "`" + `date` + "`" + ` fields.`,
+				},
+				resource.Attribute{
+					Name:        "sortable",
+					Description: `Determines whether the field can be used to sort the results of a query. If you specify sorting on a field that does not have Sortable set to true, Amazon Kendra returns an exception. The default is ` + "`" + `false` + "`" + `. A ` + "`" + `index_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "faq_statistics",
+					Description: `A block that specifies the number of question and answer topics in the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "text_document_statistics",
+					Description: `A block that specifies the number of text documents indexed. A ` + "`" + `faq_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "indexed_question_answers_count",
+					Description: `The total number of FAQ questions and answers contained in the index. A ` + "`" + `text_document_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "indexed_text_bytes",
+					Description: `The total size, in bytes, of the indexed documents.`,
+				},
+				resource.Attribute{
+					Name:        "indexed_text_documents_count",
+					Description: `The number of text documents indexed. A ` + "`" + `server_side_encryption_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The identifier of the AWS KMScustomer master key (CMK). Amazon Kendra doesn't support asymmetric CMKs. A ` + "`" + `user_group_resolution_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "user_group_resolution_mode",
+					Description: `The identity store provider (mode) you want to use to fetch access levels of groups and users. AWS Single Sign-On is currently the only available mode. Your users and groups must exist in an AWS SSO identity source in order to use this mode. Valid Values are ` + "`" + `AWS_SSO` + "`" + ` or ` + "`" + `NONE` + "`" + `. A ` + "`" + `user_token_configurations` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "json_token_type_configuration",
+					Description: `A block that specifies the information about the JSON token type configuration.`,
+				},
+				resource.Attribute{
+					Name:        "jwt_token_type_configuration",
+					Description: `A block that specifies the information about the JWT token type configuration. A ` + "`" + `json_token_type_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "group_attribute_field",
+					Description: `The group attribute field.`,
+				},
+				resource.Attribute{
+					Name:        "user_name_attribute_field",
+					Description: `The user name attribute field. A ` + "`" + `jwt_token_type_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "claim_regex",
+					Description: `The regular expression that identifies the claim.`,
+				},
+				resource.Attribute{
+					Name:        "group_attribute_field",
+					Description: `The group attribute field.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The issuer of the token.`,
+				},
+				resource.Attribute{
+					Name:        "key_location",
+					Description: `The location of the key. Valid values are ` + "`" + `URL` + "`" + ` or ` + "`" + `SECRET_MANAGER` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "secrets_manager_arn",
+					Description: `The Amazon Resource Name (ARN) of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The signing key URL.`,
+				},
+				resource.Attribute{
+					Name:        "user_name_attribute_field",
+					Description: `The user name attribute field.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "capacity_units",
+					Description: `A block that sets the number of additional document storage and query capacity units that should be used by the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the index was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "document_metadata_configuration_updates",
+					Description: `One or more blocks that specify the configuration settings for any metadata applied to the documents in the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "edition",
+					Description: `The Amazon Kendra edition for the index.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the Status field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "index_statistics",
+					Description: `A block that provides information about the number of FAQ questions and answers and the number of text documents indexed. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Index.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the ` + "`" + `BatchPutDocument` + "`" + ` API to index documents from an Amazon S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "server_side_encryption_configuration",
+					Description: `A block that specifies the identifier of the AWS KMS customer managed key (CMK) that's used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the index. When the value is ` + "`" + `ACTIVE` + "`" + `, the index is ready for use. If the Status field value is ` + "`" + `FAILED` + "`" + `, the ` + "`" + `error_message` + "`" + ` field contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The Unix datetime that the index was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "user_context_policy",
+					Description: `The user context policy. Valid values are ` + "`" + `ATTRIBUTE_FILTER` + "`" + ` or ` + "`" + `USER_TOKEN` + "`" + `. For more information, refer to [UserContextPolicy](https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex. html#Kendra-CreateIndex-request-UserContextPolicy).`,
+				},
+				resource.Attribute{
+					Name:        "user_group_resolution_configuration",
+					Description: `A block that enables fetching access levels of groups and users from an AWS Single Sign-On identity source. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user_token_configurations",
+					Description: `A block that specifies the user token configuration. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the Indices you create. A ` + "`" + `capacity_units` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "query_capacity_units",
+					Description: `The amount of extra query capacity for an index and GetQuerySuggestions capacity. For more information, refer to [QueryCapacityUnits](https://docs.aws.amazon.com/kendra/latest/dg/API_CapacityUnitsConfiguration.html#Kendra-Type-CapacityUnitsConfiguration-QueryCapacityUnits).`,
+				},
+				resource.Attribute{
+					Name:        "storage_capacity_units",
+					Description: `The amount of extra storage capacity for an index. A single capacity unit provides 30 GB of storage space or 100,000 documents, whichever is reached first. Minimum value of 0. A ` + "`" + `document_metadata_configuration_updates` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the index field. Minimum length of 1. Maximum length of 30.`,
+				},
+				resource.Attribute{
+					Name:        "relevance",
+					Description: `A block that provides manual tuning parameters to determine how the field affects the search results. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "search",
+					Description: `A block that provides information about how the field is used during a search. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The data type of the index field. Valid values are ` + "`" + `STRING_VALUE` + "`" + `, ` + "`" + `STRING_LIST_VALUE` + "`" + `, ` + "`" + `LONG_VALUE` + "`" + `, ` + "`" + `DATE_VALUE` + "`" + `. A ` + "`" + `relevance` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Specifies the time period that the boost applies to. For more information, refer to [Duration](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-Duration).`,
+				},
+				resource.Attribute{
+					Name:        "freshness",
+					Description: `Indicates that this field determines how "fresh" a document is. For more information, refer to [Freshness](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-Freshness).`,
+				},
+				resource.Attribute{
+					Name:        "importance",
+					Description: `The relative importance of the field in the search. Larger numbers provide more of a boost than smaller numbers. Minimum value of 1. Maximum value of 10.`,
+				},
+				resource.Attribute{
+					Name:        "rank_order",
+					Description: `Determines how values should be interpreted. For more information, refer to [RankOrder](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-RankOrder).`,
+				},
+				resource.Attribute{
+					Name:        "values_importance_map",
+					Description: `A list of values that should be given a different boost when they appear in the result list. For more information, refer to [ValueImportanceMap](https://docs.aws.amazon.com/kendra/latest/dg/API_Relevance.html#Kendra-Type-Relevance-ValueImportanceMap). A ` + "`" + `search` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "displayable",
+					Description: `Determines whether the field is returned in the query response. The default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "facetable",
+					Description: `Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "searchable",
+					Description: `Determines whether the field is used in the search. If the Searchable field is true, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is ` + "`" + `true` + "`" + ` for ` + "`" + `string` + "`" + ` fields and ` + "`" + `false` + "`" + ` for ` + "`" + `number` + "`" + ` and ` + "`" + `date` + "`" + ` fields.`,
+				},
+				resource.Attribute{
+					Name:        "sortable",
+					Description: `Determines whether the field can be used to sort the results of a query. If you specify sorting on a field that does not have Sortable set to true, Amazon Kendra returns an exception. The default is ` + "`" + `false` + "`" + `. A ` + "`" + `index_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "faq_statistics",
+					Description: `A block that specifies the number of question and answer topics in the index. Documented below.`,
+				},
+				resource.Attribute{
+					Name:        "text_document_statistics",
+					Description: `A block that specifies the number of text documents indexed. A ` + "`" + `faq_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "indexed_question_answers_count",
+					Description: `The total number of FAQ questions and answers contained in the index. A ` + "`" + `text_document_statistics` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "indexed_text_bytes",
+					Description: `The total size, in bytes, of the indexed documents.`,
+				},
+				resource.Attribute{
+					Name:        "indexed_text_documents_count",
+					Description: `The number of text documents indexed. A ` + "`" + `server_side_encryption_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The identifier of the AWS KMScustomer master key (CMK). Amazon Kendra doesn't support asymmetric CMKs. A ` + "`" + `user_group_resolution_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "user_group_resolution_mode",
+					Description: `The identity store provider (mode) you want to use to fetch access levels of groups and users. AWS Single Sign-On is currently the only available mode. Your users and groups must exist in an AWS SSO identity source in order to use this mode. Valid Values are ` + "`" + `AWS_SSO` + "`" + ` or ` + "`" + `NONE` + "`" + `. A ` + "`" + `user_token_configurations` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "json_token_type_configuration",
+					Description: `A block that specifies the information about the JSON token type configuration.`,
+				},
+				resource.Attribute{
+					Name:        "jwt_token_type_configuration",
+					Description: `A block that specifies the information about the JWT token type configuration. A ` + "`" + `json_token_type_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "group_attribute_field",
+					Description: `The group attribute field.`,
+				},
+				resource.Attribute{
+					Name:        "user_name_attribute_field",
+					Description: `The user name attribute field. A ` + "`" + `jwt_token_type_configuration` + "`" + ` block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "claim_regex",
+					Description: `The regular expression that identifies the claim.`,
+				},
+				resource.Attribute{
+					Name:        "group_attribute_field",
+					Description: `The group attribute field.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The issuer of the token.`,
+				},
+				resource.Attribute{
+					Name:        "key_location",
+					Description: `The location of the key. Valid values are ` + "`" + `URL` + "`" + ` or ` + "`" + `SECRET_MANAGER` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "secrets_manager_arn",
+					Description: `The Amazon Resource Name (ARN) of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The signing key URL.`,
+				},
+				resource.Attribute{
+					Name:        "user_name_attribute_field",
+					Description: `The user name attribute field.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_kendra_query_suggestions_block_list",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Kendra block list used for query suggestions for an index.`,
+			Description: `
+
+Provides details about a specific Amazon Kendra block list used for query suggestions for an index.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `(Required) The identifier of the index that contains the block list.`,
+				},
+				resource.Attribute{
+					Name:        "query_suggestions_block_list_id",
+					Description: `(Required) The identifier of the block list. ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the block list.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date-time a block list was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the block list.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `The error message containing details if there are issues processing the block list.`,
+				},
+				resource.Attribute{
+					Name:        "file_size_bytes",
+					Description: `The current size of the block list text file in S3.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the block list and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "item_count",
+					Description: `The current number of valid, non-empty words or phrases in the block list text file.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the block list.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the block list. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "source_s3_path",
+					Description: `The S3 location of the block list input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the block list. When the value is ` + "`" + `ACTIVE` + "`" + `, the block list is ready for use.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the block list was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the block list you create. The ` + "`" + `source_s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the block list.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date-time a block list was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the block list.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `The error message containing details if there are issues processing the block list.`,
+				},
+				resource.Attribute{
+					Name:        "file_size_bytes",
+					Description: `The current size of the block list text file in S3.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the block list and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "item_count",
+					Description: `The current number of valid, non-empty words or phrases in the block list text file.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the block list.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the block list. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "source_s3_path",
+					Description: `The S3 location of the block list input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the block list. When the value is ` + "`" + `ACTIVE` + "`" + `, the block list is ready for use.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the block list was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the block list you create. The ` + "`" + `source_s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_kendra_thesaurus",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Amazon Kendra Thesaurus.`,
+			Description: `
+
+Provides details about a specific Amazon Kendra Thesaurus.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `(Required) The identifier of the index that contains the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "thesaurus_id",
+					Description: `(Required) The identifier of the Thesaurus. ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the Thesaurus was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the ` + "`" + `status` + "`" + ` field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "file_size_bytes",
+					Description: `The size of the Thesaurus file in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the Thesaurus and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the Thesaurus. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "source_s3_path",
+					Description: `The S3 location of the Thesaurus input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Thesaurus. It is ready to use when the status is ` + "`" + `ACTIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "synonym_rule_count",
+					Description: `The number of synonym rules in the Thesaurus file.`,
+				},
+				resource.Attribute{
+					Name:        "term_count",
+					Description: `The number of unique terms in the Thesaurus file. For example, the synonyms ` + "`" + `a,b,c` + "`" + ` and ` + "`" + `a=>d` + "`" + `, the term count would be 4.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the Thesaurus was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the Thesaurus you create. The ` + "`" + `source_s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Unix datetime that the Thesaurus was created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `When the ` + "`" + `status` + "`" + ` field value is ` + "`" + `FAILED` + "`" + `, this contains a message that explains why.`,
+				},
+				resource.Attribute{
+					Name:        "file_size_bytes",
+					Description: `The size of the Thesaurus file in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique identifiers of the Thesaurus and index separated by a slash (` + "`" + `/` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Specifies the name of the Thesaurus.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the Thesaurus. For more information, see [IAM Roles for Amazon Kendra](https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).`,
+				},
+				resource.Attribute{
+					Name:        "source_s3_path",
+					Description: `The S3 location of the Thesaurus input data. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Thesaurus. It is ready to use when the status is ` + "`" + `ACTIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "synonym_rule_count",
+					Description: `The number of synonym rules in the Thesaurus file.`,
+				},
+				resource.Attribute{
+					Name:        "term_count",
+					Description: `The number of unique terms in the Thesaurus file. For example, the synonyms ` + "`" + `a,b,c` + "`" + ` and ` + "`" + `a=>d` + "`" + `, the term count would be 4.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date and time that the Thesaurus was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Metadata that helps organize the Thesaurus you create. The ` + "`" + `source_s3_path` + "`" + ` configuration block supports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The name of the S3 bucket that contains the file.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The name of the file.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_key_pair",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific EC2 Key Pair.`,
@@ -18043,6 +19795,10 @@ Use this data source to get information about a specific EC2 Key Pair.
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Optional) The Key Pair name.`,
+				},
+				resource.Attribute{
+					Name:        "include_public_key",
+					Description: `(Optional) Whether to include the public key material in the response.`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -18065,12 +19821,24 @@ Use this data source to get information about a specific EC2 Key Pair.
 					Description: `The ARN of the Key Pair.`,
 				},
 				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the key pair was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The SHA-1 digest of the DER encoded private key.`,
 				},
 				resource.Attribute{
+					Name:        "key_type",
+					Description: `The type of key pair.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `The public key material.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `Any tags assigned to the Key Pair.`,
+					Description: `Any tags assigned to the Key Pair. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -18083,12 +19851,24 @@ Use this data source to get information about a specific EC2 Key Pair.
 					Description: `The ARN of the Key Pair.`,
 				},
 				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the key pair was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The SHA-1 digest of the DER encoded private key.`,
 				},
 				resource.Attribute{
+					Name:        "key_type",
+					Description: `The type of key pair.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `The public key material.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `Any tags assigned to the Key Pair.`,
+					Description: `Any tags assigned to the Key Pair. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -18621,7 +20401,7 @@ Get Lake Formation principals designated as data lake administrators and lists o
 			ShortDescription: `Get permissions for a principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3.`,
 			Description: `
 
-Get permissions for a principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3. Permissions are granted to a principal, in a Data Catalog, relative to a Lake Formation resource, which includes the Data Catalog, databases, and tables. For more information, see [Security and Access Control to Metadata and Data in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html).
+Get permissions for a principal to access metadata in the Data Catalog and data organized in underlying data storage such as Amazon S3. Permissions are granted to a principal, in a Data Catalog, relative to a Lake Formation resource, which includes the Data Catalog, databases, tables, LF-tags, and LF-tag policies. For more information, see [Security and Access Control to Metadata and Data in Lake Formation](https://docs.aws.amazon.com/lake-formation/latest/dg/security-data-access.html).
 
 ~> **NOTE:** This data source deals with explicitly granted permissions. Lake Formation grants implicit permissions to data lake administrators, database creators, and table creators. For more information, see [Implicit Lake Formation Permissions](https://docs.aws.amazon.com/lake-formation/latest/dg/implicit-permissions.html).
 
@@ -18641,6 +20421,14 @@ Get permissions for a principal to access metadata in the Data Catalog and data 
 					Description: `Configuration block for a database resource. Detailed below.`,
 				},
 				resource.Attribute{
+					Name:        "lf_tag",
+					Description: `(Optional) Configuration block for an LF-tag resource. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "lf_tag_policy",
+					Description: `(Optional) Configuration block for an LF-tag policy resource. Detailed below.`,
+				},
+				resource.Attribute{
 					Name:        "table",
 					Description: `Configuration block for a table resource. Detailed below.`,
 				},
@@ -18654,7 +20442,27 @@ Get permissions for a principal to access metadata in the Data Catalog and data 
 				},
 				resource.Attribute{
 					Name:        "catalog_id",
-					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. ### table The following argument is required:`,
+					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. ### lf_tag The following arguments are required:`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of possible values an attribute can take. The following argument is optional:`,
+				},
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. ### lf_tag_policy The following arguments are required:`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) A list of tag conditions that apply to the resource's tag policy. Configuration block for tag conditions that apply to the policy. See [` + "`" + `expression` + "`" + `](#expression) below. The following argument is optional:`,
+				},
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Optional) Identifier for the Data Catalog. By default, it is the account ID of the caller. #### expression`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of possible values of an LF-Tag. ### table The following argument is required:`,
 				},
 				resource.Attribute{
 					Name:        "catalog_id",
@@ -19698,13 +21506,13 @@ Provides information about a Launch Template.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the launch template. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_launch_template` + "`" + `](/docs/providers/aws/r/launch_template.html) resource.`,
+					Description: `The ID of the launch template. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_launch_template` + "`" + `](/docs/providers/aws/r/launch_template.html) resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the launch template. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_launch_template` + "`" + `](/docs/providers/aws/r/launch_template.html) resource.`,
+					Description: `The ID of the launch template. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_launch_template` + "`" + `](/docs/providers/aws/r/launch_template.html) resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -19778,6 +21586,38 @@ with it, etc.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_lb_hosted_zone_id",
+			Category:         "Data Sources",
+			ShortDescription: `Provides AWS Elastic Load Balancing Hosted Zone Id`,
+			Description: `
+
+Use this data source to get the HostedZoneId of the AWS Elastic Load Balancing (ELB) in a given region for the purpose of using in an AWS Route53 Alias. Specify the ELB type (` + "`" + `network` + "`" + ` or ` + "`" + `application` + "`" + `) to return the relevant the associated HostedZoneId. Ref: [ELB service endpoints](https://docs.aws.amazon.com/general/latest/gr/elb.html#elb_region)
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Name of the region whose AWS ELB HostedZoneId is desired. Defaults to the region from the AWS provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_type",
+					Description: `(Optional) The type of load balancer to create. Possible values are ` + "`" + `application` + "`" + ` or ` + "`" + `network` + "`" + `. The default value is ` + "`" + `application` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the AWS ELB HostedZoneId in the selected region.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the AWS ELB HostedZoneId in the selected region.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_lb_listener",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a Load Balancer Listener data source.`,
@@ -19802,7 +21642,7 @@ This data source can prove useful when a module accepts an LB Listener as an inp
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical.`,
+					Description: `(Optional) Port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19833,7 +21673,7 @@ This data source can prove useful when a module accepts an LB Listener as an inp
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical.`,
+					Description: `(Optional) Port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -20314,6 +22154,370 @@ Provides details about a specific Amazon Lex Slot Type.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_location_geofence_collection",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a Location Service Geofence Collection.`,
+			Description: `
+
+Retrieve information about a Location Service Geofence Collection.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "collection_name",
+					Description: `(Required) The name of the geofence collection. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "collection_arn",
+					Description: `The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the geofence collection resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of the geofence collection resource.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `A key identifier for an AWS KMS customer managed key assigned to the Amazon Location resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the geofence collection.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the geofence collection resource was last updated in ISO 8601 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "collection_arn",
+					Description: `The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the geofence collection resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of the geofence collection resource.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `A key identifier for an AWS KMS customer managed key assigned to the Amazon Location resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the geofence collection.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the geofence collection resource was last updated in ISO 8601 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_location_map",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a Location Service Map.`,
+			Description: `
+
+Retrieve information about a Location Service Map.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "map_name",
+					Description: `(Required) The name of the map resource. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `List of configurations that specify the map tile style selected from a partner data provider.`,
+				},
+				resource.Attribute{
+					Name:        "style",
+					Description: `The map style selected from an available data provider.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the map resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the map resource.`,
+				},
+				resource.Attribute{
+					Name:        "map_arn",
+					Description: `The Amazon Resource Name (ARN) for the map resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the map.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the map resource was last updated in ISO 8601 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `List of configurations that specify the map tile style selected from a partner data provider.`,
+				},
+				resource.Attribute{
+					Name:        "style",
+					Description: `The map style selected from an available data provider.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the map resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the map resource.`,
+				},
+				resource.Attribute{
+					Name:        "map_arn",
+					Description: `The Amazon Resource Name (ARN) for the map resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the map.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the map resource was last updated in ISO 8601 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_location_place_index",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a Location Service Place Index.`,
+			Description: `
+
+Retrieve information about a Location Service Place Index.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "index_name",
+					Description: `(Required) The name of the place index resource. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the place index resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data provider of geospatial data.`,
+				},
+				resource.Attribute{
+					Name:        "data_source_configuration",
+					Description: `List of configurations that specify data storage option for requesting Places.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the place index resource.`,
+				},
+				resource.Attribute{
+					Name:        "index_arn",
+					Description: `The Amazon Resource Name (ARN) for the place index resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the place index.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the place index resource was last updated in ISO 8601 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the place index resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data provider of geospatial data.`,
+				},
+				resource.Attribute{
+					Name:        "data_source_configuration",
+					Description: `List of configurations that specify data storage option for requesting Places.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the place index resource.`,
+				},
+				resource.Attribute{
+					Name:        "index_arn",
+					Description: `The Amazon Resource Name (ARN) for the place index resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the place index.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the place index resource was last updated in ISO 8601 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_location_route_calculator",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a Location Service Route Calculator.`,
+			Description: `
+
+Retrieve information about a Location Service Route Calculator.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "calculator_name",
+					Description: `(Required) The name of the route calculator resource. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "calculator_arn",
+					Description: `The Amazon Resource Name (ARN) for the Route calculator resource. Use the ARN when you specify a resource across AWS.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the route calculator resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data provider of traffic and road network data.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of the route calculator resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the route calculator.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the route calculator resource was last updated in ISO 8601 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "calculator_arn",
+					Description: `The Amazon Resource Name (ARN) for the Route calculator resource. Use the ARN when you specify a resource across AWS.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the route calculator resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data provider of traffic and road network data.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description of the route calculator resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the route calculator.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the route calculator resource was last updated in ISO 8601 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_location_tracker",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a Location Service Tracker.`,
+			Description: `
+
+Retrieve information about a Location Service Tracker.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tracker_name",
+					Description: `(Required) The name of the tracker resource. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the tracker resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the tracker resource.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `A key identifier for an AWS KMS customer managed key assigned to the Amazon Location resource.`,
+				},
+				resource.Attribute{
+					Name:        "position_filtering",
+					Description: `The position filtering method of the tracker resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the tracker.`,
+				},
+				resource.Attribute{
+					Name:        "tracker_arn",
+					Description: `The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the tracker resource was last updated in ISO 8601 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The timestamp for when the tracker resource was created in ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The optional description for the tracker resource.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `A key identifier for an AWS KMS customer managed key assigned to the Amazon Location resource.`,
+				},
+				resource.Attribute{
+					Name:        "position_filtering",
+					Description: `The position filtering method of the tracker resource.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value map of resource tags for the tracker.`,
+				},
+				resource.Attribute{
+					Name:        "tracker_arn",
+					Description: `The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The timestamp for when the tracker resource was last updated in ISO 8601 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_memorydb_acl",
 			Category:         "Data Sources",
 			ShortDescription: `Provides information about a MemoryDB ACL.`,
@@ -20434,7 +22638,7 @@ Provides information about a MemoryDB Cluster.
 				},
 				resource.Attribute{
 					Name:        "maintenance_window",
-					Description: `The weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ` + "`" + `ddd:hh24:mi-ddd:hh24:mi` + "`" + ` (24H Clock UTC). Example: ` + "`" + `sun:23:00-mon:01:30` + "`" + `.`,
+					Description: `The weekly time range during which maintenance on the cluster is performed. Specify as a range in the format ` + "`" + `ddd:hh24:mi-ddd:hh24:mi` + "`" + ` (24H Clock UTC). Example: ` + "`" + `sun:23:00-mon:01:30` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "node_type",
@@ -20568,7 +22772,7 @@ Provides information about a MemoryDB Cluster.
 				},
 				resource.Attribute{
 					Name:        "maintenance_window",
-					Description: `The weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ` + "`" + `ddd:hh24:mi-ddd:hh24:mi` + "`" + ` (24H Clock UTC). Example: ` + "`" + `sun:23:00-mon:01:30` + "`" + `.`,
+					Description: `The weekly time range during which maintenance on the cluster is performed. Specify as a range in the format ` + "`" + `ddd:hh24:mi-ddd:hh24:mi` + "`" + ` (24H Clock UTC). Example: ` + "`" + `sun:23:00-mon:01:30` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "node_type",
@@ -21683,7 +23887,7 @@ Provides details about a specific Nat Gateway.
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public Ip (EIP) address of the selected Nat Gateway.`,
+					Description: `The public Ip (EIP) address of the selected Nat Gateway. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -21705,7 +23909,7 @@ Provides details about a specific Nat Gateway.
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The public Ip (EIP) address of the selected Nat Gateway.`,
+					Description: `The public Ip (EIP) address of the selected Nat Gateway. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -21747,7 +23951,7 @@ This resource can be useful for getting back a list of NAT gateway ids to be ref
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the NAT gateway ids found.`,
+					Description: `A list of all the NAT gateway ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -21757,7 +23961,7 @@ This resource can be useful for getting back a list of NAT gateway ids to be ref
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the NAT gateway ids found.`,
+					Description: `A list of all the NAT gateway ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -22045,7 +24249,7 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the network ACL ids found.`,
+					Description: `A list of all the network ACL ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22055,7 +24259,7 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the network ACL ids found.`,
+					Description: `A list of all the network ACL ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -22162,7 +24366,7 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The address of the Elastic IP address bound to the network interface. ## Import Elastic Network Interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_network_interface.test eni-12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The address of the Elastic IP address bound to the network interface. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22260,7 +24464,7 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `The address of the Elastic IP address bound to the network interface. ## Import Elastic Network Interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_network_interface.test eni-12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The address of the Elastic IP address bound to the network interface. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -22296,7 +24500,7 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the network interface ids found.`,
+					Description: `A list of all the network interface ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22306,7 +24510,263 @@ Information about Neptune orderable DB instances.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the network interface ids found.`,
+					Description: `A list of all the network interface ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_networkfirewall_firewall",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about an AWS Network Firewall Firewall resource.`,
+			Description: `
+
+Retrieve information about a firewall.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The descriptive name of the firewall. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "delete_protection",
+					Description: `A boolean flag indicating whether it is possible to delete the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_configuration",
+					Description: `AWS Key Management Service (AWS KMS) encryption settings for the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The ID of the AWS Key Management Service (AWS KMS) customer managed key.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the AWS Key Management Service (AWS KMS) key use by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_arn",
+					Description: `The Amazon Resource Name (ARN) of the VPC Firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_change_protection",
+					Description: `A boolean flag indicating whether it is possible to change the associated firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_status",
+					Description: `Nested list of information about the current status of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "sync_states",
+					Description: `Set of subnets configured for use by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "attachment",
+					Description: `Nested list describing the attachment status of the firewall's association with a single VPC subnet.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_id",
+					Description: `The identifier of the firewall endpoint that AWS Network Firewall has instantiated in the subnet. You use this to identify the firewall endpoint in the VPC route tables, when you redirect the VPC traffic through the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The unique identifier of the subnet that you've specified to be used for a firewall endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The Availability Zone where the subnet is configured.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Amazon Resource Name (ARN) that identifies the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The descriptive name of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_change_protection",
+					Description: `A boolean flag indicating whether it is possible to change the associated subnet(s).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_mapping",
+					Description: `Set of configuration blocks describing the public subnets. Each subnet must belong to a different Availability Zone in the VPC. AWS Network Firewall creates a firewall endpoint in each subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The unique identifier for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Map of resource tags to associate with the resource. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](/docs/providers/aws/index.html#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level.`,
+				},
+				resource.Attribute{
+					Name:        "update_token",
+					Description: `A string token used when updating a firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The unique identifier of the VPC where AWS Network Firewall should create the firewall.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "delete_protection",
+					Description: `A boolean flag indicating whether it is possible to delete the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_configuration",
+					Description: `AWS Key Management Service (AWS KMS) encryption settings for the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The ID of the AWS Key Management Service (AWS KMS) customer managed key.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the AWS Key Management Service (AWS KMS) key use by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_arn",
+					Description: `The Amazon Resource Name (ARN) of the VPC Firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy_change_protection",
+					Description: `A boolean flag indicating whether it is possible to change the associated firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_status",
+					Description: `Nested list of information about the current status of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "sync_states",
+					Description: `Set of subnets configured for use by the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "attachment",
+					Description: `Nested list describing the attachment status of the firewall's association with a single VPC subnet.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_id",
+					Description: `The identifier of the firewall endpoint that AWS Network Firewall has instantiated in the subnet. You use this to identify the firewall endpoint in the VPC route tables, when you redirect the VPC traffic through the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The unique identifier of the subnet that you've specified to be used for a firewall endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The Availability Zone where the subnet is configured.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Amazon Resource Name (ARN) that identifies the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The descriptive name of the firewall.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_change_protection",
+					Description: `A boolean flag indicating whether it is possible to change the associated subnet(s).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_mapping",
+					Description: `Set of configuration blocks describing the public subnets. Each subnet must belong to a different Availability Zone in the VPC. AWS Network Firewall creates a firewall endpoint in each subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The unique identifier for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Map of resource tags to associate with the resource. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](/docs/providers/aws/index.html#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level.`,
+				},
+				resource.Attribute{
+					Name:        "update_token",
+					Description: `A string token used when updating a firewall.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The unique identifier of the VPC where AWS Network Firewall should create the firewall.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_networkfirewall_firewall_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a firewall policy.`,
+			Description: `
+
+Retrieve information about a firewall policy.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The descriptive name of the firewall policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy",
+					Description: `The [policy][2] for the specified firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value tags for the firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "update_token",
+					Description: `A token used for optimistic locking. [1]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_resource_share [2]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/networkfirewall_firewall_policy`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_policy",
+					Description: `The [policy][2] for the specified firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value tags for the firewall policy.`,
+				},
+				resource.Attribute{
+					Name:        "update_token",
+					Description: `A token used for optimistic locking. [1]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_resource_share [2]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/networkfirewall_firewall_policy`,
 				},
 			},
 		},
@@ -22419,6 +24879,34 @@ Retrieve information about connections.
 				resource.Attribute{
 					Name:        "ids",
 					Description: `The IDs of the connections.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_networkmanager_core_network_policy_document",
+			Category:         "Data Sources",
+			ShortDescription: `Generates an Core Network policy document in JSON format`,
+			Description: `
+
+Generates a Core Network policy document in JSON format for use with resources that expect core network policy documents such as ` + "`" + `awscc_networkmanager_core_network` + "`" + `. It follows the API definition from the [core-network-policy documentation](https://docs.aws.amazon.com/vpc/latest/cloudwan/cloudwan-policies-json.html).
+
+Using this data source to generate policy documents is *optional*. It is also valid to use literal JSON strings in your configuration or to use the ` + "`" + `file` + "`" + ` interpolation function to read a raw JSON policy document from a file.
+
+-> For more information about building AWS Core Network policy documents with Terraform, see the [Using AWS & AWSCC Provider Together Guide](/docs/providers/aws/guides/using-aws-with-awscc-provider.html)
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "json",
+					Description: `Standard JSON policy document rendered based on the arguments above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "json",
+					Description: `Standard JSON policy document rendered based on the arguments above.`,
 				},
 			},
 		},
@@ -23823,6 +26311,90 @@ Get tags attached to the specified AWS Organizations resource.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_outposts_asset",
+			Category:         "Data Sources",
+			ShortDescription: `Information about hardware assets in an Outpost.`,
+			Description: `
+
+Information about a specific hardware asset in an Outpost.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Required) Outpost ARN.`,
+				},
+				resource.Attribute{
+					Name:        "asset_id",
+					Description: `(Required) The ID of the asset. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "asset_type",
+					Description: `The type of the asset.`,
+				},
+				resource.Attribute{
+					Name:        "host_id",
+					Description: `The host ID of the Dedicated Hosts on the asset, if a Dedicated Host is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "rack_elevation",
+					Description: `The position of an asset in a rack measured in rack units.`,
+				},
+				resource.Attribute{
+					Name:        "rack_id",
+					Description: `The rack ID of the asset.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "asset_type",
+					Description: `The type of the asset.`,
+				},
+				resource.Attribute{
+					Name:        "host_id",
+					Description: `The host ID of the Dedicated Hosts on the asset, if a Dedicated Host is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "rack_elevation",
+					Description: `The position of an asset in a rack measured in rack units.`,
+				},
+				resource.Attribute{
+					Name:        "rack_id",
+					Description: `The rack ID of the asset.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_outposts_assets",
+			Category:         "Data Sources",
+			ShortDescription: `Information about hardware assets in an Outpost.`,
+			Description: `
+
+Information about hardware assets in an Outpost.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Required) Outpost ARN. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "asset_ids",
+					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "asset_ids",
+					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_outposts_outpost",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about an Outposts Outpost`,
@@ -24176,7 +26748,7 @@ The [aws_ec2_managed_prefix_list](https://registry.terraform.io/providers/hashic
 				},
 				resource.Attribute{
 					Name:        "cidr_blocks",
-					Description: `The list of CIDR blocks for the AWS service associated with the prefix list.`,
+					Description: `The list of CIDR blocks for the AWS service associated with the prefix list. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -24190,7 +26762,7 @@ The [aws_ec2_managed_prefix_list](https://registry.terraform.io/providers/hashic
 				},
 				resource.Attribute{
 					Name:        "cidr_blocks",
-					Description: `The list of CIDR blocks for the AWS service associated with the prefix list.`,
+					Description: `The list of CIDR blocks for the AWS service associated with the prefix list. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -24224,6 +26796,74 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 				resource.Attribute{
 					Name:        "result",
 					Description: `Set to the product returned from the API.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_prometheus_workspace",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information on an Amazon Managed Prometheus workspace.`,
+			Description: `
+
+Provides an Amazon Managed Prometheus workspace data source.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `(Required) The Prometheus workspace ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `The creation date of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "prometheus_endpoint",
+					Description: `The endpoint of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The Prometheus workspace alias.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `The creation date of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "prometheus_endpoint",
+					Description: `The endpoint of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The Prometheus workspace alias.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Prometheus workspace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the resource.`,
 				},
 			},
 		},
@@ -24752,12 +27392,20 @@ Provides details about a specific redshift cluster.
 					Description: `(Required) The cluster identifier ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of cluster.`,
+				},
+				resource.Attribute{
 					Name:        "allow_version_upgrade",
 					Description: `Whether major version upgrades can be applied during maintenance period`,
 				},
 				resource.Attribute{
 					Name:        "automated_snapshot_retention_period",
 					Description: `The backup retention period`,
+				},
+				resource.Attribute{
+					Name:        "aqua_configuration_status",
+					Description: `The value represents how the cluster is configured to use AQUA.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -24774,6 +27422,10 @@ Provides details about a specific redshift cluster.
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `The cluster identifier`,
+				},
+				resource.Attribute{
+					Name:        "cluster_nodes",
+					Description: `The nodes in the cluster. Cluster node blocks are documented below`,
 				},
 				resource.Attribute{
 					Name:        "cluster_parameter_group_name",
@@ -24802,6 +27454,10 @@ Provides details about a specific redshift cluster.
 				resource.Attribute{
 					Name:        "database_name",
 					Description: `The name of the default database in the cluster`,
+				},
+				resource.Attribute{
+					Name:        "default_iam_role_arn",
+					Description: `∂The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was created.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_ip",
@@ -24844,6 +27500,14 @@ Provides details about a specific redshift cluster.
 					Description: `The number of nodes in the cluster`,
 				},
 				resource.Attribute{
+					Name:        "maintenance_track_name",
+					Description: `The name of the maintenance track for the restored cluster.`,
+				},
+				resource.Attribute{
+					Name:        "manual_snapshot_retention_period",
+					Description: `(Optional) The default number of days to retain a manual snapshot.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `The port the cluster responds on`,
 				},
@@ -24860,6 +27524,14 @@ Provides details about a specific redshift cluster.
 					Description: `The folder inside the S3 bucket where the log files are stored`,
 				},
 				resource.Attribute{
+					Name:        "log_destination_type",
+					Description: `The log destination type.`,
+				},
+				resource.Attribute{
+					Name:        "log_exports",
+					Description: `The collection of exported log types. Log types include the connection log, user log and user activity log.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `The tags associated to the cluster`,
 				},
@@ -24869,17 +27541,37 @@ Provides details about a specific redshift cluster.
 				},
 				resource.Attribute{
 					Name:        "vpc_security_group_ids",
-					Description: `The VPC security group Ids associated with the cluster`,
+					Description: `The VPC security group Ids associated with the cluster Cluster nodes (for ` + "`" + `cluster_nodes` + "`" + `) support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "node_role",
+					Description: `Whether the node is a leader node or a compute node`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address of a node within a cluster`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `The public IP address of a node within a cluster`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of cluster.`,
+				},
+				resource.Attribute{
 					Name:        "allow_version_upgrade",
 					Description: `Whether major version upgrades can be applied during maintenance period`,
 				},
 				resource.Attribute{
 					Name:        "automated_snapshot_retention_period",
 					Description: `The backup retention period`,
+				},
+				resource.Attribute{
+					Name:        "aqua_configuration_status",
+					Description: `The value represents how the cluster is configured to use AQUA.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -24896,6 +27588,10 @@ Provides details about a specific redshift cluster.
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `The cluster identifier`,
+				},
+				resource.Attribute{
+					Name:        "cluster_nodes",
+					Description: `The nodes in the cluster. Cluster node blocks are documented below`,
 				},
 				resource.Attribute{
 					Name:        "cluster_parameter_group_name",
@@ -24924,6 +27620,10 @@ Provides details about a specific redshift cluster.
 				resource.Attribute{
 					Name:        "database_name",
 					Description: `The name of the default database in the cluster`,
+				},
+				resource.Attribute{
+					Name:        "default_iam_role_arn",
+					Description: `∂The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was created.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_ip",
@@ -24966,6 +27666,14 @@ Provides details about a specific redshift cluster.
 					Description: `The number of nodes in the cluster`,
 				},
 				resource.Attribute{
+					Name:        "maintenance_track_name",
+					Description: `The name of the maintenance track for the restored cluster.`,
+				},
+				resource.Attribute{
+					Name:        "manual_snapshot_retention_period",
+					Description: `(Optional) The default number of days to retain a manual snapshot.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `The port the cluster responds on`,
 				},
@@ -24982,6 +27690,14 @@ Provides details about a specific redshift cluster.
 					Description: `The folder inside the S3 bucket where the log files are stored`,
 				},
 				resource.Attribute{
+					Name:        "log_destination_type",
+					Description: `The log destination type.`,
+				},
+				resource.Attribute{
+					Name:        "log_exports",
+					Description: `The collection of exported log types. Log types include the connection log, user log and user activity log.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `The tags associated to the cluster`,
 				},
@@ -24991,7 +27707,75 @@ Provides details about a specific redshift cluster.
 				},
 				resource.Attribute{
 					Name:        "vpc_security_group_ids",
-					Description: `The VPC security group Ids associated with the cluster`,
+					Description: `The VPC security group Ids associated with the cluster Cluster nodes (for ` + "`" + `cluster_nodes` + "`" + `) support the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "node_role",
+					Description: `Whether the node is a leader node or a compute node`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address of a node within a cluster`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `The public IP address of a node within a cluster`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_redshift_cluster_credentials",
+			Category:         "Data Sources",
+			ShortDescription: `Provides redshift cluster credentials`,
+			Description: `
+
+Provides redshift subnet group.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auto_create",
+					Description: `(Optional) Create a database user with the name specified for the user named in ` + "`" + `db_user` + "`" + ` if one does not exist.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_identifier",
+					Description: `(Required) The unique identifier of the cluster that contains the database for which your are requesting credentials.`,
+				},
+				resource.Attribute{
+					Name:        "db_name",
+					Description: `(Optional) The name of a database that DbUser is authorized to log on to. If ` + "`" + `db_name` + "`" + ` is not specified, ` + "`" + `db_user` + "`" + ` can log on to any existing database.`,
+				},
+				resource.Attribute{
+					Name:        "db_user",
+					Description: `(Required) The name of a database user. If a user name matching ` + "`" + `db_user` + "`" + ` exists in the database, the temporary user credentials have the same permissions as the existing user. If ` + "`" + `db_user` + "`" + ` doesn't exist in the database and ` + "`" + `auto_create` + "`" + ` is ` + "`" + `True` + "`" + `, a new user is created using the value for ` + "`" + `db_user` + "`" + ` with ` + "`" + `PUBLIC` + "`" + ` permissions. If a database user matching the value for ` + "`" + `db_user` + "`" + ` doesn't exist and ` + "`" + `not` + "`" + ` is ` + "`" + `False` + "`" + `, then the command succeeds but the connection attempt will fail because the user doesn't exist in the database.`,
+				},
+				resource.Attribute{
+					Name:        "db_groups",
+					Description: `(Optional) A list of the names of existing database groups that the user named in ` + "`" + `db_user` + "`" + ` will join for the current session, in addition to any group memberships for an existing user. If not specified, a new user is added only to ` + "`" + `PUBLIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "duration_seconds",
+					Description: `(Optional) The number of seconds until the returned temporary password expires. Valid values are between ` + "`" + `900` + "`" + ` and ` + "`" + `3600` + "`" + `. Default value is ` + "`" + `900` + "`" + `. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "db_password",
+					Description: `A temporary password that authorizes the user name returned by ` + "`" + `db_user` + "`" + ` to log on to the database ` + "`" + `db_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `The date and time the password in ` + "`" + `db_password` + "`" + ` expires.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_password",
+					Description: `A temporary password that authorizes the user name returned by ` + "`" + `db_user` + "`" + ` to log on to the database ` + "`" + `db_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `The date and time the password in ` + "`" + `db_password` + "`" + ` expires.`,
 				},
 			},
 		},
@@ -25069,6 +27853,67 @@ in a given region for the purpose of allowing Redshift to store audit data in S3
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the AWS Redshift service account in the selected region.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_redshift_subnet_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific redshift subnet_group`,
+			Description: `
+
+Provides details about a specific redshift subnet group.
+
+`,
+			Icon:     "Database/Amazon-Redshift.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the cluster subnet group for which information is requested. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Redshift Subnet Group name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Redshift Subnet group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Redshift Subnet group Name.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `An array of VPC subnet IDs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags associated to the Subnet Group`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the Redshift Subnet Group name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Redshift Subnet group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Redshift Subnet group Name.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `An array of VPC subnet IDs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags associated to the Subnet Group`,
 				},
 			},
 		},
@@ -25342,7 +28187,7 @@ This resource can prove useful when finding the resource associated with a CIDR.
 				},
 				resource.Attribute{
 					Name:        "vpc_peering_connection_id",
-					Description: `(Optional) VPC Peering Connection ID of the Route belonging to the Route Table. ## Attributes Reference All of the argument attributes are also exported as result attributes when there is data available. For example, the ` + "`" + `vpc_peering_connection_id` + "`" + ` field will be empty when the route is attached to a Network Interface.`,
+					Description: `(Optional) VPC Peering Connection ID of the Route belonging to the Route Table. ## Attributes Reference All of the argument attributes are also exported as result attributes when there is data available. For example, the ` + "`" + `vpc_peering_connection_id` + "`" + ` field will be empty when the route is attached to a Network Interface. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -25506,6 +28351,10 @@ This data source allows to find a list of IPaddresses associated with a specific
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resolver rule names. The filtering is done locally, so could have a performance impact if the result is large. This argument should be used along with other arguments to limit the number of results returned.`,
+				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `AWS Region.`,
@@ -25939,7 +28788,7 @@ This resource can prove useful when a module accepts a Subnet ID as an input var
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `Subnet ID. Only set when associated with a subnet.`,
+					Description: `Subnet ID. Only set when associated with a subnet. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -26033,7 +28882,7 @@ This resource can prove useful when a module accepts a Subnet ID as an input var
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `Subnet ID. Only set when associated with a subnet.`,
+					Description: `Subnet ID. Only set when associated with a subnet. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -26075,7 +28924,7 @@ This resource can be useful for getting back a list of route table ids to be ref
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the route table ids found.`,
+					Description: `A list of all the route table ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -26085,7 +28934,67 @@ This resource can be useful for getting back a list of route table ids to be ref
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the route table ids found.`,
+					Description: `A list of all the route table ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_s3_account_public_access_block",
+			Category:         "Data Sources",
+			ShortDescription: `Provides S3 account-level Public Access Block Configuration`,
+			Description: `
+
+The S3 account public access block data source returns account-level public access block configuration.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) AWS account ID to configure. Defaults to automatically determined account ID of the Terraform AWS provider. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `AWS account ID`,
+				},
+				resource.Attribute{
+					Name:        "block_public_acls",
+					Description: `Whether or not Amazon S3 should block public ACLs for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "block_public_policy",
+					Description: `Whether or not Amazon S3 should block public bucket policies for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_public_acls",
+					Description: `Whether or not Amazon S3 should ignore public ACLs for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_public_buckets",
+					Description: `Whether or not Amazon S3 should restrict public bucket policies for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `AWS account ID`,
+				},
+				resource.Attribute{
+					Name:        "block_public_acls",
+					Description: `Whether or not Amazon S3 should block public ACLs for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "block_public_policy",
+					Description: `Whether or not Amazon S3 should block public bucket policies for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_public_acls",
+					Description: `Whether or not Amazon S3 should ignore public ACLs for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_public_buckets",
+					Description: `Whether or not Amazon S3 should restrict public bucket policies for buckets in this account is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
 				},
 			},
 		},
@@ -26813,6 +29722,62 @@ Get information about prebuilt Amazon SageMaker Docker images.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_secretsmanager_random_password",
+			Category:         "Data Sources",
+			ShortDescription: `Generate a random password`,
+			Description: `
+
+Generate a random password.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "exclude_characters",
+					Description: `(Optional) A string of the characters that you don't want in the password.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_lowercase",
+					Description: `(Optional) Specifies whether to exclude lowercase letters from the password.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_numbers",
+					Description: `(Optional) Specifies whether to exclude numbers from the password.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_punctuation",
+					Description: `(Optional) Specifies whether to exclude the following punctuation characters from the password: ` + "`" + `` + "`" + `! " # $ % & ' ( )`,
+				},
+				resource.Attribute{
+					Name:        "exclude_uppercase",
+					Description: `(Optional) Specifies whether to exclude uppercase letters from the password.`,
+				},
+				resource.Attribute{
+					Name:        "include_space",
+					Description: `(Optional) Specifies whether to include the space character.`,
+				},
+				resource.Attribute{
+					Name:        "password_length",
+					Description: `(Optional) The length of the password.`,
+				},
+				resource.Attribute{
+					Name:        "require_each_included_type",
+					Description: `(Optional) Specifies whether to include at least one upper and lowercase letter, one number, and one punctuation. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "random_password",
+					Description: `The random password.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "random_password",
+					Description: `The random password.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_secretsmanager_secret",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve metadata information about a Secrets Manager secret`,
@@ -26991,7 +29956,7 @@ Retrieve information about a Secrets Manager secret version, including its secre
 				},
 				resource.Attribute{
 					Name:        "secret_binary",
-					Description: `The decrypted part of the protected secret information that was originally provided as a binary. Base64 encoded.`,
+					Description: `The decrypted part of the protected secret information that was originally provided as a binary.`,
 				},
 				resource.Attribute{
 					Name:        "version_id",
@@ -27013,7 +29978,7 @@ Retrieve information about a Secrets Manager secret version, including its secre
 				},
 				resource.Attribute{
 					Name:        "secret_binary",
-					Description: `The decrypted part of the protected secret information that was originally provided as a binary. Base64 encoded.`,
+					Description: `The decrypted part of the protected secret information that was originally provided as a binary.`,
 				},
 				resource.Attribute{
 					Name:        "version_id",
@@ -27333,6 +30298,10 @@ Retrieves information about a Service Discovery private or public DNS namespace.
 					Name:        "hosted_zone",
 					Description: `The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags for the resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -27350,6 +30319,230 @@ Retrieves information about a Service Discovery private or public DNS namespace.
 				resource.Attribute{
 					Name:        "hosted_zone",
 					Description: `The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags for the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_service_discovery_http_namespace",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves information about a Service Discovery HTTP Namespace.`,
+			Description: `
+
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the http namespace. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of a namespace.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN that Amazon Route 53 assigns to the namespace when you create it.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description that you specify for the namespace when you create it.`,
+				},
+				resource.Attribute{
+					Name:        "http_name",
+					Description: `The name of an HTTP namespace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags for the resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of a namespace.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN that Amazon Route 53 assigns to the namespace when you create it.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description that you specify for the namespace when you create it.`,
+				},
+				resource.Attribute{
+					Name:        "http_name",
+					Description: `The name of an HTTP namespace.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags for the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_service_discovery_service",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves information about a Service Discovery Service`,
+			Description: `
+
+Retrieves information about a Service Discovery Service.
+
+`,
+			Icon:     "Migration_and_Transfer/AWS-Application-Discovery-Service.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `(Required) The ID of the namespace that the service belongs to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN of the service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the service.`,
+				},
+				resource.Attribute{
+					Name:        "dns_config",
+					Description: `A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_config",
+					Description: `A complex type that contains settings for an optional health check. Only for Public DNS namespaces.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_custom_config",
+					Description: `A complex type that contains settings for ECS managed health checks.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the service. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags-configuration-block). ### dns_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `The ID of the namespace to use for DNS configuration.`,
+				},
+				resource.Attribute{
+					Name:        "dns_records",
+					Description: `An array that contains one DnsRecord object for each resource record set.`,
+				},
+				resource.Attribute{
+					Name:        "routing_policy",
+					Description: `The routing policy that you want to apply to all records that Route 53 creates when you register an instance and specify the service. Valid Values: MULTIVALUE, WEIGHTED #### dns_records The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The amount of time, in seconds, that you want DNS resolvers to cache the settings for this resource record set.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the resource, which indicates the value that Amazon Route 53 returns in response to DNS queries. Valid Values: A, AAAA, SRV, CNAME ### health_check_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "failure_threshold",
+					Description: `The number of consecutive health checks. Maximum value of 10.`,
+				},
+				resource.Attribute{
+					Name:        "resource_path",
+					Description: `The path that you want Route 53 to request when performing health checks. Route 53 automatically adds the DNS name for the service. If you don't specify a value, the default value is /.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of health check that you want to create, which indicates how Route 53 determines whether an endpoint is healthy. Valid Values: HTTP, HTTPS, TCP ### health_check_custom_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "failure_threshold",
+					Description: `The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance. Maximum value of 10.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the service.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN of the service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the service.`,
+				},
+				resource.Attribute{
+					Name:        "dns_config",
+					Description: `A complex type that contains information about the resource record sets that you want Amazon Route 53 to create when you register an instance.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_config",
+					Description: `A complex type that contains settings for an optional health check. Only for Public DNS namespaces.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_custom_config",
+					Description: `A complex type that contains settings for ECS managed health checks.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags to assign to the service. If configured with a provider [` + "`" + `default_tags` + "`" + ` configuration block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags-configuration-block) present, tags with matching keys will overwrite those defined at the provider-level.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `A map of tags assigned to the resource, including those inherited from the provider [` + "`" + `default_tags` + "`" + ` configuration block](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags-configuration-block). ### dns_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `The ID of the namespace to use for DNS configuration.`,
+				},
+				resource.Attribute{
+					Name:        "dns_records",
+					Description: `An array that contains one DnsRecord object for each resource record set.`,
+				},
+				resource.Attribute{
+					Name:        "routing_policy",
+					Description: `The routing policy that you want to apply to all records that Route 53 creates when you register an instance and specify the service. Valid Values: MULTIVALUE, WEIGHTED #### dns_records The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The amount of time, in seconds, that you want DNS resolvers to cache the settings for this resource record set.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the resource, which indicates the value that Amazon Route 53 returns in response to DNS queries. Valid Values: A, AAAA, SRV, CNAME ### health_check_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "failure_threshold",
+					Description: `The number of consecutive health checks. Maximum value of 10.`,
+				},
+				resource.Attribute{
+					Name:        "resource_path",
+					Description: `The path that you want Route 53 to request when performing health checks. Route 53 automatically adds the DNS name for the service. If you don't specify a value, the default value is /.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of health check that you want to create, which indicates how Route 53 determines whether an endpoint is healthy. Valid Values: HTTP, HTTPS, TCP ### health_check_custom_config The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "failure_threshold",
+					Description: `The number of 30-second intervals that you want service discovery to wait before it changes the health status of a service instance. Maximum value of 10.`,
 				},
 			},
 		},
@@ -29105,7 +32298,7 @@ This resource can prove useful when a module accepts a subnet ID as an input var
 				},
 				resource.Attribute{
 					Name:        "private_dns_hostname_type_on_launch",
-					Description: `The type of hostnames assigned to instances in the subnet at launch.`,
+					Description: `The type of hostnames assigned to instances in the subnet at launch. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -29163,7 +32356,7 @@ This resource can prove useful when a module accepts a subnet ID as an input var
 				},
 				resource.Attribute{
 					Name:        "private_dns_hostname_type_on_launch",
-					Description: `The type of hostnames assigned to instances in the subnet at launch.`,
+					Description: `The type of hostnames assigned to instances in the subnet at launch. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29205,13 +32398,13 @@ This resource can be useful for getting back a set of subnet ids for a vpc.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29245,13 +32438,13 @@ This resource can be useful for getting back a set of subnet IDs.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found.`,
+					Description: `A list of all the subnet ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found.`,
+					Description: `A list of all the subnet ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29459,7 +32652,7 @@ VPC.
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The State of the association.`,
+					Description: `The State of the association. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -29505,7 +32698,7 @@ VPC.
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `The State of the association.`,
+					Description: `The State of the association. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29575,7 +32768,7 @@ Retrieve information about an EC2 DHCP Options configuration.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the DHCP options set.`,
+					Description: `The ID of the AWS account that owns the DHCP options set. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -29617,7 +32810,7 @@ Retrieve information about an EC2 DHCP Options configuration.
 				},
 				resource.Attribute{
 					Name:        "owner_id",
-					Description: `The ID of the AWS account that owns the DHCP options set.`,
+					Description: `The ID of the AWS account that owns the DHCP options set. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29725,7 +32918,7 @@ a specific VPC endpoint.
 				},
 				resource.Attribute{
 					Name:        "hosted_zone_id",
-					Description: `The ID of the private hosted zone.`,
+					Description: `The ID of the private hosted zone. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -29787,7 +32980,7 @@ a specific VPC endpoint.
 				},
 				resource.Attribute{
 					Name:        "hosted_zone_id",
-					Description: `The ID of the private hosted zone.`,
+					Description: `The ID of the private hosted zone. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29866,12 +33059,16 @@ can be specified when creating a VPC endpoint within the region configured in th
 					Description: `The ID of the endpoint service.`,
 				},
 				resource.Attribute{
+					Name:        "supported_ip_address_types",
+					Description: `The supported IP address types.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A map of tags assigned to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_endpoint_policy_supported",
-					Description: `Whether or not the service supports endpoint policies - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+					Description: `Whether or not the service supports endpoint policies - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -29908,12 +33105,16 @@ can be specified when creating a VPC endpoint within the region configured in th
 					Description: `The ID of the endpoint service.`,
 				},
 				resource.Attribute{
+					Name:        "supported_ip_address_types",
+					Description: `The supported IP address types.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A map of tags assigned to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_endpoint_policy_supported",
-					Description: `Whether or not the service supports endpoint policies - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+					Description: `Whether or not the service supports endpoint policies - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -29933,6 +33134,10 @@ can be shared via RAM and used to create vpcs with CIDRs from that pool.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ipam_pool_id",
+					Description: `The ID of the IPAM pool you would like information on.`,
+				},
 				resource.Attribute{
 					Name:        "filter",
 					Description: `Custom filter block as described below. ## Attributes Reference All of the argument attributes except ` + "`" + `filter` + "`" + ` blocks are also exported as result attributes. This data source will complete the data by populating any fields that are not included in the configuration with the data for the selected VPC. The following attribute is additionally exported:`,
@@ -29978,6 +33183,10 @@ can be shared via RAM and used to create vpcs with CIDRs from that pool.
 					Description: `A description for the IPAM pool.`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IPAM pool.`,
+				},
+				resource.Attribute{
 					Name:        "ipam_scope_id",
 					Description: `The ID of the scope the pool belongs to.`,
 				},
@@ -29991,7 +33200,7 @@ can be shared via RAM and used to create vpcs with CIDRs from that pool.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags to assigned to the resource.`,
+					Description: `A map of tags to assigned to the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -30036,6 +33245,10 @@ can be shared via RAM and used to create vpcs with CIDRs from that pool.
 					Description: `A description for the IPAM pool.`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IPAM pool.`,
+				},
+				resource.Attribute{
 					Name:        "ipam_scope_id",
 					Description: `The ID of the scope the pool belongs to.`,
 				},
@@ -30049,7 +33262,7 @@ can be shared via RAM and used to create vpcs with CIDRs from that pool.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A map of tags to assigned to the resource.`,
+					Description: `A map of tags to assigned to the resource. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -30085,7 +33298,7 @@ Previews a CIDR from an IPAM address pool. Only works for private IPv4.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the preview.`,
+					Description: `The ID of the preview. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -30095,7 +33308,7 @@ Previews a CIDR from an IPAM address pool. Only works for private IPv4.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the preview.`,
+					Description: `The ID of the preview. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -30199,7 +33412,7 @@ a specific VPC peering connection.
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `A CIDR block associated to the VPC of the specific VPC Peering Connection.`,
+					Description: `A CIDR block associated to the VPC of the specific VPC Peering Connection. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -30233,7 +33446,7 @@ a specific VPC peering connection.
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `A CIDR block associated to the VPC of the specific VPC Peering Connection.`,
+					Description: `A CIDR block associated to the VPC of the specific VPC Peering Connection. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -30275,7 +33488,7 @@ the data source, as noted in [issue 4149](https://github.com/hashicorp/terraform
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `The IDs of the VPC Peering Connections.`,
+					Description: `The IDs of the VPC Peering Connections. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -30285,7 +33498,7 @@ the data source, as noted in [issue 4149](https://github.com/hashicorp/terraform
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `The IDs of the VPC Peering Connections.`,
+					Description: `The IDs of the VPC Peering Connections. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -30325,7 +33538,7 @@ The following example retrieves a list of VPC Ids with a custom tag of ` + "`" +
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the VPC Ids found.`,
+					Description: `A list of all the VPC Ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -30335,7 +33548,7 @@ The following example retrieves a list of VPC Ids with a custom tag of ` + "`" +
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the VPC Ids found.`,
+					Description: `A list of all the VPC Ids found. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 		},
@@ -30387,7 +33600,7 @@ a specific VPN gateway.
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `(Required) Set of values that are accepted for the given field. A VPN Gateway will be selected if any one of the given values matches. ## Attributes Reference All of the argument attributes are also exported as result attributes.`,
+					Description: `(Required) Set of values that are accepted for the given field. A VPN Gateway will be selected if any one of the given values matches. ## Attributes Reference All of the argument attributes are also exported as result attributes. ## Timeouts [Configuration options](https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts): - ` + "`" + `read` + "`" + ` - (Default ` + "`" + `20m` + "`" + `)`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -30476,6 +33689,38 @@ a specific VPN gateway.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_waf_subscribed_rule_group",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves information about a Managed WAF Rule Group from AWS Marketplace.`,
+			Description: `
+
+` + "`" + `aws_waf_subscribed_rule_group` + "`" + ` retrieves information about a Managed WAF Rule Group from AWS Marketplace (needs to be subscribed to first).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the WAF rule group.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Optional) The name of the WAF rule group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rule group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rule group.`,
 				},
 			},
 		},
@@ -30592,6 +33837,38 @@ a specific VPN gateway.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_wafregional_subscribed_rule_group",
+			Category:         "Data Sources",
+			ShortDescription: `retrieves information about a Managed WAF Rule Group from AWS Marketplace for use in WAF Regional.`,
+			Description: `
+
+` + "`" + `aws_wafregional_subscribed_rule_group` + "`" + ` retrieves information about a Managed WAF Rule Group from AWS Marketplace for use in WAF Regional (needs to be subscribed to first).
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the WAF rule group.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Optional) The name of the WAF rule group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rule group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rule group.`,
 				},
 			},
 		},
@@ -31155,305 +34432,334 @@ Use this data source to get information about a workspace in [AWS Workspaces](ht
 		"aws_connect_prompt":                              70,
 		"aws_connect_queue":                               71,
 		"aws_connect_quick_connect":                       72,
-		"aws_cur_report_definition":                       73,
-		"aws_customer_gateway":                            74,
-		"aws_datapipeline_pipeline":                       75,
-		"aws_datapipeline_pipeline_definition":            76,
-		"aws_db_cluster_snapshot":                         77,
-		"aws_db_event_categories":                         78,
-		"aws_db_instance":                                 79,
-		"aws_db_proxy":                                    80,
-		"aws_db_snapshot":                                 81,
-		"aws_db_subnet_group":                             82,
-		"aws_default_tags":                                83,
-		"aws_directory_service_directory":                 84,
-		"aws_docdb_engine_version":                        85,
-		"aws_docdb_orderable_db_instance":                 86,
-		"aws_dx_connection":                               87,
-		"aws_dx_gateway":                                  88,
-		"aws_dx_location":                                 89,
-		"aws_dx_locations":                                90,
-		"aws_dynamodb_table":                              91,
-		"aws_ebs_default_kms_key":                         92,
-		"aws_ebs_encryption_by_default":                   93,
-		"aws_ebs_snapshot":                                94,
-		"aws_ebs_snapshot_ids":                            95,
-		"aws_ebs_volume":                                  96,
-		"aws_ebs_volumes":                                 97,
-		"aws_ec2_client_vpn_endpoint":                     98,
-		"aws_ec2_coip_pool":                               99,
-		"aws_ec2_coip_pools":                              100,
-		"aws_ec2_host":                                    101,
-		"aws_ec2_instance_type":                           102,
-		"aws_ec2_instance_type_offering":                  103,
-		"aws_ec2_instance_type_offerings":                 104,
-		"aws_ec2_instance_types":                          105,
-		"aws_ec2_local_gateway":                           106,
-		"aws_ec2_local_gateway_route_table":               107,
-		"aws_ec2_local_gateway_route_tables":              108,
-		"aws_ec2_local_gateway_virtual_interface":         109,
-		"aws_ec2_local_gateway_virtual_interface_group":   110,
-		"aws_ec2_local_gateway_virtual_interface_groups":  111,
-		"aws_ec2_local_gateways":                          112,
-		"aws_ec2_managed_prefix_list":                     113,
-		"aws_ec2_serial_console_access":                   114,
-		"aws_ec2_spot_price":                              115,
-		"aws_ec2_transit_gateway":                         116,
-		"aws_ec2_transit_gateway_connect":                 117,
-		"aws_ec2_transit_gateway_connect_peer":            118,
-		"aws_ec2_transit_gateway_dx_gateway_attachment":   119,
-		"aws_ec2_transit_gateway_multicast_domain":        120,
-		"aws_ec2_transit_gateway_peering_attachment":      121,
-		"aws_ec2_transit_gateway_route_table":             122,
-		"aws_ec2_transit_gateway_route_tables":            123,
-		"aws_ec2_transit_gateway_vpc_attachment":          124,
-		"aws_ec2_transit_gateway_vpc_attachments":         125,
-		"aws_ec2_transit_gateway_vpn_attachment":          126,
-		"aws_ecr_authorization_token":                     127,
-		"aws_ecr_image":                                   128,
-		"aws_ecr_repository":                              129,
-		"aws_ecrpublic_authorization_token":               130,
-		"aws_ecs_cluster":                                 131,
-		"aws_ecs_container_definition":                    132,
-		"aws_ecs_service":                                 133,
-		"aws_ecs_task_definition":                         134,
-		"aws_efs_access_point":                            135,
-		"aws_efs_access_points":                           136,
-		"aws_efs_file_system":                             137,
-		"aws_efs_mount_target":                            138,
-		"aws_eip":                                         139,
-		"aws_eips":                                        140,
-		"aws_eks_addon":                                   141,
-		"aws_eks_addon_version":                           142,
-		"aws_eks_cluster":                                 143,
-		"aws_eks_cluster_auth":                            144,
-		"aws_eks_clusters":                                145,
-		"aws_eks_node_group":                              146,
-		"aws_eks_node_groups":                             147,
-		"aws_elastic_beanstalk_application":               148,
-		"aws_elastic_beanstalk_hosted_zone":               149,
-		"aws_elastic_beanstalk_solution_stack":            150,
-		"aws_elasticache_cluster":                         151,
-		"aws_elasticache_replication_group":               152,
-		"aws_elasticache_user":                            153,
-		"aws_elasticsearch_domain":                        154,
-		"aws_elb":                                         155,
-		"aws_elb_hosted_zone_id":                          156,
-		"aws_elb_service_account":                         157,
-		"aws_emr_release_labels":                          158,
-		"aws_emrcontainers_virtual_cluster":               159,
-		"aws_globalaccelerator_accelerator":               160,
-		"aws_glue_connection":                             161,
-		"aws_glue_data_catalog_encryption_settings":       162,
-		"aws_glue_script":                                 163,
-		"aws_grafana_workspace":                           164,
-		"aws_guardduty_detector":                          165,
-		"aws_iam_account_alias":                           166,
-		"aws_iam_group":                                   167,
-		"aws_iam_instance_profile":                        168,
-		"aws_iam_instance_profiles":                       169,
-		"aws_iam_openid_connect_provider":                 170,
-		"aws_iam_policy":                                  171,
-		"aws_iam_policy_document":                         172,
-		"aws_iam_role":                                    173,
-		"aws_iam_roles":                                   174,
-		"aws_iam_saml_provider":                           175,
-		"aws_iam_server_certificate":                      176,
-		"aws_iam_session_context":                         177,
-		"aws_iam_user":                                    178,
-		"aws_iam_user_ssh_key":                            179,
-		"aws_iam_users":                                   180,
-		"aws_identitystore_group":                         181,
-		"aws_identitystore_user":                          182,
-		"aws_imagebuilder_component":                      183,
-		"aws_imagebuilder_components":                     184,
-		"aws_imagebuilder_container_recipe":               185,
-		"aws_imagebuilder_container_recipes":              186,
-		"aws_imagebuilder_distribution_configuration":     187,
-		"aws_imagebuilder_distribution_configurations":    188,
-		"aws_imagebuilder_image":                          189,
-		"aws_imagebuilder_image_pipeline":                 190,
-		"aws_imagebuilder_image_pipelines":                191,
-		"aws_imagebuilder_image_recipe":                   192,
-		"aws_imagebuilder_image_recipes":                  193,
-		"aws_imagebuilder_infrastructure_configuration":   194,
-		"aws_imagebuilder_infrastructure_configurations":  195,
-		"aws_inspector_rules_packages":                    196,
-		"aws_instance":                                    197,
-		"aws_instances":                                   198,
-		"aws_internet_gateway":                            199,
-		"aws_iot_endpoint":                                200,
-		"aws_ip_ranges":                                   201,
-		"aws_key_pair":                                    202,
-		"aws_kinesis_firehose_delivery_stream":            203,
-		"aws_kinesis_stream":                              204,
-		"aws_kinesis_stream_consumer":                     205,
-		"aws_kms_alias":                                   206,
-		"aws_kms_ciphertext":                              207,
-		"aws_kms_key":                                     208,
-		"aws_kms_public_key":                              209,
-		"aws_kms_secret":                                  210,
-		"aws_kms_secrets":                                 211,
-		"aws_lakeformation_data_lake_settings":            212,
-		"aws_lakeformation_permissions":                   213,
-		"aws_lakeformation_resource":                      214,
-		"aws_lambda_alias":                                215,
-		"aws_lambda_code_signing_config":                  216,
-		"aws_lambda_function":                             217,
-		"aws_lambda_function_url":                         218,
-		"aws_lambda_invocation":                           219,
-		"aws_lambda_layer_version":                        220,
-		"aws_launch_configuration":                        221,
-		"aws_launch_template":                             222,
-		"aws_lb":                                          223,
-		"aws_alb":                                         224,
-		"aws_lb_listener":                                 225,
-		"aws_alb_listener":                                226,
-		"aws_lb_target_group":                             227,
-		"aws_alb_target_group":                            228,
-		"aws_lex_bot":                                     229,
-		"aws_lex_bot_alias":                               230,
-		"aws_lex_intent":                                  231,
-		"aws_lex_slot_type":                               232,
-		"aws_memorydb_acl":                                233,
-		"aws_memorydb_cluster":                            234,
-		"aws_memorydb_parameter_group":                    235,
-		"aws_memorydb_snapshot":                           236,
-		"aws_memorydb_subnet_group":                       237,
-		"aws_memorydb_user":                               238,
-		"aws_mq_broker":                                   239,
-		"aws_mq_broker_instance_type_offerings":           240,
-		"aws_msk_broker_nodes":                            241,
-		"aws_msk_cluster":                                 242,
-		"aws_msk_configuration":                           243,
-		"aws_msk_kafka_version":                           244,
-		"aws_mskconnect_connector":                        245,
-		"aws_mskconnect_custom_plugin":                    246,
-		"aws_mskconnect_worker_configuration":             247,
-		"aws_nat_gateway":                                 248,
-		"aws_nat_gateways":                                249,
-		"aws_neptune_engine_version":                      250,
-		"aws_neptune_orderable_db_instance":               251,
-		"aws_network_acls":                                252,
-		"aws_network_interface":                           253,
-		"aws_network_interfaces":                          254,
-		"aws_networkmanager_connection":                   255,
-		"aws_networkmanager_connections":                  256,
-		"aws_networkmanager_device":                       257,
-		"aws_networkmanager_devices":                      258,
-		"aws_networkmanager_global_network":               259,
-		"aws_networkmanager_global_networks":              260,
-		"aws_networkmanager_link":                         261,
-		"aws_networkmanager_links":                        262,
-		"aws_networkmanager_site":                         263,
-		"aws_networkmanager_sites":                        264,
-		"aws_opensearch_domain":                           265,
-		"aws_organizations_delegated_administrators":      266,
-		"aws_organizations_delegated_services":            267,
-		"aws_organizations_organization":                  268,
-		"aws_organizations_organizational_units":          269,
-		"aws_organizations_resource_tags":                 270,
-		"aws_outposts_outpost":                            271,
-		"aws_outposts_outpost_instance_type":              272,
-		"aws_outposts_outpost_instance_types":             273,
-		"aws_outposts_outposts":                           274,
-		"aws_outposts_site":                               275,
-		"aws_outposts_sites":                              276,
-		"aws_partition":                                   277,
-		"aws_prefix_list":                                 278,
-		"aws_pricing_product":                             279,
-		"aws_qldb_ledger":                                 280,
-		"aws_ram_resource_share":                          281,
-		"aws_rds_certificate":                             282,
-		"aws_rds_cluster":                                 283,
-		"aws_rds_engine_version":                          284,
-		"aws_rds_orderable_db_instance":                   285,
-		"aws_redshift_cluster":                            286,
-		"aws_redshift_orderable_cluster":                  287,
-		"aws_redshift_service_account":                    288,
-		"aws_region":                                      289,
-		"aws_regions":                                     290,
-		"aws_resourcegroupstaggingapi_resources":          291,
-		"aws_route":                                       292,
-		"aws_route53_delegation_set":                      293,
-		"aws_route53_resolver_endpoint":                   294,
-		"aws_route53_resolver_rule":                       295,
-		"aws_route53_resolver_rules":                      296,
-		"aws_route53_traffic_policy_document":             297,
-		"aws_route53_zone":                                298,
-		"aws_route_table":                                 299,
-		"aws_route_tables":                                300,
-		"aws_s3_bucket":                                   301,
-		"aws_s3_bucket_object":                            302,
-		"aws_s3_bucket_objects":                           303,
-		"aws_s3_bucket_policy":                            304,
-		"aws_s3_object":                                   305,
-		"aws_s3_objects":                                  306,
-		"aws_sagemaker_prebuilt_ecr_image":                307,
-		"aws_secretsmanager_secret":                       308,
-		"aws_secretsmanager_secret_rotation":              309,
-		"aws_secretsmanager_secret_version":               310,
-		"aws_secretsmanager_secrets":                      311,
-		"aws_security_group":                              312,
-		"aws_security_groups":                             313,
-		"aws_serverlessapplicationrepository_application": 314,
-		"aws_service":                                     315,
-		"aws_service_discovery_dns_namespace":             316,
-		"aws_servicecatalog_constraint":                   317,
-		"aws_servicecatalog_launch_paths":                 318,
-		"aws_servicecatalog_portfolio":                    319,
-		"aws_servicecatalog_portfolio_constraints":        320,
-		"aws_servicecatalog_product":                      321,
-		"aws_servicequotas_service":                       322,
-		"aws_servicequotas_service_quota":                 323,
-		"aws_ses_active_receipt_rule_set":                 324,
-		"aws_ses_domain_identity":                         325,
-		"aws_ses_email_identity":                          326,
-		"aws_sfn_activity":                                327,
-		"aws_sfn_state_machine":                           328,
-		"aws_signer_signing_job":                          329,
-		"aws_signer_signing_profile":                      330,
-		"aws_sns_topic":                                   331,
-		"aws_sqs_queue":                                   332,
-		"aws_ssm_document":                                333,
-		"aws_ssm_instances":                               334,
-		"aws_ssm_maintenance_windows":                     335,
-		"aws_ssm_parameter":                               336,
-		"aws_ssm_parameters_by_path":                      337,
-		"aws_ssm_patch_baseline":                          338,
-		"aws_ssoadmin_instances":                          339,
-		"aws_ssoadmin_permission_set":                     340,
-		"aws_storagegateway_local_disk":                   341,
-		"aws_subnet":                                      342,
-		"aws_subnet_ids":                                  343,
-		"aws_subnets":                                     344,
-		"aws_transfer_server":                             345,
-		"aws_vpc":                                         346,
-		"aws_vpc_dhcp_options":                            347,
-		"aws_vpc_endpoint":                                348,
-		"aws_vpc_endpoint_service":                        349,
-		"aws_vpc_ipam_pool":                               350,
-		"aws_vpc_ipam_preview_next_cidr":                  351,
-		"aws_vpc_peering_connection":                      352,
-		"aws_vpc_peering_connections":                     353,
-		"aws_vpcs":                                        354,
-		"aws_vpn_gateway":                                 355,
-		"aws_waf_ipset":                                   356,
-		"aws_waf_rate_based_rule":                         357,
-		"aws_waf_rule":                                    358,
-		"aws_waf_web_acl":                                 359,
-		"aws_wafregional_ipset":                           360,
-		"aws_wafregional_rate_based_rule":                 361,
-		"aws_wafregional_rule":                            362,
-		"aws_wafregional_web_acl":                         363,
-		"aws_wafv2_ip_set":                                364,
-		"aws_wafv2_regex_pattern_set":                     365,
-		"aws_wafv2_rule_group":                            366,
-		"aws_wafv2_web_acl":                               367,
-		"aws_workspaces_bundle":                           368,
-		"aws_workspaces_directory":                        369,
-		"aws_workspaces_image":                            370,
-		"aws_workspaces_workspace":                        371,
+		"aws_connect_routing_profile":                     73,
+		"aws_connect_security_profile":                    74,
+		"aws_connect_user_hierarchy_group":                75,
+		"aws_connect_user_hierarchy_structure":            76,
+		"aws_cur_report_definition":                       77,
+		"aws_customer_gateway":                            78,
+		"aws_datapipeline_pipeline":                       79,
+		"aws_datapipeline_pipeline_definition":            80,
+		"aws_db_cluster_snapshot":                         81,
+		"aws_db_event_categories":                         82,
+		"aws_db_instance":                                 83,
+		"aws_db_proxy":                                    84,
+		"aws_db_snapshot":                                 85,
+		"aws_db_subnet_group":                             86,
+		"aws_default_tags":                                87,
+		"aws_directory_service_directory":                 88,
+		"aws_docdb_engine_version":                        89,
+		"aws_docdb_orderable_db_instance":                 90,
+		"aws_dx_connection":                               91,
+		"aws_dx_gateway":                                  92,
+		"aws_dx_location":                                 93,
+		"aws_dx_locations":                                94,
+		"aws_dynamodb_table":                              95,
+		"aws_ebs_default_kms_key":                         96,
+		"aws_ebs_encryption_by_default":                   97,
+		"aws_ebs_snapshot":                                98,
+		"aws_ebs_snapshot_ids":                            99,
+		"aws_ebs_volume":                                  100,
+		"aws_ebs_volumes":                                 101,
+		"aws_ec2_client_vpn_endpoint":                     102,
+		"aws_ec2_coip_pool":                               103,
+		"aws_ec2_coip_pools":                              104,
+		"aws_ec2_host":                                    105,
+		"aws_ec2_instance_type":                           106,
+		"aws_ec2_instance_type_offering":                  107,
+		"aws_ec2_instance_type_offerings":                 108,
+		"aws_ec2_instance_types":                          109,
+		"aws_ec2_local_gateway":                           110,
+		"aws_ec2_local_gateway_route_table":               111,
+		"aws_ec2_local_gateway_route_tables":              112,
+		"aws_ec2_local_gateway_virtual_interface":         113,
+		"aws_ec2_local_gateway_virtual_interface_group":   114,
+		"aws_ec2_local_gateway_virtual_interface_groups":  115,
+		"aws_ec2_local_gateways":                          116,
+		"aws_ec2_managed_prefix_list":                     117,
+		"aws_ec2_serial_console_access":                   118,
+		"aws_ec2_spot_price":                              119,
+		"aws_ec2_transit_gateway":                         120,
+		"aws_ec2_transit_gateway_connect":                 121,
+		"aws_ec2_transit_gateway_connect_peer":            122,
+		"aws_ec2_transit_gateway_dx_gateway_attachment":   123,
+		"aws_ec2_transit_gateway_multicast_domain":        124,
+		"aws_ec2_transit_gateway_peering_attachment":      125,
+		"aws_ec2_transit_gateway_route_table":             126,
+		"aws_ec2_transit_gateway_route_tables":            127,
+		"aws_ec2_transit_gateway_vpc_attachment":          128,
+		"aws_ec2_transit_gateway_vpc_attachments":         129,
+		"aws_ec2_transit_gateway_vpn_attachment":          130,
+		"aws_ecr_authorization_token":                     131,
+		"aws_ecr_image":                                   132,
+		"aws_ecr_repository":                              133,
+		"aws_ecrpublic_authorization_token":               134,
+		"aws_ecs_cluster":                                 135,
+		"aws_ecs_container_definition":                    136,
+		"aws_ecs_service":                                 137,
+		"aws_ecs_task_definition":                         138,
+		"aws_efs_access_point":                            139,
+		"aws_efs_access_points":                           140,
+		"aws_efs_file_system":                             141,
+		"aws_efs_mount_target":                            142,
+		"aws_eip":                                         143,
+		"aws_eips":                                        144,
+		"aws_eks_addon":                                   145,
+		"aws_eks_addon_version":                           146,
+		"aws_eks_cluster":                                 147,
+		"aws_eks_cluster_auth":                            148,
+		"aws_eks_clusters":                                149,
+		"aws_eks_node_group":                              150,
+		"aws_eks_node_groups":                             151,
+		"aws_elastic_beanstalk_application":               152,
+		"aws_elastic_beanstalk_hosted_zone":               153,
+		"aws_elastic_beanstalk_solution_stack":            154,
+		"aws_elasticache_cluster":                         155,
+		"aws_elasticache_replication_group":               156,
+		"aws_elasticache_user":                            157,
+		"aws_elasticsearch_domain":                        158,
+		"aws_elb":                                         159,
+		"aws_elb_hosted_zone_id":                          160,
+		"aws_elb_service_account":                         161,
+		"aws_emr_release_labels":                          162,
+		"aws_emrcontainers_virtual_cluster":               163,
+		"aws_globalaccelerator_accelerator":               164,
+		"aws_glue_connection":                             165,
+		"aws_glue_data_catalog_encryption_settings":       166,
+		"aws_glue_script":                                 167,
+		"aws_grafana_workspace":                           168,
+		"aws_guardduty_detector":                          169,
+		"aws_iam_account_alias":                           170,
+		"aws_iam_group":                                   171,
+		"aws_iam_instance_profile":                        172,
+		"aws_iam_instance_profiles":                       173,
+		"aws_iam_openid_connect_provider":                 174,
+		"aws_iam_policy":                                  175,
+		"aws_iam_policy_document":                         176,
+		"aws_iam_role":                                    177,
+		"aws_iam_roles":                                   178,
+		"aws_iam_saml_provider":                           179,
+		"aws_iam_server_certificate":                      180,
+		"aws_iam_session_context":                         181,
+		"aws_iam_user":                                    182,
+		"aws_iam_user_ssh_key":                            183,
+		"aws_iam_users":                                   184,
+		"aws_identitystore_group":                         185,
+		"aws_identitystore_user":                          186,
+		"aws_imagebuilder_component":                      187,
+		"aws_imagebuilder_components":                     188,
+		"aws_imagebuilder_container_recipe":               189,
+		"aws_imagebuilder_container_recipes":              190,
+		"aws_imagebuilder_distribution_configuration":     191,
+		"aws_imagebuilder_distribution_configurations":    192,
+		"aws_imagebuilder_image":                          193,
+		"aws_imagebuilder_image_pipeline":                 194,
+		"aws_imagebuilder_image_pipelines":                195,
+		"aws_imagebuilder_image_recipe":                   196,
+		"aws_imagebuilder_image_recipes":                  197,
+		"aws_imagebuilder_infrastructure_configuration":   198,
+		"aws_imagebuilder_infrastructure_configurations":  199,
+		"aws_inspector_rules_packages":                    200,
+		"aws_instance":                                    201,
+		"aws_instances":                                   202,
+		"aws_internet_gateway":                            203,
+		"aws_iot_endpoint":                                204,
+		"aws_ip_ranges":                                   205,
+		"aws_kendra_experience":                           206,
+		"aws_kendra_faq":                                  207,
+		"aws_kendra_index":                                208,
+		"aws_kendra_query_suggestions_block_list":         209,
+		"aws_kendra_thesaurus":                            210,
+		"aws_key_pair":                                    211,
+		"aws_kinesis_firehose_delivery_stream":            212,
+		"aws_kinesis_stream":                              213,
+		"aws_kinesis_stream_consumer":                     214,
+		"aws_kms_alias":                                   215,
+		"aws_kms_ciphertext":                              216,
+		"aws_kms_key":                                     217,
+		"aws_kms_public_key":                              218,
+		"aws_kms_secret":                                  219,
+		"aws_kms_secrets":                                 220,
+		"aws_lakeformation_data_lake_settings":            221,
+		"aws_lakeformation_permissions":                   222,
+		"aws_lakeformation_resource":                      223,
+		"aws_lambda_alias":                                224,
+		"aws_lambda_code_signing_config":                  225,
+		"aws_lambda_function":                             226,
+		"aws_lambda_function_url":                         227,
+		"aws_lambda_invocation":                           228,
+		"aws_lambda_layer_version":                        229,
+		"aws_launch_configuration":                        230,
+		"aws_launch_template":                             231,
+		"aws_lb":                                          232,
+		"aws_alb":                                         233,
+		"aws_lb_hosted_zone_id":                           234,
+		"aws_lb_listener":                                 235,
+		"aws_alb_listener":                                236,
+		"aws_lb_target_group":                             237,
+		"aws_alb_target_group":                            238,
+		"aws_lex_bot":                                     239,
+		"aws_lex_bot_alias":                               240,
+		"aws_lex_intent":                                  241,
+		"aws_lex_slot_type":                               242,
+		"aws_location_geofence_collection":                243,
+		"aws_location_map":                                244,
+		"aws_location_place_index":                        245,
+		"aws_location_route_calculator":                   246,
+		"aws_location_tracker":                            247,
+		"aws_memorydb_acl":                                248,
+		"aws_memorydb_cluster":                            249,
+		"aws_memorydb_parameter_group":                    250,
+		"aws_memorydb_snapshot":                           251,
+		"aws_memorydb_subnet_group":                       252,
+		"aws_memorydb_user":                               253,
+		"aws_mq_broker":                                   254,
+		"aws_mq_broker_instance_type_offerings":           255,
+		"aws_msk_broker_nodes":                            256,
+		"aws_msk_cluster":                                 257,
+		"aws_msk_configuration":                           258,
+		"aws_msk_kafka_version":                           259,
+		"aws_mskconnect_connector":                        260,
+		"aws_mskconnect_custom_plugin":                    261,
+		"aws_mskconnect_worker_configuration":             262,
+		"aws_nat_gateway":                                 263,
+		"aws_nat_gateways":                                264,
+		"aws_neptune_engine_version":                      265,
+		"aws_neptune_orderable_db_instance":               266,
+		"aws_network_acls":                                267,
+		"aws_network_interface":                           268,
+		"aws_network_interfaces":                          269,
+		"aws_networkfirewall_firewall":                    270,
+		"aws_networkfirewall_firewall_policy":             271,
+		"aws_networkmanager_connection":                   272,
+		"aws_networkmanager_connections":                  273,
+		"aws_networkmanager_core_network_policy_document": 274,
+		"aws_networkmanager_device":                       275,
+		"aws_networkmanager_devices":                      276,
+		"aws_networkmanager_global_network":               277,
+		"aws_networkmanager_global_networks":              278,
+		"aws_networkmanager_link":                         279,
+		"aws_networkmanager_links":                        280,
+		"aws_networkmanager_site":                         281,
+		"aws_networkmanager_sites":                        282,
+		"aws_opensearch_domain":                           283,
+		"aws_organizations_delegated_administrators":      284,
+		"aws_organizations_delegated_services":            285,
+		"aws_organizations_organization":                  286,
+		"aws_organizations_organizational_units":          287,
+		"aws_organizations_resource_tags":                 288,
+		"aws_outposts_asset":                              289,
+		"aws_outposts_assets":                             290,
+		"aws_outposts_outpost":                            291,
+		"aws_outposts_outpost_instance_type":              292,
+		"aws_outposts_outpost_instance_types":             293,
+		"aws_outposts_outposts":                           294,
+		"aws_outposts_site":                               295,
+		"aws_outposts_sites":                              296,
+		"aws_partition":                                   297,
+		"aws_prefix_list":                                 298,
+		"aws_pricing_product":                             299,
+		"aws_prometheus_workspace":                        300,
+		"aws_qldb_ledger":                                 301,
+		"aws_ram_resource_share":                          302,
+		"aws_rds_certificate":                             303,
+		"aws_rds_cluster":                                 304,
+		"aws_rds_engine_version":                          305,
+		"aws_rds_orderable_db_instance":                   306,
+		"aws_redshift_cluster":                            307,
+		"aws_redshift_cluster_credentials":                308,
+		"aws_redshift_orderable_cluster":                  309,
+		"aws_redshift_service_account":                    310,
+		"aws_redshift_subnet_group":                       311,
+		"aws_region":                                      312,
+		"aws_regions":                                     313,
+		"aws_resourcegroupstaggingapi_resources":          314,
+		"aws_route":                                       315,
+		"aws_route53_delegation_set":                      316,
+		"aws_route53_resolver_endpoint":                   317,
+		"aws_route53_resolver_rule":                       318,
+		"aws_route53_resolver_rules":                      319,
+		"aws_route53_traffic_policy_document":             320,
+		"aws_route53_zone":                                321,
+		"aws_route_table":                                 322,
+		"aws_route_tables":                                323,
+		"aws_s3_account_public_access_block":              324,
+		"aws_s3_bucket":                                   325,
+		"aws_s3_bucket_object":                            326,
+		"aws_s3_bucket_objects":                           327,
+		"aws_s3_bucket_policy":                            328,
+		"aws_s3_object":                                   329,
+		"aws_s3_objects":                                  330,
+		"aws_sagemaker_prebuilt_ecr_image":                331,
+		"aws_secretsmanager_random_password":              332,
+		"aws_secretsmanager_secret":                       333,
+		"aws_secretsmanager_secret_rotation":              334,
+		"aws_secretsmanager_secret_version":               335,
+		"aws_secretsmanager_secrets":                      336,
+		"aws_security_group":                              337,
+		"aws_security_groups":                             338,
+		"aws_serverlessapplicationrepository_application": 339,
+		"aws_service":                                     340,
+		"aws_service_discovery_dns_namespace":             341,
+		"aws_service_discovery_http_namespace":            342,
+		"aws_service_discovery_service":                   343,
+		"aws_servicecatalog_constraint":                   344,
+		"aws_servicecatalog_launch_paths":                 345,
+		"aws_servicecatalog_portfolio":                    346,
+		"aws_servicecatalog_portfolio_constraints":        347,
+		"aws_servicecatalog_product":                      348,
+		"aws_servicequotas_service":                       349,
+		"aws_servicequotas_service_quota":                 350,
+		"aws_ses_active_receipt_rule_set":                 351,
+		"aws_ses_domain_identity":                         352,
+		"aws_ses_email_identity":                          353,
+		"aws_sfn_activity":                                354,
+		"aws_sfn_state_machine":                           355,
+		"aws_signer_signing_job":                          356,
+		"aws_signer_signing_profile":                      357,
+		"aws_sns_topic":                                   358,
+		"aws_sqs_queue":                                   359,
+		"aws_ssm_document":                                360,
+		"aws_ssm_instances":                               361,
+		"aws_ssm_maintenance_windows":                     362,
+		"aws_ssm_parameter":                               363,
+		"aws_ssm_parameters_by_path":                      364,
+		"aws_ssm_patch_baseline":                          365,
+		"aws_ssoadmin_instances":                          366,
+		"aws_ssoadmin_permission_set":                     367,
+		"aws_storagegateway_local_disk":                   368,
+		"aws_subnet":                                      369,
+		"aws_subnet_ids":                                  370,
+		"aws_subnets":                                     371,
+		"aws_transfer_server":                             372,
+		"aws_vpc":                                         373,
+		"aws_vpc_dhcp_options":                            374,
+		"aws_vpc_endpoint":                                375,
+		"aws_vpc_endpoint_service":                        376,
+		"aws_vpc_ipam_pool":                               377,
+		"aws_vpc_ipam_preview_next_cidr":                  378,
+		"aws_vpc_peering_connection":                      379,
+		"aws_vpc_peering_connections":                     380,
+		"aws_vpcs":                                        381,
+		"aws_vpn_gateway":                                 382,
+		"aws_waf_ipset":                                   383,
+		"aws_waf_rate_based_rule":                         384,
+		"aws_waf_rule":                                    385,
+		"aws_waf_subscribed_rule_group":                   386,
+		"aws_waf_web_acl":                                 387,
+		"aws_wafregional_ipset":                           388,
+		"aws_wafregional_rate_based_rule":                 389,
+		"aws_wafregional_rule":                            390,
+		"aws_wafregional_subscribed_rule_group":           391,
+		"aws_wafregional_web_acl":                         392,
+		"aws_wafv2_ip_set":                                393,
+		"aws_wafv2_regex_pattern_set":                     394,
+		"aws_wafv2_rule_group":                            395,
+		"aws_wafv2_web_acl":                               396,
+		"aws_workspaces_bundle":                           397,
+		"aws_workspaces_directory":                        398,
+		"aws_workspaces_image":                            399,
+		"aws_workspaces_workspace":                        400,
 	}
 )
 

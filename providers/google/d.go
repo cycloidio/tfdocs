@@ -307,7 +307,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_cloud_identity_group_memberships",
+			Type:             "google_cloud_identity_group_membership",
 			Category:         "Data Sources",
 			ShortDescription: `Get list of the Cloud Identity Group Memberships within a Group.`,
 			Description:      ``,
@@ -1701,7 +1701,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `The image from which this disk was initialised. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
+					Description: `The image from which this disk was initialised.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the disk. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interface",
@@ -1777,7 +1781,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provisioning_model",
-					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Describe the type of preemptible VM.`,
+				},
+				resource.Attribute{
+					Name:        "instance_termination_action",
+					Description: `Describe the type of termination action for ` + "`" + `SPOT` + "`" + ` VM. Can be ` + "`" + `STOP` + "`" + ` or ` + "`" + `DELETE` + "`" + `. Read more on [here](https://cloud.google.com/compute/docs/instances/create-use-spot) <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1931,7 +1939,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `The image from which this disk was initialised. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
+					Description: `The image from which this disk was initialised.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the disk. <a name="nested_scratch_disk"></a>The ` + "`" + `scratch_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interface",
@@ -2007,7 +2019,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provisioning_model",
-					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Describe the type of preemptible VM.`,
+				},
+				resource.Attribute{
+					Name:        "instance_termination_action",
+					Description: `Describe the type of termination action for ` + "`" + `SPOT` + "`" + ` VM. Can be ` + "`" + `STOP` + "`" + ` or ` + "`" + `DELETE` + "`" + `. Read more on [here](https://cloud.google.com/compute/docs/instances/create-use-spot) <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2357,7 +2373,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provisioning_model",
-					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Describe the type of preemptible VM.`,
+				},
+				resource.Attribute{
+					Name:        "instance_termination_action",
+					Description: `Describe the type of termination action for ` + "`" + `SPOT` + "`" + ` VM. Can be ` + "`" + `STOP` + "`" + ` or ` + "`" + `DELETE` + "`" + `. Read more on [here](https://cloud.google.com/compute/docs/instances/create-use-spot) <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -2611,7 +2631,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provisioning_model",
-					Description: `(Beta) Describe the type of preemptible VM. <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
+					Description: `Describe the type of preemptible VM.`,
+				},
+				resource.Attribute{
+					Name:        "instance_termination_action",
+					Description: `Describe the type of termination action for ` + "`" + `SPOT` + "`" + ` VM. Can be ` + "`" + `STOP` + "`" + ` or ` + "`" + `DELETE` + "`" + `. Read more on [here](https://cloud.google.com/compute/docs/instances/create-use-spot) <a name="nested_guest_accelerator"></a>The ` + "`" + `guest_accelerator` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -3481,7 +3505,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_dataproc_metastore_service",
+			Type:             "google_data_source_dataproc_metastore_service",
 			Category:         "Data Sources",
 			ShortDescription: `Get a Dataproc Metastore Service from Google Cloud`,
 			Description:      ``,
@@ -3504,7 +3528,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_sourcerepo_repository",
+			Type:             "google_data_source_sourcerepo_repository",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a Google Cloud Source Repository.`,
 			Description:      ``,
@@ -5104,6 +5128,30 @@ var (
 					Name:        "project_id",
 					Description: `The project id of the project.`,
 				},
+				resource.Attribute{
+					Name:        "number",
+					Description: `The numeric identifier of the project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The optional user-assigned display name of the project.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned on a project.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `The Project lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time in RFC3339 UTC "Zulu" format.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `An optional reference to a parent resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -5113,6 +5161,30 @@ var (
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `The project id of the project.`,
+				},
+				resource.Attribute{
+					Name:        "number",
+					Description: `The numeric identifier of the project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The optional user-assigned display name of the project.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned on a project.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_state",
+					Description: `The Project lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time in RFC3339 UTC "Zulu" format.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `An optional reference to a parent resource.`,
 				},
 			},
 		},
@@ -5379,6 +5451,26 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_service_account_jwt",
+			Category:         "Data Sources",
+			ShortDescription: `Produces an arbitrary self-signed JWT for service accounts`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "jwt",
+					Description: `The signed JWT containing the JWT Claims Set from the ` + "`" + `payload` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "jwt",
+					Description: `The signed JWT containing the JWT Claims Set from the ` + "`" + `payload` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_service_account_key",
 			Category:         "Data Sources",
 			ShortDescription: `Get a Google Cloud Platform service account Public Key`,
@@ -5407,7 +5499,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "google_storage_object_signed_url",
+			Type:             "google_signed_url",
 			Category:         "Data Sources",
 			ShortDescription: `Provides signed URL to Google Cloud Storage object.`,
 			Description:      ``,
@@ -5495,7 +5587,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "most_recent",
-					Description: `(optional) Toggles use of the most recent backup run if multiple backups exist for a Cloud SQL instance. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `(optional) Toggles use of the most recent backup run if multiple backups exist for a Cloud SQL instance.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project to list instances for. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -5828,6 +5924,126 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_tags_tag_key",
+			Category:         "Data Sources",
+			ShortDescription: `Get a tag key within a GCP organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "short_name",
+					Description: `(Required) The tag key's short_name.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Required) The resource name of the parent organization in format ` + "`" + `organizations/{org_id}` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagKeys/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagKey.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Namespaced name of the TagKey.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagKeys/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagKey.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Namespaced name of the TagKey.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_tags_tag_value",
+			Category:         "Data Sources",
+			ShortDescription: `Get a tag value from the parent key and short_name.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "short_name",
+					Description: `(Required) The tag value's short_name.`,
+				},
+				resource.Attribute{
+					Name:        "parent",
+					Description: `(Required) The resource name of the parent tagKey in format ` + "`" + `tagKey/{name}` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagValues/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Namespaced name of the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `tagValues/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The generated numeric id for the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "namespaced_name",
+					Description: `Namespaced name of the TagValue.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Update time. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_tpu_tensorflow_versions",
 			Category:         "Data Sources",
 			ShortDescription: `Get available TensorFlow versions.`,
@@ -5867,7 +6083,7 @@ var (
 		"google_billing_account":                              6,
 		"google_client_config":                                7,
 		"google_client_openid_userinfo":                       8,
-		"google_cloud_identity_group_memberships":             9,
+		"google_cloud_identity_group_membership":              9,
 		"google_cloud_identity_groups":                        10,
 		"google_cloud_run_locations":                          11,
 		"google_cloud_run_service":                            12,
@@ -5910,8 +6126,8 @@ var (
 		"google_container_engine_versions":                    49,
 		"google_container_registry_image":                     50,
 		"google_container_registry_repository":                51,
-		"google_dataproc_metastore_service":                   52,
-		"google_sourcerepo_repository":                        53,
+		"google_data_source_dataproc_metastore_service":       52,
+		"google_data_source_sourcerepo_repository":            53,
 		"google_dns_keys":                                     54,
 		"google_dns_managed_zone":                             55,
 		"google_dns_record_set":                               56,
@@ -5954,18 +6170,21 @@ var (
 		"google_service_account":                              93,
 		"google_service_account_access_token":                 94,
 		"google_service_account_id_token":                     95,
-		"google_service_account_key":                          96,
-		"google_storage_object_signed_url":                    97,
-		"google_spanner_instance":                             98,
-		"google_sql_backup_run":                               99,
-		"google_sql_ca_certs":                                 100,
-		"google_sql_database_instance":                        101,
-		"google_storage_bucket":                               102,
-		"google_storage_bucket_object":                        103,
-		"google_storage_bucket_object_content":                104,
-		"google_storage_project_service_account":              105,
-		"google_storage_transfer_project_service_account":     106,
-		"google_tpu_tensorflow_versions":                      107,
+		"google_service_account_jwt":                          96,
+		"google_service_account_key":                          97,
+		"google_signed_url":                                   98,
+		"google_spanner_instance":                             99,
+		"google_sql_backup_run":                               100,
+		"google_sql_ca_certs":                                 101,
+		"google_sql_database_instance":                        102,
+		"google_storage_bucket":                               103,
+		"google_storage_bucket_object":                        104,
+		"google_storage_bucket_object_content":                105,
+		"google_storage_project_service_account":              106,
+		"google_storage_transfer_project_service_account":     107,
+		"google_tags_tag_key":                                 108,
+		"google_tags_tag_value":                               109,
+		"google_tpu_tensorflow_versions":                      110,
 	}
 )
 

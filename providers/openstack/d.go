@@ -677,6 +677,194 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_compute_limits_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Compute Limits of a project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project to retrieve the limits. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_cores",
+					Description: `The number of allowed server cores for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_image_meta",
+					Description: `The number of allowed metadata items for each image. Starting from version 2.39 this field is dropped from ‘os-limits’ response, because ‘image-metadata’ proxy API was deprecated. Available until version 2.38.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_meta",
+					Description: `The number of allowed server groups for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_personality",
+					Description: `The number of allowed injected files for the tenant. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "max_personality_size",
+					Description: `The number of allowed bytes of content for each injected file. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_keypairs",
+					Description: `The number of allowed key pairs for the user.`,
+				},
+				resource.Attribute{
+					Name:        "max_security_groups",
+					Description: `The number of allowed security groups for the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_security_group_rules",
+					Description: `The number of allowed rules for each security group. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_groups",
+					Description: `The number of allowed server groups for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_group_members",
+					Description: `The number of allowed members for each server group.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_floating_ips",
+					Description: `The number of allowed floating IP addresses for each tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_instances",
+					Description: `The number of allowed servers for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_ram_size",
+					Description: `The number of allowed floating IP addresses for the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "total_cores_used",
+					Description: `The number of used server cores in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_instances_used",
+					Description: `The number of used server cores in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_floating_ips_used",
+					Description: `The number of used floating IP addresses in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_ram_used",
+					Description: `The amount of used server RAM in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_security_groups_used",
+					Description: `The number of used security groups in the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "total_server_groups_used",
+					Description: `The number of used server groups in each tenant.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_cores",
+					Description: `The number of allowed server cores for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_image_meta",
+					Description: `The number of allowed metadata items for each image. Starting from version 2.39 this field is dropped from ‘os-limits’ response, because ‘image-metadata’ proxy API was deprecated. Available until version 2.38.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_meta",
+					Description: `The number of allowed server groups for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_personality",
+					Description: `The number of allowed injected files for the tenant. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "max_personality_size",
+					Description: `The number of allowed bytes of content for each injected file. Available until version 2.56.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_keypairs",
+					Description: `The number of allowed key pairs for the user.`,
+				},
+				resource.Attribute{
+					Name:        "max_security_groups",
+					Description: `The number of allowed security groups for the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_security_group_rules",
+					Description: `The number of allowed rules for each security group. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_groups",
+					Description: `The number of allowed server groups for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_server_group_members",
+					Description: `The number of allowed members for each server group.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_floating_ips",
+					Description: `The number of allowed floating IP addresses for each tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_instances",
+					Description: `The number of allowed servers for the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "max_total_ram_size",
+					Description: `The number of allowed floating IP addresses for the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "total_cores_used",
+					Description: `The number of used server cores in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_instances_used",
+					Description: `The number of used server cores in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_floating_ips_used",
+					Description: `The number of used floating IP addresses in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_ram_used",
+					Description: `The amount of used server RAM in the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "total_security_groups_used",
+					Description: `The number of used security groups in the tenant. Available until version 2.35.`,
+				},
+				resource.Attribute{
+					Name:        "total_server_groups_used",
+					Description: `The number of used server groups in each tenant.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_compute_quotaset_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Compute Quotaset of a project.`,
@@ -1300,6 +1488,134 @@ var (
 				resource.Attribute{
 					Name:        "volume_driver",
 					Description: `The name of the driver that is used for the volumes of the cluster nodes.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_containerinfra_nodegroup_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenStack Magnum node group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 Container Infra client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The name of the OpenStack Magnum cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the node group. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found node group. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time at which the node group was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time at which the node group was updated.`,
+				},
+				resource.Attribute{
+					Name:        "docker_volume_size",
+					Description: `The size (in GB) of the Docker volume.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The list of key value pairs representing additional properties of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "min_node_count",
+					Description: `The minimum number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "max_node_count",
+					Description: `The maximum number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The reference to an image that is used for nodes of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `The flavor for the nodes of the node group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time at which the node group was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time at which the node group was updated.`,
+				},
+				resource.Attribute{
+					Name:        "docker_volume_size",
+					Description: `The size (in GB) of the Docker volume.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The list of key value pairs representing additional properties of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "min_node_count",
+					Description: `The minimum number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "max_node_count",
+					Description: `The maximum number of nodes for the node group.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `The reference to an image that is used for nodes of the node group.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `The flavor for the nodes of the node group.`,
 				},
 			},
 		},
@@ -5063,42 +5379,44 @@ var (
 		"openstack_compute_availability_zones_v2":            6,
 		"openstack_compute_flavor_v2":                        7,
 		"openstack_compute_keypair_v2":                       8,
-		"openstack_compute_quotaset_v2":                      9,
-		"openstack_containerinfra_cluster_v1":                10,
-		"openstack_containerinfra_clustertemplate_v1":        11,
-		"openstack_dns_zone_v2":                              12,
-		"openstack_fw_policy_v1":                             13,
-		"openstack_identity_auth_scope_v3":                   14,
-		"openstack_identity_endpoint_v3":                     15,
-		"openstack_identity_group_v3":                        16,
-		"openstack_identity_project_v3":                      17,
-		"openstack_identity_role_v3":                         18,
-		"openstack_identity_service_v3":                      19,
-		"openstack_identity_user_v3":                         20,
-		"openstack_images_image_ids_v2":                      21,
-		"openstack_images_image_v2":                          22,
-		"openstack_keymanager_container_v1":                  23,
-		"openstack_keymanager_secret_v1":                     24,
-		"openstack_networking_addressscope_v2":               25,
-		"openstack_networking_floatingip_v2":                 26,
-		"openstack_networking_network_v2":                    27,
-		"openstack_networking_port_ids_v2":                   28,
-		"openstack_networking_port_v2":                       29,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   30,
-		"openstack_networking_qos_dscp_marking_rule_v2":      31,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 32,
-		"openstack_networking_qos_policy_v2":                 33,
-		"openstack_networking_quota_v2":                      34,
-		"openstack_networking_router_v2":                     35,
-		"openstack_networking_secgroup_v2":                   36,
-		"openstack_networking_subnet_ids_v2":                 37,
-		"openstack_networking_subnet_v2":                     38,
-		"openstack_networking_subnetpool_v2":                 39,
-		"openstack_networking_trunk_v2":                      40,
-		"openstack_sharedfilesystem_availability_zones_v2":   41,
-		"openstack_sharedfilesystem_share_v2":                42,
-		"openstack_sharedfilesystem_sharenetwork_v2":         43,
-		"openstack_sharedfilesystem_snapshot_v2":             44,
+		"openstack_compute_limits_v2":                        9,
+		"openstack_compute_quotaset_v2":                      10,
+		"openstack_containerinfra_cluster_v1":                11,
+		"openstack_containerinfra_clustertemplate_v1":        12,
+		"openstack_containerinfra_nodegroup_v1":              13,
+		"openstack_dns_zone_v2":                              14,
+		"openstack_fw_policy_v1":                             15,
+		"openstack_identity_auth_scope_v3":                   16,
+		"openstack_identity_endpoint_v3":                     17,
+		"openstack_identity_group_v3":                        18,
+		"openstack_identity_project_v3":                      19,
+		"openstack_identity_role_v3":                         20,
+		"openstack_identity_service_v3":                      21,
+		"openstack_identity_user_v3":                         22,
+		"openstack_images_image_ids_v2":                      23,
+		"openstack_images_image_v2":                          24,
+		"openstack_keymanager_container_v1":                  25,
+		"openstack_keymanager_secret_v1":                     26,
+		"openstack_networking_addressscope_v2":               27,
+		"openstack_networking_floatingip_v2":                 28,
+		"openstack_networking_network_v2":                    29,
+		"openstack_networking_port_ids_v2":                   30,
+		"openstack_networking_port_v2":                       31,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   32,
+		"openstack_networking_qos_dscp_marking_rule_v2":      33,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 34,
+		"openstack_networking_qos_policy_v2":                 35,
+		"openstack_networking_quota_v2":                      36,
+		"openstack_networking_router_v2":                     37,
+		"openstack_networking_secgroup_v2":                   38,
+		"openstack_networking_subnet_ids_v2":                 39,
+		"openstack_networking_subnet_v2":                     40,
+		"openstack_networking_subnetpool_v2":                 41,
+		"openstack_networking_trunk_v2":                      42,
+		"openstack_sharedfilesystem_availability_zones_v2":   43,
+		"openstack_sharedfilesystem_share_v2":                44,
+		"openstack_sharedfilesystem_sharenetwork_v2":         45,
+		"openstack_sharedfilesystem_snapshot_v2":             46,
 	}
 )
 
