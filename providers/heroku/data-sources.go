@@ -235,7 +235,7 @@ This is a limitation in the Heroku Platform API where it is not possible to quer
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The pipeline name. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The pipeline name or ID. Empty pipelines can only be retrieved by ID (UUID). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",

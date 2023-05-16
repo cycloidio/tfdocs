@@ -47,6 +47,18 @@ An account level policy specifying the period for the audit log retention.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_access_ip_address",
+			Category:         "Data Sources",
+			ShortDescription: `IP address and Lease information for a specific Server Profile.`,
+			Description: `
+IP address and Lease information for a specific Server Profile.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_access_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to configure server or chassis management options.`,
@@ -165,19 +177,31 @@ Status of an application.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -275,6 +299,114 @@ Certificate the appliance uses for browser traffic.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_appliance_cluster_info",
+			Category:         "Data Sources",
+			ShortDescription: `ClusterInfo model is used for a peer appliance to create a cluster with an existing, fully configured appliance.`,
+			Description: `
+ClusterInfo model is used for a peer appliance to create a cluster with an existing, fully configured
+appliance.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The status of the appliance node is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Operational",
+					Description: `The appliance node is operational.`,
+				},
+				resource.Attribute{
+					Name:        "Impaired",
+					Description: `The appliance node is impaired.`,
+				},
+				resource.Attribute{
+					Name:        "AttentionNeeded",
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_cluster_install",
+			Category:         "Data Sources",
+			ShortDescription: `ClusterInstall is a singleton that tracks the Intersight Appliance's install of two additional nodes.`,
+			Description: `
+ClusterInstall is a singleton that tracks the Intersight Appliance's install of two additional nodes.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotReady",
+					Description: `Cluster is not ready. Install cannot be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Cluster is ready. Install can be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Install is currently in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Install was run and succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Install was run and failed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_cluster_replace_node",
+			Category:         "Data Sources",
+			ShortDescription: `ClusterReplaceNode is a singleton that tracks the Intersight Appliance's process for replacing a cluster node.`,
+			Description: `
+ClusterReplaceNode is a singleton that tracks the Intersight Appliance's process for replacing a cluster node.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotReady",
+					Description: `Cluster is not ready. Install cannot be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Cluster is ready. Install can be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Install is currently in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Install was run and succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Install was run and failed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_appliance_data_export_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Data Export Policy is a category-based data collection policy that enables or disables data export (data collection) from the Intersight Appliance to the Intersight. The Data Export Policy configuration is organized hierarchically as follows. Global: Inventory: Network Storage TechSupport When the DataExportPolicy for a category is enabled/disabled, all the sub-category configurations are enabled/disabled as well. For example, if you enable/disable Inventory, all its sub-category configurations (ie. Network and Storage) are also enabled/disabled.`,
@@ -324,135 +456,143 @@ of the device claim operation can be obtained from the claim workflow.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -476,39 +616,75 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -516,11 +692,11 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -528,35 +704,39 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -564,7 +744,7 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "started",
@@ -577,6 +757,39 @@ of the device claim operation can be obtained from the claim workflow.
 				resource.Attribute{
 					Name:        "completed",
 					Description: `Device claim operation has completed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_device_cluster_install",
+			Category:         "Data Sources",
+			ShortDescription: `DeviceClusterInstall is a singleton that tracks the Intersight Cluster Appliance's install.`,
+			Description: `
+DeviceClusterInstall is a singleton that tracks the Intersight Cluster Appliance's install.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotReady",
+					Description: `Cluster is not ready. Install cannot be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Cluster is ready. Install can be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Install is currently in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Install was run and succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Install was run and failed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -645,6 +858,26 @@ Configure External Syslog Server.
 					Name:        "TLS",
 					Description: `Secure External Syslog messages sent over TLS.`,
 				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that there is no severity.`,
+				},
+				resource.Attribute{
+					Name:        "Info",
+					Description: `The Enum value Info represents the Informational level of severity.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `The Enum value Critical represents the Critical level of severity.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The Enum value Warning represents the Warning level of severity.`,
+				},
+				resource.Attribute{
+					Name:        "Cleared",
+					Description: `The Enum value Cleared represents that the alarm severity has been cleared.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -677,19 +910,31 @@ Status of a file system on an Intersight Appliance node.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -749,6 +994,20 @@ to the 'current' bundle after the software upgrade is successful.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_appliance_meta_manifest",
+			Category:         "Data Sources",
+			ShortDescription: `MetaManifest managed object describes the files by downloading from the S3 and without having required user to run the upgrade for the appliance. This MO will be polled periodically from UI to display the installation of the current and past history of Metada Manifest ImageBundle.`,
+			Description: `
+MetaManifest managed object describes the files by downloading from the S3 and without having required
+user to run the upgrade for the appliance. This MO will be polled periodically from UI to display the
+installation of the current and past history of Metada Manifest ImageBundle.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_appliance_node_info",
 			Category:         "Data Sources",
 			ShortDescription: `NodeInfo managed object stores the Intersight Appliance's cluster node information. NodeInfo managed objects are created during the Intersight Appliance setup. The Intersight Appliance updates the NodeInfo managed objects with status information periodically.`,
@@ -762,19 +1021,31 @@ periodically.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -803,19 +1074,31 @@ Status of an Intersight Appliance node.
 				},
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -836,9 +1119,9 @@ ReleaseUpdate managed the object provides the information preview (new features 
 			Name:             "",
 			Type:             "intersight_appliance_remote_file_import",
 			Category:         "Data Sources",
-			ShortDescription: `Trigger a remote file import request by configuring this mo.`,
+			ShortDescription: `The properties of appliance.RemoteFileImport are used to create an scp or sftp request to import a firmware image.`,
 			Description: `
-Trigger a remote file import request by configuring this mo.
+The properties of appliance.RemoteFileImport are used to create an scp or sftp request to import a firmware image.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
@@ -962,23 +1245,51 @@ SystemInfo managed object with up to date cluster status information periodicall
 					Description: `Target of type HTTP Endpoint is successfully claimed in Intersight. Currently no validation is performed to verify the Target connectivity from Intersight at the time of creation. However invoking API from Intersight Orchestrator fails if this Target is not reachable from Intersight or if Target API credentials are incorrect.`,
 				},
 				resource.Attribute{
+					Name:        "none",
+					Description: `The Intersight Appliance is running in standalone mode.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `The Intersight Appliance is running as part of a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "pending",
+					Description: `The Intersight Appliance is currently forming a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "failed",
+					Description: `The Intersight Appliance failed to form a cluster.`,
+				},
+				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
 				},
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
+				},
+				resource.Attribute{
+					Name:        "UTC",
 					Description: ``,
 				},
 			},
@@ -996,19 +1307,31 @@ Status of the Intersight Appliance.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `Operational status of the Intersight Appliance entity is Unknown.`,
+					Description: `The status of the appliance node is unknown.`,
 				},
 				resource.Attribute{
 					Name:        "Operational",
-					Description: `Operational status of the Intersight Appliance entity is Operational.`,
+					Description: `The appliance node is operational.`,
 				},
 				resource.Attribute{
 					Name:        "Impaired",
-					Description: `Operational status of the Intersight Appliance entity is Impaired.`,
+					Description: `The appliance node is impaired.`,
 				},
 				resource.Attribute{
 					Name:        "AttentionNeeded",
-					Description: `Operational status of the Intersight Appliance entity is AttentionNeeded.`,
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1097,15 +1420,15 @@ A node within a cluster of device connectors. A Device Registration may contain 
 				},
 				resource.Attribute{
 					Name:        "Unknown",
-					Description: `The node is unable to complete election or determine the current state. If the device has been registered before and the node has access to the current credentials it will establish a connection to Intersight with limited capabilities that can be used to debug the HA failure from Intersight.`,
+					Description: `The node is unable to complete election or determine the current state. If the device has been registered before and the node has access to the current credentials, it will establish a connection to Intersight with limited capabilities that can be used to debug the HA failure from Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "Primary",
-					Description: `The node has been elected as the primary and will establish a connection to the Intersight service and accept all message types enabled for a primary node. There can only be one primary in a given cluster, while the underlying platform may be active-active only one connector will assume the primary role.`,
+					Description: `The node has been elected as the primary and will establish a connection to the Intersight service and accept all message types enabled for a primary node. There can only be one primary node in a given cluster, while the underlying platform may be active. If it is active, only one connector will assume the primary role.`,
 				},
 				resource.Attribute{
 					Name:        "Secondary",
-					Description: `The node has been elected as a secondary node in the cluster. The device connector will establish a connection to the Intersight service with limited capabilities. e.g. file upload will be enabled, but requests to the underlying platform management will be disabled.`,
+					Description: `The node has been elected as a secondary node in the cluster. The device connector will establish a connection to the Intersight service with limited capabilities. E.g. file upload will be enabled, but requests to the underlying platform management will be disabled.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1155,6 +1478,58 @@ Contains information about Deployments associated with consumption-based subscri
 				resource.Attribute{
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1250,136 +1625,148 @@ Contains information about the Cisco device identified by a unique identifier li
 					Description: `A device of type Nexus switch. It includes various Nexus switches supported by Cisco Intersight.`,
 				},
 				resource.Attribute{
+					Name:        "CiscoMDSSwitch",
+					Description: `A device of type MDS switch. It includes various MDS switches supported by Cisco Intersight.`,
+				},
+				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -1403,39 +1790,75 @@ Contains information about the Cisco device identified by a unique identifier li
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -1443,11 +1866,11 @@ Contains information about the Cisco device identified by a unique identifier li
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -1455,35 +1878,39 @@ Contains information about the Cisco device identified by a unique identifier li
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -1491,7 +1918,7 @@ Contains information about the Cisco device identified by a unique identifier li
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Update",
@@ -1560,135 +1987,143 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -1712,39 +2147,75 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -1752,11 +2223,11 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -1764,35 +2235,39 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -1800,7 +2275,7 @@ DeviceRegistration represents a device connector enabled endpoint which has regi
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1893,135 +2368,143 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -2045,39 +2528,75 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -2085,11 +2604,11 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -2097,35 +2616,39 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -2133,7 +2656,7 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2315,6 +2838,26 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Value - Default for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level A",
+					Description: `Value - Level A for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level B",
+					Description: `Value - Level B for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level C",
+					Description: `Value - Level C for configuring AdaptiveRefreshMgmtLevel token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3457,6 +4000,70 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 48 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
+					Name:        "49",
+					Description: `Value - 49 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "50",
+					Description: `Value - 50 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "51",
+					Description: `Value - 51 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "52",
+					Description: `Value - 52 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "53",
+					Description: `Value - 53 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "54",
+					Description: `Value - 54 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "55",
+					Description: `Value - 55 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "56",
+					Description: `Value - 56 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "57",
+					Description: `Value - 57 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "58",
+					Description: `Value - 58 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "59",
+					Description: `Value - 59 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "60",
+					Description: `Value - 60 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "61",
+					Description: `Value - 61 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "62",
+					Description: `Value - 62 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "63",
+					Description: `Value - 63 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "64",
+					Description: `Value - 64 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
 					Name:        "all",
 					Description: `Value - all for configuring CoreMultiProcessing token.`,
 				},
@@ -3487,6 +4094,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "power",
 					Description: `Value - power for configuring CpuEnergyPerformance token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3571,6 +4190,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Mode 2 - M2M QoS Enable and CHA QoS Enable",
 					Description: `Value - Mode 2 - M2M QoS Enable and CHA QoS Enable for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Profile 1",
+					Description: `Value - Profile 1 for configuring CrQos token.`,
 				},
 				resource.Attribute{
 					Name:        "Recipe 1",
@@ -3669,6 +4292,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring DramClockThrottling token.`,
 				},
@@ -3751,6 +4386,34 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "On Fatal and Non-Fatal Errors",
 					Description: `Value - On Fatal and Non-Fatal Errors for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "0P3_Percent",
+					Description: `Value - 0P3_Percent for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "0P5_Percent",
+					Description: `Value - 0P5_Percent for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "Hardware",
+					Description: `Value - Hardware for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "Off",
+					Description: `Value - Off for configuring EnableClockSpreadSpec token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3883,6 +4546,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Power",
 					Description: `Value - Power for configuring EppProfile token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring ErrorCheckScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled with Result Collection",
+					Description: `Value - Enabled with Result Collection for configuring ErrorCheckScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled without Result Collection",
+					Description: `Value - Enabled without Result Collection for configuring ErrorCheckScrub token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4023,6 +4702,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring IntelSpeedSelect token.`,
 				},
 				resource.Attribute{
 					Name:        "Base",
@@ -4905,6 +5588,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring PcieSlotMraid1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4943,6 +5630,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring PcieSlotMraid2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5421,6 +6112,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 11.2GT/s for configuring QpiLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "12.8GT/s",
+					Description: `Value - 12.8GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "14.4GT/s",
+					Description: `Value - 14.4GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "16.0GT/s",
+					Description: `Value - 16.0GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "9.6GT/s",
 					Description: `Value - 9.6GT/s for configuring QpiLinkSpeed token.`,
 				},
@@ -5849,6 +6552,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5895,6 +6602,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5945,6 +6656,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5991,6 +6706,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6041,6 +6760,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot5linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot5linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6087,6 +6810,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot6linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6137,6 +6864,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot7linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot7linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6183,6 +6914,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot8linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6305,6 +7040,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme10linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6343,6 +7082,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme11linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6385,16 +7128,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme12linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme12linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6413,36 +7148,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6461,12 +7192,252 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme19linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6509,16 +7480,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6537,12 +7500,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme20linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme20linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6561,12 +7544,164 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme24linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6609,6 +7744,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6647,6 +7786,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme3linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6689,6 +7832,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6727,6 +7874,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme5linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6769,6 +7920,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme6linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6807,6 +7962,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme7linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6849,6 +8008,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme8linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6887,6 +8050,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme9linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -7161,6 +8328,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotMlomLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotMlomLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -7207,6 +8378,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotMraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotMraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -7589,6 +8764,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotRearNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -7627,6 +8806,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotRearNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -7669,6 +8852,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotRearNvme3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -7707,6 +8894,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -8069,6 +9260,14 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - enabled for configuring Snc token.`,
 				},
 				resource.Attribute{
+					Name:        "SNC2",
+					Description: `Value - SNC2 for configuring Snc token.`,
+				},
+				resource.Attribute{
+					Name:        "SNC4",
+					Description: `Value - SNC4 for configuring Snc token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -8201,6 +9400,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring Tsme token.`,
 				},
@@ -8261,6 +9472,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Hemisphere (2-clusters) for configuring UmaBasedClustering token.`,
 				},
 				resource.Attribute{
+					Name:        "Quadrant (4-clusters)",
+					Description: `Value - Quadrant (4-clusters) for configuring UmaBasedClustering token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -8271,6 +9486,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "2",
 					Description: `Value - 2 for configuring UpiLinkEnablement token.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Value - 3 for configuring UpiLinkEnablement token.`,
 				},
 				resource.Attribute{
 					Name:        "Auto",
@@ -8461,6 +9680,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring XptPrefetch token.`,
 				},
@@ -8503,7 +9734,7 @@ Actual Boot Order of the system.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Legacy",
-					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the Master Boot Record (MBR) to locate the bootloader.`,
+					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the MBR to locate the bootloader.`,
 				},
 				resource.Attribute{
 					Name:        "Uefi",
@@ -8655,12 +9886,12 @@ Boot order policy models a reusable boot order configuration that can be applied
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Legacy",
-					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the Master Boot Record (MBR) to locate the bootloader.`,
-				},
-				resource.Attribute{
 					Name:        "Uefi",
 					Description: `UEFI mode uses the GUID Partition Table (GPT) to locate EFI Service Partitions to boot from.`,
+				},
+				resource.Attribute{
+					Name:        "Legacy",
+					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the MBR to locate the bootloader.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8843,11 +10074,11 @@ A single managed object that is being exported.
 				},
 				resource.Attribute{
 					Name:        "OperationCancelled",
-					Description: `The operation has been cancelled.`,
+					Description: `The operation has been canceled.`,
 				},
 				resource.Attribute{
 					Name:        "CancelInProgress",
-					Description: `The operation is being cancelled.`,
+					Description: `The operation is being canceled.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8970,6 +10201,335 @@ The sub request object is created for every subrequest in the incoming request.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_actions_meta_data",
+			Category:         "Data Sources",
+			ShortDescription: `Metadata or constraints of various server actions supported in Intersight for 3rd Party servers. It is validated against the target provided and the actions are allowed only upon successful validation.`,
+			Description: `
+Metadata or constraints of various server actions supported in Intersight for 3rd Party servers. It is validated against the target provided  and the actions are allowed only upon successful validation.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A Cisco HyperFlex (HX) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A Cisco UCS Director (UCSD) instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist instance.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud Business Tier account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_adapter_deprecated_def",
+			Category:         "Data Sources",
+			ShortDescription: `Object to represent an unsupported/deprecated adapter. Meant to be used under server descriptor object.`,
+			Description: `
+Object to represent an unsupported/deprecated adapter. Meant to be used under server descriptor object.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_adapter_firmware_requirement",
+			Category:         "Data Sources",
+			ShortDescription: `Firmware requirements for enabling Intersight based management for an adaptor.`,
+			Description: `
+Firmware requirements for enabling Intersight based management for an adaptor.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_adapter_unit_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor that uniquely identifies an adapter.`,
@@ -8995,6 +10555,18 @@ Descriptor that uniquely identifies an adapter.
 					Description: `Fifth generation adapters (15xx). The PIDs of these adapters contain the V5 string.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_adapter_upgrade_support_meta",
+			Category:         "Data Sources",
+			ShortDescription: `Internal meta-data to enable adapter upgrade related decision making.`,
+			Description: `
+Internal meta-data to enable adapter upgrade related decision making.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -9036,11 +10608,59 @@ Chassis enclosure manufacturing def properties.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_chassis_upgrade_support_meta",
+			Category:         "Data Sources",
+			ShortDescription: `Internal meta-data to enable chassis upgrade related decision making.`,
+			Description: `
+Internal meta-data to enable chassis upgrade related decision making.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_cimc_firmware_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor that identifies the server's redfish integration capability using cimc firmware info.`,
 			Description: `
 Descriptor that identifies the server's redfish integration capability using cimc firmware info.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_cpu_endpoint_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies a cpu.`,
+			Description: `
+Descriptor that uniquely identifies a cpu.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_dimms_endpoint_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies a dimm.`,
+			Description: `
+Descriptor that uniquely identifies a dimm.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_drives_endpoint_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies a drive.`,
+			Description: `
+Descriptor that uniquely identifies a drive.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -9130,6 +10750,18 @@ Fan module unit that contains multiple fans.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_fex_capability_def",
+			Category:         "Data Sources",
+			ShortDescription: `Fabric Extender module capabilities.`,
+			Description: `
+Fabric Extender module capabilities.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_fex_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor that uniquely identifies an Fabric extender.`,
@@ -9147,6 +10779,18 @@ Descriptor that uniquely identifies an Fabric extender.
 			ShortDescription: `Fabric extender manufacturing def properties.`,
 			Description: `
 Fabric extender manufacturing def properties.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_gpu_endpoint_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies a cpu.`,
+			Description: `
+Descriptor that uniquely identifies a cpu.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -9199,6 +10843,18 @@ Chassis Iocard module properties.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_iom_upgrade_support_meta",
+			Category:         "Data Sources",
+			ShortDescription: `Internal meta-data to enable IOM upgrade related decision making.`,
+			Description: `
+Internal meta-data to enable IOM upgrade related decision making.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_port_group_aggregation_def",
 			Category:         "Data Sources",
 			ShortDescription: `FEX/IOCARD module port group aggregation capabilities.`,
@@ -9235,6 +10891,31 @@ Power supply unit properties.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_server_descriptor",
+			Category:         "Data Sources",
+			ShortDescription: `Descriptor that uniquely identifies an IMM server.`,
+			Description: `
+Descriptor that uniquely identifies an IMM server.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `The form factor of the server is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "blade",
+					Description: `Blade server form factor.`,
+				},
+				resource.Attribute{
+					Name:        "rack",
+					Description: `Rack unit server form factor.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_server_models_capability_def",
 			Category:         "Data Sources",
 			ShortDescription: `Used to categorize server models.`,
@@ -9252,6 +10933,18 @@ Used to categorize server models.
 			ShortDescription: `Descriptor that identifies the server's redfish locatorled using cimc firmware info.`,
 			Description: `
 Descriptor that identifies the server's redfish locatorled using cimc firmware info.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_server_upgrade_support_meta",
+			Category:         "Data Sources",
+			ShortDescription: `Internal meta-data to map server family classification from server model, used in f/w policy also.`,
+			Description: `
+Internal meta-data to map server family classification from server model, used in f/w policy also.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -9415,7 +11108,7 @@ The configuration change details are captured here.
 				},
 				resource.Attribute{
 					Name:        "Modified",
-					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed succesfully.`,
+					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed successfully.`,
 				},
 				resource.Attribute{
 					Name:        "Deleted",
@@ -9865,135 +11558,143 @@ The geographic location where a clouds resources are located. It has details suc
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -10017,39 +11718,75 @@ The geographic location where a clouds resources are located. It has details suc
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -10057,11 +11794,11 @@ The geographic location where a clouds resources are located. It has details suc
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -10069,35 +11806,39 @@ The geographic location where a clouds resources are located. It has details suc
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -10105,7 +11846,7 @@ The geographic location where a clouds resources are located. It has details suc
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10138,135 +11879,143 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -10290,39 +12039,75 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -10330,11 +12115,11 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -10342,35 +12127,39 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -10378,7 +12167,7 @@ Stores hardware attribute information for a container.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -10419,135 +12208,143 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -10571,39 +12368,75 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -10611,11 +12444,11 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -10623,35 +12456,39 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -10659,7 +12496,7 @@ Stores details of instance type which handle databases.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -10744,135 +12581,143 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -10896,39 +12741,75 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -10936,11 +12817,11 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -10948,35 +12829,39 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -10984,7 +12869,7 @@ Details for an instance type.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -11025,135 +12910,143 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -11177,39 +13070,75 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -11217,11 +13146,11 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -11229,35 +13158,39 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -11265,7 +13198,7 @@ Model to represent network attributes.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -11306,135 +13239,143 @@ Base sku for containing price information for instance type, volumes, containers
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -11458,39 +13399,75 @@ Base sku for containing price information for instance type, volumes, containers
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -11498,11 +13475,11 @@ Base sku for containing price information for instance type, volumes, containers
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -11510,35 +13487,39 @@ Base sku for containing price information for instance type, volumes, containers
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -11546,7 +13527,7 @@ Base sku for containing price information for instance type, volumes, containers
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -11587,135 +13568,143 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -11739,39 +13728,75 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -11779,11 +13804,11 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -11791,35 +13816,39 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -11827,7 +13856,7 @@ Stores information about the volume types.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Compute",
@@ -11906,6 +13935,38 @@ Server which is housed in a chassis and shares some of the hardware with other s
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Active",
+					Description: `Default Lifecycle State for a physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `Decommission Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryInProgress",
+					Description: `DiscoveryInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryFailed",
+					Description: `DiscoveryFailed Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "FirmwareUpgradeInProgress",
+					Description: `Firmware upgrade is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "BladeMigrationInProgress",
+					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
 				resource.Attribute{
 					Name:        "IntersightStandalone",
 					Description: `Intersight Standalone mode of operation.`,
@@ -12104,6 +14165,18 @@ Virtual Media image uploaded on the server.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_compute_personality",
+			Category:         "Data Sources",
+			ShortDescription: `This can be used to model a server based on a defined personality without having to reprogram the server PID.`,
+			Description: `
+This can be used to model a server based on a defined personality without having to reprogram the server PID.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_compute_physical_summary",
 			Category:         "Data Sources",
 			ShortDescription: `Consolidated view of Blades and RackUnits.`,
@@ -12112,6 +14185,38 @@ Consolidated view of Blades and RackUnits.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Active",
+					Description: `Default Lifecycle State for a physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `Decommission Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryInProgress",
+					Description: `DiscoveryInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryFailed",
+					Description: `DiscoveryFailed Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "FirmwareUpgradeInProgress",
+					Description: `Firmware upgrade is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "BladeMigrationInProgress",
+					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
 				resource.Attribute{
 					Name:        "IntersightStandalone",
 					Description: `Intersight Standalone mode of operation.`,
@@ -12137,6 +14242,38 @@ Describes a standalone or FI-attached Rack-mounted server.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default state of an equipment. This should be an initial state when no state is defined for an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "Active",
+					Description: `Default Lifecycle State for a physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `Decommission Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryInProgress",
+					Description: `DiscoveryInProgress Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "DiscoveryFailed",
+					Description: `DiscoveryFailed Lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "FirmwareUpgradeInProgress",
+					Description: `Firmware upgrade is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "BladeMigrationInProgress",
+					Description: `Server slot migration is in progress on given physical entity.`,
+				},
+				resource.Attribute{
+					Name:        "SlotMismatch",
+					Description: `The blade server is detected in a different chassis/slot than it was previously.`,
+				},
 				resource.Attribute{
 					Name:        "IntersightStandalone",
 					Description: `Intersight Standalone mode of operation.`,
@@ -12283,6 +14420,18 @@ Identity object that uniquely represents a server object under a DR.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_compute_server_id_pool",
+			Category:         "Data Sources",
+			ShortDescription: `Identifier pool that generates a unique number for a server object.`,
+			Description: `
+Identifier pool that generates a unique number for a server object.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_compute_server_power_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to determine the required power task during server profile deploy/undeploy.`,
@@ -12374,6 +14523,14 @@ Models the configurable properties of a server in Intersight.
 				},
 				resource.Attribute{
 					Name:        "Ready",
+					Description: `Clear system event log operation is allowed on the server in this state.`,
+				},
+				resource.Attribute{
+					Name:        "Clear",
+					Description: `Trigger a clear system event log operation on a server.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
 					Description: `CMOS Reset operation is allowed to be done on the server in this state.`,
 				},
 				resource.Attribute{
@@ -12383,6 +14540,14 @@ Models the configurable properties of a server in Intersight.
 				resource.Attribute{
 					Name:        "Reset",
 					Description: `The value that the UI/API needs to provide to trigger a CMOS Reset operation on a server.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Collect system event log operation is allowed on the server in this state.`,
+				},
+				resource.Attribute{
+					Name:        "Collect",
+					Description: `Trigger a collect system event log operation on a server.`,
 				},
 				resource.Attribute{
 					Name:        "Applied",
@@ -12415,6 +14580,14 @@ Models the configurable properties of a server in Intersight.
 				resource.Attribute{
 					Name:        "Reset",
 					Description: `The value that the UI/API needs to provide to trigger a Reset vKVM operation on a server.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Perform no action on the TPM.`,
+				},
+				resource.Attribute{
+					Name:        "ClearTpm",
+					Description: `Clear the configuration and restore factory defaults of TPM chip in the server.`,
 				},
 				resource.Attribute{
 					Name:        "Ready",
@@ -12535,6 +14708,18 @@ Object which represents alarm aggregation for a managed end point.
 					Description: `The Enum value Cleared represents that the alarm severity has been cleared.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_cond_alarm_definition",
+			Category:         "Data Sources",
+			ShortDescription: `The definition of an issue which encompases the criteria for identifying when the issue exists, documentation of the detected issue and the alarms to be raised/cleared by Intersight.`,
+			Description: `
+The definition of an issue which encompases the criteria for identifying when the issue exists, documentation of the detected issue and the alarms to be raised/cleared by Intersight.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -12955,6 +15140,175 @@ Concrete class for terminal Console.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_convergedinfra_adapter_compliance_details",
+			Category:         "Data Sources",
+			ShortDescription: `The compliance details for an adapter present in a server which is part of a converged infrastructure pod.`,
+			Description: `
+The compliance details for an adapter present in a server which is part of a converged infrastructure pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed becaue the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-With-Component",
+					Description: `The validation failed for this component because he server model and component model combination was not found in the HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor was not found for the given server PID.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS vendor and version was not found in HCL for the server PID and processor combination.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Component-Model",
+					Description: `The validation failed because the given Component model was not found in the HCL for the given server PID, processor, server Firmware and OS vendor and version.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given server firmware or adapter firmware was not found in the HCL for the given server PID, processor, OS vendor and version and component model.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version was not found in the HCL for the given Server PID, processor, OS vendor and version, server firmware and component firmware.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given component firmware and driver version was not found in the HCL for the given Server PID, processor, OS vendor and version and server firmware.`,
+				},
+				resource.Attribute{
+					Name:        "Service-Unavailable",
+					Description: `The validation has failed because HCL data service is temporarily not available. The server will be re-evaluated once HCL data service is back online or finished importing new HCL data.`,
+				},
+				resource.Attribute{
+					Name:        "Service-Error",
+					Description: `The validation has failed because the HCL data service has return a service error or unrecognized result.`,
+				},
+				resource.Attribute{
+					Name:        "Unrecognized-Protocol",
+					Description: `The validation has failed for the HCL component because the HCL data service has return a validation reason that is unknown to this service. This reason is used as a default failure reason reason in case we cannot map the error reason received from the HCL data service unto one of the other enum values.`,
+				},
+				resource.Attribute{
+					Name:        "Not-Evaluated",
+					Description: `The validation for the hardware or software HCL status was not yet evaluated because some previous validation had failed. For example if a server's hardware profile fails to validate with HCL, then the server's software status will not be evaluated.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `The validation has passed for this server PID, processor, OS vendor and version, component model, component firmware and driver version.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The validation for the HCL or Interop status is yet to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Info",
+					Description: `This means the Interop status for the sever cannot be computed because we have missing OS information. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Storage-Os",
+					Description: `The validation failed because the given storage name and version combination is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS name and version combination is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor is not found for the given server PID in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Platform",
+					Description: `The validation failed because the given server platform is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Model",
+					Description: `The validation failed because the given server model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Adapter-Model",
+					Description: `The validation failed because the given adapter model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Model",
+					Description: `The validation failed because the given switch model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Firmware",
+					Description: `The validation failed because the given server firmware version is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Firmware",
+					Description: `The validation failed because the given switch firmware version is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given adapter firmware version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given adapter firmware and driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed because the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Or-Driver-Info",
+					Description: `This means the Interop status for the switch or storage array cannot be computed because we have either missing Host OS information or missing required driver information. Either install ucstools vib or use power shell scripts to tag proper OS information or install required drivers.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation failed for the given server because one or more of its components failed validation.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `This means the HCL status and Interop status for the component have passed all validations for all of its related components.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_convergedinfra_pod",
 			Category:         "Data Sources",
 			ShortDescription: `A pod is unit of deployment of converged infrastructure. Contains inventory information related to the health, HCL, storage, nodes, etc. of the pod.`,
@@ -12973,12 +15327,520 @@ nodes, etc. of the pod.
 					Description: `The deployment type for a pod is of Nextgen type.`,
 				},
 				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+				resource.Attribute{
 					Name:        "FlexPod",
 					Description: `Pod type is FlexPod, an integrated infrastructure solution developed by Cisco and NetApp.`,
 				},
 				resource.Attribute{
 					Name:        "FlashStack",
 					Description: `Pod type is FlashStack, an integrated infrastructure solution developed by Cisco and Pure Storage.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_convergedinfra_pod_compliance_info",
+			Category:         "Data Sources",
+			ShortDescription: `Captures the compliance information for a converged infrastructure pod.`,
+			Description: `
+Captures the compliance information for a converged infrastructure pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The validation for the HCL or Interop status is yet to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Info",
+					Description: `This means the Interop status for the sever cannot be computed because we have missing OS information. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Storage-Os",
+					Description: `The validation failed because the given storage name and version combination is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS name and version combination is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor is not found for the given server PID in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Platform",
+					Description: `The validation failed because the given server platform is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Model",
+					Description: `The validation failed because the given server model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Adapter-Model",
+					Description: `The validation failed because the given adapter model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Model",
+					Description: `The validation failed because the given switch model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Firmware",
+					Description: `The validation failed because the given server firmware version is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Firmware",
+					Description: `The validation failed because the given switch firmware version is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given adapter firmware version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given adapter firmware and driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed because the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Or-Driver-Info",
+					Description: `This means the Interop status for the switch or storage array cannot be computed because we have either missing Host OS information or missing required driver information. Either install ucstools vib or use power shell scripts to tag proper OS information or install required drivers.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation failed for the given server because one or more of its components failed validation.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `This means the HCL status and Interop status for the component have passed all validations for all of its related components.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_convergedinfra_server_compliance_details",
+			Category:         "Data Sources",
+			ShortDescription: `The compliance details of a server in a converged infrastructure pod.`,
+			Description: `
+The compliance details of a server in a converged infrastructure pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed becaue the given server has no OS driver information available in the inventory. Either install UCS Tools VIB on the host ESXi or use OS Discovery Tool scripts to provide proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server",
+					Description: `The validation failed for this server because the server's model was not listed in the HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor was not listed for the given server model.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS vendor or version was not listed in HCL for the server PID and processor combination.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given server firmware was not listed in the HCL for the given server PID, processor, OS vendor and version.`,
+				},
+				resource.Attribute{
+					Name:        "Service-Unavailable",
+					Description: `The validation has failed because HCL data service is temporarily not available. The server will be re-evaluated once HCL data service is back online or finished importing new HCL data.`,
+				},
+				resource.Attribute{
+					Name:        "Service-Error",
+					Description: `The validation has failed because the HCL data service has returned a service error or unrecognized result.`,
+				},
+				resource.Attribute{
+					Name:        "Not-Evaluated",
+					Description: `This means the HclStatus for the sever has not been evaluated because it is exempted.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation has failed for this server because one or more components have \ Not-Listed\ status.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `The validation has passed for this server's model, processor, OS vendor and version.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The validation for the HCL or Interop status is yet to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Info",
+					Description: `This means the Interop status for the sever cannot be computed because we have missing OS information. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Storage-Os",
+					Description: `The validation failed because the given storage name and version combination is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS name and version combination is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor is not found for the given server PID in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Platform",
+					Description: `The validation failed because the given server platform is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Model",
+					Description: `The validation failed because the given server model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Adapter-Model",
+					Description: `The validation failed because the given adapter model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Model",
+					Description: `The validation failed because the given switch model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Firmware",
+					Description: `The validation failed because the given server firmware version is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Firmware",
+					Description: `The validation failed because the given switch firmware version is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given adapter firmware version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given adapter firmware and driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed because the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Or-Driver-Info",
+					Description: `This means the Interop status for the switch or storage array cannot be computed because we have either missing Host OS information or missing required driver information. Either install ucstools vib or use power shell scripts to tag proper OS information or install required drivers.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation failed for the given server because one or more of its components failed validation.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `This means the HCL status and Interop status for the component have passed all validations for all of its related components.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_convergedinfra_storage_compliance_details",
+			Category:         "Data Sources",
+			ShortDescription: `The compliance details of a storage in a converged infrastructure pod.`,
+			Description: `
+The compliance details of a storage in a converged infrastructure pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The validation for the HCL or Interop status is yet to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Info",
+					Description: `This means the Interop status for the sever cannot be computed because we have missing OS information. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Storage-Os",
+					Description: `The validation failed because the given storage name and version combination is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS name and version combination is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor is not found for the given server PID in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Platform",
+					Description: `The validation failed because the given server platform is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Model",
+					Description: `The validation failed because the given server model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Adapter-Model",
+					Description: `The validation failed because the given adapter model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Model",
+					Description: `The validation failed because the given switch model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Firmware",
+					Description: `The validation failed because the given server firmware version is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Firmware",
+					Description: `The validation failed because the given switch firmware version is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given adapter firmware version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given adapter firmware and driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed because the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Or-Driver-Info",
+					Description: `This means the Interop status for the switch or storage array cannot be computed because we have either missing Host OS information or missing required driver information. Either install ucstools vib or use power shell scripts to tag proper OS information or install required drivers.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation failed for the given server because one or more of its components failed validation.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `This means the HCL status and Interop status for the component have passed all validations for all of its related components.`,
+				},
+				resource.Attribute{
+					Name:        "Server",
+					Description: `The component type for a server in a converged infrastructure pod.`,
+				},
+				resource.Attribute{
+					Name:        "Adapter",
+					Description: `The component type for an adapter on a server in a converged infrastructure pod.`,
+				},
+				resource.Attribute{
+					Name:        "FabricInterconnect",
+					Description: `The component type for a fabric interconnect in a converged infrastructure pod.`,
+				},
+				resource.Attribute{
+					Name:        "Nexus",
+					Description: `The component type for a nexus switch in a converged infrastructure pod.`,
+				},
+				resource.Attribute{
+					Name:        "Storage",
+					Description: `The component type for a storage array in a converged infrastructure pod.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_convergedinfra_switch_compliance_details",
+			Category:         "Data Sources",
+			ShortDescription: `The compliance details for a switch (Fabric Interconnect/Nexus/MDS) which is part of a converged infrastructure pod.`,
+			Description: `
+The compliance details for a switch (Fabric Interconnect/Nexus/MDS) which is part of a converged infrastructure pod.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The validation for the HCL or Interop status is yet to be performed.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Info",
+					Description: `This means the Interop status for the sever cannot be computed because we have missing OS information. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Storage-Os",
+					Description: `The validation failed because the given storage name and version combination is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Os-Info",
+					Description: `The validation failed because the given OS name and version combination is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Processor",
+					Description: `The validation failed because the given processor is not found for the given server PID in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Platform",
+					Description: `The validation failed because the given server platform is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Model",
+					Description: `The validation failed because the given server model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Adapter-Model",
+					Description: `The validation failed because the given adapter model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Model",
+					Description: `The validation failed because the given switch model is not found in the Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Server-Firmware",
+					Description: `The validation failed because the given server firmware version is not found in HCL.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Switch-Firmware",
+					Description: `The validation failed because the given switch firmware version is not found in Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware",
+					Description: `The validation failed because the given adapter firmware version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Driver",
+					Description: `The validation failed because the given driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Firmware-Driver",
+					Description: `The validation failed because the given adapter firmware and driver version is not found in either HCL or Interop matrix.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Driver-Info",
+					Description: `The validation failed because the given server has no OS driver information available in the inventory. Either install ucstools vib or use power shell scripts to tag proper OS information.`,
+				},
+				resource.Attribute{
+					Name:        "Missing-Os-Or-Driver-Info",
+					Description: `This means the Interop status for the switch or storage array cannot be computed because we have either missing Host OS information or missing required driver information. Either install ucstools vib or use power shell scripts to tag proper OS information or install required drivers.`,
+				},
+				resource.Attribute{
+					Name:        "Incompatible-Components",
+					Description: `The validation failed for the given server because one or more of its components failed validation.`,
+				},
+				resource.Attribute{
+					Name:        "Compatible",
+					Description: `This means the HCL status and Interop status for the component have passed all validations for all of its related components.`,
+				},
+				resource.Attribute{
+					Name:        "NotEvaluated",
+					Description: `The interoperability compliance for the component has not be checked.`,
+				},
+				resource.Attribute{
+					Name:        "Approved",
+					Description: `The component is valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "NotApproved",
+					Description: `The component is not valid as per the interoperability compliance check.`,
+				},
+				resource.Attribute{
+					Name:        "Incomplete",
+					Description: `The interoperability compliance check could not be completed for the component due to incomplete data.`,
+				},
+				resource.Attribute{
+					Name:        "FabricInterconnect",
+					Description: `The default Switch type of UCSM and IMM mode devices.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `Switch type of Nexus devices.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `Switch type of Nexus MDS devices.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13009,6 +15871,30 @@ Policy to control configuration changes allowed from Cisco IMC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_electricitymaps_carbon_intensity",
+			Category:         "Data Sources",
+			ShortDescription: `This endpoint retrieves a past carbon intensity (in gCO2eq/kWh) of an area within a given date range. It can either be queried by zone identifier or by geolocation. The resolution is 60 minutes. The time range is limited to 10 days.`,
+			Description: `
+This endpoint retrieves a past carbon intensity (in gCO2eq/kWh) of an area within a given date range. It can either be queried by zone identifier or by geolocation. The resolution is 60 minutes. The time range is limited to 10 days.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_electricitymaps_power_breakdown",
+			Category:         "Data Sources",
+			ShortDescription: `This endpoint retrieves a past power breakdown of an area within a given date range. It can either be queried by zone identifier or by geolocation. The resolution is 60 minutes. The time range is limited to 10 days.`,
+			Description: `
+This endpoint retrieves a past power breakdown of an area within a given date range. It can either be queried by zone identifier or by geolocation. The resolution is 60 minutes. The time range is limited to 10 days.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_equipment_chassis",
 			Category:         "Data Sources",
 			ShortDescription: `A physical holder housing blade servers.`,
@@ -13030,6 +15916,18 @@ A physical holder housing blade servers.
 					Description: `Intersight managed mode of operation.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_equipment_chassis_id_pool",
+			Category:         "Data Sources",
+			ShortDescription: `ChassisIdPool object contains pool of chassisId's that can be allocated for newly discovered chassis.`,
+			Description: `
+ChassisIdPool object contains pool of chassisId's that can be allocated for newly discovered chassis.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13200,6 +16098,63 @@ Aggregation of properties pertaining to different inventory MOs.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_equipment_end_point_log",
+			Category:         "Data Sources",
+			ShortDescription: `End point log file information.`,
+			Description: `
+End point log file information.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `End point log file type None.`,
+				},
+				resource.Attribute{
+					Name:        "SEL",
+					Description: `End point log file type SEL.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Log collection not started.`,
+				},
+				resource.Attribute{
+					Name:        "CollectionInProgress",
+					Description: `Log file collection is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "CollectionCompleted",
+					Description: `Log file collection completed.`,
+				},
+				resource.Attribute{
+					Name:        "CollectionFailed",
+					Description: `Log file collection failed.`,
+				},
+				resource.Attribute{
+					Name:        "UploadInProgress",
+					Description: `Log file upload is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UploadCompleted",
+					Description: `Log file upload completed.`,
+				},
+				resource.Attribute{
+					Name:        "UploadFailed",
+					Description: `Log file upload failed to complete.`,
+				},
+				resource.Attribute{
+					Name:        "DownloadUrlCreationFailed",
+					Description: `Download Url creation failed.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Log collection and upload completed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13718,6 +16673,18 @@ Locator Led of an Equipment like Rack, Disk etc.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_equipment_log_download",
+			Category:         "Data Sources",
+			ShortDescription: `Download the log collected from end point.`,
+			Description: `
+Download the log collected from end point.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_equipment_psu",
 			Category:         "Data Sources",
 			ShortDescription: `This represents power supply unit for chassis/server.`,
@@ -13762,6 +16729,43 @@ Rack Server Slot in a RackEnclosure.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_equipment_sensor",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for Sensor reports on a device.`,
+			Description: `
+Concrete class for Sensor reports on a device.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "absent",
+					Description: `The sensor is absent on the device.`,
+				},
+				resource.Attribute{
+					Name:        "failed",
+					Description: `The sensor in the device has failed.`,
+				},
+				resource.Attribute{
+					Name:        "normal",
+					Description: `The sensor status is normal.`,
+				},
+				resource.Attribute{
+					Name:        "minor",
+					Description: `The sensor has crossed minor threshold.`,
+				},
+				resource.Attribute{
+					Name:        "major",
+					Description: `The sensor has crossed major threshold.`,
+				},
+				resource.Attribute{
+					Name:        "bad-asic",
+					Description: `The sensor is in bad-asic state.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -13861,6 +16865,47 @@ Fixed / Removable module on a Fabric Interconnect / Switch.
 				resource.Attribute{
 					Name:        "lower-non-recoverable",
 					Description: `State of the sensor indicating that the temperature is extremely below normal range.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_equipment_switch_operation",
+			Category:         "Data Sources",
+			ShortDescription: `Models the operational states of a Switch in Intersight.`,
+			Description: `
+Models the operational states of a Switch in Intersight.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No operation action for the Locator Led of an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "TurnOn",
+					Description: `Turn on the Locator Led of an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "TurnOff",
+					Description: `Turn off the Locator Led of an equipment.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Nil value when no action has been triggered by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Applied",
+					Description: `User configured settings are in applied state.`,
+				},
+				resource.Attribute{
+					Name:        "Applying",
+					Description: `User settings are being applied on the target server.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `User configured settings could not be applied.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14144,7 +17189,7 @@ This captures details of configuration changes.
 				},
 				resource.Attribute{
 					Name:        "Modified",
-					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed succesfully.`,
+					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed successfully.`,
 				},
 				resource.Attribute{
 					Name:        "Deleted",
@@ -14447,20 +17492,20 @@ Configuration object sent by user to create a fc uplink port.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14476,20 +17521,20 @@ Object sent by user to configure a fc uplink port-channel on the collection of p
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 				resource.Attribute{
 					Name:        "Idle",
@@ -14513,20 +17558,20 @@ Configuration object sent by user to create a fc uplink port.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 				resource.Attribute{
 					Name:        "Idle",
@@ -14535,6 +17580,31 @@ Configuration object sent by user to create a fc uplink port.
 				resource.Attribute{
 					Name:        "Arbff",
 					Description: `Fc Fill Pattern type Arbff.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_fc_zone_policy",
+			Category:         "Data Sources",
+			ShortDescription: `List of target path entries of storage arrays that are used to configure zones on the switch.`,
+			Description: `
+List of target path entries of storage arrays that are used to configure zones on the switch.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "SIST",
+					Description: `The system automatically creates one zone for each vHBA and storage port pair. Each zone has two members.`,
+				},
+				resource.Attribute{
+					Name:        "SIMT",
+					Description: `The system automatically creates one zone for each vHBA. Configure this type of zoning if the number of zones created is likely to exceed the maximum supported number of zones.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `FC zoning is not configured.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -14644,6 +17714,10 @@ Priority Flow Control setting for each port.
 					Description: `Enables PFC on the local port regardless of the capability of the peers.`,
 				},
 				resource.Attribute{
+					Name:        "off",
+					Description: `Disable PFC on the local port regardless of the capability of the peers.`,
+				},
+				resource.Attribute{
 					Name:        "Disabled",
 					Description: `Admin configured Disabled State.`,
 				},
@@ -14724,6 +17798,14 @@ A policy to configure Multicast settings for all the Virtual LAN networks.
 				resource.Attribute{
 					Name:        "Enabled",
 					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Admin configured Disabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Enabled",
@@ -14922,6 +18004,18 @@ Configuration object sent by user to create a server port.
 					Name:        "Cl74",
 					Description: `Forward error correction option 'cl74'.`,
 				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Preferred Id will be ignored if specified with this type.`,
+				},
+				resource.Attribute{
+					Name:        "RackServer",
+					Description: `Connected device type is Rack Unit Server.`,
+				},
+				resource.Attribute{
+					Name:        "Chassis",
+					Description: `Connected device type is Chassis.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -15094,8 +18188,66 @@ Configuration object sent by user to create a uplink port.
 			Description: `
 Configuration object for Virtual LAN.
 `,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `This represents a regular VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Primary",
+					Description: `This represents a primary VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Isolated",
+					Description: `This represents an isolated VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Community",
+					Description: `This represents a community VLAN.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_vlan_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Configuration object inventoried from the device for VLAN.`,
+			Description: `
+Configuration object inventoried from the device for VLAN.
+`,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_vlan_set",
+			Category:         "Data Sources",
+			ShortDescription: `Auto created object for set of vlans with identical configuration.`,
+			Description: `
+Auto created object for set of vlans with identical configuration.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `This represents a regular VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Primary",
+					Description: `This represents a primary VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Isolated",
+					Description: `This represents an isolated VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Community",
+					Description: `This represents a community VLAN.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -15133,6 +18285,71 @@ Configuration object sent by user to create VSAN configurations.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_fabric_vsan_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Inventory object for VSAN.`,
+			Description: `
+Inventory object for VSAN.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Up",
+					Description: `VSAN administrative state is up.`,
+				},
+				resource.Attribute{
+					Name:        "Down",
+					Description: `VSAN administrative state is down.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Default mode for a VSAN that is communicating between a SAN composed entirely of MDS 9000 switches.`,
+				},
+				resource.Attribute{
+					Name:        "1",
+					Description: `Allows integration with Brocade and McData switches that have been configured for their own interoperability modes. Brocade and McData switches must be running in interop mode to work with this VSAN mode.`,
+				},
+				resource.Attribute{
+					Name:        "2",
+					Description: `Allows seamless integration with specific Brocade switches running in their own native mode of operation.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Allows seamless integration with Brocade switches that contains more than 16 ports.`,
+				},
+				resource.Attribute{
+					Name:        "4",
+					Description: `Allows seamless integration between MDS VSANs and McData switches running in McData Fabric 1.0 interop mode.`,
+				},
+				resource.Attribute{
+					Name:        "src-id/dst-id",
+					Description: `Directs the switch to use the source and destination ID for its path selection process.`,
+				},
+				resource.Attribute{
+					Name:        "src-id/dst-id/oxid",
+					Description: `Directs the switch to use the source ID, the destination ID, and the OX ID for its path selection process.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `VSAN operational state is up.`,
+				},
+				resource.Attribute{
+					Name:        "Down",
+					Description: `VSAN operational state is down.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `VSAN smart zoning state is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `VSAN smart zoning state is disabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_fault_instance",
 			Category:         "Data Sources",
 			ShortDescription: `An endpoint anomaly is represented by this object.`,
@@ -15141,6 +18358,27 @@ An endpoint anomaly is represented by this object.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fc_neighbor",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for switch and N port virtualization neighbors present in various interfaces of a switch.`,
+			Description: `
+Concrete class for switch and N port virtualization neighbors present in various interfaces of a switch.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Switch",
+					Description: `Switch type neighbors of an interface.`,
+				},
+				resource.Attribute{
+					Name:        "NPV",
+					Description: `N Port Virtualization neighbors of an interface.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -15231,6 +18469,27 @@ PoolMember represents a single WWN ID that is part of a pool.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fcpool_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `The WWN reservation object, used to hold reserved identities.`,
+			Description: `
+The WWN reservation object, used to hold reserved identities.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -15344,6 +18603,18 @@ An image distributed by Cisco.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -15522,6 +18793,18 @@ A device driver image distributed by Cisco.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -15719,6 +19002,27 @@ Descriptor to uniquely identify a PCIE component.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_firmware_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Firmware policy on the endpoint.`,
+			Description: `
+Firmware policy on the endpoint.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_firmware_psu_descriptor",
 			Category:         "Data Sources",
 			ShortDescription: `Descriptor to uniquely identify a PSU component.`,
@@ -15763,6 +19067,18 @@ A server configuration utility image distributed by Cisco.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -15969,6 +19285,14 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				resource.Attribute{
 					Name:        "TERMINATED",
 					Description: `The upgrade has been terminated.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Upgrade is invoked within the service.`,
+				},
+				resource.Attribute{
+					Name:        "profileTrigger",
+					Description: `Upgrade is invoked from a profile deployment.`,
 				},
 				resource.Attribute{
 					Name:        "direct_upgrade",
@@ -16300,6 +19624,18 @@ Collection used to store exempted products (ie. adapters, storage controllers, e
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hcl_hw_catalog_info",
+			Category:         "Data Sources",
+			ShortDescription: `Hardware catalog information for HyperFlex Data Platform, required for BOM validation.`,
+			Description: `
+Hardware catalog information for HyperFlex Data Platform, required for BOM validation.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hcl_hyperflex_software_compatibility_info",
 			Category:         "Data Sources",
 			ShortDescription: `Lists software compatibility information between different HperFlex component versions like HyperFlex Data Platform, Hypervisor, Drive Firmware, etc.`,
@@ -16350,6 +19686,18 @@ Collection used to store operating system details.
 			ShortDescription: `Collection used to store operating system vendors details.`,
 			Description: `
 Collection used to store operating system vendors details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hcl_server_hw_catalog_info",
+			Category:         "Data Sources",
+			ShortDescription: `Server hardware catalog information for a particular server model, used for server BOM validation.`,
+			Description: `
+Server hardware catalog information for a particular server model, used for server BOM validation.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -16489,19 +19837,23 @@ of the cluster.
 				},
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the cluster is not available.`,
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The deployment type of a HyperFlex cluster consisting of 3 or more standalone nodes with the required Datacenter license.`,
 				},
 				resource.Attribute{
 					Name:        "NA",
@@ -16570,6 +19922,34 @@ of the cluster.
 				resource.Attribute{
 					Name:        "Waiting",
 					Description: `The upgrade of the HyperFlex cluster is waiting to continue execution.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The uplink speed could not be determined. The physical servers are potentially not claimed.`,
+				},
+				resource.Attribute{
+					Name:        "10G",
+					Description: `The uplink speed is 10G.`,
+				},
+				resource.Attribute{
+					Name:        "1G",
+					Description: `The uplink speed is 1G.`,
+				},
+				resource.Attribute{
+					Name:        "UNKNOWN",
+					Description: `The type of zone configured on the HyperFlex cluster is not known.`,
+				},
+				resource.Attribute{
+					Name:        "NOT_CONFIGURED",
+					Description: `The zone type is not configured.`,
+				},
+				resource.Attribute{
+					Name:        "LOGICAL",
+					Description: `The zone is a logical zone created when the logical availability zones (LAZ) feature is enabled on the HyperFlex cluster.`,
+				},
+				resource.Attribute{
+					Name:        "PHYSICAL",
+					Description: `The zone is a physical zone configured on a stretched HyperFlex cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16717,6 +20097,10 @@ A profile specifying configuration settings for a HyperFlex cluster.
 				resource.Attribute{
 					Name:        "EDGE",
 					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexDp",
@@ -16943,7 +20327,7 @@ Hyperflex cluster.
 				},
 				resource.Attribute{
 					Name:        "BLACKLISTED",
-					Description: `The disk has been blacklisted by storfs.`,
+					Description: `The deprecated value for 'Blocked'. It is included to maintain backwards compatibility with clusters running a HyperFlex Data Platform version older than 5.0(1a).`,
 				},
 				resource.Attribute{
 					Name:        "SECUREERASED",
@@ -17318,6 +20702,18 @@ HyperFlex health check Debian Package SHA512 checksum.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hyperflex_hw_catalog",
+			Category:         "Data Sources",
+			ShortDescription: `Hardware catalog for managing HyperFlex server BOM validation.`,
+			Description: `
+Hardware catalog for managing HyperFlex server BOM validation.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hyperflex_hxdp_version",
 			Category:         "Data Sources",
 			ShortDescription: `A HyperFlex Data Platform version.`,
@@ -17564,6 +20960,71 @@ A virtual machine belonging to the HyperFlex cluster spawned via the hypervisor.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hyperflex_initiator_group",
+			Category:         "Data Sources",
+			ShortDescription: `A HyperFlex iSCSI initiator group entity. Contains detailed information about the initaitor group which includes a list of iSCSI initiators and iSCSI target objects.`,
+			Description: `
+A HyperFlex iSCSI initiator group entity.
+Contains detailed information about the initaitor group which includes a list of iSCSI initiators and iSCSI target objects.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The source of the HyperFlex inventory is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "ONLINE",
+					Description: `The source of the HyperFlex inventory is online.`,
+				},
+				resource.Attribute{
+					Name:        "OFFLINE",
+					Description: `The source of the HyperFlex inventory is offline.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_iscsi_network",
+			Category:         "Data Sources",
+			ShortDescription: `The HyperFlex iSCSI Network configuration. Contains detailed information about the iSCSI network which includes subnet, gateway, Virtual local area network (VLAN) name, VLAN identity, maximum transmission unit (MTU), ranges of the IP addresses belonging to the HyperFlex iSCSI network.`,
+			Description: `
+The HyperFlex iSCSI Network configuration.
+Contains detailed information about the iSCSI network which includes subnet, gateway, Virtual local area network (VLAN) name,
+VLAN identity, maximum transmission unit (MTU), ranges of the IP addresses belonging to the HyperFlex iSCSI network.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The source of the HyperFlex inventory is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "ONLINE",
+					Description: `The source of the HyperFlex inventory is online.`,
+				},
+				resource.Attribute{
+					Name:        "OFFLINE",
+					Description: `The source of the HyperFlex inventory is offline.`,
+				},
+				resource.Attribute{
+					Name:        "UNKNOWN",
+					Description: `The maximum transmission unit of the HyperFlex iSCSI network is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "MTU_1500",
+					Description: `The maximum transmission unit of the HyperFlex iSCSI network is 1500 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "MTU_9000",
+					Description: `The maximum transmission unit of the HyperFlex iSCSI network is 9000 bytes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hyperflex_key_encryption_key",
 			Category:         "Data Sources",
 			ShortDescription: `Specifies a key encryption Key and parameters for the associated resource.`,
@@ -17629,6 +21090,33 @@ A policy specifying credentials for HyperFlex cluster such as controller VM pass
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_hyperflex_lun",
+			Category:         "Data Sources",
+			ShortDescription: `A HyperFlex iSCSI logical unit number (LUN) entity. Contains detailed information about the iSCSI LUN which includes the identity and capacity information, and the iSCSI target to which it is associated.`,
+			Description: `
+A HyperFlex iSCSI logical unit number (LUN) entity.
+Contains detailed information about the iSCSI LUN which includes the identity and capacity information, and the
+iSCSI target to which it is associated.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The source of the HyperFlex inventory is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "ONLINE",
+					Description: `The source of the HyperFlex inventory is online.`,
+				},
+				resource.Attribute{
+					Name:        "OFFLINE",
+					Description: `The source of the HyperFlex inventory is offline.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_hyperflex_node",
 			Category:         "Data Sources",
 			ShortDescription: `A host participating in the cluster. The host consists of a hypervisor installed on a node that manages virtual machines.`,
@@ -17679,7 +21167,7 @@ A host participating in the cluster. The host consists of a hypervisor installed
 				},
 				resource.Attribute{
 					Name:        "Allowed",
-					Description: `The node is allowd to be added to the cluster.`,
+					Description: `The node is allowed to be added to the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "Whitelisted",
@@ -18040,8 +21528,47 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_hyperflex_target",
+			Category:         "Data Sources",
+			ShortDescription: `A HyperFlex iSCSI target entity. Contains detailed information about the iSCSI target which includes a list of linked iSCSI initiator group objects, list of iSCSI lun objects associated with the iSCSI target, authorization method and iSCSI qualified name.`,
+			Description: `
+A HyperFlex iSCSI target entity.
+Contains detailed information about the iSCSI target which includes a list of linked iSCSI initiator group objects,
+list of iSCSI lun objects associated with the iSCSI target, authorization method and iSCSI qualified name.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `Authorization method of the HyperFlex iSCSI target is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "CHAP",
+					Description: `Authorization method of the HyperFlex iSCSI target is CHAP.`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Authorization method of the HyperFlex iSCSI target is none.`,
+				},
+				resource.Attribute{
+					Name:        "NOT_APPLICABLE",
+					Description: `The source of the HyperFlex inventory is not applicable.`,
+				},
+				resource.Attribute{
+					Name:        "ONLINE",
+					Description: `The source of the HyperFlex inventory is online.`,
+				},
+				resource.Attribute{
+					Name:        "OFFLINE",
+					Description: `The source of the HyperFlex inventory is offline.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -18720,135 +22247,143 @@ The privilege defined at the end point which can be assigned to a user.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -18872,39 +22407,75 @@ The privilege defined at the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -18912,11 +22483,11 @@ The privilege defined at the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -18924,35 +22495,39 @@ The privilege defined at the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -18960,7 +22535,7 @@ The privilege defined at the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -18977,135 +22552,143 @@ The role defined in the end point which can be assigned to a user.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -19129,39 +22712,75 @@ The role defined in the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -19169,11 +22788,11 @@ The role defined in the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -19181,35 +22800,39 @@ The role defined in the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -19217,7 +22840,7 @@ The role defined in the end point which can be assigned to a user.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -19350,6 +22973,18 @@ The access management based on IP address.
 			ShortDescription: `Add an IP address to enable IP address based access management.`,
 			Description: `
 Add an IP address to enable IP address based access management.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iam_ldap_config_params",
+			Category:         "Data Sources",
+			ShortDescription: `Stores the additional internal LDAP configuration details.`,
+			Description: `
+Stores the additional internal LDAP configuration details.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -19661,6 +23296,18 @@ Holder for UI preferences such as theme, columns.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_iam_user_setting",
+			Category:         "Data Sources",
+			ShortDescription: `Holder for UI Settings such as preference of the user for Session Recording.`,
+			Description: `
+Holder for UI Settings such as preference of the user for Session Recording.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_inventory_device_info",
 			Category:         "Data Sources",
 			ShortDescription: `Information pertaining to a Registered Device in starship which is pertinent to Inventory Microservice.`,
@@ -19851,6 +23498,35 @@ PoolMember represents a single IPv4 and or IPv6 address that is part of a pool.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_ippool_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `The IP reservation object, used to hold reserved addresses.`,
+			Description: `
+The IP reservation object, used to hold reserved addresses.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "IPv4",
+					Description: `IP V4 address type requested.`,
+				},
+				resource.Attribute{
+					Name:        "IPv6",
+					Description: `IP V6 address type requested.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_ippool_shadow_block",
 			Category:         "Data Sources",
 			ShortDescription: `A block of Contiguous IP addresses that are part of a shadow pool.`,
@@ -19971,11 +23647,44 @@ PoolMember represents a single IQN address that is part of a pool.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_iqnpool_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `The IQN reservation object, used to hold reserved identity.`,
+			Description: `
+The IQN reservation object, used to hold reserved identity.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_iqnpool_universe",
 			Category:         "Data Sources",
 			ShortDescription: `Universe represents a book keeping container to keep track of all IDs for a given account and pool type.`,
 			Description: `
 Universe represents a book keeping container to keep track of all IDs for a given account and pool type.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iwotenant_maintenance_notification",
+			Category:         "Data Sources",
+			ShortDescription: `Maintenance related notification to be displayed as UI banner when customer logs in the Intersight UI.`,
+			Description: `
+Maintenance related notification to be displayed as UI banner when customer logs in the Intersight UI.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -20377,6 +24086,18 @@ Deployment inventory represents a Kubernetes Deployment. A Kubernetes Deployment
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_kubernetes_http_proxy_policy",
+			Category:         "Data Sources",
+			ShortDescription: `A policy specifying HTTP and HTTPS proxy configuration.`,
+			Description: `
+A policy specifying HTTP and HTTPS proxy configuration.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_kubernetes_ingress",
 			Category:         "Data Sources",
 			ShortDescription: `Ingress inventory represent a Kubernetes Ingress. In Kubernetes, Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.`,
@@ -20451,6 +24172,18 @@ A configuration profile for a node group in a Kubernetes cluster.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_kubernetes_nvidia_gpu_product",
+			Category:         "Data Sources",
+			ShortDescription: `Information of a Nvidia GPU product.`,
+			Description: `
+Information of a Nvidia GPU product.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_kubernetes_pod",
 			Category:         "Data Sources",
 			ShortDescription: `Pod represents a Kubernetes Pod. In Intersight, it is a read only model that represent Kubernetes Pod information. In Kubernetes, A Pod is the basic execution unit of a Kubernetes application the smallest and simplest unit in the Kubernetes object model that you create or deploy. A Pod represents processes running on your Cluster.`,
@@ -20496,7 +24229,7 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
 				},
 			},
@@ -20733,6 +24466,58 @@ License information for an account.
 					Description: `IKS-Advantage as a License type.`,
 				},
 				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
 					Name:        "Base",
 					Description: `Base as a License type. It is default license type.`,
 				},
@@ -20768,6 +24553,58 @@ License information for an account.
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -20798,6 +24635,30 @@ Customer operation object to refresh the registration or start the trial period 
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_license_iks_license_count",
+			Category:         "Data Sources",
+			ShortDescription: `Customer operation object to request reservation code.`,
+			Description: `
+Customer operation object to request reservation code.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_inc_customer_op",
+			Category:         "Data Sources",
+			ShortDescription: `Customer operation object to refresh the registration or start the trial period of the Intersight Nexus Cloud license tiers.`,
+			Description: `
+Customer operation object to refresh the registration or start the trial period of the Intersight Nexus Cloud license tiers.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_inc_license_count",
 			Category:         "Data Sources",
 			ShortDescription: `Customer operation object to request reservation code.`,
 			Description: `
@@ -20852,6 +24713,58 @@ Customer operation object to refresh the registration or re-authenticate, pre-cr
 				resource.Attribute{
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -20939,6 +24852,95 @@ the feature set defined for the license entitlement is granted to the customer.
 				resource.Attribute{
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_license_info_view",
+			Category:         "Data Sources",
+			ShortDescription: `Custom LicenseInfo view list to be displayed by the UI.`,
+			Description: `
+Custom LicenseInfo view list to be displayed by the UI.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_license_license_registration_status",
+			Category:         "Data Sources",
+			ShortDescription: `Current step of the registration status for licensing.`,
+			Description: `
+Current step of the registration status for licensing.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "RegistrationNotStarted",
+					Description: `The license registration state to chose between trial and registration.`,
+				},
+				resource.Attribute{
+					Name:        "RegistrationStarted",
+					Description: `The license registration state during set up flow.`,
+				},
+				resource.Attribute{
+					Name:        "RegistrationComplete",
+					Description: `The license registration state after completion.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -21043,6 +25045,27 @@ PoolMember represents a single MAC address that is part of a pool.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_macpool_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `The MAC reservation object, used to hold reserved addresses.`,
+			Description: `
+The MAC reservation object, used to hold reserved addresses.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -21247,6 +25270,30 @@ The meta-data of managed objects and complex types.
 			ShortDescription: `High level, aggregated status of Intersight components for a given Intersight account user. Meant to inform the user if there's an issue with Intersight components that needs her attention. At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components. Specifically designed to be easily consumed by external dashboards to display an at-a-glance status of Intersight components. This conforms to the health data API schema published as part of Cisco PlatformSuite.`,
 			Description: `
 High level, aggregated status of Intersight components for a given Intersight account user. Meant to inform the user if there's an issue with Intersight components that needs her attention. At this point, Aggregated status is reported for 'Licensing', 'Advisories' and 'Alarms' components. Specifically designed to be easily consumed by external dashboards to display an at-a-glance status of Intersight components. This conforms to the health data API schema published as part of Cisco PlatformSuite.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_discovered_neighbor",
+			Category:         "Data Sources",
+			ShortDescription: `L2 neighbor (LLDP and CDP) available on the switch.`,
+			Description: `
+L2 neighbor (LLDP and CDP) available on the switch.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_dns",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for list of DNS servers configured on the nexus end point.`,
+			Description: `
+Concrete class for list of DNS servers configured on the nexus end point.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21484,11 +25531,59 @@ Concrete class for supervisor card.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_network_telemetry_check",
+			Category:         "Data Sources",
+			ShortDescription: `Checking configured Telementry data in endpoint.`,
+			Description: `
+Checking configured Telementry data in endpoint.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_network_vlan_port_info",
 			Category:         "Data Sources",
 			ShortDescription: `Vlan Port information of a Fabric Interconnect.`,
 			Description: `
 Vlan Port information of a Fabric Interconnect.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_vpc_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for VPC domain configured on a network device. VPC (Virtual Port Channel) domain is used to connect two different switches logically to a single switch.`,
+			Description: `
+Concrete class for VPC domain configured on a network device. VPC (Virtual Port Channel) domain is used to connect two different switches logically to a single switch.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_vpc_member",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for VPC configured on a network device.`,
+			Description: `
+Concrete class for VPC configured on a network device.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_network_vpc_peer",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for VPC peer configured on a network device.`,
+			Description: `
+Concrete class for VPC peer configured on a network device.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -21509,6 +25604,18 @@ Concrete class for virtual routing and forwarding.
 		&resource.Resource{
 			Name:             "",
 			Type:             "intersight_networkconfig_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on Cisco IMC.`,
+			Description: `
+Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on Cisco IMC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_networkconfig_policy_inventory",
 			Category:         "Data Sources",
 			ShortDescription: `Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on Cisco IMC.`,
 			Description: `
@@ -21712,6 +25819,30 @@ Contains the latest metadata available for download from server.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niaapi_puv_script_downloader",
+			Category:         "Data Sources",
+			ShortDescription: `Provide a presigned url to download the metadata file from server.`,
+			Description: `
+Provide a presigned url to download the metadata file from server.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niaapi_upgrade_assist_file",
+			Category:         "Data Sources",
+			ShortDescription: `Provide a presigned url to download the controller upgrade file from server.`,
+			Description: `
+Provide a presigned url to download the controller upgrade file from server.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niaapi_version_regex",
 			Category:         "Data Sources",
 			ShortDescription: `The regular expression pattern to recongnize the version string.`,
@@ -21849,6 +25980,30 @@ Object to capture the flash details in APIC.
 			ShortDescription: `Object to capture the authentication details of NTP in APIC.`,
 			Description: `
 Object to capture the authentication details of NTP in APIC.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_performance_data",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture apic health details.`,
+			Description: `
+Object to capture apic health details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_apic_pod_data",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture Snmp trap details in APIC.`,
+			Description: `
+Object to capture Snmp trap details in APIC.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -22000,11 +26155,35 @@ Object to capture the UI page counts in APIC.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_apic_vision",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture ApicVision App properties.`,
+			Description: `
+Object to capture ApicVision App properties.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_app_details",
 			Category:         "Data Sources",
 			ShortDescription: `Details of apps installed on Nexus Dashboard.`,
 			Description: `
 Details of apps installed on Nexus Dashboard.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_cloud_details",
+			Category:         "Data Sources",
+			ShortDescription: `Inventory object available per device scope. This common object holds a device level information.`,
+			Description: `
+Inventory object available per device scope. This common object holds a device level information.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -22156,6 +26335,30 @@ Object is available at Fault scope in a fabric and provides details about a faul
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_hcloud_details",
+			Category:         "Data Sources",
+			ShortDescription: `Inventory object available per device scope. This common object holds a device level information.`,
+			Description: `
+Inventory object available per device scope. This common object holds a device level information.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_health_insights_data",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture apic health details.`,
+			Description: `
+Object to capture apic health details.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_https_acl_contract_details",
 			Category:         "Data Sources",
 			ShortDescription: `Object to capture the HTTPS ACL contract details in APIC.`,
@@ -22252,6 +26455,18 @@ Object to capture leaf pol group details.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_mds_neighbors",
+			Category:         "Data Sources",
+			ShortDescription: `MdsNeighbors object available per device scope for neighbor discovery.`,
+			Description: `
+MdsNeighbors object available per device scope for neighbor discovery.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_niatelemetry_mso_contract_details",
 			Category:         "Data Sources",
 			ShortDescription: `Details of contract configured from the Multi-Site Orchestrator.`,
@@ -22305,6 +26520,30 @@ Details of sites in Multi-Site Orchestrator.
 			ShortDescription: `Details of tenant in Multi-Site Orchestrator.`,
 			Description: `
 Details of tenant in Multi-Site Orchestrator.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_nexus_cloud_account",
+			Category:         "Data Sources",
+			ShortDescription: `Nexus Cloud object responsible for tracking site devices per account.`,
+			Description: `
+Nexus Cloud object responsible for tracking site devices per account.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_nexus_cloud_site",
+			Category:         "Data Sources",
+			ShortDescription: `Stores information of Nexus Cloud site devices.`,
+			Description: `
+Stores information of Nexus Cloud site devices.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -22413,6 +26652,18 @@ Inventory Object available for Fabric-scoped attributes.
 			ShortDescription: `Object available at device scope for license information. This determines the usage of this attribute.`,
 			Description: `
 Object available at device scope for license information. This determines the usage of this attribute.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_nicc",
+			Category:         "Data Sources",
+			ShortDescription: `Object to capture NICC properties.`,
+			Description: `
+Object to capture NICC properties.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -22618,6 +26869,27 @@ for account level subscriptions by Account Administrator.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_ntp_ntp_server",
+			Category:         "Data Sources",
+			ShortDescription: `Concrete class for NTP server configured on a network device. Network Time Protocol (NTP) is used to synchronize with computer clock time sources in a network.`,
+			Description: `
+Concrete class for NTP server configured on a network device. Network Time Protocol (NTP) is used to synchronize with computer clock time sources in a network.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Server",
+					Description: `NTP configured is server type.`,
+				},
+				resource.Attribute{
+					Name:        "Peer",
+					Description: `NTP configured is peer type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_ntp_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Policy to configure the NTP Servers.`,
@@ -22627,7 +26899,7 @@ Policy to configure the NTP Servers.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
 				},
 			},
@@ -22651,6 +26923,10 @@ Api access token for a given account.
 					Name:        "SmartLicensing-API",
 					Description: `Smart licensing API type.`,
 				},
+				resource.Attribute{
+					Name:        "CommerceEstimate-API",
+					Description: `Commerce Estimate API type.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -22671,6 +26947,299 @@ User's consent for Intersight to contact an external software repository such as
 				resource.Attribute{
 					Name:        "SmartLicensing-API",
 					Description: `Smart licensing API type.`,
+				},
+				resource.Attribute{
+					Name:        "CommerceEstimate-API",
+					Description: `Commerce Estimate API type.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_api_method_meta",
+			Category:         "Data Sources",
+			ShortDescription: `Contains metadata about APIs in the previously uploaded OpenAPI specification file.`,
+			Description: `
+Contains metadata about APIs in the previously uploaded OpenAPI specification file.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "GET",
+					Description: `Method type which indicates it is a GET API call.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `Method type which indicates it is a POST API call.`,
+				},
+				resource.Attribute{
+					Name:        "PUT",
+					Description: `Method type which indicates it is a PUT API call.`,
+				},
+				resource.Attribute{
+					Name:        "PATCH",
+					Description: `Method type which indicates it is a PATCH API call.`,
+				},
+				resource.Attribute{
+					Name:        "DELETE",
+					Description: `Method type which indicates it is a DELETE API call.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_open_api_specification",
+			Category:         "Data Sources",
+			ShortDescription: `An OpenAPI specification file uploaded to generate workflow tasks.`,
+			Description: `
+An OpenAPI specification file uploaded to generate workflow tasks.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action should be taken on the imported file.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedUploadUrl",
+					Description: `Generate pre signed URL of file for importing into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedDownloadUrl",
+					Description: `Generate pre signed URL of file in the repository to download.`,
+				},
+				resource.Attribute{
+					Name:        "CompleteImportProcess",
+					Description: `Mark that the import process of the file into the repository is complete.`,
+				},
+				resource.Attribute{
+					Name:        "MarkImportFailed",
+					Description: `Mark to indicate that the import process of the file into the repository failed.`,
+				},
+				resource.Attribute{
+					Name:        "PreCache",
+					Description: `Cache the file into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `The cancel import process for the file into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extract",
+					Description: `The action to extract the file in the external repository.`,
+				},
+				resource.Attribute{
+					Name:        "Evict",
+					Description: `Evict the cached file from the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForImport",
+					Description: `The image is ready to be imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Importing",
+					Description: `The image is being imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Imported",
+					Description: `The image has been extracted and imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "PendingExtraction",
+					Description: `Indicates that the image has been imported but not extracted in the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracting",
+					Description: `Indicates that the image is being extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracted",
+					Description: `Indicates that the image has been extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The image import from an external source to the repository has failed.`,
+				},
+				resource.Attribute{
+					Name:        "MetaOnly",
+					Description: `The image is present in an external repository.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForCache",
+					Description: `The image is ready to be cached into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Caching",
+					Description: `Indicates that the image is being cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Cached",
+					Description: `Indicates that the image has been cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "CachingFailed",
+					Description: `Indicates that the image caching into the Intersight Appliance failed or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Corrupted",
+					Description: `Indicates that the image in the local repository (or endpoint cache) has been corrupted after it was cached.`,
+				},
+				resource.Attribute{
+					Name:        "Evicted",
+					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_process_file",
+			Category:         "Data Sources",
+			ShortDescription: `Validates the OpenAPI specification file. On successful validation, it persists information about the available APIs. This information can be used to create tasks in the cloud orchestrator.`,
+			Description: `
+Validates the OpenAPI specification file. On successful validation, it persists information about the available APIs. This information can be used to create tasks in the cloud orchestrator.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_task_generation_request",
+			Category:         "Data Sources",
+			ShortDescription: `Creates a request which has information about the tasks that need to be created from the previously uploaded OpenAPI specification file. This object internally triggers a workflow that creates tasks which can be used in workflows.`,
+			Description: `
+Creates a request which has information about the tasks that need to be created from the previously uploaded OpenAPI specification file. This object internally triggers a workflow that creates tasks which can be used in workflows.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "External",
+					Description: `Denotes that the target endpoint is an external API endpoint`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `Denotes that the target endpoint is a Intersight API endpoint`,
+				},
+				resource.Attribute{
+					Name:        "HTTPS",
+					Description: `Denotes that the API call uses the HTTPS protocol type`,
+				},
+				resource.Attribute{
+					Name:        "HTTP",
+					Description: `Denotes that the API call uses the HTTP protocol type`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Request has been picked up for generating tasks from the OpenAPI Specification file.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `All the tasks from the request have been created.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `There were failures in generating one or more tasks in the request.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_task_generation_result",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about the status of the tasks created for a TaskGenerationRequest.`,
+			Description: `
+Provides information about the status of the tasks created for a TaskGenerationRequest.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -22708,135 +27277,143 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -22860,39 +27437,75 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -22900,11 +27513,11 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -22912,35 +27525,39 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -22948,7 +27565,7 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -23101,6 +27718,371 @@ based on vendor.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_partnerintegration_dc_logs",
+			Category:         "Data Sources",
+			ShortDescription: `Logs from the build operation.`,
+			Description: `
+Logs from the build operation.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value for the log stage.`,
+				},
+				resource.Attribute{
+					Name:        "Backend",
+					Description: `Logs corresponding to backend build.`,
+				},
+				resource.Attribute{
+					Name:        "Ui",
+					Description: `Logs corresponding to ui build stage.`,
+				},
+				resource.Attribute{
+					Name:        "Apidocs",
+					Description: `Logs corresponding to the apidocs build stage.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_device_connector",
+			Category:         "Data Sources",
+			ShortDescription: `Recipe for device connector build and deploy.`,
+			Description: `
+Recipe for device connector build and deploy.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default Value of the action, i.e. do nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Build",
+					Description: `Build the device connector service image.`,
+				},
+				resource.Attribute{
+					Name:        "Deploy",
+					Description: `Deploy the device connector service on the appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Upload",
+					Description: `Upload a file to the Partner Integration Appliance bucket.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "BackendInProgress",
+					Description: `The backend build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "BackendFailed",
+					Description: `The backend build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "DockerInProgress",
+					Description: `The docker build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DockerFailed",
+					Description: `The docker build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_doc_issues",
+			Category:         "Data Sources",
+			ShortDescription: `Documentation issues from the build operation.`,
+			Description: `
+Documentation issues from the build operation.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_etl",
+			Category:         "Data Sources",
+			ShortDescription: `ETL definition for the endpoint to translate platform API outputs to Intersight managed objects.`,
+			Description: `
+ETL definition for the endpoint to translate platform API outputs to Intersight managed objects.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_file",
+			Category:         "Data Sources",
+			ShortDescription: `A partner integration artifact which will be files containing development code uploaded by our partners to get the build for dc/microservice.`,
+			Description: `
+A partner integration artifact which will be files containing development code uploaded by our partners to get the build for dc/microservice.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Invalid file type for partnerIntegration appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Model",
+					Description: `Model file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "Etl",
+					Description: `ETL file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "Ui",
+					Description: `UI file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "DeviceConnector",
+					Description: `Generic Device Connector file.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action should be taken on the imported file.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedUploadUrl",
+					Description: `Generate pre signed URL of file for importing into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedDownloadUrl",
+					Description: `Generate pre signed URL of file in the repository to download.`,
+				},
+				resource.Attribute{
+					Name:        "CompleteImportProcess",
+					Description: `Mark that the import process of the file into the repository is complete.`,
+				},
+				resource.Attribute{
+					Name:        "MarkImportFailed",
+					Description: `Mark to indicate that the import process of the file into the repository failed.`,
+				},
+				resource.Attribute{
+					Name:        "PreCache",
+					Description: `Cache the file into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `The cancel import process for the file into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extract",
+					Description: `The action to extract the file in the external repository.`,
+				},
+				resource.Attribute{
+					Name:        "Evict",
+					Description: `Evict the cached file from the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForImport",
+					Description: `The image is ready to be imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Importing",
+					Description: `The image is being imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Imported",
+					Description: `The image has been extracted and imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "PendingExtraction",
+					Description: `Indicates that the image has been imported but not extracted in the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracting",
+					Description: `Indicates that the image is being extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracted",
+					Description: `Indicates that the image has been extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The image import from an external source to the repository has failed.`,
+				},
+				resource.Attribute{
+					Name:        "MetaOnly",
+					Description: `The image is present in an external repository.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForCache",
+					Description: `The image is ready to be cached into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Caching",
+					Description: `Indicates that the image is being cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Cached",
+					Description: `Indicates that the image has been cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "CachingFailed",
+					Description: `Indicates that the image caching into the Intersight Appliance failed or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Corrupted",
+					Description: `Indicates that the image in the local repository (or endpoint cache) has been corrupted after it was cached.`,
+				},
+				resource.Attribute{
+					Name:        "Evicted",
+					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_inventory",
+			Category:         "Data Sources",
+			ShortDescription: `Inventory Collection object that acts as an aggregator object for the underlying model and ETL objects.`,
+			Description: `
+Inventory Collection object that acts as an aggregator object for the underlying model and ETL objects.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default Value of the action, i.e. do nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Build",
+					Description: `Build the inventory service image.`,
+				},
+				resource.Attribute{
+					Name:        "Deploy",
+					Description: `Deploy the inventory service on the appliance.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "BackendInProgress",
+					Description: `The backend build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "BackendFailed",
+					Description: `The backend build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "DockerInProgress",
+					Description: `The docker build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DockerFailed",
+					Description: `The docker build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "UiInProgress",
+					Description: `The UI build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UiFailed",
+					Description: `The inventory UI build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "ApidocsInProgress",
+					Description: `The apidocs build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "ApidocsFailed",
+					Description: `The apidocs build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The deploy operation failed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_logs",
+			Category:         "Data Sources",
+			ShortDescription: `Logs from the build operation.`,
+			Description: `
+Logs from the build operation.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value for the log stage.`,
+				},
+				resource.Attribute{
+					Name:        "Backend",
+					Description: `Logs corresponding to backend build.`,
+				},
+				resource.Attribute{
+					Name:        "Ui",
+					Description: `Logs corresponding to ui build stage.`,
+				},
+				resource.Attribute{
+					Name:        "Apidocs",
+					Description: `Logs corresponding to the apidocs build stage.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_model",
+			Category:         "Data Sources",
+			ShortDescription: `Model definition for the endpoint.`,
+			Description: `
+Model definition for the endpoint.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_pci_coprocessor_card",
 			Category:         "Data Sources",
 			ShortDescription: `PCIe Compression and Cryptographic CPU Offload Card.`,
@@ -23130,6 +28112,18 @@ PCI device present in a server.
 			ShortDescription: `The PCI Switch Link connected to PCIe Switch.`,
 			Description: `
 The PCI Switch Link connected to PCIe Switch.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_pci_node",
+			Category:         "Data Sources",
+			ShortDescription: `External pci nodes connected to a server.`,
+			Description: `
+External pci nodes connected to a server.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -23209,6 +28203,14 @@ Managed object used to track chassis power capping information.
 					Name:        "Disabled",
 					Description: `Set the value to Disabled.`,
 				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -23222,6 +28224,14 @@ Power Management policy models a configuration that can be applied to Chassis or
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
 				resource.Attribute{
 					Name:        "Enabled",
 					Description: `Set the value to Enabled.`,
@@ -23416,6 +28426,144 @@ Entity representing the new capacity runway based on recommendations.
 					Name:        "MB",
 					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
 				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_cluster_expansion",
+			Category:         "Data Sources",
+			ShortDescription: `Entity representing the cluster expansion recommendations.`,
+			Description: `
+Entity representing the cluster expansion recommendations.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_hardware_expansion_request",
+			Category:         "Data Sources",
+			ShortDescription: `Entity representing the user request for HyperFlex cluster expansion.`,
+			Description: `
+Entity representing the user request for HyperFlex cluster expansion.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no action is triggered on the forecast Instance managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Evaluate",
+					Description: `The Enum value Evaluate represents that a re-evaluation of the forecast needs to be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents the default status value before any API call is made.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The Enum value Success represents that the API call returned with success.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `The Enum value Fail represents that the API call returned with a failure.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_hardware_expansion_request_item",
+			Category:         "Data Sources",
+			ShortDescription: `Entity representing the user request for expansion of each hardware item.`,
+			Description: `
+Entity representing the user request for expansion of each hardware item.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no value was set for the hardware type.`,
+				},
+				resource.Attribute{
+					Name:        "CPU",
+					Description: `The Enum value CPU represents that the hardware type requested for expansion is a physical CPU.`,
+				},
+				resource.Attribute{
+					Name:        "Memory",
+					Description: `The Enum value Memory represents that the hardware type requested for expansion is a memory unit.`,
+				},
+				resource.Attribute{
+					Name:        "Storage",
+					Description: `The Enum value Storage represents that the hardware type requested for expansion is a storage unit, ie, storage drives.`,
+				},
+				resource.Attribute{
+					Name:        "TB",
+					Description: `The Enum value TB represents that the measurement unit is in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MB",
+					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
+				resource.Attribute{
+					Name:        "TB",
+					Description: `The Enum value TB represents that the measurement unit is in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MB",
+					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -23430,12 +28578,24 @@ Entity representing the recommended physical device.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no value was set for the item type.`,
+				},
+				resource.Attribute{
 					Name:        "Disk",
 					Description: `The Enum value Disk represents that the item type recommended is a Physical Disk.`,
 				},
 				resource.Attribute{
 					Name:        "Node",
 					Description: `The Enum value Node represents that the item type recommended is a Storage Node.`,
+				},
+				resource.Attribute{
+					Name:        "CPU",
+					Description: `The Enum value CPU represents that the item type recommended is a Processor.`,
+				},
+				resource.Attribute{
+					Name:        "Memory",
+					Description: `The Enum value Memory represents that the item type recommended is a memory unit.`,
 				},
 				resource.Attribute{
 					Name:        "Cluster",
@@ -23448,6 +28608,120 @@ Entity representing the recommended physical device.
 				resource.Attribute{
 					Name:        "MB",
 					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_purchase_order_estimate",
+			Category:         "Data Sources",
+			ShortDescription: `Entity representing the estimate for the purchase order for user requested expansion.`,
+			Description: `
+Entity representing the estimate for the purchase order for user requested expansion.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no action is triggered on the forecast Instance managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Evaluate",
+					Description: `The Enum value Evaluate represents that a re-evaluation of the forecast needs to be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents the default status value before any API call is made.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The Enum value Success represents that the API call returned with success.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `The Enum value Fail represents that the API call returned with a failure.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_software_item",
+			Category:         "Data Sources",
+			ShortDescription: `Entity representing the software recommendation for the managed end point.`,
+			Description: `
+Entity representing the software recommendation for the managed end point.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents the default software recommendation value.`,
+				},
+				resource.Attribute{
+					Name:        "HXDPVersion",
+					Description: `The Enum value HXDPVersion represents that the software recommendation is to upgrade the HyperFlex Data Platform build version.`,
+				},
+				resource.Attribute{
+					Name:        "NodeRatioLicense",
+					Description: `The Enum value NodeRatioLicense represents that the software recommendation is to upgrade the HyperFlex Data Platform license for using 1:2 converged to compute node ratio limits.`,
+				},
+				resource.Attribute{
+					Name:        "DCNoFILicense",
+					Description: `The Enum value DCNoFILicense represents that the software recommendation is to upgrade the HyperFlex Data Platform license for using DC-No-FI limits.`,
+				},
+				resource.Attribute{
+					Name:        "LAZExistingStatus",
+					Description: `The Enum value LAZExistingStatus represents that the software recommendation indicates that the HyperFlex cluster might have LAZ enabled.`,
+				},
+				resource.Attribute{
+					Name:        "LAZNewStatus",
+					Description: `The Enum value LAZNewStatus represents that the software recommendation is to enable LAZ with expansion on the HyperFlex Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "EVCStatus",
+					Description: `The Enum value EVCStatus represents that the software recommendation is to enable Enhanced VMotion on the HypeFlex Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no value was set for the item type.`,
+				},
+				resource.Attribute{
+					Name:        "Disk",
+					Description: `The Enum value Disk represents that the item type recommended is a Physical Disk.`,
+				},
+				resource.Attribute{
+					Name:        "Node",
+					Description: `The Enum value Node represents that the item type recommended is a Storage Node.`,
+				},
+				resource.Attribute{
+					Name:        "CPU",
+					Description: `The Enum value CPU represents that the item type recommended is a Processor.`,
+				},
+				resource.Attribute{
+					Name:        "Memory",
+					Description: `The Enum value Memory represents that the item type recommended is a memory unit.`,
+				},
+				resource.Attribute{
+					Name:        "Cluster",
+					Description: `The Enum value Cluster represents that the item type recommended is a HyperFlex Cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -23662,6 +28936,58 @@ LicenseResourceCount tracks the server count info for 3 different licensing tier
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -23716,6 +29042,18 @@ A Reservation is used to reserve a place for a new resource in the resource grou
 					Description: `A reservation is changed to Finished status if the validations on resources, resource groups are successful. The resource moids in reservation will be added to resource groups using OData filters.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_resource_selection_criteria",
+			Category:         "Data Sources",
+			ShortDescription: `One or more resources are selected based on a criteria. SelectionCriteria can refer to static resources using object reference or dynamic resources using OData query filters.`,
+			Description: `
+One or more resources are selected based on a criteria. SelectionCriteria can refer to static resources using  object reference or dynamic resources using OData query filters.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -23911,7 +29249,7 @@ The configuration change details are captured here.
 				},
 				resource.Attribute{
 					Name:        "Modified",
-					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed succesfully.`,
+					Description: `The 'update' operation/state.Indicates some of the desired configuration changes specified in a profile have not been been applied to the associated device.This happens when the user has made changes to a profile and has not deployed the changes yet, or when the workflow to applythe configuration changes has not completed successfully.`,
 				},
 				resource.Attribute{
 					Name:        "Deleted",
@@ -23954,6 +29292,39 @@ The profile configuration (deploy, validation) results detailed information.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_server_disruption",
+			Category:         "Data Sources",
+			ShortDescription: `The server disruption details are captured here.`,
+			Description: `
+The server disruption details are captured here.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Minor",
+					Description: `A disruption of minor severity.`,
+				},
+				resource.Attribute{
+					Name:        "Major",
+					Description: `A disruption of major severity.`,
+				},
+				resource.Attribute{
+					Name:        "Moderate",
+					Description: `A disruption of moderate severity.`,
+				},
+				resource.Attribute{
+					Name:        "Informational",
+					Description: `Disruptions categorized as informational do not require any user action, nor do they cause a reboot.`,
+				},
+				resource.Attribute{
+					Name:        "ActionRequired",
+					Description: `User action is required to deploy the profile.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -24138,6 +29509,18 @@ Appliance the represents the image that is uploaded by the user and to be used f
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -24267,6 +29650,18 @@ A JSON file wth HCL metadata uploaded for consumption by the HCL service.
 					Description: `Indicates that the JSON File does have only the diff of the Hcl meta to be uploaded.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -24375,6 +29770,18 @@ A HyperFlex image bundle distributed by Cisco for Private Appliance.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -24485,6 +29892,18 @@ A HyperFlex image distributed by Cisco.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -24593,6 +30012,18 @@ An IKS image bundle distributed by Cisco for Private Appliance.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -24715,6 +30146,18 @@ A solution image distributed by Cisco.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -24832,6 +30275,18 @@ A UCSD connector pack image bundle distributed by Cisco for Private Appliance.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -24940,6 +30395,18 @@ A UCSD connector pack image distributed by Cisco.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -25285,6 +30752,18 @@ An operating system image that resides either in an external repository or has b
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -25512,6 +30991,18 @@ Secure shell policy on the endpoint.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_battery_backup_unit",
+			Category:         "Data Sources",
+			ShortDescription: `Information of Battery Backup Unit in the storage controller.`,
+			Description: `
+Information of Battery Backup Unit in the storage controller.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_controller",
 			Category:         "Data Sources",
 			ShortDescription: `Storage Controller present in a server.`,
@@ -25593,6 +31084,18 @@ A reusable RAID drive group configuration that specifies a pool of drives and a 
 					Description: `Drives are selected automatically based on the RAID and virtual drive configuration.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_drive_security_policy",
+			Category:         "Data Sources",
+			ShortDescription: `The drive security policy models the KMIP server related configuration that can be applied on multiple servers. Storage controller encryption can be enabled through this policy using remote keys from a KMIP server.`,
+			Description: `
+The drive security policy models the KMIP server related configuration that can be applied on multiple servers. Storage controller encryption can be enabled through this policy using remote keys from a KMIP server.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -25943,6 +31446,54 @@ Disk entity associated with Hitachi storage array.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_hitachi_external_parity_group",
+			Category:         "Data Sources",
+			ShortDescription: `A external parity group in Hitachi storage array.`,
+			Description: `
+A external parity group in Hitachi storage array.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_hitachi_external_path_group",
+			Category:         "Data Sources",
+			ShortDescription: `A external path group in Hitachi storage array.`,
+			Description: `
+A external path group in Hitachi storage array.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_hitachi_external_storage_lun",
+			Category:         "Data Sources",
+			ShortDescription: `A list of the LUs that are defined for the port on an external storage system that is externally connected to the local storage system.`,
+			Description: `
+A list of the LUs that are defined for the port on an external storage system that is externally connected to the local storage system.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_hitachi_external_storage_port",
+			Category:         "Data Sources",
+			ShortDescription: `Port entity in Hitachi storage array. A port for an external storage system that is connected to the local storage system.`,
+			Description: `
+Port entity in Hitachi storage array. A port for an external storage system that is connected to the local storage system.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_hitachi_host",
 			Category:         "Data Sources",
 			ShortDescription: `A host group entity in Hitachi storage array. It is an abstraction used by Hitachi storage to organize the storage network addresses (Fibre Channel worldwide names or iSCSI qualified names) of client computers and to control communications between clients and volumes.`,
@@ -26155,6 +31706,30 @@ Port entity in Hitachi storage array.
 					Description: `Port supports fibre channel over ethernet protocol.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_hitachi_remote_replication",
+			Category:         "Data Sources",
+			ShortDescription: `A remote copy pair entity in Hitachi storage array.`,
+			Description: `
+A remote copy pair entity in Hitachi storage array.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_hitachi_snapshot",
+			Category:         "Data Sources",
+			ShortDescription: `A snapshot entity in Hitachi storage array.`,
+			Description: `
+A snapshot entity in Hitachi storage array.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -26885,6 +32460,87 @@ NetApp base disk is a storage array disk.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_cifs_service",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp CIFS service represents a CIFS server on a storage virtual machine.`,
+			Description: `
+NetApp CIFS service represents a CIFS server on a storage virtual machine.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_cifs_share",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp CIFS share is a named access point in a volume which is tied to the CIFS server on the SVM.`,
+			Description: `
+NetApp CIFS share is a named access point in a volume which is tied to the CIFS server on the SVM.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_cloud_target",
+			Category:         "Data Sources",
+			ShortDescription: `Cloud target is a collection of cloud provider configuration information for targets e.g., AWS_S3 or Azure_Cloud.`,
+			Description: `
+Cloud target is a collection of cloud provider configuration information for targets e.g., AWS_S3 or Azure_Cloud.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "FabricPool",
+					Description: `NetApp FabricPool Cloud Target owner.`,
+				},
+				resource.Attribute{
+					Name:        "SnapMirror",
+					Description: `NetApp SnapMirror Cloud Target owner.`,
+				},
+				resource.Attribute{
+					Name:        "ONTAP_S3",
+					Description: `Cloud target provider type ONTAP_S3.`,
+				},
+				resource.Attribute{
+					Name:        "AliCloud",
+					Description: `Cloud target provider type AliCloud.`,
+				},
+				resource.Attribute{
+					Name:        "AWS_S3",
+					Description: `Cloud target provider type AWS S3.`,
+				},
+				resource.Attribute{
+					Name:        "Azure_Cloud",
+					Description: `Cloud target provider type Azure_Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloud",
+					Description: `Cloud target provider type GoogleCloud.`,
+				},
+				resource.Attribute{
+					Name:        "IBM_COS",
+					Description: `Cloud target provider type IBM_COS.`,
+				},
+				resource.Attribute{
+					Name:        "SGWS",
+					Description: `Cloud target provider type SGWS.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `Data is stored in the SnapMirror target.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Metadata is stored in the SnapMirror target.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp cluster consists of one or more nodes grouped together as HA pairs to form a scalable cluster.`,
@@ -27063,6 +32719,30 @@ An event where the impacted resource type is a cluster.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_cluster_snap_mirror_policy",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp SnapMirror policy owned by the cluster. NetApp SnapMirror policy when applied to a SnapMirror relationship, controls the behavior of the relationship and specifies the configuration attributes for that relationship.`,
+			Description: `
+NetApp SnapMirror policy owned by the cluster. NetApp SnapMirror policy when applied to a SnapMirror relationship, controls the behavior of the relationship and specifies the configuration attributes for that relationship.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_cluster_snapshot_policy",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp Snapshot policy that is scoped to a cluster. The policy controls the behavior and schedule of snapshots when applied to a volume.`,
+			Description: `
+NetApp Snapshot policy that is scoped to a cluster. The policy controls the behavior and schedule of snapshots when applied to a volume.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_data_ip_interface",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp Data IP interface is a logical interface for data within the svm scope.`,
@@ -27071,6 +32751,14 @@ NetApp Data IP interface is a logical interface for data within the svm scope.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Down",
+					Description: `The state is set to down if the interface is not enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `The state is set to up if the interface is enabled.`,
+				},
 				resource.Attribute{
 					Name:        "IPv4",
 					Description: `IP address family type is IPv4.`,
@@ -27411,6 +33099,18 @@ Ethernet port is a port on a node in a storage array.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Down",
+					Description: `An inactive port is listed as Down.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `An active port is listed as Up.`,
+				},
+				resource.Attribute{
+					Name:        "Degraded",
+					Description: `An active port that is Up but unhealthy.`,
+				},
+				resource.Attribute{
 					Name:        "down",
 					Description: `An inactive port is listed as Down.`,
 				},
@@ -27612,6 +33312,14 @@ NetApp FC Interface is a logical interface.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Down",
+					Description: `The state is set to down if the interface is not enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `The state is set to up if the interface is enabled.`,
+				},
 				resource.Attribute{
 					Name:        "down",
 					Description: `An inactive port is listed as Down.`,
@@ -28305,8 +34013,25 @@ An iSCSI service defines the properties of the iSCSI target for an SVM. There ca
 			Description: `
 NetApp licenses for NetApp Ontap.
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The summary state of the license package is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Compliant",
+					Description: `The summary state of the license package is compliant.`,
+				},
+				resource.Attribute{
+					Name:        "Noncompliant",
+					Description: `The summary state of the license package is noncompliant.`,
+				},
+				resource.Attribute{
+					Name:        "Unlicensed",
+					Description: `The summary state of the license package is unlicensed.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -28527,9 +34252,21 @@ An event where the impacted resource type is a lun.
 			Name:             "",
 			Type:             "intersight_storage_net_app_lun_map",
 			Category:         "Data Sources",
-			ShortDescription: `NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted access to the LUN.`,
+			ShortDescription: `NetApp LUN mapping is the process of associating a LUN with an initiator group. When a LUN is mapped to an initiator group, initiators in the initiator group are granted access to the LUN.`,
 			Description: `
-NetApp LUN mapping is the process of associating a LUN with an igroup. When a LUN is mapped to an igroup, initiators in the igroup are granted access to the LUN.
+NetApp LUN mapping is the process of associating a LUN with an initiator group. When a LUN is mapped to an initiator group, initiators in the initiator group are granted access to the LUN.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_nfs_client",
+			Category:         "Data Sources",
+			ShortDescription: `A currently connected NFS client.`,
+			Description: `
+A currently connected NFS client.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -28800,6 +34537,14 @@ NetApp Non-Data IP interface is a logical interface for management within the cl
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "Down",
+					Description: `The state is set to down if the interface is not enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Up",
+					Description: `The state is set to up if the interface is enabled.`,
+				},
+				resource.Attribute{
 					Name:        "IPv4",
 					Description: `IP address family type is IPv4.`,
 				},
@@ -29006,6 +34751,31 @@ External NTP time servers ONTAP uses for time adjustment and correction.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_net_app_qtree",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp qtree is a logically defined file system that can exist as a special subdirectory of the root directory within a volume.`,
+			Description: `
+NetApp qtree is a logically defined file system that can exist as a special subdirectory of the root directory within a volume.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "UNIX",
+					Description: `Security style for UNIX uid, gid and mode bits.`,
+				},
+				resource.Attribute{
+					Name:        "NTFS",
+					Description: `Security style for CIFS ACLs.`,
+				},
+				resource.Attribute{
+					Name:        "Mixed",
+					Description: `Security style for NFS and CIFS access.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_net_app_schedule",
 			Category:         "Data Sources",
 			ShortDescription: `NetApp schedule is a configurable entity on which various tasks (for instance, volume Snapshot copies and mirror replications) are run.`,
@@ -29023,6 +34793,18 @@ NetApp schedule is a configurable entity on which various tasks (for instance, v
 			ShortDescription: `Information for a particular sensor on a NetApp storage array controller.`,
 			Description: `
 Information for a particular sensor on a NetApp storage array controller.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_snap_mirror_relationship",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp SnapMirror relationship.`,
+			Description: `
+NetApp SnapMirror relationship.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -29216,6 +34998,30 @@ An event where the impacted resource type is a storage vm.
 					Description: `The severity of the event is critical.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_svm_snap_mirror_policy",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp SnapMirror policy owned by a storage virtual machine. NetApp SnapMirror policy when applied to a SnapMirror relationship, controls the behavior of the relationship and specifies the configuration attributes for that relationship.`,
+			Description: `
+NetApp SnapMirror policy owned by a storage virtual machine. NetApp SnapMirror policy when applied to a SnapMirror relationship, controls the behavior of the relationship and specifies the configuration attributes for that relationship.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_storage_net_app_svm_snapshot_policy",
+			Category:         "Data Sources",
+			ShortDescription: `NetApp Snapshot policy that is scoped to a storage virtual machine. The policy controls the behavior and schedule of snapshots when applied to a volume.`,
+			Description: `
+NetApp Snapshot policy that is scoped to a storage virtual machine. The policy controls the behavior and schedule of snapshots when applied to a volume.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -29878,6 +35684,18 @@ The storage policy models the reusable storage related configuration that can be
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "UnconfiguredGood",
+					Description: `Newly inserted drives or on reboot, drives will remain the same state.`,
+				},
+				resource.Attribute{
+					Name:        "Jbod",
+					Description: `Newly inserted drives or on reboot, drives will automatically move to JBOD state if drive state was UnconfiguredGood.`,
+				},
+				resource.Attribute{
+					Name:        "RAID0",
+					Description: `Newly inserted drives or on reboot, virtual drives will be created, respective drives will move to Online state.`,
+				},
+				resource.Attribute{
 					Name:        "NoChange",
 					Description: `Drive state will not be modified by Storage Policy.`,
 				},
@@ -29999,6 +35817,14 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "tier1",
+					Description: `Advisory processing will be taken care in first advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tier2",
+					Description: `Advisory processing will be taken care in second advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
 					Name:        "ready",
 					Description: `Advisory has been evaluated. The affected devices would be analyzed and corresponding advisory instances would be created.`,
 				},
@@ -30078,6 +35904,14 @@ Intersight representation of a Cisco PSIRT (https://tools.cisco.com/security/cen
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "tier1",
+					Description: `Advisory processing will be taken care in first advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tier2",
+					Description: `Advisory processing will be taken care in second advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
 					Name:        "ready",
 					Description: `Advisory has been evaluated. The affected devices would be analyzed and corresponding advisory instances would be created.`,
 				},
@@ -30143,145 +35977,153 @@ Download the techsupport file. The response to this API will be the actual techs
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_techsupportmanagement_tech_support_bundle",
+			Type:             "intersight_techsupportmanagement_end_point",
 			Category:         "Data Sources",
-			ShortDescription: `A request to collect techsupport and upload it to Intersight Storage Service. The serial number, PID and/or relationship to the target resource provided by the user is used to determine the device type for techsupport collection. If the serial number, PID and target resource are specified in the request, the values must match. Valid values of device types are network.Element for fabric interconnect, compute.Blade for blade server, compute.RackUnit for rack server, equipment.Chassis for chassis, equipment.IoCard for IO Module, equipment.FEX for fabric extender and adapter.Unit for network adapter. UCSM techsupport is collected for device type network.Element. Chassis techsupport is collected for compute.Blade, equipment.Chassis, equipment.IoCard, and blade adapter.Unit. Server techsupport is collected for compute.RackUnit and rack adapter.Unit. Fabric extender techsupport is collected for device type equipment.FEX. Hyper Flex node level techsupport is collected when the request specifies the platform type (HX) and the device type is Hyperflex.Node.`,
+			ShortDescription: `An endpoint that has registered for techsupport collection service on Intersight. Intersight services must create an Endpoint MO for every endpoint (hardware device or software appliance) that requires techsupport collection. An endpoint is uniquely identified based on the combination of serial and pid.`,
 			Description: `
-A request to collect techsupport and upload it to Intersight Storage Service. The serial number, PID and/or relationship to the target resource provided by the user is used to determine the device type for techsupport collection. If the serial number, PID and target resource are specified in the request, the values must match. Valid values of device types are network.Element for fabric interconnect, compute.Blade for blade server, compute.RackUnit for rack server, equipment.Chassis for chassis, equipment.IoCard for IO Module, equipment.FEX for fabric extender and adapter.Unit for network adapter. UCSM techsupport is collected for device type network.Element. Chassis techsupport is collected for compute.Blade, equipment.Chassis, equipment.IoCard, and blade adapter.Unit. Server techsupport is collected for compute.RackUnit and rack adapter.Unit. Fabric extender techsupport is collected for device type equipment.FEX. Hyper Flex node level techsupport is collected when the request specifies the platform type (HX) and the device type is Hyperflex.Node.
+An endpoint that has registered for techsupport collection service on Intersight. Intersight services must create an Endpoint MO for every endpoint (hardware device or software appliance) that requires techsupport collection. An endpoint is uniquely identified based on the combination of serial and pid.
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -30305,39 +36147,75 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -30345,11 +36223,11 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -30357,35 +36235,39 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -30393,7 +36275,312 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_techsupportmanagement_tech_support_bundle",
+			Category:         "Data Sources",
+			ShortDescription: `A request to collect techsupport and upload it to Intersight Storage Service. The serial number, PID and/or relationship to the target resource provided by the user is used to determine the device type for techsupport collection. If the serial number, PID and target resource are specified in the request, the values must match. Valid values of device types are network.Element for fabric interconnect, compute.Blade for blade server, compute.RackUnit for rack server, equipment.Chassis for chassis, equipment.IoCard for IO Module, equipment.FEX for fabric extender and adapter.Unit for network adapter. UCSM techsupport is collected for device type network.Element. Chassis techsupport is collected for compute.Blade, equipment.Chassis, equipment.IoCard, and blade adapter.Unit. Server techsupport is collected for compute.RackUnit and rack adapter.Unit. Fabric extender techsupport is collected for device type equipment.FEX. Hyper Flex node level techsupport is collected when the request specifies the platform type (HX) and the device type is Hyperflex.Node.`,
+			Description: `
+A request to collect techsupport and upload it to Intersight Storage Service. The serial number, PID and/or relationship to the target resource provided by the user is used to determine the device type for techsupport collection. If the serial number, PID and target resource are specified in the request, the values must match. Valid values of device types are network.Element for fabric interconnect, compute.Blade for blade server, compute.RackUnit for rack server, equipment.Chassis for chassis, equipment.IoCard for IO Module, equipment.FEX for fabric extender and adapter.Unit for network adapter. UCSM techsupport is collected for device type network.Element. Chassis techsupport is collected for compute.Blade, equipment.Chassis, equipment.IoCard, and blade adapter.Unit. Server techsupport is collected for compute.RackUnit and rack adapter.Unit. Fabric extender techsupport is collected for device type equipment.FEX. Hyper Flex node level techsupport is collected when the request specifies the platform type (HX) and the device type is Hyperflex.Node.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A Cisco HyperFlex (HX) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A Cisco UCS Director (UCSD) instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist instance.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud Business Tier account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -30547,6 +36734,27 @@ PoolMember represents a single UUID that is part of a pool.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_uuidpool_reservation",
+			Category:         "Data Sources",
+			ShortDescription: `The UUID reservation object, used to hold reserved identity.`,
+			Description: `
+The UUID reservation object, used to hold reserved identity.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -31802,6 +38010,18 @@ The VMware Host entity with its attributes. Every Host belongs to a Datacenter a
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_virtualization_vmware_host_gpu",
+			Category:         "Data Sources",
+			ShortDescription: `Common attributes of a GPU device on a VMware host.`,
+			Description: `
+Common attributes of a GPU device on a VMware host.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_virtualization_vmware_kernel_network",
 			Category:         "Data Sources",
 			ShortDescription: `Details of VMware Kernel Network.`,
@@ -32141,6 +38361,18 @@ The VMware Virtual machine. It has details such as power state, IP address, reso
 					Description: `The virtual machine is in warning state.`,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_virtualization_vmware_virtual_machine_gpu",
+			Category:         "Data Sources",
+			ShortDescription: `Common attributes of virtual GPU device on a VMware virtual machine.`,
+			Description: `
+Common attributes of virtual GPU device on a VMware virtual machine.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -33165,30 +39397,6 @@ specification.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_workflow_build_task_meta",
-			Category:         "Data Sources",
-			ShortDescription: `Contains relationship for tasks within a workflow. It is used to dynamically generate a workflow.`,
-			Description: `
-Contains relationship for tasks within a workflow. It is used to dynamically generate a workflow.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_build_task_meta_owner",
-			Category:         "Data Sources",
-			ShortDescription: `Contains the list of dynamic workflow types that a microservice supports.`,
-			Description: `
-Contains the list of dynamic workflow types that a microservice supports.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_workflow_catalog",
 			Category:         "Data Sources",
 			ShortDescription: `A catalog of workflow related objects such as workflow and task definitions. Each user account will have a local workflow catalog where account users can store their private workflow and task definitions. Cisco provides validated workflows and tasks to Intersight users via shared catalogs. Intersight users will be able to read, run these workflows and tasks within their account context. The shared catalogs will be managed entirely by Cisco. Contributions to shared catalogs will need to be provided to Cisco who will publish them at their own discretion.`,
@@ -33198,6 +39406,72 @@ Cisco provides validated workflows and tasks to Intersight users via shared cata
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_catalog_item_definition",
+			Category:         "Data Sources",
+			ShortDescription: `Catalog Item definition is a collection of Service items which are associated with workflow definition that can be used to deploy and manage service items.`,
+			Description: `
+Catalog Item definition is a collection of Service items which are associated with workflow definition that can be used to deploy and manage service items.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotPublished",
+					Description: `A state of the service item or catalog item which is not yet published.`,
+				},
+				resource.Attribute{
+					Name:        "Published",
+					Description: `A state denoting that the service item or catalog item is published.`,
+				},
+				resource.Attribute{
+					Name:        "Supported",
+					Description: `The definition is a supported version and there will be no changes to the mandatory inputs or outputs.`,
+				},
+				resource.Attribute{
+					Name:        "Beta",
+					Description: `The definition is a Beta version and this version can under go changes until the version is marked supported.`,
+				},
+				resource.Attribute{
+					Name:        "Deprecated",
+					Description: `The version of definition is deprecated and typically there will be a higher version of the same definition that has been added.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_catalog_service_request",
+			Category:         "Data Sources",
+			ShortDescription: `Catalog Service Request is one instance of a catalog item based on a catalog item definition.`,
+			Description: `
+Catalog Service Request is one instance of a catalog item based on a catalog item definition.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the service item instance failed and corrective measures need to be taken to bring the service item instance back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the service item instance completed and the service item instance is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -33230,135 +39504,143 @@ error parameters.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -33382,39 +39664,75 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -33422,11 +39740,11 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -33434,35 +39752,39 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -33470,7 +39792,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -33609,11 +39931,11 @@ Service item action instance which represents one action on a service item insta
 					Description: `Start a new execution of the action instance.`,
 				},
 				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the service item action instance from the beginning.`,
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
 				},
 				resource.Attribute{
-					Name:        "RetryFailed",
+					Name:        "Retry",
 					Description: `Retry the workflow that has failed from the failure point.`,
 				},
 				resource.Attribute{
@@ -33637,11 +39959,11 @@ Service item action instance which represents one action on a service item insta
 					Description: `Start a new execution of the action instance.`,
 				},
 				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the service item action instance from the beginning.`,
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
 				},
 				resource.Attribute{
-					Name:        "RetryFailed",
+					Name:        "Retry",
 					Description: `Retry the workflow that has failed from the failure point.`,
 				},
 				resource.Attribute{
@@ -33651,6 +39973,34 @@ Service item action instance which represents one action on a service item insta
 				resource.Attribute{
 					Name:        "Stop",
 					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "Creating",
+					Description: `The service item is not yet created and creation action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Created",
+					Description: `The service item is created.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioning",
+					Description: `The service item is not yet decommissioned and decommission action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommisioned.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The service item is not yet deleted and deletion action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Deleted",
+					Description: `The service item is deleted.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The service item action is failed to perform the operation.`,
 				},
 				resource.Attribute{
 					Name:        "NotStarted",
@@ -33675,6 +40025,43 @@ Service item action instance which represents one action on a service item insta
 				resource.Attribute{
 					Name:        "Stopping",
 					Description: `The stop action is running on the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `The action on the service item instance has stopped.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_service_item_attribute",
+			Category:         "Data Sources",
+			ShortDescription: `Service item attribute which represents all the artifacts created or related to this service item instance.`,
+			Description: `
+Service item attribute which represents all the artifacts created or related to this service item instance.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value if the service item attribute does not belong to any of the existing types.`,
+				},
+				resource.Attribute{
+					Name:        "Configuration",
+					Description: `The service item attribute is a configuration from the designer or the end user.`,
+				},
+				resource.Attribute{
+					Name:        "Inventory",
+					Description: `The service item attribute captures the inventory of the resource created by the service item deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Health",
+					Description: `The service item attribute describes the health of the resource created by the service item deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Output",
+					Description: `The service item attribute captures the artifact generated after performing an action on the service item.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -33724,6 +40111,90 @@ Service Item definition is a collection of actions and associated workflow defin
 				resource.Attribute{
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
+					Name:        "NotPublished",
+					Description: `A state of the service item or catalog item which is not yet published.`,
+				},
+				resource.Attribute{
+					Name:        "Published",
+					Description: `A state denoting that the service item or catalog item is published.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `Deployment and other post-deployment actions are in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `Deployment action is not in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `Deployment action is in valid state, and one or more post-deployment actions are not in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Supported",
+					Description: `The definition is a supported version and there will be no changes to the mandatory inputs or outputs.`,
+				},
+				resource.Attribute{
+					Name:        "Beta",
+					Description: `The definition is a Beta version and this version can under go changes until the version is marked supported.`,
+				},
+				resource.Attribute{
+					Name:        "Deprecated",
+					Description: `The version of definition is deprecated and typically there will be a higher version of the same definition that has been added.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -33813,6 +40284,34 @@ Service item instance is one instance of a service item based on a service item 
 					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
 				},
 				resource.Attribute{
+					Name:        "Creating",
+					Description: `The service item is not yet created and creation action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Created",
+					Description: `The service item is created.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioning",
+					Description: `The service item is not yet decommissioned and decommission action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommisioned.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The service item is not yet deleted and deletion action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Deleted",
+					Description: `The service item is deleted.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The service item action is failed to perform the operation.`,
+				},
+				resource.Attribute{
 					Name:        "NotCreated",
 					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
 				},
@@ -33842,238 +40341,6 @@ Service item instance is one instance of a service item based on a service item 
 			ShortDescription: `Service item output which represents all the artifacts created or related to this service item instance.`,
 			Description: `
 Service item output which represents all the artifacts created or related to this service item instance.
-`,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_action_definition",
-			Category:         "Data Sources",
-			ShortDescription: `Definition to capture the details needed to execute an action on the solution.`,
-			Description: `
-Definition to capture the details needed to execute an action on the solution.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "External",
-					Description: `External actions definition can be triggered by enduser to perform actions on the solution. Once action is completed successfully (eg. create/deploy), user cannot re-trigger that action again.`,
-				},
-				resource.Attribute{
-					Name:        "Internal",
-					Description: `Internal action definition is used to trigger periodic actions on the solution instance.`,
-				},
-				resource.Attribute{
-					Name:        "Repetitive",
-					Description: `Repetitive action definition is an external action that can be triggered by enduser to perform repetitive actions (eg. Edit/Update/Perform health check) on the created solution.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_action_instance",
-			Category:         "Data Sources",
-			ShortDescription: `Solution action instance which represents one action on a solution instance.`,
-			Description: `
-Solution action instance which represents one action on a solution instance.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "None",
-					Description: `No action is set, this is the default value for action field.`,
-				},
-				resource.Attribute{
-					Name:        "Validate",
-					Description: `Validation the action instance inputs and run the validation workflows.`,
-				},
-				resource.Attribute{
-					Name:        "Start",
-					Description: `Start a new execution of the action instance.`,
-				},
-				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the solution action instance from the beginning.`,
-				},
-				resource.Attribute{
-					Name:        "RetryFailed",
-					Description: `Retry the workflow that has failed from the failure point.`,
-				},
-				resource.Attribute{
-					Name:        "Cancel",
-					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
-				},
-				resource.Attribute{
-					Name:        "Stop",
-					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
-				},
-				resource.Attribute{
-					Name:        "None",
-					Description: `No action is set, this is the default value for action field.`,
-				},
-				resource.Attribute{
-					Name:        "Validate",
-					Description: `Validation the action instance inputs and run the validation workflows.`,
-				},
-				resource.Attribute{
-					Name:        "Start",
-					Description: `Start a new execution of the action instance.`,
-				},
-				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the solution action instance from the beginning.`,
-				},
-				resource.Attribute{
-					Name:        "RetryFailed",
-					Description: `Retry the workflow that has failed from the failure point.`,
-				},
-				resource.Attribute{
-					Name:        "Cancel",
-					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
-				},
-				resource.Attribute{
-					Name:        "Stop",
-					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
-				},
-				resource.Attribute{
-					Name:        "NotStarted",
-					Description: `Solution action is not yet started and it is in a draft mode. A solution action instance can be deleted in this state.`,
-				},
-				resource.Attribute{
-					Name:        "Validating",
-					Description: `A validate action has been triggered on the action and until it completes the start action cannot be issued.`,
-				},
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The action on the solution failed and can be retried.`,
-				},
-				resource.Attribute{
-					Name:        "Completed",
-					Description: `The action on the solution completed successfully.`,
-				},
-				resource.Attribute{
-					Name:        "Stopping",
-					Description: `The stop action is running on the action instance.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_definition",
-			Category:         "Data Sources",
-			ShortDescription: `Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.`,
-			Description: `
-Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Base",
-					Description: `Base as a License type. It is default license type.`,
-				},
-				resource.Attribute{
-					Name:        "Essential",
-					Description: `Essential as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Standard",
-					Description: `Standard as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Advantage",
-					Description: `Advantage as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Premier",
-					Description: `Premier as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Essential",
-					Description: `IWO-Essential as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Advantage",
-					Description: `IWO-Advantage as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Premier",
-					Description: `IWO-Premier as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IKS-Advantage",
-					Description: `IKS-Advantage as a License type.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_instance",
-			Category:         "Data Sources",
-			ShortDescription: `Solution instance is one instance of a solution based on a solution definition.`,
-			Description: `
-Solution instance is one instance of a solution based on a solution definition.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "NotCreated",
-					Description: `Solution is not yet created and it is in a draft mode. A solution instance can be deleted in this state.`,
-				},
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The last action on the solution failed and corrective measures need to be taken to bring the solution back to valid state.`,
-				},
-				resource.Attribute{
-					Name:        "Okay",
-					Description: `The last action on the solution completed and the solution is in Okay state.`,
-				},
-				resource.Attribute{
-					Name:        "Decommissioned",
-					Description: `The solution is decommissioned and can be safely deleted. Solution in any other state after it has been created cannot be deleted until it has been decommissioned.`,
-				},
-				resource.Attribute{
-					Name:        "NotCreated",
-					Description: `Solution is not yet created and it is in a draft mode. A solution instance can be deleted in this state.`,
-				},
-				resource.Attribute{
-					Name:        "InProgress",
-					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
-				},
-				resource.Attribute{
-					Name:        "Failed",
-					Description: `The last action on the solution failed and corrective measures need to be taken to bring the solution back to valid state.`,
-				},
-				resource.Attribute{
-					Name:        "Okay",
-					Description: `The last action on the solution completed and the solution is in Okay state.`,
-				},
-				resource.Attribute{
-					Name:        "Decommissioned",
-					Description: `The solution is decommissioned and can be safely deleted. Solution in any other state after it has been created cannot be deleted until it has been decommissioned.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_output",
-			Category:         "Data Sources",
-			ShortDescription: `Solution output which represents all the artifacts created or related to this solution instance.`,
-			Description: `
-Solution output which represents all the artifacts created or related to this solution instance.
 `,
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
@@ -34152,6 +40419,58 @@ Used to define a task which can be included within a workflow. Task definition c
 				resource.Attribute{
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -34238,6 +40557,58 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Name:        "IKS-Advantage",
 					Description: `IKS-Advantage as a License type.`,
 				},
+				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -34265,19 +40636,27 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Pause",
-					Description: `Pause the workflow, this can only be issued on workflows that are in running state.`,
+					Description: `Pause the workflow, this can only be issued on workflows that are in running state. A workflow can be paused for a maximum of 180 days, after 180 days the workflow will be terminated by the system.`,
 				},
 				resource.Attribute{
 					Name:        "Resume",
 					Description: `Resume the workflow which was previously paused through pause action on the workflow.`,
 				},
 				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the workflow that has previously reached a failed state. The workflow is run from the beginning using inputs from previous execution. Completed and currently running workflows cannot be rerun. Workflows do not have to be marked for retry to use this action.`,
+				},
+				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `This action has been deprecated. Please use RetryFailed, Rerun or RetryFromTask action. Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
 					Description: `Retry the workflow that has failed. A running or waiting workflow or a workflow that completed successfully cannot be retried. Only the tasks that failed in the previous run will be retried and the rest of workflow will be run. This action does not restart the workflow and also does not support retrying from a specific task.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFromTask",
+					Description: `Retry the workflow that has previously reached a failed state and has the retryable property set to true. A running or waiting workflow cannot be retried. RetryFromTaskName must be passed along with this action, and the workflow will be started from that specific task. The task name in RetryFromTaskName must be one of the tasks that was executed in the previous attempt. It is not possible to retry a workflow from a task that wasn't run in the previous execution attempt.`,
 				},
 				resource.Attribute{
 					Name:        "Cancel",
@@ -34297,19 +40676,27 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Pause",
-					Description: `Pause the workflow, this can only be issued on workflows that are in running state.`,
+					Description: `Pause the workflow, this can only be issued on workflows that are in running state. A workflow can be paused for a maximum of 180 days, after 180 days the workflow will be terminated by the system.`,
 				},
 				resource.Attribute{
 					Name:        "Resume",
 					Description: `Resume the workflow which was previously paused through pause action on the workflow.`,
 				},
 				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the workflow that has previously reached a failed state. The workflow is run from the beginning using inputs from previous execution. Completed and currently running workflows cannot be rerun. Workflows do not have to be marked for retry to use this action.`,
+				},
+				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `This action has been deprecated. Please use RetryFailed, Rerun or RetryFromTask action. Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
 					Description: `Retry the workflow that has failed. A running or waiting workflow or a workflow that completed successfully cannot be retried. Only the tasks that failed in the previous run will be retried and the rest of workflow will be run. This action does not restart the workflow and also does not support retrying from a specific task.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFromTask",
+					Description: `Retry the workflow that has previously reached a failed state and has the retryable property set to true. A running or waiting workflow cannot be retried. RetryFromTaskName must be passed along with this action, and the workflow will be started from that specific task. The task name in RetryFromTaskName must be one of the tasks that was executed in the previous attempt. It is not possible to retry a workflow from a task that wasn't run in the previous execution attempt.`,
 				},
 				resource.Attribute{
 					Name:        "Cancel",
@@ -34354,18 +40741,6 @@ Contains information for a workflow execution which is a runtime instance of wor
 				resource.Attribute{
 					Name:        "WaitingToStart",
 					Description: `Workflow is waiting to start on workflow engine.`,
-				},
-				resource.Attribute{
-					Name:        "SystemDefined",
-					Description: `System defined workflow definition.`,
-				},
-				resource.Attribute{
-					Name:        "UserDefined",
-					Description: `User defined workflow definition.`,
-				},
-				resource.Attribute{
-					Name:        "Dynamic",
-					Description: `Dynamically defined workflow definition.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -34414,858 +40789,977 @@ Workflow metadata is a collection of properties that are common across all the v
 		"intersight_aaa_audit_record":                                        0,
 		"intersight_aaa_retention_config":                                    1,
 		"intersight_aaa_retention_policy":                                    2,
-		"intersight_access_policy":                                           3,
-		"intersight_access_policy_inventory":                                 4,
-		"intersight_adapter_config_policy":                                   5,
-		"intersight_adapter_ext_eth_interface":                               6,
-		"intersight_adapter_host_eth_interface":                              7,
-		"intersight_adapter_host_fc_interface":                               8,
-		"intersight_adapter_host_iscsi_interface":                            9,
-		"intersight_adapter_unit":                                            10,
-		"intersight_adapter_unit_expander":                                   11,
-		"intersight_appliance_app_status":                                    12,
-		"intersight_appliance_auto_rma_policy":                               13,
-		"intersight_appliance_backup":                                        14,
-		"intersight_appliance_backup_policy":                                 15,
-		"intersight_appliance_certificate_setting":                           16,
-		"intersight_appliance_data_export_policy":                            17,
-		"intersight_appliance_device_certificate":                            18,
-		"intersight_appliance_device_claim":                                  19,
-		"intersight_appliance_device_upgrade_policy":                         20,
-		"intersight_appliance_diag_setting":                                  21,
-		"intersight_appliance_external_syslog_setting":                       22,
-		"intersight_appliance_file_gateway":                                  23,
-		"intersight_appliance_file_system_status":                            24,
-		"intersight_appliance_group_status":                                  25,
-		"intersight_appliance_image_bundle":                                  26,
-		"intersight_appliance_node_info":                                     27,
-		"intersight_appliance_node_status":                                   28,
-		"intersight_appliance_release_note":                                  29,
-		"intersight_appliance_remote_file_import":                            30,
-		"intersight_appliance_restore":                                       31,
-		"intersight_appliance_setup_info":                                    32,
-		"intersight_appliance_system_info":                                   33,
-		"intersight_appliance_system_status":                                 34,
-		"intersight_appliance_upgrade":                                       35,
-		"intersight_appliance_upgrade_policy":                                36,
-		"intersight_asset_cluster_member":                                    37,
-		"intersight_asset_deployment":                                        38,
-		"intersight_asset_deployment_device":                                 39,
-		"intersight_asset_device_configuration":                              40,
-		"intersight_asset_device_connector_manager":                          41,
-		"intersight_asset_device_contract_information":                       42,
-		"intersight_asset_device_registration":                               43,
-		"intersight_asset_subscription":                                      44,
-		"intersight_asset_subscription_account":                              45,
-		"intersight_asset_subscription_device_contract_information":          46,
-		"intersight_asset_target":                                            47,
-		"intersight_bios_boot_device":                                        48,
-		"intersight_bios_boot_mode":                                          49,
-		"intersight_bios_policy":                                             50,
-		"intersight_bios_system_boot_order":                                  51,
-		"intersight_bios_token_settings":                                     52,
-		"intersight_bios_unit":                                               53,
-		"intersight_bios_vf_select_memory_ras_configuration":                 54,
-		"intersight_boot_cdd_device":                                         55,
-		"intersight_boot_device_boot_mode":                                   56,
-		"intersight_boot_device_boot_security":                               57,
-		"intersight_boot_hdd_device":                                         58,
-		"intersight_boot_iscsi_device":                                       59,
-		"intersight_boot_nvme_device":                                        60,
-		"intersight_boot_pch_storage_device":                                 61,
-		"intersight_boot_precision_policy":                                   62,
-		"intersight_boot_pxe_device":                                         63,
-		"intersight_boot_san_device":                                         64,
-		"intersight_boot_sd_device":                                          65,
-		"intersight_boot_uefi_shell_device":                                  66,
-		"intersight_boot_usb_device":                                         67,
-		"intersight_boot_vmedia_device":                                      68,
-		"intersight_bulk_export":                                             69,
-		"intersight_bulk_exported_item":                                      70,
-		"intersight_bulk_request":                                            71,
-		"intersight_bulk_sub_request_obj":                                    72,
-		"intersight_capability_adapter_unit_descriptor":                      73,
-		"intersight_capability_catalog":                                      74,
-		"intersight_capability_chassis_descriptor":                           75,
-		"intersight_capability_chassis_manufacturing_def":                    76,
-		"intersight_capability_cimc_firmware_descriptor":                     77,
-		"intersight_capability_equipment_physical_def":                       78,
-		"intersight_capability_equipment_slot_array":                         79,
-		"intersight_capability_fan_module_descriptor":                        80,
-		"intersight_capability_fan_module_manufacturing_def":                 81,
-		"intersight_capability_fex_descriptor":                               82,
-		"intersight_capability_fex_manufacturing_def":                        83,
-		"intersight_capability_io_card_capability_def":                       84,
-		"intersight_capability_io_card_descriptor":                           85,
-		"intersight_capability_io_card_manufacturing_def":                    86,
-		"intersight_capability_port_group_aggregation_def":                   87,
-		"intersight_capability_psu_descriptor":                               88,
-		"intersight_capability_psu_manufacturing_def":                        89,
-		"intersight_capability_server_models_capability_def":                 90,
-		"intersight_capability_server_schema_descriptor":                     91,
-		"intersight_capability_sioc_module_capability_def":                   92,
-		"intersight_capability_sioc_module_descriptor":                       93,
-		"intersight_capability_sioc_module_manufacturing_def":                94,
-		"intersight_capability_switch_capability":                            95,
-		"intersight_capability_switch_descriptor":                            96,
-		"intersight_capability_switch_manufacturing_def":                     97,
-		"intersight_certificatemanagement_policy":                            98,
-		"intersight_certificatemanagement_policy_inventory":                  99,
-		"intersight_chassis_config_change_detail":                            100,
-		"intersight_chassis_config_import":                                   101,
-		"intersight_chassis_config_result":                                   102,
-		"intersight_chassis_config_result_entry":                             103,
-		"intersight_chassis_iom_profile":                                     104,
-		"intersight_chassis_profile":                                         105,
-		"intersight_cloud_aws_billing_unit":                                  106,
-		"intersight_cloud_aws_key_pair":                                      107,
-		"intersight_cloud_aws_network_interface":                             108,
-		"intersight_cloud_aws_organizational_unit":                           109,
-		"intersight_cloud_aws_security_group":                                110,
-		"intersight_cloud_aws_subnet":                                        111,
-		"intersight_cloud_aws_virtual_machine":                               112,
-		"intersight_cloud_aws_volume":                                        113,
-		"intersight_cloud_aws_vpc":                                           114,
-		"intersight_cloud_regions":                                           115,
-		"intersight_cloud_sku_container_type":                                116,
-		"intersight_cloud_sku_database_type":                                 117,
-		"intersight_cloud_sku_instance_type":                                 118,
-		"intersight_cloud_sku_network_type":                                  119,
-		"intersight_cloud_sku_region_rate_cards":                             120,
-		"intersight_cloud_sku_volume_type":                                   121,
-		"intersight_cloud_tfc_agentpool":                                     122,
-		"intersight_cloud_tfc_organization":                                  123,
-		"intersight_cloud_tfc_workspace":                                     124,
-		"intersight_comm_http_proxy_policy":                                  125,
-		"intersight_compute_blade":                                           126,
-		"intersight_compute_blade_identity":                                  127,
-		"intersight_compute_board":                                           128,
-		"intersight_compute_mapping":                                         129,
-		"intersight_compute_physical_summary":                                130,
-		"intersight_compute_rack_unit":                                       131,
-		"intersight_compute_rack_unit_identity":                              132,
-		"intersight_compute_server_power_policy":                             133,
-		"intersight_compute_server_setting":                                  134,
-		"intersight_compute_vmedia":                                          135,
-		"intersight_cond_alarm":                                              136,
-		"intersight_cond_alarm_aggregation":                                  137,
-		"intersight_cond_hcl_status":                                         138,
-		"intersight_cond_hcl_status_detail":                                  139,
-		"intersight_cond_hcl_status_job":                                     140,
-		"intersight_connectorpack_connector_pack_upgrade":                    141,
-		"intersight_connectorpack_upgrade_impact":                            142,
-		"intersight_console_console_config":                                  143,
-		"intersight_convergedinfra_pod":                                      144,
-		"intersight_crd_custom_resource":                                     145,
-		"intersight_deviceconnector_policy":                                  146,
-		"intersight_equipment_chassis":                                       147,
-		"intersight_equipment_chassis_identity":                              148,
-		"intersight_equipment_chassis_operation":                             149,
-		"intersight_equipment_device_summary":                                150,
-		"intersight_equipment_expander_module":                               151,
-		"intersight_equipment_fan":                                           152,
-		"intersight_equipment_fan_control":                                   153,
-		"intersight_equipment_fan_module":                                    154,
-		"intersight_equipment_fex":                                           155,
-		"intersight_equipment_fex_identity":                                  156,
-		"intersight_equipment_fex_operation":                                 157,
-		"intersight_equipment_fru":                                           158,
-		"intersight_equipment_identity_summary":                              159,
-		"intersight_equipment_io_card":                                       160,
-		"intersight_equipment_io_card_operation":                             161,
-		"intersight_equipment_io_expander":                                   162,
-		"intersight_equipment_locator_led":                                   163,
-		"intersight_equipment_psu":                                           164,
-		"intersight_equipment_psu_control":                                   165,
-		"intersight_equipment_rack_enclosure":                                166,
-		"intersight_equipment_rack_enclosure_slot":                           167,
-		"intersight_equipment_shared_io_module":                              168,
-		"intersight_equipment_switch_card":                                   169,
-		"intersight_equipment_system_io_controller":                          170,
-		"intersight_equipment_tpm":                                           171,
-		"intersight_equipment_transceiver":                                   172,
-		"intersight_ether_host_port":                                         173,
-		"intersight_ether_network_port":                                      174,
-		"intersight_ether_physical_port":                                     175,
-		"intersight_ether_port_channel":                                      176,
-		"intersight_externalsite_authorization":                              177,
-		"intersight_fabric_appliance_pc_role":                                178,
-		"intersight_fabric_appliance_role":                                   179,
-		"intersight_fabric_config_change_detail":                             180,
-		"intersight_fabric_config_result":                                    181,
-		"intersight_fabric_config_result_entry":                              182,
-		"intersight_fabric_element_identity":                                 183,
-		"intersight_fabric_eth_network_control_policy":                       184,
-		"intersight_fabric_eth_network_control_policy_inventory":             185,
-		"intersight_fabric_eth_network_group_policy":                         186,
-		"intersight_fabric_eth_network_group_policy_inventory":               187,
-		"intersight_fabric_eth_network_policy":                               188,
-		"intersight_fabric_fc_network_policy":                                189,
-		"intersight_fabric_fc_storage_role":                                  190,
-		"intersight_fabric_fc_uplink_pc_role":                                191,
-		"intersight_fabric_fc_uplink_role":                                   192,
-		"intersight_fabric_fcoe_uplink_pc_role":                              193,
-		"intersight_fabric_fcoe_uplink_role":                                 194,
-		"intersight_fabric_flow_control_policy":                              195,
-		"intersight_fabric_lan_pin_group":                                    196,
-		"intersight_fabric_link_aggregation_policy":                          197,
-		"intersight_fabric_link_control_policy":                              198,
-		"intersight_fabric_multicast_policy":                                 199,
-		"intersight_fabric_pc_member":                                        200,
-		"intersight_fabric_pc_operation":                                     201,
-		"intersight_fabric_port_mode":                                        202,
-		"intersight_fabric_port_operation":                                   203,
-		"intersight_fabric_port_policy":                                      204,
-		"intersight_fabric_san_pin_group":                                    205,
-		"intersight_fabric_server_role":                                      206,
-		"intersight_fabric_switch_cluster_profile":                           207,
-		"intersight_fabric_switch_control_policy":                            208,
-		"intersight_fabric_switch_profile":                                   209,
-		"intersight_fabric_system_qos_policy":                                210,
-		"intersight_fabric_uplink_pc_role":                                   211,
-		"intersight_fabric_uplink_role":                                      212,
-		"intersight_fabric_vlan":                                             213,
-		"intersight_fabric_vsan":                                             214,
-		"intersight_fault_instance":                                          215,
-		"intersight_fc_physical_port":                                        216,
-		"intersight_fc_port_channel":                                         217,
-		"intersight_fcpool_fc_block":                                         218,
-		"intersight_fcpool_lease":                                            219,
-		"intersight_fcpool_pool":                                             220,
-		"intersight_fcpool_pool_member":                                      221,
-		"intersight_fcpool_universe":                                         222,
-		"intersight_firmware_bios_descriptor":                                223,
-		"intersight_firmware_board_controller_descriptor":                    224,
-		"intersight_firmware_chassis_upgrade":                                225,
-		"intersight_firmware_cimc_descriptor":                                226,
-		"intersight_firmware_dimm_descriptor":                                227,
-		"intersight_firmware_distributable":                                  228,
-		"intersight_firmware_distributable_meta":                             229,
-		"intersight_firmware_drive_descriptor":                               230,
-		"intersight_firmware_driver_distributable":                           231,
-		"intersight_firmware_eula":                                           232,
-		"intersight_firmware_firmware_summary":                               233,
-		"intersight_firmware_gpu_descriptor":                                 234,
-		"intersight_firmware_hba_descriptor":                                 235,
-		"intersight_firmware_iom_descriptor":                                 236,
-		"intersight_firmware_mswitch_descriptor":                             237,
-		"intersight_firmware_nxos_descriptor":                                238,
-		"intersight_firmware_pcie_descriptor":                                239,
-		"intersight_firmware_psu_descriptor":                                 240,
-		"intersight_firmware_running_firmware":                               241,
-		"intersight_firmware_sas_expander_descriptor":                        242,
-		"intersight_firmware_server_configuration_utility_distributable":     243,
-		"intersight_firmware_storage_controller_descriptor":                  244,
-		"intersight_firmware_switch_upgrade":                                 245,
-		"intersight_firmware_unsupported_version_upgrade":                    246,
-		"intersight_firmware_upgrade":                                        247,
-		"intersight_firmware_upgrade_impact_status":                          248,
-		"intersight_firmware_upgrade_status":                                 249,
-		"intersight_forecast_catalog":                                        250,
-		"intersight_forecast_definition":                                     251,
-		"intersight_forecast_instance":                                       252,
-		"intersight_graphics_card":                                           253,
-		"intersight_graphics_controller":                                     254,
-		"intersight_hcl_driver_image":                                        255,
-		"intersight_hcl_exempted_catalog":                                    256,
-		"intersight_hcl_hyperflex_software_compatibility_info":               257,
-		"intersight_hcl_operating_system":                                    258,
-		"intersight_hcl_operating_system_vendor":                             259,
-		"intersight_hyperflex_alarm":                                         260,
-		"intersight_hyperflex_app_catalog":                                   261,
-		"intersight_hyperflex_auto_support_policy":                           262,
-		"intersight_hyperflex_backup_cluster":                                263,
-		"intersight_hyperflex_capability_info":                               264,
-		"intersight_hyperflex_cluster":                                       265,
-		"intersight_hyperflex_cluster_backup_policy":                         266,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              267,
-		"intersight_hyperflex_cluster_backup_policy_inventory":               268,
-		"intersight_hyperflex_cluster_health_check_execution_snapshot":       269,
-		"intersight_hyperflex_cluster_network_policy":                        270,
-		"intersight_hyperflex_cluster_profile":                               271,
-		"intersight_hyperflex_cluster_replication_network_policy":            272,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 273,
-		"intersight_hyperflex_cluster_storage_policy":                        274,
-		"intersight_hyperflex_config_result":                                 275,
-		"intersight_hyperflex_config_result_entry":                           276,
-		"intersight_hyperflex_data_protection_peer":                          277,
-		"intersight_hyperflex_datastore_statistic":                           278,
-		"intersight_hyperflex_device_package_download_state":                 279,
-		"intersight_hyperflex_drive":                                         280,
-		"intersight_hyperflex_encryption":                                    281,
-		"intersight_hyperflex_ext_fc_storage_policy":                         282,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      283,
-		"intersight_hyperflex_feature_limit_external":                        284,
-		"intersight_hyperflex_feature_limit_internal":                        285,
-		"intersight_hyperflex_health":                                        286,
-		"intersight_hyperflex_health_check_definition":                       287,
-		"intersight_hyperflex_health_check_execution":                        288,
-		"intersight_hyperflex_health_check_execution_snapshot":               289,
-		"intersight_hyperflex_health_check_package_checksum":                 290,
-		"intersight_hyperflex_hxdp_version":                                  291,
-		"intersight_hyperflex_hypervisor_host":                               292,
-		"intersight_hyperflex_hypervisor_virtual_machine":                    293,
-		"intersight_hyperflex_key_encryption_key":                            294,
-		"intersight_hyperflex_license":                                       295,
-		"intersight_hyperflex_local_credential_policy":                       296,
-		"intersight_hyperflex_node":                                          297,
-		"intersight_hyperflex_node_config_policy":                            298,
-		"intersight_hyperflex_node_profile":                                  299,
-		"intersight_hyperflex_protected_cluster":                             300,
-		"intersight_hyperflex_proxy_setting_policy":                          301,
-		"intersight_hyperflex_server_firmware_version":                       302,
-		"intersight_hyperflex_server_firmware_version_entry":                 303,
-		"intersight_hyperflex_server_model":                                  304,
-		"intersight_hyperflex_service_auth_token":                            305,
-		"intersight_hyperflex_software_distribution_component":               306,
-		"intersight_hyperflex_software_distribution_entry":                   307,
-		"intersight_hyperflex_software_distribution_version":                 308,
-		"intersight_hyperflex_software_version_policy":                       309,
-		"intersight_hyperflex_storage_container":                             310,
-		"intersight_hyperflex_sys_config_policy":                             311,
-		"intersight_hyperflex_ucsm_config_policy":                            312,
-		"intersight_hyperflex_vcenter_config_policy":                         313,
-		"intersight_hyperflex_vm_backup_info":                                314,
-		"intersight_hyperflex_vm_import_operation":                           315,
-		"intersight_hyperflex_vm_restore_operation":                          316,
-		"intersight_hyperflex_vm_snapshot_info":                              317,
-		"intersight_hyperflex_volume":                                        318,
-		"intersight_hyperflex_witness_configuration":                         319,
-		"intersight_iaas_connector_pack":                                     320,
-		"intersight_iaas_custom_task_info":                                   321,
-		"intersight_iaas_device_status":                                      322,
-		"intersight_iaas_diagnostic_messages":                                323,
-		"intersight_iaas_license_info":                                       324,
-		"intersight_iaas_most_run_tasks":                                     325,
-		"intersight_iaas_service_request":                                    326,
-		"intersight_iaas_system_task_info":                                   327,
-		"intersight_iaas_ucsd_info":                                          328,
-		"intersight_iaas_ucsd_managed_infra":                                 329,
-		"intersight_iaas_ucsd_messages":                                      330,
-		"intersight_iam_account":                                             331,
-		"intersight_iam_account_experience":                                  332,
-		"intersight_iam_api_key":                                             333,
-		"intersight_iam_app_registration":                                    334,
-		"intersight_iam_banner_message":                                      335,
-		"intersight_iam_certificate":                                         336,
-		"intersight_iam_certificate_request":                                 337,
-		"intersight_iam_domain_group":                                        338,
-		"intersight_iam_domain_name_info":                                    339,
-		"intersight_iam_end_point_privilege":                                 340,
-		"intersight_iam_end_point_role":                                      341,
-		"intersight_iam_end_point_user":                                      342,
-		"intersight_iam_end_point_user_inventory":                            343,
-		"intersight_iam_end_point_user_policy":                               344,
-		"intersight_iam_end_point_user_policy_inventory":                     345,
-		"intersight_iam_end_point_user_role":                                 346,
-		"intersight_iam_end_point_user_role_inventory":                       347,
-		"intersight_iam_idp":                                                 348,
-		"intersight_iam_idp_reference":                                       349,
-		"intersight_iam_ip_access_management":                                350,
-		"intersight_iam_ip_address":                                          351,
-		"intersight_iam_ldap_group":                                          352,
-		"intersight_iam_ldap_policy":                                         353,
-		"intersight_iam_ldap_provider":                                       354,
-		"intersight_iam_local_user_password_policy":                          355,
-		"intersight_iam_o_auth_token":                                        356,
-		"intersight_iam_permission":                                          357,
-		"intersight_iam_private_key_spec":                                    358,
-		"intersight_iam_privilege":                                           359,
-		"intersight_iam_privilege_set":                                       360,
-		"intersight_iam_qualifier":                                           361,
-		"intersight_iam_resource_limits":                                     362,
-		"intersight_iam_resource_permission":                                 363,
-		"intersight_iam_resource_roles":                                      364,
-		"intersight_iam_role":                                                365,
-		"intersight_iam_security_holder":                                     366,
-		"intersight_iam_service_provider":                                    367,
-		"intersight_iam_session":                                             368,
-		"intersight_iam_session_limits":                                      369,
-		"intersight_iam_system":                                              370,
-		"intersight_iam_trust_point":                                         371,
-		"intersight_iam_user":                                                372,
-		"intersight_iam_user_group":                                          373,
-		"intersight_iam_user_preference":                                     374,
-		"intersight_inventory_device_info":                                   375,
-		"intersight_inventory_dn_mo_binding":                                 376,
-		"intersight_inventory_generic_inventory":                             377,
-		"intersight_inventory_generic_inventory_holder":                      378,
-		"intersight_ipmioverlan_policy":                                      379,
-		"intersight_ipmioverlan_policy_inventory":                            380,
-		"intersight_ippool_block_lease":                                      381,
-		"intersight_ippool_ip_lease":                                         382,
-		"intersight_ippool_pool":                                             383,
-		"intersight_ippool_pool_member":                                      384,
-		"intersight_ippool_shadow_block":                                     385,
-		"intersight_ippool_shadow_pool":                                      386,
-		"intersight_ippool_universe":                                         387,
-		"intersight_iqnpool_block":                                           388,
-		"intersight_iqnpool_lease":                                           389,
-		"intersight_iqnpool_pool":                                            390,
-		"intersight_iqnpool_pool_member":                                     391,
-		"intersight_iqnpool_universe":                                        392,
-		"intersight_iwotenant_tenant_status":                                 393,
-		"intersight_kubernetes_aci_cni_apic":                                 394,
-		"intersight_kubernetes_aci_cni_profile":                              395,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            396,
-		"intersight_kubernetes_addon_definition":                             397,
-		"intersight_kubernetes_addon_policy":                                 398,
-		"intersight_kubernetes_addon_repository":                             399,
-		"intersight_kubernetes_baremetal_node_profile":                       400,
-		"intersight_kubernetes_catalog":                                      401,
-		"intersight_kubernetes_cluster":                                      402,
-		"intersight_kubernetes_cluster_addon_profile":                        403,
-		"intersight_kubernetes_cluster_profile":                              404,
-		"intersight_kubernetes_config_result":                                405,
-		"intersight_kubernetes_config_result_entry":                          406,
-		"intersight_kubernetes_container_runtime_policy":                     407,
-		"intersight_kubernetes_daemon_set":                                   408,
-		"intersight_kubernetes_deployment":                                   409,
-		"intersight_kubernetes_ingress":                                      410,
-		"intersight_kubernetes_network_policy":                               411,
-		"intersight_kubernetes_node":                                         412,
-		"intersight_kubernetes_node_group_profile":                           413,
-		"intersight_kubernetes_pod":                                          414,
-		"intersight_kubernetes_service":                                      415,
-		"intersight_kubernetes_stateful_set":                                 416,
-		"intersight_kubernetes_sys_config_policy":                            417,
-		"intersight_kubernetes_trusted_registries_policy":                    418,
-		"intersight_kubernetes_version":                                      419,
-		"intersight_kubernetes_version_policy":                               420,
-		"intersight_kubernetes_virtual_machine_infra_config_policy":          421,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      422,
-		"intersight_kubernetes_virtual_machine_instance_type":                423,
-		"intersight_kubernetes_virtual_machine_node_profile":                 424,
-		"intersight_kvm_policy":                                              425,
-		"intersight_kvm_policy_inventory":                                    426,
-		"intersight_kvm_session":                                             427,
-		"intersight_kvm_tunnel":                                              428,
-		"intersight_kvm_tunneled_kvm_policy":                                 429,
-		"intersight_license_account_license_data":                            430,
-		"intersight_license_customer_op":                                     431,
-		"intersight_license_iks_customer_op":                                 432,
-		"intersight_license_iks_license_count":                               433,
-		"intersight_license_iwo_customer_op":                                 434,
-		"intersight_license_iwo_license_count":                               435,
-		"intersight_license_license_info":                                    436,
-		"intersight_license_license_reservation_op":                          437,
-		"intersight_license_smartlicense_token":                              438,
-		"intersight_ls_service_profile":                                      439,
-		"intersight_macpool_id_block":                                        440,
-		"intersight_macpool_lease":                                           441,
-		"intersight_macpool_pool":                                            442,
-		"intersight_macpool_pool_member":                                     443,
-		"intersight_macpool_universe":                                        444,
-		"intersight_management_controller":                                   445,
-		"intersight_management_entity":                                       446,
-		"intersight_management_interface":                                    447,
-		"intersight_memory_array":                                            448,
-		"intersight_memory_persistent_memory_config_result":                  449,
-		"intersight_memory_persistent_memory_configuration":                  450,
-		"intersight_memory_persistent_memory_namespace":                      451,
-		"intersight_memory_persistent_memory_namespace_config_result":        452,
-		"intersight_memory_persistent_memory_policy":                         453,
-		"intersight_memory_persistent_memory_region":                         454,
-		"intersight_memory_persistent_memory_unit":                           455,
-		"intersight_memory_unit":                                             456,
-		"intersight_meta_definition":                                         457,
-		"intersight_monitoring_health_status":                                458,
-		"intersight_network_element":                                         459,
-		"intersight_network_element_summary":                                 460,
-		"intersight_network_fc_zone_info":                                    461,
-		"intersight_network_feature_control":                                 462,
-		"intersight_network_interface_list":                                  463,
-		"intersight_network_license_file":                                    464,
-		"intersight_network_supervisor_card":                                 465,
-		"intersight_network_vlan_port_info":                                  466,
-		"intersight_network_vrf":                                             467,
-		"intersight_networkconfig_policy":                                    468,
-		"intersight_niaapi_apic_cco_post":                                    469,
-		"intersight_niaapi_apic_field_notice":                                470,
-		"intersight_niaapi_apic_hweol":                                       471,
-		"intersight_niaapi_apic_latest_maintained_release":                   472,
-		"intersight_niaapi_apic_release_recommend":                           473,
-		"intersight_niaapi_apic_sweol":                                       474,
-		"intersight_niaapi_dcnm_cco_post":                                    475,
-		"intersight_niaapi_dcnm_field_notice":                                476,
-		"intersight_niaapi_dcnm_hweol":                                       477,
-		"intersight_niaapi_dcnm_latest_maintained_release":                   478,
-		"intersight_niaapi_dcnm_release_recommend":                           479,
-		"intersight_niaapi_dcnm_sweol":                                       480,
-		"intersight_niaapi_file_downloader":                                  481,
-		"intersight_niaapi_nia_metadata":                                     482,
-		"intersight_niaapi_nib_file_downloader":                              483,
-		"intersight_niaapi_nib_metadata":                                     484,
-		"intersight_niaapi_version_regex":                                    485,
-		"intersight_niatelemetry_aaa_ldap_provider_details":                  486,
-		"intersight_niatelemetry_aaa_radius_provider_details":                487,
-		"intersight_niatelemetry_aaa_tacacs_provider_details":                488,
-		"intersight_niatelemetry_apic_app_plugin_details":                    489,
-		"intersight_niatelemetry_apic_core_file_details":                     490,
-		"intersight_niatelemetry_apic_dbgexp_rs_export_dest":                 491,
-		"intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler":                492,
-		"intersight_niatelemetry_apic_fan_details":                           493,
-		"intersight_niatelemetry_apic_fex_details":                           494,
-		"intersight_niatelemetry_apic_flash_details":                         495,
-		"intersight_niatelemetry_apic_ntp_auth":                              496,
-		"intersight_niatelemetry_apic_psu_details":                           497,
-		"intersight_niatelemetry_apic_realm_details":                         498,
-		"intersight_niatelemetry_apic_snmp_client_grp_details":               499,
-		"intersight_niatelemetry_apic_snmp_community_access_details":         500,
-		"intersight_niatelemetry_apic_snmp_community_details":                501,
-		"intersight_niatelemetry_apic_snmp_trap_details":                     502,
-		"intersight_niatelemetry_apic_snmp_trap_fwd_server_details":          503,
-		"intersight_niatelemetry_apic_snmp_version_three_details":            504,
-		"intersight_niatelemetry_apic_sys_log_grp":                           505,
-		"intersight_niatelemetry_apic_sys_log_src":                           506,
-		"intersight_niatelemetry_apic_transceiver_details":                   507,
-		"intersight_niatelemetry_apic_ui_page_counts":                        508,
-		"intersight_niatelemetry_app_details":                                509,
-		"intersight_niatelemetry_common_policies":                            510,
-		"intersight_niatelemetry_dcnm_fan_details":                           511,
-		"intersight_niatelemetry_dcnm_fex_details":                           512,
-		"intersight_niatelemetry_dcnm_module_details":                        513,
-		"intersight_niatelemetry_dcnm_psu_details":                           514,
-		"intersight_niatelemetry_dcnm_transceiver_details":                   515,
-		"intersight_niatelemetry_epg":                                        516,
-		"intersight_niatelemetry_fabric_module_details":                      517,
-		"intersight_niatelemetry_fabric_node_control_details":                518,
-		"intersight_niatelemetry_fabric_pod_profile":                         519,
-		"intersight_niatelemetry_fabric_pod_ss":                              520,
-		"intersight_niatelemetry_fault":                                      521,
-		"intersight_niatelemetry_https_acl_contract_details":                 522,
-		"intersight_niatelemetry_https_acl_contract_filter_map":              523,
-		"intersight_niatelemetry_https_acl_epg_contract_map":                 524,
-		"intersight_niatelemetry_https_acl_epg_details":                      525,
-		"intersight_niatelemetry_https_acl_filter_details":                   526,
-		"intersight_niatelemetry_insight_group_details":                      527,
-		"intersight_niatelemetry_lc":                                         528,
-		"intersight_niatelemetry_leaf_pol_grp_details":                       529,
-		"intersight_niatelemetry_mso_contract_details":                       530,
-		"intersight_niatelemetry_mso_epg_details":                            531,
-		"intersight_niatelemetry_mso_schema_details":                         532,
-		"intersight_niatelemetry_mso_site_details":                           533,
-		"intersight_niatelemetry_mso_tenant_details":                         534,
-		"intersight_niatelemetry_nexus_dashboard_controller_details":         535,
-		"intersight_niatelemetry_nexus_dashboard_details":                    536,
-		"intersight_niatelemetry_nexus_dashboard_memory_details":             537,
-		"intersight_niatelemetry_nexus_dashboards":                           538,
-		"intersight_niatelemetry_nia_feature_usage":                          539,
-		"intersight_niatelemetry_nia_inventory":                              540,
-		"intersight_niatelemetry_nia_inventory_dcnm":                         541,
-		"intersight_niatelemetry_nia_inventory_fabric":                       542,
-		"intersight_niatelemetry_nia_license_state":                          543,
-		"intersight_niatelemetry_password_strength_check":                    544,
-		"intersight_niatelemetry_pod_comm_policies":                          545,
-		"intersight_niatelemetry_pod_snmp_policies":                          546,
-		"intersight_niatelemetry_pod_time_server_policies":                   547,
-		"intersight_niatelemetry_site_inventory":                             548,
-		"intersight_niatelemetry_snmp_src":                                   549,
-		"intersight_niatelemetry_spine_pol_grp_details":                      550,
-		"intersight_niatelemetry_ssh_version_two":                            551,
-		"intersight_niatelemetry_supervisor_module_details":                  552,
-		"intersight_niatelemetry_syslog_remote_dest":                         553,
-		"intersight_niatelemetry_syslog_sys_msg":                             554,
-		"intersight_niatelemetry_syslog_sys_msg_fac_filter":                  555,
-		"intersight_niatelemetry_system_controller_details":                  556,
-		"intersight_niatelemetry_tenant":                                     557,
-		"intersight_notification_account_subscription":                       558,
-		"intersight_ntp_policy":                                              559,
-		"intersight_oauth_access_token":                                      560,
-		"intersight_oauth_authorization":                                     561,
-		"intersight_oprs_deployment":                                         562,
-		"intersight_oprs_sync_target_list_message":                           563,
-		"intersight_organization_organization":                               564,
-		"intersight_os_bulk_install_info":                                    565,
-		"intersight_os_catalog":                                              566,
-		"intersight_os_configuration_file":                                   567,
-		"intersight_os_distribution":                                         568,
-		"intersight_os_install":                                              569,
-		"intersight_os_supported_version":                                    570,
-		"intersight_pci_coprocessor_card":                                    571,
-		"intersight_pci_device":                                              572,
-		"intersight_pci_link":                                                573,
-		"intersight_pci_switch":                                              574,
-		"intersight_port_group":                                              575,
-		"intersight_port_mac_binding":                                        576,
-		"intersight_port_sub_group":                                          577,
-		"intersight_power_control_state":                                     578,
-		"intersight_power_policy":                                            579,
-		"intersight_power_policy_inventory":                                  580,
-		"intersight_processor_unit":                                          581,
-		"intersight_rack_unit_personality":                                   582,
-		"intersight_recommendation_capacity_runway":                          583,
-		"intersight_recommendation_physical_item":                            584,
-		"intersight_recovery_backup_config_policy":                           585,
-		"intersight_recovery_backup_profile":                                 586,
-		"intersight_recovery_config_result":                                  587,
-		"intersight_recovery_config_result_entry":                            588,
-		"intersight_recovery_on_demand_backup":                               589,
-		"intersight_recovery_restore":                                        590,
-		"intersight_recovery_schedule_config_policy":                         591,
-		"intersight_resource_group":                                          592,
-		"intersight_resource_group_member":                                   593,
-		"intersight_resource_license_resource_count":                         594,
-		"intersight_resource_membership":                                     595,
-		"intersight_resource_membership_holder":                              596,
-		"intersight_resource_reservation":                                    597,
-		"intersight_resourcepool_lease":                                      598,
-		"intersight_resourcepool_lease_resource":                             599,
-		"intersight_resourcepool_pool":                                       600,
-		"intersight_resourcepool_pool_member":                                601,
-		"intersight_resourcepool_universe":                                   602,
-		"intersight_sdcard_policy":                                           603,
-		"intersight_sdcard_policy_inventory":                                 604,
-		"intersight_search_search_item":                                      605,
-		"intersight_search_tag_item":                                         606,
-		"intersight_security_unit":                                           607,
-		"intersight_server_config_change_detail":                             608,
-		"intersight_server_config_import":                                    609,
-		"intersight_server_config_result":                                    610,
-		"intersight_server_config_result_entry":                              611,
-		"intersight_server_profile":                                          612,
-		"intersight_server_profile_template":                                 613,
-		"intersight_smtp_policy":                                             614,
-		"intersight_snmp_policy":                                             615,
-		"intersight_snmp_policy_inventory":                                   616,
-		"intersight_software_appliance_distributable":                        617,
-		"intersight_software_download_history":                               618,
-		"intersight_software_hcl_meta":                                       619,
-		"intersight_software_hyperflex_bundle_distributable":                 620,
-		"intersight_software_hyperflex_distributable":                        621,
-		"intersight_software_iks_bundle_distributable":                       622,
-		"intersight_software_release_meta":                                   623,
-		"intersight_software_solution_distributable":                         624,
-		"intersight_software_ucsd_bundle_distributable":                      625,
-		"intersight_software_ucsd_distributable":                             626,
-		"intersight_softwarerepository_authorization":                        627,
-		"intersight_softwarerepository_cached_image":                         628,
-		"intersight_softwarerepository_catalog":                              629,
-		"intersight_softwarerepository_category_mapper":                      630,
-		"intersight_softwarerepository_category_mapper_model":                631,
-		"intersight_softwarerepository_category_support_constraint":          632,
-		"intersight_softwarerepository_download_spec":                        633,
-		"intersight_softwarerepository_operating_system_file":                634,
-		"intersight_softwarerepository_release":                              635,
-		"intersight_sol_policy":                                              636,
-		"intersight_sol_policy_inventory":                                    637,
-		"intersight_ssh_policy":                                              638,
-		"intersight_ssh_policy_inventory":                                    639,
-		"intersight_storage_controller":                                      640,
-		"intersight_storage_disk_group":                                      641,
-		"intersight_storage_disk_slot":                                       642,
-		"intersight_storage_drive_group":                                     643,
-		"intersight_storage_enclosure":                                       644,
-		"intersight_storage_enclosure_disk":                                  645,
-		"intersight_storage_enclosure_disk_slot_ep":                          646,
-		"intersight_storage_flex_flash_controller":                           647,
-		"intersight_storage_flex_flash_controller_props":                     648,
-		"intersight_storage_flex_flash_physical_drive":                       649,
-		"intersight_storage_flex_flash_virtual_drive":                        650,
-		"intersight_storage_flex_util_controller":                            651,
-		"intersight_storage_flex_util_physical_drive":                        652,
-		"intersight_storage_flex_util_virtual_drive":                         653,
-		"intersight_storage_hitachi_array":                                   654,
-		"intersight_storage_hitachi_controller":                              655,
-		"intersight_storage_hitachi_disk":                                    656,
-		"intersight_storage_hitachi_host":                                    657,
-		"intersight_storage_hitachi_host_lun":                                658,
-		"intersight_storage_hitachi_parity_group":                            659,
-		"intersight_storage_hitachi_pool":                                    660,
-		"intersight_storage_hitachi_port":                                    661,
-		"intersight_storage_hitachi_volume":                                  662,
-		"intersight_storage_hyper_flex_storage_container":                    663,
-		"intersight_storage_hyper_flex_volume":                               664,
-		"intersight_storage_item":                                            665,
-		"intersight_storage_net_app_aggregate":                               666,
-		"intersight_storage_net_app_aggregate_event":                         667,
-		"intersight_storage_net_app_base_disk":                               668,
-		"intersight_storage_net_app_cluster":                                 669,
-		"intersight_storage_net_app_cluster_event":                           670,
-		"intersight_storage_net_app_data_ip_interface":                       671,
-		"intersight_storage_net_app_data_ip_interface_event":                 672,
-		"intersight_storage_net_app_disk_event":                              673,
-		"intersight_storage_net_app_ethernet_port":                           674,
-		"intersight_storage_net_app_ethernet_port_event":                     675,
-		"intersight_storage_net_app_export_policy":                           676,
-		"intersight_storage_net_app_fc_interface":                            677,
-		"intersight_storage_net_app_fc_interface_event":                      678,
-		"intersight_storage_net_app_fc_port":                                 679,
-		"intersight_storage_net_app_fc_port_event":                           680,
-		"intersight_storage_net_app_initiator_group":                         681,
-		"intersight_storage_net_app_ip_interface":                            682,
-		"intersight_storage_net_app_ip_interface_event":                      683,
-		"intersight_storage_net_app_iscsi_service":                           684,
-		"intersight_storage_net_app_license":                                 685,
-		"intersight_storage_net_app_lun":                                     686,
-		"intersight_storage_net_app_lun_event":                               687,
-		"intersight_storage_net_app_lun_map":                                 688,
-		"intersight_storage_net_app_nfs_service":                             689,
-		"intersight_storage_net_app_node":                                    690,
-		"intersight_storage_net_app_node_cdp_neighbor":                       691,
-		"intersight_storage_net_app_node_event":                              692,
-		"intersight_storage_net_app_non_data_ip_interface":                   693,
-		"intersight_storage_net_app_non_data_ip_interface_event":             694,
-		"intersight_storage_net_app_ntp_server":                              695,
-		"intersight_storage_net_app_schedule":                                696,
-		"intersight_storage_net_app_sensor":                                  697,
-		"intersight_storage_net_app_storage_vm":                              698,
-		"intersight_storage_net_app_svm_event":                               699,
-		"intersight_storage_net_app_volume":                                  700,
-		"intersight_storage_net_app_volume_event":                            701,
-		"intersight_storage_net_app_volume_snapshot":                         702,
-		"intersight_storage_physical_disk":                                   703,
-		"intersight_storage_physical_disk_extension":                         704,
-		"intersight_storage_physical_disk_usage":                             705,
-		"intersight_storage_pure_array":                                      706,
-		"intersight_storage_pure_controller":                                 707,
-		"intersight_storage_pure_disk":                                       708,
-		"intersight_storage_pure_host":                                       709,
-		"intersight_storage_pure_host_group":                                 710,
-		"intersight_storage_pure_host_lun":                                   711,
-		"intersight_storage_pure_port":                                       712,
-		"intersight_storage_pure_protection_group":                           713,
-		"intersight_storage_pure_protection_group_snapshot":                  714,
-		"intersight_storage_pure_replication_schedule":                       715,
-		"intersight_storage_pure_snapshot_schedule":                          716,
-		"intersight_storage_pure_volume":                                     717,
-		"intersight_storage_pure_volume_snapshot":                            718,
-		"intersight_storage_sas_expander":                                    719,
-		"intersight_storage_sas_port":                                        720,
-		"intersight_storage_span":                                            721,
-		"intersight_storage_storage_policy":                                  722,
-		"intersight_storage_vd_member_ep":                                    723,
-		"intersight_storage_virtual_drive":                                   724,
-		"intersight_storage_virtual_drive_container":                         725,
-		"intersight_storage_virtual_drive_extension":                         726,
-		"intersight_storage_virtual_drive_identity":                          727,
-		"intersight_syslog_policy":                                           728,
-		"intersight_syslog_policy_inventory":                                 729,
-		"intersight_tam_advisory_count":                                      730,
-		"intersight_tam_advisory_definition":                                 731,
-		"intersight_tam_advisory_info":                                       732,
-		"intersight_tam_advisory_instance":                                   733,
-		"intersight_tam_security_advisory":                                   734,
-		"intersight_techsupportmanagement_collection_control_policy":         735,
-		"intersight_techsupportmanagement_download":                          736,
-		"intersight_techsupportmanagement_tech_support_bundle":               737,
-		"intersight_techsupportmanagement_tech_support_status":               738,
-		"intersight_terminal_audit_log":                                      739,
-		"intersight_terraform_executor":                                      740,
-		"intersight_thermal_policy":                                          741,
-		"intersight_top_system":                                              742,
-		"intersight_ucsd_backup_info":                                        743,
-		"intersight_uuidpool_block":                                          744,
-		"intersight_uuidpool_pool":                                           745,
-		"intersight_uuidpool_pool_member":                                    746,
-		"intersight_uuidpool_universe":                                       747,
-		"intersight_uuidpool_uuid_lease":                                     748,
-		"intersight_view_health_status":                                      749,
-		"intersight_view_server":                                             750,
-		"intersight_virtualization_cisco_hypervisor_manager":                 751,
-		"intersight_virtualization_esxi_console":                             752,
-		"intersight_virtualization_host":                                     753,
-		"intersight_virtualization_iwe_cluster":                              754,
-		"intersight_virtualization_iwe_datacenter":                           755,
-		"intersight_virtualization_iwe_dv_uplink":                            756,
-		"intersight_virtualization_iwe_dvswitch":                             757,
-		"intersight_virtualization_iwe_host":                                 758,
-		"intersight_virtualization_iwe_host_interface":                       759,
-		"intersight_virtualization_iwe_host_vswitch":                         760,
-		"intersight_virtualization_iwe_network":                              761,
-		"intersight_virtualization_iwe_virtual_disk":                         762,
-		"intersight_virtualization_iwe_virtual_machine":                      763,
-		"intersight_virtualization_iwe_virtual_machine_network_interface":    764,
-		"intersight_virtualization_virtual_disk":                             765,
-		"intersight_virtualization_virtual_machine":                          766,
-		"intersight_virtualization_virtual_network":                          767,
-		"intersight_virtualization_vmware_cluster":                           768,
-		"intersight_virtualization_vmware_datacenter":                        769,
-		"intersight_virtualization_vmware_datastore":                         770,
-		"intersight_virtualization_vmware_datastore_cluster":                 771,
-		"intersight_virtualization_vmware_distributed_network":               772,
-		"intersight_virtualization_vmware_distributed_switch":                773,
-		"intersight_virtualization_vmware_folder":                            774,
-		"intersight_virtualization_vmware_host":                              775,
-		"intersight_virtualization_vmware_kernel_network":                    776,
-		"intersight_virtualization_vmware_network":                           777,
-		"intersight_virtualization_vmware_physical_network_interface":        778,
-		"intersight_virtualization_vmware_uplink_port":                       779,
-		"intersight_virtualization_vmware_vcenter":                           780,
-		"intersight_virtualization_vmware_virtual_disk":                      781,
-		"intersight_virtualization_vmware_virtual_machine":                   782,
-		"intersight_virtualization_vmware_virtual_machine_snapshot":          783,
-		"intersight_virtualization_vmware_virtual_network_interface":         784,
-		"intersight_virtualization_vmware_virtual_switch":                    785,
-		"intersight_vmedia_policy":                                           786,
-		"intersight_vmedia_policy_inventory":                                 787,
-		"intersight_vmrc_console":                                            788,
-		"intersight_vnc_console":                                             789,
-		"intersight_vnic_eth_adapter_policy":                                 790,
-		"intersight_vnic_eth_adapter_policy_inventory":                       791,
-		"intersight_vnic_eth_if":                                             792,
-		"intersight_vnic_eth_if_inventory":                                   793,
-		"intersight_vnic_eth_network_policy":                                 794,
-		"intersight_vnic_eth_network_policy_inventory":                       795,
-		"intersight_vnic_eth_qos_policy":                                     796,
-		"intersight_vnic_eth_qos_policy_inventory":                           797,
-		"intersight_vnic_eth_veth_inventory":                                 798,
-		"intersight_vnic_eth_vnic_inventory":                                 799,
-		"intersight_vnic_fc_adapter_policy":                                  800,
-		"intersight_vnic_fc_adapter_policy_inventory":                        801,
-		"intersight_vnic_fc_if":                                              802,
-		"intersight_vnic_fc_if_inventory":                                    803,
-		"intersight_vnic_fc_network_policy":                                  804,
-		"intersight_vnic_fc_network_policy_inventory":                        805,
-		"intersight_vnic_fc_qos_policy":                                      806,
-		"intersight_vnic_fc_qos_policy_inventory":                            807,
-		"intersight_vnic_fc_veth_inventory":                                  808,
-		"intersight_vnic_fc_vhba_policy_inventory":                           809,
-		"intersight_vnic_iscsi_adapter_policy":                               810,
-		"intersight_vnic_iscsi_adapter_policy_inventory":                     811,
-		"intersight_vnic_iscsi_boot_policy":                                  812,
-		"intersight_vnic_iscsi_boot_policy_inventory":                        813,
-		"intersight_vnic_iscsi_static_target_policy":                         814,
-		"intersight_vnic_iscsi_static_target_policy_inventory":               815,
-		"intersight_vnic_lan_connectivity_policy":                            816,
-		"intersight_vnic_lan_connectivity_policy_inventory":                  817,
-		"intersight_vnic_lcp_status":                                         818,
-		"intersight_vnic_san_connectivity_policy":                            819,
-		"intersight_vnic_san_connectivity_policy_inventory":                  820,
-		"intersight_vnic_scp_status":                                         821,
-		"intersight_vrf_vrf":                                                 822,
-		"intersight_workflow_ansible_batch_executor":                         823,
-		"intersight_workflow_batch_api_executor":                             824,
-		"intersight_workflow_build_task_meta":                                825,
-		"intersight_workflow_build_task_meta_owner":                          826,
-		"intersight_workflow_catalog":                                        827,
-		"intersight_workflow_custom_data_type_definition":                    828,
-		"intersight_workflow_error_response_handler":                         829,
-		"intersight_workflow_pending_dynamic_workflow_info":                  830,
-		"intersight_workflow_power_shell_batch_api_executor":                 831,
-		"intersight_workflow_rollback_workflow":                              832,
-		"intersight_workflow_service_item_action_definition":                 833,
-		"intersight_workflow_service_item_action_instance":                   834,
-		"intersight_workflow_service_item_definition":                        835,
-		"intersight_workflow_service_item_health_check_definition":           836,
-		"intersight_workflow_service_item_health_check_execution":            837,
-		"intersight_workflow_service_item_instance":                          838,
-		"intersight_workflow_service_item_output":                            839,
-		"intersight_workflow_solution_action_definition":                     840,
-		"intersight_workflow_solution_action_instance":                       841,
-		"intersight_workflow_solution_definition":                            842,
-		"intersight_workflow_solution_instance":                              843,
-		"intersight_workflow_solution_output":                                844,
-		"intersight_workflow_ssh_batch_executor":                             845,
-		"intersight_workflow_task_debug_log":                                 846,
-		"intersight_workflow_task_definition":                                847,
-		"intersight_workflow_task_info":                                      848,
-		"intersight_workflow_task_metadata":                                  849,
-		"intersight_workflow_template_function_meta":                         850,
-		"intersight_workflow_workflow_definition":                            851,
-		"intersight_workflow_workflow_info":                                  852,
-		"intersight_workflow_workflow_meta":                                  853,
-		"intersight_workflow_workflow_metadata":                              854,
+		"intersight_access_ip_address":                                       3,
+		"intersight_access_policy":                                           4,
+		"intersight_access_policy_inventory":                                 5,
+		"intersight_adapter_config_policy":                                   6,
+		"intersight_adapter_ext_eth_interface":                               7,
+		"intersight_adapter_host_eth_interface":                              8,
+		"intersight_adapter_host_fc_interface":                               9,
+		"intersight_adapter_host_iscsi_interface":                            10,
+		"intersight_adapter_unit":                                            11,
+		"intersight_adapter_unit_expander":                                   12,
+		"intersight_appliance_app_status":                                    13,
+		"intersight_appliance_auto_rma_policy":                               14,
+		"intersight_appliance_backup":                                        15,
+		"intersight_appliance_backup_policy":                                 16,
+		"intersight_appliance_certificate_setting":                           17,
+		"intersight_appliance_cluster_info":                                  18,
+		"intersight_appliance_cluster_install":                               19,
+		"intersight_appliance_cluster_replace_node":                          20,
+		"intersight_appliance_data_export_policy":                            21,
+		"intersight_appliance_device_certificate":                            22,
+		"intersight_appliance_device_claim":                                  23,
+		"intersight_appliance_device_cluster_install":                        24,
+		"intersight_appliance_device_upgrade_policy":                         25,
+		"intersight_appliance_diag_setting":                                  26,
+		"intersight_appliance_external_syslog_setting":                       27,
+		"intersight_appliance_file_gateway":                                  28,
+		"intersight_appliance_file_system_status":                            29,
+		"intersight_appliance_group_status":                                  30,
+		"intersight_appliance_image_bundle":                                  31,
+		"intersight_appliance_meta_manifest":                                 32,
+		"intersight_appliance_node_info":                                     33,
+		"intersight_appliance_node_status":                                   34,
+		"intersight_appliance_release_note":                                  35,
+		"intersight_appliance_remote_file_import":                            36,
+		"intersight_appliance_restore":                                       37,
+		"intersight_appliance_setup_info":                                    38,
+		"intersight_appliance_system_info":                                   39,
+		"intersight_appliance_system_status":                                 40,
+		"intersight_appliance_upgrade":                                       41,
+		"intersight_appliance_upgrade_policy":                                42,
+		"intersight_asset_cluster_member":                                    43,
+		"intersight_asset_deployment":                                        44,
+		"intersight_asset_deployment_device":                                 45,
+		"intersight_asset_device_configuration":                              46,
+		"intersight_asset_device_connector_manager":                          47,
+		"intersight_asset_device_contract_information":                       48,
+		"intersight_asset_device_registration":                               49,
+		"intersight_asset_subscription":                                      50,
+		"intersight_asset_subscription_account":                              51,
+		"intersight_asset_subscription_device_contract_information":          52,
+		"intersight_asset_target":                                            53,
+		"intersight_bios_boot_device":                                        54,
+		"intersight_bios_boot_mode":                                          55,
+		"intersight_bios_policy":                                             56,
+		"intersight_bios_system_boot_order":                                  57,
+		"intersight_bios_token_settings":                                     58,
+		"intersight_bios_unit":                                               59,
+		"intersight_bios_vf_select_memory_ras_configuration":                 60,
+		"intersight_boot_cdd_device":                                         61,
+		"intersight_boot_device_boot_mode":                                   62,
+		"intersight_boot_device_boot_security":                               63,
+		"intersight_boot_hdd_device":                                         64,
+		"intersight_boot_iscsi_device":                                       65,
+		"intersight_boot_nvme_device":                                        66,
+		"intersight_boot_pch_storage_device":                                 67,
+		"intersight_boot_precision_policy":                                   68,
+		"intersight_boot_pxe_device":                                         69,
+		"intersight_boot_san_device":                                         70,
+		"intersight_boot_sd_device":                                          71,
+		"intersight_boot_uefi_shell_device":                                  72,
+		"intersight_boot_usb_device":                                         73,
+		"intersight_boot_vmedia_device":                                      74,
+		"intersight_bulk_export":                                             75,
+		"intersight_bulk_exported_item":                                      76,
+		"intersight_bulk_request":                                            77,
+		"intersight_bulk_sub_request_obj":                                    78,
+		"intersight_capability_actions_meta_data":                            79,
+		"intersight_capability_adapter_deprecated_def":                       80,
+		"intersight_capability_adapter_firmware_requirement":                 81,
+		"intersight_capability_adapter_unit_descriptor":                      82,
+		"intersight_capability_adapter_upgrade_support_meta":                 83,
+		"intersight_capability_catalog":                                      84,
+		"intersight_capability_chassis_descriptor":                           85,
+		"intersight_capability_chassis_manufacturing_def":                    86,
+		"intersight_capability_chassis_upgrade_support_meta":                 87,
+		"intersight_capability_cimc_firmware_descriptor":                     88,
+		"intersight_capability_cpu_endpoint_descriptor":                      89,
+		"intersight_capability_dimms_endpoint_descriptor":                    90,
+		"intersight_capability_drives_endpoint_descriptor":                   91,
+		"intersight_capability_equipment_physical_def":                       92,
+		"intersight_capability_equipment_slot_array":                         93,
+		"intersight_capability_fan_module_descriptor":                        94,
+		"intersight_capability_fan_module_manufacturing_def":                 95,
+		"intersight_capability_fex_capability_def":                           96,
+		"intersight_capability_fex_descriptor":                               97,
+		"intersight_capability_fex_manufacturing_def":                        98,
+		"intersight_capability_gpu_endpoint_descriptor":                      99,
+		"intersight_capability_io_card_capability_def":                       100,
+		"intersight_capability_io_card_descriptor":                           101,
+		"intersight_capability_io_card_manufacturing_def":                    102,
+		"intersight_capability_iom_upgrade_support_meta":                     103,
+		"intersight_capability_port_group_aggregation_def":                   104,
+		"intersight_capability_psu_descriptor":                               105,
+		"intersight_capability_psu_manufacturing_def":                        106,
+		"intersight_capability_server_descriptor":                            107,
+		"intersight_capability_server_models_capability_def":                 108,
+		"intersight_capability_server_schema_descriptor":                     109,
+		"intersight_capability_server_upgrade_support_meta":                  110,
+		"intersight_capability_sioc_module_capability_def":                   111,
+		"intersight_capability_sioc_module_descriptor":                       112,
+		"intersight_capability_sioc_module_manufacturing_def":                113,
+		"intersight_capability_switch_capability":                            114,
+		"intersight_capability_switch_descriptor":                            115,
+		"intersight_capability_switch_manufacturing_def":                     116,
+		"intersight_certificatemanagement_policy":                            117,
+		"intersight_certificatemanagement_policy_inventory":                  118,
+		"intersight_chassis_config_change_detail":                            119,
+		"intersight_chassis_config_import":                                   120,
+		"intersight_chassis_config_result":                                   121,
+		"intersight_chassis_config_result_entry":                             122,
+		"intersight_chassis_iom_profile":                                     123,
+		"intersight_chassis_profile":                                         124,
+		"intersight_cloud_aws_billing_unit":                                  125,
+		"intersight_cloud_aws_key_pair":                                      126,
+		"intersight_cloud_aws_network_interface":                             127,
+		"intersight_cloud_aws_organizational_unit":                           128,
+		"intersight_cloud_aws_security_group":                                129,
+		"intersight_cloud_aws_subnet":                                        130,
+		"intersight_cloud_aws_virtual_machine":                               131,
+		"intersight_cloud_aws_volume":                                        132,
+		"intersight_cloud_aws_vpc":                                           133,
+		"intersight_cloud_regions":                                           134,
+		"intersight_cloud_sku_container_type":                                135,
+		"intersight_cloud_sku_database_type":                                 136,
+		"intersight_cloud_sku_instance_type":                                 137,
+		"intersight_cloud_sku_network_type":                                  138,
+		"intersight_cloud_sku_region_rate_cards":                             139,
+		"intersight_cloud_sku_volume_type":                                   140,
+		"intersight_cloud_tfc_agentpool":                                     141,
+		"intersight_cloud_tfc_organization":                                  142,
+		"intersight_cloud_tfc_workspace":                                     143,
+		"intersight_comm_http_proxy_policy":                                  144,
+		"intersight_compute_blade":                                           145,
+		"intersight_compute_blade_identity":                                  146,
+		"intersight_compute_board":                                           147,
+		"intersight_compute_mapping":                                         148,
+		"intersight_compute_personality":                                     149,
+		"intersight_compute_physical_summary":                                150,
+		"intersight_compute_rack_unit":                                       151,
+		"intersight_compute_rack_unit_identity":                              152,
+		"intersight_compute_server_id_pool":                                  153,
+		"intersight_compute_server_power_policy":                             154,
+		"intersight_compute_server_setting":                                  155,
+		"intersight_compute_vmedia":                                          156,
+		"intersight_cond_alarm":                                              157,
+		"intersight_cond_alarm_aggregation":                                  158,
+		"intersight_cond_alarm_definition":                                   159,
+		"intersight_cond_hcl_status":                                         160,
+		"intersight_cond_hcl_status_detail":                                  161,
+		"intersight_cond_hcl_status_job":                                     162,
+		"intersight_connectorpack_connector_pack_upgrade":                    163,
+		"intersight_connectorpack_upgrade_impact":                            164,
+		"intersight_console_console_config":                                  165,
+		"intersight_convergedinfra_adapter_compliance_details":               166,
+		"intersight_convergedinfra_pod":                                      167,
+		"intersight_convergedinfra_pod_compliance_info":                      168,
+		"intersight_convergedinfra_server_compliance_details":                169,
+		"intersight_convergedinfra_storage_compliance_details":               170,
+		"intersight_convergedinfra_switch_compliance_details":                171,
+		"intersight_crd_custom_resource":                                     172,
+		"intersight_deviceconnector_policy":                                  173,
+		"intersight_electricitymaps_carbon_intensity":                        174,
+		"intersight_electricitymaps_power_breakdown":                         175,
+		"intersight_equipment_chassis":                                       176,
+		"intersight_equipment_chassis_id_pool":                               177,
+		"intersight_equipment_chassis_identity":                              178,
+		"intersight_equipment_chassis_operation":                             179,
+		"intersight_equipment_device_summary":                                180,
+		"intersight_equipment_end_point_log":                                 181,
+		"intersight_equipment_expander_module":                               182,
+		"intersight_equipment_fan":                                           183,
+		"intersight_equipment_fan_control":                                   184,
+		"intersight_equipment_fan_module":                                    185,
+		"intersight_equipment_fex":                                           186,
+		"intersight_equipment_fex_identity":                                  187,
+		"intersight_equipment_fex_operation":                                 188,
+		"intersight_equipment_fru":                                           189,
+		"intersight_equipment_identity_summary":                              190,
+		"intersight_equipment_io_card":                                       191,
+		"intersight_equipment_io_card_operation":                             192,
+		"intersight_equipment_io_expander":                                   193,
+		"intersight_equipment_locator_led":                                   194,
+		"intersight_equipment_log_download":                                  195,
+		"intersight_equipment_psu":                                           196,
+		"intersight_equipment_psu_control":                                   197,
+		"intersight_equipment_rack_enclosure":                                198,
+		"intersight_equipment_rack_enclosure_slot":                           199,
+		"intersight_equipment_sensor":                                        200,
+		"intersight_equipment_shared_io_module":                              201,
+		"intersight_equipment_switch_card":                                   202,
+		"intersight_equipment_switch_operation":                              203,
+		"intersight_equipment_system_io_controller":                          204,
+		"intersight_equipment_tpm":                                           205,
+		"intersight_equipment_transceiver":                                   206,
+		"intersight_ether_host_port":                                         207,
+		"intersight_ether_network_port":                                      208,
+		"intersight_ether_physical_port":                                     209,
+		"intersight_ether_port_channel":                                      210,
+		"intersight_externalsite_authorization":                              211,
+		"intersight_fabric_appliance_pc_role":                                212,
+		"intersight_fabric_appliance_role":                                   213,
+		"intersight_fabric_config_change_detail":                             214,
+		"intersight_fabric_config_result":                                    215,
+		"intersight_fabric_config_result_entry":                              216,
+		"intersight_fabric_element_identity":                                 217,
+		"intersight_fabric_eth_network_control_policy":                       218,
+		"intersight_fabric_eth_network_control_policy_inventory":             219,
+		"intersight_fabric_eth_network_group_policy":                         220,
+		"intersight_fabric_eth_network_group_policy_inventory":               221,
+		"intersight_fabric_eth_network_policy":                               222,
+		"intersight_fabric_fc_network_policy":                                223,
+		"intersight_fabric_fc_storage_role":                                  224,
+		"intersight_fabric_fc_uplink_pc_role":                                225,
+		"intersight_fabric_fc_uplink_role":                                   226,
+		"intersight_fabric_fc_zone_policy":                                   227,
+		"intersight_fabric_fcoe_uplink_pc_role":                              228,
+		"intersight_fabric_fcoe_uplink_role":                                 229,
+		"intersight_fabric_flow_control_policy":                              230,
+		"intersight_fabric_lan_pin_group":                                    231,
+		"intersight_fabric_link_aggregation_policy":                          232,
+		"intersight_fabric_link_control_policy":                              233,
+		"intersight_fabric_multicast_policy":                                 234,
+		"intersight_fabric_pc_member":                                        235,
+		"intersight_fabric_pc_operation":                                     236,
+		"intersight_fabric_port_mode":                                        237,
+		"intersight_fabric_port_operation":                                   238,
+		"intersight_fabric_port_policy":                                      239,
+		"intersight_fabric_san_pin_group":                                    240,
+		"intersight_fabric_server_role":                                      241,
+		"intersight_fabric_switch_cluster_profile":                           242,
+		"intersight_fabric_switch_control_policy":                            243,
+		"intersight_fabric_switch_profile":                                   244,
+		"intersight_fabric_system_qos_policy":                                245,
+		"intersight_fabric_uplink_pc_role":                                   246,
+		"intersight_fabric_uplink_role":                                      247,
+		"intersight_fabric_vlan":                                             248,
+		"intersight_fabric_vlan_inventory":                                   249,
+		"intersight_fabric_vlan_set":                                         250,
+		"intersight_fabric_vsan":                                             251,
+		"intersight_fabric_vsan_inventory":                                   252,
+		"intersight_fault_instance":                                          253,
+		"intersight_fc_neighbor":                                             254,
+		"intersight_fc_physical_port":                                        255,
+		"intersight_fc_port_channel":                                         256,
+		"intersight_fcpool_fc_block":                                         257,
+		"intersight_fcpool_lease":                                            258,
+		"intersight_fcpool_pool":                                             259,
+		"intersight_fcpool_pool_member":                                      260,
+		"intersight_fcpool_reservation":                                      261,
+		"intersight_fcpool_universe":                                         262,
+		"intersight_firmware_bios_descriptor":                                263,
+		"intersight_firmware_board_controller_descriptor":                    264,
+		"intersight_firmware_chassis_upgrade":                                265,
+		"intersight_firmware_cimc_descriptor":                                266,
+		"intersight_firmware_dimm_descriptor":                                267,
+		"intersight_firmware_distributable":                                  268,
+		"intersight_firmware_distributable_meta":                             269,
+		"intersight_firmware_drive_descriptor":                               270,
+		"intersight_firmware_driver_distributable":                           271,
+		"intersight_firmware_eula":                                           272,
+		"intersight_firmware_firmware_summary":                               273,
+		"intersight_firmware_gpu_descriptor":                                 274,
+		"intersight_firmware_hba_descriptor":                                 275,
+		"intersight_firmware_iom_descriptor":                                 276,
+		"intersight_firmware_mswitch_descriptor":                             277,
+		"intersight_firmware_nxos_descriptor":                                278,
+		"intersight_firmware_pcie_descriptor":                                279,
+		"intersight_firmware_policy":                                         280,
+		"intersight_firmware_psu_descriptor":                                 281,
+		"intersight_firmware_running_firmware":                               282,
+		"intersight_firmware_sas_expander_descriptor":                        283,
+		"intersight_firmware_server_configuration_utility_distributable":     284,
+		"intersight_firmware_storage_controller_descriptor":                  285,
+		"intersight_firmware_switch_upgrade":                                 286,
+		"intersight_firmware_unsupported_version_upgrade":                    287,
+		"intersight_firmware_upgrade":                                        288,
+		"intersight_firmware_upgrade_impact_status":                          289,
+		"intersight_firmware_upgrade_status":                                 290,
+		"intersight_forecast_catalog":                                        291,
+		"intersight_forecast_definition":                                     292,
+		"intersight_forecast_instance":                                       293,
+		"intersight_graphics_card":                                           294,
+		"intersight_graphics_controller":                                     295,
+		"intersight_hcl_driver_image":                                        296,
+		"intersight_hcl_exempted_catalog":                                    297,
+		"intersight_hcl_hw_catalog_info":                                     298,
+		"intersight_hcl_hyperflex_software_compatibility_info":               299,
+		"intersight_hcl_operating_system":                                    300,
+		"intersight_hcl_operating_system_vendor":                             301,
+		"intersight_hcl_server_hw_catalog_info":                              302,
+		"intersight_hyperflex_alarm":                                         303,
+		"intersight_hyperflex_app_catalog":                                   304,
+		"intersight_hyperflex_auto_support_policy":                           305,
+		"intersight_hyperflex_backup_cluster":                                306,
+		"intersight_hyperflex_capability_info":                               307,
+		"intersight_hyperflex_cluster":                                       308,
+		"intersight_hyperflex_cluster_backup_policy":                         309,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              310,
+		"intersight_hyperflex_cluster_backup_policy_inventory":               311,
+		"intersight_hyperflex_cluster_health_check_execution_snapshot":       312,
+		"intersight_hyperflex_cluster_network_policy":                        313,
+		"intersight_hyperflex_cluster_profile":                               314,
+		"intersight_hyperflex_cluster_replication_network_policy":            315,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 316,
+		"intersight_hyperflex_cluster_storage_policy":                        317,
+		"intersight_hyperflex_config_result":                                 318,
+		"intersight_hyperflex_config_result_entry":                           319,
+		"intersight_hyperflex_data_protection_peer":                          320,
+		"intersight_hyperflex_datastore_statistic":                           321,
+		"intersight_hyperflex_device_package_download_state":                 322,
+		"intersight_hyperflex_drive":                                         323,
+		"intersight_hyperflex_encryption":                                    324,
+		"intersight_hyperflex_ext_fc_storage_policy":                         325,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      326,
+		"intersight_hyperflex_feature_limit_external":                        327,
+		"intersight_hyperflex_feature_limit_internal":                        328,
+		"intersight_hyperflex_health":                                        329,
+		"intersight_hyperflex_health_check_definition":                       330,
+		"intersight_hyperflex_health_check_execution":                        331,
+		"intersight_hyperflex_health_check_execution_snapshot":               332,
+		"intersight_hyperflex_health_check_package_checksum":                 333,
+		"intersight_hyperflex_hw_catalog":                                    334,
+		"intersight_hyperflex_hxdp_version":                                  335,
+		"intersight_hyperflex_hypervisor_host":                               336,
+		"intersight_hyperflex_hypervisor_virtual_machine":                    337,
+		"intersight_hyperflex_initiator_group":                               338,
+		"intersight_hyperflex_iscsi_network":                                 339,
+		"intersight_hyperflex_key_encryption_key":                            340,
+		"intersight_hyperflex_license":                                       341,
+		"intersight_hyperflex_local_credential_policy":                       342,
+		"intersight_hyperflex_lun":                                           343,
+		"intersight_hyperflex_node":                                          344,
+		"intersight_hyperflex_node_config_policy":                            345,
+		"intersight_hyperflex_node_profile":                                  346,
+		"intersight_hyperflex_protected_cluster":                             347,
+		"intersight_hyperflex_proxy_setting_policy":                          348,
+		"intersight_hyperflex_server_firmware_version":                       349,
+		"intersight_hyperflex_server_firmware_version_entry":                 350,
+		"intersight_hyperflex_server_model":                                  351,
+		"intersight_hyperflex_service_auth_token":                            352,
+		"intersight_hyperflex_software_distribution_component":               353,
+		"intersight_hyperflex_software_distribution_entry":                   354,
+		"intersight_hyperflex_software_distribution_version":                 355,
+		"intersight_hyperflex_software_version_policy":                       356,
+		"intersight_hyperflex_storage_container":                             357,
+		"intersight_hyperflex_sys_config_policy":                             358,
+		"intersight_hyperflex_target":                                        359,
+		"intersight_hyperflex_ucsm_config_policy":                            360,
+		"intersight_hyperflex_vcenter_config_policy":                         361,
+		"intersight_hyperflex_vm_backup_info":                                362,
+		"intersight_hyperflex_vm_import_operation":                           363,
+		"intersight_hyperflex_vm_restore_operation":                          364,
+		"intersight_hyperflex_vm_snapshot_info":                              365,
+		"intersight_hyperflex_volume":                                        366,
+		"intersight_hyperflex_witness_configuration":                         367,
+		"intersight_iaas_connector_pack":                                     368,
+		"intersight_iaas_custom_task_info":                                   369,
+		"intersight_iaas_device_status":                                      370,
+		"intersight_iaas_diagnostic_messages":                                371,
+		"intersight_iaas_license_info":                                       372,
+		"intersight_iaas_most_run_tasks":                                     373,
+		"intersight_iaas_service_request":                                    374,
+		"intersight_iaas_system_task_info":                                   375,
+		"intersight_iaas_ucsd_info":                                          376,
+		"intersight_iaas_ucsd_managed_infra":                                 377,
+		"intersight_iaas_ucsd_messages":                                      378,
+		"intersight_iam_account":                                             379,
+		"intersight_iam_account_experience":                                  380,
+		"intersight_iam_api_key":                                             381,
+		"intersight_iam_app_registration":                                    382,
+		"intersight_iam_banner_message":                                      383,
+		"intersight_iam_certificate":                                         384,
+		"intersight_iam_certificate_request":                                 385,
+		"intersight_iam_domain_group":                                        386,
+		"intersight_iam_domain_name_info":                                    387,
+		"intersight_iam_end_point_privilege":                                 388,
+		"intersight_iam_end_point_role":                                      389,
+		"intersight_iam_end_point_user":                                      390,
+		"intersight_iam_end_point_user_inventory":                            391,
+		"intersight_iam_end_point_user_policy":                               392,
+		"intersight_iam_end_point_user_policy_inventory":                     393,
+		"intersight_iam_end_point_user_role":                                 394,
+		"intersight_iam_end_point_user_role_inventory":                       395,
+		"intersight_iam_idp":                                                 396,
+		"intersight_iam_idp_reference":                                       397,
+		"intersight_iam_ip_access_management":                                398,
+		"intersight_iam_ip_address":                                          399,
+		"intersight_iam_ldap_config_params":                                  400,
+		"intersight_iam_ldap_group":                                          401,
+		"intersight_iam_ldap_policy":                                         402,
+		"intersight_iam_ldap_provider":                                       403,
+		"intersight_iam_local_user_password_policy":                          404,
+		"intersight_iam_o_auth_token":                                        405,
+		"intersight_iam_permission":                                          406,
+		"intersight_iam_private_key_spec":                                    407,
+		"intersight_iam_privilege":                                           408,
+		"intersight_iam_privilege_set":                                       409,
+		"intersight_iam_qualifier":                                           410,
+		"intersight_iam_resource_limits":                                     411,
+		"intersight_iam_resource_permission":                                 412,
+		"intersight_iam_resource_roles":                                      413,
+		"intersight_iam_role":                                                414,
+		"intersight_iam_security_holder":                                     415,
+		"intersight_iam_service_provider":                                    416,
+		"intersight_iam_session":                                             417,
+		"intersight_iam_session_limits":                                      418,
+		"intersight_iam_system":                                              419,
+		"intersight_iam_trust_point":                                         420,
+		"intersight_iam_user":                                                421,
+		"intersight_iam_user_group":                                          422,
+		"intersight_iam_user_preference":                                     423,
+		"intersight_iam_user_setting":                                        424,
+		"intersight_inventory_device_info":                                   425,
+		"intersight_inventory_dn_mo_binding":                                 426,
+		"intersight_inventory_generic_inventory":                             427,
+		"intersight_inventory_generic_inventory_holder":                      428,
+		"intersight_ipmioverlan_policy":                                      429,
+		"intersight_ipmioverlan_policy_inventory":                            430,
+		"intersight_ippool_block_lease":                                      431,
+		"intersight_ippool_ip_lease":                                         432,
+		"intersight_ippool_pool":                                             433,
+		"intersight_ippool_pool_member":                                      434,
+		"intersight_ippool_reservation":                                      435,
+		"intersight_ippool_shadow_block":                                     436,
+		"intersight_ippool_shadow_pool":                                      437,
+		"intersight_ippool_universe":                                         438,
+		"intersight_iqnpool_block":                                           439,
+		"intersight_iqnpool_lease":                                           440,
+		"intersight_iqnpool_pool":                                            441,
+		"intersight_iqnpool_pool_member":                                     442,
+		"intersight_iqnpool_reservation":                                     443,
+		"intersight_iqnpool_universe":                                        444,
+		"intersight_iwotenant_maintenance_notification":                      445,
+		"intersight_iwotenant_tenant_status":                                 446,
+		"intersight_kubernetes_aci_cni_apic":                                 447,
+		"intersight_kubernetes_aci_cni_profile":                              448,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            449,
+		"intersight_kubernetes_addon_definition":                             450,
+		"intersight_kubernetes_addon_policy":                                 451,
+		"intersight_kubernetes_addon_repository":                             452,
+		"intersight_kubernetes_baremetal_node_profile":                       453,
+		"intersight_kubernetes_catalog":                                      454,
+		"intersight_kubernetes_cluster":                                      455,
+		"intersight_kubernetes_cluster_addon_profile":                        456,
+		"intersight_kubernetes_cluster_profile":                              457,
+		"intersight_kubernetes_config_result":                                458,
+		"intersight_kubernetes_config_result_entry":                          459,
+		"intersight_kubernetes_container_runtime_policy":                     460,
+		"intersight_kubernetes_daemon_set":                                   461,
+		"intersight_kubernetes_deployment":                                   462,
+		"intersight_kubernetes_http_proxy_policy":                            463,
+		"intersight_kubernetes_ingress":                                      464,
+		"intersight_kubernetes_network_policy":                               465,
+		"intersight_kubernetes_node":                                         466,
+		"intersight_kubernetes_node_group_profile":                           467,
+		"intersight_kubernetes_nvidia_gpu_product":                           468,
+		"intersight_kubernetes_pod":                                          469,
+		"intersight_kubernetes_service":                                      470,
+		"intersight_kubernetes_stateful_set":                                 471,
+		"intersight_kubernetes_sys_config_policy":                            472,
+		"intersight_kubernetes_trusted_registries_policy":                    473,
+		"intersight_kubernetes_version":                                      474,
+		"intersight_kubernetes_version_policy":                               475,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          476,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      477,
+		"intersight_kubernetes_virtual_machine_instance_type":                478,
+		"intersight_kubernetes_virtual_machine_node_profile":                 479,
+		"intersight_kvm_policy":                                              480,
+		"intersight_kvm_policy_inventory":                                    481,
+		"intersight_kvm_session":                                             482,
+		"intersight_kvm_tunnel":                                              483,
+		"intersight_kvm_tunneled_kvm_policy":                                 484,
+		"intersight_license_account_license_data":                            485,
+		"intersight_license_customer_op":                                     486,
+		"intersight_license_iks_customer_op":                                 487,
+		"intersight_license_iks_license_count":                               488,
+		"intersight_license_inc_customer_op":                                 489,
+		"intersight_license_inc_license_count":                               490,
+		"intersight_license_iwo_customer_op":                                 491,
+		"intersight_license_iwo_license_count":                               492,
+		"intersight_license_license_info":                                    493,
+		"intersight_license_license_info_view":                               494,
+		"intersight_license_license_registration_status":                     495,
+		"intersight_license_license_reservation_op":                          496,
+		"intersight_license_smartlicense_token":                              497,
+		"intersight_ls_service_profile":                                      498,
+		"intersight_macpool_id_block":                                        499,
+		"intersight_macpool_lease":                                           500,
+		"intersight_macpool_pool":                                            501,
+		"intersight_macpool_pool_member":                                     502,
+		"intersight_macpool_reservation":                                     503,
+		"intersight_macpool_universe":                                        504,
+		"intersight_management_controller":                                   505,
+		"intersight_management_entity":                                       506,
+		"intersight_management_interface":                                    507,
+		"intersight_memory_array":                                            508,
+		"intersight_memory_persistent_memory_config_result":                  509,
+		"intersight_memory_persistent_memory_configuration":                  510,
+		"intersight_memory_persistent_memory_namespace":                      511,
+		"intersight_memory_persistent_memory_namespace_config_result":        512,
+		"intersight_memory_persistent_memory_policy":                         513,
+		"intersight_memory_persistent_memory_region":                         514,
+		"intersight_memory_persistent_memory_unit":                           515,
+		"intersight_memory_unit":                                             516,
+		"intersight_meta_definition":                                         517,
+		"intersight_monitoring_health_status":                                518,
+		"intersight_network_discovered_neighbor":                             519,
+		"intersight_network_dns":                                             520,
+		"intersight_network_element":                                         521,
+		"intersight_network_element_summary":                                 522,
+		"intersight_network_fc_zone_info":                                    523,
+		"intersight_network_feature_control":                                 524,
+		"intersight_network_interface_list":                                  525,
+		"intersight_network_license_file":                                    526,
+		"intersight_network_supervisor_card":                                 527,
+		"intersight_network_telemetry_check":                                 528,
+		"intersight_network_vlan_port_info":                                  529,
+		"intersight_network_vpc_domain":                                      530,
+		"intersight_network_vpc_member":                                      531,
+		"intersight_network_vpc_peer":                                        532,
+		"intersight_network_vrf":                                             533,
+		"intersight_networkconfig_policy":                                    534,
+		"intersight_networkconfig_policy_inventory":                          535,
+		"intersight_niaapi_apic_cco_post":                                    536,
+		"intersight_niaapi_apic_field_notice":                                537,
+		"intersight_niaapi_apic_hweol":                                       538,
+		"intersight_niaapi_apic_latest_maintained_release":                   539,
+		"intersight_niaapi_apic_release_recommend":                           540,
+		"intersight_niaapi_apic_sweol":                                       541,
+		"intersight_niaapi_dcnm_cco_post":                                    542,
+		"intersight_niaapi_dcnm_field_notice":                                543,
+		"intersight_niaapi_dcnm_hweol":                                       544,
+		"intersight_niaapi_dcnm_latest_maintained_release":                   545,
+		"intersight_niaapi_dcnm_release_recommend":                           546,
+		"intersight_niaapi_dcnm_sweol":                                       547,
+		"intersight_niaapi_file_downloader":                                  548,
+		"intersight_niaapi_nia_metadata":                                     549,
+		"intersight_niaapi_nib_file_downloader":                              550,
+		"intersight_niaapi_nib_metadata":                                     551,
+		"intersight_niaapi_puv_script_downloader":                            552,
+		"intersight_niaapi_upgrade_assist_file":                              553,
+		"intersight_niaapi_version_regex":                                    554,
+		"intersight_niatelemetry_aaa_ldap_provider_details":                  555,
+		"intersight_niatelemetry_aaa_radius_provider_details":                556,
+		"intersight_niatelemetry_aaa_tacacs_provider_details":                557,
+		"intersight_niatelemetry_apic_app_plugin_details":                    558,
+		"intersight_niatelemetry_apic_core_file_details":                     559,
+		"intersight_niatelemetry_apic_dbgexp_rs_export_dest":                 560,
+		"intersight_niatelemetry_apic_dbgexp_rs_ts_scheduler":                561,
+		"intersight_niatelemetry_apic_fan_details":                           562,
+		"intersight_niatelemetry_apic_fex_details":                           563,
+		"intersight_niatelemetry_apic_flash_details":                         564,
+		"intersight_niatelemetry_apic_ntp_auth":                              565,
+		"intersight_niatelemetry_apic_performance_data":                      566,
+		"intersight_niatelemetry_apic_pod_data":                              567,
+		"intersight_niatelemetry_apic_psu_details":                           568,
+		"intersight_niatelemetry_apic_realm_details":                         569,
+		"intersight_niatelemetry_apic_snmp_client_grp_details":               570,
+		"intersight_niatelemetry_apic_snmp_community_access_details":         571,
+		"intersight_niatelemetry_apic_snmp_community_details":                572,
+		"intersight_niatelemetry_apic_snmp_trap_details":                     573,
+		"intersight_niatelemetry_apic_snmp_trap_fwd_server_details":          574,
+		"intersight_niatelemetry_apic_snmp_version_three_details":            575,
+		"intersight_niatelemetry_apic_sys_log_grp":                           576,
+		"intersight_niatelemetry_apic_sys_log_src":                           577,
+		"intersight_niatelemetry_apic_transceiver_details":                   578,
+		"intersight_niatelemetry_apic_ui_page_counts":                        579,
+		"intersight_niatelemetry_apic_vision":                                580,
+		"intersight_niatelemetry_app_details":                                581,
+		"intersight_niatelemetry_cloud_details":                              582,
+		"intersight_niatelemetry_common_policies":                            583,
+		"intersight_niatelemetry_dcnm_fan_details":                           584,
+		"intersight_niatelemetry_dcnm_fex_details":                           585,
+		"intersight_niatelemetry_dcnm_module_details":                        586,
+		"intersight_niatelemetry_dcnm_psu_details":                           587,
+		"intersight_niatelemetry_dcnm_transceiver_details":                   588,
+		"intersight_niatelemetry_epg":                                        589,
+		"intersight_niatelemetry_fabric_module_details":                      590,
+		"intersight_niatelemetry_fabric_node_control_details":                591,
+		"intersight_niatelemetry_fabric_pod_profile":                         592,
+		"intersight_niatelemetry_fabric_pod_ss":                              593,
+		"intersight_niatelemetry_fault":                                      594,
+		"intersight_niatelemetry_hcloud_details":                             595,
+		"intersight_niatelemetry_health_insights_data":                       596,
+		"intersight_niatelemetry_https_acl_contract_details":                 597,
+		"intersight_niatelemetry_https_acl_contract_filter_map":              598,
+		"intersight_niatelemetry_https_acl_epg_contract_map":                 599,
+		"intersight_niatelemetry_https_acl_epg_details":                      600,
+		"intersight_niatelemetry_https_acl_filter_details":                   601,
+		"intersight_niatelemetry_insight_group_details":                      602,
+		"intersight_niatelemetry_lc":                                         603,
+		"intersight_niatelemetry_leaf_pol_grp_details":                       604,
+		"intersight_niatelemetry_mds_neighbors":                              605,
+		"intersight_niatelemetry_mso_contract_details":                       606,
+		"intersight_niatelemetry_mso_epg_details":                            607,
+		"intersight_niatelemetry_mso_schema_details":                         608,
+		"intersight_niatelemetry_mso_site_details":                           609,
+		"intersight_niatelemetry_mso_tenant_details":                         610,
+		"intersight_niatelemetry_nexus_cloud_account":                        611,
+		"intersight_niatelemetry_nexus_cloud_site":                           612,
+		"intersight_niatelemetry_nexus_dashboard_controller_details":         613,
+		"intersight_niatelemetry_nexus_dashboard_details":                    614,
+		"intersight_niatelemetry_nexus_dashboard_memory_details":             615,
+		"intersight_niatelemetry_nexus_dashboards":                           616,
+		"intersight_niatelemetry_nia_feature_usage":                          617,
+		"intersight_niatelemetry_nia_inventory":                              618,
+		"intersight_niatelemetry_nia_inventory_dcnm":                         619,
+		"intersight_niatelemetry_nia_inventory_fabric":                       620,
+		"intersight_niatelemetry_nia_license_state":                          621,
+		"intersight_niatelemetry_nicc":                                       622,
+		"intersight_niatelemetry_password_strength_check":                    623,
+		"intersight_niatelemetry_pod_comm_policies":                          624,
+		"intersight_niatelemetry_pod_snmp_policies":                          625,
+		"intersight_niatelemetry_pod_time_server_policies":                   626,
+		"intersight_niatelemetry_site_inventory":                             627,
+		"intersight_niatelemetry_snmp_src":                                   628,
+		"intersight_niatelemetry_spine_pol_grp_details":                      629,
+		"intersight_niatelemetry_ssh_version_two":                            630,
+		"intersight_niatelemetry_supervisor_module_details":                  631,
+		"intersight_niatelemetry_syslog_remote_dest":                         632,
+		"intersight_niatelemetry_syslog_sys_msg":                             633,
+		"intersight_niatelemetry_syslog_sys_msg_fac_filter":                  634,
+		"intersight_niatelemetry_system_controller_details":                  635,
+		"intersight_niatelemetry_tenant":                                     636,
+		"intersight_notification_account_subscription":                       637,
+		"intersight_ntp_ntp_server":                                          638,
+		"intersight_ntp_policy":                                              639,
+		"intersight_oauth_access_token":                                      640,
+		"intersight_oauth_authorization":                                     641,
+		"intersight_openapi_api_method_meta":                                 642,
+		"intersight_openapi_open_api_specification":                          643,
+		"intersight_openapi_process_file":                                    644,
+		"intersight_openapi_task_generation_request":                         645,
+		"intersight_openapi_task_generation_result":                          646,
+		"intersight_oprs_deployment":                                         647,
+		"intersight_oprs_sync_target_list_message":                           648,
+		"intersight_organization_organization":                               649,
+		"intersight_os_bulk_install_info":                                    650,
+		"intersight_os_catalog":                                              651,
+		"intersight_os_configuration_file":                                   652,
+		"intersight_os_distribution":                                         653,
+		"intersight_os_install":                                              654,
+		"intersight_os_supported_version":                                    655,
+		"intersight_partnerintegration_dc_logs":                              656,
+		"intersight_partnerintegration_device_connector":                     657,
+		"intersight_partnerintegration_doc_issues":                           658,
+		"intersight_partnerintegration_etl":                                  659,
+		"intersight_partnerintegration_file":                                 660,
+		"intersight_partnerintegration_inventory":                            661,
+		"intersight_partnerintegration_logs":                                 662,
+		"intersight_partnerintegration_model":                                663,
+		"intersight_pci_coprocessor_card":                                    664,
+		"intersight_pci_device":                                              665,
+		"intersight_pci_link":                                                666,
+		"intersight_pci_node":                                                667,
+		"intersight_pci_switch":                                              668,
+		"intersight_port_group":                                              669,
+		"intersight_port_mac_binding":                                        670,
+		"intersight_port_sub_group":                                          671,
+		"intersight_power_control_state":                                     672,
+		"intersight_power_policy":                                            673,
+		"intersight_power_policy_inventory":                                  674,
+		"intersight_processor_unit":                                          675,
+		"intersight_rack_unit_personality":                                   676,
+		"intersight_recommendation_capacity_runway":                          677,
+		"intersight_recommendation_cluster_expansion":                        678,
+		"intersight_recommendation_hardware_expansion_request":               679,
+		"intersight_recommendation_hardware_expansion_request_item":          680,
+		"intersight_recommendation_physical_item":                            681,
+		"intersight_recommendation_purchase_order_estimate":                  682,
+		"intersight_recommendation_software_item":                            683,
+		"intersight_recovery_backup_config_policy":                           684,
+		"intersight_recovery_backup_profile":                                 685,
+		"intersight_recovery_config_result":                                  686,
+		"intersight_recovery_config_result_entry":                            687,
+		"intersight_recovery_on_demand_backup":                               688,
+		"intersight_recovery_restore":                                        689,
+		"intersight_recovery_schedule_config_policy":                         690,
+		"intersight_resource_group":                                          691,
+		"intersight_resource_group_member":                                   692,
+		"intersight_resource_license_resource_count":                         693,
+		"intersight_resource_membership":                                     694,
+		"intersight_resource_membership_holder":                              695,
+		"intersight_resource_reservation":                                    696,
+		"intersight_resource_selection_criteria":                             697,
+		"intersight_resourcepool_lease":                                      698,
+		"intersight_resourcepool_lease_resource":                             699,
+		"intersight_resourcepool_pool":                                       700,
+		"intersight_resourcepool_pool_member":                                701,
+		"intersight_resourcepool_universe":                                   702,
+		"intersight_sdcard_policy":                                           703,
+		"intersight_sdcard_policy_inventory":                                 704,
+		"intersight_search_search_item":                                      705,
+		"intersight_search_tag_item":                                         706,
+		"intersight_security_unit":                                           707,
+		"intersight_server_config_change_detail":                             708,
+		"intersight_server_config_import":                                    709,
+		"intersight_server_config_result":                                    710,
+		"intersight_server_config_result_entry":                              711,
+		"intersight_server_disruption":                                       712,
+		"intersight_server_profile":                                          713,
+		"intersight_server_profile_template":                                 714,
+		"intersight_smtp_policy":                                             715,
+		"intersight_snmp_policy":                                             716,
+		"intersight_snmp_policy_inventory":                                   717,
+		"intersight_software_appliance_distributable":                        718,
+		"intersight_software_download_history":                               719,
+		"intersight_software_hcl_meta":                                       720,
+		"intersight_software_hyperflex_bundle_distributable":                 721,
+		"intersight_software_hyperflex_distributable":                        722,
+		"intersight_software_iks_bundle_distributable":                       723,
+		"intersight_software_release_meta":                                   724,
+		"intersight_software_solution_distributable":                         725,
+		"intersight_software_ucsd_bundle_distributable":                      726,
+		"intersight_software_ucsd_distributable":                             727,
+		"intersight_softwarerepository_authorization":                        728,
+		"intersight_softwarerepository_cached_image":                         729,
+		"intersight_softwarerepository_catalog":                              730,
+		"intersight_softwarerepository_category_mapper":                      731,
+		"intersight_softwarerepository_category_mapper_model":                732,
+		"intersight_softwarerepository_category_support_constraint":          733,
+		"intersight_softwarerepository_download_spec":                        734,
+		"intersight_softwarerepository_operating_system_file":                735,
+		"intersight_softwarerepository_release":                              736,
+		"intersight_sol_policy":                                              737,
+		"intersight_sol_policy_inventory":                                    738,
+		"intersight_ssh_policy":                                              739,
+		"intersight_ssh_policy_inventory":                                    740,
+		"intersight_storage_battery_backup_unit":                             741,
+		"intersight_storage_controller":                                      742,
+		"intersight_storage_disk_group":                                      743,
+		"intersight_storage_disk_slot":                                       744,
+		"intersight_storage_drive_group":                                     745,
+		"intersight_storage_drive_security_policy":                           746,
+		"intersight_storage_enclosure":                                       747,
+		"intersight_storage_enclosure_disk":                                  748,
+		"intersight_storage_enclosure_disk_slot_ep":                          749,
+		"intersight_storage_flex_flash_controller":                           750,
+		"intersight_storage_flex_flash_controller_props":                     751,
+		"intersight_storage_flex_flash_physical_drive":                       752,
+		"intersight_storage_flex_flash_virtual_drive":                        753,
+		"intersight_storage_flex_util_controller":                            754,
+		"intersight_storage_flex_util_physical_drive":                        755,
+		"intersight_storage_flex_util_virtual_drive":                         756,
+		"intersight_storage_hitachi_array":                                   757,
+		"intersight_storage_hitachi_controller":                              758,
+		"intersight_storage_hitachi_disk":                                    759,
+		"intersight_storage_hitachi_external_parity_group":                   760,
+		"intersight_storage_hitachi_external_path_group":                     761,
+		"intersight_storage_hitachi_external_storage_lun":                    762,
+		"intersight_storage_hitachi_external_storage_port":                   763,
+		"intersight_storage_hitachi_host":                                    764,
+		"intersight_storage_hitachi_host_lun":                                765,
+		"intersight_storage_hitachi_parity_group":                            766,
+		"intersight_storage_hitachi_pool":                                    767,
+		"intersight_storage_hitachi_port":                                    768,
+		"intersight_storage_hitachi_remote_replication":                      769,
+		"intersight_storage_hitachi_snapshot":                                770,
+		"intersight_storage_hitachi_volume":                                  771,
+		"intersight_storage_hyper_flex_storage_container":                    772,
+		"intersight_storage_hyper_flex_volume":                               773,
+		"intersight_storage_item":                                            774,
+		"intersight_storage_net_app_aggregate":                               775,
+		"intersight_storage_net_app_aggregate_event":                         776,
+		"intersight_storage_net_app_base_disk":                               777,
+		"intersight_storage_net_app_cifs_service":                            778,
+		"intersight_storage_net_app_cifs_share":                              779,
+		"intersight_storage_net_app_cloud_target":                            780,
+		"intersight_storage_net_app_cluster":                                 781,
+		"intersight_storage_net_app_cluster_event":                           782,
+		"intersight_storage_net_app_cluster_snap_mirror_policy":              783,
+		"intersight_storage_net_app_cluster_snapshot_policy":                 784,
+		"intersight_storage_net_app_data_ip_interface":                       785,
+		"intersight_storage_net_app_data_ip_interface_event":                 786,
+		"intersight_storage_net_app_disk_event":                              787,
+		"intersight_storage_net_app_ethernet_port":                           788,
+		"intersight_storage_net_app_ethernet_port_event":                     789,
+		"intersight_storage_net_app_export_policy":                           790,
+		"intersight_storage_net_app_fc_interface":                            791,
+		"intersight_storage_net_app_fc_interface_event":                      792,
+		"intersight_storage_net_app_fc_port":                                 793,
+		"intersight_storage_net_app_fc_port_event":                           794,
+		"intersight_storage_net_app_initiator_group":                         795,
+		"intersight_storage_net_app_ip_interface":                            796,
+		"intersight_storage_net_app_ip_interface_event":                      797,
+		"intersight_storage_net_app_iscsi_service":                           798,
+		"intersight_storage_net_app_license":                                 799,
+		"intersight_storage_net_app_lun":                                     800,
+		"intersight_storage_net_app_lun_event":                               801,
+		"intersight_storage_net_app_lun_map":                                 802,
+		"intersight_storage_net_app_nfs_client":                              803,
+		"intersight_storage_net_app_nfs_service":                             804,
+		"intersight_storage_net_app_node":                                    805,
+		"intersight_storage_net_app_node_cdp_neighbor":                       806,
+		"intersight_storage_net_app_node_event":                              807,
+		"intersight_storage_net_app_non_data_ip_interface":                   808,
+		"intersight_storage_net_app_non_data_ip_interface_event":             809,
+		"intersight_storage_net_app_ntp_server":                              810,
+		"intersight_storage_net_app_qtree":                                   811,
+		"intersight_storage_net_app_schedule":                                812,
+		"intersight_storage_net_app_sensor":                                  813,
+		"intersight_storage_net_app_snap_mirror_relationship":                814,
+		"intersight_storage_net_app_storage_vm":                              815,
+		"intersight_storage_net_app_svm_event":                               816,
+		"intersight_storage_net_app_svm_snap_mirror_policy":                  817,
+		"intersight_storage_net_app_svm_snapshot_policy":                     818,
+		"intersight_storage_net_app_volume":                                  819,
+		"intersight_storage_net_app_volume_event":                            820,
+		"intersight_storage_net_app_volume_snapshot":                         821,
+		"intersight_storage_physical_disk":                                   822,
+		"intersight_storage_physical_disk_extension":                         823,
+		"intersight_storage_physical_disk_usage":                             824,
+		"intersight_storage_pure_array":                                      825,
+		"intersight_storage_pure_controller":                                 826,
+		"intersight_storage_pure_disk":                                       827,
+		"intersight_storage_pure_host":                                       828,
+		"intersight_storage_pure_host_group":                                 829,
+		"intersight_storage_pure_host_lun":                                   830,
+		"intersight_storage_pure_port":                                       831,
+		"intersight_storage_pure_protection_group":                           832,
+		"intersight_storage_pure_protection_group_snapshot":                  833,
+		"intersight_storage_pure_replication_schedule":                       834,
+		"intersight_storage_pure_snapshot_schedule":                          835,
+		"intersight_storage_pure_volume":                                     836,
+		"intersight_storage_pure_volume_snapshot":                            837,
+		"intersight_storage_sas_expander":                                    838,
+		"intersight_storage_sas_port":                                        839,
+		"intersight_storage_span":                                            840,
+		"intersight_storage_storage_policy":                                  841,
+		"intersight_storage_vd_member_ep":                                    842,
+		"intersight_storage_virtual_drive":                                   843,
+		"intersight_storage_virtual_drive_container":                         844,
+		"intersight_storage_virtual_drive_extension":                         845,
+		"intersight_storage_virtual_drive_identity":                          846,
+		"intersight_syslog_policy":                                           847,
+		"intersight_syslog_policy_inventory":                                 848,
+		"intersight_tam_advisory_count":                                      849,
+		"intersight_tam_advisory_definition":                                 850,
+		"intersight_tam_advisory_info":                                       851,
+		"intersight_tam_advisory_instance":                                   852,
+		"intersight_tam_security_advisory":                                   853,
+		"intersight_techsupportmanagement_collection_control_policy":         854,
+		"intersight_techsupportmanagement_download":                          855,
+		"intersight_techsupportmanagement_end_point":                         856,
+		"intersight_techsupportmanagement_tech_support_bundle":               857,
+		"intersight_techsupportmanagement_tech_support_status":               858,
+		"intersight_terminal_audit_log":                                      859,
+		"intersight_terraform_executor":                                      860,
+		"intersight_thermal_policy":                                          861,
+		"intersight_top_system":                                              862,
+		"intersight_ucsd_backup_info":                                        863,
+		"intersight_uuidpool_block":                                          864,
+		"intersight_uuidpool_pool":                                           865,
+		"intersight_uuidpool_pool_member":                                    866,
+		"intersight_uuidpool_reservation":                                    867,
+		"intersight_uuidpool_universe":                                       868,
+		"intersight_uuidpool_uuid_lease":                                     869,
+		"intersight_view_health_status":                                      870,
+		"intersight_view_server":                                             871,
+		"intersight_virtualization_cisco_hypervisor_manager":                 872,
+		"intersight_virtualization_esxi_console":                             873,
+		"intersight_virtualization_host":                                     874,
+		"intersight_virtualization_iwe_cluster":                              875,
+		"intersight_virtualization_iwe_datacenter":                           876,
+		"intersight_virtualization_iwe_dv_uplink":                            877,
+		"intersight_virtualization_iwe_dvswitch":                             878,
+		"intersight_virtualization_iwe_host":                                 879,
+		"intersight_virtualization_iwe_host_interface":                       880,
+		"intersight_virtualization_iwe_host_vswitch":                         881,
+		"intersight_virtualization_iwe_network":                              882,
+		"intersight_virtualization_iwe_virtual_disk":                         883,
+		"intersight_virtualization_iwe_virtual_machine":                      884,
+		"intersight_virtualization_iwe_virtual_machine_network_interface":    885,
+		"intersight_virtualization_virtual_disk":                             886,
+		"intersight_virtualization_virtual_machine":                          887,
+		"intersight_virtualization_virtual_network":                          888,
+		"intersight_virtualization_vmware_cluster":                           889,
+		"intersight_virtualization_vmware_datacenter":                        890,
+		"intersight_virtualization_vmware_datastore":                         891,
+		"intersight_virtualization_vmware_datastore_cluster":                 892,
+		"intersight_virtualization_vmware_distributed_network":               893,
+		"intersight_virtualization_vmware_distributed_switch":                894,
+		"intersight_virtualization_vmware_folder":                            895,
+		"intersight_virtualization_vmware_host":                              896,
+		"intersight_virtualization_vmware_host_gpu":                          897,
+		"intersight_virtualization_vmware_kernel_network":                    898,
+		"intersight_virtualization_vmware_network":                           899,
+		"intersight_virtualization_vmware_physical_network_interface":        900,
+		"intersight_virtualization_vmware_uplink_port":                       901,
+		"intersight_virtualization_vmware_vcenter":                           902,
+		"intersight_virtualization_vmware_virtual_disk":                      903,
+		"intersight_virtualization_vmware_virtual_machine":                   904,
+		"intersight_virtualization_vmware_virtual_machine_gpu":               905,
+		"intersight_virtualization_vmware_virtual_machine_snapshot":          906,
+		"intersight_virtualization_vmware_virtual_network_interface":         907,
+		"intersight_virtualization_vmware_virtual_switch":                    908,
+		"intersight_vmedia_policy":                                           909,
+		"intersight_vmedia_policy_inventory":                                 910,
+		"intersight_vmrc_console":                                            911,
+		"intersight_vnc_console":                                             912,
+		"intersight_vnic_eth_adapter_policy":                                 913,
+		"intersight_vnic_eth_adapter_policy_inventory":                       914,
+		"intersight_vnic_eth_if":                                             915,
+		"intersight_vnic_eth_if_inventory":                                   916,
+		"intersight_vnic_eth_network_policy":                                 917,
+		"intersight_vnic_eth_network_policy_inventory":                       918,
+		"intersight_vnic_eth_qos_policy":                                     919,
+		"intersight_vnic_eth_qos_policy_inventory":                           920,
+		"intersight_vnic_eth_veth_inventory":                                 921,
+		"intersight_vnic_eth_vnic_inventory":                                 922,
+		"intersight_vnic_fc_adapter_policy":                                  923,
+		"intersight_vnic_fc_adapter_policy_inventory":                        924,
+		"intersight_vnic_fc_if":                                              925,
+		"intersight_vnic_fc_if_inventory":                                    926,
+		"intersight_vnic_fc_network_policy":                                  927,
+		"intersight_vnic_fc_network_policy_inventory":                        928,
+		"intersight_vnic_fc_qos_policy":                                      929,
+		"intersight_vnic_fc_qos_policy_inventory":                            930,
+		"intersight_vnic_fc_veth_inventory":                                  931,
+		"intersight_vnic_fc_vhba_policy_inventory":                           932,
+		"intersight_vnic_iscsi_adapter_policy":                               933,
+		"intersight_vnic_iscsi_adapter_policy_inventory":                     934,
+		"intersight_vnic_iscsi_boot_policy":                                  935,
+		"intersight_vnic_iscsi_boot_policy_inventory":                        936,
+		"intersight_vnic_iscsi_static_target_policy":                         937,
+		"intersight_vnic_iscsi_static_target_policy_inventory":               938,
+		"intersight_vnic_lan_connectivity_policy":                            939,
+		"intersight_vnic_lan_connectivity_policy_inventory":                  940,
+		"intersight_vnic_lcp_status":                                         941,
+		"intersight_vnic_san_connectivity_policy":                            942,
+		"intersight_vnic_san_connectivity_policy_inventory":                  943,
+		"intersight_vnic_scp_status":                                         944,
+		"intersight_vrf_vrf":                                                 945,
+		"intersight_workflow_ansible_batch_executor":                         946,
+		"intersight_workflow_batch_api_executor":                             947,
+		"intersight_workflow_catalog":                                        948,
+		"intersight_workflow_catalog_item_definition":                        949,
+		"intersight_workflow_catalog_service_request":                        950,
+		"intersight_workflow_custom_data_type_definition":                    951,
+		"intersight_workflow_error_response_handler":                         952,
+		"intersight_workflow_pending_dynamic_workflow_info":                  953,
+		"intersight_workflow_power_shell_batch_api_executor":                 954,
+		"intersight_workflow_rollback_workflow":                              955,
+		"intersight_workflow_service_item_action_definition":                 956,
+		"intersight_workflow_service_item_action_instance":                   957,
+		"intersight_workflow_service_item_attribute":                         958,
+		"intersight_workflow_service_item_definition":                        959,
+		"intersight_workflow_service_item_health_check_definition":           960,
+		"intersight_workflow_service_item_health_check_execution":            961,
+		"intersight_workflow_service_item_instance":                          962,
+		"intersight_workflow_service_item_output":                            963,
+		"intersight_workflow_ssh_batch_executor":                             964,
+		"intersight_workflow_task_debug_log":                                 965,
+		"intersight_workflow_task_definition":                                966,
+		"intersight_workflow_task_info":                                      967,
+		"intersight_workflow_task_metadata":                                  968,
+		"intersight_workflow_template_function_meta":                         969,
+		"intersight_workflow_workflow_definition":                            970,
+		"intersight_workflow_workflow_info":                                  971,
+		"intersight_workflow_workflow_meta":                                  972,
+		"intersight_workflow_workflow_metadata":                              973,
 	}
 )
 

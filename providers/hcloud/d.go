@@ -227,6 +227,41 @@ This resource is useful if you want to use a non-terraform managed network.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_primary_ip",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud Primary IP.`,
+			Description: `
+
+Provides details about a Hetzner Cloud Primary IP.
+
+This resource can be useful when you need to determine a Primary IP ID based on the IP address.
+
+Side note:
+
+If a server is getting created, it has to have a primary ip. If a server is getting created without defining primary ips, two of them (one ipv4 and one ipv6) getting created & attached.
+Currently, Primary IPs can be only attached to servers.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_primary_ips",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud Primary IPs.`,
+			Description: `
+Provides details about multiple Hetzner Cloud Primary IPs.
+
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_server",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Server.`,
@@ -353,14 +388,16 @@ This resource is useful if you want to use a non-terraform managed volume.
 		"hcloud_networks":         15,
 		"hcloud_placement_group":  16,
 		"hcloud_placement_groups": 17,
-		"hcloud_server":           18,
-		"hcloud_server_type":      19,
-		"hcloud_server_types":     20,
-		"hcloud_servers":          21,
-		"hcloud_ssh_key":          22,
-		"hcloud_ssh_keys":         23,
-		"hcloud_volume":           24,
-		"hcloud_volumes":          25,
+		"hcloud_primary_ip":       18,
+		"hcloud_primary_ips":      19,
+		"hcloud_server":           20,
+		"hcloud_server_type":      21,
+		"hcloud_server_types":     22,
+		"hcloud_servers":          23,
+		"hcloud_ssh_key":          24,
+		"hcloud_ssh_keys":         25,
+		"hcloud_volume":           26,
+		"hcloud_volumes":          27,
 	}
 )
 

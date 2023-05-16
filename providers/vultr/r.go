@@ -71,7 +71,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) The tag to assign to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) (Optional) The tag to assign to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags to apply to the servier.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -79,7 +83,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reserved_ipv4",
-					Description: `(Optional) IP address of the floating IP to use as the main IP of this server. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The ID of the floating IP to use as the main IP of this server. [See Reserved IPs](https://www.vultr.com/api/#operation/list-reserved-ips) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -187,7 +191,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `The tag assigned to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the server.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -305,7 +313,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `The tag assigned to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the server.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -346,7 +358,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "block_type",
-					Description: `(Optional) Determines on the type of block storage volume that will be created. Soon to become a required parameter. Options are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `.`,
+					Description: `(Optional) Determines on the type of block storage volume that will be created. Soon to become a required parameter. Options are ` + "`" + `high_perf` + "`" + ` or ` + "`" + `storage_opt` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "live",
@@ -394,7 +406,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "block_type",
-					Description: `The type of block storage volume. Values are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of block storage volume. Values are ` + "`" + `high_perf` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -440,7 +452,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "block_type",
-					Description: `The type of block storage volume. Values are ` + "`" + `high_per` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of block storage volume. Values are ` + "`" + `high_perf` + "`" + ` or ` + "`" + `storage_opt` + "`" + `. ## Import Block Storage can be imported using the Block Storage ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_block_storage.my_blockstorage e315835e-d466-4e89-9b4c-dfd8788d7685 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -860,7 +872,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) The tag to assign to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) (Optional) The tag to assign to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags to apply to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -876,7 +892,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Type of backup schedule Possible values are ` + "`" + `daily` + "`" + `, ` + "`" + `weekly` + "`" + `, ` + "`" + `monthly` + "`" + `, ` + "`" + `daily_alt_event` + "`" + `, or ` + "`" + `daily_alt_odd` + "`" + `.`,
+					Description: `Type of backup schedule Possible values are ` + "`" + `daily` + "`" + `, ` + "`" + `weekly` + "`" + `, ` + "`" + `monthly` + "`" + `, ` + "`" + `daily_alt_even` + "`" + `, or ` + "`" + `daily_alt_odd` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "hour",
@@ -1040,7 +1056,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `The tag assigned to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags to apply to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -1052,7 +1072,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backups_schedule",
-					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Instances can be imported using the instance ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_instance.my_instance b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1206,7 +1226,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `The tag assigned to the server.`,
+					Description: `(Deprecated: use ` + "`" + `tags` + "`" + ` instead) The tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags to apply to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -1218,7 +1242,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backups_schedule",
-					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Servers can be imported using the server ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_server.my_server b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A block that defines the way backups should be scheduled. ## Import Instances can be imported using the instance ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import vultr_instance.my_instance b6a859c5-b299-49dd-8888-b1abbc517d08 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1235,7 +1259,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `(Required) The ID of the instance you want to set an IPv4 reverse DNS record for.`,
+					Description: `(Required) The ID of the instance to be assigned the IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "reboot",
@@ -1395,7 +1419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Optional) The VKE clusters label. ` + "`" + `node_pools` + "`" + ` (Required) There must be 1 node pool with the kubernetes resource. It supports the following fields`,
+					Description: `(Optional) The VKE clusters label. ` + "`" + `node_pools` + "`" + ` (Optional)`,
 				},
 				resource.Attribute{
 					Name:        "node_quantity",
@@ -1407,7 +1431,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "label",
-					Description: `(Required) The label to be used as a prefix for nodes in this node pool. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The label to be used as a prefix for nodes in this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaler",
+					Description: `(Optional) Enable the auto scaler for the default node pool.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `(Optional) The minimum number of nodes to use with the auto scaler.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `(Optional) The maximum number of nodes to use with the auto scaler. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1454,6 +1490,18 @@ var (
 					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `The base64 encoded public certificate for the cluster's certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `The base64 encoded private key used by clients to access the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `The base64 encoded public certificate used by clients to access the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "node_pools",
 					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
 				},
@@ -1487,7 +1535,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+					Description: `Array that contains information about nodes within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaler",
+					Description: `Boolean indicating if the auto scaler for the default node pool is active.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `The minimum number of nodes used by the auto scaler.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `The maximum number of nodes used by the auto scaler. ` + "`" + `nodes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "date_created",
@@ -1552,6 +1612,18 @@ var (
 					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `The base64 encoded public certificate for the cluster's certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `The base64 encoded private key used by clients to access the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `The base64 encoded public certificate used by clients to access the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "node_pools",
 					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
 				},
@@ -1585,7 +1657,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+					Description: `Array that contains information about nodes within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaler",
+					Description: `Boolean indicating if the auto scaler for the default node pool is active.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `The minimum number of nodes used by the auto scaler.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `The maximum number of nodes used by the auto scaler. ` + "`" + `nodes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "date_created",

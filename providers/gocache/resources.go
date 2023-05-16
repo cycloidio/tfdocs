@@ -385,6 +385,121 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gocache_gocache_smart_rules_ratelimit",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required) The domain where you will apply the policies.`,
+				},
+				resource.Attribute{
+					Name:        "smart_rule",
+					Description: `(Required) Each ` + "`" + `smart_rule` + "`" + ` block sets a rule. More than one block is allowed. The list has no particular order in contrast to other smartrules, each of those rules defined in the block are evaluated. ### Smart Rule Level Arguments`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `(Required) Request criteria needed to trigger the rule action. At least one option is needed. See the options in [match level arguments](match-level-arguments).`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Actions applied to a request when the criteria is matched. At least one option is needed. See the options in [action level arguments](action-level-arguments).`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Rule metadata. See the options in [metadata level arguments](metadata-level-arguments). ### Match Level Arguments Some fields can use regex patterns. To know more about regex, see the documentation in [Smart Rules Regexp](https://docs.gocache.com.br/smart_rules/smart_rules-regexp/).`,
+				},
+				resource.Attribute{
+					Name:        "request_method",
+					Description: `(Optional) List of HTTP request methods matched by the rule. Possible values ` + "`" + `GET` + "`" + `, ` + "`" + `POST` + "`" + `, ` + "`" + `PUT` + "`" + `, ` + "`" + `DELETE` + "`" + `, ` + "`" + `HEAD` + "`" + `, ` + "`" + `OPTIONS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scheme",
+					Description: `(Optional) List of HTTP request scheme matched by the rule. Possible values ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + ` or ` + "`" + `http`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Optional) HTTP request hostname matched by the rule. For all hostnames, set ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "request_uri",
+					Description: `(Optional) HTTP request URI pattern matched by the rule. You can use regex in this field.`,
+				},
+				resource.Attribute{
+					Name:        "http_user_agent",
+					Description: `(Optional) Request user agent matched by the rule. You can use regex in this field.`,
+				},
+				resource.Attribute{
+					Name:        "cookie",
+					Description: `(Optional) List of request cookie names matched by the rule. This field supports wildcard.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_content",
+					Description: `(Optional) Cookie values for a cookie matched by the rule. You need to declare cookie and its value separated by ` + "`" + `=` + "`" + `, like ` + "`" + `wp_test=yes` + "`" + `. You can use regex in the value.`,
+				},
+				resource.Attribute{
+					Name:        "http_referer",
+					Description: `(Optional) HTTP request referer matched by the rule.You can use regex in this field.`,
+				},
+				resource.Attribute{
+					Name:        "remote_address",
+					Description: `(Optional) Request client IP ou IP ranges matched by the rule. Only ` + "`" + `/32` + "`" + `, ` + "`" + `/24` + "`" + ` and ` + "`" + `/16` + "`" + ` ranges are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "http_version",
+					Description: `(Optional) List of request HTTP version matched by the rule. Possible values are ` + "`" + `HTTP/1.0` + "`" + `,` + "`" + `HTTP/1.1` + "`" + `,` + "`" + `HTTP/2.0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Optional) HTTP headers matched by the rule. Header name and value are separated by ` + "`" + `:` + "`" + `. You can use regex in the value.`,
+				},
+				resource.Attribute{
+					Name:        "origin_country",
+					Description: `(Optional) List of origin countries matched by the rule in the ISO format, like ` + "`" + `BR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "origin_continent",
+					Description: `(Optional) List of origin continents matched by the rule in the ISO format. Possible values ` + "`" + `SA` + "`" + `, ` + "`" + `NA` + "`" + `, ` + "`" + `OC` + "`" + `, ` + "`" + `EU` + "`" + `, ` + "`" + `AF` + "`" + `, ` + "`" + `AS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional) list of device types based on user agent matched by the rule. Possible values ` + "`" + `mobile` + "`" + `,` + "`" + `desktop` + "`" + `,` + "`" + `bot` + "`" + `,` + "`" + `na` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "bots",
+					Description: `(Optional) If the bot is legitimate. Possible values ` + "`" + `known` + "`" + `, ` + "`" + `others` + "`" + ` ### Action Level Arguments`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_action",
+					Description: `(Required) When ` + "`" + `block` + "`" + `, the matched request is denied with status ` + "`" + `429` + "`" + `, when ` + "`" + `challenge` + "`" + `, a captcha challenge is returned and when ` + "`" + `simulate` + "`" + `, the request is allowed, even when WAF blocks it. Possible values: ` + "`" + `block` + "`" + `, ` + "`" + `challenge` + "`" + `, ` + "`" + `simulate` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_amount",
+					Description: `(Required) Amount of requests from a single ip needed for the action to be taken.`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_period",
+					Description: `(Required) Defines the minimum time window (seconds) to the requests reach ` + "`" + `rate_limit_amount` + "`" + ` for the action can be taken. Possible values ` + "`" + `86400` + "`" + `, ` + "`" + `43200` + "`" + `, ` + "`" + `14400` + "`" + `, ` + "`" + `3600` + "`" + `, ` + "`" + `1800` + "`" + `, ` + "`" + `600` + "`" + `, ` + "`" + `300` + "`" + `, ` + "`" + `120` + "`" + `, ` + "`" + `60` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `10` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_block_ttl",
+					Description: `(Required) Defines the duration of the blockage (in seconds) after the action has been taken. Possible values: ` + "`" + `86400` + "`" + `, ` + "`" + `43200` + "`" + `, ` + "`" + `14400` + "`" + `, ` + "`" + `3600` + "`" + `, ` + "`" + `1800` + "`" + `, ` + "`" + `600` + "`" + `, ` + "`" + `300` + "`" + `, ` + "`" + `120` + "`" + `, ` + "`" + `60` + "`" + ` ### Metadata Level Arguments`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Required) If ` + "`" + `true` + "`" + `, the rule is activated.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Rule name, can be any text like: ` + "`" + `my custom rule to block bots` + "`" + ` ## Import Domain resource can be imported using the domain address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gocache_smart_rules_ratelimit.myrates example.com.br ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gocache_gocache_smart_rules_rewrite",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -785,13 +900,14 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"gocache_gocache_domain":               0,
-		"gocache_gocache_domain_dnssec":        1,
-		"gocache_gocache_record":               2,
-		"gocache_gocache_smart_rules_firewall": 3,
-		"gocache_gocache_smart_rules_rewrite":  4,
-		"gocache_gocache_smart_rules_settings": 5,
-		"gocache_gocache_ssl_certificate":      6,
+		"gocache_gocache_domain":                0,
+		"gocache_gocache_domain_dnssec":         1,
+		"gocache_gocache_record":                2,
+		"gocache_gocache_smart_rules_firewall":  3,
+		"gocache_gocache_smart_rules_ratelimit": 4,
+		"gocache_gocache_smart_rules_rewrite":   5,
+		"gocache_gocache_smart_rules_settings":  6,
+		"gocache_gocache_ssl_certificate":       7,
 	}
 )
 

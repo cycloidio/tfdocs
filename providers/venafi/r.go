@@ -24,6 +24,10 @@ var (
 					Description: `(Required, string) The common name of the certificate.`,
 				},
 				resource.Attribute{
+					Name:        "nickname",
+					Description: `(Optional, string) Use to specify a name for the new certificate object that will be created and placed in a policy. Only valid for TPP.`,
+				},
+				resource.Attribute{
 					Name:        "algorithm",
 					Description: `(Optional, string) Key encryption algorithm, either RSA or ECDSA. Defaults to "RSA".`,
 				},

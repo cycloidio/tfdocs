@@ -13,37 +13,11 @@ var (
 			Name:             "",
 			Type:             "http_http",
 			Category:         "Data Sources",
-			ShortDescription: `Retrieves the content at an HTTP or HTTPS URL.`,
+			ShortDescription: `The http data source makes an HTTP GET request to the given URL and exports information about the response. The given URL may be either an http or https URL. At present this resource can only retrieve data from URLs that respond with text/* or application/json content types, and expects the result to be UTF-8 encoded regardless of the returned content type header. ~> Important Although https URLs can be used, there is currently no mechanism to authenticate the remote server except for general verification of the server certificate's chain of trust. Data retrieved from servers not under your control should be treated as untrustworthy. By default, there are no retries. Configuring the retry block will result in retries if an error is returned by the client (e.g., connection errors) or if a 5xx-range (except 501) status code is received. For further details see go-retryablehttp https://pkg.go.dev/github.com/hashicorp/go-retryablehttp.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "url",
-					Description: `(Required) The URL to request data from. This URL must respond with a ` + "`" + `200 OK` + "`" + ` response and a ` + "`" + `text/`,
-				},
-				resource.Attribute{
-					Name:        "request_headers",
-					Description: `(Optional) A map of strings representing additional HTTP headers to include in the request. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "body",
-					Description: `The raw body of the HTTP response.`,
-				},
-				resource.Attribute{
-					Name:        "response_headers",
-					Description: `A map of strings representing the response HTTP headers. Duplicate headers are contatenated with ` + "`" + `, ` + "`" + ` according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2)`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "body",
-					Description: `The raw body of the HTTP response.`,
-				},
-				resource.Attribute{
-					Name:        "response_headers",
-					Description: `A map of strings representing the response HTTP headers. Duplicate headers are contatenated with ` + "`" + `, ` + "`" + ` according to [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.2)`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 

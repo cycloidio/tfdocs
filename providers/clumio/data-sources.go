@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "clumio_clumio_role",
+			Type:             "clumio_role",
 			Category:         "Data Sources",
 			ShortDescription: `Clumio Roles Data Source used to list the Clumio Roles.`,
 			Description:      ``,
@@ -23,7 +23,7 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"clumio_clumio_role": 0,
+		"clumio_role": 0,
 	}
 )
 

@@ -13,7 +13,7 @@ var (
 			Name:             "",
 			Type:             "ilert_alert_source",
 			Category:         "Resources",
-			ShortDescription: `Creates and manages an alert source in iLert.`,
+			ShortDescription: `Creates and manages an alert source in ilert.`,
 			Description:      ``,
 			Keywords: []string{
 				"alert",

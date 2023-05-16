@@ -19,15 +19,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `(Optional) vrf name for the loopback interface.`,
+					Description: `(Optional) VRF name for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `(Optional) ipv4 address for the loopback interface.`,
+					Description: `(Optional) IPv4 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `(Optional) ipv6 address for the loopback interface.`,
+					Description: `(Optional) IPv6 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_tag",
@@ -79,11 +79,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) mtu for the port-channel interface. Allowed values are "jumbo" and "default".`,
+					Description: `(Optional) MTU for the port-channel interface. Allowed values are "jumbo" and "default".`,
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
-					Description: `(Optional) allowed vlans for the port-channel interface. Allowed values are "none", "all" or vlan ranges(1-200,500-2000,3000)`,
+					Description: `(Optional) allowed vlans for the port-channel interface. Allowed values are "none", "all" or VLAN ranges(1-200,500-2000,3000)`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -127,15 +127,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) mtu for the vPC interface. Allowed values are "jumbo" and "default".`,
+					Description: `(Optional) MTU for the vPC interface. Allowed values are "jumbo" and "default".`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peer1_allowed_vlans",
-					Description: `(Optional) peer1 allowed vlans for the vPC interface. Allowed values are "none", "all" or vlan ranges(1-200,500-2000,3000)`,
+					Description: `(Optional) peer1 allowed vlans for the vPC interface. Allowed values are "none", "all" or VLAN ranges(1-200,500-2000,3000)`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peer2_allowed_vlans",
-					Description: `(Optional) peer2 allowed vlans for the vPC interface. Allowed values are "none", "all" or vlan ranges(1-200,500-2000,3000)`,
+					Description: `(Optional) peer2 allowed vlans for the vPC interface. Allowed values are "none", "all" or VLAN ranges(1-200,500-2000,3000)`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peer1_access_vlans",
@@ -163,31 +163,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subinterface_vlan",
-					Description: `(Optional) vlan for the sub-interface.`,
+					Description: `(Optional) VLAN for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `(Optional) vrf for the sub-interface.`,
+					Description: `(Optional) VRF for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `(Optional) ipv4 address for the sub-interface.`,
+					Description: `(Optional) IPv4 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `(Optional) ipv6 address for the sub-interface.`,
+					Description: `(Optional) IPv6 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `(Optional) ipv6 prefic for the sub-interface.`,
+					Description: `(Optional) IPv6 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `(Optional) ipv4 prefix for the sub-interface.`,
+					Description: `(Optional) IPv4 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "subinterface_mtu",
-					Description: `(Optional) mtu for the sub-interface.`,
+					Description: `(Optional) MTU for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -199,7 +199,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `(Optional) vrf name for the ethernet interface.`,
+					Description: `(Optional) VRF name for the ethernet interface.`,
 				},
 				resource.Attribute{
 					Name:        "bpdu_guard_flag",
@@ -211,7 +211,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) mtu for the ethernet interface. Allowed values are "jumbo" and "default". If ` + "`" + `policy` + "`" + ` is configured as "epl_routed_intf" or "int_routed_host_11_1", then allowed value range is from 576 to 9216.`,
+					Description: `(Optional) MTU for the ethernet interface. Allowed values are "jumbo" and "default". If ` + "`" + `policy` + "`" + ` is configured as "epl_routed_intf" or "int_routed_host_11_1", then allowed value range is from 576 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "ethernet_speed",
@@ -219,7 +219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
-					Description: `(Optional) allowed vlans for the ethernet interface. Allowed values are "none", "all" or vlan ranges(1-200,500-2000,3000)`,
+					Description: `(Optional) allowed vlans for the ethernet interface. Allowed values are "none", "all" or VLAN ranges(1-200,500-2000,3000)`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -231,23 +231,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `(Optional) ipv4 address for the ethernet.`,
+					Description: `(Optional) IPv4 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `(Optional) ipv6 address for the ethernet.`,
+					Description: `(Optional) IPv6 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `(Optional) ipv6 prefix for the ethernet.`,
+					Description: `(Optional) IPv6 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `(Optional) ipv4 prefix for the ethernet.`,
+					Description: `(Optional) IPv4 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "access_vlans",
-					Description: `(Optional) access vlans for the ethernet interface. ## Attribute Reference`,
+					Description: `(Optional) access VLANs for the ethernet interface. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "serial_number",
@@ -347,7 +347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "switch_config.mode",
-					Description: `Mode of the switch. ## Importing ## An existing switch inventory can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_inventory.example <fabric_name>:<switch_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Mode of the switch. ## Importing An existing switch inventory can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_inventory.example <fabric_name>:<switch_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -377,7 +377,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "switch_config.mode",
-					Description: `Mode of the switch. ## Importing ## An existing switch inventory can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_inventory.example <fabric_name>:<switch_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Mode of the switch. ## Importing An existing switch inventory can be [imported][docs-import] into this resource via its fabric and name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import dcnm_inventory.example <fabric_name>:<switch_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -411,27 +411,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_name",
-					Description: `(Optional) name of the vrf which should be associated with the network. If not given then will be configured as "NA" with ` + "`" + `l2_only_flag` + "`" + ` as "true".`,
+					Description: `(Optional) name of the VRF which should be associated with the network. If not given then will be configured as "NA" with ` + "`" + `l2_only_flag` + "`" + ` as "true".`,
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
-					Description: `(Optional) vlan number for the network.`,
+					Description: `(Optional) VLAN number for the network.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `(Optional) vlan name for the network.`,
+					Description: `(Optional) VLAN name for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_gateway",
-					Description: `(Optional) ipv4 address of gateway for the network.`,
+					Description: `(Optional) IPv4 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_gateway",
-					Description: `(Optional) ipv6 address of gateway for the network.`,
+					Description: `(Optional) IPv6 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `(Optional) mtu value for the network. Ranging from 68 to 9216.`,
+					Description: `(Optional) MTU value for the network. Ranging from 68 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -439,23 +439,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_1",
-					Description: `(Optional) ipv4 secondary gateway 1 for the network.`,
+					Description: `(Optional) IPv4 secondary gateway 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_2",
-					Description: `(Optional) ipv4 secondary gateway 2 for the network.`,
+					Description: `(Optional) IPv4 secondary gateway 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_3",
-					Description: `(Optional) ipv4 secondary gateway 3 for the network.`,
+					Description: `(Optional) IPv4 secondary gateway 3 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_4",
-					Description: `(Optional) ipv4 secondary gateway 4 for the network.`,
+					Description: `(Optional) IPv4 secondary gateway 4 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "arp_supp_flag",
-					Description: `(Optional) arp suppression flag for the network.`,
+					Description: `(Optional) ARP suppression flag for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ir_enable_flag",
@@ -463,31 +463,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mcast_group",
-					Description: `(Optional) multicast group address for the network.`,
+					Description: `(Optional) multicast group address for the network (not applicable for fabrics of type MFD).`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_1",
-					Description: `(Optional) ipv4 address of DHCP server 1 for the network.`,
+					Description: `(Optional) IPv4 address of DHCP server 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_2",
-					Description: `(Optional) ipv4 address of DHCP server 2 for the network.`,
+					Description: `(Optional) IPv4 address of DHCP server 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_3",
-					Description: `(Optional) ipv4 address of DHCP server 3 for the network.`,
+					Description: `(Optional) IPv4 address of DHCP server 3 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_vrf",
-					Description: `(Optional) vrf name of DHCP server for the network.`,
+					Description: `(Optional) VRF name of DHCP server for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_vrf_2",
-					Description: `(Optional) vrf name of DHCP server 2 for the network.`,
+					Description: `(Optional) VRF name of DHCP server 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_vrf_3",
-					Description: `(Optional) vrf name of DHCP server 3 for the network.`,
+					Description: `(Optional) VRF name of DHCP server 3 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
@@ -547,7 +547,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments",
-					Description: `(Optional) attachment block, have information regarding the switches which should be attached or detached to/from network. If ` + "`" + `deploy` + "`" + ` is "true", then atleast one attachment must be configured.`,
+					Description: `(Optional) attachment block, have information regarding the switches which should be attached or detached to/from network. If ` + "`" + `deploy` + "`" + ` is "true", then at least one attachment must be configured.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.serial_number",
@@ -555,7 +555,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `(Optional) vlan ID for the switch associated with network. If not mentioned then network's default vlan id will be used for attachment.`,
+					Description: `(Optional) VLAN ID for the switch associated with network. If not mentioned then network's default VLAN ID will be used for attachment.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
@@ -563,11 +563,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.dot1_qvlan",
-					Description: `(Optional) dot1 qvlan for switch attachment.`,
+					Description: `(Optional) dot1q VLAN for switch attachment.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.switch_ports",
-					Description: `(Optional) list of port name(i.e. interface names) for switch attachment.`,
+					Description: `(Optional) list of port names (i.e. interface names) for switch attachment.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.untagged",
@@ -660,7 +660,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_mode",
-					Description: `(Required) Type of service node.Allowed values are "IntraTenantFW","InterTenantFW","OneArmADC","TwoArmADC","OneArmVNF".`,
+					Description: `(Required) Type of service node. Allowed values are "IntraTenantFW", "InterTenantFW", "OneArmADC", "TwoArmADC", "OneArmVNF".`,
 				},
 				resource.Attribute{
 					Name:        "service_fabric",
@@ -668,11 +668,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "next_hop_ip",
-					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+					Description: `(Optional) Nexthop IPv4 information. NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
 				},
 				resource.Attribute{
 					Name:        "option",
-					Description: `(Required) Specifies the type of peering.Allowed values are "StaticPeering","EBGPDynamicPeering","None".`,
+					Description: `(Required) Specifies the type of peering. Allowed values are "StaticPeering", "EBGPDynamicPeering", "None".`,
 				},
 				resource.Attribute{
 					Name:        "service_networks",
@@ -684,7 +684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_networks.network_type",
-					Description: `(Required) Type of network.Allowed values are "InsideNetworkFW"(service node = Firewall),"OutsideNetworkFW"(service node = Firewall),"ArmOneADC"(service node = ADC),"ArmTwoADC"(service node = ADC),"ArmOneVNF"(service node= VNF).`,
+					Description: `(Required) Type of network. Allowed values are "InsideNetworkFW" (service node = Firewall), "OutsideNetworkFW" (service node = Firewall), "ArmOneADC" (service node = ADC), "ArmTwoADC" (service node = ADC), "ArmOneVNF" (service node= VNF).`,
 				},
 				resource.Attribute{
 					Name:        "service_networks.template_name",
@@ -696,11 +696,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_networks.vlan_id",
-					Description: `(Required) VLan Id of network.`,
+					Description: `(Required) VLAN Id of network.`,
 				},
 				resource.Attribute{
 					Name:        "service_networks.gateway_ip_address",
-					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+					Description: `(Required) IPv4 gateway information including the mask e.g. 192.168.1.1/24.`,
 				},
 				resource.Attribute{
 					Name:        "routes",
@@ -712,7 +712,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "routes.route_parmas",
-					Description: `(Optional) NVPair map for routing. The value for predefined route parameters depens upon deployment mode.`,
+					Description: `(Optional) NVPair map for routing. The value for predefined route parameters depends upon deployment mode.`,
 				},
 				resource.Attribute{
 					Name:        "routes.vrf_name",
@@ -728,7 +728,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_node_type",
-					Description: `(Required) Type of service node.Allowed values are "Firewall","VNF","ADC". ## Attribute Reference`,
+					Description: `(Required) Type of service node. Allowed values are "Firewall", "VNF", "ADC". ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "status",

@@ -75,7 +75,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "can_modify",
-					Description: `(Optional) A list of users or groups that can modify this resource. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_alert" "test_alert" { name = "Terraform Test Alert" target = "test@example.com,target:alert-target-id" condition = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 80" additional_information = "This is a Terraform Test Alert" display_expression = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total )" minutes = 5 resolve_after_minutes = 5 severity = "WARN" tags = [ "terraform", "test" ] can_view = [ "test@example.com", ] } resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "EMAIL" recipient = "test@example.com" email_subject = "This is a test" is_html_content = true template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED" ] } resource "wavefront_alert" "test_threshold_alert" { name = "Terraform Test Alert" alert_type = "THRESHOLD" additional_information = "This is a Terraform Test Alert" display_expression = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total )" minutes = 5 resolve_after_minutes = 5 conditions = { "severe" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 80" "warn" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 60" "info" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 50" } threshold_targets = { "severe" = "target:${wavefront_alert_target.test_target.id}" } tags = [ "terraform" ] } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alerts can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_alert_target.alert_target 1479868728473 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A list of users or groups that can modify this resource.`,
+				},
+				resource.Attribute{
+					Name:        "process_rate_minutes",
+					Description: `(Optional) The specified query is executed every ` + "`" + `process_rate_minutes` + "`" + ` minutes. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_alert" "test_alert" { name = "Terraform Test Alert" target = "test@example.com,target:alert-target-id" condition = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 80" additional_information = "This is a Terraform Test Alert" display_expression = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total )" minutes = 5 resolve_after_minutes = 5 severity = "WARN" tags = [ "terraform", "test" ] can_view = [ "test@example.com", ] process_rate_minutes = 4 } resource "wavefront_alert_target" "test_target" { name = "Terraform Test Target" description = "Test target" method = "EMAIL" recipient = "test@example.com" email_subject = "This is a test" is_html_content = true template = "{}" triggers = [ "ALERT_OPENED", "ALERT_RESOLVED" ] } resource "wavefront_alert" "test_threshold_alert" { name = "Terraform Test Alert" alert_type = "THRESHOLD" additional_information = "This is a Terraform Test Alert" display_expression = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total )" minutes = 5 resolve_after_minutes = 5 conditions = { "severe" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 80" "warn" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 60" "info" = "100-ts(\"cpu.usage_idle\", environment=preprod and cpu=cpu-total ) > 50" } threshold_targets = { "severe" = "target:${wavefront_alert_target.test_target.id}" } tags = [ "terraform" ] } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alerts can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_alert_target.alert_target 1479868728473 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -668,45 +672,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "wavefront_cloud_integration_tesla",
-			Category:         "Resources",
-			ShortDescription: `Provides a Wavefront Cloud Integration for Tesla. This allows Tesla cloud integrations to be created, updated, and deleted.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "service",
-					Description: `(Required) A value denoting which cloud service this service integrates with.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The human-readable name of this integration.`,
-				},
-				resource.Attribute{
-					Name:        "additional_tags",
-					Description: `(Optional) A list of point tag key-values to add to every point ingested using this integration.`,
-				},
-				resource.Attribute{
-					Name:        "force_save",
-					Description: `(Optional) Forces this resource to save, even if errors are present.`,
-				},
-				resource.Attribute{
-					Name:        "service_refresh_rate_in_minutes",
-					Description: `(Optional) How often, in minutes, to refresh the service.`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Required) A Tesla account login email address.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Required) The Tesla account login password. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_cloud_integration_tesla" "tesla" { name = "Test Integration" force_save = true additional_tags = { "tag1" = "value1" "tag2" = "value2" } email = "email@example.com" password = "password" service_refresh_rate_in_minutes = 10 } ` + "`" + `` + "`" + `` + "`" + ` ## Import Tesla Integrations can be imported by using the ` + "`" + `id` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_cloud_integration_tesla.tesla a411c16b-3cf7-4f03-bf11-8ca05aab898d ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "wavefront_dashboard",
 			Category:         "Resources",
 			ShortDescription: `Provides a Wavefront Dashboard resource. This allows dashboards to be created, updated, and deleted.`,
@@ -1136,6 +1101,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "wavefront_event",
+			Category:         "Resources",
+			ShortDescription: `Provides a Wavefront Event resource. This allows events to be created, updated, and deleted.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the event as it is displayed in Wavefront.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A set of tags to assign to this resource.`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Required) The annotations associated with the event.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) The end time of the event in epoch milliseconds. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl resource "wavefront_event" "event" { name = "terraform-test" annotations = { severity = "info" type = "event type" details = "description" } tag = [ "eventTag1" ] start_time = 1490000000000 end_time = 1490000000001 } ` + "`" + `` + "`" + `` + "`" + ` ## Import You can import events by using the id, for example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_event.event 1479868728473 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "wavefront_external_link",
 			Category:         "Resources",
 			ShortDescription: `Provides a Wavefront External Link Resource. This allows external links to be created, updated, and deleted.`,
@@ -1238,6 +1230,74 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "wavefront_metrics_policy",
+			Category:         "Resources",
+			ShortDescription: `Provides a Wavefront Metrics Policy Resource. This allows management of Metrics Policy to control access to time series, histograms, and delta counters`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_rules",
+					Description: `(Required) List of Metrics Policies, must have at least one entry.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name identifier for a Metrics Policy. The name is visible on the Metrics Security Policy page.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) A detailed description of the Metrics Policy. The description is visible only when you edit the rule.`,
+				},
+				resource.Attribute{
+					Name:        "account_ids",
+					Description: `(Optional) List of account ids to apply Metrics Policy to. Must have at least one associated account_id, user_group_id, or role_id.`,
+				},
+				resource.Attribute{
+					Name:        "user_group_ids",
+					Description: `(Optional) List of user group ids to apply Metrics Policy to. Must have at least one associated account_id, user_group_id, or role_id.`,
+				},
+				resource.Attribute{
+					Name:        "prefixes",
+					Description: `(Required) List of prefixes to match metrics on. You can specify the full metric name or use a wildcard character in metric names, sources, or point tags. The wildcard character alone (`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) List of Key/Value tags to select target metrics for policy.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The tag's key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The tag's value.`,
+				},
+				resource.Attribute{
+					Name:        "tags_anded",
+					Description: `(Required) Bool where ` + "`" + `true` + "`" + ` require all tags are met by selected metrics, else ` + "`" + `false` + "`" + ` select metrics that match any give tag.`,
+				},
+				resource.Attribute{
+					Name:        "updater_id",
+					Description: `The account_id who applied the current policy.`,
+				},
+				resource.Attribute{
+					Name:        "updated_epoch_millis",
+					Description: `When the policy was applied in epoch_millis. ## Data Source Provides a Wavefront Metrics Policy Data Source. This allows looking up the current policy and associated rules. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl data "wavefront_metrics_policy" "policy" {} output "policy" { value = data.wavefront_metrics_policy.policy } ` + "`" + `` + "`" + `` + "`" + ` ## Import Users can be imported by using the ` + "`" + `updated_epoch_millis` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_metrics_policy.some_metrics_policy 1651846476678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "updater_id",
+					Description: `The account_id who applied the current policy.`,
+				},
+				resource.Attribute{
+					Name:        "updated_epoch_millis",
+					Description: `When the policy was applied in epoch_millis. ## Data Source Provides a Wavefront Metrics Policy Data Source. This allows looking up the current policy and associated rules. ### Example ` + "`" + `` + "`" + `` + "`" + `hcl data "wavefront_metrics_policy" "policy" {} output "policy" { value = data.wavefront_metrics_policy.policy } ` + "`" + `` + "`" + `` + "`" + ` ## Import Users can be imported by using the ` + "`" + `updated_epoch_millis` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import wavefront_metrics_policy.some_metrics_policy 1651846476678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1359,17 +1419,18 @@ var (
 		"wavefront_cloud_integration_gcp":                9,
 		"wavefront_cloud_integration_gcp_billing":        10,
 		"wavefront_cloud_integration_newrelic":           11,
-		"wavefront_cloud_integration_tesla":              12,
-		"wavefront_dashboard":                            13,
-		"wavefront_dashboard_json":                       14,
-		"wavefront_derived_metric":                       15,
+		"wavefront_dashboard":                            12,
+		"wavefront_dashboard_json":                       13,
+		"wavefront_derived_metric":                       14,
+		"wavefront_event":                                15,
 		"wavefront_external_link":                        16,
 		"wavefront_ingestion_policy":                     17,
 		"wavefront_maintenance_window":                   18,
-		"wavefront_role":                                 19,
-		"wavefront_service_account":                      20,
-		"wavefront_user":                                 21,
-		"wavefront_user_group":                           22,
+		"wavefront_metrics_policy":                       19,
+		"wavefront_role":                                 20,
+		"wavefront_service_account":                      21,
+		"wavefront_user":                                 22,
+		"wavefront_user_group":                           23,
 	}
 )
 

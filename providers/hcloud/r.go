@@ -154,9 +154,22 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_primary_ip",
+			Category:         "Resources",
+			ShortDescription: `Provides a Hetzner Cloud Primary IP to represent a publicly-accessible static IP address that can be mapped to one of your servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"primary",
+				"ip",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_rdns",
 			Category:         "Resources",
-			ShortDescription: `Provides a Hetzner Cloud Reverse DNS Entry to create, modify and reset reverse dns entries for Hetzner Cloud Servers, Floating IPs or Load Balancers.`,
+			ShortDescription: `Provides a Hetzner Cloud Reverse DNS Entry to create, modify and reset reverse dns entries for Hetzner Cloud Servers, Primary IPs, Floating IPs or Load Balancers.`,
 			Description:      ``,
 			Keywords: []string{
 				"rdns",
@@ -254,13 +267,14 @@ var (
 		"hcloud_network_route":          8,
 		"hcloud_network_subnet":         9,
 		"hcloud_placement_group":        10,
-		"hcloud_rdns":                   11,
-		"hcloud_server":                 12,
-		"hcloud_server_network":         13,
-		"hcloud_snapshot":               14,
-		"hcloud_ssh_key":                15,
-		"hcloud_volume":                 16,
-		"hcloud_volume_attachment":      17,
+		"hcloud_primary_ip":             11,
+		"hcloud_rdns":                   12,
+		"hcloud_server":                 13,
+		"hcloud_server_network":         14,
+		"hcloud_snapshot":               15,
+		"hcloud_ssh_key":                16,
+		"hcloud_volume":                 17,
+		"hcloud_volume_attachment":      18,
 	}
 )
 

@@ -12,11 +12,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_algorithm_type_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a networking and security service on NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"algorithm",
 				"type",
 				"ns",
@@ -78,11 +78,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_dhcp_relay_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a DHCP relay profile on NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"dhcp",
 				"relay",
 				"profile",
@@ -127,11 +127,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_dhcp_relay_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a DHCP relay service on NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"dhcp",
 				"relay",
 				"service",
@@ -176,11 +176,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_dhcp_server_ip_pool",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure IP Pool for logical DHCP server on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"dhcp",
 				"server",
 				"ip",
@@ -278,11 +278,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_dhcp_server_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure DHCP server profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"dhcp",
 				"server",
 				"profile",
@@ -331,11 +331,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ether_type_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a layer 2 ethernet networking and security service in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ether",
 				"type",
 				"ns",
@@ -389,11 +389,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_firewall_section",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a firewall section on NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"firewall",
 				"section",
 			},
@@ -521,11 +521,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_icmp_type_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure an ICMP based networking and security service in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"icmp",
 				"type",
 				"ns",
@@ -587,11 +587,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_igmp_type_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure an IGMP based networking and security service in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"igmp",
 				"type",
 				"ns",
@@ -641,11 +641,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_block",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure IP block on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"block",
 			},
@@ -689,11 +689,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_block_subnet",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure IP block subnet on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"block",
 				"subnet",
@@ -758,11 +758,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_discovery_switching_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure IP discovery switching profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"discovery",
 				"switching",
@@ -820,11 +820,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_pool",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure IP pool on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"pool",
 			},
@@ -888,11 +888,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_pool_allocation_ip_address",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to allocate an IP address from an IP pool on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"pool",
 				"allocation",
@@ -926,11 +926,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_protocol_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure an IP protocol based networking and security service in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"protocol",
 				"ns",
@@ -984,11 +984,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ip_set",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure an IP set in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ip",
 				"set",
 			},
@@ -1032,11 +1032,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_l4_port_set_ns_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a layer 4 networking and security service with ports in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"l4",
 				"port",
 				"set",
@@ -1099,11 +1099,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_client_ssl_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb client ssl profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"client",
 				"ssl",
@@ -1177,11 +1177,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_cookie_persistence_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb cookie persistence profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"cookie",
 				"persistence",
@@ -1267,11 +1267,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_fast_tcp_application_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure LB fast TCP application profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"fast",
 				"tcp",
@@ -1326,11 +1326,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_fast_udp_application_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure LB fast UDP application profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"fast",
 				"udp",
@@ -1381,11 +1381,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_application_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure LB HTTP application profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"application",
@@ -1459,11 +1459,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_forwarding_rule",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb rule on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"forwarding",
@@ -1665,11 +1665,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb http monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"monitor",
@@ -1758,11 +1758,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_request_rewrite_rule",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb rule on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"request",
@@ -1977,11 +1977,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_response_rewrite_rule",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb rule on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"response",
@@ -2188,11 +2188,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_http_virtual_server",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb http virtual server on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"http",
 				"virtual",
@@ -2342,11 +2342,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_https_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb https monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"https",
 				"monitor",
@@ -2471,11 +2471,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_icmp_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure load balancer icmp monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"icmp",
 				"monitor",
@@ -2540,11 +2540,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_passive_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure load balancer passive monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"passive",
 				"monitor",
@@ -2593,11 +2593,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_pool",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure Load Balancer Pool on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"pool",
 			},
@@ -2725,11 +2725,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_server_ssl_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb server ssl profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"server",
 				"ssl",
@@ -2795,11 +2795,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_service",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb service on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"service",
 			},
@@ -2859,11 +2859,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_source_ip_persistence_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb source ip persistence profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"source",
 				"ip",
@@ -2922,11 +2922,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_tcp_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure load balancer tcp monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"tcp",
 				"monitor",
@@ -2995,11 +2995,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_tcp_virtual_server",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure lb tcp virtual server on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"tcp",
 				"virtual",
@@ -3085,11 +3085,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_udp_monitor",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure load balancer udp monitor on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"udp",
 				"monitor",
@@ -3158,11 +3158,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_lb_udp_virtual_server",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure Load Balancer UDP Virtual Server on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"lb",
 				"udp",
 				"virtual",
@@ -3248,11 +3248,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_dhcp_port",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a Logical DHCP Port in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"dhcp",
 				"port",
@@ -3305,11 +3305,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_dhcp_server",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure logical DHCP server on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"dhcp",
 				"server",
@@ -3402,11 +3402,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_port",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a Logical Port in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"port",
 			},
@@ -3458,11 +3458,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_router_centralized_service_port",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure logical router centralized service port in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"router",
 				"centralized",
@@ -3521,11 +3521,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_router_downlink_port",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure logical router downlink port in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"router",
 				"downlink",
@@ -3595,11 +3595,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_router_link_port_on_tier0",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource that can be used to configure a logical router link port on Tier-0 router on NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"router",
 				"link",
@@ -3655,11 +3655,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_router_link_port_on_tier1",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a logical router link port on a Tier-1 router in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"router",
 				"link",
@@ -3711,11 +3711,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_switch",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure overlay logical switch in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"switch",
 			},
@@ -3807,11 +3807,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_tier0_router",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a logical Tier0 router in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"tier0",
 				"router",
@@ -3872,11 +3872,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_logical_tier1_router",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a logical Tier1 router in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"logical",
 				"tier1",
 				"router",
@@ -3965,11 +3965,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_mac_management_switching_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure MAC management switching profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"mac",
 				"management",
 				"switching",
@@ -4035,11 +4035,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_nat_rule",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a NAT rule in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"nat",
 				"rule",
 			},
@@ -4119,11 +4119,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ns_group",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a networking and security group in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ns",
 				"group",
 			},
@@ -4191,11 +4191,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_ns_service_group",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure NS service group on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"ns",
 				"service",
 				"group",
@@ -4513,6 +4513,22 @@ var (
 					Description: `(Optional) A list of string indicating values for ` + "`" + `cifs_smb_version` + "`" + `, only applicable to ` + "`" + `CIFS` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "custom_url",
+					Description: `(Optional) A block to specify custom URL attributes for the context profile. Only one block is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "custom_url_partial_match",
+					Description: `True value for this flag will be treated as a partial match for custom url. Attribute is supported with NSX version 4.0.0 and above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the attribute.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) A list of string indicating values for the ` + "`" + `custom_url` + "`" + `. Must be a subset of valid values for ` + "`" + `custom_url` + "`" + ` on NSX.`,
+				},
+				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Optional) A block to specify domain name (FQDN) attributes for the context profile. Only one block is allowed.`,
 				},
@@ -4571,6 +4587,32 @@ var (
 					Description: `Describes whether the APP_ID value is ALG type or not. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile named ` + "`" + `test` + "`" + ` with the NSX Context Profile ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_context_profile_custom_attribute",
+			Category:         "Policy - Firewall",
+			ShortDescription: `A resource to configure a Context Profile FQDN or URL Custom attribute.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"firewall",
+				"context",
+				"profile",
+				"custom",
+				"attribute",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Policy Custom Attribute Key. Valid values are "DOMAIN_NAME" and "CUSTOM_URL"`,
+				},
+				resource.Attribute{
+					Name:        "attribute",
+					Description: `(Required) FQDN or URL to be used as custom attribute. ## Importing An existing Context Profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_context_profile_custom_attribute.test DOMAIN_NAME~test.somesite.com ` + "`" + `` + "`" + `` + "`" + ` The above command imports Context Profile FQDN attribute named ` + "`" + `test` + "`" + ` with FQDN ` + "`" + `test.somesite.com` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5062,6 +5104,10 @@ var (
 				resource.Attribute{
 					Name:        "vni_pool_path",
 					Description: `(Optional) Path of VNI pool to use. This setting is only applicable (and required) with ` + "`" + `INLINE` + "`" + ` mode.`,
+				},
+				resource.Attribute{
+					Name:        "evpn_tenant_path",
+					Description: `(Optional) Policy path for EVPN tenant. Relevant for ` + "`" + `ROUTE_SERVER` + "`" + ` mode.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -5556,7 +5602,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "log_level",
-					Description: `(Optional) Log Level for related messages, one of ` + "`" + `DEBUG` + "`" + `, ` + "`" + `INFO` + "`" + `, ` + "`" + `WARNING` + "`" + `, ` + "`" + `ERROR` + "`" + `, ` + "`" + `FATAL` + "`" + `. Defaults to ` + "`" + `INFO` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Log Level for related messages, one of ` + "`" + `DEBUG` + "`" + `, ` + "`" + `INFO` + "`" + `, ` + "`" + `WARNING` + "`" + `, ` + "`" + `ERROR` + "`" + `, ` + "`" + `FATAL` + "`" + `. Defaults to ` + "`" + `INFO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cache_size",
+					Description: `(Optional) Cache size in KB. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5851,6 +5901,78 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-0 Gateway prefix list can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_prefix_list.pf1 GW-ID/ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-0 gateway prefix list named ` + "`" + `pf1` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + ` on Tier0 Gateway ` + "`" + `GW-ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_gateway_qos_profile",
+			Category:         "Policy - Gateways and Routing",
+			ShortDescription: `A resource to configure a Gateway QoS Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"gateways",
+				"and",
+				"routing",
+				"gateway",
+				"qos",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "burst_size",
+					Description: `(Optional) Maximum amount of traffic that can be transmitted at peak bandwidth rate (bytes)`,
+				},
+				resource.Attribute{
+					Name:        "committed_bandwidth",
+					Description: `(Optional) Bandwidth is limited to line rate when the value configured is greater than line rate (mbps)`,
+				},
+				resource.Attribute{
+					Name:        "excess_action",
+					Description: `(Optional) Action on traffic exceeding bandwidth. Currently only ` + "`" + `DROP` + "`" + ` is supported. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_qos_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_gateway_qos_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -6189,6 +6311,22 @@ var (
 				resource.Attribute{
 					Name:        "member_paths",
 					Description: `(Required) List of policy paths for direct members for this Group (such as Segments, Segment ports, Groups etc).`,
+				},
+				resource.Attribute{
+					Name:        "external_id_expression",
+					Description: `(Optional) An expression block to specify external IDs for the specified member type for this Group.`,
+				},
+				resource.Attribute{
+					Name:        "member_type",
+					Description: `(Optional) External ID member type. Must be one of: ` + "`" + `VirtualMachine` + "`" + `, ` + "`" + `VirtualNetworkInterface` + "`" + `, ` + "`" + `CloudNativeServiceInstance` + "`" + `, or ` + "`" + `PhysicalServer` + "`" + `. Defaults to ` + "`" + `VirtualMachine` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "external_ids",
+					Description: `(Required) List of external IDs for the specified member type.`,
+				},
+				resource.Attribute{
+					Name:        "group_type",
+					Description: `(Optional) One of ` + "`" + `IPAddress` + "`" + `, ` + "`" + `ANTREA` + "`" + `. Empty group type indicates a generic group. Attribute is supported with NSX version 3.2.0 and above. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6630,6 +6768,108 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_ip_discovery_profile",
+			Category:         "Policy - Segments",
+			ShortDescription: `A resource to configure an IP discovery profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"segments",
+				"ip",
+				"discovery",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this policy.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "arp_nd_binding_timeout",
+					Description: `(Optional) ARP and ND cache timeout (in minutes)`,
+				},
+				resource.Attribute{
+					Name:        "duplicate_ip_detection_enabled",
+					Description: `(Optional) Duplicate IP detection`,
+				},
+				resource.Attribute{
+					Name:        "arp_binding_limit",
+					Description: `(Optional) Maximum number of ARP bindings`,
+				},
+				resource.Attribute{
+					Name:        "arp_snooping_enabled",
+					Description: `(Optional) Is ARP snooping enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_snooping_enabled",
+					Description: `(Optional) Is DHCP snooping enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "vmtools_enabled",
+					Description: `(Optional) Is VM tools enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_snooping_v6_enabled",
+					Description: `(Optional) Is DHCP snooping v6 enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "nd_snooping_enabled",
+					Description: `(Optional) Is ND snooping enabled or not`,
+				},
+				resource.Attribute{
+					Name:        "nd_snooping_limit",
+					Description: `(Optional) Maximum number of ND (Neighbor Discovery Protocol) bindings`,
+				},
+				resource.Attribute{
+					Name:        "vmtools_v6_enabled",
+					Description: `(Optional) Use VMTools to learn the IPv6 addresses which are configured on interfaces of a VM`,
+				},
+				resource.Attribute{
+					Name:        "tofu_enabled",
+					Description: `(Optional) Indicates whether "Trust on First Use(TOFU)" paradigm is enabled ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the profile.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_discovery_profile.ip_discovery_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP discovery profile named ` + "`" + `ip_discovery_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the profile.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_discovery_profile.ip_discovery_profile ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the IP discovery profile named ` + "`" + `ip_discovery_profile` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_ip_pool",
 			Category:         "Policy - IPAM",
 			ShortDescription: `A resource to configure IP Pools in NSX Policy.`,
@@ -6848,6 +7088,710 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `The NSX path of the resource. ## Importing An existing Static can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ip_pool_static_subnet.static_subnet1 pool-id/subnet-id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX Static Subnet as a resource named ` + "`" + `static_subnet1` + "`" + ` with the NSX ID ` + "`" + `subnet-id` + "`" + ` in the IP Pool ` + "`" + `pool-id` + "`" + `, where ` + "`" + `subnet-id` + "`" + ` is ID of Static Subnet and ` + "`" + `pool-id` + "`" + ` is the IP Pool ID the Subnet is in.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_dpd_profile",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN DPD Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"dpd",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "dpd_probe_mode",
+					Description: `(Optional) DPD Probe Mode, one of ` + "`" + `PERIODIC` + "`" + `, ` + "`" + `ON_DEMAND` + "`" + `. Periodic mode is used to query the liveliness of the peer at regular intervals (` + "`" + `dpd_probe_interval` + "`" + ` seconds). On-demand mode would trigger DPD message if there is traffic to send to the peer AND the peer was idle for ` + "`" + `dpd_probe_interval` + "`" + ` seconds. Default is ` + "`" + `PERIODIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dpd_probe_interval",
+					Description: `(Optional) Probe interval in seconds. Default is 60.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enabled Dead Peer Detection. Default is True.`,
+				},
+				resource.Attribute{
+					Name:        "retry_count",
+					Description: `(Optional) Maximum number of DPD retry attempts. Default is 10. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_dpd_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN DPD Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_dpd_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN DPD Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_ike_profile",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN IKE Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"ike",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Optional) Internet Key Exchange(IKE) protocol version to be used, one of ` + "`" + `IKE_V1` + "`" + `, ` + "`" + `IKE_V2` + "`" + `, ` + "`" + `IKE_FLEX` + "`" + `. ` + "`" + `IKE_FLEX` + "`" + ` will initiate IKE-V2 and respond to both ` + "`" + `IKE_V1` + "`" + ` and ` + "`" + `IKE_V2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithms",
+					Description: `(Required) Set of encryption algorithms to be used during IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "digest_algorithms",
+					Description: `(Required) Set of algorithms to be used for message digest during IKE negotiation. Default is ` + "`" + `SHA2_256` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dh_groups",
+					Description: `(Required) Diffie-Hellman group to be used if PFS is enabled. Default is GROUP14.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `(Optional) Life time for security association. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_ike_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN IKE Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_ike_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN IKE Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_local_endpoint",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN Local Endpoint.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"local",
+				"endpoint",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "local_address",
+					Description: `(Required) Local IPv4 IP address.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `(Optional) Local id for the local endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_path",
+					Description: `(Optional) Policy path referencing site certificate.`,
+				},
+				resource.Attribute{
+					Name:        "trust_ca_paths",
+					Description: `(Optional) List of trust ca certificate paths.`,
+				},
+				resource.Attribute{
+					Name:        "trust_crl_paths",
+					Description: `(Optional) List of trust CRL paths. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_local_endpoint.enpoint1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing segment can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_local_endpoint.enpoint1 ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the endpoint named ` + "`" + `endpoint1` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_service",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "locale_service_path",
+					Description: `(Deprecated) Path of the gateway locale service associated with the IPSec VPN Service.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Optional) Path of gateway associated with the IPSec VPN Service. Note that at least one of ` + "`" + `gateway_path` + "`" + ` and ` + "`" + `locale_service_path` + "`" + ` must be specified for the IPSec VPN Service object.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether this IPSec VPN Service is enabled. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ha_sync",
+					Description: `(Optional) Enable/Disable IPSec VPN service HA state sync. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_log_level",
+					Description: `(Optional) Set of algorithms to be used for message digest during IKE negotiation. Value is one of ` + "`" + `DEBUG` + "`" + `, ` + "`" + `INFO` + "`" + `, ` + "`" + `WARN` + "`" + `, ` + "`" + `ERROR` + "`" + ` and ` + "`" + `EMERGENCY` + "`" + `. Default is ` + "`" + `INFO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bypass_rule",
+					Description: `(Optional) Set the bypass rules for this IPSec VPN Service.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source subnets. Subnet format is ipv4 CIDR.`,
+				},
+				resource.Attribute{
+					Name:        "destinations",
+					Description: `(Required) List of distination subnets. Subnet format is ipv4 CIDR.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) ` + "`" + `PROTECT` + "`" + ` or ` + "`" + `BYPASS` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_service.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN Service named ` + "`" + `test` + "`" + ` that corresponds to NSX IPSec VPN service with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_service.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN Service named ` + "`" + `test` + "`" + ` that corresponds to NSX IPSec VPN service with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_session",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN session.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"session",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "ike_profile_path",
+					Description: `(Optional) Policy path referencing IKE profile.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_profile_path",
+					Description: `(Required) Policy path referencing Tunnel profile to be used.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Boolean. Enable/Disable IPsec VPN session. Default is "true" (session enabled).`,
+				},
+				resource.Attribute{
+					Name:        "service_path",
+					Description: `(Required) The path of the IPSec VPN service for the VPN session.`,
+				},
+				resource.Attribute{
+					Name:        "dpd_profile_path",
+					Description: `(Optional) Policy path referencing Dead Peer Detection (DPD) profile. Default is set to system default profile.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_type",
+					Description: `(Required) ` + "`" + `RouteBased` + "`" + ` or ` + "`" + `PolicyBased` + "`" + `. Policy Based VPN requires to define protect rules that match local and peer subnets. IPSec security association is negotiated for each pair of local and peer subnet. For PolicyBased Session, ` + "`" + `rule` + "`" + ` must be specified with ` + "`" + `sources` + "`" + `, ` + "`" + `destination` + "`" + ` and ` + "`" + `action` + "`" + `. A Route Based VPN is more flexible, more powerful and recommended over policy based VPN. IP Tunnel port is created and all traffic routed via tunnel port is protected. Routes can be configured statically or can be learned through BGP. A route based VPN is a must for establishing redundant VPN session to remote site. For RouteBased VPN session, ` + "`" + `ip_addresses` + "`" + ` and ` + "`" + `prefix_length` + "`" + ` must be specified to create the tunnel interface and its subnet.`,
+				},
+				resource.Attribute{
+					Name:        "compliance_suite",
+					Description: `(Optional) Compliance suite. Value is one of ` + "`" + `CNSA` + "`" + `, ` + "`" + `SUITE_B_GCM_128` + "`" + `, ` + "`" + `SUITE_B_GCM_256` + "`" + `, ` + "`" + `PRIME` + "`" + `, ` + "`" + `FOUNDATION` + "`" + `, ` + "`" + `FIPS` + "`" + `, ` + "`" + `None` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "compliance_initiaion_mode",
+					Description: `(Optional) Connection initiation mode used by local endpoint to establish ike connection with peer site. ` + "`" + `INITIATOR` + "`" + ` - In this mode local endpoint initiates tunnel setup and will also respond to incoming tunnel setup requests from peer gateway. ` + "`" + `RESPOND_ONLY` + "`" + ` - In this mode, local endpoint shall only respond to incoming tunnel setup requests. It shall not initiate the tunnel setup. ` + "`" + `ON_DEMAND` + "`" + ` - In this mode local endpoint will initiate tunnel creation once first packet matching the policy rule is received and will also respond to incoming initiation request.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Optional) IP Tunnel interface (commonly referred as VTI) ip_addresses. Only applied for Route Based VPN Session.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Optional) Subnet Prefix Length. Only applied for Route Based VPN Session.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `(Optional) Public IPV4 address of the remote device terminating the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `(Optional) Peer ID to uniquely identify the peer site. The peer ID is the public IP address of the remote device terminating the VPN tunnel. When NAT is configured for the peer, enter the private IP address of the peer.`,
+				},
+				resource.Attribute{
+					Name:        "local_endpoint_path",
+					Description: `(Required) Policy path referencing Local endpoint. In VMC, Local Endpoints are pre-configured the user can refer to their path using ` + "`" + `data nsxt_policy_ipsec_vpn_local_endpoint` + "`" + ` and using the "Private IP1" or "Public IP1" values to refer to the private and public endpoints respectively.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) Bypass rules for this IPSec VPN Session. Only applicable to ` + "`" + `PolicyBased` + "`" + ` VPN Session.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Optional) List of source subnets. Subnet format is ipv4 CIDR.`,
+				},
+				resource.Attribute{
+					Name:        "destinations",
+					Description: `(Optional) List of distination subnets. Subnet format is ipv4 CIDR.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) ` + "`" + `PROTECT` + "`" + ` or ` + "`" + `BYPASS` + "`" + `. Default is ` + "`" + `PROTECT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) The traffic direction apply to the MSS clamping. Value is one of ` + "`" + `NONE` + "`" + `, ` + "`" + `INBOUND_CONNECTION` + "`" + `, ` + "`" + `OUTBOUND_CONNECTION` + "`" + ` AND ` + "`" + `BOTH` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_segment_size",
+					Description: `(Optional) Maximum amount of data the host will accept in a TCP segment. Value is an int between ` + "`" + `108` + "`" + ` and ` + "`" + `8860` + "`" + `. If not specified then the value would be the automatic calculated MSS value. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `The NSX ID of the bypass rule for this IPSec VPN Session. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_session.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN session named ` + "`" + `test` + "`" + ` that corresponds to NSX IPSec VPN session with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `The NSX ID of the bypass rule for this IPSec VPN Session. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_session.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN session named ` + "`" + `test` + "`" + ` that corresponds to NSX IPSec VPN session with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_tunnel_profile",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a IPSec VPN Tunnel Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"ipsec",
+				"tunnel",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "digest_algorithms",
+					Description: `(Required) Set of algorithms to be used for message digest during IKE negotiation. Default is ` + "`" + `SHA2_256` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dh_groups",
+					Description: `(Required) Diffie-Hellman group to be used if PFS is enabled. Default is GROUP14.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithms",
+					Description: `(Optional) Set of encryption algorithms to be used during IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `(Optional) SA lifetime specifies the expiry time of security association. Default is 3600.`,
+				},
+				resource.Attribute{
+					Name:        "enable_perfect_forward_secrecy",
+					Description: `(Optional) Enable perfect forward secrecy. Default is True. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_tunnel_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN IKE Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_ipsec_vpn_tunnel_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports IPSec VPN IKE Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_l2_vpn_service",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a L2 VPN Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"l2",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "locale_service_path",
+					Description: `(Deprecated) Path of the locale service associated with the L2 VPN Service.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Optional) Path of gateway associated with the L2 VPN Service. Note that at least one of ` + "`" + `gateway_path` + "`" + ` and ` + "`" + `locale_service_path` + "`" + ` must be specified for the L2 VPN Service object.`,
+				},
+				resource.Attribute{
+					Name:        "enable_hub",
+					Description: `(Optional) This property applies only in ` + "`" + `SERVER` + "`" + ` mode. If set to true, traffic from any client will be replicated to all other clients. If set to false, traffic received from clients is only replicated to the local VPN endpoint. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Specify an L2VPN service mode as SERVER or CLIENT. Value is one of ` + "`" + `SERVER` + "`" + `, ` + "`" + `CLIENT` + "`" + `. Default is ` + "`" + `SERVER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "encap_ip_pool",
+					Description: `(Optional) IP Pool to allocate local and peer endpoint IPs. Format is ipv4 CIDR block. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_l2_vpn_service.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports L2 VPN Service named ` + "`" + `test` + "`" + ` that corresponds to NSX L2 VPN service with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_l2_vpn_service.test PATH ` + "`" + `` + "`" + `` + "`" + ` The above command imports L2 VPN Service named ` + "`" + `test` + "`" + ` that corresponds to NSX L2 VPN service with policy path ` + "`" + `PATH` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_l2_vpn_session",
+			Category:         "VPN",
+			ShortDescription: `A resource to configure a L2VPN VPN session.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"policy",
+				"l2",
+				"session",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "service_path",
+					Description: `(Required) The path of the L2 VPN service for the VPN session.`,
+				},
+				resource.Attribute{
+					Name:        "transport_tunnels",
+					Description: `(Required) List of transport tunnels paths for redundancy. L2VPN supports only ` + "`" + `AES_GCM_128` + "`" + ` encryption algorithm for IPSec tunnel profile.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) The traffic direction apply to the MSS clamping. ` + "`" + `BOTH` + "`" + ` or ` + "`" + `NONE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_segment_size",
+					Description: `(Optional) Maximum amount of data the host will accept in a TCP segment. Value should be between ` + "`" + `108` + "`" + ` and ` + "`" + `8860` + "`" + `. If not specified then the value would be the automatic calculated MSS value.`,
+				},
+				resource.Attribute{
+					Name:        "local_address",
+					Description: `(Optional) IP Address of the local tunnel port. This property only applies in ` + "`" + `CLIENT` + "`" + ` mode.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `(Optional) IP Address of the peer tunnel port. This property only applies in ` + "`" + `CLIENT` + "`" + ` mode.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Encapsulation protocol used by the tunnel. ` + "`" + `GRE` + "`" + ` is the only supported value. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_l2_vpn_session.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports L2 VPN session named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_l2_vpn_session.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports L2 VPN session named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -8627,7 +9571,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_version",
-					Description: `(Optional) Version of IP protocol, one of ` + "`" + `IPV4` + "`" + `, ` + "`" + `IPV6` + "`" + `, ` + "`" + `IPV4_IPV6` + "`" + `. Default is ` + "`" + `IPV4_IPV6` + "`" + `.`,
+					Description: `(Optional) Version of IP protocol, one of ` + "`" + `NONE` + "`" + `, IPV4` + "`" + `, ` + "`" + `IPV6` + "`" + `, ` + "`" + `IPV4_IPV6` + "`" + `. Default is ` + "`" + `IPV4_IPV6` + "`" + `. For ` + "`" + `Ethernet` + "`" + ` category rules, use ` + "`" + `NONE` + "`" + ` value.`,
 				},
 				resource.Attribute{
 					Name:        "logged",
@@ -8919,7 +9863,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "qos_profile_path",
-					Description: `(Optional) Path for qos profile to be associated with the segment. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Path for qos profile to be associated with the segment.`,
+				},
+				resource.Attribute{
+					Name:        "bridge_config",
+					Description: `(Optional) List of edge bridge configuration for the segment. This setting is not supported on Global Manager.`,
+				},
+				resource.Attribute{
+					Name:        "profile_path",
+					Description: `(Required) Path for edge bridge profile to be associated with the segment.`,
+				},
+				resource.Attribute{
+					Name:        "transport_zone_path",
+					Description: `(Required) Path for vlan transport zone for the bridge.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `(Required) List of VLAN IDs or ranges.`,
+				},
+				resource.Attribute{
+					Name:        "uplink_teaming_policy",
+					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8946,6 +9910,120 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_segment_security_profile",
+			Category:         "Policy - Segments",
+			ShortDescription: `A resource to configure a Segment Security Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"segments",
+				"segment",
+				"security",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_filter_allow",
+					Description: `(Optional) List of allowed MAC addresses to be excluded from BPDU filtering. List of allowed MACs - ` + "`" + `01:80:c2:00:00:00` + "`" + `, ` + "`" + `01:80:c2:00:00:01` + "`" + `, ` + "`" + `01:80:c2:00:00:02` + "`" + `, ` + "`" + `01:80:c2:00:00:03` + "`" + `, ` + "`" + `01:80:c2:00:00:04` + "`" + `, ` + "`" + `01:80:c2:00:00:05` + "`" + `, ` + "`" + `01:80:c2:00:00:06` + "`" + `, ` + "`" + `01:80:c2:00:00:07` + "`" + `, ` + "`" + `01:80:c2:00:00:08` + "`" + `, ` + "`" + `01:80:c2:00:00:09` + "`" + `, ` + "`" + `01:80:c2:00:00:0a` + "`" + `, ` + "`" + `01:80:c2:00:00:0b` + "`" + `, ` + "`" + `01:80:c2:00:00:0c` + "`" + `, ` + "`" + `01:80:c2:00:00:0d` + "`" + `, ` + "`" + `01:80:c2:00:00:0e` + "`" + `, ` + "`" + `01:80:c2:00:00:0f` + "`" + `, ` + "`" + `00:e0:2b:00:00:00` + "`" + `, ` + "`" + `00:e0:2b:00:00:04` + "`" + `, ` + "`" + `00:e0:2b:00:00:06` + "`" + `, ` + "`" + `01:00:0c:00:00:00` + "`" + `, ` + "`" + `01:00:0c:cc:cc:cc` + "`" + `, ` + "`" + `01:00:0c:cc:cc:cd` + "`" + `, ` + "`" + `01:00:0c:cd:cd:cd` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c0` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c1` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c2` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c3` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c4` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c5` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c6` + "`" + `, ` + "`" + `01:00:0c:cc:cc:c7` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bpdu_filter_enable",
+					Description: `(Optional) Indicates whether BPDU filter is enabled. Default is ` + "`" + `True` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_client_block_enabled",
+					Description: `(Optional) Filters DHCP server and/or client traffic. Default is ` + "`" + `False` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_client_block_v6_enabled",
+					Description: `(Optional) Filters DHCP server and/or client IPv6 traffic. Default is ` + "`" + `False` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_server_block_enabled",
+					Description: `(Optional) Filters DHCP server and/or client traffic. Default is ` + "`" + `True` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_server_block_v6_enabled",
+					Description: `(Optional) Filters DHCP server and/or client IPv6 traffic. Default is ` + "`" + `True` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "non_ip_traffic_block_enabled",
+					Description: `(Optional) A flag to block all traffic except IP/(G)ARP/BPDU. Default is ` + "`" + `False` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ra_guard_enabled",
+					Description: `(Optional) Enable or disable Router Advertisement Guard. Default is ` + "`" + `False` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "rate_limit",
+					Description: `(Optional) Rate limits.`,
+				},
+				resource.Attribute{
+					Name:        "rx_broadcast",
+					Description: `(Optional) Incoming broadcast traffic limit in packets per second.`,
+				},
+				resource.Attribute{
+					Name:        "rx_multicast",
+					Description: `(Optional) Incoming multicast traffic limit in packets per second.`,
+				},
+				resource.Attribute{
+					Name:        "tx_broadcast",
+					Description: `(Optional) Outgoing broadcast traffic limit in packets per second.`,
+				},
+				resource.Attribute{
+					Name:        "tx_multicast",
+					Description: `(Optional) Outgoing multicast traffic limit in packets per second.`,
+				},
+				resource.Attribute{
+					Name:        "rate_limits_enabled",
+					Description: `(Optional) Enable or disable Rate Limits. Default is ` + "`" + `False` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_segment_security_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Segment Security Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_segment_security_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports Segment Security Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -9091,7 +10169,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "algorithm",
-					Description: `(Required) Algorithm, one of ` + "`" + `ORACLE_TNS` + "`" + `, ` + "`" + `FTP` + "`" + `, ` + "`" + `SUN_RPC_TCP` + "`" + `, ` + "`" + `SUN_RPC_UDP` + "`" + `, ` + "`" + `MS_RPC_TCP` + "`" + `, ` + "`" + `MS_RPC_UDP` + "`" + `, ` + "`" + `NBNS_BROADCAST` + "`" + `(Deprecated), ` + "`" + `NBDG_BROADCAST` + "`" + `(Deprecated), ` + "`" + `TFTP` + "`" + `. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Required) Algorithm, one of ` + "`" + `ORACLE_TNS` + "`" + `, ` + "`" + `FTP` + "`" + `, ` + "`" + `SUN_RPC_TCP` + "`" + `, ` + "`" + `SUN_RPC_UDP` + "`" + `, ` + "`" + `MS_RPC_TCP` + "`" + `, ` + "`" + `MS_RPC_UDP` + "`" + `, ` + "`" + `NBNS_BROADCAST` + "`" + `(Deprecated), ` + "`" + `NBDG_BROADCAST` + "`" + `(Deprecated), ` + "`" + `TFTP` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nested_service_entry",
+					Description: `(Optional) Feature introduced since at least NSX-T 3.1, set of Nested service entries. Each with the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Display name of the service entry.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the service entry.`,
+				},
+				resource.Attribute{
+					Name:        "nested_service_path",
+					Description: `(Required) Path of the nested service. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9118,6 +10212,68 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `The NSX path of the policy resource. ## Importing An existing service can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_service.service_icmp ID ` + "`" + `` + "`" + `` + "`" + ` The above service imports the service named ` + "`" + `service_icmp` + "`" + ` with the NSX ID ` + "`" + `ID` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_spoof_guard_profile",
+			Category:         "Policy - Segments",
+			ShortDescription: `A resource to configure SpoofGuard Profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"segments",
+				"spoof",
+				"guard",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) Display name of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_id",
+					Description: `(Optional) The NSX ID of this resource. If set, this ID will be used to create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "address_binding_allowlist",
+					Description: `(Optional) If true, enable the SpoofGuard, which only allows IPs listed in address bindings. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_spoof_guard_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports SpoofGuard Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource. ## Importing An existing object can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_spoof_guard_profile.test UUID ` + "`" + `` + "`" + `` + "`" + ` The above command imports SpoofGuard Profile named ` + "`" + `test` + "`" + ` with the NSX ID ` + "`" + `UUID` + "`" + `.`,
 				},
 			},
 		},
@@ -9225,11 +10381,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
-					Description: `(Optional) The path of the edge cluster where the Tier-0 is placed. Must be specified when ` + "`" + `bgp_config` + "`" + ` is enabled. This argument is not applicable to NSX Global Manager - use locale-services clause instead.`,
+					Description: `(Optional) The path of the edge cluster where the Tier-0 is placed.For advanced configuration and on Global Manager, use ` + "`" + `locale_service` + "`" + ` clause instead. Note that for some configurations (such as BGP) setting edge cluster is required.`,
 				},
 				resource.Attribute{
 					Name:        "locale_service",
-					Description: `(Optional) This is required for NSX Global Manager only. Multiple locale services can be specified for multiple locations.`,
+					Description: `(Optional) This is required on NSX Global Manager. Multiple locale services can be specified for multiple locations.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
@@ -9238,6 +10394,10 @@ var (
 				resource.Attribute{
 					Name:        "preferred_edge_paths",
 					Description: `(Optional) Policy paths to edge nodes. Specified edge is used as preferred edge cluster member when failover mode is set to ` + "`" + `PREEMPTIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Display name for the locale service.`,
 				},
 				resource.Attribute{
 					Name:        "failover_mode",
@@ -9698,11 +10858,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
-					Description: `(Optional) The path of the edge cluster where the Tier-1 is placed.`,
+					Description: `(Optional) The path of the edge cluster where the Tier-1 is placed.For advanced configuration, use ` + "`" + `locale_service` + "`" + ` clause instead.`,
 				},
 				resource.Attribute{
 					Name:        "locale_service",
-					Description: `(Optional) This argument is applicable for NSX Global Manager only. Multiple locale services can be specified for multiple locations.`,
+					Description: `(Optional) This argument is required on NSX Global Manager. Multiple locale services can be specified for multiple locations.`,
 				},
 				resource.Attribute{
 					Name:        "edge_cluster_path",
@@ -9711,6 +10871,10 @@ var (
 				resource.Attribute{
 					Name:        "preferred_edge_paths",
 					Description: `(Optional) Policy paths to edge nodes. Specified edge is used as preferred edge cluster member when failover mode is set to ` + "`" + `PREEMPTIVE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Display name for the locale service.`,
 				},
 				resource.Attribute{
 					Name:        "failover_mode",
@@ -9798,7 +10962,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "primary_site_path",
-					Description: `(Optional) Primary egress site for gateway. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Primary egress site for gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ha_mode",
+					Description: `(Optional) High-availability Mode for Tier-1. Valid values are ` + "`" + `ACTIVE_ACTIVE` + "`" + ` and ` + "`" + `ACTIVE_STANDBY` + "`" + `. ` + "`" + `ACTIVE_ACTIVE` + "`" + ` is supported with NSX version 4.0.0 and above. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9810,7 +10978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9824,7 +10992,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `.`,
+					Description: `The NSX path of the policy resource. ## Importing An existing policy Tier-1 gateway can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_policy_tier1_gateway.tier1_gw ID ` + "`" + `` + "`" + `` + "`" + ` The above command imports the policy Tier-1 gateway named ` + "`" + `tier1_gw` + "`" + ` with the NSX Policy ID ` + "`" + `ID` + "`" + `. ~>`,
 				},
 			},
 		},
@@ -10111,7 +11279,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "qos_profile_path",
-					Description: `(Optional) Path for qos profile to be associated with the segment. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) Path for qos profile to be associated with the segment.`,
+				},
+				resource.Attribute{
+					Name:        "bridge_config",
+					Description: `(Optional) List of edge bridge configuration for the segment. This setting is not supported on Global Manager.`,
+				},
+				resource.Attribute{
+					Name:        "profile_path",
+					Description: `(Required) Path for edge bridge profile to be associated with the segment.`,
+				},
+				resource.Attribute{
+					Name:        "transport_zone_path",
+					Description: `(Required) Path for vlan transport zone for the bridge.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_ids",
+					Description: `(Required) List of VLAN IDs or ranges.`,
+				},
+				resource.Attribute{
+					Name:        "uplink_teaming_policy",
+					Description: `(Optional) The name of the switching uplink teaming policy for the bridge endpoint. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10182,11 +11370,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_qos_switching_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure QoS switching profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"qos",
 				"switching",
 				"profile",
@@ -10298,62 +11486,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "nsxt_spoof_guard_switching_profile",
-			Category:         "Manager",
-			ShortDescription: `Provides a resource to configure spoofguard switching profile on NSX-T manager`,
-			Description:      ``,
-			Keywords: []string{
-				"manager",
-				"spoof",
-				"guard",
-				"switching",
-				"profile",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) Description of this resource.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Optional) The display name of this resource. Defaults to ID if not set.`,
-				},
-				resource.Attribute{
-					Name:        "tag",
-					Description: `(Optional) A list of scope + tag pairs to associate with this spoofguard switching profile.`,
-				},
-				resource.Attribute{
-					Name:        "address_binding_whitelist_enabled",
-					Description: `(Optional) A boolean flag indicating whether this profile overrides the default system wide settings for Spoof Guard when assigned to ports. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the spoofguard switching profile.`,
-				},
-				resource.Attribute{
-					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the spoofguard switching profile.`,
-				},
-				resource.Attribute{
-					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing spoofguard switching profile can be [imported][docs-import] into this resource, via the following command: [docs-import]: https://www.terraform.io/cli/import ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_spoofguard_switching_profile.spoofguard_switching_profile UUID ` + "`" + `` + "`" + `` + "`" + ` The above would import the spoofguard switching profile named ` + "`" + `spoofguard_switching_profile` + "`" + ` with the nsx id ` + "`" + `UUID` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "nsxt_spoofguard_switching_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure spoofguard switching profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"spoofguard",
 				"switching",
 				"profile",
@@ -10398,11 +11536,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_static_route",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure a static route in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"static",
 				"route",
 			},
@@ -10482,11 +11620,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_switch_security_switching_profile",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `Provides a resource to configure switch security switching profile on NSX-T manager`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"switch",
 				"security",
 				"switching",
@@ -10572,11 +11710,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_vlan_logical_switch",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure vlan logical switch in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"vlan",
 				"logical",
 				"switch",
@@ -10645,11 +11783,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "nsxt_vm_tags",
-			Category:         "Manager",
+			Category:         "Deprecated",
 			ShortDescription: `A resource to configure tags for a virtual machine in NSX.`,
 			Description:      ``,
 			Keywords: []string{
-				"manager",
+				"deprecated",
 				"vm",
 				"tags",
 			},
@@ -10728,59 +11866,71 @@ var (
 		"nsxt_policy_bgp_config":                       52,
 		"nsxt_policy_bgp_neighbor":                     53,
 		"nsxt_policy_context_profile":                  54,
-		"nsxt_policy_dhcp_relay":                       55,
-		"nsxt_policy_dhcp_server":                      56,
-		"nsxt_policy_dhcp_v4_static_binding":           57,
-		"nsxt_policy_dhcp_v6_static_binding":           58,
-		"nsxt_policy_dns_forwarder_zone":               59,
-		"nsxt_policy_domain":                           60,
-		"nsxt_policy_evpn_config":                      61,
-		"nsxt_policy_evpn_tenant":                      62,
-		"nsxt_policy_evpn_tunnel_endpoint":             63,
-		"nsxt_policy_fixed_segment":                    64,
-		"nsxt_policy_gateway_community_list":           65,
-		"nsxt_policy_gateway_dns_forwarder":            66,
-		"nsxt_policy_gateway_policy":                   67,
-		"nsxt_policy_gateway_prefix_list":              68,
-		"nsxt_policy_gateway_redistribution_config":    69,
-		"nsxt_policy_gateway_route_map":                70,
-		"nsxt_policy_gateway_static_route_bfd_peer":    71,
-		"nsxt_policy_group":                            72,
-		"nsxt_policy_intrusion_service_policy":         73,
-		"nsxt_policy_intrusion_service_profile":        74,
-		"nsxt_policy_ip_address_allocation":            75,
-		"nsxt_policy_ip_block":                         76,
-		"nsxt_policy_ip_pool":                          77,
-		"nsxt_policy_ip_pool_block_subnet":             78,
-		"nsxt_policy_ip_pool_static_subnet":            79,
-		"nsxt_policy_lb_pool":                          80,
-		"nsxt_policy_lb_service":                       81,
-		"nsxt_policy_lb_virtual_server":                82,
-		"nsxt_policy_mac_discovery_profile":            83,
-		"nsxt_policy_nat_rule":                         84,
-		"nsxt_policy_ospf_area":                        85,
-		"nsxt_policy_ospf_config":                      86,
-		"nsxt_policy_predefined_gateway_policy":        87,
-		"nsxt_policy_predefined_security_policy":       88,
-		"nsxt_policy_qos_profile":                      89,
-		"nsxt_policy_security_policy":                  90,
-		"nsxt_policy_segment":                          91,
-		"nsxt_policy_service":                          92,
-		"nsxt_policy_static_route":                     93,
-		"nsxt_policy_tier0_gateway":                    94,
-		"nsxt_policy_tier0_gateway_ha_vip_config":      95,
-		"nsxt_policy_tier0_gateway_interface":          96,
-		"nsxt_policy_tier1_gateway":                    97,
-		"nsxt_policy_tier1_gateway_interface":          98,
-		"nsxt_policy_vlan_segment":                     99,
-		"nsxt_policy_vm_tags":                          100,
-		"nsxt_qos_switching_profile":                   101,
-		"nsxt_spoof_guard_switching_profile":           102,
-		"nsxt_spoofguard_switching_profile":            103,
-		"nsxt_static_route":                            104,
-		"nsxt_switch_security_switching_profile":       105,
-		"nsxt_vlan_logical_switch":                     106,
-		"nsxt_vm_tags":                                 107,
+		"nsxt_policy_context_profile_custom_attribute": 55,
+		"nsxt_policy_dhcp_relay":                       56,
+		"nsxt_policy_dhcp_server":                      57,
+		"nsxt_policy_dhcp_v4_static_binding":           58,
+		"nsxt_policy_dhcp_v6_static_binding":           59,
+		"nsxt_policy_dns_forwarder_zone":               60,
+		"nsxt_policy_domain":                           61,
+		"nsxt_policy_evpn_config":                      62,
+		"nsxt_policy_evpn_tenant":                      63,
+		"nsxt_policy_evpn_tunnel_endpoint":             64,
+		"nsxt_policy_fixed_segment":                    65,
+		"nsxt_policy_gateway_community_list":           66,
+		"nsxt_policy_gateway_dns_forwarder":            67,
+		"nsxt_policy_gateway_policy":                   68,
+		"nsxt_policy_gateway_prefix_list":              69,
+		"nsxt_policy_gateway_qos_profile":              70,
+		"nsxt_policy_gateway_redistribution_config":    71,
+		"nsxt_policy_gateway_route_map":                72,
+		"nsxt_policy_gateway_static_route_bfd_peer":    73,
+		"nsxt_policy_group":                            74,
+		"nsxt_policy_intrusion_service_policy":         75,
+		"nsxt_policy_intrusion_service_profile":        76,
+		"nsxt_policy_ip_address_allocation":            77,
+		"nsxt_policy_ip_block":                         78,
+		"nsxt_policy_ip_discovery_profile":             79,
+		"nsxt_policy_ip_pool":                          80,
+		"nsxt_policy_ip_pool_block_subnet":             81,
+		"nsxt_policy_ip_pool_static_subnet":            82,
+		"nsxt_policy_ipsec_vpn_dpd_profile":            83,
+		"nsxt_policy_ipsec_vpn_ike_profile":            84,
+		"nsxt_policy_ipsec_vpn_local_endpoint":         85,
+		"nsxt_policy_ipsec_vpn_service":                86,
+		"nsxt_policy_ipsec_vpn_session":                87,
+		"nsxt_policy_ipsec_vpn_tunnel_profile":         88,
+		"nsxt_policy_l2_vpn_service":                   89,
+		"nsxt_policy_l2_vpn_session":                   90,
+		"nsxt_policy_lb_pool":                          91,
+		"nsxt_policy_lb_service":                       92,
+		"nsxt_policy_lb_virtual_server":                93,
+		"nsxt_policy_mac_discovery_profile":            94,
+		"nsxt_policy_nat_rule":                         95,
+		"nsxt_policy_ospf_area":                        96,
+		"nsxt_policy_ospf_config":                      97,
+		"nsxt_policy_predefined_gateway_policy":        98,
+		"nsxt_policy_predefined_security_policy":       99,
+		"nsxt_policy_qos_profile":                      100,
+		"nsxt_policy_security_policy":                  101,
+		"nsxt_policy_segment":                          102,
+		"nsxt_policy_segment_security_profile":         103,
+		"nsxt_policy_service":                          104,
+		"nsxt_policy_spoof_guard_profile":              105,
+		"nsxt_policy_static_route":                     106,
+		"nsxt_policy_tier0_gateway":                    107,
+		"nsxt_policy_tier0_gateway_ha_vip_config":      108,
+		"nsxt_policy_tier0_gateway_interface":          109,
+		"nsxt_policy_tier1_gateway":                    110,
+		"nsxt_policy_tier1_gateway_interface":          111,
+		"nsxt_policy_vlan_segment":                     112,
+		"nsxt_policy_vm_tags":                          113,
+		"nsxt_qos_switching_profile":                   114,
+		"nsxt_spoofguard_switching_profile":            115,
+		"nsxt_static_route":                            116,
+		"nsxt_switch_security_switching_profile":       117,
+		"nsxt_vlan_logical_switch":                     118,
+		"nsxt_vm_tags":                                 119,
 	}
 )
 

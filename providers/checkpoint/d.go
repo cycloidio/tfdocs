@@ -200,6 +200,188 @@ Use this data source to get information on an existing Cisco APIC Data Center Se
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_administrator",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Administrator.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Administrator.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `Authentication method.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Administrator email.`,
+				},
+				resource.Attribute{
+					Name:        "multi_domain_profile",
+					Description: `Administrator multi-domain profile. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "must_change_password",
+					Description: `True if administrator must change password on the next login.`,
+				},
+				resource.Attribute{
+					Name:        "permissions_profile",
+					Description: `Administrator permissions profile. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level. permissions_profile blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "phone_number",
+					Description: `Administrator phone number.`,
+				},
+				resource.Attribute{
+					Name:        "radius_server",
+					Description: `RADIUS server object identified by the name or UID. Must be set when "authentication-method" was selected to be "RADIUS". Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "sic_name",
+					Description: `Name of the Secure Internal Connection Trust.`,
+				},
+				resource.Attribute{
+					Name:        "tacacs_server",
+					Description: `TACACS server object identified by the name or UID . Must be set when "authentication-method" was selected to be "TACACS". Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string. ` + "`" + `permissions_profile` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `The domain's profile.`,
+				},
+				resource.Attribute{
+					Name:        "profile",
+					Description: `Permission profile.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_api_settings",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Api Settings.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Api Settings.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "accepted_api_calls_from",
+					Description: `Clients allowed to connect to the API Server.`,
+				},
+				resource.Attribute{
+					Name:        "automatic_start",
+					Description: `MGMT API will start after server will start.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_automatic_purge",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Automatic Purge.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Automatic Purge.
+
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Turn on/off the automatic-purge feature.`,
+				},
+				resource.Attribute{
+					Name:        "keep_sessions_by_count",
+					Description: `Whether or not to keep the latest N sessions.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_sessions_to_keep",
+					Description: `The number of newest sessions to preserve, by the sessions's publish date.`,
+				},
+				resource.Attribute{
+					Name:        "keep_sessions_by_days",
+					Description: `Whether or not to keep the sessions for D days.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_days_to_keep",
+					Description: `When "keep-sessions-by-days = true" this sets the number of days to keep the sessions.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling",
+					Description: `When to purge sessions that do not meet the "keep" criteria. scheduling is type List. scheduling blocks are documented below. ` + "`" + `scheduling` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "start_date",
+					Description: `The first time to check whether or not there are sessions to purge.`,
+				},
+				resource.Attribute{
+					Name:        "time_units",
+					Description: `The time units.`,
+				},
+				resource.Attribute{
+					Name:        "check_interval",
+					Description: `Number of time-units between two purge checks.`,
+				},
+				resource.Attribute{
+					Name:        "last_check",
+					Description: `Last time purge check was executed.`,
+				},
+				resource.Attribute{
+					Name:        "next_check",
+					Description: `Next time purge check will be executed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_aws_data_center_server",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing AWS data center server.`,
@@ -217,6 +399,148 @@ Use this data source to get information on an existing AWS Data Center Server.
 				resource.Attribute{
 					Name:        "uid",
 					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_azure_ad",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Azure Ad.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Azure Ad.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `Azure AD connection properties. properties blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_azure_ad_content",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Azure Ad Content.`,
+			Description: `
+
+This resource allows you to execute Check Point Azure Ad Content.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "azure_ad_name",
+					Description: `(Optional) Name of the Azure AD Server where to search for objects.`,
+				},
+				resource.Attribute{
+					Name:        "azure_ad_uid",
+					Description: `(Optional) Unique identifier of the Azure AD Server where to search for objects.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `(Optional) The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) Number of the results to initially skip.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. order blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "uid_in_azure_ad",
+					Description: `(Optional) Return result matching the unique identifier of the object on the Azure AD Server.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Return results matching the specified filter. filter blocks are documented below. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order. ` + "`" + `filter` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "text",
+					Description: `(Optional) Return results containing the specified text value.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Optional) Return results under the specified Data Center Object (identified by URI).`,
+				},
+				resource.Attribute{
+					Name:        "parent_uid_in_data_center",
+					Description: `(Optional) Return results under the specified Data Center Object (identified by UID). Output:`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `From which element number the query was done.`,
+				},
+				resource.Attribute{
+					Name:        "objects",
+					Description: `Remote objects views. objects blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `To which element number the query was done.`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `Total number of elements returned by the query. ` + "`" + `objects` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name_in_azure_ad",
+					Description: `Object name in the Azure AD.`,
+				},
+				resource.Attribute{
+					Name:        "uid_in_azure_ad",
+					Description: `Unique identifier of the object in the Azure AD.`,
+				},
+				resource.Attribute{
+					Name:        "azure_ad_object",
+					Description: `The imported management object (if exists). Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object management name.`,
+				},
+				resource.Attribute{
+					Name:        "type_in_azure_ad",
+					Description: `Object type in Azure AD.`,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `Additional properties on the object. additional_properties blocks are documented below. ` + "`" + `additional_properties` + "`" + ` supports the following:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -535,6 +859,80 @@ This resource allows you to execute Check Point Checkpoint Host.
 				resource.Attribute{
 					Name:        "update_account_log_every",
 					Description: `Update account log in every amount of seconds.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_cloud_services",
+			Category:         "Data Sources",
+			ShortDescription: `This resource allows you to execute Check Point Show Cloud Services.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the connection to the Infinity Portal.`,
+				},
+				resource.Attribute{
+					Name:        "connected_at",
+					Description: `The time of the connection between the Management Server and the Infinity Portal. ` + "`" + `connected_at` + "`" + ` is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "management_url",
+					Description: `The Management Server's public URL.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Tenant ID of Infinity Portal.`,
+				},
+				resource.Attribute{
+					Name:        "gateways_onboarding_settings",
+					Description: `Gateways on-boarding to Infinity Portal settings. ` + "`" + `gateways_onboarding_settings` + "`" + ` is documented below. ` + "`" + `connected_at` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "iso_8601",
+					Description: `Date and time represented in international ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "posix",
+					Description: `Number of milliseconds that have elapsed since 00:00:00, 1 January 1970. ` + "`" + `gateways_onboarding_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "connection_method",
+					Description: `Indicate whether Gateways will be connected to Infinity Portal automatically or only after policy installation.`,
+				},
+				resource.Attribute{
+					Name:        "participant_gateways",
+					Description: `Which Gateways will be connected to Infinity Portal.`,
+				},
+				resource.Attribute{
+					Name:        "specific_gateways",
+					Description: `Collection of targets identified by Name or UID. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_cluster_member",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Cluster Member.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Cluster Member.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Required) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "limit_interfaces",
+					Description: `(Optional) Limit number of cluster member interfaces to show.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2669,6 +3067,14 @@ Use this data source to get information on an existing Check Point Vpn Community
 					Description: `Shared secrets for external gateways. shared_secrets blocks are documented below.`,
 				},
 				resource.Attribute{
+					Name:        "tunnel_granularity",
+					Description: `VPN tunnel sharing option to be used.`,
+				},
+				resource.Attribute{
+					Name:        "granular_encryptions",
+					Description: `VPN granular encryption settings. granular_encryptions blocks are documented below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `Collection of tag identifiers.`,
 				},
@@ -2682,27 +3088,7 @@ Use this data source to get information on an existing Check Point Vpn Community
 				},
 				resource.Attribute{
 					Name:        "comments",
-					Description: `Comments string. ` + "`" + `ike_phase_1` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "data_integrity",
-					Description: `The hash algorithm to be used.`,
-				},
-				resource.Attribute{
-					Name:        "diffie_hellman_group",
-					Description: `The Diffie-Hellman group to be used.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_algorithm",
-					Description: `The encryption algorithm to be used. ` + "`" + `ike_phase_2` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "data_integrity",
-					Description: `The hash algorithm to be used.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_algorithm",
-					Description: `The encryption algorithm to be used. ` + "`" + `override_vpn_domains` + "`" + ` supports the following:`,
+					Description: `Comments string. ` + "`" + `override_vpn_domains` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
@@ -2718,7 +3104,67 @@ Use this data source to get information on an existing Check Point Vpn Community
 				},
 				resource.Attribute{
 					Name:        "shared_secret",
-					Description: `Shared secret.`,
+					Description: `Shared secret. granular_encryptions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internal-gateway",
+					Description: `Internally managed Check Point gateway identified by name or UID, or 'Any' for all internal-gateways participants in this community.`,
+				},
+				resource.Attribute{
+					Name:        "external_gateway",
+					Description: `Externally managed or 3rd party gateway identified by name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_method",
+					Description: `The encryption method to be used: prefer ikev2 but support ikev1, ikev2 only, ikev1 for ipv4 and ikev2 for ipv6 only.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_suite",
+					Description: `The encryption suite to be used: suite-b-gcm-256, custom, vpn b, vpn a, suite-b-gcm-128.`,
+				},
+				resource.Attribute{
+					Name:        "ike_phase_1",
+					Description: `Ike Phase 1 settings. Only applicable when the encryption-suite is set to [custom]. ike_phase_1 blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ike_phase_2",
+					Description: `Ike Phase 2 settings. Only applicable when the encryption-suite is set to [custom]. ike_phase_2 blocks are documented below. ` + "`" + `ike_phase_1` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "data_integrity",
+					Description: `The hash algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "diffie_hellman_group",
+					Description: `The Diffie-Hellman group to be used.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p1_rekey_time",
+					Description: `Indicates the time interval for IKE phase 1 renegotiation. ` + "`" + `ike_phase_2` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "data_integrity",
+					Description: `The hash algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_use_pfs",
+					Description: `Indicates whether Perfect Forward Secrecy (PFS) is being used for IKE phase 2.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_pfs_dh_grp",
+					Description: `The Diffie-Hellman group to be used: group-1, group-2, group-5, group-14, group-15, group-16, group-17, group-18, group-19, group-20, group-24.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_rekey_time",
+					Description: `Indicates the time interval for IKE phase 2 renegotiation.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2780,6 +3226,14 @@ Use this data source to get information on an existing Check Point Vpn Community
 					Description: `Shared secrets for external gateways. shared_secrets blocks are documented below.`,
 				},
 				resource.Attribute{
+					Name:        "tunnel_granularity",
+					Description: `VPN tunnel sharing option to be used.`,
+				},
+				resource.Attribute{
+					Name:        "granular_encryptions",
+					Description: `VPN granular encryption settings. granular_encryptions blocks are documented below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `Collection of tag identifiers.`,
 				},
@@ -2801,27 +3255,7 @@ Use this data source to get information on an existing Check Point Vpn Community
 				},
 				resource.Attribute{
 					Name:        "ignore_errors",
-					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `ike_phase_1` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "data_integrity",
-					Description: `The hash algorithm to be used.`,
-				},
-				resource.Attribute{
-					Name:        "diffie_hellman_group",
-					Description: `The Diffie-Hellman group to be used.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_algorithm",
-					Description: `The encryption algorithm to be used. ` + "`" + `ike_phase_2` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "data_integrity",
-					Description: `The hash algorithm to be used.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_algorithm",
-					Description: `The encryption algorithm to be used. ` + "`" + `override_vpn_domains` + "`" + ` supports the following:`,
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `override_vpn_domains` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
@@ -2837,7 +3271,67 @@ Use this data source to get information on an existing Check Point Vpn Community
 				},
 				resource.Attribute{
 					Name:        "shared_secret",
-					Description: `Shared secret.`,
+					Description: `Shared secret. granular_encryptions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internal-gateway",
+					Description: `Internally managed Check Point gateway identified by name or UID, or 'Any' for all internal-gateways participants in this community.`,
+				},
+				resource.Attribute{
+					Name:        "external_gateway",
+					Description: `Externally managed or 3rd party gateway identified by name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_method",
+					Description: `The encryption method to be used: prefer ikev2 but support ikev1, ikev2 only, ikev1 for ipv4 and ikev2 for ipv6 only.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_suite",
+					Description: `The encryption suite to be used: suite-b-gcm-256, custom, vpn b, vpn a, suite-b-gcm-128.`,
+				},
+				resource.Attribute{
+					Name:        "ike_phase_1",
+					Description: `Ike Phase 1 settings. Only applicable when the encryption-suite is set to [custom]. ike_phase_1 blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ike_phase_2",
+					Description: `Ike Phase 2 settings. Only applicable when the encryption-suite is set to [custom]. ike_phase_2 blocks are documented below. ` + "`" + `ike_phase_1` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "data_integrity",
+					Description: `The hash algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "diffie_hellman_group",
+					Description: `The Diffie-Hellman group to be used.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p1_rekey_time",
+					Description: `Indicates the time interval for IKE phase 1 renegotiation. ` + "`" + `ike_phase_2` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "data_integrity",
+					Description: `The hash algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm to be used.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_use_pfs",
+					Description: `Indicates whether Perfect Forward Secrecy (PFS) is being used for IKE phase 2.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_pfs_dh_grp",
+					Description: `The Diffie-Hellman group to be used: group-1, group-2, group-5, group-14, group-15, group-16, group-17, group-18, group-19, group-20, group-24.`,
+				},
+				resource.Attribute{
+					Name:        "ike_p2_rekey_time",
+					Description: `Indicates the time interval for IKE phase 2 renegotiation.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2899,6 +3393,179 @@ Use this data source to get information on an existing Check Point Wildcard.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Domain.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Domain.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_domain_permissions_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Domain Permissions Profile.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Domain Permissions Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_dynamic_global_network_object",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Dynamic Global Network Object.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Dynamic Global Network Object.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_gaia_best_practice",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Host.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Host.
+
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "best_practice_id",
+					Description: `(Optional) Best Practice ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Best Practice Name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Best Practice UID.`,
+				},
+				resource.Attribute{
+					Name:        "action_item",
+					Description: `Action item to comply with the Best Practice.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Best Practice.`,
+				},
+				resource.Attribute{
+					Name:        "expected_output_base64",
+					Description: `The expected output of the script in Base64. Available only for user-defined best practices.`,
+				},
+				resource.Attribute{
+					Name:        "practice_script_base64",
+					Description: `The script to run on Gaia Security Gateways during the Compliance scans in Base64. Available only for user-defined best practices.`,
+				},
+				resource.Attribute{
+					Name:        "regulations",
+					Description: `The applicable regulations of the Gaia Best Practice. Appear only when the value of the 'details-level' parameter is set to 'full'. regulations blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "relevant_objects",
+					Description: `The applicable objects of the Gaia Best Practice. Appear only when the value of the 'details-level' parameter is set to 'full'. relevant_objects blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the Best Practice.`,
+				},
+				resource.Attribute{
+					Name:        "user_defined",
+					Description: `Determines if the Gaia Best Practice is a user-defined best practice. ` + "`" + `regulations` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "regulation_name",
+					Description: `The name of the regulation.`,
+				},
+				resource.Attribute{
+					Name:        "requirement_description",
+					Description: `The description of the requirement.`,
+				},
+				resource.Attribute{
+					Name:        "requirement_id",
+					Description: `The id of the requirement.`,
+				},
+				resource.Attribute{
+					Name:        "requirement_status",
+					Description: `The status of the requirement. ` + "`" + `relevant_objects` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Determines if the relevant object is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the relevant object.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the relevant object.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The uid of the relevant object.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_gcp_data_center_server",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing Google Cloud Platform Data Center Server.`,
@@ -2939,6 +3606,196 @@ Use this data source to get information on an existing Generic Data Center Serve
 				resource.Attribute{
 					Name:        "uid",
 					Description: `(Required if name is not given) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_global_assignment",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Global Assignment.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Global Assignment.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "dependent_domain",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "global_domain",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "assignment_up_to_date",
+					Description: `The time when the assignment was assigned. assignment_up_to_date blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "global_access_policy",
+					Description: `Global domain access policy that is assigned to a dependent domain.`,
+				},
+				resource.Attribute{
+					Name:        "global_threat_prevention_policy",
+					Description: `Global domain threat prevention policy that is assigned to a dependent domain.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_global_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Global Domain.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Global Domain.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optioanl) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Object type.`,
+				},
+				resource.Attribute{
+					Name:        "domain_type",
+					Description: `The domain type.`,
+				},
+				resource.Attribute{
+					Name:        "global_domain_assignments",
+					Description: `The assignments. global_domain_assignments blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "servers",
+					Description: `Domain Servers. servers blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string. ` + "`" + `global_domain_assignments` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Object type.`,
+				},
+				resource.Attribute{
+					Name:        "assignment_status",
+					Description: `The status of the assignment.`,
+				},
+				resource.Attribute{
+					Name:        "assignment_up_to_date",
+					Description: `The time when the assignment was assigned. assignment_up_to_date blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dependent_domain",
+					Description: `Dependent domain. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level. dependent_domain blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "global_access_policy",
+					Description: `Global domain access policy that is assigned to a dependent domain.`,
+				},
+				resource.Attribute{
+					Name:        "global_threat_prevention_policy",
+					Description: `Global domain threat prevention policy that is assigned to a dependent domain.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Object color.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Coemmnet string. ` + "`" + `assignment_up_to_date` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "iso_9601",
+					Description: `Date and time represented in international ISO 8601 format.`,
+				},
+				resource.Attribute{
+					Name:        "posix",
+					Description: `Number of milliseconds that have elapsed since 00:00:00, 1 January 1970. ` + "`" + `dependent_domain` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier. ` + "`" + `servers` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `Domain server status.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "multi_domain_server",
+					Description: `Multi Domain server name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "skip_start_domain_server",
+					Description: `Set this value to be true to prevent starting the new created domain.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Domain server type.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3118,6 +3975,132 @@ This resource allows you to execute Check Point Identity Tag.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_idp_administrator_group",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Idp Administrator Group.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Idp Administrator Group.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_idp_default_assignment",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Idp Default Assignment.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Idp Default Assignment.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_idp_to_domain_assignment",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Idp To Domain Assignment.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Idp To Domain Assignment.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "assigned_domain",
+					Description: `(Optional) Represents the Domain assigned by 'idp-to-domain-assignment', need to be domain name or UID. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_interoperable_device",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Interoperable Device.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Interoperable Device.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_ips_update_schedule",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Ips Update Schedule.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Ips Update Schedule.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `IPS Update Schedule status.`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time in format HH:mm.`,
+				},
+				resource.Attribute{
+					Name:        "recurrence",
+					Description: `Days recurrence. recurrence blocks are documented below. ` + "`" + `recurrence` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `Valid on specific days. Multiple options, support range of days in months. Example:["1","3","9-20"].`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `Valid on interval. The length of time in minutes between updates.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Valid on "Interval", "Daily", "Weekly", "Monthly" base.`,
+				},
+				resource.Attribute{
+					Name:        "weekdays",
+					Description: `Valid on weekdays. Example: "Sun", "Mon"..."Sat".`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_ise_data_center_server",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing Cisco ISE data center server.`,
@@ -3158,6 +4141,142 @@ Use this data source to get information on an existing Kubernetes Data Center Se
 				resource.Attribute{
 					Name:        "uid",
 					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_login_message",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Login Message.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Login Message.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "header",
+					Description: `Login message header.`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `Login message body.`,
+				},
+				resource.Attribute{
+					Name:        "show_message",
+					Description: `Whether to show login message.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `Add warning sign.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_lsm_cluster_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Lsm Cluster Profile.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Lsm Cluster Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_lsv_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Lsv Profile.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Lsv Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_ip_addresses",
+					Description: `Collection of network objects identified by name or UID that represent IP addresses allowed in profile's VPN domain.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `Trusted Certificate authority for establishing trust between VPN peers, identified by name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_allowed_addresses",
+					Description: `Indicate whether the IP addresses allowed in the VPN Domain will be restricted or not, according to allowed-ip-addresses field.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_domain",
+					Description: `peers' VPN Domain properties. vpn_domain blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string. ` + "`" + `vpn_domain` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "limit_peer_domain_size",
+					Description: `Use this parameter to limit the number of IP addresses in the VPN Domain of each peer according to the value in the max-allowed-addresses field.`,
+				},
+				resource.Attribute{
+					Name:        "max_allowed_addresses",
+					Description: `Maximum number of IP addresses in the VPN Domain of each peer. This value will be enforced only when limit-peer-domain-size field is set to true. Select a value between 1 and 256. Default value is 256.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_md_permissions_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Md Permissions Profile.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Md Permissions Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3424,6 +4543,29 @@ This resource allows you to execute Check Point NAT section.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_network_feed",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Network Feed.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Network Feed.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_nuage_data_center_server",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing Nuage Data Center Server.`,
@@ -3447,6 +4589,108 @@ Use this data source to get information on an existing Nuage Data Center Server.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_nutanix_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Nutanix data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Nutanix Data Center Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "automatic_refresh",
+					Description: `Indicates whether the data center server's content is automatically updated.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_type",
+					Description: `Data center type.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `Data center properties. properties blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level. ` + "`" + `properties` + "`" + ` supports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_objects",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Objects.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Objects.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uids",
+					Description: `(Optional) List of UIDs of the objects to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Search expression to filter objects by. The provided text should be exactly the same as it would be given in Smart Console. The logical operators in the expression ('AND', 'OR') should be provided in capital letters. By default, the search involves both a textual search and a IP search. To use IP search only, set the "ip-only" parameter to true.`,
+				},
+				resource.Attribute{
+					Name:        "ip_only",
+					Description: `(Optional) If using "filter", use this field to search objects by their IP address only, without involving the textual search.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `(Optional) The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) The maximal number of returned results.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Sorts the results by search criteria. Automatically sorts the results by Name, in the ascending order. order blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The objects' type, e.g.: host, service-tcp, network, address-range...`,
+				},
+				resource.Attribute{
+					Name:        "dereference_group_members",
+					Description: `(Optional) Indicates whether to dereference "members" field by details level for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "show_membership",
+					Description: `(Optional) Indicates whether to calculate and show "groups" field for every object in reply.`,
+				},
+				resource.Attribute{
+					Name:        "domains_to_process",
+					Description: `(Optional) Indicates which domains to process the commands on. It cannot be used with the details-level full, must be run from the System Domain only and with ignore-warnings true. Valid values are: CURRENT_DOMAIN, ALL_DOMAINS_ON_THIS_SERVER. ` + "`" + `order` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "asc",
+					Description: `(Optional) Sorts results by the given field in ascending order.`,
+				},
+				resource.Attribute{
+					Name:        "desc",
+					Description: `(Optional) Sorts results by the given field in descending order.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_openstack_data_center_server",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get information on an existing OpenStack Data Center Server.`,
@@ -3464,6 +4708,262 @@ Use this data source to get information on an existing OpenStack Data Center Ser
 				resource.Attribute{
 					Name:        "uid",
 					Description: `(Optional) Object unique identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_oracle_cloud_data_center_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Oracle Cloud data center server.`,
+			Description: `
+
+Use this data source to get information on an existing Oracle Cloud Data Center Server.
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+resource "checkpoint_management_oracle_cloud_data_center_server" "testOracleCloud" {
+  name = "MY-ORACLE-CLOUD"
+  authentication_method = "key-authentication"
+  private_key = "0SLtLS1CRUdJTiBQUklWQVRFIEtS0FWtLS0tDQpNSUlFdkFJQkFEQU5CZ2txaGtpRzl3AAAAUUVGQUFTQ0JLWXdnZ1NpQWdFQUFvSUJBUURUdmVrK1laMmNSekVmDQp1QkNoMkFxS2hzUFcrQUhUajY4dE5VbVl4OUFTRXBsREhnMkF0bCtMRWRRWUFRSUtLMUZ5L1JHRitkK3RkWjUrDQpabmprN0hESTQ5V3Rib0xodWN3YjBpNU4xbEVKWHVhOHhEN0FROTJXQy9PdzhzVktPRlJGNVJhMmxSa0svRS8xDQpxeDhKYnRoMGdXdHg0NHBQaWJwU3crMTB0QUhHR2FTLzVwN3hNUXhzajZTOThwL1hnalg5NzN4VStZZ2dLNUx3DQp6WlkzSDQ3UVREcmpyZzhOVmpDSFU3b3IrcEpCbjdldGF0V3psK3BQcVd4ODZub2tjdG5abUQxcHNnWnkwTEdDDQpRYys5ejdURGhEOFhuVERwckxiRGZXRnZqOTVKSmc3Q1krd29zN05vSENEOG5RWjFZZURVQkJjUkVlZXJVRlhBDQpaZ1I3UGNCN0FnTUJBQUVDZ2dFQUdkUWxCZVFER3ROMXJaTXNERGRUU2RudDU3b2NWdXlac2grNW1PRVVMakF3DQptOXhTOUt3ZnlYeTZRaXlxb3JKQ3REa2trR2c0OHhWOFBrVDN1RTBUTzU0aDF1UmxJMjNMbjcvVmFzOUZnVlFmDQpQS1dLVmdwYjdFMWhtT2gwVFNmRDRwRnpETlh4SzhMaXYycWVxdTJTTlRGWVR1M2RBRWpNL3EyWERmdXJQN2tiDQprZ3FKRFBwd2g4RWRXMVg1VVAyVE9CVWxwQllDTndxUkFJQ1E3eWlzbW5xeFlZS3RKc21MK21IQ3JYM3hNRHVTDQp4NHJCVDUvcXVrdVc4MmwrbGZmU3ZTNGpsb0VhajJ2QmozSk1udy9lYlNucFplU3FENTFjOUZlOCtocU4rU3NoDQozTnc0QXVybE1RRG5vZy9STUF3QUR3KzBRUlIwNVdaWDhMVXllVTBVVVFLQmdRRHd6R2I0b25BWHlNeUNkbHB3DQpRRnFCR0pwQnlsWEJjSkZnMGpCd1JMV2tQL3VjWnNoZlFlbkFWbkRZZS9yQ0FnWWxSdFFOVFRvb3BFSjlGcGgyDQp6TkVzd1EwcnV4WjFrVm41U1hwS2dF4668KalUxT3dGa3R1WFlJcEtBNGk5dFoxT04zb1lqdVRtMUlzb2xWZXVTDQpqK3Mwd1o3ZDAyYTNXcDN1UXJ3TFUwVjdpUUtCZ1FEaEcrc2xsNDYveGxONldWWEs3RVpkOGFEcTlTNEU0aEQvDQpvTmUwS0dVcHhZYngyTnFWN1VLSEwzOE41eG5qNGllWGt2U1BnL0twVUpqUmtLN0xJMnZsNmlndUJkdW01VUR1DQp5dW4rL1dNcVdnb2p4anZBbmxsS2lIa0JRMTJ2UFRqcE9HSGIrY0RqVWxROGVnOThFOEJ0ZktUQjFkRlcxUnBlDQorMXY0aXR3RzR3S0JnQzJLeXpMZExnd2hpeVJsbEFkRTlKa1QrU0RXVHMvT0pZREZZQ25ycE5zU3l0aXl5OVRRDQpWNUJzQ04yNDNSMVNXcTAwTHlqdzRUNE1peEt6Y2xTTnVrWVhvUkVUU2xVa0QzdEpmVnFYMVUrTE1XY0c2T1dPDQpmZndaMWRHUWRkM2dPL3BLQ3Q2NHlvUkt0eWJHa0U1ZzcrQkRlbk9ENXhwb2hoUXBCUDJ6V3lIWkFvR0FURndqDQpGUHBuUXVoc3Nza1JFQ2U3NnV3bkVPeWdjcW1ZNkkzUC9kM2lDeHhsSFM3Wlh4Zy9oQW41aUdiSFlvVDV0ekh6DQpZYWQ1cmpPWDB5YklGRUpzdkc0RXVTL2xoYVNvdFJnQjdpeFg4aXJlMjZuSDVSd1IzL1dSVG50aWtTb3NYdmh3DQpRYVZqNS9pcWVHVlRVVnlGM3QzMEtZaDFYWVltVHVmbkY5VktzODhDZ1lCTTNVN2QwOU9MemhMZTh3cnp1dEpuDQpGdmRGWlhCRnhXRGwyNXdteElWTFdpM0kvaWg2QXN5YlRNNWMzbFpTTUVvcjJYeXJqNnFUNzZ6amQ2eGE2NlN3DQpXMEVyL2lEY3dWK244MHpuU3lPSW5lRThIVkh1SGtNYVpPeHkvVzdVWDFqL0RmUnJPZG1iS1NWN2NBV2dVTlBrDQpnd1V5RkM2OTRKTR41Vko0WXZEZU13PT0NCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0="
+  key_user = "ocid1.user.oc1..aaaaaaaad6n7rniiwgxehy6coo4ax2ti7pr5yr53cbdxdyp6sx6dhrttcz4a"
+  key_tenant = "ocid1.tenancy.oc1..aaaaaaaaft6hqvl367uh4e3pmdxnzmca6cxamwjfaag5lm7bnhuwu6ypajca"
+  key_region = "eu-frankfurt-1"
+}
+
+data "checkpoint_management_oracle_cloud_data_center_server" "data_oracle_cloud_data_center_server" {
+  name = "${checkpoint_management_oracle_cloud_data_center_server.testOracleCloud.name}"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "automatic_refresh",
+					Description: `Indicates whether the data center server's content is automatically updated.`,
+				},
+				resource.Attribute{
+					Name:        "data_center_type",
+					Description: `Data center type.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `Data center properties. properties blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level. ` + "`" + `properties` + "`" + ` supports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_policy_settings",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Policy Settings.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Policy Settings.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "last_in_cell",
+					Description: `Added object after removing the last object in cell.`,
+				},
+				resource.Attribute{
+					Name:        "none_object_behavior",
+					Description: `'None' object behavior. Rules with object 'None' will never be matched.`,
+				},
+				resource.Attribute{
+					Name:        "security_access_defaults",
+					Description: `Access Policy default values. security_accesses_defaults blocks are documented below. ` + "`" + `security_access_defaults` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `Destination default value identified by name.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service and Applications default value identified by name.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source default value identified by name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_provisioning_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Provisioning Profile.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Provisioning Profile.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_radius_group",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Radius Group.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Radius Group.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Collection of radius servers identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID. Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_radius_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Radius Server.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Radius Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `The UID or Name of the host that is the RADIUS Server.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `The UID or Name of the Service to which the RADIUS server listens.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version can be either RADIUS Version 1.0, which is RFC 2138 compliant, and RADIUS Version 2.0 which is RFC 2865 compliant.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The type of authentication protocol that will be used when authenticating the user to the RADIUS server.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the RADIUS Server in case it is a member of a RADIUS Group.`,
+				},
+				resource.Attribute{
+					Name:        "accounting",
+					Description: `Accounting settings. accounting blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag objects identified by the name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string. ` + "`" + `accounting` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enable_ip_pool_management",
+					Description: `IP pool management, enables Accounting service.`,
+				},
+				resource.Attribute{
+					Name:        "accounting_service",
+					Description: `The UID or Name of the the accounting interface to notify the server when users login and logout which will then lock and release the IP addresses that the server allocated to those users.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_repository_package",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Repository Package.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Repository Package.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the repository package. ## How To Use Make sure this command will be executed in the right execution order. note: terraform execution is not sequential.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_repository_script",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Repository Script.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Repository Script.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3793,24 +5293,8 @@ This resource allows you to execute Check Point Simple Cluster.
 					Description: `(Optional) Object unique identifier.`,
 				},
 				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `IPv4 address.`,
-				},
-				resource.Attribute{
-					Name:        "ipv6_address",
-					Description: `IPv6 address.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_mode",
-					Description: `Cluster mode.`,
-				},
-				resource.Attribute{
-					Name:        "interfaces",
-					Description: `Cluster interfaces. interfaces blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "members",
-					Description: `Cluster members. members blocks are documented below.`,
+					Name:        "advanced_settings",
+					Description: `N/Aadvanced_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "anti_bot",
@@ -3825,24 +5309,28 @@ This resource allows you to execute Check Point Simple Cluster.
 					Description: `Application Control blade enabled.`,
 				},
 				resource.Attribute{
+					Name:        "application_control_and_url_filtering_settings",
+					Description: `Gateway Application Control and URL filtering settings.application_control_and_url_filtering_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_mode",
+					Description: `Cluster mode.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_settings",
+					Description: `ClusterXL and VRRP Settings.cluster_settings blocks are documented below.`,
+				},
+				resource.Attribute{
 					Name:        "content_awareness",
 					Description: `Content Awareness blade enabled.`,
 				},
 				resource.Attribute{
-					Name:        "data_awareness",
-					Description: `Data Awareness blade enabled.`,
+					Name:        "enable_https_inspection",
+					Description: `Enable HTTPS Inspection after defining an outbound inspection certificate. <br>To define the outbound certificate use outbound inspection certificate API.`,
 				},
 				resource.Attribute{
-					Name:        "ips",
-					Description: `Intrusion Prevention System blade enabled.`,
-				},
-				resource.Attribute{
-					Name:        "threat_emulation",
-					Description: `Threat Emulation blade enabled.`,
-				},
-				resource.Attribute{
-					Name:        "url_filtering",
-					Description: `URL Filtering blade enabled.`,
+					Name:        "fetch_policy",
+					Description: `Security management server(s) to fetch the policy from.fetch_policy blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "firewall",
@@ -3850,7 +5338,119 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "firewall_settings",
-					Description: `Firewall settings. firewall_settings blocks are documented below.`,
+					Description: `N/Afirewall_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "geo_mode",
+					Description: `Cluster High Availability Geo mode.<br>This setting applies only to a cluster deployed in a cloud. Available when the cluster mode equals "cluster-xl-ha".`,
+				},
+				resource.Attribute{
+					Name:        "hardware",
+					Description: `Cluster platform hardware.`,
+				},
+				resource.Attribute{
+					Name:        "hit_count",
+					Description: `Hit count tracks the number of connections each rule matches.`,
+				},
+				resource.Attribute{
+					Name:        "https_inspection",
+					Description: `HTTPS inspection.https_inspection blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_awareness",
+					Description: `Identity awareness blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "identity_awareness_settings",
+					Description: `Gateway Identity Awareness settings.identity_awareness_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `Cluster interfaces.interfaces blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `Intrusion Prevention System blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "ips_update_policy",
+					Description: `Specifies whether the IPS will be downloaded from the Management or directly to the Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Cluster members list. Only new cluster member can be added. Adding existing gateway is not supported.members blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "nat_hide_internal_interfaces",
+					Description: `Hide internal networks behind the Gateway's external IP.`,
+				},
+				resource.Attribute{
+					Name:        "nat_settings",
+					Description: `NAT settings.nat_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "os_name",
+					Description: `Cluster platform operating system.`,
+				},
+				resource.Attribute{
+					Name:        "platform_portal_settings",
+					Description: `Platform portal settings.platform_portal_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_settings",
+					Description: `Proxy Server for Gateway.proxy_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "qos",
+					Description: `QoS.`,
+				},
+				resource.Attribute{
+					Name:        "send_alerts_to_server",
+					Description: `Server(s) to send alerts to.send_alerts_to_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "send_logs_to_backup_server",
+					Description: `Backup server(s) to send logs to.send_logs_to_backup_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "send_logs_to_server",
+					Description: `Server(s) to send logs to.send_logs_to_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "threat_emulation",
+					Description: `Threat Emulation blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "threat_extraction",
+					Description: `Threat Extraction blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "threat_prevention_mode",
+					Description: `The mode of Threat Prevention to use. When using Autonomous Threat Prevention, disabling the Threat Prevention blades is not allowed.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering",
+					Description: `URL Filtering blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "usercheck_portal_settings",
+					Description: `UserCheck portal settings.usercheck_portal_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Cluster platform version.`,
 				},
 				resource.Attribute{
 					Name:        "vpn",
@@ -3858,71 +5458,155 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "vpn_settings",
-					Description: `Cluster VPN settings. vpn_settings blocks are documented below.`,
+					Description: `Gateway VPN settings.vpn_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "dynamic_ip",
-					Description: `Dynamic IP address.`,
+					Name:        "zero_phishing",
+					Description: `Zero Phishing blade enabled.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `Cluster platform version.`,
+					Name:        "zero_phishing_fqdn",
+					Description: `Zero Phishing gateway FQDN.`,
 				},
 				resource.Attribute{
-					Name:        "os_name",
-					Description: `Cluster Operating system name.`,
-				},
-				resource.Attribute{
-					Name:        "hardware",
-					Description: `Cluster platform hardware name.`,
-				},
-				resource.Attribute{
-					Name:        "one_time_password",
-					Description: `Secure Internal Communication one time password.`,
-				},
-				resource.Attribute{
-					Name:        "sic_name",
-					Description: `Secure Internal Communication name.`,
-				},
-				resource.Attribute{
-					Name:        "sic_state",
-					Description: `Secure Internal Communication state.`,
-				},
-				resource.Attribute{
-					Name:        "save_logs_locally",
-					Description: `Enable save logs locally.`,
-				},
-				resource.Attribute{
-					Name:        "send_alerts_to_server",
-					Description: `Collection of Server(s) to send alerts to identified by the name.`,
-				},
-				resource.Attribute{
-					Name:        "send_logs_to_backup_server",
-					Description: `Collection of Backup server(s) to send logs to identified by the name.`,
-				},
-				resource.Attribute{
-					Name:        "send_logs_to_server",
-					Description: `Collection of Server(s) to send logs to identified by the name.`,
-				},
-				resource.Attribute{
-					Name:        "logs_settings",
-					Description: `Logs settings. logs_settings blocks are documented below.`,
+					Name:        "show_portals_certificate",
+					Description: `Indicates whether to show the portals certificate value in the reply.`,
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `Color of the object.`,
+					Description: `Color of the object. Should be one of existing colors.`,
 				},
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `Collection of tags identified by name. ` + "`" + `interfaces` + "`" + ` supports the following:`,
+					Name:        "groups",
+					Description: `Collection of group identifiers.groups blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `advanced_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "connection_persistence",
+					Description: `Handling established connections when installing a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "sam",
+					Description: `SAM.sam blocks are documented below. ` + "`" + `application_control_and_url_filtering_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "global_settings_mode",
+					Description: `Whether to override global settings or not.`,
+				},
+				resource.Attribute{
+					Name:        "override_global_settings",
+					Description: `override global settings object.override_global_settings blocks are documented below. ` + "`" + `cluster_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "member_recovery_mode",
+					Description: `In a High Availability cluster, each member is given a priority. The member with the highest priority serves as the gateway. If this gateway fails, control is passed to the member with the next highest priority. If that member fails, control is passed to the next, and so on. Upon gateway recovery, it is possible to: Maintain current active Cluster Member (maintain-current-active) or Switch to higher priority Cluster Member (according-to-priority).`,
+				},
+				resource.Attribute{
+					Name:        "state_synchronization",
+					Description: `Cluster State Synchronization settings.state_synchronization blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "track_changes_of_cluster_members",
+					Description: `Track changes in the status of Cluster Members.`,
+				},
+				resource.Attribute{
+					Name:        "use_virtual_mac",
+					Description: `Use Virtual MAC. By enabling Virtual MAC in ClusterXL High Availability New mode, or Load Sharing Unicast mode, all cluster members associate the same Virtual MAC address with All Cluster Virtual Interfaces and the Virtual IP address. ` + "`" + `firewall_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_calculate_connections_hash_table_size_and_memory_pool",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "auto_maximum_limit_for_concurrent_connections",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "connections_hash_size",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "maximum_limit_for_concurrent_connections",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "maximum_memory_pool_size",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "memory_pool_size",
+					Description: `N/A ` + "`" + `https_inspection` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bypass_on_failure",
+					Description: `Set to be true in order to bypass all requests (Fail-open) in case of internal system error.bypass_on_failure blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "site_categorization_allow_mode",
+					Description: `Set to 'background' in order to allowed requests until categorization is complete.site_categorization_allow_mode blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_untrusted_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with untrusted server certificate.deny_untrusted_server_cert blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_revoked_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with revoked server certificate (validate CRL).deny_revoked_server_cert blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_expired_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with expired server certificate.deny_expired_server_cert blocks are documented below. ` + "`" + `identity_awareness_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication",
+					Description: `Enable Browser Based Authentication source.`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication_settings",
+					Description: `Browser Based Authentication settings.browser_based_authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent",
+					Description: `Enable Identity Agent source.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent_settings",
+					Description: `Identity Agent settings.identity_agent_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_collector",
+					Description: `Enable Identity Collector source.`,
+				},
+				resource.Attribute{
+					Name:        "identity_collector_settings",
+					Description: `Identity Collector settings.identity_collector_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_sharing_settings",
+					Description: `Identity sharing settings.identity_sharing_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_settings",
+					Description: `Identity-Awareness Proxy settings.proxy_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "remote_access",
+					Description: `Enable Remote Access Identity source. ` + "`" + `interfaces` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Interface name.`,
+					Description: `Object name. Must be unique in the domain.`,
 				},
 				resource.Attribute{
 					Name:        "interface_type",
@@ -3935,6 +5619,10 @@ This resource allows you to execute Check Point Simple Cluster.
 				resource.Attribute{
 					Name:        "ipv6_address",
 					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "network_mask",
+					Description: `IPv4 or IPv6 network mask. If both masks are required use ipv4-network-mask and ipv6-network-mask fields explicitly. Instead of providing mask itself it is possible to specify IPv4 or IPv6 mask length in mask-length field. If both masks length are required use ipv4-mask-length and ipv6-mask-length fields explicitly.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_network_mask",
@@ -3954,11 +5642,11 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "anti_spoofing",
-					Description: `Anti spoofing.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "anti_spoofing_settings",
-					Description: `Anti spoofing settings. anti_spoofing_settings blocks are documented below.`,
+					Description: `N/Aanti_spoofing_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "multicast_address",
@@ -3970,23 +5658,23 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "security_zone",
-					Description: `Security zone.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "security_zone_settings",
-					Description: `Security zone settings. security_zone_settings blocks are documented below.`,
+					Description: `N/Asecurity_zone_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "topology",
-					Description: `Topology.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "topology_settings",
-					Description: `Topology settings. topology_settings blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "topology_automatic_calculation",
-					Description: `Shows the automatic topology calculation..`,
+					Description: `N/Atopology_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "color",
@@ -3994,11 +5682,303 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "comments",
-					Description: `Comments string. ` + "`" + `anti_spoofing_settings` + "`" + ` supports the following:`,
+					Description: `Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `members` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `Cluster Member network interfaces.interfaces blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "one_time_password",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `In a High Availability New mode cluster each machine is given a priority. The highest priority machine serves as the gateway in normal circumstances. If this machine fails, control is passed to the next highest priority machine. If that machine fails, control is passed to the next machine, and so on. In Load Sharing Unicast mode cluster, the highest priority is the pivot machine. The values must be in a range from 1 to N, where N is number of cluster members.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_warnings",
+					Description: `Apply changes ignoring warnings.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `nat_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_rule",
+					Description: `Whether to add automatic address translation rules.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "hide_behind",
+					Description: `Hide behind method. This parameter is forbidden in case "method" parameter is "static".`,
+				},
+				resource.Attribute{
+					Name:        "install_on",
+					Description: `Which gateway should apply the NAT translation.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `NAT translation method. ` + "`" + `platform_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `proxy_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "use_custom_proxy",
+					Description: `Use custom proxy settings for this network object.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_server",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `N/A ` + "`" + `usercheck_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `State of the web portal (enabled or disabled). The supported blades are: {'Application Control', 'URL Filtering', 'Data Loss Prevention', 'Anti Virus', 'Anti Bot', 'Threat Emulation', 'Threat Extraction', 'Data Awareness'}.`,
+				},
+				resource.Attribute{
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `vpn_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication",
+					Description: `Authentication.authentication blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "link_selection",
+					Description: `Link Selection.link_selection blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "maximum_concurrent_ike_negotiations",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "maximum_concurrent_tunnels",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "office_mode",
+					Description: `Office Mode. Notation Wide Impact - Office Mode apply IPSec VPN Software Blade clients and to the Mobile Access Software Blade clients.office_mode blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "remote_access",
+					Description: `Remote Access.remote_access blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_domain",
+					Description: `Gateway VPN domain identified by the name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_domain_exclude_external_ip_addresses",
+					Description: `Exclude the external IP addresses from the VPN domain of this Security Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_domain_type",
+					Description: `Gateway VPN domain type. ` + "`" + `sam` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "forward_to_other_sam_servers",
+					Description: `Forward SAM clients' requests to other SAM servers.`,
+				},
+				resource.Attribute{
+					Name:        "use_early_versions",
+					Description: `Use early versions compatibility mode.use_early_versions blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "purge_sam_file",
+					Description: `Purge SAM File.purge_sam_file blocks are documented below. ` + "`" + `override_global_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "fail_mode",
+					Description: `Fail mode - allow or block all requests.`,
+				},
+				resource.Attribute{
+					Name:        "website_categorization",
+					Description: `Website categorization object.website_categorization blocks are documented below. ` + "`" + `state_synchronization` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "delayed",
+					Description: `Start synchronizing with delay of seconds, as defined by delayed-seconds, after connection initiation. Disabled when state-synchronization disabled.`,
+				},
+				resource.Attribute{
+					Name:        "delayed_seconds",
+					Description: `Start synchronizing X seconds after connection initiation . The values must be in a range between 2 and 3600.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Use State Synchronization. ` + "`" + `bypass_on_failure` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `site_categorization_allow_mode` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_untrusted_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_revoked_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_expired_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `browser_based_authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Browser Based Authentication.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication_portal_settings",
+					Description: `Browser Based Authentication portal settings.browser_based_authentication_portal_settings blocks are documented below. ` + "`" + `identity_agent_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "agents_interval_keepalive",
+					Description: `Agents send keepalive period (minutes).`,
+				},
+				resource.Attribute{
+					Name:        "user_reauthenticate_interval",
+					Description: `Agent reauthenticate time interval (minutes).`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Identity Agent.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent_portal_settings",
+					Description: `Identity Agent accessibility settings.identity_agent_portal_settings blocks are documented below. ` + "`" + `identity_collector_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authorized_clients",
+					Description: `Authorized Clients.authorized_clients blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Identity Collector.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "client_access_permissions",
+					Description: `Identity Collector accessibility settings.client_access_permissions blocks are documented below. ` + "`" + `identity_sharing_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "share_with_other_gateways",
+					Description: `Enable identity sharing with other gateways.`,
+				},
+				resource.Attribute{
+					Name:        "receive_from_other_gateways",
+					Description: `Enable receiving identity from other gateways.`,
+				},
+				resource.Attribute{
+					Name:        "receive_from",
+					Description: `Gateway(s) to receive identity from.receive_from blocks are documented below. ` + "`" + `proxy_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "detect_using_x_forward_for",
+					Description: `Whether to use X-Forward-For HTTP header, which is added by the proxy server to keep track of the original source IP. ` + "`" + `anti_spoofing_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `If packets will be rejected (the Prevent option) or whether the packets will be monitored (the Detect option). ` + "`" + `security_zone_settings` + "`" + ` supports the following:`,
+					Description: `If packets will be rejected (the Prevent option) or whether the packets will be monitored (the Detect option).`,
+				},
+				resource.Attribute{
+					Name:        "exclude_packets",
+					Description: `Don't check packets from excluded network.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_name",
+					Description: `Excluded network name.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_uid",
+					Description: `Excluded network UID.`,
+				},
+				resource.Attribute{
+					Name:        "spoof_tracking",
+					Description: `Spoof tracking. ` + "`" + `security_zone_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "auto_calculated",
@@ -4013,40 +5993,20 @@ This resource allows you to execute Check Point Simple Cluster.
 					Description: `Whether this interface leads to demilitarized zone (perimeter network).`,
 				},
 				resource.Attribute{
-					Name:        "ip_address_behind_this_interface",
-					Description: `Ip address behind this interface.`,
-				},
-				resource.Attribute{
 					Name:        "specific_network",
-					Description: `Network behind this interface. ` + "`" + `members` + "`" + ` supports the following:`,
+					Description: `Network behind this interface. ` + "`" + `interfaces` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Object name. Should be unique in the domain..`,
+					Description: `Object name.`,
 				},
 				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IPv4 or IPv6 address.`,
+					Name:        "anti_spoofing",
+					Description: `N/A`,
 				},
 				resource.Attribute{
-					Name:        "interfaces",
-					Description: `Cluster Member network interfaces. interfaces blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "one_time_password",
-					Description: `Secure Internal Communication one time password.`,
-				},
-				resource.Attribute{
-					Name:        "sic_name",
-					Description: `Secure Internal Communication name.`,
-				},
-				resource.Attribute{
-					Name:        "sic_message",
-					Description: `Secure Internal Communication state. ` + "`" + `interfaces` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Interface name.`,
+					Name:        "anti_spoofing_settings",
+					Description: `N/Aanti_spoofing_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
@@ -4055,6 +6015,10 @@ This resource allows you to execute Check Point Simple Cluster.
 				resource.Attribute{
 					Name:        "ipv6_address",
 					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "network_mask",
+					Description: `IPv4 or IPv6 network mask. If both masks are required use ipv4-network-mask and ipv6-network-mask fields explicitly. Instead of providing mask itself it is possible to specify IPv4 or IPv6 mask length in mask-length field. If both masks length are required use ipv4-mask-length and ipv6-mask-length fields explicitly.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_network_mask",
@@ -4070,79 +6034,99 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "ipv6_mask_length",
-					Description: `IPv6 network mask length. ` + "`" + `firewall_settings` + "`" + ` supports the following:`,
+					Description: `IPv6 network mask length.`,
 				},
 				resource.Attribute{
-					Name:        "auto_calculate_connections_hash_table_size_and_memory_pool",
-					Description: `Auto calculate connections hash table size and memory pool.`,
+					Name:        "security_zone",
+					Description: `N/A`,
 				},
 				resource.Attribute{
-					Name:        "auto_maximum_limit_for_concurrent_connections",
-					Description: `Auto maximum limit for concurrent connections.`,
+					Name:        "security_zone_settings",
+					Description: `N/Asecurity_zone_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "connections_hash_size",
-					Description: `Connections hash size.`,
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "maximum_limit_for_concurrent_connections",
-					Description: `Maximum limit for concurrent connections.`,
+					Name:        "topology",
+					Description: `N/A`,
 				},
 				resource.Attribute{
-					Name:        "maximum_memory_pool_size",
-					Description: `Maximum memory pool size.`,
+					Name:        "topology_settings",
+					Description: `N/Atopology_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "memory_pool_size",
-					Description: `Memory pool size. ` + "`" + `vpn_settings` + "`" + ` supports the following:`,
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
 				},
 				resource.Attribute{
-					Name:        "authentication",
-					Description: `authentication blocks are documented below.`,
+					Name:        "comments",
+					Description: `Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "link_selection",
-					Description: `Link selection blocks are documented below.`,
+					Name:        "ignore_warnings",
+					Description: `Apply changes ignoring warnings.`,
 				},
 				resource.Attribute{
-					Name:        "maximum_concurrent_ike_negotiations",
-					Description: `Maximum concurrent ike negotiations.`,
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "maximum_concurrent_tunnels",
-					Description: `Maximum concurrent tunnels.`,
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "office_mode",
-					Description: `Office Mode. Notation Wide Impact - Office Mode apply IPSec VPN Software Blade clients and to the Mobile Access Software Blade clients. office_mode blocks are documented below.`,
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "remote_access",
-					Description: `remote_access blocks are documented below.`,
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
 				},
 				resource.Attribute{
-					Name:        "vpn_domain",
-					Description: `Gateway VPN domain identified by the name.`,
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "vpn_domain_type",
-					Description: `Gateway VPN domain type. ` + "`" + `authentication` + "`" + ` supports the following:`,
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
+				},
+				resource.Attribute{
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `authentication` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "authentication_clients",
-					Description: `Collection of VPN Authentication clients identified by the name. ` + "`" + `link_selection` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "ip_selection",
-					Description: `IP selection.`,
+					Description: `Collection of VPN Authentication clients identified by the name or UID.authentication_clients blocks are documented below. ` + "`" + `link_selection` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "dns_resolving_hostname",
-					Description: `DNS Resolving Hostname. Must be set when "ip-selection" was selected to be "dns-resolving-from-hostname".`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP Address. Must be set when "ip-selection" was selected to be "use-selected-address-from-topology" or "use-statically-nated-ip". ` + "`" + `office_mode` + "`" + ` supports the following:`,
+					Description: `DNS Resolving Hostname. Must be set when "ip-selection" was selected to be "dns-resolving-from-hostname". ` + "`" + `office_mode` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "mode",
@@ -4150,11 +6134,11 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "group",
-					Description: `Group. Identified by name. Must be set when "office-mode-permissions" was selected to be "group".`,
+					Description: `Group. Identified by name or UID. Must be set when "office-mode-permissions" was selected to be "group".`,
 				},
 				resource.Attribute{
 					Name:        "allocate_ip_address_from",
-					Description: `Allocate IP address Method. Allocate IP address by sequentially trying the given methods until success. allocate_ip_address_from blocks are documented below.`,
+					Description: `Allocate IP address Method. Allocate IP address by sequentially trying the given methods until success.allocate_ip_address_from blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "support_multiple_interfaces",
@@ -4166,95 +6150,7 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "anti_spoofing_additional_addresses",
-					Description: `Additional IP Addresses for Anti-Spoofing. Identified by name. Must be set when "perform-anti-spoofings" is true. ` + "`" + `allocate_ip_address_from` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "radius_server",
-					Description: `Radius server used to authenticate the user.`,
-				},
-				resource.Attribute{
-					Name:        "use_allocate_method",
-					Description: `Use Allocate Method.`,
-				},
-				resource.Attribute{
-					Name:        "allocate_method",
-					Description: `Using either Manual (IP Pool) or Automatic (DHCP). Must be set when "use-allocate-method" is true.`,
-				},
-				resource.Attribute{
-					Name:        "manual_network",
-					Description: `Manual Network. Identified by name. Must be set when "allocate-method" was selected to be "manual".`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_server",
-					Description: `DHCP Server. Identified by name. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "virtual_ip_address",
-					Description: `Virtual IPV4 address for DHCP server replies. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_mac_address",
-					Description: `Calculated MAC address for DHCP allocation. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "optional_parameters",
-					Description: `This configuration applies to all Office Mode methods except Automatic (using DHCP) and ipassignment.conf entries which contain this data. optional_parameters blocks are documented below. ` + "`" + `optional_parameters` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "use_primary_dns_server",
-					Description: `Use Primary DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "primary_dns_server",
-					Description: `Primary DNS Server. Identified by name. Must be set when "use-primary-dns-server" is true and can not be set when "use-primary-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_first_backup_dns_server",
-					Description: `Use First Backup DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "first_backup_dns_server",
-					Description: `First Backup DNS Server. Identified by name. Must be set when "use-first-backup-dns-server" is true and can not be set when "use-first-backup-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_second_backup_dns_server",
-					Description: `Use Second Backup DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "second_backup_dns_server",
-					Description: `Second Backup DNS Server. Identified by name. Must be set when "use-second-backup-dns-server" is true and can not be set when "use-second-backup-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "dns_suffixes",
-					Description: `DNS Suffixes.`,
-				},
-				resource.Attribute{
-					Name:        "use_primary_wins_server",
-					Description: `Use Primary WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "primary_wins_server",
-					Description: `Primary WINS Server. Identified by name. Must be set when "use-primary-wins-server" is true and can not be set when "use-primary-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_first_backup_wins_server",
-					Description: `Use First Backup WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "first_backup_wins_server",
-					Description: `First Backup WINS Server. Identified by name. Must be set when "use-first-backup-wins-server" is true and can not be set when "use-first-backup-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_second_backup_wins_server",
-					Description: `Use Second Backup WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "second_backup_wins_server",
-					Description: `Second Backup WINS Server. Identified by name. Must be set when "use-second-backup-wins-server" is true and can not be set when "use-second-backup-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "ip_lease_duration",
-					Description: `IP Lease Duration in Minutes. The value must be in the range 2-32767. ` + "`" + `remote_access` + "`" + ` supports the following:`,
+					Description: `Additional IP Addresses for Anti-Spoofing. Identified by name or UID. Must be set when "perform-anti-spoofings" is true. ` + "`" + `remote_access` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "support_l2tp",
@@ -4278,7 +6174,7 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "nat_traversal_service",
-					Description: `Allocated NAT traversal UDP service. Identified by name. Must be set when "support-nat-traversal-mechanism" is true.`,
+					Description: `Allocated NAT traversal UDP service. Identified by name or UID. Must be set when "support-nat-traversal-mechanism" is true.`,
 				},
 				resource.Attribute{
 					Name:        "support_visitor_mode",
@@ -4286,11 +6182,371 @@ This resource allows you to execute Check Point Simple Cluster.
 				},
 				resource.Attribute{
 					Name:        "visitor_mode_service",
-					Description: `TCP Service for Visitor Mode. Identified by name. Must be set when "support-visitor-mode" is true.`,
+					Description: `TCP Service for Visitor Mode. Identified by name or UID. Must be set when "support-visitor-mode" is true.`,
 				},
 				resource.Attribute{
 					Name:        "visitor_mode_interface",
-					Description: `Interface for Visitor Mode. Must be set when "support-visitor-mode" is true. Insert IPV4 Address of existing interface or "All IPs" when you want all interfaces.`,
+					Description: `Interface for Visitor Mode. Must be set when "support-visitor-mode" is true. Insert IPV4 Address of existing interface or "All IPs" when you want all interfaces. ` + "`" + `use_early_versions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Use early versions compatibility mode.`,
+				},
+				resource.Attribute{
+					Name:        "compatibility_mode",
+					Description: `Early versions compatibility mode. ` + "`" + `purge_sam_file` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Purge SAM File.`,
+				},
+				resource.Attribute{
+					Name:        "purge_when_size_reaches_to",
+					Description: `Purge SAM File When it Reaches to. ` + "`" + `website_categorization` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Website categorization mode.`,
+				},
+				resource.Attribute{
+					Name:        "custom_mode",
+					Description: `Custom mode object.custom_mode blocks are documented below. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `Authentication method.`,
+				},
+				resource.Attribute{
+					Name:        "identity_provider",
+					Description: `Identity provider object identified by the name or UID. Must be set when "authentication-method" was selected to be "identity provider".identity_provider blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "radius",
+					Description: `Radius server object identified by the name or UID. Must be set when "authentication-method" was selected to be "radius".`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `browser_based_authentication_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `Authentication method.`,
+				},
+				resource.Attribute{
+					Name:        "radius",
+					Description: `Radius server object identified by the name or UID. Must be set when "authentication-method" was selected to be "radius".`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `identity_agent_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `authorized_clients` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Host / Network Group Name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `Client Secret. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `client_access_permissions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `anti_spoofing_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `If packets will be rejected (the Prevent option) or whether the packets will be monitored (the Detect option).`,
+				},
+				resource.Attribute{
+					Name:        "exclude_packets",
+					Description: `Don't check packets from excluded network.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_name",
+					Description: `Excluded network name.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_uid",
+					Description: `Excluded network UID.`,
+				},
+				resource.Attribute{
+					Name:        "spoof_tracking",
+					Description: `Spoof tracking. ` + "`" + `security_zone_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_calculated",
+					Description: `Security Zone is calculated according to where the interface leads to.`,
+				},
+				resource.Attribute{
+					Name:        "specific_zone",
+					Description: `Security Zone specified manually. ` + "`" + `topology_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "interface_leads_to_dmz",
+					Description: `Whether this interface leads to demilitarized zone (perimeter network).`,
+				},
+				resource.Attribute{
+					Name:        "specific_network",
+					Description: `Network behind this interface. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `allocate_ip_address_from` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "radius_server",
+					Description: `Radius server used to authenticate the user.`,
+				},
+				resource.Attribute{
+					Name:        "use_allocate_method",
+					Description: `Use Allocate Method.`,
+				},
+				resource.Attribute{
+					Name:        "allocate_method",
+					Description: `Using either Manual (IP Pool) or Automatic (DHCP). Must be set when "use-allocate-method" is true.`,
+				},
+				resource.Attribute{
+					Name:        "manual_network",
+					Description: `Manual Network. Identified by name or UID. Must be set when "allocate-method" was selected to be "manual".`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_server",
+					Description: `DHCP Server. Identified by name or UID. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `Virtual IPV4 address for DHCP server replies. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_mac_address",
+					Description: `Calculated MAC address for DHCP allocation. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "optional_parameters",
+					Description: `This configuration applies to all Office Mode methods except Automatic (using DHCP) and ipassignment.conf entries which contain this data.optional_parameters blocks are documented below. ` + "`" + `custom_mode` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "social_networking_widgets",
+					Description: `Social networking widgets mode.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering",
+					Description: `URL filtering mode. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
+				},
+				resource.Attribute{
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `optional_parameters` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "use_primary_dns_server",
+					Description: `Use Primary DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "primary_dns_server",
+					Description: `Primary DNS Server. Identified by name or UID. Must be set when "use-primary-dns-server" is true and can not be set when "use-primary-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_first_backup_dns_server",
+					Description: `Use First Backup DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "first_backup_dns_server",
+					Description: `First Backup DNS Server. Identified by name or UID. Must be set when "use-first-backup-dns-server" is true and can not be set when "use-first-backup-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_second_backup_dns_server",
+					Description: `Use Second Backup DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "second_backup_dns_server",
+					Description: `Second Backup DNS Server. Identified by name or UID. Must be set when "use-second-backup-dns-server" is true and can not be set when "use-second-backup-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffixes",
+					Description: `DNS Suffixes.`,
+				},
+				resource.Attribute{
+					Name:        "use_primary_wins_server",
+					Description: `Use Primary WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "primary_wins_server",
+					Description: `Primary WINS Server. Identified by name or UID. Must be set when "use-primary-wins-server" is true and can not be set when "use-primary-wins-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_first_backup_wins_server",
+					Description: `Use First Backup WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "first_backup_wins_server",
+					Description: `First Backup WINS Server. Identified by name or UID. Must be set when "use-first-backup-wins-server" is true and can not be set when "use-first-backup-wins-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_second_backup_wins_server",
+					Description: `Use Second Backup WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "second_backup_wins_server",
+					Description: `Second Backup WINS Server. Identified by name or UID. Must be set when "use-second-backup-wins-server" is true and can not be set when "use-second-backup-wins-server" is false. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4316,16 +6572,8 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `(Optional) Object unique identifier.`,
 				},
 				resource.Attribute{
-					Name:        "ipv4_address",
-					Description: `IPv4 address.`,
-				},
-				resource.Attribute{
-					Name:        "ipv6_address",
-					Description: `IPv6 address.`,
-				},
-				resource.Attribute{
-					Name:        "interfaces",
-					Description: `Gateway interfaces. interfaces blocks are documented below.`,
+					Name:        "advanced_settings",
+					Description: `N/Aadvanced_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "anti_bot",
@@ -4340,16 +6588,116 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `Application Control blade enabled.`,
 				},
 				resource.Attribute{
+					Name:        "application_control_and_url_filtering_settings",
+					Description: `Gateway Application Control and URL filtering settings.application_control_and_url_filtering_settings blocks are documented below.`,
+				},
+				resource.Attribute{
 					Name:        "content_awareness",
 					Description: `Content Awareness blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_https_inspection",
+					Description: `Enable HTTPS Inspection after defining an outbound inspection certificate. <br>To define the outbound certificate use outbound inspection certificate API.`,
+				},
+				resource.Attribute{
+					Name:        "fetch_policy",
+					Description: `Security management server(s) to fetch the policy from.fetch_policy blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "firewall",
+					Description: `Firewall blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_settings",
+					Description: `N/Afirewall_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "hit_count",
+					Description: `Hit count tracks the number of connections each rule matches.`,
+				},
+				resource.Attribute{
+					Name:        "https_inspection",
+					Description: `HTTPS inspection.https_inspection blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "icap_server",
 					Description: `ICAP Server enabled.`,
 				},
 				resource.Attribute{
+					Name:        "identity_awareness",
+					Description: `Identity awareness blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "identity_awareness_settings",
+					Description: `Gateway Identity Awareness settings.identity_awareness_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `Network interfaces.interfaces blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
 					Name:        "ips",
 					Description: `Intrusion Prevention System blade enabled.`,
+				},
+				resource.Attribute{
+					Name:        "ips_update_policy",
+					Description: `Specifies whether the IPS will be downloaded from the Management or directly to the Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "nat_hide_internal_interfaces",
+					Description: `Hide internal networks behind the Gateway's external IP.`,
+				},
+				resource.Attribute{
+					Name:        "nat_settings",
+					Description: `NAT settings.nat_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "one_time_password",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "os_name",
+					Description: `Gateway platform operating system.`,
+				},
+				resource.Attribute{
+					Name:        "platform_portal_settings",
+					Description: `Platform portal settings.platform_portal_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_settings",
+					Description: `Proxy Server for Gateway.proxy_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "qos",
+					Description: `QoS.`,
+				},
+				resource.Attribute{
+					Name:        "save_logs_locally",
+					Description: `Save logs locally on the gateway.`,
+				},
+				resource.Attribute{
+					Name:        "send_alerts_to_server",
+					Description: `Server(s) to send alerts to.send_alerts_to_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "send_logs_to_backup_server",
+					Description: `Backup server(s) to send logs to.send_logs_to_backup_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "send_logs_to_server",
+					Description: `Server(s) to send logs to.send_logs_to_server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "threat_emulation",
@@ -4360,16 +6708,20 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `Threat Extraction blade enabled.`,
 				},
 				resource.Attribute{
+					Name:        "threat_prevention_mode",
+					Description: `The mode of Threat Prevention to use. When using Autonomous Threat Prevention, disabling the Threat Prevention blades is not allowed.`,
+				},
+				resource.Attribute{
 					Name:        "url_filtering",
 					Description: `URL Filtering blade enabled.`,
 				},
 				resource.Attribute{
-					Name:        "firewall",
-					Description: `Firewall blade enabled.`,
+					Name:        "usercheck_portal_settings",
+					Description: `UserCheck portal settings.usercheck_portal_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "firewall_settings",
-					Description: `Firewall settings. firewall_settings blocks are documented below.`,
+					Name:        "version",
+					Description: `Gateway platform version.`,
 				},
 				resource.Attribute{
 					Name:        "vpn",
@@ -4377,71 +6729,139 @@ This resource allows you to execute Check Point Simple Gateway.
 				},
 				resource.Attribute{
 					Name:        "vpn_settings",
-					Description: `Gateway VPN settings. vpn_settings blocks are documented below.`,
+					Description: `Gateway VPN settings.vpn_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "dynamic_ip",
-					Description: `Dynamic IP address.`,
+					Name:        "zero_phishing",
+					Description: `Zero Phishing blade enabled.`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `Gateway platform version.`,
-				},
-				resource.Attribute{
-					Name:        "os_name",
-					Description: `Operating system name.`,
-				},
-				resource.Attribute{
-					Name:        "hardware",
-					Description: `Gateway platform hardware name.`,
-				},
-				resource.Attribute{
-					Name:        "one_time_password",
-					Description: `Secure internal connection one time password.`,
-				},
-				resource.Attribute{
-					Name:        "sic_name",
-					Description: `Secure Internal Communication name.`,
-				},
-				resource.Attribute{
-					Name:        "sic_state",
-					Description: `Secure Internal Communication state.`,
-				},
-				resource.Attribute{
-					Name:        "save_logs_locally",
-					Description: `Enable save logs locally.`,
-				},
-				resource.Attribute{
-					Name:        "send_alerts_to_server",
-					Description: `Collection of Server(s) to send alerts to identified by the name.`,
-				},
-				resource.Attribute{
-					Name:        "send_logs_to_backup_server",
-					Description: `Collection of Backup server(s) to send logs to identified by the name.`,
-				},
-				resource.Attribute{
-					Name:        "send_logs_to_server",
-					Description: `Collection of Server(s) to send logs to identified by the name.`,
+					Name:        "zero_phishing_fqdn",
+					Description: `Zero Phishing gateway FQDN.`,
 				},
 				resource.Attribute{
 					Name:        "logs_settings",
-					Description: `Logs settings. logs_settings blocks are documented below.`,
+					Description: `Logs settings that apply to Quantum Security Gateways that run Gaia OS.logs_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "show_portals_certificate",
+					Description: `Indicates whether to show the portals certificate value in the reply.`,
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `Color of the object.`,
+					Description: `Color of the object. Should be one of existing colors.`,
 				},
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `Collection of tags identified by name. ` + "`" + `interfaces` + "`" + ` supports the following:`,
+					Name:        "groups",
+					Description: `Collection of group identifiers.groups blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `advanced_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "connection_persistence",
+					Description: `Handling established connections when installing a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "sam",
+					Description: `SAM.sam blocks are documented below. ` + "`" + `application_control_and_url_filtering_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "global_settings_mode",
+					Description: `Whether to override global settings or not.`,
+				},
+				resource.Attribute{
+					Name:        "override_global_settings",
+					Description: `override global settings object.override_global_settings blocks are documented below. ` + "`" + `firewall_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_calculate_connections_hash_table_size_and_memory_pool",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "auto_maximum_limit_for_concurrent_connections",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "connections_hash_size",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "maximum_limit_for_concurrent_connections",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "maximum_memory_pool_size",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "memory_pool_size",
+					Description: `N/A ` + "`" + `https_inspection` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "bypass_on_failure",
+					Description: `Set to be true in order to bypass all requests (Fail-open) in case of internal system error.bypass_on_failure blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "site_categorization_allow_mode",
+					Description: `Set to 'background' in order to allowed requests until categorization is complete.site_categorization_allow_mode blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_untrusted_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with untrusted server certificate.deny_untrusted_server_cert blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_revoked_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with revoked server certificate (validate CRL).deny_revoked_server_cert blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "deny_expired_server_cert",
+					Description: `Set to be true in order to drop traffic from servers with expired server certificate.deny_expired_server_cert blocks are documented below. ` + "`" + `identity_awareness_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication",
+					Description: `Enable Browser Based Authentication source.`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication_settings",
+					Description: `Browser Based Authentication settings.browser_based_authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent",
+					Description: `Enable Identity Agent source.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent_settings",
+					Description: `Identity Agent settings.identity_agent_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_collector",
+					Description: `Enable Identity Collector source.`,
+				},
+				resource.Attribute{
+					Name:        "identity_collector_settings",
+					Description: `Identity Collector settings.identity_collector_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_sharing_settings",
+					Description: `Identity sharing settings.identity_sharing_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_settings",
+					Description: `Identity-Awareness Proxy settings.proxy_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "remote_access",
+					Description: `Enable Remote Access Identity source. ` + "`" + `interfaces` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Interface name.`,
+					Description: `Object name. Must be unique in the domain.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
@@ -4450,6 +6870,10 @@ This resource allows you to execute Check Point Simple Gateway.
 				resource.Attribute{
 					Name:        "ipv6_address",
 					Description: `IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "network_mask",
+					Description: `IPv4 or IPv6 network mask. If both masks are required use ipv4-network-mask and ipv6-network-mask fields explicitly. Instead of providing mask itself it is possible to specify IPv4 or IPv6 mask length in mask-length field. If both masks length are required use ipv4-mask-length and ipv6-mask-length fields explicitly.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_network_mask",
@@ -4469,31 +6893,31 @@ This resource allows you to execute Check Point Simple Gateway.
 				},
 				resource.Attribute{
 					Name:        "anti_spoofing",
-					Description: `Anti spoofing.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "anti_spoofing_settings",
-					Description: `Anti spoofing settings. anti_spoofing_settings blocks are documented below.`,
+					Description: `N/Aanti_spoofing_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "security_zone",
-					Description: `Security zone.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "security_zone_settings",
-					Description: `Security zone settings. security_zone_settings blocks are documented below.`,
+					Description: `N/Asecurity_zone_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "topology",
-					Description: `Topology.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "topology_settings",
-					Description: `Topology settings. topology_settings blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "topology_automatic_calculation",
-					Description: `Shows the automatic topology calculation..`,
+					Description: `N/Atopology_settings blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "color",
@@ -4501,259 +6925,111 @@ This resource allows you to execute Check Point Simple Gateway.
 				},
 				resource.Attribute{
 					Name:        "comments",
-					Description: `Comments string. ` + "`" + `anti_spoofing_settings` + "`" + ` supports the following:`,
+					Description: `Comments string.`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `If packets will be rejected (the Prevent option) or whether the packets will be monitored (the Detect option). ` + "`" + `security_zone_settings` + "`" + ` supports the following:`,
+					Name:        "ignore_errors",
+					Description: `Apply changes ignoring errors. You won't be able to publish such a changes. If ignore-warnings flag was omitted - warnings will also be ignored. ` + "`" + `nat_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "auto_calculated",
-					Description: `Security Zone is calculated according to where the interface leads to.`,
+					Name:        "auto_rule",
+					Description: `Whether to add automatic address translation rules.`,
 				},
 				resource.Attribute{
-					Name:        "specific_zone",
-					Description: `Security Zone specified manually. ` + "`" + `topology_settings` + "`" + ` supports the following:`,
+					Name:        "ipv4_address",
+					Description: `IPv4 address.`,
 				},
 				resource.Attribute{
-					Name:        "interface_leads_to_dmz",
-					Description: `Whether this interface leads to demilitarized zone (perimeter network).`,
+					Name:        "ipv6_address",
+					Description: `IPv6 address.`,
 				},
 				resource.Attribute{
-					Name:        "ip_address_behind_this_interface",
-					Description: `Ip address behind this interface.`,
+					Name:        "hide_behind",
+					Description: `Hide behind method. This parameter is forbidden in case "method" parameter is "static".`,
 				},
 				resource.Attribute{
-					Name:        "specific_network",
-					Description: `Network behind this interface. ` + "`" + `firewall_settings` + "`" + ` supports the following:`,
+					Name:        "install_on",
+					Description: `Which gateway should apply the NAT translation.`,
 				},
 				resource.Attribute{
-					Name:        "auto_calculate_connections_hash_table_size_and_memory_pool",
-					Description: `Auto calculate connections hash table size and memory pool.`,
+					Name:        "method",
+					Description: `NAT translation method. ` + "`" + `platform_portal_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "auto_maximum_limit_for_concurrent_connections",
-					Description: `Auto maximum limit for concurrent connections.`,
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "connections_hash_size",
-					Description: `Connections hash size.`,
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
 				},
 				resource.Attribute{
-					Name:        "maximum_limit_for_concurrent_connections",
-					Description: `Maximum limit for concurrent connections.`,
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `proxy_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "maximum_memory_pool_size",
-					Description: `Maximum memory pool size.`,
+					Name:        "use_custom_proxy",
+					Description: `Use custom proxy settings for this network object.`,
 				},
 				resource.Attribute{
-					Name:        "memory_pool_size",
-					Description: `Memory pool size. ` + "`" + `vpn_settings` + "`" + ` supports the following:`,
+					Name:        "proxy_server",
+					Description: `N/A`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `N/A ` + "`" + `usercheck_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `State of the web portal (enabled or disabled). The supported blades are: {'Application Control', 'URL Filtering', 'Data Loss Prevention', 'Anti Virus', 'Anti Bot', 'Threat Emulation', 'Threat Extraction', 'Data Awareness'}.`,
+				},
+				resource.Attribute{
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `vpn_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "authentication",
-					Description: `authentication blocks are documented below.`,
+					Description: `Authentication.authentication blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "link_selection",
-					Description: `Link selection blocks are documented below.`,
+					Description: `Link Selection.link_selection blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "maximum_concurrent_ike_negotiations",
-					Description: `Maximum concurrent ike negotiations.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "maximum_concurrent_tunnels",
-					Description: `Maximum concurrent tunnels.`,
+					Description: `N/A`,
 				},
 				resource.Attribute{
 					Name:        "office_mode",
-					Description: `Office Mode. Notation Wide Impact - Office Mode apply IPSec VPN Software Blade clients and to the Mobile Access Software Blade clients. office_mode blocks are documented below.`,
+					Description: `Office Mode. Notation Wide Impact - Office Mode apply IPSec VPN Software Blade clients and to the Mobile Access Software Blade clients.office_mode blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "remote_access",
-					Description: `remote_access blocks are documented below.`,
+					Description: `Remote Access.remote_access blocks are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_domain",
-					Description: `Gateway VPN domain identified by the name.`,
+					Description: `Gateway VPN domain identified by the name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_domain_exclude_external_ip_addresses",
+					Description: `Exclude the external IP addresses from the VPN domain of this Security Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "vpn_domain_type",
-					Description: `Gateway VPN domain type. ` + "`" + `authentication` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "authentication_clients",
-					Description: `Collection of VPN Authentication clients identified by the name. ` + "`" + `link_selection` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "ip_selection",
-					Description: `IP selection.`,
-				},
-				resource.Attribute{
-					Name:        "dns_resolving_hostname",
-					Description: `DNS Resolving Hostname. Must be set when "ip-selection" was selected to be "dns-resolving-from-hostname".`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `IP Address. Must be set when "ip-selection" was selected to be "use-selected-address-from-topology" or "use-statically-nated-ip". ` + "`" + `office_mode` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "mode",
-					Description: `Office Mode Permissions. When selected to be "off", all the other definitions are irrelevant.`,
-				},
-				resource.Attribute{
-					Name:        "group",
-					Description: `Group. Identified by name. Must be set when "office-mode-permissions" was selected to be "group".`,
-				},
-				resource.Attribute{
-					Name:        "allocate_ip_address_from",
-					Description: `Allocate IP address Method. Allocate IP address by sequentially trying the given methods until success. allocate_ip_address_from blocks are documented below.`,
-				},
-				resource.Attribute{
-					Name:        "support_multiple_interfaces",
-					Description: `Support connectivity enhancement for gateways with multiple external interfaces.`,
-				},
-				resource.Attribute{
-					Name:        "perform_anti_spoofing",
-					Description: `Perform Anti-Spoofing on Office Mode addresses.`,
-				},
-				resource.Attribute{
-					Name:        "anti_spoofing_additional_addresses",
-					Description: `Additional IP Addresses for Anti-Spoofing. Identified by name. Must be set when "perform-anti-spoofings" is true. ` + "`" + `allocate_ip_address_from` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "radius_server",
-					Description: `Radius server used to authenticate the user.`,
-				},
-				resource.Attribute{
-					Name:        "use_allocate_method",
-					Description: `Use Allocate Method.`,
-				},
-				resource.Attribute{
-					Name:        "allocate_method",
-					Description: `Using either Manual (IP Pool) or Automatic (DHCP). Must be set when "use-allocate-method" is true.`,
-				},
-				resource.Attribute{
-					Name:        "manual_network",
-					Description: `Manual Network. Identified by name. Must be set when "allocate-method" was selected to be "manual".`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_server",
-					Description: `DHCP Server. Identified by name. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "virtual_ip_address",
-					Description: `Virtual IPV4 address for DHCP server replies. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "dhcp_mac_address",
-					Description: `Calculated MAC address for DHCP allocation. Must be set when "allocate-method" was selected to be "automatic".`,
-				},
-				resource.Attribute{
-					Name:        "optional_parameters",
-					Description: `This configuration applies to all Office Mode methods except Automatic (using DHCP) and ipassignment.conf entries which contain this data. optional_parameters blocks are documented below. ` + "`" + `optional_parameters` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "use_primary_dns_server",
-					Description: `Use Primary DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "primary_dns_server",
-					Description: `Primary DNS Server. Identified by name. Must be set when "use-primary-dns-server" is true and can not be set when "use-primary-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_first_backup_dns_server",
-					Description: `Use First Backup DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "first_backup_dns_server",
-					Description: `First Backup DNS Server. Identified by name. Must be set when "use-first-backup-dns-server" is true and can not be set when "use-first-backup-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_second_backup_dns_server",
-					Description: `Use Second Backup DNS Server.`,
-				},
-				resource.Attribute{
-					Name:        "second_backup_dns_server",
-					Description: `Second Backup DNS Server. Identified by name. Must be set when "use-second-backup-dns-server" is true and can not be set when "use-second-backup-dns-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "dns_suffixes",
-					Description: `DNS Suffixes.`,
-				},
-				resource.Attribute{
-					Name:        "use_primary_wins_server",
-					Description: `Use Primary WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "primary_wins_server",
-					Description: `Primary WINS Server. Identified by name. Must be set when "use-primary-wins-server" is true and can not be set when "use-primary-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_first_backup_wins_server",
-					Description: `Use First Backup WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "first_backup_wins_server",
-					Description: `First Backup WINS Server. Identified by name. Must be set when "use-first-backup-wins-server" is true and can not be set when "use-first-backup-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "use_second_backup_wins_server",
-					Description: `Use Second Backup WINS Server.`,
-				},
-				resource.Attribute{
-					Name:        "second_backup_wins_server",
-					Description: `Second Backup WINS Server. Identified by name. Must be set when "use-second-backup-wins-server" is true and can not be set when "use-second-backup-wins-server" is false.`,
-				},
-				resource.Attribute{
-					Name:        "ip_lease_duration",
-					Description: `IP Lease Duration in Minutes. The value must be in the range 2-32767. ` + "`" + `remote_access` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "support_l2tp",
-					Description: `Support L2TP (relevant only when office mode is active).`,
-				},
-				resource.Attribute{
-					Name:        "l2tp_auth_method",
-					Description: `L2TP Authentication Method. Must be set when "support-l2tp" is true.`,
-				},
-				resource.Attribute{
-					Name:        "l2tp_certificate",
-					Description: `L2TP Certificate. Must be set when "l2tp-auth-method" was selected to be "certificate". Insert "defaultCert" when you want to use the default certificate.`,
-				},
-				resource.Attribute{
-					Name:        "allow_vpn_clients_to_route_traffic",
-					Description: `Allow VPN clients to route traffic.`,
-				},
-				resource.Attribute{
-					Name:        "support_nat_traversal_mechanism",
-					Description: `Support NAT traversal mechanism (UDP encapsulation).`,
-				},
-				resource.Attribute{
-					Name:        "nat_traversal_service",
-					Description: `Allocated NAT traversal UDP service. Identified by name. Must be set when "support-nat-traversal-mechanism" is true.`,
-				},
-				resource.Attribute{
-					Name:        "support_visitor_mode",
-					Description: `Support Visitor Mode.`,
-				},
-				resource.Attribute{
-					Name:        "visitor_mode_service",
-					Description: `TCP Service for Visitor Mode. Identified by name. Must be set when "support-visitor-mode" is true.`,
-				},
-				resource.Attribute{
-					Name:        "visitor_mode_interface",
-					Description: `Interface for Visitor Mode. Must be set when "support-visitor-mode" is true. Insert IPV4 Address of existing interface or "All IPs" when you want all interfaces. ` + "`" + `logs_settings` + "`" + ` supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "free_disk_space_metrics",
-					Description: `Free disk space metrics.`,
-				},
-				resource.Attribute{
-					Name:        "accept_syslog_messages",
-					Description: `Enable accept syslog messages.`,
+					Description: `Gateway VPN domain type. ` + "`" + `logs_settings` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "alert_when_free_disk_space_below",
@@ -4792,6 +7068,14 @@ This resource allows you to execute Check Point Simple Gateway.
 					Description: `Delete index files older than days threshold.`,
 				},
 				resource.Attribute{
+					Name:        "delete_index_files_when_index_size_above",
+					Description: `Enable delete index files when index size above.`,
+				},
+				resource.Attribute{
+					Name:        "delete_index_files_when_index_size_above_threshold",
+					Description: `Delete index files when index size above threshold.`,
+				},
+				resource.Attribute{
 					Name:        "delete_when_free_disk_space_below",
 					Description: `Enable delete when free disk space below.`,
 				},
@@ -4801,11 +7085,11 @@ This resource allows you to execute Check Point Simple Gateway.
 				},
 				resource.Attribute{
 					Name:        "detect_new_citrix_ica_application_names",
-					Description: `Enable detect new citrix ica application names.`,
+					Description: `Enable detect new Citrix ICA application names.`,
 				},
 				resource.Attribute{
-					Name:        "enable_log_indexing",
-					Description: `Enable log indexing.`,
+					Name:        "distribute_logs_between_all_active_servers",
+					Description: `Distribute logs between all active servers.`,
 				},
 				resource.Attribute{
 					Name:        "forward_logs_to_log_server",
@@ -4818,6 +7102,26 @@ This resource allows you to execute Check Point Simple Gateway.
 				resource.Attribute{
 					Name:        "forward_logs_to_log_server_schedule_name",
 					Description: `Forward logs to log server schedule name.`,
+				},
+				resource.Attribute{
+					Name:        "free_disk_space_metrics",
+					Description: `Free disk space metrics.`,
+				},
+				resource.Attribute{
+					Name:        "perform_log_rotate_before_log_forwarding",
+					Description: `Enable perform log rotate before log forwarding.`,
+				},
+				resource.Attribute{
+					Name:        "reject_connections_when_free_disk_space_below_threshold",
+					Description: `Enable reject connections when free disk space below threshold.`,
+				},
+				resource.Attribute{
+					Name:        "reserve_for_packet_capture_metrics",
+					Description: `Reserve for packet capture metrics.`,
+				},
+				resource.Attribute{
+					Name:        "reserve_for_packet_capture_threshold",
+					Description: `Reserve for packet capture threshold.`,
 				},
 				resource.Attribute{
 					Name:        "rotate_log_by_file_size",
@@ -4845,11 +7149,866 @@ This resource allows you to execute Check Point Simple Gateway.
 				},
 				resource.Attribute{
 					Name:        "turn_on_qos_logging",
-					Description: `Enable turn on qos logging.`,
+					Description: `Enable turn on QoS Logging.`,
 				},
 				resource.Attribute{
 					Name:        "update_account_log_every",
-					Description: `Update account log in every amount of seconds.`,
+					Description: `Update account log in every amount of seconds. ` + "`" + `sam` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "forward_to_other_sam_servers",
+					Description: `Forward SAM clients' requests to other SAM servers.`,
+				},
+				resource.Attribute{
+					Name:        "use_early_versions",
+					Description: `Use early versions compatibility mode.use_early_versions blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "purge_sam_file",
+					Description: `Purge SAM File.purge_sam_file blocks are documented below. ` + "`" + `override_global_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "fail_mode",
+					Description: `Fail mode - allow or block all requests.`,
+				},
+				resource.Attribute{
+					Name:        "website_categorization",
+					Description: `Website categorization object.website_categorization blocks are documented below. ` + "`" + `bypass_on_failure` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `site_categorization_allow_mode` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_untrusted_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_revoked_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `deny_expired_server_cert` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "override_profile",
+					Description: `Override profile of global configuration.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Override value.<br><font color="red">Required only for</font> 'override-profile' is True. ` + "`" + `browser_based_authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Browser Based Authentication.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "browser_based_authentication_portal_settings",
+					Description: `Browser Based Authentication portal settings.browser_based_authentication_portal_settings blocks are documented below. ` + "`" + `identity_agent_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "agents_interval_keepalive",
+					Description: `Agents send keepalive period (minutes).`,
+				},
+				resource.Attribute{
+					Name:        "user_reauthenticate_interval",
+					Description: `Agent reauthenticate time interval (minutes).`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Identity Agent.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "identity_agent_portal_settings",
+					Description: `Identity Agent accessibility settings.identity_agent_portal_settings blocks are documented below. ` + "`" + `identity_collector_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authorized_clients",
+					Description: `Authorized Clients.authorized_clients blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_settings",
+					Description: `Authentication Settings for Identity Collector.authentication_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "client_access_permissions",
+					Description: `Identity Collector accessibility settings.client_access_permissions blocks are documented below. ` + "`" + `identity_sharing_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "share_with_other_gateways",
+					Description: `Enable identity sharing with other gateways.`,
+				},
+				resource.Attribute{
+					Name:        "receive_from_other_gateways",
+					Description: `Enable receiving identity from other gateways.`,
+				},
+				resource.Attribute{
+					Name:        "receive_from",
+					Description: `Gateway(s) to receive identity from.receive_from blocks are documented below. ` + "`" + `proxy_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "detect_using_x_forward_for",
+					Description: `Whether to use X-Forward-For HTTP header, which is added by the proxy server to keep track of the original source IP. ` + "`" + `anti_spoofing_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `If packets will be rejected (the Prevent option) or whether the packets will be monitored (the Detect option).`,
+				},
+				resource.Attribute{
+					Name:        "exclude_packets",
+					Description: `Don't check packets from excluded network.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_name",
+					Description: `Excluded network name.`,
+				},
+				resource.Attribute{
+					Name:        "excluded_network_uid",
+					Description: `Excluded network UID.`,
+				},
+				resource.Attribute{
+					Name:        "spoof_tracking",
+					Description: `Spoof tracking. ` + "`" + `security_zone_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "auto_calculated",
+					Description: `Security Zone is calculated according to where the interface leads to.`,
+				},
+				resource.Attribute{
+					Name:        "specific_zone",
+					Description: `Security Zone specified manually. ` + "`" + `topology_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "interface_leads_to_dmz",
+					Description: `Whether this interface leads to demilitarized zone (perimeter network).`,
+				},
+				resource.Attribute{
+					Name:        "specific_network",
+					Description: `Network behind this interface. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
+				},
+				resource.Attribute{
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
+				},
+				resource.Attribute{
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `authentication` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_clients",
+					Description: `Collection of VPN Authentication clients identified by the name or UID.authentication_clients blocks are documented below. ` + "`" + `link_selection` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "dns_resolving_hostname",
+					Description: `DNS Resolving Hostname. Must be set when "ip-selection" was selected to be "dns-resolving-from-hostname". ` + "`" + `office_mode` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Office Mode Permissions. When selected to be "off", all the other definitions are irrelevant.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `Group. Identified by name or UID. Must be set when "office-mode-permissions" was selected to be "group".`,
+				},
+				resource.Attribute{
+					Name:        "allocate_ip_address_from",
+					Description: `Allocate IP address Method. Allocate IP address by sequentially trying the given methods until success.allocate_ip_address_from blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "support_multiple_interfaces",
+					Description: `Support connectivity enhancement for gateways with multiple external interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "perform_anti_spoofing",
+					Description: `Perform Anti-Spoofing on Office Mode addresses.`,
+				},
+				resource.Attribute{
+					Name:        "anti_spoofing_additional_addresses",
+					Description: `Additional IP Addresses for Anti-Spoofing. Identified by name or UID. Must be set when "perform-anti-spoofings" is true. ` + "`" + `remote_access` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "support_l2tp",
+					Description: `Support L2TP (relevant only when office mode is active).`,
+				},
+				resource.Attribute{
+					Name:        "l2tp_auth_method",
+					Description: `L2TP Authentication Method. Must be set when "support-l2tp" is true.`,
+				},
+				resource.Attribute{
+					Name:        "l2tp_certificate",
+					Description: `L2TP Certificate. Must be set when "l2tp-auth-method" was selected to be "certificate". Insert "defaultCert" when you want to use the default certificate.`,
+				},
+				resource.Attribute{
+					Name:        "allow_vpn_clients_to_route_traffic",
+					Description: `Allow VPN clients to route traffic.`,
+				},
+				resource.Attribute{
+					Name:        "support_nat_traversal_mechanism",
+					Description: `Support NAT traversal mechanism (UDP encapsulation).`,
+				},
+				resource.Attribute{
+					Name:        "nat_traversal_service",
+					Description: `Allocated NAT traversal UDP service. Identified by name or UID. Must be set when "support-nat-traversal-mechanism" is true.`,
+				},
+				resource.Attribute{
+					Name:        "support_visitor_mode",
+					Description: `Support Visitor Mode.`,
+				},
+				resource.Attribute{
+					Name:        "visitor_mode_service",
+					Description: `TCP Service for Visitor Mode. Identified by name or UID. Must be set when "support-visitor-mode" is true.`,
+				},
+				resource.Attribute{
+					Name:        "visitor_mode_interface",
+					Description: `Interface for Visitor Mode. Must be set when "support-visitor-mode" is true. Insert IPV4 Address of existing interface or "All IPs" when you want all interfaces. ` + "`" + `use_early_versions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Use early versions compatibility mode.`,
+				},
+				resource.Attribute{
+					Name:        "compatibility_mode",
+					Description: `Early versions compatibility mode. ` + "`" + `purge_sam_file` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Purge SAM File.`,
+				},
+				resource.Attribute{
+					Name:        "purge_when_size_reaches_to",
+					Description: `Purge SAM File When it Reaches to. ` + "`" + `website_categorization` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Website categorization mode.`,
+				},
+				resource.Attribute{
+					Name:        "custom_mode",
+					Description: `Custom mode object.custom_mode blocks are documented below. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `Authentication method.`,
+				},
+				resource.Attribute{
+					Name:        "identity_provider",
+					Description: `Identity provider object identified by the name or UID. Must be set when "authentication-method" was selected to be "identity provider".identity_provider blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "radius",
+					Description: `Radius server object identified by the name or UID. Must be set when "authentication-method" was selected to be "radius".`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `browser_based_authentication_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "portal_web_settings",
+					Description: `Configuration of the portal web settings.portal_web_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_settings",
+					Description: `Configuration of the portal certificate settings.certificate_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `Authentication method.`,
+				},
+				resource.Attribute{
+					Name:        "radius",
+					Description: `Radius server object identified by the name or UID. Must be set when "authentication-method" was selected to be "radius".`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `identity_agent_portal_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `authorized_clients` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client",
+					Description: `Host / Network Group Name or UID.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `Client Secret. ` + "`" + `authentication_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "users_directories",
+					Description: `Users directories.users_directories blocks are documented below. ` + "`" + `client_access_permissions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "accessibility",
+					Description: `Configuration of the portal access settings.accessibility blocks are documented below. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `allocate_ip_address_from` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "radius_server",
+					Description: `Radius server used to authenticate the user.`,
+				},
+				resource.Attribute{
+					Name:        "use_allocate_method",
+					Description: `Use Allocate Method.`,
+				},
+				resource.Attribute{
+					Name:        "allocate_method",
+					Description: `Using either Manual (IP Pool) or Automatic (DHCP). Must be set when "use-allocate-method" is true.`,
+				},
+				resource.Attribute{
+					Name:        "manual_network",
+					Description: `Manual Network. Identified by name or UID. Must be set when "allocate-method" was selected to be "manual".`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_server",
+					Description: `DHCP Server. Identified by name or UID. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `Virtual IPV4 address for DHCP server replies. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_mac_address",
+					Description: `Calculated MAC address for DHCP allocation. Must be set when "allocate-method" was selected to be "automatic".`,
+				},
+				resource.Attribute{
+					Name:        "optional_parameters",
+					Description: `This configuration applies to all Office Mode methods except Automatic (using DHCP) and ipassignment.conf entries which contain this data.optional_parameters blocks are documented below. ` + "`" + `custom_mode` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "social_networking_widgets",
+					Description: `Social networking widgets mode.`,
+				},
+				resource.Attribute{
+					Name:        "url_filtering",
+					Description: `URL filtering mode. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `portal_web_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `List of URL aliases that are redirected to the main portal URL.aliases blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "main_url",
+					Description: `The main URL for the web portal. ` + "`" + `certificate_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base64_certificate",
+					Description: `The certificate file encoded in Base64 with padding. This file must be in the`,
+				},
+				resource.Attribute{
+					Name:        "base64_password",
+					Description: `Password (encoded in Base64 with padding) for the certificate file. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `users_directories` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "external_user_profile",
+					Description: `External user profile.`,
+				},
+				resource.Attribute{
+					Name:        "internal_users",
+					Description: `Internal users.`,
+				},
+				resource.Attribute{
+					Name:        "users_from_external_directories",
+					Description: `Users from external directories.`,
+				},
+				resource.Attribute{
+					Name:        "specific",
+					Description: `LDAP AU objects identified by the name or UID. Must be set when "users-from-external-directories" was selected to be "specific".specific blocks are documented below. ` + "`" + `accessibility` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allow_access_from",
+					Description: `Allowed access to the web portal (based on interfaces, or security policy).`,
+				},
+				resource.Attribute{
+					Name:        "internal_access_settings",
+					Description: `Configuration of the additional portal access settings for internal interfaces only.internal_access_settings blocks are documented below. ` + "`" + `optional_parameters` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "use_primary_dns_server",
+					Description: `Use Primary DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "primary_dns_server",
+					Description: `Primary DNS Server. Identified by name or UID. Must be set when "use-primary-dns-server" is true and can not be set when "use-primary-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_first_backup_dns_server",
+					Description: `Use First Backup DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "first_backup_dns_server",
+					Description: `First Backup DNS Server. Identified by name or UID. Must be set when "use-first-backup-dns-server" is true and can not be set when "use-first-backup-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_second_backup_dns_server",
+					Description: `Use Second Backup DNS Server.`,
+				},
+				resource.Attribute{
+					Name:        "second_backup_dns_server",
+					Description: `Second Backup DNS Server. Identified by name or UID. Must be set when "use-second-backup-dns-server" is true and can not be set when "use-second-backup-dns-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "dns_suffixes",
+					Description: `DNS Suffixes.`,
+				},
+				resource.Attribute{
+					Name:        "use_primary_wins_server",
+					Description: `Use Primary WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "primary_wins_server",
+					Description: `Primary WINS Server. Identified by name or UID. Must be set when "use-primary-wins-server" is true and can not be set when "use-primary-wins-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_first_backup_wins_server",
+					Description: `Use First Backup WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "first_backup_wins_server",
+					Description: `First Backup WINS Server. Identified by name or UID. Must be set when "use-first-backup-wins-server" is true and can not be set when "use-first-backup-wins-server" is false.`,
+				},
+				resource.Attribute{
+					Name:        "use_second_backup_wins_server",
+					Description: `Use Second Backup WINS Server.`,
+				},
+				resource.Attribute{
+					Name:        "second_backup_wins_server",
+					Description: `Second Backup WINS Server. Identified by name or UID. Must be set when "use-second-backup-wins-server" is true and can not be set when "use-second-backup-wins-server" is false. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain. ` + "`" + `internal_access_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "undefined",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'Undefined'.`,
+				},
+				resource.Attribute{
+					Name:        "dmz",
+					Description: `Controls portal access settings for internal interfaces, whose topology is set to 'DMZ'.`,
+				},
+				resource.Attribute{
+					Name:        "vpn",
+					Description: `Controls portal access settings for interfaces that are part of a VPN Encryption Domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_smart_task_trigger",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Smart Task Trigger.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Smart Task Trigger.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "before_operation",
+					Description: `Whether or not this trigger is fired before an operation.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_smtp_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Smtp Server.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Smtp Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_tacacs_server",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Tacacs Server.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Tacacs Server.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `Is there a secret key defined on the server. Must be set true when "server-type" was selected to be "TACACS+".`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the TACACS Server in case it is a member of a TACACS Group.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `The UID or Name of the host that is the TACACS Server. server blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "server_type",
+					Description: `Server type, TACACS or TACACS+.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Server service, only relevant when "server-type" is TACACS. service blocks are documented below. ` + "`" + `server` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier. ` + "`" + `service` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Object name. Must be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "aggressive_aging",
+					Description: `Sets short (aggressive) timeouts for idle connections. aggressive_aging blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `Level of details in the output corresponds to the number of details for search. This table shows the level of details in the Standard level.`,
+				},
+				resource.Attribute{
+					Name:        "keep_connections_open_after_policy_installation",
+					Description: `Keep connections open after policy has been installed even if they are not allowed under the new policy. This overrides the settings in the Connection Persistence page. If you change this property, the change will not affect open connections, but only future connections.`,
+				},
+				resource.Attribute{
+					Name:        "match_for_any",
+					Description: `Indicates whether this service is used when 'Any' is set as the rule's service and there are several service objects with the same source port and protocol.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The number of the port used to provide this service.`,
+				},
+				resource.Attribute{
+					Name:        "session_timeout",
+					Description: `Time (in seconds) before the session times out.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `Port number for the client side service. If specified, only those Source port Numbers will be Accepted, Dropped, or Rejected during packet inspection. Otherwise, the source port is not inspected.`,
+				},
+				resource.Attribute{
+					Name:        "sync_connections_on_cluster",
+					Description: `Enables state-synchronized High Availability or Load Sharing on a ClusterXL or OPSEC-certified cluster.`,
+				},
+				resource.Attribute{
+					Name:        "use_default_session_timeout",
+					Description: `Use default virtual session timeout. ` + "`" + `aggressive_aging` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "default_timeout",
+					Description: `Default aggressive aging timeout in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Aggressive aging timeout in seconds.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_task",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Task.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Task.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `(Required) Unique identifier of one or more tasks.`,
+				},
+				resource.Attribute{
+					Name:        "tasks",
+					Description: `The tasks. tasks blocks are documented below. ` + "`" + `tasks` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_id",
+					Description: `Asynchronous task unique identifier. Use show-task command to check the progress of the task.`,
+				},
+				resource.Attribute{
+					Name:        "task_name",
+					Description: `The task name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Task status.`,
+				},
+				resource.Attribute{
+					Name:        "progress_percentage",
+					Description: `The progress percentage of the task.`,
+				},
+				resource.Attribute{
+					Name:        "suppressed",
+					Description: `Is the task suppressed.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_threat_advanced_settings",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Threat Advanced Settings.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Threat Advanced Settings.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "feed_retrieving_interval",
+					Description: `Feed retrieving intervals of External Feed, in the form of HH:MM.`,
+				},
+				resource.Attribute{
+					Name:        "httpi_non_standard_ports",
+					Description: `Enable HTTP Inspection on non standard ports for Threat Prevention blades.`,
+				},
+				resource.Attribute{
+					Name:        "internal_error_fail_mode",
+					Description: `In case of internal system error, allow or block all connections.`,
+				},
+				resource.Attribute{
+					Name:        "log_unification_timeout",
+					Description: `Session unification timeout for logs (minutes).`,
+				},
+				resource.Attribute{
+					Name:        "resource_classification",
+					Description: `Allow (Background) or Block (Hold) requests until categorization is complete. resource_classification blocks are documented below. ` + "`" + `resource_classification` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_settings",
+					Description: `Custom resources classification per service. custom_settings blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Set all services to the same mode or choose a custom mode.`,
+				},
+				resource.Attribute{
+					Name:        "web_service_fail_mode",
+					Description: `Block connections when the web service is unavailable. ` + "`" + `custom_settings` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "anti_bot",
+					Description: `Custom Settings for Anti Bot Blade.`,
+				},
+				resource.Attribute{
+					Name:        "anti_virus",
+					Description: `Custom Settings for Anti Virus Blade.`,
+				},
+				resource.Attribute{
+					Name:        "zero_phishing",
+					Description: `Custom Settings for Zero Phishing Blade.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4953,6 +8112,64 @@ This resource allows you to execute Check Point Threat Exception.
 				resource.Attribute{
 					Name:        "owner",
 					Description: `Owner UID.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_threat_ioc_feed",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Threat Ioc Feed.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Threat Ioc Feed.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_threat_layer",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Threat Layer.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Threat Layer.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name. Should be unique in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Collection of tag identifiers.tags blocks are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `Color of the object. Should be one of existing colors.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comments string.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5420,6 +8637,48 @@ Use this data source to get information on an existing threat RuleBase.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkpoint_management_time",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Time.`,
+			Description: `
+
+Use this data source to get information on an existing Check Point Time.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkpoint_management_trusted_client",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information on an existing Check Point Trusted Client.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Object unique identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Object name.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkpoint_management_user",
 			Category:         "Data Sources",
 			ShortDescription: `This resource allows you to execute Check Point User.`,
@@ -5736,75 +8995,116 @@ This resource allows you to execute Check Point VPN Community Remote Access.
 		"checkpoint_management_access_point_name":                         0,
 		"checkpoint_management_access_rulebase":                           1,
 		"checkpoint_management_aci_data_center_server":                    2,
-		"checkpoint_management_aws_data_center_server":                    3,
-		"checkpoint_management_azure_data_center_server":                  4,
-		"checkpoint_management_checkpoint_host":                           5,
-		"checkpoint_management_data_access_layer":                         6,
-		"checkpoint_management_data_access_role":                          7,
-		"checkpoint_management_data_access_rule":                          8,
-		"checkpoint_management_data_access_section":                       9,
-		"checkpoint_management_data_address_range":                        10,
-		"checkpoint_management_data_application_site":                     11,
-		"checkpoint_management_data_application_site_category":            12,
-		"checkpoint_management_data_application_site_group":               13,
-		"checkpoint_management_data_center_content":                       14,
-		"checkpoint_management_data_center_query":                         15,
-		"checkpoint_management_data_dns_domain":                           16,
-		"checkpoint_management_data_dynamic_object":                       17,
-		"checkpoint_management_data_exception_group":                      18,
-		"checkpoint_management_data_group":                                19,
-		"checkpoint_management_data_group_with_exclusion":                 20,
-		"checkpoint_management_data_host":                                 21,
-		"checkpoint_management_data_https_layer":                          22,
-		"checkpoint_management_data_https_rule":                           23,
-		"checkpoint_management_data_https_section":                        24,
-		"checkpoint_management_data_multicast_address_range":              25,
-		"checkpoint_management_data_network":                              26,
-		"checkpoint_management_data_opsec_application":                    27,
-		"checkpoint_management_data_package":                              28,
-		"checkpoint_management_data_security_zone":                        29,
-		"checkpoint_management_data_service_dce_rpc":                      30,
-		"checkpoint_management_data_service_group":                        31,
-		"checkpoint_management_data_service_icmp":                         32,
-		"checkpoint_management_data_service_icmp6":                        33,
-		"checkpoint_management_data_service_other":                        34,
-		"checkpoint_management_data_service_rpc":                          35,
-		"checkpoint_management_data_service_sctp":                         36,
-		"checkpoint_management_data_service_tcp":                          37,
-		"checkpoint_management_data_service_udp":                          38,
-		"checkpoint_management_data_threat_indicator":                     39,
-		"checkpoint_management_data_time_group":                           40,
-		"checkpoint_management_data_vpn_community_meshed":                 41,
-		"checkpoint_management_data_vpn_community_star":                   42,
-		"checkpoint_management_data_wildcard":                             43,
-		"checkpoint_management_gcp_data_center_server":                    44,
-		"checkpoint_management_generic_data_center_server":                45,
-		"checkpoint_management_gsn_handover_group":                        46,
-		"checkpoint_management_https_rulebase":                            47,
-		"checkpoint_management_identity_tag":                              48,
-		"checkpoint_management_ise_data_center_server":                    49,
-		"checkpoint_management_kubernetes_data_center_server":             50,
-		"checkpoint_management_mds":                                       51,
-		"checkpoint_management_nat_rule":                                  52,
-		"checkpoint_management_nat_rulebase":                              53,
-		"checkpoint_management_nat_section":                               54,
-		"checkpoint_management_nuage_data_center_server":                  55,
-		"checkpoint_management_openstack_data_center_server":              56,
-		"checkpoint_management_service_citrix_tcp":                        57,
-		"checkpoint_management_service_compound_tcp":                      58,
-		"checkpoint_management_show_objects":                              59,
-		"checkpoint_management_show_updatable_objects_repository_content": 60,
-		"checkpoint_management_simple_cluster":                            61,
-		"checkpoint_management_simple_gateway":                            62,
-		"checkpoint_management_threat_exception":                          63,
-		"checkpoint_management_threat_profile":                            64,
-		"checkpoint_management_threat_rule":                               65,
-		"checkpoint_management_threat_rulebase":                           66,
-		"checkpoint_management_user":                                      67,
-		"checkpoint_management_user_group":                                68,
-		"checkpoint_management_user_template":                             69,
-		"checkpoint_management_vmware_data_center_server":                 70,
-		"checkpoint_management_vpn_community_remote_access":               71,
+		"checkpoint_management_administrator":                             3,
+		"checkpoint_management_api_settings":                              4,
+		"checkpoint_management_automatic_purge":                           5,
+		"checkpoint_management_aws_data_center_server":                    6,
+		"checkpoint_management_azure_ad":                                  7,
+		"checkpoint_management_azure_ad_content":                          8,
+		"checkpoint_management_azure_data_center_server":                  9,
+		"checkpoint_management_checkpoint_host":                           10,
+		"checkpoint_management_cloud_services":                            11,
+		"checkpoint_management_cluster_member":                            12,
+		"checkpoint_management_data_access_layer":                         13,
+		"checkpoint_management_data_access_role":                          14,
+		"checkpoint_management_data_access_rule":                          15,
+		"checkpoint_management_data_access_section":                       16,
+		"checkpoint_management_data_address_range":                        17,
+		"checkpoint_management_data_application_site":                     18,
+		"checkpoint_management_data_application_site_category":            19,
+		"checkpoint_management_data_application_site_group":               20,
+		"checkpoint_management_data_center_content":                       21,
+		"checkpoint_management_data_center_query":                         22,
+		"checkpoint_management_data_dns_domain":                           23,
+		"checkpoint_management_data_dynamic_object":                       24,
+		"checkpoint_management_data_exception_group":                      25,
+		"checkpoint_management_data_group":                                26,
+		"checkpoint_management_data_group_with_exclusion":                 27,
+		"checkpoint_management_data_host":                                 28,
+		"checkpoint_management_data_https_layer":                          29,
+		"checkpoint_management_data_https_rule":                           30,
+		"checkpoint_management_data_https_section":                        31,
+		"checkpoint_management_data_multicast_address_range":              32,
+		"checkpoint_management_data_network":                              33,
+		"checkpoint_management_data_opsec_application":                    34,
+		"checkpoint_management_data_package":                              35,
+		"checkpoint_management_data_security_zone":                        36,
+		"checkpoint_management_data_service_dce_rpc":                      37,
+		"checkpoint_management_data_service_group":                        38,
+		"checkpoint_management_data_service_icmp":                         39,
+		"checkpoint_management_data_service_icmp6":                        40,
+		"checkpoint_management_data_service_other":                        41,
+		"checkpoint_management_data_service_rpc":                          42,
+		"checkpoint_management_data_service_sctp":                         43,
+		"checkpoint_management_data_service_tcp":                          44,
+		"checkpoint_management_data_service_udp":                          45,
+		"checkpoint_management_data_threat_indicator":                     46,
+		"checkpoint_management_data_time_group":                           47,
+		"checkpoint_management_data_vpn_community_meshed":                 48,
+		"checkpoint_management_data_vpn_community_star":                   49,
+		"checkpoint_management_data_wildcard":                             50,
+		"checkpoint_management_domain":                                    51,
+		"checkpoint_management_domain_permissions_profile":                52,
+		"checkpoint_management_dynamic_global_network_object":             53,
+		"checkpoint_management_gaia_best_practice":                        54,
+		"checkpoint_management_gcp_data_center_server":                    55,
+		"checkpoint_management_generic_data_center_server":                56,
+		"checkpoint_management_global_assignment":                         57,
+		"checkpoint_management_global_domain":                             58,
+		"checkpoint_management_gsn_handover_group":                        59,
+		"checkpoint_management_https_rulebase":                            60,
+		"checkpoint_management_identity_tag":                              61,
+		"checkpoint_management_idp_administrator_group":                   62,
+		"checkpoint_management_idp_default_assignment":                    63,
+		"checkpoint_management_idp_to_domain_assignment":                  64,
+		"checkpoint_management_interoperable_device":                      65,
+		"checkpoint_management_ips_update_schedule":                       66,
+		"checkpoint_management_ise_data_center_server":                    67,
+		"checkpoint_management_kubernetes_data_center_server":             68,
+		"checkpoint_management_login_message":                             69,
+		"checkpoint_management_lsm_cluster_profile":                       70,
+		"checkpoint_management_lsv_profile":                               71,
+		"checkpoint_management_md_permissions_profile":                    72,
+		"checkpoint_management_mds":                                       73,
+		"checkpoint_management_nat_rule":                                  74,
+		"checkpoint_management_nat_rulebase":                              75,
+		"checkpoint_management_nat_section":                               76,
+		"checkpoint_management_network_feed":                              77,
+		"checkpoint_management_nuage_data_center_server":                  78,
+		"checkpoint_management_nutanix_data_center_server":                79,
+		"checkpoint_management_objects":                                   80,
+		"checkpoint_management_openstack_data_center_server":              81,
+		"checkpoint_management_oracle_cloud_data_center_server":           82,
+		"checkpoint_management_policy_settings":                           83,
+		"checkpoint_management_provisioning_profile":                      84,
+		"checkpoint_management_radius_group":                              85,
+		"checkpoint_management_radius_server":                             86,
+		"checkpoint_management_repository_package":                        87,
+		"checkpoint_management_repository_script":                         88,
+		"checkpoint_management_service_citrix_tcp":                        89,
+		"checkpoint_management_service_compound_tcp":                      90,
+		"checkpoint_management_show_objects":                              91,
+		"checkpoint_management_show_updatable_objects_repository_content": 92,
+		"checkpoint_management_simple_cluster":                            93,
+		"checkpoint_management_simple_gateway":                            94,
+		"checkpoint_management_smart_task_trigger":                        95,
+		"checkpoint_management_smtp_server":                               96,
+		"checkpoint_management_tacacs_server":                             97,
+		"checkpoint_management_task":                                      98,
+		"checkpoint_management_threat_advanced_settings":                  99,
+		"checkpoint_management_threat_exception":                          100,
+		"checkpoint_management_threat_ioc_feed":                           101,
+		"checkpoint_management_threat_layer":                              102,
+		"checkpoint_management_threat_profile":                            103,
+		"checkpoint_management_threat_rule":                               104,
+		"checkpoint_management_threat_rulebase":                           105,
+		"checkpoint_management_time":                                      106,
+		"checkpoint_management_trusted_client":                            107,
+		"checkpoint_management_user":                                      108,
+		"checkpoint_management_user_group":                                109,
+		"checkpoint_management_user_template":                             110,
+		"checkpoint_management_vmware_data_center_server":                 111,
+		"checkpoint_management_vpn_community_remote_access":               112,
 	}
 )
 

@@ -26,6 +26,10 @@ var (
 					Description: `(Required) The unique ID of the target database.`,
 				},
 				resource.Attribute{
+					Name:        "database_type",
+					Description: `(Required) The unique type of the target database. (` + "`" + `mysql` + "`" + `, ` + "`" + `mongodb` + "`" + `, ` + "`" + `postgresql` + "`" + `)`,
+				},
+				resource.Attribute{
 					Name:        "allow_list",
 					Description: `(Required) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.`,
 				},
@@ -61,7 +65,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_list",
-					Description: `(Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use ` + "`" + `linode_database_mysql_firewall` + "`" + ` to manage your allow list separately.`,
+					Description: `(Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use ` + "`" + `linode_database_access_controls` + "`" + ` to manage your allow list separately.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_size",
@@ -77,7 +81,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_connection",
-					Description: `(Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default ` + "`" + `false` + "`" + `) ## Attributes In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "day_of_week",
+					Description: `(Required) The day to perform maintenance. (` + "`" + `monday` + "`" + `, ` + "`" + `tuesday` + "`" + `, ...)`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) The maximum maintenance window time in hours. (` + "`" + `1` + "`" + `..` + "`" + `3` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Required) Whether maintenance occurs on a weekly or monthly basis. (` + "`" + `weekly` + "`" + `, ` + "`" + `monthly` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "hour_of_day",
+					Description: `(Required) The hour to begin maintenance based in UTC time. (` + "`" + `0` + "`" + `..` + "`" + `23` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "week_of_month",
+					Description: `(Optional) The week of the month to perform monthly frequency updates. Required for ` + "`" + `monthly` + "`" + ` frequency updates. (` + "`" + `1` + "`" + `..` + "`" + `4` + "`" + `) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -124,7 +148,215 @@ var (
 					Description: `The Managed Database engine version. (e.g. ` + "`" + `v8.0.26` + "`" + `) ## Import Linode MySQL Databases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_database_mysql.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `The base64-encoded SSL CA certificate for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Managed Database was created.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine. (e.g. ` + "`" + `mysql` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "host_primary",
+					Description: `The primary host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "host_secondary",
+					Description: `The secondary/private network host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `The randomly-generated root password for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "root_username",
+					Description: `The root username for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this Managed Database was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version. (e.g. ` + "`" + `v8.0.26` + "`" + `) ## Import Linode MySQL Databases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_database_mysql.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_database_postgresql",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode PostgreSQL Database.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"postgresql",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine_id",
+					Description: `(Required) The Managed Database engine in engine/version format. (e.g. ` + "`" + `postgresql/13.2` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) A unique, user-defined string referring to the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region to use for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The Linode Instance type used for the nodes of the Managed Database instance. - - -`,
+				},
+				resource.Attribute{
+					Name:        "allow_list",
+					Description: `(Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use ` + "`" + `linode_database_access_controls` + "`" + ` to manage your allow list separately.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_size",
+					Description: `(Optional) The number of Linode Instance nodes deployed to the Managed Database. (default ` + "`" + `1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `(Optional) Whether the Managed Databases is encrypted. (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "replication_type",
+					Description: `(Optional) The replication method used for the Managed Database. (` + "`" + `none` + "`" + `, ` + "`" + `asynch` + "`" + `, ` + "`" + `semi_synch` + "`" + `; default ` + "`" + `none` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "replication_commit_type",
+					Description: `(Optional) The synchronization level of the replicating server. (` + "`" + `on` + "`" + `, ` + "`" + `local` + "`" + `, ` + "`" + `remote_write` + "`" + `, ` + "`" + `remote_apply` + "`" + `, ` + "`" + `off` + "`" + `; default ` + "`" + `off` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ssl_connection",
+					Description: `(Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "day_of_week",
+					Description: `(Required) The day to perform maintenance. (` + "`" + `monday` + "`" + `, ` + "`" + `tuesday` + "`" + `, ...)`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) The maximum maintenance window time in hours. (` + "`" + `1` + "`" + `..` + "`" + `3` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Required) Whether maintenance occurs on a weekly or monthly basis. (` + "`" + `weekly` + "`" + `, ` + "`" + `monthly` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "hour_of_day",
+					Description: `(Required) The hour to begin maintenance based in UTC time. (` + "`" + `0` + "`" + `..` + "`" + `23` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "week_of_month",
+					Description: `(Optional) The week of the month to perform monthly frequency updates. Required for ` + "`" + `monthly` + "`" + ` frequency updates. (` + "`" + `1` + "`" + `..` + "`" + `4` + "`" + `) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `The base64-encoded SSL CA certificate for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Managed Database was created.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine. (e.g. ` + "`" + `postgresql` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "host_primary",
+					Description: `The primary host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "host_secondary",
+					Description: `The secondary/private network host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `The randomly-generated root password for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "root_username",
+					Description: `The root username for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this Managed Database was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version. (e.g. ` + "`" + `13.2` + "`" + `) ## Import Linode PostgreSQL Databases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_database_postgresql.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `The base64-encoded SSL CA certificate for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Managed Database was created.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The Managed Database engine. (e.g. ` + "`" + `postgresql` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "host_primary",
+					Description: `The primary host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "host_secondary",
+					Description: `The secondary/private network host for the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `The randomly-generated root password for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "root_username",
+					Description: `The root username for the Managed Database instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The operating status of the Managed Database.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this Managed Database was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Managed Database engine version. (e.g. ` + "`" + `13.2` + "`" + `) ## Import Linode PostgreSQL Databases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_database_postgresql.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -186,7 +418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports no additional attributes, however ` + "`" + `status` + "`" + ` may reflect degraded states. ## Import Linodes Domains can be imported using the Linode Domain ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domains and other Linode resource types.`,
+					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes Reference This resource exports no additional attributes, however ` + "`" + `status` + "`" + ` may reflect degraded states. ## Import Linodes Domains can be imported using the Linode Domain ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domains and other Linode resource types.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -244,7 +476,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) The relative weight of this Record. Higher values are preferred. ## Attributes This resource exports no additional attributes. ## Import Linodes Domain Records can be imported using the Linode Domain ` + "`" + `id` + "`" + ` followed by the Domain Record ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain_record.www-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domain Records and other Linode resource types.`,
+					Description: `(Optional) The relative weight of this Record. Higher values are preferred. ## Attributes Reference This resource exports no additional attributes. ## Import Linodes Domain Records can be imported using the Linode Domain ` + "`" + `id` + "`" + ` followed by the Domain Record ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain_record.www-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domain Records and other Linode resource types.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -281,7 +513,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### inbound and outbound The following arguments are supported in the inbound and outbound rule blocks:`,
+					Description: `(Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only. ### inbound and outbound`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -442,7 +674,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create",
-					Description: `(Defaults to 20 mins) Used when creating the instance image (until the instance is available) ## Attributes This resource exports the following attributes:`,
+					Description: `(Defaults to 20 mins) Used when creating the instance image (until the instance is available) ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -481,7 +713,44 @@ var (
 					Description: `The upstream distribution vendor. Nil for private Images. ## Import Linodes Images can be imported using the Linode Image ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_image.myimage 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of this Image. The ID of private images begin with ` + "`" + `private/` + "`" + ` followed by the numeric identifier of the private image, for example ` + "`" + `private/12345` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this Image was created.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The name of the User who created this Image.`,
+				},
+				resource.Attribute{
+					Name:        "deprecated",
+					Description: `Whether or not this Image is deprecated. Will only be True for deprecated public Images.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `True if the Image is public.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The minimum size this Image needs to deploy. Size is in MB.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `How the Image was created. 'Manual' Images can be created at any time. 'Automatic' images are created automatically from a deleted Linode.`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `Only Images created automatically (from a deleted Linode; type=automatic) will expire.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `The upstream distribution vendor. Nil for private Images. ## Import Linodes Images can be imported using the Linode Image ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_image.myimage 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -555,7 +824,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "booted",
-					Description: `(Optional) Specifies whether the Linode should be ` + "`" + `running` + "`" + ` or ` + "`" + `offline` + "`" + `. If unspecified, the Linode's power status will not be managed by the Provider.`,
+					Description: `(Optional) If true, then the instance is kept or converted into in a running state. If false, the instance will be shutdown. If unspecified, the Linode's power status will not be managed by the Provider.`,
 				},
 				resource.Attribute{
 					Name:        "authorized_keys",
@@ -723,7 +992,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 10 mins) Used when terminating the instance ## Attributes This Linode Instance resource exports the following attributes:`,
+					Description: `(Defaults to 10 mins) Used when terminating the instance ## Attributes Reference This Linode Instance resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -778,7 +1047,229 @@ var (
 					Description: `The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically. If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected. ## Import Linodes Instances can be imported using the Linode ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance.mylinode 1234567 ` + "`" + `` + "`" + `` + "`" + ` When importing an instance, all ` + "`" + `disk` + "`" + ` and ` + "`" + `config` + "`" + ` values must be represented. Imported disks must include their ` + "`" + `label` + "`" + ` value.`,
 				},
 			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the instance, indicating the current readiness state. (` + "`" + `running` + "`" + `, ` + "`" + `offline` + "`" + `, ...)`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `A string containing the Linode's public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `This Linode's Private IPv4 Address, if enabled. The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared. The prefix (` + "`" + `/64` + "`" + `) is included in this attribute.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.disk",
+					Description: `The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.memory",
+					Description: `The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.vcpus",
+					Description: `The number of vcpus this Linode has access to. Typically a Linode will choose to boot with all of its available vcpus, but this can be configured in a Config Profile.`,
+				},
+				resource.Attribute{
+					Name:        "specs.0.transfer",
+					Description: `The amount of network transfer this Linode is allotted each month.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `Information about this Linode's backups status.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `If this Linode has the Backup service enabled.`,
+				},
+				resource.Attribute{
+					Name:        "day",
+					Description: `The day of the week that your Linode's weekly Backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period. If not set manually, then when backups are initially enabled, this may come back as "Scheduling" until the day is automatically selected.`,
+				},
+				resource.Attribute{
+					Name:        "window",
+					Description: `The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically. If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected. ## Import Linodes Instances can be imported using the Linode ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance.mylinode 1234567 ` + "`" + `` + "`" + `` + "`" + ` When importing an instance, all ` + "`" + `disk` + "`" + ` and ` + "`" + `config` + "`" + ` values must be represented. Imported disks must include their ` + "`" + `label` + "`" + ` value.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instance_config",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Instance Config.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The ID of the Linode to create this configuration profile under.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The Config’s label for display purposes only. - - -`,
+				},
+				resource.Attribute{
+					Name:        "booted",
+					Description: `(Optional) If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `(Optional) Optional field for arbitrary User comments on this Config.`,
+				},
+				resource.Attribute{
+					Name:        "kernel",
+					Description: `(Optional) A Kernel ID to boot a Linode with. (default ` + "`" + `linode/latest-64bit` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "memory_limit",
+					Description: `(Optional) The memory limit of the Config. Defaults to the total ram of the Linode.`,
+				},
+				resource.Attribute{
+					Name:        "root_device",
+					Description: `(Optional) The root device to boot. (default ` + "`" + `/dev/sda` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "run_level",
+					Description: `(Optional) Defines the state of your Linode after booting. (` + "`" + `default` + "`" + `, ` + "`" + `single` + "`" + `, ` + "`" + `binbash` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "virt_mode",
+					Description: `(Optional) Controls the virtualization mode. (` + "`" + `paravirt` + "`" + `, ` + "`" + `fullvirt` + "`" + `) ### devices The following attributes are available on devices:`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `(Optional) The Volume ID to map to this ` + "`" + `device` + "`" + ` slot.`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `(Optional) The Disk ID to map to this ` + "`" + `device` + "`" + ` slot ### helpers The following attributes are available on helpers:`,
+				},
+				resource.Attribute{
+					Name:        "devtmpfs_automount",
+					Description: `(Optional) Populates the /dev directory early during boot without udev. (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "distro",
+					Description: `(Optional) Helps maintain correct inittab/upstart console device. (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "modules_dep",
+					Description: `(Optional) Creates a modules dependency file for the Kernel you run. (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) Automatically configures static networking. (default ` + "`" + `true` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "updatedb_disabled",
+					Description: `(Optional) Disables updatedb cron job to avoid disk thrashing. (default ` + "`" + `true` + "`" + `) ### interface The following attributes are available on interface:`,
+				},
+				resource.Attribute{
+					Name:        "purpose",
+					Description: `(Required) The type of interface. (` + "`" + `public` + "`" + `, ` + "`" + `vlan` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "ipam_address",
+					Description: `(Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. ` + "`" + `10.0.0.1/24` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) The name of the VLAN to join. This field is only allowed for interfaces with the ` + "`" + `vlan` + "`" + ` purpose. ## Import Instance Configs can be imported using the ` + "`" + `linode_id` + "`" + ` followed by the Instance Config ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance_config.my-config 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for various Linode resource types.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instance_disk",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Instance Disk.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"disk",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The ID of the Linode to create this Disk under.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The Disk's label for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The size of the Disk in MB.`,
+				},
+				resource.Attribute{
+					Name:        "authorized_keys",
+					Description: `(Optional) A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.`,
+				},
+				resource.Attribute{
+					Name:        "authorized_users",
+					Description: `(Optional) A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the`,
+				},
+				resource.Attribute{
+					Name:        "filesystem",
+					Description: `(Optional) The filesystem of this disk. (` + "`" + `raw` + "`" + `, ` + "`" + `swap` + "`" + `, ` + "`" + `ext3` + "`" + `, ` + "`" + `ext4` + "`" + `, ` + "`" + `initrd` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional) An Image ID to deploy the Linode Disk from.`,
+				},
+				resource.Attribute{
+					Name:        "root_pass",
+					Description: `(Optional) The root user’s password on a newly-created Linode Disk when deploying from an Image.`,
+				},
+				resource.Attribute{
+					Name:        "stackscript_data",
+					Description: `(Optional) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if ` + "`" + `stackscript_id` + "`" + ` is given.`,
+				},
+				resource.Attribute{
+					Name:        "stackscript_id",
+					Description: `(Optional) A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. ## Attributes Reference This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this disk was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `A brief description of this Disk's current state.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this disk was last updated. ## Import Instance Disks can be imported using the ` + "`" + `linode_id` + "`" + ` followed by the Instance Disk ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance_disk.my-disk 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for various Linode resource types.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this disk was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `A brief description of this Disk's current state.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this disk was last updated. ## Import Instance Disks can be imported using the ` + "`" + `linode_id` + "`" + ` followed by the Instance Disk ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance_disk.my-disk 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for various Linode resource types.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -858,6 +1349,29 @@ var (
 					Description: `The type of IP address. (` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `, ` + "`" + `ipv6/pool` + "`" + `, ` + "`" + `ipv6/range` + "`" + `)`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_instance_shared_ips",
+			Category:         "Resources",
+			ShortDescription: `Manages IP addresses shared to a Linode.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"shared",
+				"ips",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "linode_id",
+					Description: `(Required) The ID of the Linode to share the IPs to.`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Required) The set of IPs to share with the Linode.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1073,7 +1587,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -1108,7 +1622,40 @@ var (
 					Description: `The total outbound transfer, in MB, used for this NodeBalancer for the current month ## Import Linodes NodeBalancers can be imported using the Linode NodeBalancer ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer.mynodebalancer 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancers and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `This NodeBalancer's hostname, ending with .nodebalancer.linode.com`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `The Public IPv4 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `The Public IPv6 Address of this NodeBalancer`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When this NodeBalancer was created`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When this NodeBalancer was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "in",
+					Description: `The total transfer, in MB, used by this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "out",
+					Description: `The total inbound transfer, in MB, used for this NodeBalancer for the current month`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `The total outbound transfer, in MB, used for this NodeBalancer for the current month ## Import Linodes NodeBalancers can be imported using the Linode NodeBalancer ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer.mynodebalancer 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancers and other Linode resource types.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1183,7 +1730,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_key",
-					Description: `(Optional) The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as ` + "`" + `<REDACTED>` + "`" + `. Please use the ssl_commonname and ssl_fingerprint to identify the certificate. ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as ` + "`" + `<REDACTED>` + "`" + `. Please use the ssl_commonname and ssl_fingerprint to identify the certificate. ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "ssl_commonname",
@@ -1202,7 +1749,24 @@ var (
 					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests. ## Import NodeBalancer Configs can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_config.http-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Configs and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ssl_commonname",
+					Description: `The read-only common name automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_fingerprint",
+					Description: `The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.`,
+				},
+				resource.Attribute{
+					Name:        "up",
+					Description: `The number of backends considered to be 'UP' and healthy, and that are serving requests.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests. ## Import NodeBalancer Configs can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_config.http-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Configs and other Linode resource types.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1237,7 +1801,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255). ## Attributes This resource exports the following attributes:`,
+					Description: `(Optional) Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255). ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1252,7 +1816,20 @@ var (
 					Description: `The ID of the NodeBalancer this NodeBalancerNode is attached to. ## Import NodeBalancer Nodes can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `config_id` + "`" + ` followed by the NodeBalancer Node ` + "`" + `id` + "`" + `, separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_node.https-foobar-1 1234567,7654321,9999999 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Nodes and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of this node, based on the configured checks of its NodeBalancer Config. (` + "`" + `unknown` + "`" + `, ` + "`" + `UP` + "`" + `, ` + "`" + `DOWN` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `The ID of the NodeBalancerConfig this NodeBalancerNode is attached to.`,
+				},
+				resource.Attribute{
+					Name:        "nodebalancer_id",
+					Description: `The ID of the NodeBalancer this NodeBalancerNode is attached to. ## Import NodeBalancer Nodes can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `config_id` + "`" + ` followed by the NodeBalancer Node ` + "`" + `id` + "`" + `, separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_node.https-foobar-1 1234567,7654321,9999999 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Nodes and other Linode resource types.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1276,7 +1853,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acl",
-					Description: `(Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings [in the Linode API v4 documentation](linode.com/docs/api/object-storage/#object-storage-bucket-access-update__request-body-schema).`,
+					Description: `(Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings [in the Linode API v4 documentation](https://linode.com/docs/api/object-storage/#object-storage-bucket-access-update__request-body-schema).`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -1382,7 +1959,20 @@ var (
 					Description: `Whether or not this key is a limited access key.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `This keypair's access key. This is not secret.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `This keypair's secret key.`,
+				},
+				resource.Attribute{
+					Name:        "limited",
+					Description: `Whether or not this key is a limited access key.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1520,14 +2110,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key",
-					Description: `The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy. ## Attributes This resource exports the following attributes:`,
+					Description: `The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy. ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "created",
 					Description: `The date this SSH Key was created. ## Import Linodes SSH Keys can be imported using the Linode SSH Key ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_sshkey.mysshkey 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date this SSH Key was created. ## Import Linodes SSH Keys can be imported using the Linode SSH Key ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_sshkey.mysshkey 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1553,7 +2148,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "images",
-					Description: `(Required) An array of Image IDs representing the Images that this StackScript is compatible for deploying with. - - -`,
+					Description: `(Required) A set of Image IDs representing the Images that this StackScript is compatible for deploying with. ` + "`" + `any/all` + "`" + ` indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported. - - -`,
 				},
 				resource.Attribute{
 					Name:        "rev_note",
@@ -1616,7 +2211,60 @@ var (
 					Description: `The default value. If not specified, this value will be used. ## Import Linodes StackScripts can be imported using the Linode StackScript ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_stackscript.mystackscript 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "deployments_active",
+					Description: `Count of currently active, deployed Linodes created from this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "user_gravatar_id",
+					Description: `The Gravatar ID for the User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "deployments_total",
+					Description: `The total number of times this StackScript has been deployed.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date this StackScript was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date this StackScript was updated.`,
+				},
+				resource.Attribute{
+					Name:        "user_defined_fields",
+					Description: `This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A human-readable label for the field that will serve as the input prompt for entering the value during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the field.`,
+				},
+				resource.Attribute{
+					Name:        "example",
+					Description: `An example value for the field.`,
+				},
+				resource.Attribute{
+					Name:        "one_of",
+					Description: `A list of acceptable single values for the field.`,
+				},
+				resource.Attribute{
+					Name:        "many_of",
+					Description: `A list of acceptable values for the field in any quantity, combination or order.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `The default value. If not specified, this value will be used. ## Import Linodes StackScripts can be imported using the Linode StackScript ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_stackscript.mystackscript 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1638,7 +2286,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expiry",
-					Description: `When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. ## Attributes This resource exports the following attributes:`,
+					Description: `When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "token",
@@ -1649,7 +2297,16 @@ var (
 					Description: `The date this Token was created. ## Import Linodes Tokens can be imported using the Linode Token ` + "`" + `id` + "`" + `, e.g. The secret token will not be imported. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_token.mytoken 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "token",
+					Description: `The token used to access the API.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date this Token was created. ## Import Linodes Tokens can be imported using the Linode Token ` + "`" + `id` + "`" + `, e.g. The secret token will not be imported. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_token.mytoken 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1722,6 +2379,10 @@ var (
 					Description: `(optional) If true, this User may add Domains.`,
 				},
 				resource.Attribute{
+					Name:        "add_databases",
+					Description: `(optional) If true, this User may add Databases.`,
+				},
+				resource.Attribute{
 					Name:        "add_firewalls",
 					Description: `(optional) If true, this User may add Firewalls.`,
 				},
@@ -1778,6 +2439,10 @@ var (
 				resource.Attribute{
 					Name:        "add_domains",
 					Description: `(optional) If true, this User may add Domains.`,
+				},
+				resource.Attribute{
+					Name:        "add_databases",
+					Description: `(optional) If true, this User may add Databases.`,
 				},
 				resource.Attribute{
 					Name:        "add_firewalls",
@@ -1837,7 +2502,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region where this volume will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions).`,
+					Description: `(Required) The region where this volume will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc. See all regions [here](https://api.linode.com/v4/regions). This field is optional for cloned volumes.`,
+				},
+				resource.Attribute{
+					Name:        "source_volume_id",
+					Description: `(Optional) The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1861,7 +2530,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 10 mins) Used when deleting the volume ## Attributes This resource exports the following attributes:`,
+					Description: `(Defaults to 10 mins) Used when deleting the volume ## Attributes Reference This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1872,7 +2541,16 @@ var (
 					Description: `The full filesystem path for the Volume based on the Volume's label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label ## Import Linodes Volumes can be imported using the Linode Volume ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_volume.myvolume 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Block Storage Volumes and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the Linode Volume. (` + "`" + `creating` + "`" + `, ` + "`" + `active` + "`" + `, ` + "`" + `resizing` + "`" + `, ` + "`" + `contact_support` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_path",
+					Description: `The full filesystem path for the Volume based on the Volume's label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label ## Import Linodes Volumes can be imported using the Linode Volume ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_volume.myvolume 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Block Storage Volumes and other Linode resource types.`,
+				},
+			},
 		},
 	}
 
@@ -1880,27 +2558,31 @@ var (
 
 		"linode_database_access_controls": 0,
 		"linode_database_mysql":           1,
-		"linode_domain":                   2,
-		"linode_domain_record":            3,
-		"linode_firewall":                 4,
-		"linode_firewall_device":          5,
-		"linode_image":                    6,
-		"linode_instance":                 7,
-		"linode_instance_ip":              8,
-		"linode_ipv6_range":               9,
-		"linode_lke_cluster":              10,
-		"linode_nodebalancer":             11,
-		"linode_nodebalancer_config":      12,
-		"linode_nodebalancer_node":        13,
-		"linode_object_storage_bucket":    14,
-		"linode_object_storage_key":       15,
-		"linode_object_storage_object":    16,
-		"linode_rdns":                     17,
-		"linode_sshkey":                   18,
-		"linode_stackscript":              19,
-		"linode_token":                    20,
-		"linode_user":                     21,
-		"linode_volume":                   22,
+		"linode_database_postgresql":      2,
+		"linode_domain":                   3,
+		"linode_domain_record":            4,
+		"linode_firewall":                 5,
+		"linode_firewall_device":          6,
+		"linode_image":                    7,
+		"linode_instance":                 8,
+		"linode_instance_config":          9,
+		"linode_instance_disk":            10,
+		"linode_instance_ip":              11,
+		"linode_instance_shared_ips":      12,
+		"linode_ipv6_range":               13,
+		"linode_lke_cluster":              14,
+		"linode_nodebalancer":             15,
+		"linode_nodebalancer_config":      16,
+		"linode_nodebalancer_node":        17,
+		"linode_object_storage_bucket":    18,
+		"linode_object_storage_key":       19,
+		"linode_object_storage_object":    20,
+		"linode_rdns":                     21,
+		"linode_sshkey":                   22,
+		"linode_stackscript":              23,
+		"linode_token":                    24,
+		"linode_user":                     25,
+		"linode_volume":                   26,
 	}
 )
 

@@ -13,17 +13,41 @@ var (
 			Name:             "",
 			Type:             "pnap_ip_block",
 			Category:         "Resources",
-			ShortDescription: `Provides a phoenixNAP IP Block resource. This can be used to create and delete IP Blocks.`,
+			ShortDescription: `Provides a phoenixNAP IP Block resource. This can be used to create, modify and delete IP Blocks.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
-					Description: `(Required) IP Block location ID. Currently this field should be set to PHX, ASH, SGP, NLD, CHI or SEA.`,
+					Description: `(Required) IP Block location ID. Currently this field should be set to ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + `, ` + "`" + `SEA` + "`" + ` or ` + "`" + `AUS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block_size",
-					Description: `(Required) CIDR IP Block Size. Currently this field should be set to either /31, /30, /29 or /28. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) CIDR IP Block Size. Currently this field should be set to either ` + "`" + `/31` + "`" + `, ` + "`" + `/30` + "`" + `, ` + "`" + `/29` + "`" + ` or ` + "`" + `/28` + "`" + `. For a larger Block Size contact support.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags to set to IP Block, if any.`,
+				},
+				resource.Attribute{
+					Name:        "tag_assignment",
+					Description: `Tag request to assign to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the IP Block. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `IP Block identifier.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -44,10 +68,54 @@ var (
 				resource.Attribute{
 					Name:        "assigned_resource_id",
 					Description: `ID of the resource assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "tag_assignment",
+					Description: `Tag assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "is_billing_tag",
+					Description: `Whether or not to show the tag as part of billing and invoices.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Who the tag was created by.`,
+				},
+				resource.Attribute{
+					Name:        "is_bring_your_own",
+					Description: `True if the IP Block is a "bring your own" block.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when the IP Block was created.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `IP Block identifier.`,
+				},
+				resource.Attribute{
 					Name:        "location",
 					Description: `IP Block location ID.`,
 				},
@@ -66,6 +134,46 @@ var (
 				resource.Attribute{
 					Name:        "assigned_resource_id",
 					Description: `ID of the resource assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "tag_assignment",
+					Description: `Tag assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the IP Block.`,
+				},
+				resource.Attribute{
+					Name:        "is_billing_tag",
+					Description: `Whether or not to show the tag as part of billing and invoices.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Who the tag was created by.`,
+				},
+				resource.Attribute{
+					Name:        "is_bring_your_own",
+					Description: `True if the IP Block is a "bring your own" block.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when the IP Block was created.`,
 				},
 			},
 		},
@@ -87,11 +195,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `(Required) The location of this private network. Supported values are ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + ` and ` + "`" + `SEA` + "`" + `.`,
+					Description: `(Required) The location of this private network. Supported values are ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + `, ` + "`" + `SEA` + "`" + ` and ` + "`" + `AUS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "location_default",
-					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + ``,
+					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
@@ -111,27 +219,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The location of this private network. Supported values are ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + ` and ` + "`" + `SEA` + "`" + `.`,
+					Description: `The location of this private network.`,
 				},
 				resource.Attribute{
 					Name:        "location_default",
-					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + ``,
+					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `IP range associated with this private network in CIDR notation.`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the private network.`,
+				},
+				resource.Attribute{
 					Name:        "servers",
-					Description: `List of server details linked to the Private Network. The Server Details block has 2 fields:`,
+					Description: `(Deprecated) List of server details linked to the private network.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The server identifier.`,
+					Description: `The server identifier.`,
 				},
 				resource.Attribute{
 					Name:        "ips",
 					Description: `List of private IPs associated to the server.`,
+				},
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `A list of resources that are members of this private network.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The resource identifier.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `The resource's type.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `List of public IPs associated to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the private network.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this private network was created.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -149,27 +285,195 @@ var (
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The location of this private network. Supported values are ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + ` and ` + "`" + `SEA` + "`" + `.`,
+					Description: `The location of this private network.`,
 				},
 				resource.Attribute{
 					Name:        "location_default",
-					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + ``,
+					Description: `Identifies network as the default private network for the specified location. Default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `IP range associated with this private network in CIDR notation.`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the private network.`,
+				},
+				resource.Attribute{
 					Name:        "servers",
-					Description: `List of server details linked to the Private Network. The Server Details block has 2 fields:`,
+					Description: `(Deprecated) List of server details linked to the private network.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The server identifier.`,
+					Description: `The server identifier.`,
 				},
 				resource.Attribute{
 					Name:        "ips",
 					Description: `List of private IPs associated to the server.`,
+				},
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `A list of resources that are members of this private network.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The resource identifier.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `The resource's type.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `List of public IPs associated to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the private network.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this private network was created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pnap_public_network",
+			Category:         "Resources",
+			ShortDescription: `Provides a phoenixNAP Public Network resource. This can be used to create, modify, and delete public networks.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The friendly name of this public network. This name should be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location of this public network. Supported values are ` + "`" + `PHX` + "`" + `, ` + "`" + `ASH` + "`" + `, ` + "`" + `SGP` + "`" + `, ` + "`" + `NLD` + "`" + `, ` + "`" + `CHI` + "`" + `, ` + "`" + `SEA` + "`" + ` and ` + "`" + `AUS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ip_blocks",
+					Description: `A list of IP Blocks that will be associated with this public network (10 items at most).`,
+				},
+				resource.Attribute{
+					Name:        "public_network_ip_block",
+					Description: `The assigned IP Block to the public network.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The IP Block identifier. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The public network identifier.`,
+				},
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `A list of resources that are members of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The resource identifier.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `The resource's type.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `List of public IPs associated to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The friendly name of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the public network.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this public network was created.`,
+				},
+				resource.Attribute{
+					Name:        "ip_blocks",
+					Description: `A list of IP Blocks that are associated with this public network.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_ip_block",
+					Description: `The assigned IP Block to the public network.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The IP Block identifier.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The public network identifier.`,
+				},
+				resource.Attribute{
+					Name:        "memberships",
+					Description: `A list of resources that are members of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `The resource identifier.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `The resource's type.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `List of public IPs associated to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The friendly name of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this public network.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the public network.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this public network was created.`,
+				},
+				resource.Attribute{
+					Name:        "ip_blocks",
+					Description: `A list of IP Blocks that are associated with this public network.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_ip_block",
+					Description: `The assigned IP Block to the public network.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The IP Block identifier.`,
 				},
 			},
 		},
@@ -533,6 +837,10 @@ var (
 					Name:        "assigned_resource_id",
 					Description: `The resource ID currently being assigned to reservation.`,
 				},
+				resource.Attribute{
+					Name:        "next_billing_date",
+					Description: `Next billing date for reservation.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -594,6 +902,10 @@ var (
 				resource.Attribute{
 					Name:        "assigned_resource_id",
 					Description: `The resource ID currently being assigned to reservation.`,
+				},
+				resource.Attribute{
+					Name:        "next_billing_date",
+					Description: `Next billing date for reservation.`,
 				},
 			},
 		},
@@ -658,16 +970,44 @@ var (
 					Description: `Define list of IPs allowed to access the Management UI. Supported in single IP, CIDR and range format. When undefined, Management UI is disabled.Must contain at least 1 item.`,
 				},
 				resource.Attribute{
+					Name:        "install_os_to_ram",
+					Description: `If true, OS will be installed to and booted from the server's RAM. On restart RAM OS will be lost and the server will not be reachable unless a custom bootable OS has been deployed. Only supported for ubuntu/focal. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud-init configuration details.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags to set to server, if any.`,
+				},
+				resource.Attribute{
 					Name:        "network_configuration",
 					Description: `Entire network details of bare metal server. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `Action to perform on server. Allowed actions are: reboot, reset, powered-on, powered-off, shutdown. The ` + "`" + `network_configuration` + "`" + ` block has 2 fields: ` + "`" + `private_network_configuration` + "`" + ` and ` + "`" + `ip_blocks_configuration` + "`" + `. The ` + "`" + `private_network_configuration` + "`" + ` block has 3 fields:`,
+					Description: `Action to perform on server. Allowed actions are: reboot, reset (deprecated), powered-on, powered-off, shutdown.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `Query parameter controlling advanced features availability. Currently applicable for networking. It is advised to use with caution since it might lead to unhealthy setups. The ` + "`" + `cloud_init` + "`" + ` block has one field:`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `User data for the [cloud-init](https://cloudinit.readthedocs.io/en/latest/) configuration in base64 encoding. NoCloud format is supported. Follow the [instructions](https://phoenixnap.com/kb/bmc-cloud-init) on how to provision a server using cloud-init. Only ubuntu/bionic and ubuntu/focal are supported. The ` + "`" + `tags` + "`" + ` block has field ` + "`" + `tag_assignment` + "`" + `. The ` + "`" + `tag_assignment` + "`" + ` block has 2 fields:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the IP Block. The ` + "`" + `network_configuration` + "`" + ` block has 4 fields: ` + "`" + `gateway_address` + "`" + `, ` + "`" + `private_network_configuration` + "`" + `, ` + "`" + `ip_blocks_configuration` + "`" + ` and ` + "`" + `public_network_configuration` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "gateway_address",
-					Description: `The address of the gateway assigned / to assign to the server. It'll be null and won't be displayed as part of response body if server is a member of both public and private networks. When used as part of request body, it has to match one of the IP addresses used in the existing assigned private networks for the relevant location. Also, this field can be submitted only when provisioning a server without being a member of any public network.`,
+					Description: `(Deprecated) The address of the gateway assigned / to assign to the server. When used as part of request body, it has to match one of the IP addresses used in the existing assigned private networks for the relevant location. Deprecated in favour of a common gateway address across all networks available under ` + "`" + `network_configuration` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "configuration_type",
@@ -687,7 +1027,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dhcp",
-					Description: `Determines whether DHCP is enabled for this server. Should be false if ips is not an empty list. Not supported for proxmox OS. Default value is ` + "`" + `false` + "`" + `. The ` + "`" + `ip_blocks_configuration` + "`" + ` is the second field of the ` + "`" + `network_configuration` + "`" + ` block. The ` + "`" + `ip_blocks_configuration` + "`" + ` block has 2 fields:`,
+					Description: `Determines whether DHCP is enabled for this server. Should be false if ips is not an empty list. Not supported for proxmox OS. Default value is ` + "`" + `false` + "`" + `. The ` + "`" + `ip_blocks_configuration` + "`" + ` is the third field of the ` + "`" + `network_configuration` + "`" + ` block. The ` + "`" + `ip_blocks_configuration` + "`" + ` block has 2 fields:`,
 				},
 				resource.Attribute{
 					Name:        "configuration_type",
@@ -703,7 +1043,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
-					Description: `The VLAN on which this IP block has been configured within the network switch. ## Attributes Reference The following attributes are exported:`,
+					Description: `The VLAN on which this IP block has been configured within the network switch. The ` + "`" + `public_network_configuration` + "`" + ` is the fourth field of the ` + "`" + `network_configuration` + "`" + ` block. The ` + "`" + `public_network_configuration` + "`" + ` block has field ` + "`" + `public_networks` + "`" + `: The ` + "`" + `public_networks` + "`" + ` block has field ` + "`" + `server_public_network` + "`" + `. The ` + "`" + `server_public_network` + "`" + ` block has 2 fields:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The network identifier.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `(Required) IPs to configure on the server. IPs must be within the network's range. Must contain at least 1 item. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cpu",
@@ -794,12 +1142,48 @@ var (
 					Description: `A list of IPs allowed to access the Management UI. Supported in single IP, CIDR and range format. When undefined, Management UI is disabled.`,
 				},
 				resource.Attribute{
+					Name:        "install_os_to_ram",
+					Description: `If true, OS will be installed to and booted from the server's RAM. On restart RAM OS will be lost and the server will not be reachable unless a custom bootable OS has been deployed. Only supported for ubuntu/focal. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud-init configuration details.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned if any.`,
+				},
+				resource.Attribute{
 					Name:        "network_configuration",
 					Description: `Entire network details of bare metal server.`,
 				},
 				resource.Attribute{
 					Name:        "provisioned_on",
-					Description: `Date and time when server was provisioned.`,
+					Description: `Date and time when server was provisioned. The ` + "`" + `cloud_init` + "`" + ` block has one field:`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `User data for the cloud-init configuration in base64 encoding. The ` + "`" + `tags` + "`" + ` block has field ` + "`" + `tag_assignment` + "`" + `. The ` + "`" + `tag_assignment` + "`" + ` block has 5 fields:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "is_billing_tag",
+					Description: `Whether or not to show the tag as part of billing and invoices.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Who the tag was created by.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -892,12 +1276,48 @@ var (
 					Description: `A list of IPs allowed to access the Management UI. Supported in single IP, CIDR and range format. When undefined, Management UI is disabled.`,
 				},
 				resource.Attribute{
+					Name:        "install_os_to_ram",
+					Description: `If true, OS will be installed to and booted from the server's RAM. On restart RAM OS will be lost and the server will not be reachable unless a custom bootable OS has been deployed. Only supported for ubuntu/focal. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud-init configuration details.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned if any.`,
+				},
+				resource.Attribute{
 					Name:        "network_configuration",
 					Description: `Entire network details of bare metal server.`,
 				},
 				resource.Attribute{
 					Name:        "provisioned_on",
-					Description: `Date and time when server was provisioned.`,
+					Description: `Date and time when server was provisioned. The ` + "`" + `cloud_init` + "`" + ` block has one field:`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `User data for the cloud-init configuration in base64 encoding. The ` + "`" + `tags` + "`" + ` block has field ` + "`" + `tag_assignment` + "`" + `. The ` + "`" + `tag_assignment` + "`" + ` block has 5 fields:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the tag.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the tag assigned to the server.`,
+				},
+				resource.Attribute{
+					Name:        "is_billing_tag",
+					Description: `Whether or not to show the tag as part of billing and invoices.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Who the tag was created by.`,
 				},
 			},
 		},
@@ -970,6 +1390,262 @@ var (
 				resource.Attribute{
 					Name:        "lastUpdatedOn",
 					Description: `Date and time of last update.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "pnap_storage_network",
+			Category:         "Resources",
+			ShortDescription: `Provides a phoenixNAP Storage Network resource. This can be used to create, modify and delete storage networks.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The friendly name of this storage network. This name should be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location of this storage network. Currently this field should be set to ` + "`" + `PHX` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `(Required) Volumes to be created alongside storage. Currently only 1 volume is supported (must contain exactly one item).`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Volume to be created alongside storage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Volume friendly name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Volume description.`,
+				},
+				resource.Attribute{
+					Name:        "path_suffix",
+					Description: `Last part of volume's path.`,
+				},
+				resource.Attribute{
+					Name:        "capacity_in_gb",
+					Description: `(Required) Capacity of volume in GB. Currently only whole numbers and multiples of 1000 GB are supported. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The storage network identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The friendly name of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Storage network's status.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `IP of the storage network`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this storage network was created.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `Volumes for the storage network.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `Volume for the storage network.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Volume ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Volume friendly name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Volume description.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Volume's full path. It is in form of ` + "`" + `/{volumeId}/pathSuffix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path_suffix",
+					Description: `Last part of volume's path.`,
+				},
+				resource.Attribute{
+					Name:        "capacity_in_gb",
+					Description: `Maximum capacity in GB.`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity_in_gb",
+					Description: `Used capacity in GB, updated periodically.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `File system protocol.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Volume's status.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this volume was created.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `Permissions for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "nfs",
+					Description: `NFS specific permissions on the volume.`,
+				},
+				resource.Attribute{
+					Name:        "read_write",
+					Description: `Read/Write access.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Read only access.`,
+				},
+				resource.Attribute{
+					Name:        "root_squash",
+					Description: `Root squash permission.`,
+				},
+				resource.Attribute{
+					Name:        "no_squash",
+					Description: `No squash permission.`,
+				},
+				resource.Attribute{
+					Name:        "all_squash",
+					Description: `All squash permission.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The storage network identifier.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The friendly name of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Storage network's status.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of this storage network.`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `IP of the storage network`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this storage network was created.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `Volumes for the storage network.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `Volume for the storage network.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Volume ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Volume friendly name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Volume description.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Volume's full path. It is in form of ` + "`" + `/{volumeId}/pathSuffix` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "path_suffix",
+					Description: `Last part of volume's path.`,
+				},
+				resource.Attribute{
+					Name:        "capacity_in_gb",
+					Description: `Maximum capacity in GB.`,
+				},
+				resource.Attribute{
+					Name:        "used_capacity_in_gb",
+					Description: `Used capacity in GB, updated periodically.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `File system protocol.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Volume's status.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Date and time when this volume was created.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `Permissions for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "nfs",
+					Description: `NFS specific permissions on the volume.`,
+				},
+				resource.Attribute{
+					Name:        "read_write",
+					Description: `Read/Write access.`,
+				},
+				resource.Attribute{
+					Name:        "read_only",
+					Description: `Read only access.`,
+				},
+				resource.Attribute{
+					Name:        "root_squash",
+					Description: `Root squash permission.`,
+				},
+				resource.Attribute{
+					Name:        "no_squash",
+					Description: `No squash permission.`,
+				},
+				resource.Attribute{
+					Name:        "all_squash",
+					Description: `All squash permission.`,
 				},
 			},
 		},
@@ -1067,11 +1743,13 @@ var (
 
 		"pnap_ip_block":        0,
 		"pnap_private_network": 1,
-		"pnap_rancher_cluster": 2,
-		"pnap_reservation":     3,
-		"pnap_server":          4,
-		"pnap_ssh_key":         5,
-		"pnap_tag":             6,
+		"pnap_public_network":  2,
+		"pnap_rancher_cluster": 3,
+		"pnap_reservation":     4,
+		"pnap_server":          5,
+		"pnap_ssh_key":         6,
+		"pnap_storage_network": 7,
+		"pnap_tag":             8,
 	}
 )
 

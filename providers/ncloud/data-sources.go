@@ -819,6 +819,562 @@ This module can be useful for getting detail of Snapshot (Block Storage) created
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_cdss_cluster",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster id.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Service Group Instance number.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "kafka_version_code",
+					Description: `Cloud Data Streaming Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "config_group_no",
+					Description: `ConfigGroup number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "cmak",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `CMAK access ID. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `CMAK access password. Must be at least 8 characters and contain at least one of each: English uppercase letter, lowercase letter, special character, and number.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "broker_nodes",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the broker node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the broker node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of broker nodes. At least 3 units, up to 10 units allowed. (Can only be increased)`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Broker node storage capacity. At least 100 GB, up to 2000 GB. Must be in units of 10 GB.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `List of broker nodes (Port 9092).`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `List of broker nodes (Port 9093).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext",
+					Description: `List of public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls",
+					Description: `List of public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_private_endpoint_tls",
+					Description: `Editing details of the hosts file (Private IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_public_endpoint_tls",
+					Description: `Editing details of the hosts file (Public IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `List of ZooKeeper nodes (Port 2181).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster id.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Service Group Instance number.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "kafka_version_code",
+					Description: `Cloud Data Streaming Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "config_group_no",
+					Description: `ConfigGroup number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "cmak",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `CMAK access ID. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `CMAK access password. Must be at least 8 characters and contain at least one of each: English uppercase letter, lowercase letter, special character, and number.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "broker_nodes",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the broker node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the broker node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of broker nodes. At least 3 units, up to 10 units allowed. (Can only be increased)`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Broker node storage capacity. At least 100 GB, up to 2000 GB. Must be in units of 10 GB.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `List of broker nodes (Port 9092).`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `List of broker nodes (Port 9093).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext",
+					Description: `List of public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls",
+					Description: `List of public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_private_endpoint_tls",
+					Description: `Editing details of the hosts file (Private IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_public_endpoint_tls",
+					Description: `Editing details of the hosts file (Public IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `List of ZooKeeper nodes (Port 2181).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_config_group",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kafka_version_code",
+					Description: `(Required) Cloud Data Streaming Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ConfigGroup id.`,
+				},
+				resource.Attribute{
+					Name:        "config_group_no",
+					Description: `Config group number.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `ConfigGroup name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `ConfigGroup description.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ConfigGroup id.`,
+				},
+				resource.Attribute{
+					Name:        "config_group_no",
+					Description: `Config group number.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `ConfigGroup name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `ConfigGroup description.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_kafka_version",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of kafka version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Kafka version name`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of kafka version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Kafka version name`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_kafka_versions",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kafka_versions",
+					Description: `A list of Kafka version`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kafka_versions",
+					Description: `A list of Kafka version`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_node_product",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `(Required) OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `(Required) Subnet number where the node will be located.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of server product.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_count",
+					Description: `CPU count.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Memory size.`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type code.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of server product.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_count",
+					Description: `CPU count.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Memory size.`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `Product type code.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_node_products",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `(Required) OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `(Required) Subnet number where the node will be located. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "node_products",
+					Description: `A list of Server product`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_products",
+					Description: `A list of Server product`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_os_image",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of server image product.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Os image name`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of server image product.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Os image name`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_os_images",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_images",
+					Description: `A list of Os image`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_images",
+					Description: `A list of Os image`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_init_script",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -2042,10 +2598,6 @@ This resource is useful for look up the list of Network ACL in the region.
 					Description: `(Optional) name of the specific Network ACLs to retrieve.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) description to create`,
-				},
-				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Custom filter block as described below.`,
 				},
@@ -2272,6 +2824,10 @@ Provides a Kubernetes Service cluster data.
 					Description: `Subnet No. list.`,
 				},
 				resource.Attribute{
+					Name:        "public_network",
+					Description: `Public Subnet Network`,
+				},
+				resource.Attribute{
 					Name:        "kube_network_plugin",
 					Description: `Kubernetes network plugin.`,
 				},
@@ -2298,6 +2854,10 @@ Provides a Kubernetes Service cluster data.
 				resource.Attribute{
 					Name:        "k8s_version",
 					Description: `Kubenretes version.`,
+				},
+				resource.Attribute{
+					Name:        "acg_no",
+					Description: `The ID of cluster ACG.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2326,6 +2886,10 @@ Provides a Kubernetes Service cluster data.
 					Description: `Subnet No. list.`,
 				},
 				resource.Attribute{
+					Name:        "public_network",
+					Description: `Public Subnet Network`,
+				},
+				resource.Attribute{
 					Name:        "kube_network_plugin",
 					Description: `Kubernetes network plugin.`,
 				},
@@ -2352,6 +2916,10 @@ Provides a Kubernetes Service cluster data.
 				resource.Attribute{
 					Name:        "k8s_version",
 					Description: `Kubenretes version.`,
+				},
+				resource.Attribute{
+					Name:        "acg_no",
+					Description: `The ID of cluster ACG.`,
 				},
 			},
 		},
@@ -2488,7 +3056,39 @@ Provides a Kubernetes Service nodepool data.
 				},
 				resource.Attribute{
 					Name:        "instance_no",
-					Description: `Instance No.`,
+					Description: `Nodepool instance No.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `The ID of server instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Server spec.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP.`,
+				},
+				resource.Attribute{
+					Name:        "node_status",
+					Description: `Node Status.`,
+				},
+				resource.Attribute{
+					Name:        "container_version",
+					Description: `Container version of node.`,
+				},
+				resource.Attribute{
+					Name:        "kernel_version",
+					Description: `kernel version of node.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2522,7 +3122,39 @@ Provides a Kubernetes Service nodepool data.
 				},
 				resource.Attribute{
 					Name:        "instance_no",
-					Description: `Instance No.`,
+					Description: `Nodepool instance No.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `The ID of server instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Server spec.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP.`,
+				},
+				resource.Attribute{
+					Name:        "node_status",
+					Description: `Node Status.`,
+				},
+				resource.Attribute{
+					Name:        "container_version",
+					Description: `Container version of node.`,
+				},
+				resource.Attribute{
+					Name:        "kernel_version",
+					Description: `kernel version of node.`,
 				},
 			},
 		},
@@ -3778,6 +4410,2561 @@ To this end, we provide data source by which you can search a server product.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_servers",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to get multiple ` + "`" + `ncloud_server` + "`" + ` ids 
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_ses_cluster",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Search Engine Service cluster data.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Cluster Instance No. ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "os_image_code",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "search_engine",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Search Engine Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Search Engine UserName. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Search Engine Port.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_port",
+					Description: `Search Engine Dashboard Port.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "is_dual_manager",
+					Description: `Redundancy of manager node`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "data_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the data node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the data node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of data nodes. At least 3 units, up to 10 units allowed.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Data node storage capacity.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "master_node(Optional)",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the master node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of master nodes.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_instance_no_list",
+					Description: `List of Manager node's instance number`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_list",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "compute_instance_name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `Required Login key to access Manager node server`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "os_image_code",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "search_engine",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Search Engine Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Search Engine UserName. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Search Engine Port.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_port",
+					Description: `Search Engine Dashboard Port.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "is_dual_manager",
+					Description: `Redundancy of manager node`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "data_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the data node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the data node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of data nodes. At least 3 units, up to 10 units allowed.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Data node storage capacity.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "master_node(Optional)",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the master node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of master nodes.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_instance_no_list",
+					Description: `List of Manager node's instance number`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_list",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "compute_instance_name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `Required Login key to access Manager node server`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_ses_clusters",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of Search Engine Service cluster uuid.
+
+`,
+			Keywords:  []string{},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A List of Search Engine Service cluster. ### Search Engine Service Cluster Reference ` + "`" + `clusters` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Cluster Instance No(Same as Cluster Id).`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `Cluster name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_ses_node_os_images",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of available Server OS images.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `A List of OS image product. ### OS Image Product Reference ` + "`" + `images` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of OS image product.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS image name`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "images",
+					Description: `A List of OS image product. ### OS Image Product Reference ` + "`" + `images` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of OS image product.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS image name`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_ses_node_products",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of available Server product.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_image_code",
+					Description: `(Required) OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `(Required) Subnet number where the node will be located.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "codes",
+					Description: `A List of server product. ### Node Product Reference ` + "`" + `codes` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The value of server product code.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_count",
+					Description: `CPU count.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Memory size.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Product name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "codes",
+					Description: `A List of server product. ### Node Product Reference ` + "`" + `codes` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The value of server product code.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_count",
+					Description: `CPU count.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Memory size.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Product name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_ses_versions",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Provides list of available Search Engine Service versions.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A List of SES Version. ### Search Engine Service Version Reference ` + "`" + `versions` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Code of SES Version`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SES version name`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `SES version type`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `SES version`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "versions",
+					Description: `A List of SES Version. ### Search Engine Service Version Reference ` + "`" + `versions` + "`" + ` are also exported with the following attributes, when there are relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Code of SES Version`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SES version name`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `SES version type`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `SES version`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up Sourcebuild project detail in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Sourcebuild Project ID. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "project_no",
+					Description: `Sourcebuild Project ID. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the Sourcebuild Project.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Sourcebuild project description.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Build target's type and config.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Build target type.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Build target config.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `Repository name to build.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `Branch to build.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Build environment.`,
+				},
+				resource.Attribute{
+					Name:        "compute",
+					Description: `Computing environment to build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Computing type id.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Information about the build environment image.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Build environment image type.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Build environment image config.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `OS config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `OS id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `runtime id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `runtime name.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `runtime version.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `runtime version id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `runtime version name.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `Registry name of NCP Container Registry where the image to build is located.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Container image name to build.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Container image tag to build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_engine",
+					Description: `Docker engine to use when building docker image.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to use of docker engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Docker engine id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Build timeout (in Minutes).`,
+				},
+				resource.Attribute{
+					Name:        "env_var",
+					Description: `Environment variable to use for build.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "build_command",
+					Description: `Commands to execute in build.`,
+				},
+				resource.Attribute{
+					Name:        "pre_build",
+					Description: `Commands before build.`,
+				},
+				resource.Attribute{
+					Name:        "in_build",
+					Description: `Commands during build.`,
+				},
+				resource.Attribute{
+					Name:        "post_build",
+					Description: `Commands after build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_image_build",
+					Description: `Docker image build config.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to use of dockerbuild.`,
+				},
+				resource.Attribute{
+					Name:        "dockerfile",
+					Description: `Dockerfile path in build source folder.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `Registry name of NCP Container Registry to store the image.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `Save status of the latest tag.`,
+				},
+				resource.Attribute{
+					Name:        "artifact",
+					Description: `Artifact to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Location to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_to_upload",
+					Description: `Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `Bucket name of NCP Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `path in the NCP Object Storage bucket to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "filename",
+					Description: `File name to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `Whether or not to backup build results.`,
+				},
+				resource.Attribute{
+					Name:        "build_image_upload",
+					Description: `Save build environment after completing this build.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to save build environment.`,
+				},
+				resource.Attribute{
+					Name:        "container_registry_name",
+					Description: `Registry name of NCP Container Registry to store the image of the build environment after completing the build.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `Save status of the latest tag.`,
+				},
+				resource.Attribute{
+					Name:        "linked",
+					Description: `Set up linkage with other services related this build.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_log_analytics",
+					Description: `Whether or not to save build log in the NCP Cloud Log Analytics.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_log_analytics",
+					Description: `Whether or not to check safety using NCP File Safer.`,
+				},
+				resource.Attribute{
+					Name:        "lastbuild",
+					Description: `Information of last build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of last build.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of last build.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Time of last build.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Information about creating a Sourcebuild project.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Created user`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Created time`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_no",
+					Description: `Sourcebuild Project ID. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the Sourcebuild Project.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Sourcebuild project description.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Build target's type and config.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Build target type.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Build target config.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `Repository name to build.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `Branch to build.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Build environment.`,
+				},
+				resource.Attribute{
+					Name:        "compute",
+					Description: `Computing environment to build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Computing type id.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Information about the build environment image.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Build environment image type.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Build environment image config.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `OS config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `OS id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `runtime id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `runtime name.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `runtime version.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `runtime version id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `runtime version name.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `Registry name of NCP Container Registry where the image to build is located.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Container image name to build.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Container image tag to build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_engine",
+					Description: `Docker engine to use when building docker image.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to use of docker engine.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Docker engine id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Build timeout (in Minutes).`,
+				},
+				resource.Attribute{
+					Name:        "env_var",
+					Description: `Environment variable to use for build.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "build_command",
+					Description: `Commands to execute in build.`,
+				},
+				resource.Attribute{
+					Name:        "pre_build",
+					Description: `Commands before build.`,
+				},
+				resource.Attribute{
+					Name:        "in_build",
+					Description: `Commands during build.`,
+				},
+				resource.Attribute{
+					Name:        "post_build",
+					Description: `Commands after build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_image_build",
+					Description: `Docker image build config.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to use of dockerbuild.`,
+				},
+				resource.Attribute{
+					Name:        "dockerfile",
+					Description: `Dockerfile path in build source folder.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `Registry name of NCP Container Registry to store the image.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `Save status of the latest tag.`,
+				},
+				resource.Attribute{
+					Name:        "artifact",
+					Description: `Artifact to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Location to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_to_upload",
+					Description: `Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `Bucket name of NCP Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `path in the NCP Object Storage bucket to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "filename",
+					Description: `File name to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `Whether or not to backup build results.`,
+				},
+				resource.Attribute{
+					Name:        "build_image_upload",
+					Description: `Save build environment after completing this build.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `Whether or not to save build environment.`,
+				},
+				resource.Attribute{
+					Name:        "container_registry_name",
+					Description: `Registry name of NCP Container Registry to store the image of the build environment after completing the build.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `Save status of the latest tag.`,
+				},
+				resource.Attribute{
+					Name:        "linked",
+					Description: `Set up linkage with other services related this build.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_log_analytics",
+					Description: `Whether or not to save build log in the NCP Cloud Log Analytics.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_log_analytics",
+					Description: `Whether or not to check safety using NCP File Safer.`,
+				},
+				resource.Attribute{
+					Name:        "lastbuild",
+					Description: `Information of last build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of last build.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of last build.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Time of last build.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Information about creating a Sourcebuild project.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Created user`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Created time`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project_computes",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild compute in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "computes",
+					Description: `Computing environments available at Sourcebuild. ### Computes Reference ` + "`" + `computes` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Compute ID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "computes",
+					Description: `Computing environments available at Sourcebuild. ### Computes Reference ` + "`" + `computes` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Compute ID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project_docker_engines",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild docker engine in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "docker_engines",
+					Description: `Docker engines available at Sourcebuild. ### Docker Engines Reference ` + "`" + `docker_engines` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Docker engine ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "docker_engines",
+					Description: `Docker engines available at Sourcebuild. ### Docker Engines Reference ` + "`" + `docker_engines` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Docker engine ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project_os",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild os in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `OS available at Sourcebuild. ### OS Reference ` + "`" + `os` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `OS ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os",
+					Description: `OS available at Sourcebuild. ### OS Reference ` + "`" + `os` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `OS ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project_os_runtime_versions",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild runtime version environment in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `(Required) OS ID which runtime belongs.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_id",
+					Description: `(Required) Runtime ID which runtime version belongs.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "runtime_versions",
+					Description: `Runtime versions available at Sourcebuild. ### Runtime Versions Reference ` + "`" + `runtime_versions` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Runtime version ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime version name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "runtime_versions",
+					Description: `Runtime versions available at Sourcebuild. ### Runtime Versions Reference ` + "`" + `runtime_versions` + "`" + ` is also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Runtime version ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime version name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project_os_runtimes",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild runtime environment in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "os_id",
+					Description: `(Required) OS ID which runtime belongs.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "runtimes",
+					Description: `Runtimes available at Sourcebuild. ### Runtime Reference ` + "`" + `runtimes` + "`" + ` are is exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Runtime ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "runtimes",
+					Description: `Runtimes available at Sourcebuild. ### Runtime Reference ` + "`" + `runtimes` + "`" + ` are is exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Runtime ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_projects",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcebuild project in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_name",
+					Description: `(Optional) Search by project name (project including string).`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "projects",
+					Description: `Sourcebuild projects. ### Project Reference ` + "`" + `projects` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcebuild project ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Sourcebuild project Name.`,
+				},
+				resource.Attribute{
+					Name:        "action_name",
+					Description: `Permission status for searching details.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Permission name for searching details. (` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + `)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "projects",
+					Description: `Sourcebuild projects. ### Project Reference ` + "`" + `projects` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcebuild project ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Sourcebuild project Name.`,
+				},
+				resource.Attribute{
+					Name:        "action_name",
+					Description: `Permission status for searching details.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Permission name for searching details. (` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + `)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcecommit_repositories",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note:** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcecommit repository in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `The list of repositories. ### Repository Reference ` + "`" + `repositories` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Sourcecommit repository Name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `The list of repositories. ### Repository Reference ` + "`" + `repositories` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Sourcecommit repository Name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcecommit_repository",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note:** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is  useful for getting detail of Sourcecommit repository which is already created, such as getting git address of Sourcecommit repository.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the specific Repository to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of reposiory.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator of repository.`,
+				},
+				resource.Attribute{
+					Name:        "git_https_url",
+					Description: `The https git address of repository.`,
+				},
+				resource.Attribute{
+					Name:        "git_ssh_url",
+					Description: `The ssh git address of repository.`,
+				},
+				resource.Attribute{
+					Name:        "file_safer",
+					Description: `whether to use the [File Safer](https://www.ncloud.com/product/security/fileSafer) service`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of reposiory.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `The creator of repository.`,
+				},
+				resource.Attribute{
+					Name:        "git_https_url",
+					Description: `The https git address of repository.`,
+				},
+				resource.Attribute{
+					Name:        "git_ssh_url",
+					Description: `The ssh git address of repository.`,
+				},
+				resource.Attribute{
+					Name:        "file_safer",
+					Description: `whether to use the [File Safer](https://www.ncloud.com/product/security/fileSafer) service`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stage",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+-> **Note:** This data source is a beta release. Some features may change in the future.
+
+This resource is useful for look up the list of Sourcedeploy stage detail in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The ID of Sourcedeploy stage. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of stage.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `server`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_no",
+					Description: `The ID of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_name",
+					Description: `The name of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `The uuid of Kubernetes Service Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of Kubernetes Service Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `The name of ObjectStorage bucket.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of stage.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `server`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_no",
+					Description: `The ID of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_name",
+					Description: `The name of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `The uuid of Kubernetes Service Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of Kubernetes Service Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `The name of ObjectStorage bucket.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stage_scenario",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+-> **Note:** This data source is a beta release. Some features may change in the future.
+
+This resource is useful for look up the list of Sourcedeploy scenario in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "stage_id",
+					Description: `(Required) The ID of Sourcedeploy stage.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The ID of Sourcedeploy scenario. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of scenario.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Sourcedeploy project description.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `scenario config.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `Deployment strategy.`,
+				},
+				resource.Attribute{
+					Name:        "file",
+					Description: `Deployment file.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `File type.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `Objectstorage config.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The Name of ObjectStorage bucket.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `ObjectStorage object .`,
+				},
+				resource.Attribute{
+					Name:        "source_build",
+					Description: `Sourcebuild config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of SourceBiuld project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of SourceBuild project.`,
+				},
+				resource.Attribute{
+					Name:        "rollboack",
+					Description: `Rollback on deployment failure.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_command",
+					Description: `Commands to execute in deploy.`,
+				},
+				resource.Attribute{
+					Name:        "pre_deploy",
+					Description: `Commands before deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `Deploy Path.`,
+				},
+				resource.Attribute{
+					Name:        "post_deploy",
+					Description: `Commands after deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `Loadbalancer target group for blue-green deployment.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_no",
+					Description: `Loadbalancer Target Group no.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_name",
+					Description: `The name of Loadbalancer Target Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete_server",
+					Description: `Whether to delete Servers in the auto scaling group.`,
+				},
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `Manifest file for Kubernetesservice deployment.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Repository type.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `The name of repository.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `The name of repository branch.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `File path.`,
+				},
+				resource.Attribute{
+					Name:        "canary_config",
+					Description: `config when deploying Kubernetesservice canary.`,
+				},
+				resource.Attribute{
+					Name:        "canary_count",
+					Description: `Number of baseline and canary pod.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_type",
+					Description: `Canary analysis method.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Maximum time of deployment/cancellation.`,
+				},
+				resource.Attribute{
+					Name:        "prometheus",
+					Description: `Prometheus Url.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Analysis environment.`,
+				},
+				resource.Attribute{
+					Name:        "baseline",
+					Description: `Analysis environment variable > baseline.`,
+				},
+				resource.Attribute{
+					Name:        "canary",
+					Description: `Analysis environment variable > canary.`,
+				},
+				resource.Attribute{
+					Name:        "metrics",
+					Description: `Metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Metric name.`,
+				},
+				resource.Attribute{
+					Name:        "success_criteria",
+					Description: `Success criteria.`,
+				},
+				resource.Attribute{
+					Name:        "query_type",
+					Description: `Query type.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `Metric.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Filter.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `Query.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_config",
+					Description: `Analysis config.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Analysis time.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `Analysis delay time.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Analysis cycle.`,
+				},
+				resource.Attribute{
+					Name:        "step",
+					Description: `Metric collection cycle.`,
+				},
+				resource.Attribute{
+					Name:        "pass_score",
+					Description: `Analysis success score.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `Deploy Path.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of scenario.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Sourcedeploy project description.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `scenario config.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `Deployment strategy.`,
+				},
+				resource.Attribute{
+					Name:        "file",
+					Description: `Deployment file.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `File type.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `Objectstorage config.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `The Name of ObjectStorage bucket.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `ObjectStorage object .`,
+				},
+				resource.Attribute{
+					Name:        "source_build",
+					Description: `Sourcebuild config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of SourceBiuld project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of SourceBuild project.`,
+				},
+				resource.Attribute{
+					Name:        "rollboack",
+					Description: `Rollback on deployment failure.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_command",
+					Description: `Commands to execute in deploy.`,
+				},
+				resource.Attribute{
+					Name:        "pre_deploy",
+					Description: `Commands before deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `Deploy Path.`,
+				},
+				resource.Attribute{
+					Name:        "post_deploy",
+					Description: `Commands after deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `Loadbalancer target group for blue-green deployment.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_no",
+					Description: `Loadbalancer Target Group no.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_name",
+					Description: `The name of Loadbalancer Target Group.`,
+				},
+				resource.Attribute{
+					Name:        "delete_server",
+					Description: `Whether to delete Servers in the auto scaling group.`,
+				},
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `Manifest file for Kubernetesservice deployment.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Repository type.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `The name of repository.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `The name of repository branch.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `File path.`,
+				},
+				resource.Attribute{
+					Name:        "canary_config",
+					Description: `config when deploying Kubernetesservice canary.`,
+				},
+				resource.Attribute{
+					Name:        "canary_count",
+					Description: `Number of baseline and canary pod.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_type",
+					Description: `Canary analysis method.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Maximum time of deployment/cancellation.`,
+				},
+				resource.Attribute{
+					Name:        "prometheus",
+					Description: `Prometheus Url.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Analysis environment.`,
+				},
+				resource.Attribute{
+					Name:        "baseline",
+					Description: `Analysis environment variable > baseline.`,
+				},
+				resource.Attribute{
+					Name:        "canary",
+					Description: `Analysis environment variable > canary.`,
+				},
+				resource.Attribute{
+					Name:        "metrics",
+					Description: `Metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Metric name.`,
+				},
+				resource.Attribute{
+					Name:        "success_criteria",
+					Description: `Success criteria.`,
+				},
+				resource.Attribute{
+					Name:        "query_type",
+					Description: `Query type.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `Metric.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `Filter.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `Query.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_config",
+					Description: `Analysis config.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Analysis time.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `Analysis delay time.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Analysis cycle.`,
+				},
+				resource.Attribute{
+					Name:        "step",
+					Description: `Metric collection cycle.`,
+				},
+				resource.Attribute{
+					Name:        "pass_score",
+					Description: `Analysis success score.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `Deploy Path.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stage_scenarios",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+-> **Note:** This data source is a beta release. Some features may change in the future.
+
+This resource is useful for look up the list of Sourcedeploy scenario in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "stage_id",
+					Description: `(Required) The ID of Sourcedeploy stage.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "scenarios",
+					Description: `The list of Sourcedeploy scenario. ### Scenarios Reference ` + "`" + `scenarios` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy scenario.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy scenario.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scenarios",
+					Description: `The list of Sourcedeploy scenario. ### Scenarios Reference ` + "`" + `scenarios` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy scenario.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy scenario.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stages",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+-> **Note:** This data source is a beta release. Some features may change in the future.
+
+This resource is useful for look up the list of Sourcedeploy stage in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "stages",
+					Description: `The list of Sourcedeploy stage. ### Stage Reference ` + "`" + `stages` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy stage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy stage.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "stages",
+					Description: `The list of Sourcedeploy stage. ### Stage Reference ` + "`" + `stages` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy stage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy stage.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_projects",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+-> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcedeploy project in the region.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field.`,
+				},
+				resource.Attribute{
+					Name:        "regex",
+					Description: `(Optional) is ` + "`" + `values` + "`" + ` treated as a regular expression. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "projects",
+					Description: `The list of Sourcedeploy project. ### Project Reference ` + "`" + `projects` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy project.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "projects",
+					Description: `The list of Sourcedeploy project. ### Project Reference ` + "`" + `projects` + "`" + ` are also exported with the following attributes, where relevant: Each element supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Sourcedeploy project.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcepipeline_project",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This module can be useful for getting detail of Sourcepipeline project created before.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcepipeline_projects",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This data source only supports 'public' site.
+
+~> **Note:** This data source is a beta release. Some features may change in the future.
+
+This data source is useful for look up the list of Sourcepipeline projects in the region.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcepipeline_trigger_timezone",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+This data source is useful for look up the list of Sourcepipeline trigger time zone.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_subnet",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -3814,7 +7001,7 @@ This module can be useful for getting detail of Subnet created before. for examp
 				},
 				resource.Attribute{
 					Name:        "usage_type",
-					Description: `(Optional) Usage type, Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer).`,
+					Description: `(Optional) Usage type, Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer) | ` + "`" + `NATGW` + "`" + ` (for NAT Gateway. Only pub env)..`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -3890,7 +7077,7 @@ This resource is useful for look up the list of Subnet in the region.
 				},
 				resource.Attribute{
 					Name:        "usage_type",
-					Description: `(Optional) Usage type, Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer).`,
+					Description: `(Optional) Usage type, Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer) | ` + "`" + `NATGW` + "`" + ` (for NAT Gateway. Only pub env).`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -4044,6 +7231,14 @@ This module can be useful for getting detail of VPC created before, such as dete
 					Name:        "default_access_control_group_no",
 					Description: `The ID of the ACG created by default on VPC creation.`,
 				},
+				resource.Attribute{
+					Name:        "default_public_route_table_no",
+					Description: `The ID of the Public Route Table created by default on VPC creation.`,
+				},
+				resource.Attribute{
+					Name:        "default_private_route_table_no",
+					Description: `The ID of the Private Route Table created by default on VPC creation.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -4061,6 +7256,14 @@ This module can be useful for getting detail of VPC created before, such as dete
 				resource.Attribute{
 					Name:        "default_access_control_group_no",
 					Description: `The ID of the ACG created by default on VPC creation.`,
+				},
+				resource.Attribute{
+					Name:        "default_public_route_table_no",
+					Description: `The ID of the Public Route Table created by default on VPC creation.`,
+				},
+				resource.Attribute{
+					Name:        "default_private_route_table_no",
+					Description: `The ID of the Private Route Table created by default on VPC creation.`,
 				},
 			},
 		},
@@ -4316,53 +7519,84 @@ Gets a list of available zones.
 
 	dataSourcesMap = map[string]int{
 
-		"ncloud_access_control_group":          0,
-		"ncloud_access_control_groups":         1,
-		"ncloud_access_control_rule":           2,
-		"ncloud_access_control_rules":          3,
-		"ncloud_auto_scaling_group":            4,
-		"ncloud_auto_scaling_policy":           5,
-		"ncloud_auto_scaling_schedule":         6,
-		"ncloud_block_storage":                 7,
-		"ncloud_block_storage_snapshot":        8,
-		"ncloud_init_script":                   9,
-		"ncloud_launch_configuration":          10,
-		"ncloud_lb":                            11,
-		"ncloud_lb_listener":                   12,
-		"ncloud_lb_target_group":               13,
-		"ncloud_member_server_image":           14,
-		"ncloud_member_server_images":          15,
-		"ncloud_nas_volume":                    16,
-		"ncloud_nas_volumes":                   17,
-		"ncloud_nat_gateway":                   18,
-		"ncloud_network_acl_deny_allow_groups": 19,
-		"ncloud_network_acls":                  20,
-		"ncloud_network_interface":             21,
-		"ncloud_nks_cluster":                   22,
-		"ncloud_nks_clusters":                  23,
-		"ncloud_nks_kube_config":               24,
-		"ncloud_nks_node_pool":                 25,
-		"ncloud_nks_node_pools":                26,
-		"ncloud_nks_versions":                  27,
-		"ncloud_placement_group":               28,
-		"ncloud_port_forwarding_rule":          29,
-		"ncloud_port_forwarding_rules":         30,
-		"ncloud_public_ip":                     31,
-		"ncloud_regions":                       32,
-		"ncloud_root_password":                 33,
-		"ncloud_route_table":                   34,
-		"ncloud_route_tables":                  35,
-		"ncloud_server":                        36,
-		"ncloud_server_image":                  37,
-		"ncloud_server_images":                 38,
-		"ncloud_server_product":                39,
-		"ncloud_server_products":               40,
-		"ncloud_subnet":                        41,
-		"ncloud_subnets":                       42,
-		"ncloud_vpc":                           43,
-		"ncloud_vpc_peering":                   44,
-		"ncloud_vpcs":                          45,
-		"ncloud_zones":                         46,
+		"ncloud_access_control_group":                    0,
+		"ncloud_access_control_groups":                   1,
+		"ncloud_access_control_rule":                     2,
+		"ncloud_access_control_rules":                    3,
+		"ncloud_auto_scaling_group":                      4,
+		"ncloud_auto_scaling_policy":                     5,
+		"ncloud_auto_scaling_schedule":                   6,
+		"ncloud_block_storage":                           7,
+		"ncloud_block_storage_snapshot":                  8,
+		"ncloud_cdss_cluster":                            9,
+		"ncloud_cdss_config_group":                       10,
+		"ncloud_cdss_kafka_version":                      11,
+		"ncloud_cdss_kafka_versions":                     12,
+		"ncloud_cdss_node_product":                       13,
+		"ncloud_cdss_node_products":                      14,
+		"ncloud_cdss_os_image":                           15,
+		"ncloud_cdss_os_images":                          16,
+		"ncloud_init_script":                             17,
+		"ncloud_launch_configuration":                    18,
+		"ncloud_lb":                                      19,
+		"ncloud_lb_listener":                             20,
+		"ncloud_lb_target_group":                         21,
+		"ncloud_member_server_image":                     22,
+		"ncloud_member_server_images":                    23,
+		"ncloud_nas_volume":                              24,
+		"ncloud_nas_volumes":                             25,
+		"ncloud_nat_gateway":                             26,
+		"ncloud_network_acl_deny_allow_groups":           27,
+		"ncloud_network_acls":                            28,
+		"ncloud_network_interface":                       29,
+		"ncloud_nks_cluster":                             30,
+		"ncloud_nks_clusters":                            31,
+		"ncloud_nks_kube_config":                         32,
+		"ncloud_nks_node_pool":                           33,
+		"ncloud_nks_node_pools":                          34,
+		"ncloud_nks_versions":                            35,
+		"ncloud_placement_group":                         36,
+		"ncloud_port_forwarding_rule":                    37,
+		"ncloud_port_forwarding_rules":                   38,
+		"ncloud_public_ip":                               39,
+		"ncloud_regions":                                 40,
+		"ncloud_root_password":                           41,
+		"ncloud_route_table":                             42,
+		"ncloud_route_tables":                            43,
+		"ncloud_server":                                  44,
+		"ncloud_server_image":                            45,
+		"ncloud_server_images":                           46,
+		"ncloud_server_product":                          47,
+		"ncloud_server_products":                         48,
+		"ncloud_servers":                                 49,
+		"ncloud_ses_cluster":                             50,
+		"ncloud_ses_clusters":                            51,
+		"ncloud_ses_node_os_images":                      52,
+		"ncloud_ses_node_products":                       53,
+		"ncloud_ses_versions":                            54,
+		"ncloud_sourcebuild_project":                     55,
+		"ncloud_sourcebuild_project_computes":            56,
+		"ncloud_sourcebuild_project_docker_engines":      57,
+		"ncloud_sourcebuild_project_os":                  58,
+		"ncloud_sourcebuild_project_os_runtime_versions": 59,
+		"ncloud_sourcebuild_project_os_runtimes":         60,
+		"ncloud_sourcebuild_projects":                    61,
+		"ncloud_sourcecommit_repositories":               62,
+		"ncloud_sourcecommit_repository":                 63,
+		"ncloud_sourcedeploy_project_stage":              64,
+		"ncloud_sourcedeploy_project_stage_scenario":     65,
+		"ncloud_sourcedeploy_project_stage_scenarios":    66,
+		"ncloud_sourcedeploy_project_stages":             67,
+		"ncloud_sourcedeploy_projects":                   68,
+		"ncloud_sourcepipeline_project":                  69,
+		"ncloud_sourcepipeline_projects":                 70,
+		"ncloud_sourcepipeline_trigger_timezone":         71,
+		"ncloud_subnet":                                  72,
+		"ncloud_subnets":                                 73,
+		"ncloud_vpc":                                     74,
+		"ncloud_vpc_peering":                             75,
+		"ncloud_vpcs":                                    76,
+		"ncloud_zones":                                   77,
 	}
 )
 

@@ -18,16 +18,16 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the group.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula group to retrieve information for.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags associated to the Image.`,
-				},
-				resource.Attribute{
-					Name:        "quotas",
-					Description: `(Deprecated) Quotas configured for the group. ## Attribute Reference The following attribute is exported:`,
+					Description: `(Optional) Tags associated to the Image. ## Attribute Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -74,6 +74,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the image.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula image to retrieve information for.`,
 				},
@@ -117,6 +121,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the security group.`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula security group to retrieve information for.`,
@@ -162,32 +170,36 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the template.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula template to retrieve information for.`,
+				},
+				resource.Attribute{
+					Name:        "has_cpu",
+					Description: `(Optional) Indicate if a CPU value has been defined.`,
 				},
 				resource.Attribute{
 					Name:        "cpu",
 					Description: `(Optional) Amount of CPU shares assigned to the VM.`,
 				},
 				resource.Attribute{
-					Name:        "vpcu",
+					Name:        "has_vcpu",
+					Description: `(Optional) Indicate if a VCPU value has been defined.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu",
 					Description: `(Optional) Number of CPU cores presented to the VM.`,
+				},
+				resource.Attribute{
+					Name:        "has_memory",
+					Description: `(Optional) Indicate if a memory value has been defined.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
 					Description: `(Optional) Amount of RAM assigned to the VM in MB.`,
-				},
-				resource.Attribute{
-					Name:        "context",
-					Description: `(Deprecated) Array of free form key=value pairs, rendered and added to the CONTEXT variables for the VM. Recommended to include: ` + "`" + `NETWORK = "YES"` + "`" + ` and ` + "`" + `SET_HOSTNAME = "$NAME"` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "graphics",
-					Description: `(Deprecated) Graphics parameters.`,
-				},
-				resource.Attribute{
-					Name:        "os",
-					Description: `(Deprecated) OS parameters`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -206,7 +218,7 @@ var (
 					Description: `Amount of CPU shares assigned to the VM.`,
 				},
 				resource.Attribute{
-					Name:        "vpcu",
+					Name:        "vcpu",
 					Description: `Number of CPU cores presented to the VM.`,
 				},
 				resource.Attribute{
@@ -244,7 +256,7 @@ var (
 					Description: `Amount of CPU shares assigned to the VM.`,
 				},
 				resource.Attribute{
-					Name:        "vpcu",
+					Name:        "vcpu",
 					Description: `Number of CPU cores presented to the VM.`,
 				},
 				resource.Attribute{
@@ -278,12 +290,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The OpenNebula user to retrieve information for.`,
+					Name:        "id",
+					Description: `(Optional) ID of the user.`,
 				},
 				resource.Attribute{
-					Name:        "auth_driver",
-					Description: `(Deprecated) Authentication Driver for user management`,
+					Name:        "name",
+					Description: `(Optional) The OpenNebula user to retrieve information for.`,
 				},
 				resource.Attribute{
 					Name:        "primary_group",
@@ -291,11 +303,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "groups",
-					Description: `(Optional) List of secondary groups ID of the user.`,
-				},
-				resource.Attribute{
-					Name:        "quotas",
-					Description: `(Deprecated) User's quotas ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) List of secondary groups ID of the user. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -350,6 +358,10 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the virtual data center.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula virtual data center to retrieve information for.`,
 				},
@@ -393,6 +405,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the virtual machine group.`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The OpenNebula virtual machine group to retrieve information for.`,
@@ -438,12 +454,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The OpenNebula virtual network to retrieve information for.`,
+					Name:        "id",
+					Description: `(Optional) ID of the virtual network.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Deprecated) Description of the virtual network.`,
+					Name:        "name",
+					Description: `(Optional) The OpenNebula virtual network to retrieve information for.`,
 				},
 				resource.Attribute{
 					Name:        "tags",

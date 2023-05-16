@@ -102,6 +102,61 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_floating_ip",
+			Category:         "Resources",
+			ShortDescription: `Create Floating IPs .`,
+			Description:      ``,
+			Keywords: []string{
+				"floating",
+				"ip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "external_subnet_reference_uuid",
+					Description: `(Optional) The reference to a subnet. Should not be used with {external_subnet_reference_name} .`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference_name",
+					Description: `(Optional) The reference to a subnet. Should not be used with {external_subnet_reference_uuid} .`,
+				},
+				resource.Attribute{
+					Name:        "vm_nic_reference_uuid",
+					Description: `(Optional) The reference to a vm_nic .`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_uuid",
+					Description: `(Optional) The reference to a vpc. Should not be used with {vpc_reference_name}.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_name",
+					Description: `(Optional) The reference to a vpc. Should not be used with {vpc_reference_uuid}.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `(Optional) Private IP with which floating IP is associated. Should be used with vpc_reference . ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The floating_ips kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The floating_ips kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_foundation_central_api_key",
 			Category:         "Resources",
 			ShortDescription: `Create a new api key which will be used by remote nodes to authenticate with Foundation Central .`,
@@ -255,6 +310,294 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_ndb_authorize_dbserver",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to authorize db server VMs for cloning of the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"authorize",
+				"dbserver",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_clone",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to perform clone of the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"clone",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_clone_refresh",
+			Category:         "Resources",
+			ShortDescription: `NDB allows you to create and refresh clones to a point in time either by using transactional logs or by using snapshots. This operation submits a request to perform refresh clone of the database in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"clone",
+				"refresh",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_cluster",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to add a Nutanix cluster to Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"cluster",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_database",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete database instance in Nutanix database service (NDB). Note: For 1.8.0 release, only postgress database type is qualified and officially supported.`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"database",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_database_restore",
+			Category:         "Resources",
+			ShortDescription: `Restoring allows you to restore a source instance registered with NDB to a snapshot or point in time supported by the source instance time machine. You can restore an instance by using a snapshot ID, the point-in-time recovery (PITR) timestamp, or the latest snapshot. This operation submits a request to restore the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"database",
+				"restore",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_database_scale",
+			Category:         "Resources",
+			ShortDescription: `Scaling the database extends the storage size proportionally across the attached virtual disks or volume groups. Scaling is supported for both single and HA instances. This operation submits a request to scale out the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"database",
+				"scale",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_database_snapshot",
+			Category:         "Resources",
+			ShortDescription: `NDB time machine allows you to capture and replicate snapshots of the source database across multiple clusters (as defined in the DAM policy) at the time and frequency specified in the schedule. This operation submits a request to perform snapshot of the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"database",
+				"snapshot",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_dbserver_vm",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete database server VMs in Nutanix database service (NDB). Note: For 1.8.0 release, only postgress database type is qualified and officially supported.`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"dbserver",
+				"vm",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_register_dbserver",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to register the database server VM in Nutanix database service (NDB). Note: For 1.8.0 release, only postgress database type is qualified and officially supported.`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"register",
+				"dbserver",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_log_catchups",
+			Category:         "Resources",
+			ShortDescription: `A log catch-up operation copies transaction logs from the source database based on a specified schedule. The schedule can be provided during database registration or provisioning or can be modified later. This operation submits a request to perform log catchups of the database instance in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"log",
+				"catchups",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_maintenance_task",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete maintenance task association with database servers vms in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"maintenance",
+				"task",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_maintenance_window",
+			Category:         "Resources",
+			ShortDescription: `A maintenance window allows you to set a schedule that is used to automate repeated maintenance tasks such as OS patching and database patching. NDB allows you to create a maintenance window and then associate the maintenance window with a list of database server VMs or an instance. This operation submits a request to create, update and delete maintenance window in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"maintenance",
+				"window",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_network",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete networks in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"network",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_profile",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete profiles in Nutanix database service (NDB). Note: For 1.8.0 release, only postgress database type is qualified and officially supported.`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"profile",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_register_database",
+			Category:         "Resources",
+			ShortDescription: `It helps to register a source (production) database running on a Nutanix cluster with NDB. When you register a database with NDB, the database server VM (VM that hosts the source database) is also registered with NDB. After you have registered a database with NDB, a time machine is created for that database. This operation submits a request to register the database in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"register",
+				"database",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_sla",
+			Category:         "Resources",
+			ShortDescription: `SLAs are data retention policies that allow you to specify how long the daily, weekly, monthly, and quarterly snapshots are retained in NDB. This operation submits a request to create, update and delete slas in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"sla",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_software_version_profile",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete software profile versions in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"software",
+				"version",
+				"profile",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_stretched_vlan",
+			Category:         "Resources",
+			ShortDescription: `This operation submits a request to create, update and delete stretched vlans in Nutanix database service (NDB). We can add a stretched VLAN to NDB by selecting the existing VLANs from each Nutanix cluster.`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"stretched",
+				"vlan",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_tag",
+			Category:         "Resources",
+			ShortDescription: `NDB allows you to assign metadata to entities (clones, time machines, databases, and database servers) by using tags. When you are cloning a database, you can associate tags with the database that you are creating. This operation submits a request to create, update and delete tags in Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"tag",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_tms_cluster",
+			Category:         "Resources",
+			ShortDescription: `NDB multi-cluster allows you to manage time machine data availability across all the registered Nutanix clusters in NDB. This operation submits a request to add, update and delete clusters in time machine data availability for Nutanix database service (NDB).`,
+			Description:      ``,
+			Keywords: []string{
+				"ndb",
+				"tms",
+				"cluster",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_network_security_rule",
 			Category:         "Resources",
 			ShortDescription: `Provides a Nutanix Network Security Rule resource to Create a Network Security Rule .`,
@@ -279,6 +622,124 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_pbr",
+			Category:         "Resources",
+			ShortDescription: `Create Policy Based Routing within VPCs .`,
+			Description:      ``,
+			Keywords: []string{
+				"pbr",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of policy`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) priority of policy`,
+				},
+				resource.Attribute{
+					Name:        "protocol_type",
+					Description: `(Required) Protocol type of policy based routing. Must be one of {TCP, UDP, ICMP, PROTOCOL_NUMBER, ALL} .`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Routing policy action. Must be one of {DENY, PERMIT, REROUTE} .`,
+				},
+				resource.Attribute{
+					Name:        "service_ip_list",
+					Description: `(Optional) IP addresses of network services. This field is valid only when action is REROUTE.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_uuid",
+					Description: `(Required) The reference to a vpc . Should not be used with {vpc_name} .`,
+				},
+				resource.Attribute{
+					Name:        "vpc_name",
+					Description: `(Required) The reference to a vpc. Should not be used with {vpc_reference_uuid}`,
+				},
+				resource.Attribute{
+					Name:        "is_bidirectional",
+					Description: `(Optional) Additionally create Policy in reverse direction. Should be used with {TCP, UDP with start and end port ranges and ICMP with icmp code and type}. Supported with 2022.x. ## source source address of an IP packet. This could be either an ip prefix or an address_type .`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) address type of source. Should be one of {INTERNET, ALL}.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ip",
+					Description: `(Optional) IP subnet provided as an address.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Optional) prefix length of provided subnet. ## destination destination address of an IP packet. This could be either an ip prefix or an address_type .`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) address type of source. Should be one of {INTERNET, ALL}.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ip",
+					Description: `(Optional) IP subnet provided as an address.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Optional) prefix length of provided subnet. ## protocol_parameters Routing policy IP protocol parameters`,
+				},
+				resource.Attribute{
+					Name:        "tcp",
+					Description: `(Optional) TCP parameters in routing policy`,
+				},
+				resource.Attribute{
+					Name:        "udp",
+					Description: `(Optional) UDP parameters in routing policy`,
+				},
+				resource.Attribute{
+					Name:        "icmp",
+					Description: `(Optional) ICMP parameters in routing policy.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_number",
+					Description: `(Optional) Protocol number in routing policy ## tcp, udp`,
+				},
+				resource.Attribute{
+					Name:        "source_port_range",
+					Description: `(Required) Range of TCP/UDP ports.`,
+				},
+				resource.Attribute{
+					Name:        "destination_port_range",
+					Description: `(Required) Range of TCP/UDP ports. ## source_port_range, destination_port_range`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `(Required) start port number`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `(Required) end port number ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The routing policies kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The routing policies kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_project",
 			Category:         "Resources",
 			ShortDescription: `Provides a Nutanix Category key resource to Create a Project.`,
@@ -293,7 +754,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Required) A description for project. ### Resource Domain`,
+					Description: `(Required) A description for project.`,
+				},
+				resource.Attribute{
+					Name:        "use_project_internal",
+					Description: `(Optional) flag to use project internal for user role mapping`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Optional) The UUID of cluster. (Required when using project_internal flag).`,
+				},
+				resource.Attribute{
+					Name:        "enable_collab",
+					Description: `(Optional) flag to allow collaboration of projects. (Use with project_internal flag) ### Resource Domain`,
 				},
 				resource.Attribute{
 					Name:        "resource_domain",
@@ -417,7 +890,231 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_network_list.#.name",
-					Description: `(Optional/Computed) The name of a network. ## Attributes Reference The following attributes are exported: ### Resource Domain`,
+					Description: `(Optional/Computed) The name of a network. ### Tunnel Reference List`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list",
+					Description: `(Optional/Computed) List of tunnels associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `tunnel` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.uuid",
+					Description: `(Required) The UUID of a tunnel`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a tunnel. ### Cluster Reference List`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list",
+					Description: `(Optional/Computed) List of clusters associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `cluster` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.uuid",
+					Description: `(Required) The UUID of a cluster`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a cluster. ### VPC Reference List`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list",
+					Description: `(Optional/Computed) List of VPCs associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `vpc` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.uuid",
+					Description: `(Required) The UUID of a vpc`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a vpc. ### Default Environment Reference Map`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference",
+					Description: `(Optional/Computed) Reference to a environment.`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `environment` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.uuid",
+					Description: `(Required) The UUID of a environment`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.name",
+					Description: `(Optional/Computed) The name of a environment. ### ACP`,
+				},
+				resource.Attribute{
+					Name:        "acp",
+					Description: `(Optional) The list of ACPs to be attached to the users belonging to a project. It is mandate to provide cluster_uuid while using ACP. It helps to get the context list based on user role.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.name",
+					Description: `(Required) Name of the Access Control Policy.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.description",
+					Description: `The description of the association of a role to a user in a given context.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_reference_list",
+					Description: `The User(s) being assigned a given role.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_reference_list.#.kind",
+					Description: `The kind name. Default value is ` + "`" + `user` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_reference_list.#.uuid",
+					Description: `(Required) The UUID of a user`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a user.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_group_reference_list",
+					Description: `The User group(s) being assigned a given role`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_group_reference_list.#.kind",
+					Description: `The kind name. Default value is ` + "`" + `user_group` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_group_reference_list.#.uuid",
+					Description: `(Required) The UUID of a user group`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.user_group_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a user group.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.role_reference",
+					Description: `Reference to a role.`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.role_reference.kind",
+					Description: `The kind name. Default value is ` + "`" + `role` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "acp.#.role_reference.uuid",
+					Description: `(Required) The UUID of a role`,
+				},
+				resource.Attribute{
+					Name:        "acp.#.role_reference.name",
+					Description: `(Optional/Computed) The name of a role. ### User List`,
+				},
+				resource.Attribute{
+					Name:        "user_list",
+					Description: `(Optional) The list of user specification to be associated with the project. It is only required when user is not added in the PC.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.directory_service_user",
+					Description: `(Optional) A Directory Service user.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.directory_service_user.user_principal_name",
+					Description: `(Required) The UserPrincipalName of the user from the directory service.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.directory_service_user.directory_service_reference",
+					Description: `(Required) Reference to a directory_service .`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.directory_service_user.directory_service_reference.uuid",
+					Description: `(Required) The uuid to a directory_service.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.directory_service_user.directory_service_reference.kind",
+					Description: `(Optional) The kind to a directory_service.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.identity_provider_user",
+					Description: `(Optional) An Identity Provider user.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.identity_provider_user.username",
+					Description: `(Required) The username from the identity provider. Name Id for SAML Identity Provider.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.identity_provider_user.identity_provider_reference",
+					Description: `(Required) The reference to a identity_provider.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.identity_provider_user.identity_provider_reference.uuid",
+					Description: `(Required) The uuid to a identity_provider.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.identity_provider_user.identity_provider_reference.kind",
+					Description: `(Optional) The kind to a identity_provider.`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.metadata",
+					Description: `(Required) Metadata Reference for user`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.metadata.uuid",
+					Description: `(Required) UUID of the USER`,
+				},
+				resource.Attribute{
+					Name:        "user_list.#.metadata.Kind",
+					Description: `Kind of the USER. ### User Group`,
+				},
+				resource.Attribute{
+					Name:        "user_group",
+					Description: `(Optional) The list of user group specification to be associated with the project. It is only Required when user group is not added in the PC.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.directory_service_user_group",
+					Description: `(Optional) A Directory Service user group.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.directory_service_user_group.distinguished_name",
+					Description: `(Required) The Distinguished name for the user group.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.saml_user_group",
+					Description: `(Optional) A SAML Service user group.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.saml_user_group.idp_uuid",
+					Description: `(Required) The UUID of the Identity Provider that the group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.saml_user_group.name",
+					Description: `(Required) The name of the SAML group which the IDP provides as attribute in SAML response.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.directory_service_ou",
+					Description: `(Optional) A Directory Service user group.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.directory_service_ou.distinguished_name",
+					Description: `(Required) The Distinguished name for the user group.`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.metadata",
+					Description: `(Required) Metadata Reference for user group`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.metadata.uuid",
+					Description: `(Required) UUID of the USER Group`,
+				},
+				resource.Attribute{
+					Name:        "user_group.#.metadata.Kind",
+					Description: `Kind of the USER Group. ## Attributes Reference The following attributes are exported: ### Resource Domain`,
 				},
 				resource.Attribute{
 					Name:        "resource_domain.resources.#.units",
@@ -425,7 +1122,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_domain.resources.#.value",
-					Description: `The amount of resource consumed ### Metadata The metadata attribute exports the following:`,
+					Description: `The amount of resource consumed ### ACP ACPs will be exported if use_project_internal flag is set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of ACP`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of ACP`,
+				},
+				resource.Attribute{
+					Name:        "user_reference_list",
+					Description: `List of Reference of users.`,
+				},
+				resource.Attribute{
+					Name:        "user_group_reference_list",
+					Description: `List of Reference of users groups.`,
+				},
+				resource.Attribute{
+					Name:        "role_reference",
+					Description: `Reference to role.`,
+				},
+				resource.Attribute{
+					Name:        "context_filter_list",
+					Description: `The list of context filters. These are OR filters. The scope-expression-list defines the context, and the filter works in conjunction with the entity-expression-list. The context_list attribute supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "entity_filter_expression_list",
+					Description: `(Required) A list of Entity filter expressions. ### Scope Filter Expression List The scope_filter_expression_list attribute supports the following.`,
 				},
 				resource.Attribute{
 					Name:        "last_update_time",
@@ -469,7 +1194,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `(Required) the UUID. See detailed information in [Nutanix Project](https://www.nutanix.dev/reference/prism_central/v3/api/projects/postprojects/).`,
+					Description: `(Required) the UUID. Note: Few attributes which are added to support ACPs for Project are dependent on PC version. Features such as VPC, Cluster Reference requires pc2022.4 while Tunnel Reference requires pc2022.6 . See detailed information in [Nutanix Project](https://www.nutanix.dev/reference/prism_central/v3/api/projects/postprojects/).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -479,7 +1204,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_domain.resources.#.value",
-					Description: `The amount of resource consumed ### Metadata The metadata attribute exports the following:`,
+					Description: `The amount of resource consumed ### ACP ACPs will be exported if use_project_internal flag is set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of ACP`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of ACP`,
+				},
+				resource.Attribute{
+					Name:        "user_reference_list",
+					Description: `List of Reference of users.`,
+				},
+				resource.Attribute{
+					Name:        "user_group_reference_list",
+					Description: `List of Reference of users groups.`,
+				},
+				resource.Attribute{
+					Name:        "role_reference",
+					Description: `Reference to role.`,
+				},
+				resource.Attribute{
+					Name:        "context_filter_list",
+					Description: `The list of context filters. These are OR filters. The scope-expression-list defines the context, and the filter works in conjunction with the entity-expression-list. The context_list attribute supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "entity_filter_expression_list",
+					Description: `(Required) A list of Entity filter expressions. ### Scope Filter Expression List The scope_filter_expression_list attribute supports the following.`,
 				},
 				resource.Attribute{
 					Name:        "last_update_time",
@@ -523,7 +1276,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `(Required) the UUID. See detailed information in [Nutanix Project](https://www.nutanix.dev/reference/prism_central/v3/api/projects/postprojects/).`,
+					Description: `(Required) the UUID. Note: Few attributes which are added to support ACPs for Project are dependent on PC version. Features such as VPC, Cluster Reference requires pc2022.4 while Tunnel Reference requires pc2022.6 . See detailed information in [Nutanix Project](https://www.nutanix.dev/reference/prism_central/v3/api/projects/postprojects/).`,
 				},
 			},
 		},
@@ -1163,6 +1916,65 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_static_routes",
+			Category:         "Resources",
+			ShortDescription: `Create Static Routes within VPCs .`,
+			Description:      ``,
+			Keywords: []string{
+				"static",
+				"routes",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `(Required) Reference to a VPC UUID. Should not be used with vpc_name.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_name",
+					Description: `(Required) vpc Name. Should not be used with vpc_uuid.`,
+				},
+				resource.Attribute{
+					Name:        "static_routes_list",
+					Description: `(Optional) Static Routes.`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `(Required) Destination ip with prefix.`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference_uuid",
+					Description: `(Optional) Reference to a subnet. Supported with 2022.x .`,
+				},
+				resource.Attribute{
+					Name:        "vpn_connection_reference_uuid",
+					Description: `(Optional) Reference to a vpn connection. ### default_route_nexthop`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference_uuid",
+					Description: `(Required) Reference to a subnet. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc_route_table kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc_route_table kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_subnet",
 			Category:         "Resources",
 			ShortDescription: `This operation submits a request to create a subnet based on the input parameters. A subnet is a block of IP addresses.`,
@@ -1206,6 +2018,37 @@ var (
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_user_groups",
+			Category:         "Resources",
+			ShortDescription: `This operation add a User group to the system.`,
+			Description:      ``,
+			Keywords: []string{
+				"user",
+				"groups",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The user_group kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The user_group kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
 				},
 			},
 		},
@@ -1268,6 +2111,76 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_vpc",
+			Category:         "Resources",
+			ShortDescription: `Create Virtual Private Cloud .`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference_uuid",
+					Description: `(Required) List of external subnets uuid attached to this VPC. Should not be used with external_subnet_reference_name.`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference_name",
+					Description: `(Required) List of external subnets name attached to this VPC. Should not be used with external_subnet_reference_uuid.`,
+				},
+				resource.Attribute{
+					Name:        "externally_routable_prefix_list",
+					Description: `(Optional) List Externally Routable IP Addresses. Required when external subnet with NoNAT is used.`,
+				},
+				resource.Attribute{
+					Name:        "common_domain_name_server_ip_list",
+					Description: `(Optional) List of domain name server IPs. ## externally_routable_prefix_list Externally Routable IP Addresses`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) The name for the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `(Required) prefix length. ## common_domain_name_server_ip_list List of domain name server IPs`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) ip address. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_list_status",
+					Description: `Status of List of external subnets attached to this VPC ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc kind metadata.`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_list_status",
+					Description: `Status of List of external subnets attached to this VPC ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1276,23 +2189,49 @@ var (
 		"nutanix_address_group":                    1,
 		"nutanix_category_key":                     2,
 		"nutanix_category_value":                   3,
-		"nutanix_foundation_central_api_key":       4,
-		"nutanix_foundation_central_image_cluster": 5,
-		"nutanix_foundation_image":                 6,
-		"nutanix_foundation_image_nodes":           7,
-		"nutanix_foundation_ipmi_config":           8,
-		"nutanix_image":                            9,
-		"nutanix_karbon_cluster":                   10,
-		"nutanix_karbon_private_registry":          11,
-		"nutanix_network_security_rule":            12,
-		"nutanix_project":                          13,
-		"nutanix_protection_rule":                  14,
-		"nutanix_recovery_plan":                    15,
-		"nutanix_role":                             16,
-		"nutanix_service_group":                    17,
-		"nutanix_subnet":                           18,
-		"nutanix_user":                             19,
-		"nutanix_virtual_machine":                  20,
+		"nutanix_floating_ip":                      4,
+		"nutanix_foundation_central_api_key":       5,
+		"nutanix_foundation_central_image_cluster": 6,
+		"nutanix_foundation_image":                 7,
+		"nutanix_foundation_image_nodes":           8,
+		"nutanix_foundation_ipmi_config":           9,
+		"nutanix_image":                            10,
+		"nutanix_karbon_cluster":                   11,
+		"nutanix_karbon_private_registry":          12,
+		"nutanix_ndb_authorize_dbserver":           13,
+		"nutanix_ndb_clone":                        14,
+		"nutanix_ndb_clone_refresh":                15,
+		"nutanix_ndb_cluster":                      16,
+		"nutanix_ndb_database":                     17,
+		"nutanix_ndb_database_restore":             18,
+		"nutanix_ndb_database_scale":               19,
+		"nutanix_ndb_database_snapshot":            20,
+		"nutanix_ndb_dbserver_vm":                  21,
+		"nutanix_ndb_register_dbserver":            22,
+		"nutanix_ndb_log_catchups":                 23,
+		"nutanix_ndb_maintenance_task":             24,
+		"nutanix_ndb_maintenance_window":           25,
+		"nutanix_ndb_network":                      26,
+		"nutanix_ndb_profile":                      27,
+		"nutanix_ndb_register_database":            28,
+		"nutanix_ndb_sla":                          29,
+		"nutanix_ndb_software_version_profile":     30,
+		"nutanix_ndb_stretched_vlan":               31,
+		"nutanix_ndb_tag":                          32,
+		"nutanix_ndb_tms_cluster":                  33,
+		"nutanix_network_security_rule":            34,
+		"nutanix_pbr":                              35,
+		"nutanix_project":                          36,
+		"nutanix_protection_rule":                  37,
+		"nutanix_recovery_plan":                    38,
+		"nutanix_role":                             39,
+		"nutanix_service_group":                    40,
+		"nutanix_static_routes":                    41,
+		"nutanix_subnet":                           42,
+		"nutanix_user":                             43,
+		"nutanix_user_groups":                      44,
+		"nutanix_virtual_machine":                  45,
+		"nutanix_vpc":                              46,
 	}
 )
 

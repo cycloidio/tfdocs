@@ -61,7 +61,27 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ciphertrust_gcp_connection",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ciphertrust_gcp_key",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ciphertrust_gcp_keyring",
 			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -78,7 +98,9 @@ var (
 		"ciphertrust_azure_account_details": 2,
 		"ciphertrust_azure_connection":      3,
 		"ciphertrust_azure_key":             4,
-		"ciphertrust_gcp_key":               5,
+		"ciphertrust_gcp_connection":        5,
+		"ciphertrust_gcp_key":               6,
+		"ciphertrust_gcp_keyring":           7,
 	}
 )
 

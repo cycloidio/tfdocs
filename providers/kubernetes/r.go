@@ -359,6 +359,10 @@ var (
 					Description: `(Optional) Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.`,
 				},
 				resource.Attribute{
+					Name:        "immutable",
+					Description: `(Optional) Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.`,
+				},
+				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard config map's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
@@ -750,6 +754,10 @@ var (
 				resource.Attribute{
 					Name:        "restart_policy",
 					Description: `(Optional) Restart policy for all containers within the pod. One of Always, OnFailure, Never. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#restartpolicy).`,
+				},
+				resource.Attribute{
+					Name:        "runtime_class_name",
+					Description: `(Optional) RuntimeClassName is a feature for selecting the container runtime configuration. The container runtime configuration is used to run a Pod's containers. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/containers/runtime-class)`,
 				},
 				resource.Attribute{
 					Name:        "security_context",
@@ -1269,7 +1277,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `grpc` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Number of the port to access on the container. Number must be in the range 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) Name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -1370,6 +1386,10 @@ var (
 				resource.Attribute{
 					Name:        "failure_threshold",
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
 				},
 				resource.Attribute{
 					Name:        "http_get",
@@ -1528,12 +1548,16 @@ var (
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
 				},
 				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
+				},
+				resource.Attribute{
 					Name:        "http_get",
 					Description: `(Optional) Specifies the http request to perform.`,
 				},
 				resource.Attribute{
 					Name:        "initial_delay_seconds",
-					Description: `(Optional) Number of seconds after the container has started before liveness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
+					Description: `(Optional) Number of seconds after the container has started before readiness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
 				},
 				resource.Attribute{
 					Name:        "period_seconds",
@@ -1557,7 +1581,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ` + "`" + `resources` + "`" + ` is a computed attribute and thus if it is not configured in terraform code, the value will be computed from the returned Kubernetes object. That causes a situation when removing ` + "`" + `resources` + "`" + ` from terraform code does not update the Kubernetes object. In order to delete ` + "`" + `resources` + "`" + ` from the Kubernetes object, configure an empty attribute in your code. Please, look at the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resources { limits = {} requests = {} } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -1689,7 +1713,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
-					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
+					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "fs_group_change_policy",
+					Description: `Defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -2141,8 +2169,16 @@ var (
 					Description: `(Optional) Restart policy for all containers within the pod. One of Always, OnFailure, Never. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#restartpolicy).`,
 				},
 				resource.Attribute{
+					Name:        "runtime_class_name",
+					Description: `(Optional) RuntimeClassName is a feature for selecting the container runtime configuration. The container runtime configuration is used to run a Pod's containers. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/containers/runtime-class)`,
+				},
+				resource.Attribute{
 					Name:        "security_context",
 					Description: `(Optional) SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_name",
+					Description: `(Optional) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.`,
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
@@ -2642,7 +2678,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `grpc` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Number of the port to access on the container. Number must be in the range 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) Name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -2743,6 +2787,10 @@ var (
 				resource.Attribute{
 					Name:        "failure_threshold",
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
 				},
 				resource.Attribute{
 					Name:        "http_get",
@@ -2901,12 +2949,16 @@ var (
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
 				},
 				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
+				},
+				resource.Attribute{
 					Name:        "http_get",
 					Description: `(Optional) Specifies the http request to perform.`,
 				},
 				resource.Attribute{
 					Name:        "initial_delay_seconds",
-					Description: `(Optional) Number of seconds after the container has started before liveness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
+					Description: `(Optional) Number of seconds after the container has started before readiness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
 				},
 				resource.Attribute{
 					Name:        "period_seconds",
@@ -2930,7 +2982,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ` + "`" + `resources` + "`" + ` is a computed attribute and thus if it is not configured in terraform code, the value will be computed from the returned Kubernetes object. That causes a situation when removing ` + "`" + `resources` + "`" + ` from terraform code does not update the Kubernetes object. In order to delete ` + "`" + `resources` + "`" + ` from the Kubernetes object, configure an empty attribute in your code. Please, look at the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resources { limits = {} requests = {} } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -3066,7 +3118,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
-					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
+					Description: `(Optional) The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "fs_group_change_policy",
+					Description: `Defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. ### ` + "`" + `capabilities` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -3843,6 +3899,10 @@ var (
 					Description: `(Optional) Specifies the desired number of successfully finished pods the job should be run with. Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/`,
 				},
 				resource.Attribute{
+					Name:        "completion_mode",
+					Description: `(Optional) Specifies how Pod completions are tracked. It can be ` + "`" + `NonIndexed` + "`" + ` (default) or ` + "`" + `Indexed` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/workloads/controllers/job/#completion-mode).`,
+				},
+				resource.Attribute{
 					Name:        "manual_selector",
 					Description: `(Optional) Controls generation of pod labels and pod selectors. Leave ` + "`" + `manualSelector` + "`" + ` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see ` + "`" + `manualSelector=true` + "`" + ` in jobs that were created with the old ` + "`" + `extensions/v1beta1` + "`" + ` API. For more info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector`,
 				},
@@ -4142,6 +4202,52 @@ var (
 				resource.Attribute{
 					Name:        "values",
 					Description: `(Optional) An array of string values. If the operator is ` + "`" + `In` + "`" + ` or ` + "`" + `NotIn` + "`" + `, the values array must be non-empty. If the operator is ` + "`" + `Exists` + "`" + ` or ` + "`" + `DoesNotExist` + "`" + `, the values array must be empty. This array is replaced during a strategic merge patch. ## Import Network policies can be imported using their identifier consisting of ` + "`" + `<namespace-name>/<network-policy-name>` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_network_policy.example default/terraform-example-network-policy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "kubernetes_node_taint",
+			Category:         "Resources",
+			ShortDescription: `A Node Taint is an anti-affinity rule allowing a Kubernetes node to repel a set of pods.`,
+			Description:      ``,
+			Keywords: []string{
+				"node",
+				"taint",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Metadata describing which Kubernetes node to apply the taint to.`,
+				},
+				resource.Attribute{
+					Name:        "force_manager",
+					Description: `(Optional) Set the name of the field manager for the node taint.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) Force overwriting annotations that were created or edited outside of Terraform.`,
+				},
+				resource.Attribute{
+					Name:        "taint",
+					Description: `(Required) The taint configuration to apply to the node. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the node to apply the taint to ### ` + "`" + `taint` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required, Forces new resource) The key of this node taint.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of this node taint. Can be empty string.`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `(Required, Forces new resource) The scheduling effect to apply with this taint. Must be one of: ` + "`" + `NoSchedule` + "`" + `, ` + "`" + `PreferNoSchedule` + "`" + `, ` + "`" + `NoExecute` + "`" + `. ## Import This resource does not support the ` + "`" + `import` + "`" + ` command. As this resource operates on Kubernetes resources that already exist, creating the resource is equivalent to importing it.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4882,8 +4988,16 @@ var (
 					Description: `(Optional) Restart policy for all containers within the pod. One of Always, OnFailure, Never. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#restartpolicy).`,
 				},
 				resource.Attribute{
+					Name:        "runtime_class_name",
+					Description: `(Optional) RuntimeClassName is a feature for selecting the container runtime configuration. The container runtime configuration is used to run a Pod's containers. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/containers/runtime-class)`,
+				},
+				resource.Attribute{
 					Name:        "security_context",
 					Description: `(Optional) SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_name",
+					Description: `(Optional) If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.`,
 				},
 				resource.Attribute{
 					Name:        "service_account_name",
@@ -5411,7 +5525,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see https://github.com/kubernetes/examples/tree/master/volumes/glusterfs#create-a-pod. ### ` + "`" + `grpc` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Number of the port to access on the container. Number must be in the range 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) Name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -5512,6 +5634,10 @@ var (
 				resource.Attribute{
 					Name:        "failure_threshold",
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
 				},
 				resource.Attribute{
 					Name:        "http_get",
@@ -5670,12 +5796,16 @@ var (
 					Description: `(Optional) Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
 				},
 				resource.Attribute{
+					Name:        "grpc",
+					Description: `(Optional) GRPC specifies an action involving a GRPC port.`,
+				},
+				resource.Attribute{
 					Name:        "http_get",
 					Description: `(Optional) Specifies the http request to perform.`,
 				},
 				resource.Attribute{
 					Name:        "initial_delay_seconds",
-					Description: `(Optional) Number of seconds after the container has started before liveness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
+					Description: `(Optional) Number of seconds after the container has started before readiness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
 				},
 				resource.Attribute{
 					Name:        "period_seconds",
@@ -5699,7 +5829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `(Optional) Describes the minimum amount of compute resources required. ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ` + "`" + `resources` + "`" + ` is a computed attribute and thus if it is not configured in terraform code, the value will be computed from the returned Kubernetes object. That causes a situation when removing ` + "`" + `resources` + "`" + ` from terraform code does not update the Kubernetes object. In order to delete ` + "`" + `resources` + "`" + ` from the Kubernetes object, configure an empty attribute in your code. Please, look at the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resources { limits = {} requests = {} } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `resource_field_ref` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "container_name",
@@ -5839,7 +5969,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sysctl",
-					Description: `(Optional) holds a list of namespaced sysctls used for the pod. see [Sysctl](#sysctl) block. See [official docs](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/) for more details. ##### Sysctl`,
+					Description: `(Optional) holds a list of namespaced sysctls used for the pod. see [Sysctl](#sysctl) block. See [official docs](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/) for more details.`,
+				},
+				resource.Attribute{
+					Name:        "fs_group_change_policy",
+					Description: `Defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. ##### Sysctl`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6367,7 +6501,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global_default",
-					Description: `(Optional) Boolean that specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Boolean that specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class.`,
+				},
+				resource.Attribute{
+					Name:        "preemption_policy",
+					Description: `PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -6755,7 +6893,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "immutable",
-					Description: `(Optional) Ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_service_account_token",
+					Description: `(Optional) Terraform will wait for the service account token to be created. Defaults to ` + "`" + `true` + "`" + `. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -6787,7 +6929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uid",
-					Description: `The unique in time and space value for this secret. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Secret can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_secret.example default/my-secret ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The unique in time and space value for this secret. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### Timeouts ` + "`" + `kubernetes_secret` + "`" + ` provides the following configuration options: - ` + "`" + `create` + "`" + ` - Default ` + "`" + `1 minute` + "`" + ` ## Import Secret can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_secret.example default/my-secret ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -6847,8 +6989,16 @@ var (
 					Description: `The unique in time and space value for this service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "allocate_load_balancer_node_ports",
+					Description: `(Optional) Defines if ` + "`" + `NodePorts` + "`" + ` will be automatically allocated for services with type ` + "`" + `LoadBalancer` + "`" + `. It may be set to ` + "`" + `false` + "`" + ` if the cluster load-balancer does not rely on ` + "`" + `NodePorts` + "`" + `. If the caller requests specific ` + "`" + `NodePorts` + "`" + ` (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type ` + "`" + `LoadBalancer` + "`" + `. Default is ` + "`" + `true` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-nodeport-allocation)`,
+				},
+				resource.Attribute{
 					Name:        "cluster_ip",
 					Description: `(Optional) The IP address of the service. It is usually assigned randomly by the master. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise, creation of the service will fail. ` + "`" + `None` + "`" + ` can be specified for headless services when proxying is not required. Ignored if type is ` + "`" + `ExternalName` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ips",
+					Description: `(Optional) List of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise creation of the service will fail. If this field is not specified, it will be initialized from the ` + "`" + `clusterIP` + "`" + ` field. If this field is specified, clients must ensure that ` + "`" + `clusterIPs[0]` + "`" + ` and ` + "`" + `clusterIP` + "`" + ` have the same value. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
 				},
 				resource.Attribute{
 					Name:        "external_ips",
@@ -6871,6 +7021,14 @@ var (
 					Description: `(Optional) Represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to ` + "`" + `SingleStack` + "`" + `. Services can be ` + "`" + `SingleStack` + "`" + `(a single IP family), ` + "`" + `PreferDualStack` + "`" + `(two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or ` + "`" + `RequireDualStack` + "`" + `(two IP families on dual-stack configured clusters, otherwise fail). The ` + "`" + `ip_families` + "`" + ` and ` + "`" + `cluster_ip` + "`" + ` fields depend on the value of this field.`,
 				},
 				resource.Attribute{
+					Name:        "internal_traffic_policy",
+					Description: `(Optional) Specifies if the cluster internal traffic should be routed to all endpoints or node-local endpoints only. ` + "`" + `Cluster` + "`" + ` routes internal traffic to a Service to all endpoints. ` + "`" + `Local` + "`" + ` routes traffic to node-local endpoints only, traffic is dropped if no node-local endpoints are ready. The default value is ` + "`" + `Cluster` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_class",
+					Description: `(Optional) The class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix. This field can only be set when the Service type is ` + "`" + `LoadBalancer` + "`" + `. If not set, the default load balancer implementation is used. This field can only be set when creating or updating a Service to type ` + "`" + `LoadBalancer` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class)`,
+				},
+				resource.Attribute{
 					Name:        "load_balancer_ip",
 					Description: `(Optional) Only applies to ` + "`" + `type = LoadBalancer` + "`" + `. LoadBalancer will get created with the IP specified in this field. This feature depends on whether the underlying cloud-provider supports specifying this field when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature.`,
 				},
@@ -6880,7 +7038,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Required) The list of ports that are exposed by this service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
+					Description: `(Optional) The list of ports that are exposed by this service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
 				},
 				resource.Attribute{
 					Name:        "publish_not_ready_addresses",
@@ -6895,6 +7053,10 @@ var (
 					Description: `(Optional) Used to maintain session affinity. Supports ` + "`" + `ClientIP` + "`" + ` and ` + "`" + `None` + "`" + `. Defaults to ` + "`" + `None` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
 				},
 				resource.Attribute{
+					Name:        "session_affinity_config",
+					Description: `(Optional) Contains the configurations of session affinity. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-ipvs)`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Optional) Determines how the service is exposed. Defaults to ` + "`" + `ClusterIP` + "`" + `. Valid options are ` + "`" + `ExternalName` + "`" + `, ` + "`" + `ClusterIP` + "`" + `, ` + "`" + `NodePort` + "`" + `, and ` + "`" + `LoadBalancer` + "`" + `. ` + "`" + `ExternalName` + "`" + ` maps to the specified ` + "`" + `external_name` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#overview)`,
 				},
@@ -6904,7 +7066,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_protocol",
-					Description: `(Optional) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per [RFC-6335](https://datatracker.ietf.org/doc/html/rfc6335) and [IANA standard service names](http://www.iana.org/assignments/service-names)). Non-standard protocols should use prefixed names such as ` + "`" + `mycompany.com/my-custom-protocol` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol)`,
+					Description: `(Optional) The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per [RFC-6335](https://datatracker.ietf.org/doc/html/rfc6335) and [IANA standard service names](https://www.iana.org/assignments/service-names)). Non-standard protocols should use prefixed names such as ` + "`" + `mycompany.com/my-custom-protocol` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6924,7 +7086,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_port",
-					Description: `(Optional) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. This field is ignored for services with ` + "`" + `cluster_ip = "None"` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#defining-a-service) ## Attributes`,
+					Description: `(Optional) Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. This field is ignored for services with ` + "`" + `cluster_ip = "None"` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#defining-a-service) ### ` + "`" + `session_affinity_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "client_ip",
+					Description: `(Optional) Contains the configurations of Client IP based session affinity. ### ` + "`" + `client_ip` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "timeout_seconds",
+					Description: `(Optional) Specifies the seconds of ` + "`" + `ClientIP` + "`" + ` type session sticky time. The value must be > 0 and <= 86400(for 1 day) if ServiceAffinity == ` + "`" + `ClientIP` + "`" + `. ## Attributes`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -7018,13 +7188,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Deprecated) Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. Starting from version ` + "`" + `1.24.0` + "`" + ` by default Kubernetes does not automatically generate tokens for service accounts. That leads to the situation when ` + "`" + `default_secret_name` + "`" + ` cannot be computed and thus will be an empty string. In order to create a service account token, please [use ` + "`" + `kubernetes_secret_v1` + "`" + ` resource](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret_v1#example-usage-service-account-token) ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Deprecated) Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. Starting from version ` + "`" + `1.24.0` + "`" + ` by default Kubernetes does not automatically generate tokens for service accounts. That leads to the situation when ` + "`" + `default_secret_name` + "`" + ` cannot be computed and thus will be an empty string. In order to create a service account token, please [use ` + "`" + `kubernetes_secret_v1` + "`" + ` resource](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret_v1#example-usage-service-account-token) ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7207,11 +7377,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the storage class, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `allowed_topologies` + "`" + ` ￼ #### Arguments ￼`,
+					Description: `(Optional) Name of the storage class, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ### ` + "`" + `allowed_topologies` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "match_label_expressions",
-					Description: `(Optional) A list of topology selector requirements by labels. See [match_label_expressions](#match_label_expressions) ### ` + "`" + `match_label_expressions` + "`" + ` ￼ #### Arguments ￼`,
+					Description: `(Optional) A list of topology selector requirements by labels. See [match_label_expressions](#match_label_expressions) ### ` + "`" + `match_label_expressions` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -7256,21 +7426,22 @@ var (
 		"kubernetes_limit_range":                 13,
 		"kubernetes_namespace":                   14,
 		"kubernetes_network_policy":              15,
-		"kubernetes_persistent_volume":           16,
-		"kubernetes_persistent_volume_claim":     17,
-		"kubernetes_pod":                         18,
-		"kubernetes_pod_disruption_budget":       19,
-		"kubernetes_pod_security_policy":         20,
-		"kubernetes_priority_class":              21,
-		"kubernetes_replication_controller":      22,
-		"kubernetes_resource_quota":              23,
-		"kubernetes_role":                        24,
-		"kubernetes_role_binding":                25,
-		"kubernetes_secret":                      26,
-		"kubernetes_service":                     27,
-		"kubernetes_service_account":             28,
-		"kubernetes_stateful_set":                29,
-		"kubernetes_storage_class":               30,
+		"kubernetes_node_taint":                  16,
+		"kubernetes_persistent_volume":           17,
+		"kubernetes_persistent_volume_claim":     18,
+		"kubernetes_pod":                         19,
+		"kubernetes_pod_disruption_budget":       20,
+		"kubernetes_pod_security_policy":         21,
+		"kubernetes_priority_class":              22,
+		"kubernetes_replication_controller":      23,
+		"kubernetes_resource_quota":              24,
+		"kubernetes_role":                        25,
+		"kubernetes_role_binding":                26,
+		"kubernetes_secret":                      27,
+		"kubernetes_service":                     28,
+		"kubernetes_service_account":             29,
+		"kubernetes_stateful_set":                30,
+		"kubernetes_storage_class":               31,
 	}
 )
 

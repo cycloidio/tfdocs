@@ -402,6 +402,10 @@ var (
 					Description: `The server's tag.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the server.`,
+				},
+				resource.Attribute{
 					Name:        "os_id",
 					Description: `The server's operating system ID.`,
 				},
@@ -478,6 +482,10 @@ var (
 				resource.Attribute{
 					Name:        "tag",
 					Description: `The server's tag.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the server.`,
 				},
 				resource.Attribute{
 					Name:        "os_id",
@@ -806,6 +814,10 @@ var (
 					Description: `The server's tag.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the instance.`,
+				},
+				resource.Attribute{
 					Name:        "os_id",
 					Description: `The server's operating system ID.`,
 				},
@@ -918,6 +930,10 @@ var (
 				resource.Attribute{
 					Name:        "tag",
 					Description: `The server's tag.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags applied to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "os_id",
@@ -1198,6 +1214,18 @@ var (
 					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `The base64 encoded public certificate for the cluster's certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `The base64 encoded private key used by clients to access the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `The base64 encoded public certificate used by clients to access the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "node_pools",
 					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
 				},
@@ -1231,7 +1259,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+					Description: `Array that contains information about nodes within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaler",
+					Description: `Boolean indicating if the auto scaler for the default node pool is active.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `The minimum number of nodes used by the auto scaler.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `The maximum number of nodes used by the auto scaler. ` + "`" + `nodes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "date_created",
@@ -1296,6 +1336,18 @@ var (
 					Description: `Base64 encoded Kubeconfig for this VKE cluster.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `The base64 encoded public certificate for the cluster's certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "client_key",
+					Description: `The base64 encoded private key used by clients to access the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate",
+					Description: `The base64 encoded public certificate used by clients to access the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "node_pools",
 					Description: `Contains the default node pool that was deployed. ` + "`" + `node_pools` + "`" + ``,
 				},
@@ -1329,7 +1381,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nodes",
-					Description: `Array that contains information about nodes within this node pool. ` + "`" + `nodes` + "`" + ``,
+					Description: `Array that contains information about nodes within this node pool.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaler",
+					Description: `Boolean indicating if the auto scaler for the default node pool is active.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `The minimum number of nodes used by the auto scaler.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `The maximum number of nodes used by the auto scaler. ` + "`" + `nodes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "date_created",
@@ -1794,6 +1858,14 @@ var (
 					Description: `The type of plan it is.`,
 				},
 				resource.Attribute{
+					Name:        "gpu_vram",
+					Description: `For GPU plans, the VRAM available in the plan.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_type",
+					Description: `For GPU plans, the GPU card type.`,
+				},
+				resource.Attribute{
 					Name:        "locations",
 					Description: `A list of DCIDs (used as ` + "`" + `region` + "`" + ` in Terraform) where the plan can be deployed.`,
 				},
@@ -1826,6 +1898,14 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `The type of plan it is.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_vram",
+					Description: `For GPU plans, the VRAM available in the plan.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_type",
+					Description: `For GPU plans, the GPU card type.`,
 				},
 				resource.Attribute{
 					Name:        "locations",

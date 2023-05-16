@@ -66,15 +66,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigiq_address",
-					Description: `(Required) Address of the BIG-IQ to which your targer BIG-IP is attached`,
+					Description: `(Required, type ` + "`" + `string` + "`" + `) Address of the BIG-IQ to which your targer BIG-IP is attached`,
 				},
 				resource.Attribute{
 					Name:        "bigiq_user",
-					Description: `(Required) User name of the BIG-IQ to which your targer BIG-IP is attached`,
+					Description: `(Required, type ` + "`" + `string` + "`" + `) User name of the BIG-IQ to which your targer BIG-IP is attached`,
 				},
 				resource.Attribute{
 					Name:        "bigiq_password",
-					Description: `(Required) Password of the BIG-IQ to which your targer BIG-IP is attached`,
+					Description: `(Required,type ` + "`" + `string` + "`" + `) Password of the BIG-IQ to which your targer BIG-IP is attached`,
+				},
+				resource.Attribute{
+					Name:        "bigiq_port",
+					Description: `(Optional) type ` + "`" + `int` + "`" + `, BIGIQ License Manager Port number, specify if port is other than ` + "`" + `443` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "bigiq_token_auth",
+					Description: `(Optional) type ` + "`" + `bool` + "`" + `, if set to ` + "`" + `true` + "`" + ` enables Token based Authentication,default is ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "bigiq_login_ref",
+					Description: `(Optional) BIGIQ Login reference for token authentication`,
 				},
 				resource.Attribute{
 					Name:        "as3_json",
@@ -361,6 +373,402 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_bigip_fast_http_app",
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_fast_http_app resource`,
+			Description:      ``,
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"http",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `(Required, ` + "`" + `string` + "`" + `) Name of the FAST HTTPS application tenant.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required ,` + "`" + `string` + "`" + `) Name of the FAST HTTPS application.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_server",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `virtual_server` + "`" + ` block will provide ` + "`" + `ip` + "`" + ` and ` + "`" + `port` + "`" + ` options to be used for virtual server. See [virtual server](#virtual-server) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "existing_snat_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP SNAT pool.`,
+				},
+				resource.Attribute{
+					Name:        "snat_pool_address",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of address to be used for FAST-Generated SNAT Pool.`,
+				},
+				resource.Attribute{
+					Name:        "exist_pool_name",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP pool.`,
+				},
+				resource.Attribute{
+					Name:        "pool_members",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `pool_members` + "`" + ` block takes input for FAST-Generated Pool. See [Pool Members](#pool-members) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "service_discovery",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of different cloud service discovery config provided as string, provided ` + "`" + `service_discovery` + "`" + ` block to Automatically Discover Pool Members with Service Discovery on different clouds.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_mode",
+					Description: `(Optional,` + "`" + `string` + "`" + `) A ` + "`" + `load balancing method` + "`" + ` is an algorithm that the BIG-IP system uses to select a pool member for processing a request. F5 recommends the Least Connections load balancing method`,
+				},
+				resource.Attribute{
+					Name:        "slow_ramp_time",
+					Description: `(Optional,` + "`" + `int` + "`" + `) Slow ramp temporarily throttles the number of connections to a new pool member. The recommended value is 300 seconds`,
+				},
+				resource.Attribute{
+					Name:        "existing_monitor",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP HTTPS pool monitor. Monitors are used to determine the health of the application on each server.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `monitor` + "`" + ` block takes input for FAST-Generated Pool Monitor. See [Pool Monitor](#pool-monitor) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "existing_waf_security_policy",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing WAF Security policy.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_ltm_policy",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of LTM Policies to be applied FAST HTTP Application.`,
+				},
+				resource.Attribute{
+					Name:        "waf_security_policy",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `waf_security_policy` + "`" + ` block takes input for FAST-Generated WAF Security Policy. See [WAF Security Policy](#waf-security-policy) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "security_log_profiles",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of security log profiles to be used for FAST application ### virtual server This IP address, combined with the port you specify below, becomes the BIG-IP virtual server address and port, which clients use to access the application The ` + "`" + `virtual_server` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) IP4/IPv6 address to be used for virtual server ex: ` + "`" + `10.1.1.1` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Optional , ` + "`" + `list` + "`" + `) List of server address to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) port number of serviceport to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) connectionLimit value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "priority_group",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) priorityGroup value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "share_nodes",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) shareNodes value to be used for FAST-Generated Pool. ### Pool Monitor Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated Pool Monitor. The ` + "`" + `monitor` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "monitor_auth",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) set ` + "`" + `true` + "`" + ` if the servers require login credentials for web access on FAST-Generated Pool Monitor. default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) username for web access on FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) password for web access on FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) Set the time between health checks,in seconds for FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "send_string",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Specify data to be sent during each health check for FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) The presence of this string anywhere in the HTTP response implies availability. ### WAF Security policy Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated WAF Security Policy The ` + "`" + `waf_security_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) Setting ` + "`" + `true` + "`" + ` will enable FAST to create WAF Security Policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_fast_https_app",
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_fast_https_app resource`,
+			Description:      ``,
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"https",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `(Required, ` + "`" + `string` + "`" + `) Name of the FAST HTTPS application tenant.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required ,` + "`" + `string` + "`" + `) Name of the FAST HTTPS application.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_server",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `virtual_server` + "`" + ` block will provide ` + "`" + `ip` + "`" + ` and ` + "`" + `port` + "`" + ` options to be used for virtual server. See [virtual server](#virtual-server) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "existing_snat_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP SNAT pool.`,
+				},
+				resource.Attribute{
+					Name:        "snat_pool_address",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of address to be used for FAST-Generated SNAT Pool.`,
+				},
+				resource.Attribute{
+					Name:        "existing_tls_server_profile",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing TLS server profile.`,
+				},
+				resource.Attribute{
+					Name:        "tls_server_profile",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `tls_server_profile` + "`" + ` block takes input for FAST-Generated TLS Server Profile. See [TLS Server Profile](#tls-server-profile) below for more details. ~>`,
+				},
+				resource.Attribute{
+					Name:        "existing_tls_client_profile",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing TLS client profile.`,
+				},
+				resource.Attribute{
+					Name:        "tls_client_profile",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `tls_client_profile` + "`" + ` block takes input for FAST-Generated TLS client Profile. See [TLS Client Profile](#tls-client-profile) below for more details. ~>`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_ltm_policy",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of LTM Policies to be applied FAST HTTPS Application.`,
+				},
+				resource.Attribute{
+					Name:        "existing_waf_security_policy",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing WAF Security policy.`,
+				},
+				resource.Attribute{
+					Name:        "waf_security_policy",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `waf_security_policy` + "`" + ` block takes input for FAST-Generated WAF Security Policy. See [WAF Security Policy](#waf-security-policy) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "existing_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP pool.`,
+				},
+				resource.Attribute{
+					Name:        "pool_members",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `pool_members` + "`" + ` block takes input for FAST-Generated Pool. See [Pool Members](#pool-members) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "service_discovery",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of different cloud service discovery config provided as string, provided ` + "`" + `service_discovery` + "`" + ` block to Automatically Discover Pool Members with Service Discovery on different clouds.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_mode",
+					Description: `(Optional,` + "`" + `string` + "`" + `) A ` + "`" + `load balancing method` + "`" + ` is an algorithm that the BIG-IP system uses to select a pool member for processing a request. F5 recommends the Least Connections load balancing method`,
+				},
+				resource.Attribute{
+					Name:        "slow_ramp_time",
+					Description: `(Optional,` + "`" + `int` + "`" + `) Slow ramp temporarily throttles the number of connections to a new pool member. The recommended value is 300 seconds`,
+				},
+				resource.Attribute{
+					Name:        "existing_monitor",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP HTTPS pool monitor. Monitors are used to determine the health of the application on each server.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `monitor` + "`" + ` block takes input for FAST-Generated Pool Monitor. See [Pool Monitor](#pool-monitor) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "security_log_profiles",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of security log profiles to be used for FAST application ### virtual server This IP address, combined with the port you specify below, becomes the BIG-IP virtual server address and port, which clients use to access the application The ` + "`" + `virtual_server` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) IP4/IPv6 address to be used for virtual server ex: ` + "`" + `10.1.1.1` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tls_cert_name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Name of existing BIG-IP SSL certificate to be used for FAST-Generated TLS Server Profile.`,
+				},
+				resource.Attribute{
+					Name:        "tls_key_name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Name of existing BIG-IP SSL Key to be used for FAST-Generated TLS Server Profile. ### TLS Client Profile Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated TLS Client Profile. The ` + "`" + `tls_client_profile` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "tls_cert_name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Name of existing BIG-IP SSL certificate to be used for FAST-Generated TLS Server Profile.`,
+				},
+				resource.Attribute{
+					Name:        "tls_key_name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Name of existing BIG-IP SSL Key to be used for FAST-Generated TLS Server Profile. ### WAF Security policy Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated WAF Security Policy The ` + "`" + `waf_security_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) Setting ` + "`" + `true` + "`" + ` will enable FAST to create WAF Security Policy. ### Pool Members Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated Pool. The ` + "`" + `pool_members` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Optional , ` + "`" + `list` + "`" + `) List of server address to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) port number of serviceport to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) connectionLimit value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "priority_group",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) priorityGroup value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "share_nodes",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) shareNodes value to be used for FAST-Generated Pool. ### Pool Monitor Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated Pool Monitor. The ` + "`" + `monitor` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "monitor_auth",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) set ` + "`" + `true` + "`" + ` if the servers require login credentials for web access on FAST-Generated Pool Monitor. default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) username for web access on FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) password for web access on FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) Set the time between health checks,in seconds for FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "send_string",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Specify data to be sent during each health check for FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) The presence of this string anywhere in the HTTP response implies availability.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_fast_tcp_app",
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_fast_tcp_app resource`,
+			Description:      ``,
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"tcp",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) Name of the FAST TCP application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `(Required) Name of the FAST TCP application tenant.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_server",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `virtual_server` + "`" + ` block will provide ` + "`" + `ip` + "`" + ` and ` + "`" + `port` + "`" + ` options to be used for virtual server. See [virtual server](#virtual-server) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "existing_snat_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP SNAT pool.`,
+				},
+				resource.Attribute{
+					Name:        "snat_pool_address",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of address to be used for FAST-Generated SNAT Pool.`,
+				},
+				resource.Attribute{
+					Name:        "existing_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP pool.`,
+				},
+				resource.Attribute{
+					Name:        "pool_members",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `pool_members` + "`" + ` block takes input for FAST-Generated Pool. See [Pool Members](#pool-members) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_mode",
+					Description: `(Optional,` + "`" + `string` + "`" + `) A ` + "`" + `load balancing method` + "`" + ` is an algorithm that the BIG-IP system uses to select a pool member for processing a request. F5 recommends the Least Connections load balancing method`,
+				},
+				resource.Attribute{
+					Name:        "slow_ramp_time",
+					Description: `(Optional,` + "`" + `int` + "`" + `) Slow ramp temporarily throttles the number of connections to a new pool member. The recommended value is 300 seconds`,
+				},
+				resource.Attribute{
+					Name:        "existing_monitor",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP HTTPS pool monitor. Monitors are used to determine the health of the application on each server.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `monitor` + "`" + ` block takes input for FAST-Generated Pool Monitor. See [Pool Monitor](#pool-monitor) below for more details. ### virtual server This IP address, combined with the port you specify below, becomes the BIG-IP virtual server address and port, which clients use to access the application The ` + "`" + `virtual_server` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) IP4/IPv6 address to be used for virtual server ex: ` + "`" + `10.1.1.1` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Optional , ` + "`" + `list` + "`" + `) List of server address to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) port number of serviceport to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) connectionLimit value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "priority_group",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) priorityGroup value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "share_nodes",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) shareNodes value to be used for FAST-Generated Pool. ### Pool Monitor Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated Pool Monitor. Unlike FAST HTTP and HTTPS apps, TCP only has the ` + "`" + `interval` + "`" + ` option here. The ` + "`" + `monitor` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) Set the time between health checks,in seconds for FAST-Generated Pool Monitor.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_bigip_fast_template",
 			Category:         "F5 Automation Tool Chain(ATC)",
 			ShortDescription: `Provides details about bigip_fast_template resource`,
@@ -382,6 +790,142 @@ var (
 				resource.Attribute{
 					Name:        "md5_hash",
 					Description: `(Required) MD5 hash of the zip archive file containing FAST template`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_fast_udp_app",
+			Category:         "F5 Automation Tool Chain(ATC)",
+			ShortDescription: `Provides details about bigip_fast_udp_app resource`,
+			Description:      ``,
+			Keywords: []string{
+				"f5",
+				"automation",
+				"tool",
+				"chain",
+				"atc",
+				"fast",
+				"udp",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application",
+					Description: `(Required) Name of the FAST UDP application.`,
+				},
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `(Required) Name of the FAST UDP application tenant.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_server",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `virtual_server` + "`" + ` block will provide ` + "`" + `ip` + "`" + ` and ` + "`" + `port` + "`" + ` options to be used for virtual server. See [virtual server](#virtual-server) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "enable_fastl4",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Enables use of FastL4 profiles.`,
+				},
+				resource.Attribute{
+					Name:        "existing_profile",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP FastL4 or UDP profile.`,
+				},
+				resource.Attribute{
+					Name:        "existing_snat_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP SNAT pool.`,
+				},
+				resource.Attribute{
+					Name:        "snat_pool_address",
+					Description: `(Optional,` + "`" + `list` + "`" + `) List of address to be used for FAST-Generated SNAT Pool.`,
+				},
+				resource.Attribute{
+					Name:        "persistence_profile",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP persistence profile to be used.`,
+				},
+				resource.Attribute{
+					Name:        "persistence_type",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Type of persistence profile to be created. Using this option will enable use of FAST generated persistence profiles.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_persistence",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Type of fallback persistence record to be created for each new client connection.`,
+				},
+				resource.Attribute{
+					Name:        "existing_pool",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP pool.`,
+				},
+				resource.Attribute{
+					Name:        "pool_members",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `pool_members` + "`" + ` block takes input for FAST-Generated Pool. See [Pool Members](#pool-members) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_mode",
+					Description: `(Optional,` + "`" + `string` + "`" + `) A ` + "`" + `load balancing method` + "`" + ` is an algorithm that the BIG-IP system uses to select a pool member for processing a request. F5 recommends the Least Connections load balancing method`,
+				},
+				resource.Attribute{
+					Name:        "slow_ramp_time",
+					Description: `(Optional,` + "`" + `int` + "`" + `) Slow ramp temporarily throttles the number of connections to a new pool member. The recommended value is 300 seconds`,
+				},
+				resource.Attribute{
+					Name:        "existing_monitor",
+					Description: `(Optional,` + "`" + `string` + "`" + `) Name of an existing BIG-IP UDP pool monitor. Monitors are used to determine the health of the application on each server.`,
+				},
+				resource.Attribute{
+					Name:        "monitor",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `monitor` + "`" + ` block takes input for FAST-Generated Pool Monitor. See [Pool Monitor](#pool-monitor) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "irules",
+					Description: `(Optional,` + "`" + `list` + "`" + `) Irules to attach to Virtual Server.`,
+				},
+				resource.Attribute{
+					Name:        "vlans_allowed",
+					Description: `(Optional,` + "`" + `list` + "`" + `) Names of existing VLANs to allow.`,
+				},
+				resource.Attribute{
+					Name:        "vlans_rejected",
+					Description: `(Optional,` + "`" + `list` + "`" + `) Names of existing VLANs to reject.`,
+				},
+				resource.Attribute{
+					Name:        "security_log_profiles",
+					Description: `(Optional,` + "`" + `list` + "`" + `) Existing security log profiles to enable. ### virtual server This IP address, combined with the port you specify below, becomes the BIG-IP virtual server address and port, which clients use to access the application The ` + "`" + `virtual_server` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) IP4/IPv6 address to be used for virtual server ex: ` + "`" + `10.1.1.1` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `(Optional , ` + "`" + `list` + "`" + `) List of server address to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) port number of serviceport to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) connectionLimit value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "priority_group",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) priorityGroup value to be used for FAST-Generated Pool.`,
+				},
+				resource.Attribute{
+					Name:        "share_nodes",
+					Description: `(Optional , ` + "`" + `bool` + "`" + `) shareNodes value to be used for FAST-Generated Pool. ### Pool Monitor Using this block will ` + "`" + `enable` + "`" + ` for FAST-Generated Pool Monitor. The ` + "`" + `monitor` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional , ` + "`" + `int` + "`" + `) Set the time between health checks,in seconds for FAST-Generated Pool Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "send_string",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Optional data to be sent during each health check.`,
+				},
+				resource.Attribute{
+					Name:        "expected_response",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) The presence of this optional string is required in the response, if specified it confirms availability.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -566,7 +1110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies, in seconds, the frequency at which the system issues the monitor check when either the resource is down or the status of the resource is unknown. The default is ` + "`" + `5` + "`" + ``,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies, in seconds, the frequency at which the system issues the monitor check when either the resource is down or the status of the resource is unknown,value of ` + "`" + `interval` + "`" + ` should be always less than ` + "`" + `timeout` + "`" + `. Default is ` + "`" + `5` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "up_interval",
@@ -642,7 +1186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_profile",
-					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the ssl profile for the monitor. It only makes sense when the parent is ` + "`" + `/Common/https` + "`" + ``,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the ssl profile for the monitor. It only makes sense when the parent is ` + "`" + `/Common/https` + "`" + ` ## Importing An existing monitor can be imported into this resource by supplying monitor Name in ` + "`" + `full path` + "`" + ` as ` + "`" + `id` + "`" + `. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_monitor.monitor /Common/terraform_monitor ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -663,23 +1207,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the node`,
+					Description: `(Required , type ` + "`" + `string` + "`" + `) Name of the node`,
 				},
 				resource.Attribute{
 					Name:        "address",
-					Description: `(Required) IP or hostname of the node`,
+					Description: `(Required, type ` + "`" + `string` + "`" + `) IP or hostname of the node`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) User-defined description give ltm_node`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) User-defined description give ltm_node`,
 				},
 				resource.Attribute{
 					Name:        "connection_limit",
-					Description: `(Optional) Specifies the maximum number of connections allowed for the node or node address.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the maximum number of connections allowed for the node or node address.`,
 				},
 				resource.Attribute{
 					Name:        "dynamic_ratio",
-					Description: `(Optional) Specifies the fixed ratio value used for a node during ratio load balancing.`,
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the fixed ratio value used for a node during ratio load balancing.`,
 				},
 				resource.Attribute{
 					Name:        "monitor",
@@ -687,15 +1231,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Optional) Default is "user-up" you can set to "user-down" if you want to disable`,
+					Description: `(Optional) Default is "user-up" you can set to "user-down" if you want to disable ~>`,
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `(Optional) Specifies the amount of time before sending the next DNS query. Default is 3600. This needs to be specified inside the fqdn (fully qualified domain name).`,
+					Description: `(Optional, type ` + "`" + `string` + "`" + `) Specifies the amount of time before sending the next DNS query. Default is 3600. This needs to be specified inside the fqdn (fully qualified domain name).`,
 				},
 				resource.Attribute{
 					Name:        "address_family",
-					Description: `(Optional) Specifies the node's address family. The default is 'unspecified', or IP-agnostic. This needs to be specified inside the fqdn (fully qualified domain name).`,
+					Description: `(Optional) Specifies the node's address family. The default is 'unspecified', or IP-agnostic. This needs to be specified inside the fqdn (fully qualified domain name). ## Importing An existing Node can be imported into this resource by supplying Node Name in ` + "`" + `full path` + "`" + ` as ` + "`" + `id` + "`" + `. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_node.site2_node "/TEST/testnode" (or) $ terraform import bigip_ltm_node.site2_node "/Common/3.3.3.3" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -800,7 +1344,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule",
-					Description: `(Optional) Rules can be applied using the policy`,
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) List of Rules can be applied using the policy. Each rule is block type with following arguments.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required,type ` + "`" + `string` + "`" + `) Name of Rule to be applied in policy.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional,type ` + "`" + `set` + "`" + `) Block type. See [condition](#condition) block for more details.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional,type ` + "`" + `set` + "`" + `) Block type. See [action](#action) block for more details.`,
 				},
 				resource.Attribute{
 					Name:        "forward",
@@ -809,6 +1365,10 @@ var (
 				resource.Attribute{
 					Name:        "pool",
 					Description: `(Optional ) This action will direct the stream to this pool.`,
+				},
+				resource.Attribute{
+					Name:        "connection",
+					Description: `(Optional) This action is set to ` + "`" + `true` + "`" + ` by default, it needs to be explicitly set to ` + "`" + `false` + "`" + ` for actions it conflicts with. ### condition`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -829,11 +1389,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the pool,it should be "full path".The full path is the combination of the partition + name of the pool.(For example ` + "`" + `/Common/my-pool` + "`" + `)`,
+					Description: `(Required,type ` + "`" + `string` + "`" + `) Name of the pool,it should be ` + "`" + `full path` + "`" + `.The full path is the combination of the ` + "`" + `partition + name` + "`" + ` of the pool.(For example ` + "`" + `/Common/my-pool` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "monitors",
-					Description: `(Optional) List of monitor names to associate with the pool`,
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) List of monitor names to associate with the pool`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -865,7 +1425,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reselect_tries",
-					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the number of times the system tries to contact a new pool member after a passive failure.`,
+					Description: `(Optional, type ` + "`" + `int` + "`" + `) Specifies the number of times the system tries to contact a new pool member after a passive failure. ## Importing An existing pool can be imported into this resource by supplying pool Name in ` + "`" + `full path` + "`" + ` as ` + "`" + `id` + "`" + `. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_pool.k8s_prod_import /Common/k8prod_Pool ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -967,6 +1527,10 @@ var (
 				resource.Attribute{
 					Name:        "ciphers",
 					Description: `(Optional) Specifies the list of ciphers that the system supports. When creating a new profile, the default cipher list is provided by the parent profile.`,
+				},
+				resource.Attribute{
+					Name:        "cipher_group",
+					Description: `(Optional) Specifies the cipher group for the SSL server profile. It is mutually exclusive with the argument, ` + "`" + `ciphers` + "`" + `. The default value is ` + "`" + `none` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "peer_cert_mode",
@@ -1082,35 +1646,51 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
-					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
 				},
 				resource.Attribute{
-					Name:        "partition",
-					Description: `(Optional) Displays the administrative partition within which this profile resides`,
+					Name:        "late_binding",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Enables intelligent selection of a back-end server or pool, using an iRule to make the selection. The default is ` + "`" + `disabled` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "client_timeout",
-					Description: `(Optional) Specifies late binding client timeout in seconds. This setting specifies the number of seconds allowed for a client to transmit enough data to select a server when late binding is enabled. If it expires timeout-recovery mode will dictate what action to take.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies late binding client timeout in seconds. This setting specifies the number of seconds allowed for a client to transmit enough data to select a server when late binding is enabled. If it expires timeout-recovery mode will dictate what action to take.`,
 				},
 				resource.Attribute{
 					Name:        "explicitflow_migration",
-					Description: `(Optional) Enables or disables late binding explicit flow migration that allows iRules to control when flows move from software to hardware. Explicit flow migration is disabled by default hence BIG-IP automatically migrates flows from software to hardware.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `)Enables or disables late binding explicit flow migration that allows iRules to control when flows move from software to hardware. Explicit flow migration is disabled by default hence BIG-IP automatically migrates flows from software to hardware.`,
 				},
 				resource.Attribute{
 					Name:        "hardware_syncookie",
-					Description: `(Optional) Enables or disables hardware SYN cookie support when PVA10 is present on the system. Note that when you set the hardware syncookie option to enabled, you may also want to set the following bigdb database variables using the "/sys modify db" command, based on your requirements: pva.SynCookies.Full.ConnectionThreshold (default: 500000), pva.SynCookies.Assist.ConnectionThreshold (default: 500000) pva.SynCookies.ClientWindow (default: 0). The default value is disabled.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Enables or disables hardware SYN cookie support when PVA10 is present on the system. Note that when you set the hardware syncookie option to enabled, you may also want to set the following bigdb database variables using the "/sys modify db" command, based on your requirements: pva.SynCookies.Full.ConnectionThreshold (default: 500000), pva.SynCookies.Assist.ConnectionThreshold (default: 500000) pva.SynCookies.ClientWindow (default: 0). The default value is disabled.`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
-					Description: `(Optional) Specifies an idle timeout in seconds. This setting specifies the number of seconds that a connection is idle before the connection is eligible for deletion.When you specify an idle timeout for the Fast L4 profile, the value must be greater than the bigdb database variable Pva.Scrub time in msec for it to work properly.The default value is 300 seconds.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies an idle timeout in seconds. This setting specifies the number of seconds that a connection is idle before the connection is eligible for deletion.When you specify an idle timeout for the Fast L4 profile, the value must be greater than the bigdb database variable Pva.Scrub time in msec for it to work properly.The default value is 300 seconds.`,
 				},
 				resource.Attribute{
 					Name:        "iptos_toclient",
-					Description: `(Optional) Specifies an IP ToS number for the client side. This option specifies the Type of Service level that the traffic management system assigns to IP packets when sending them to clients. The default value is 65535 (pass-through), which indicates, do not modify.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies an IP ToS number for the client side. This option specifies the Type of Service level that the traffic management system assigns to IP packets when sending them to clients. The default value is 65535 (pass-through), which indicates, do not modify.`,
 				},
 				resource.Attribute{
 					Name:        "keepalive_interval",
-					Description: `(Optional) Specifies the keep alive probe interval, in seconds. The default value is disabled (0 seconds). ## Import BIG-IP LTM fastl4 profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bigip_ltm_profile_fastl4.test-fastl4 /Common/test-fastl4 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the keep alive probe interval, in seconds. The default value is disabled (0 seconds).`,
+				},
+				resource.Attribute{
+					Name:        "tcp_handshake_timeout",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the acceptable duration for a TCP handshake, that is, the maximum idle time between a client synchronization (SYN) and a client acknowledgment (ACK).The default is ` + "`" + `5 seconds` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "loose_initiation",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system initializes a connection when it receives any TCP packet, rather that requiring a SYN packet for connection initiation. The default is disabled. We recommend that if you enable the Loose Initiation option, you also enable the Loose Close option.`,
+				},
+				resource.Attribute{
+					Name:        "loose_close",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system closes a loosely-initiated connection when the system receives the first FIN packet from either the client or the server. The default is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "receive_windowsize",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the amount of data the BIG-IP system can accept without acknowledging the server. The default is 0 (zero). ## Import BIG-IP LTM fastl4 profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bigip_ltm_profile_fastl4.test-fastl4 /Common/test-fastl4 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1366,15 +1946,43 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
-					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
 				},
 				resource.Attribute{
 					Name:        "content_type_include",
-					Description: `(Optional) Specifies a list of content types for compression of HTTP Content-Type responses. Use a string list to specify a list of content types you want to compress.`,
+					Description: `(Optional,type ` + "`" + `set` + "`" + `) Specifies a list of content types for compression of HTTP Content-Type responses. Use a string list to specify a list of content types you want to compress.`,
 				},
 				resource.Attribute{
 					Name:        "content_type_exclude",
-					Description: `(Optional) Excludes a specified list of content types from compression of HTTP Content-Type responses. Use a string list to specify a list of content types you want to compress.`,
+					Description: `(Optional,type ` + "`" + `set` + "`" + `) Excludes a specified list of content types from compression of HTTP Content-Type responses. Use a string list to specify a list of content types you want to compress.`,
+				},
+				resource.Attribute{
+					Name:        "compression_buffersize",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the maximum number of compressed bytes that the system buffers before inserting a Content-Length header (which specifies the compressed size) into the response. The default is ` + "`" + `4096` + "`" + ` bytes.`,
+				},
+				resource.Attribute{
+					Name:        "gzip_compression_level",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the degree to which the system compresses the content. Higher compression levels cause the compression process to be slower. The default is 1 - Least Compression (Fastest)`,
+				},
+				resource.Attribute{
+					Name:        "gzip_memory_level",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of bytes of memory that the system uses for internal compression buffers when compressing a server response. The default is ` + "`" + `8 kilobytes/8192 bytes` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gzip_window_size",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of kilobytes in the window size that the system uses when compressing a server response. The default is ` + "`" + `16` + "`" + ` kilobytes`,
+				},
+				resource.Attribute{
+					Name:        "keep_accept_encoding",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system does not remove the Accept-Encoding: header from an HTTP request. The default is ` + "`" + `disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vary_header",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system inserts a Vary header into cacheable server responses. The default is ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_saver",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system monitors the percent CPU usage and adjusts compression rates automatically when the CPU usage reaches either the CPU Saver High Threshold or the CPU Saver Low Threshold. The default is ` + "`" + `enabled` + "`" + `. ## Import BIG-IP LTM HTTP Compress profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bigip_ltm_profile_httpcompress.test-httpcomprs_import /Common/test-httpcomprs ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1470,6 +2078,10 @@ var (
 					Description: `(Optional) Specifies the list of ciphers that the system supports. When creating a new profile, the default cipher list is provided by the parent profile.`,
 				},
 				resource.Attribute{
+					Name:        "cipher_group",
+					Description: `(Optional) Specifies the cipher group for the SSL server profile. It is mutually exclusive with the argument, ` + "`" + `ciphers` + "`" + `. The default value is ` + "`" + `none` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "peer_cert_mode",
 					Description: `(Optional) Specifies the way the system handles client certificates.When ignore, specifies that the system ignores certificates from client systems.When require, specifies that the system requires a client to present a valid certificate.When request, specifies that the system requests a valid certificate from a client but always authenticate the client.`,
 				},
@@ -1536,40 +2148,84 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "partition",
-					Description: `(Optional) Displays the administrative partition within which this profile resides`,
-				},
-				resource.Attribute{
 					Name:        "defaults_from",
-					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
-					Description: `(Optional) Specifies the number of seconds that a connection is idle before the connection is eligible for deletion. The default value is 300 seconds.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds that a connection is idle before the connection is eligible for deletion. The default value is 300 seconds.`,
 				},
 				resource.Attribute{
 					Name:        "close_wait_timeout",
-					Description: `(Optional) Specifies the number of seconds that a connection remains in a LAST-ACK state before quitting. A value of 0 represents a term of forever (or until the maxrtx of the FIN state). The default value is 5 seconds.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds that a connection remains in a LAST-ACK state before quitting. A value of 0 represents a term of forever (or until the maxrtx of the FIN state). The default value is 5 seconds.`,
 				},
 				resource.Attribute{
 					Name:        "finwait_timeout",
-					Description: `(Optional) Specifies the number of seconds that a connection is in the FIN-WAIT-1 or closing state before quitting. The default value is 5 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state). You can also specify immediate or indefinite.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds that a connection is in the FIN-WAIT-1 or closing state before quitting. The default value is 5 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state). You can also specify immediate or indefinite.`,
 				},
 				resource.Attribute{
 					Name:        "finwait_2timeout",
-					Description: `(Optional) Specifies the number of seconds that a connection is in the FIN-WAIT-2 state before quitting. The default value is 300 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state).`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the number of seconds that a connection is in the FIN-WAIT-2 state before quitting. The default value is 300 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state).`,
 				},
 				resource.Attribute{
 					Name:        "keepalive_interval",
-					Description: `(Optional) Specifies the keep alive probe interval, in seconds. The default value is 1800 seconds.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the keep alive probe interval, in seconds. The default value is 1800 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "zerowindow_timeout",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the timeout in milliseconds for terminating a connection with an effective zero length TCP transmit window.`,
+				},
+				resource.Attribute{
+					Name:        "send_buffersize",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the SEND window size. The default is 131072 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "receive_windowsize",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the maximum advertised RECEIVE window size. This value represents the maximum number of bytes to which the RECEIVE window can scale. The default is 65535 bytes.`,
+				},
+				resource.Attribute{
+					Name:        "proxybuffer_high",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the proxy buffer level, in bytes, at which the receive window is closed.`,
+				},
+				resource.Attribute{
+					Name:        "congestion_control",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the algorithm to use to share network resources among competing users to reduce congestion. The default is High Speed.`,
+				},
+				resource.Attribute{
+					Name:        "initial_congestion_windowsize",
+					Description: `(Optional,type ` + "`" + `int` + "`" + `) Specifies the initial congestion window size for connections to this destination. Actual window size is this value multiplied by the MSS (Maximum Segment Size) for the same connection. The default is 10. Valid values range from 0 to 64.`,
+				},
+				resource.Attribute{
+					Name:        "delayed_acks",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system can send fewer than one ACK (acknowledgment) segment per data segment received. By default, this setting is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "nagle",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies whether the system applies Nagle's algorithm to reduce the number of short segments on the network.If you select Auto, the system determines whether to use Nagle's algorithm based on network conditions. By default, this setting is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "early_retransmit",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Enabling this setting allows TCP to assume a packet is lost after fewer than the standard number of duplicate ACKs, if there is no way to send new data and generate more duplicate ACKs.`,
+				},
+				resource.Attribute{
+					Name:        "tailloss_probe",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Enabling this setting allows TCP to send a probe segment to trigger fast recovery instead of recovering a loss via a retransmission timeout,By default, this setting is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "timewait_recycle",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Using this setting enabled, the system can recycle a wait-state connection immediately upon receipt of a new connection request instead of having to wait until the connection times out of the wait state. By default, this setting is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "fast_open",
-					Description: `(Optional) When enabled, permits TCP Fast Open, allowing properly equipped TCP clients to send data with the SYN packet.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) When enabled, permits TCP Fast Open, allowing properly equipped TCP clients to send data with the SYN packet. Default is ` + "`" + `enabled` + "`" + `. If ` + "`" + `fast_open` + "`" + ` set to ` + "`" + `enabled` + "`" + `, argument ` + "`" + `verified_accept` + "`" + ` can't be set to ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verified_accept",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when checked (enabled), that the system can actually communicate with the server before establishing a client connection. To determine this, the system sends the server a SYN packet before responding to the client's SYN with a SYN-ACK. When unchecked, the system accepts the client connection before selecting a server to talk to. By default, this setting is ` + "`" + `disabled` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "deferred_accept",
-					Description: `(Optional) Specifies, when enabled, that the system defers allocation of the connection chain context until the client response is received. This option is useful for dealing with 3-way handshake DOS attacks. The default value is disabled.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies, when enabled, that the system defers allocation of the connection chain context until the client response is received. This option is useful for dealing with 3-way handshake DOS attacks. The default value is disabled. ## Importing An existing tcp profile can be imported into this resource by supplying tcp profile Name in ` + "`" + `full path` + "`" + ` as ` + "`" + `id` + "`" + `. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_profile_tcp.tcp-lan-profile-import /Common/test-tcp-lan-profile ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1739,7 +2395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_address_translation",
-					Description: `(Optional) Can be either omitted for none or the values automap or snat`,
+					Description: `(Optional) Can be either omitted for ` + "`" + `none` + "`" + ` or the values ` + "`" + `automap` + "`" + ` options : [` + "`" + `snat` + "`" + `,` + "`" + `automap` + "`" + `,` + "`" + `none` + "`" + `].`,
 				},
 				resource.Attribute{
 					Name:        "translate_address",
@@ -1771,7 +2427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snatpool",
-					Description: `(Optional) Specifies the name of an existing SNAT pool that you want the virtual server to use to implement selective and intelligent SNATs. DEPRECATED - see Virtual Server Property Groups source-address-translation`,
+					Description: `(Optional) Specifies the name of an existing SNAT pool that you want the virtual server to use to implement selective and intelligent SNATs.`,
 				},
 				resource.Attribute{
 					Name:        "vlans",
@@ -1792,6 +2448,14 @@ var (
 				resource.Attribute{
 					Name:        "security_log_profiles",
 					Description: `(Optional) Specifies the log profile applied to the virtual server.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies whether the system preserves the source port of the connection. The default is ` + "`" + `preserve` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_enforced_policy",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Applies the specified AFM policy to the virtual in an enforcing way,when creating a new virtual, if this parameter is not specified, the enforced is disabled.This should be in full path ex: ` + "`" + `/Common/afm-test-policy` + "`" + `. ## Importing An existing virtual-server can be imported into this resource by supplying virtual-server Name in ` + "`" + `full path` + "`" + ` as ` + "`" + `id` + "`" + `. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_virtual_server.http /Common/terraform_vs_http ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1993,7 +2657,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `(Required) The Self IP's address and netmask.`,
+					Description: `(Required) The Self IP's address and netmask. The IP address could also contain the route domain, e.g. ` + "`" + `10.12.13.14%4/24` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vlan",
@@ -2122,6 +2786,10 @@ var (
 					Description: `Physical or virtual port used for traffic`,
 				},
 				resource.Attribute{
+					Name:        "cmp_hash",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies how the traffic on the VLAN will be disaggregated. The value selected determines the traffic disaggregation method. possible options: [` + "`" + `default` + "`" + `, ` + "`" + `src-ip` + "`" + `, ` + "`" + `dst-ip` + "`" + `]`,
+				},
+				resource.Attribute{
 					Name:        "tagged",
 					Description: `Specifies a list of tagged interfaces or trunks associated with this VLAN. Note that you can associate tagged interfaces or trunks with any number of VLANs.`,
 				},
@@ -2169,7 +2837,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "partition",
-					Description: `Partition on to SSL Certificate key to be imported. The parameter is not required when running terraform import operation. In such case the name must be provided in full_path format.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Partition on to SSL Certificate key to be imported. The parameter is not required when running terraform import operation. In such case the name must be provided in ` + "`" + `full_path` + "`" + ` format.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2188,15 +2856,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_servers",
-					Description: `Name or IP address of the DNS server`,
+					Description: `(Required,type ` + "`" + `list` + "`" + ` ) Specifies the name servers that the system uses to validate DNS lookups, and resolve host names.`,
 				},
 				resource.Attribute{
 					Name:        "number_of_dots",
-					Description: `Configures the number of dots needed in a name before an initial absolute query will be made.`,
+					Description: `(Optional,type ` + "`" + `int` + "`" + ` ) Configures the number of dots needed in a name before an initial absolute query will be made.`,
 				},
 				resource.Attribute{
 					Name:        "search",
-					Description: `Specify what domains you want to search`,
+					Description: `(Optional,type ` + "`" + `list` + "`" + ` ) Specifies the domains that the system searches for local domain lookups, to resolve local host names.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2293,24 +2961,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "bigip_sys_ntp",
-					Description: `Is the resource is used to configure ntp server on the BIG-IP.`,
-				},
-				resource.Attribute{
-					Name:        "/Common/NTP1",
-					Description: `Is the description of the NTP server in the main or common partition of BIG-IP.`,
-				},
-				resource.Attribute{
-					Name:        "time.facebook.com",
-					Description: `Is the NTP server configured on the BIG-IP.`,
+					Name:        "description",
+					Description: `(Required,type ` + "`" + `string` + "`" + `) User defined description.`,
 				},
 				resource.Attribute{
 					Name:        "servers",
-					Description: `(Optional) Adds NTP servers to or deletes NTP servers from the BIG-IP system.`,
+					Description: `(Required,type ` + "`" + `list` + "`" + `) Specifies the time servers that the system uses to update the system time.`,
 				},
 				resource.Attribute{
 					Name:        "timezone",
-					Description: `(Optional) Specifies the time zone that you want to use for the system time.`,
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the time zone that you want to use for the system time.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2468,6 +3128,199 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_vcmp_guest",
+			Category:         "Network",
+			ShortDescription: `Provides details about bigip_vcmp_guest resource`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"vcmp",
+				"guest",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the vCMP guest`,
+				},
+				resource.Attribute{
+					Name:        "initial_image",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the base software release ISO image file for installing the TMOS hypervisor instance.`,
+				},
+				resource.Attribute{
+					Name:        "initial_hotfix",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the hotfix ISO image file which is applied on top of the base image.`,
+				},
+				resource.Attribute{
+					Name:        "vlans",
+					Description: `(Optional, ` + "`" + `list` + "`" + `) Specifies the list of VLANs the vCMP guest uses to communicate with other guests, the host, and with the external network. The naming format must be the combination of the partition + name. For example /Common/my-vlan`,
+				},
+				resource.Attribute{
+					Name:        "mgmt_network",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the method by which the management address is used in the vCMP guest. options : [` + "`" + `bridged` + "`" + `,` + "`" + `isolated` + "`" + `,` + "`" + `host-only` + "`" + `].`,
+				},
+				resource.Attribute{
+					Name:        "mgmt_address",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the IP address and subnet or subnet mask you use to access the guest when you want to manage a module running within the guest.`,
+				},
+				resource.Attribute{
+					Name:        "mgmt_route",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the gateway address for the ` + "`" + `mgmt_address` + "`" + `. Can be set to ` + "`" + `none` + "`" + ` to remove the value from the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional, ` + "`" + `string` + "`" + `) Specifies the state of the vCMP guest on the system. options : [` + "`" + `configured` + "`" + `,` + "`" + `provisioned` + "`" + `,` + "`" + `deployed` + "`" + `].`,
+				},
+				resource.Attribute{
+					Name:        "cores_per_slot",
+					Description: `(Optional, ` + "`" + `int` + "`" + `) Specifies the number of cores the system allocates to the guest.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_slots",
+					Description: `(Optional, ` + "`" + `int` + "`" + `) Specifies the number of slots for the system to use when creating the guest.`,
+				},
+				resource.Attribute{
+					Name:        "min_number_of_slots",
+					Description: `(Optional, ` + "`" + `int` + "`" + `) Specifies the minimum number of slots the guest must be assigned to in order to deploy.`,
+				},
+				resource.Attribute{
+					Name:        "delete_virtual_disk",
+					Description: `(Optional, ` + "`" + `bool` + "`" + `) Indicates if virtual disk associated with vCMP guest should be removed during remove operation. The default is ` + "`" + `true` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_bigip_waf_policy",
+			Category:         "Web Application Firewall(WAF)",
+			ShortDescription: `Provides details about bigip_waf_policy resource`,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required,type ` + "`" + `string` + "`" + `) The unique user-given name of the policy. Policy names cannot contain spaces or special characters. Allowed characters are a-z, A-Z, 0-9, dot, dash (-), colon (:) and underscore (_).`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Required,type ` + "`" + `string` + "`" + `) Specifies the name of the template used for the policy creation.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the description of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) Specifies the partition of the policy. Default is ` + "`" + `Common` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "application_language",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) The character encoding for the web application. The character encoding determines how the policy processes the character sets. The default is ` + "`" + `utf-8` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "case_insensitive",
+					Description: `(Optional,type ` + "`" + `bool` + "`" + `) Specifies whether the security policy treats microservice URLs, file types, URLs, and parameters as case sensitive or not. When this setting is enabled, the system stores these security policy elements in lowercase in the security policy configuration`,
+				},
+				resource.Attribute{
+					Name:        "enable_passivemode",
+					Description: `(Optional,type ` + "`" + `bool` + "`" + `) Passive Mode allows the policy to be associated with a Performance L4 Virtual Server (using a FastL4 profile). With FastL4, traffic is analyzed but is not modified in any way.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_independent",
+					Description: `(Optional,type ` + "`" + `bool` + "`" + `) When creating a security policy, you can determine whether a security policy differentiates between HTTP and HTTPS URLs. If enabled, the security policy differentiates between HTTP and HTTPS URLs. If disabled, the security policy configures URLs without specifying a specific protocol. This is useful for applications that behave the same for HTTP and HTTPS, and it keeps the security policy from including the same URL twice.`,
+				},
+				resource.Attribute{
+					Name:        "enforcement_mode",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) How the system processes a request that triggers a security policy violation`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) The type of policy you want to create. The default policy type is ` + "`" + `security` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server_technologies",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) The server technology is a server-side application, framework, web server or operating system type that is configured in the policy in order to adapt the policy to the checks needed for the respective technology.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) This section defines parameters that the security policy permits in requests.`,
+				},
+				resource.Attribute{
+					Name:        "urls",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) In a security policy, you can manually specify the HTTP URLs that are allowed (or disallowed) in traffic to the web application being protected. If you are using automatic policy building (and the policy includes learning URLs), the system can determine which URLs to add, based on legitimate traffic.`,
+				},
+				resource.Attribute{
+					Name:        "signature_sets",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) Defines behavior when signatures found within a signature-set are detected in a request. Settings are culmulative, so if a signature is found in any set with block enabled, that signature will have block enabled.`,
+				},
+				resource.Attribute{
+					Name:        "signatures",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) This section defines the properties of a signature on the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_builder",
+					Description: `(Optional,` + "`" + `set` + "`" + `) ` + "`" + `policy_builder` + "`" + ` block will provide ` + "`" + `learning_mode` + "`" + ` options to be used for policy builder. See [policy builder](#policy-builder) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "graphql_profiles",
+					Description: `(Optional,` + "`" + `list of set` + "`" + `) ` + "`" + `graphql_profiles` + "`" + ` takes list of graphql profile options to be used for policy builder. See [graphql profiles](#graphql-profiles) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "file_types",
+					Description: `(Optional,` + "`" + `list of set` + "`" + `) ` + "`" + `file_types` + "`" + ` takes list of file-types options to be used for policy builder. See [file types](#file-types) below for more details.`,
+				},
+				resource.Attribute{
+					Name:        "open_api_files",
+					Description: `(Optional,type ` + "`" + `list` + "`" + `) This section defines the Link for open api files on the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_import_json",
+					Description: `(Optional,type ` + "`" + `string` + "`" + `) The payload of the WAF Policy to be used for IMPORT on to BIG-IP. ### policy builder The ` + "`" + `policy_builder` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "learning_mode",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) learning mode setting for policy-builder, possible options: [` + "`" + `automatic` + "`" + `,` + "`" + `disabled` + "`" + `, ` + "`" + `manual` + "`" + `] ### graphql profiles The ` + "`" + `graphql_profile` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) name of graphql profile to be used for policy config. ### file types The ` + "`" + `file_types` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Specifies the file type name as appearing in the URL extension.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional , ` + "`" + `string` + "`" + `) Determines the type of the name attribute. Only when setting the type to ` + "`" + `wildcard` + "`" + ` will the special wildcard characters in the name be interpreted as such ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `The id of the A.WAF Policy as it would be calculated on the BIG-IP.`,
+				},
+				resource.Attribute{
+					Name:        "policy_export_json",
+					Description: `Exported WAF policy deployed on BIGIP. ## Import An existing WAF Policy or if the WAF Policy has been manually created or modified on the BIG-IP WebUI, it can be imported using its ` + "`" + `id` + "`" + `. e.g: ` + "`" + `` + "`" + `` + "`" + ` terraform import bigip_waf_policy.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `The id of the A.WAF Policy as it would be calculated on the BIG-IP.`,
+				},
+				resource.Attribute{
+					Name:        "policy_export_json",
+					Description: `Exported WAF policy deployed on BIGIP. ## Import An existing WAF Policy or if the WAF Policy has been manually created or modified on the BIG-IP WebUI, it can be imported using its ` + "`" + `id` + "`" + `. e.g: ` + "`" + `` + "`" + `` + "`" + ` terraform import bigip_waf_policy.example <id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -2481,48 +3334,54 @@ var (
 		"bigip_bigip_do":                              6,
 		"bigip_bigip_event_service_discovery":         7,
 		"bigip_bigip_fast_application":                8,
-		"bigip_bigip_fast_template":                   9,
-		"bigip_bigip_ipsec_policy":                    10,
-		"bigip_bigip_ipsec_profile":                   11,
-		"bigip_bigip_ltm_datagroup":                   12,
-		"bigip_bigip_ltm_irule":                       13,
-		"bigip_bigip_ltm_monitor":                     14,
-		"bigip_bigip_ltm_node":                        15,
-		"bigip_bigip_ltm_persistence_profile_cookie":  16,
-		"bigip_bigip_ltm_persistence_profile_dstaddr": 17,
-		"bigip_bigip_ltm_persistence_profile_srcaddr": 18,
-		"bigip_bigip_ltm_persistence_profile_ssl":     19,
-		"bigip_bigip_ltm_policy":                      20,
-		"bigip_bigip_ltm_pool":                        21,
-		"bigip_bigip_ltm_pool_attachment":             22,
-		"bigip_bigip_ltm_profile_client_ssl":          23,
-		"bigip_bigip_ltm_profile_fasthttp":            24,
-		"bigip_bigip_ltm_profile_fastl4":              25,
-		"bigip_bigip_ltm_profile_ftp":                 26,
-		"bigip_bigip_ltm_profile_http":                27,
-		"bigip_bigip_ltm_profile_http2":               28,
-		"bigip_bigip_ltm_profile_httpcompress":        29,
-		"bigip_bigip_ltm_profile_oneconnect":          30,
-		"bigip_bigip_ltm_profile_server_ssl":          31,
-		"bigip_bigip_ltm_profile_tcp":                 32,
-		"bigip_bigip_ltm_snat":                        33,
-		"bigip_bigip_ltm_snatpool":                    34,
-		"bigip_bigip_ltm_virtual_address":             35,
-		"bigip_bigip_ltm_virtual_server":              36,
-		"bigip_bigip_net_ike_peer":                    37,
-		"bigip_bigip_net_route":                       38,
-		"bigip_bigip_net_selfip":                      39,
-		"bigip_bigip_net_tunnel":                      40,
-		"bigip_bigip_net_vlan":                        41,
-		"bigip_bigip_ssl_certificate":                 42,
-		"bigip_bigip_ssl_key":                         43,
-		"bigip_bigip_sys_dns":                         44,
-		"bigip_bigip_sys_iapp":                        45,
-		"bigip_bigip_sys_ntp":                         46,
-		"bigip_bigip_sys_provision":                   47,
-		"bigip_bigip_sys_snmp":                        48,
-		"bigip_bigip_sys_snmp_traps":                  49,
-		"bigip_bigip_traffic_selector":                50,
+		"bigip_bigip_fast_http_app":                   9,
+		"bigip_bigip_fast_https_app":                  10,
+		"bigip_bigip_fast_tcp_app":                    11,
+		"bigip_bigip_fast_template":                   12,
+		"bigip_bigip_fast_udp_app":                    13,
+		"bigip_bigip_ipsec_policy":                    14,
+		"bigip_bigip_ipsec_profile":                   15,
+		"bigip_bigip_ltm_datagroup":                   16,
+		"bigip_bigip_ltm_irule":                       17,
+		"bigip_bigip_ltm_monitor":                     18,
+		"bigip_bigip_ltm_node":                        19,
+		"bigip_bigip_ltm_persistence_profile_cookie":  20,
+		"bigip_bigip_ltm_persistence_profile_dstaddr": 21,
+		"bigip_bigip_ltm_persistence_profile_srcaddr": 22,
+		"bigip_bigip_ltm_persistence_profile_ssl":     23,
+		"bigip_bigip_ltm_policy":                      24,
+		"bigip_bigip_ltm_pool":                        25,
+		"bigip_bigip_ltm_pool_attachment":             26,
+		"bigip_bigip_ltm_profile_client_ssl":          27,
+		"bigip_bigip_ltm_profile_fasthttp":            28,
+		"bigip_bigip_ltm_profile_fastl4":              29,
+		"bigip_bigip_ltm_profile_ftp":                 30,
+		"bigip_bigip_ltm_profile_http":                31,
+		"bigip_bigip_ltm_profile_http2":               32,
+		"bigip_bigip_ltm_profile_httpcompress":        33,
+		"bigip_bigip_ltm_profile_oneconnect":          34,
+		"bigip_bigip_ltm_profile_server_ssl":          35,
+		"bigip_bigip_ltm_profile_tcp":                 36,
+		"bigip_bigip_ltm_snat":                        37,
+		"bigip_bigip_ltm_snatpool":                    38,
+		"bigip_bigip_ltm_virtual_address":             39,
+		"bigip_bigip_ltm_virtual_server":              40,
+		"bigip_bigip_net_ike_peer":                    41,
+		"bigip_bigip_net_route":                       42,
+		"bigip_bigip_net_selfip":                      43,
+		"bigip_bigip_net_tunnel":                      44,
+		"bigip_bigip_net_vlan":                        45,
+		"bigip_bigip_ssl_certificate":                 46,
+		"bigip_bigip_ssl_key":                         47,
+		"bigip_bigip_sys_dns":                         48,
+		"bigip_bigip_sys_iapp":                        49,
+		"bigip_bigip_sys_ntp":                         50,
+		"bigip_bigip_sys_provision":                   51,
+		"bigip_bigip_sys_snmp":                        52,
+		"bigip_bigip_sys_snmp_traps":                  53,
+		"bigip_bigip_traffic_selector":                54,
+		"bigip_bigip_vcmp_guest":                      55,
+		"bigip_bigip_waf_policy":                      56,
 	}
 )
 

@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "zedcloud_edgeapp",
+			Type:             "zedcloud_application",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -21,7 +21,17 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "zedcloud_edgeapp_instance",
+			Type:             "zedcloud_application_instance",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "zedcloud_datastore",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -71,6 +81,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "zedcloud_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "zedcloud_volume_instance",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -83,13 +103,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"zedcloud_edgeapp":          0,
-		"zedcloud_edgeapp_instance": 1,
-		"zedcloud_edgenode":         2,
-		"zedcloud_image":            3,
-		"zedcloud_network":          4,
-		"zedcloud_network_instance": 5,
-		"zedcloud_volume_instance":  6,
+		"zedcloud_application":          0,
+		"zedcloud_application_instance": 1,
+		"zedcloud_datastore":            2,
+		"zedcloud_edgenode":             3,
+		"zedcloud_image":                4,
+		"zedcloud_network":              5,
+		"zedcloud_network_instance":     6,
+		"zedcloud_project":              7,
+		"zedcloud_volume_instance":      8,
 	}
 )
 

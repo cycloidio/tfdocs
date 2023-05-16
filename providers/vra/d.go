@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_block_device",
+			Type:             "vra_block_device",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_block_device.`,
 			Description: `
@@ -99,7 +99,7 @@ Provides a data lookup for a vra_block_device.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource instance. example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource instance. example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -181,7 +181,7 @@ Provides a data lookup for a vra_block_device.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource instance. example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource instance. example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -199,7 +199,7 @@ Provides a data lookup for a vra_block_device.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_block_device_snapshot",
+			Type:             "vra_block_device_snapshot",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_block_device_snapshots.`,
 			Description: `
@@ -280,7 +280,7 @@ Provides a data lookup for a vra_block_device.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_blueprint",
+			Type:             "vra_blueprint",
 			Category:         "Data Sources",
 			ShortDescription: `A blueprint data source.`,
 			Description: `\_blueprint
@@ -476,7 +476,7 @@ This data source provides information about a cloud template (blueprint) in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_blueprint_version",
+			Type:             "vra_blueprint_version",
 			Category:         "Data Sources",
 			ShortDescription: `A blueprint version data source.`,
 			Description: `\_blueprint\_version
@@ -620,7 +620,7 @@ This data source provides information about a cloud template (blueprint) version
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_item",
+			Type:             "vra_catalog_item",
 			Category:         "Data Sources",
 			ShortDescription: `A data source for a catalog item.`,
 			Description: `\_catalog\_item
@@ -640,11 +640,15 @@ This data source provides information about a catalog item in vRA.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) The id of catalog item. One of ` + "`" + `id` + "`" + `, or ` + "`" + `name` + "`" + ` must be provided.`,
+					Description: `(Optional) The id of catalog item. One of ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the catalog item. One of ` + "`" + `id` + "`" + `, or ` + "`" + `name` + "`" + ` must be provided. ## Attribute Reference`,
+					Description: `(Optional) Name of the catalog item. One of ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The id of the project to narrow the search while looking for catalog items. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -657,6 +661,14 @@ This data source provides information about a catalog item in vRA.
 				resource.Attribute{
 					Name:        "description",
 					Description: `Catalog item description.`,
+				},
+				resource.Attribute{
+					Name:        "form_id",
+					Description: `Form ID.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon ID.`,
 				},
 				resource.Attribute{
 					Name:        "last_updated_at",
@@ -753,6 +765,14 @@ This data source provides information about a catalog item in vRA.
 					Description: `Catalog item description.`,
 				},
 				resource.Attribute{
+					Name:        "form_id",
+					Description: `Form ID.`,
+				},
+				resource.Attribute{
+					Name:        "icon_id",
+					Description: `Icon ID.`,
+				},
+				resource.Attribute{
 					Name:        "last_updated_at",
 					Description: `Date-time when the entity was last updated.`,
 				},
@@ -836,7 +856,7 @@ This data source provides information about a catalog item in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_item_entitlement",
+			Type:             "vra_catalog_item_entitlement",
 			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog item entitlement.`,
 			Description: `\_catalog\_item\_entitlement
@@ -936,7 +956,7 @@ This data source provides information about a catalog item entitlement in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_source_blueprint",
+			Type:             "vra_catalog_source_blueprint",
 			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog source of type cloud template (blueprint).`,
 			Description: `\_catalog\_source\_blueprint
@@ -1060,7 +1080,7 @@ This data source provides information about a catalog source of type cloud templ
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_source_entitlement",
+			Type:             "vra_catalog_source_entitlement",
 			Category:         "Data Sources",
 			ShortDescription: `A data source for catalog source entitlement.`,
 			Description: `\_catalog\_source\_entitlement
@@ -1160,7 +1180,7 @@ This data source provides information about a catalog source entitlement in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_aws",
+			Type:             "vra_cloud_account_aws",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_aws.`,
 			Description: `\_cloud\_account\_aws
@@ -1208,7 +1228,7 @@ Provides a VMware vRA vra_cloud_account_aws data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1254,7 +1274,7 @@ Provides a VMware vRA vra_cloud_account_aws data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1272,7 +1292,7 @@ Provides a VMware vRA vra_cloud_account_aws data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_azure",
+			Type:             "vra_cloud_account_azure",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_azure.`,
 			Description: `\_cloud\_account\_azure
@@ -1324,7 +1344,7 @@ Provides a VMware vRA vra_cloud_account_azure data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1378,7 +1398,7 @@ Provides a VMware vRA vra_cloud_account_azure data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1400,7 +1420,7 @@ Provides a VMware vRA vra_cloud_account_azure data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_gcp",
+			Type:             "vra_cloud_account_gcp",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_gcp.`,
 			Description: `\_cloud\_account\_gcp
@@ -1456,7 +1476,7 @@ Provides a VMware vRA vra_cloud_account_gcp data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1510,7 +1530,7 @@ Provides a VMware vRA vra_cloud_account_gcp data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1528,7 +1548,7 @@ Provides a VMware vRA vra_cloud_account_gcp data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_nsxt",
+			Type:             "vra_cloud_account_nsxt",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxt.`,
 			Description: `\_cloud\_account\_nsxt
@@ -1580,7 +1600,7 @@ Provides a VMware vRA vra_cloud_account_nsxt data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1634,7 +1654,7 @@ Provides a VMware vRA vra_cloud_account_nsxt data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1656,7 +1676,7 @@ Provides a VMware vRA vra_cloud_account_nsxt data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_nsxv",
+			Type:             "vra_cloud_account_nsxv",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_nsxv.`,
 			Description: `\_cloud\_account\_nsxv
@@ -1708,7 +1728,7 @@ Provides a VMware vRA vra_cloud_account_nsxv data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1762,7 +1782,7 @@ Provides a VMware vRA vra_cloud_account_nsxv data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1784,7 +1804,7 @@ Provides a VMware vRA vra_cloud_account_nsxv data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_vmc",
+			Type:             "vra_cloud_account_vmc",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_vmc.`,
 			Description: `\_cloud\_account\_vmc
@@ -1840,7 +1860,7 @@ Provides a VMware vRA vra_cloud_account_vmc data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1902,7 +1922,7 @@ Provides a VMware vRA vra_cloud_account_vmc data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -1928,7 +1948,7 @@ Provides a VMware vRA vra_cloud_account_vmc data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_vsphere",
+			Type:             "vra_cloud_account_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_cloud_account_vsphere.`,
 			Description: `\_cloud\_account\_vsphere
@@ -1984,7 +2004,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2042,7 +2062,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2064,7 +2084,7 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_data_collector",
+			Type:             "vra_data_collector",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for data collector data source.`,
 			Description: `
@@ -2073,39 +2093,39 @@ Provides a VMware vRA vra_cloud_account_vsphere data source.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Data collector name. Example: Datacollector1 ## Attribute Reference`,
+					Description: `(Required) Data collector name. Example: ` + "`" + `Datacollector1` + "`" + ` ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Data collector host name. Example: dc1-lnd.mycompany.com`,
+					Description: `Data collector host name. Example: ` + "`" + `dc1-lnd.mycompany.com` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `IPv4 Address of the data collector VM. Example: 10.0.0.1`,
+					Description: `IPv4 Address of the data collector VM. Example: ` + "`" + `10.0.0.1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of the data collector. Example: ACTIVE, INACTIVE`,
+					Description: `Current status of the data collector. Example: ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `INACTIVE` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `Data collector host name. Example: dc1-lnd.mycompany.com`,
+					Description: `Data collector host name. Example: ` + "`" + `dc1-lnd.mycompany.com` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `IPv4 Address of the data collector VM. Example: 10.0.0.1`,
+					Description: `IPv4 Address of the data collector VM. Example: ` + "`" + `10.0.0.1` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of the data collector. Example: ACTIVE, INACTIVE`,
+					Description: `Current status of the data collector. Example: ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `INACTIVE` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_deployment",
+			Type:             "vra_deployment",
 			Category:         "Data Sources",
 			ShortDescription: `A deployment data source.`,
 			Description: `\_deployment
@@ -2133,27 +2153,23 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the deployment. One of ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided. ## Attribute Reference`,
+					Description: `(Optional) The name of the deployment. One of ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided. ## Attribute Reference`,
 				},
 				resource.Attribute{
-					Name:        "blueprint_d",
-					Description: `The id of the vRA cloud template to request the deployment. Conflicts with ` + "`" + `catalog_item_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Name:        "blueprint_id",
+					Description: `The id of the cloud template used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "blueprint_version",
-					Description: `The version of the vRA cloud template to request the deployment. Used only when ` + "`" + `blueprint_id` + "`" + ` is provided.`,
-				},
-				resource.Attribute{
-					Name:        "blueprint_content",
-					Description: `vRA Cloud template content. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `catalog_item_id` + "`" + `.`,
+					Description: `The version of the cloud template used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_id",
-					Description: `The id of the vRA catalog item to request the deployment. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Description: `The id of the catalog item used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_version",
-					Description: `The version of the vRA catalog item to request the deployment. Used only when ` + "`" + `catalog_item_id` + "`" + ` is provided.`,
+					Description: `The version of the catalog item used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -2293,7 +2309,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "last_updated_at",
-					Description: `Time at which the deployment was last updated.`,
+					Description: `Date when the entity was last updated. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "last_updated_by",
@@ -2301,11 +2317,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "lease_expire_at",
-					Description: `Time at which the deployment lease expires.`,
+					Description: `Date when the deployment lease expire. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `The ID of the organization this deployment belongs to.`,
+					Description: `The Id of the organization this deployment belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
@@ -2417,29 +2433,25 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Deployment status. Supported values are: ` + "`" + `CREATE_SUCCESSFUL` + "`" + `, ` + "`" + `CREATE_INPROGRESS` + "`" + `, ` + "`" + `CREATE_FAILED` + "`" + `, ` + "`" + `UPDATE_SUCCESSFUL` + "`" + `, ` + "`" + `UPDATE_INPROGRESS` + "`" + `, ` + "`" + `UPDATE_FAILED` + "`" + `, ` + "`" + `DELETE_SUCCESSFUL` + "`" + `, ` + "`" + `DELETE_INPROGRESS` + "`" + `, ` + "`" + `DELETE_FAILED` + "`" + `, ` + "`" + `ACTION_SUCCESSFUL` + "`" + `, ` + "`" + `ACTION_INPROGRESS` + "`" + `, ` + "`" + `ACTION_FAILED` + "`" + `.`,
+					Description: `The status of the deployment with respect to its life cycle operations.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "blueprint_d",
-					Description: `The id of the vRA cloud template to request the deployment. Conflicts with ` + "`" + `catalog_item_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Name:        "blueprint_id",
+					Description: `The id of the cloud template used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "blueprint_version",
-					Description: `The version of the vRA cloud template to request the deployment. Used only when ` + "`" + `blueprint_id` + "`" + ` is provided.`,
-				},
-				resource.Attribute{
-					Name:        "blueprint_content",
-					Description: `vRA Cloud template content. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `catalog_item_id` + "`" + `.`,
+					Description: `The version of the cloud template used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_id",
-					Description: `The id of the vRA catalog item to request the deployment. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Description: `The id of the catalog item used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_version",
-					Description: `The version of the vRA catalog item to request the deployment. Used only when ` + "`" + `catalog_item_id` + "`" + ` is provided.`,
+					Description: `The version of the catalog item used to request the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -2579,7 +2591,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "last_updated_at",
-					Description: `Time at which the deployment was last updated.`,
+					Description: `Date when the entity was last updated. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "last_updated_by",
@@ -2587,11 +2599,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "lease_expire_at",
-					Description: `Time at which the deployment lease expires.`,
+					Description: `Date when the deployment lease expire. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `The ID of the organization this deployment belongs to.`,
+					Description: `The Id of the organization this deployment belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
@@ -2703,13 +2715,13 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Deployment status. Supported values are: ` + "`" + `CREATE_SUCCESSFUL` + "`" + `, ` + "`" + `CREATE_INPROGRESS` + "`" + `, ` + "`" + `CREATE_FAILED` + "`" + `, ` + "`" + `UPDATE_SUCCESSFUL` + "`" + `, ` + "`" + `UPDATE_INPROGRESS` + "`" + `, ` + "`" + `UPDATE_FAILED` + "`" + `, ` + "`" + `DELETE_SUCCESSFUL` + "`" + `, ` + "`" + `DELETE_INPROGRESS` + "`" + `, ` + "`" + `DELETE_FAILED` + "`" + `, ` + "`" + `ACTION_SUCCESSFUL` + "`" + `, ` + "`" + `ACTION_INPROGRESS` + "`" + `, ` + "`" + `ACTION_FAILED` + "`" + `.`,
+					Description: `The status of the deployment with respect to its life cycle operations.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_compute",
+			Type:             "vra_fabric_compute",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vRA fabric computes.`,
 			Description: `
@@ -2867,7 +2879,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_datastore_vsphere",
+			Type:             "vra_fabric_datastore_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vSphere fabric datastores.`,
 			Description: `
@@ -3009,7 +3021,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_network",
+			Type:             "vra_fabric_network",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vRA fabric networks.`,
 			Description: `
@@ -3074,7 +3086,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3140,7 +3152,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3154,7 +3166,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_storage_account_azure",
+			Type:             "vra_fabric_storage_account_azure",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for fabric Azure storage account.`,
 			Description: `
@@ -3207,11 +3219,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
+					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: ` + "`" + `Standard_LRS / Premium_LRS` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3257,11 +3269,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: Standard_LRS / Premium_LRS`,
+					Description: `Indicates the performance tier for the storage type. Premium disks are SSD backed and Standard disks are HDD backed. example: ` + "`" + `Standard_LRS / Premium_LRS` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3271,7 +3283,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_storage_policy_vsphere",
+			Type:             "vra_fabric_storage_policy_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for fabric vSphere storage policy.`,
 			Description: `
@@ -3364,68 +3376,127 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_image",
+			Type:             "vra_image",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a data lookup for vRA Images.`,
-			Description: `
+			ShortDescription: `Provides a data source for vRealize Automation images.`,
+			Description: `\_image
+
+The ` + "`" + `vra_image` + "`" + ` data source can be used to discover the lookup machine images with cloud accounts. This can then be used with resource that require an image. For example, to create an image profile using the ` + "`" + `vra_image_profile` + "`" + ` resource.
+
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "filter",
-					Description: `Search criteria to narrow down Images.`,
+					Name:        "id",
+					Description: `(Optional) The id of the image resource instance. Only one of 'id' or 'filter' must be specified.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the Image. ## Attribute Reference`,
+					Name:        "filter",
+					Description: `(Optional) Search criteria to narrow down the image resource instance. Only one of 'id' or 'filter' must be specified. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `A list of key value pair of custom properties for the image resource.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
+					Description: `A human-friendly description.`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
 					Description: `External entity Id on the provider side.`,
 				},
 				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+					Description: `A human-friendly name used as an identifier for the image resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "os_family",
+					Description: `Operating System family of the image.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "private",
-					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
+					Description: `Indicates whether this image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The regionId of the image.`,
+					Description: `The region of the image. For a vSphere cloud account, it is the ` + "`" + `externalRegionId` + "`" + ` such as ` + "`" + `Datacenter:datacenter-2` + "`" + ` and for an AWS cloud account, it is region name such as ` + "`" + `us-east-1` + "`" + `, etc.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `A list of key value pair of custom properties for the image resource.`,
+				},
+				resource.Attribute{
 					Name:        "description",
-					Description: `A human-friendly description of the fabric vSphere storage account.`,
+					Description: `A human-friendly description.`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
 					Description: `External entity Id on the provider side.`,
 				},
 				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of the entity.`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+					Description: `A human-friendly name used as an identifier for the image resource instance.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "os_family",
+					Description: `Operating System family of the image.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "private",
-					Description: `Indicates whether this fabric image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
+					Description: `Indicates whether this image is private. For vSphere, private images are considered to be templates and snapshots and public are Content Library Items.`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `The regionId of the image.`,
+					Description: `The region of the image. For a vSphere cloud account, it is the ` + "`" + `externalRegionId` + "`" + ` such as ` + "`" + `Datacenter:datacenter-2` + "`" + ` and for an AWS cloud account, it is region name such as ` + "`" + `us-east-1` + "`" + `, etc.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_image_profile",
+			Type:             "vra_image_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_image_profile.`,
 			Description: `
@@ -3434,7 +3505,7 @@ This data source provides information about a deployment in vRA.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3502,7 +3573,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_machine",
+			Type:             "vra_machine",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_machine.`,
 			Description: `
@@ -3515,7 +3586,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3579,7 +3650,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3645,7 +3716,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3655,7 +3726,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network",
+			Type:             "vra_network",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_network.`,
 			Description: `
@@ -3724,7 +3795,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3786,7 +3857,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3796,7 +3867,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network_domain",
+			Type:             "vra_network_domain",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for Network domain objects.`,
 			Description: `
@@ -3849,7 +3920,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3899,7 +3970,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3909,7 +3980,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network_profile",
+			Type:             "vra_network_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_network_profile.`,
 			Description: `
@@ -3918,7 +3989,7 @@ This data source provides information about a deployment in vRA.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3946,7 +4017,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "fabric_network_ids",
-					Description: `A list of fabric network Ids which are assigned to the network profile. example:[ "6543" ]`,
+					Description: `A list of fabric network Ids which are assigned to the network profile. example: ` + "`" + `[ "6543" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "isolated_network_cidr_prefix",
@@ -3982,11 +4053,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
-					Description: `A list of security group Ids which are assigned to the network profile. example:[ "6545" ]`,
+					Description: `A list of security group Ids which are assigned to the network profile. example: ` + "`" + `[ "6545" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4008,7 +4079,7 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "fabric_network_ids",
-					Description: `A list of fabric network Ids which are assigned to the network profile. example:[ "6543" ]`,
+					Description: `A list of fabric network Ids which are assigned to the network profile. example: ` + "`" + `[ "6543" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "isolated_network_cidr_prefix",
@@ -4044,11 +4115,11 @@ This data source provides information about a deployment in vRA.
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
-					Description: `A list of security group Ids which are assigned to the network profile. example:[ "6545" ]`,
+					Description: `A list of security group Ids which are assigned to the network profile. example: ` + "`" + `[ "6545" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4058,7 +4129,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_project",
+			Type:             "vra_project",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_project.`,
 			Description: `
@@ -4127,6 +4198,10 @@ This data source provides information about a deployment in vRA.
 					Description: `(Optional) The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
+					Name:        "supervisor_roles",
+					Description: `(Optional) Supervisor users or groups associated with the project.d`,
+				},
+				resource.Attribute{
 					Name:        "viewers",
 					Description: `(Optional) A list of viewer users associated with the project. >`,
 				},
@@ -4139,7 +4214,7 @@ This data source provides information about a deployment in vRA.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region",
+			Type:             "vra_region",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_region.`,
 			Description: `\_region
@@ -4244,7 +4319,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration",
+			Type:             "vra_region_enumeration",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration data source.`,
 			Description: `
@@ -4253,15 +4328,15 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accept_self_signed_cert",
-					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: false`,
+					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "dcid",
-					Description: `(Optional) ID of a data collector vm deployed in the on premise infrastructure. Example: d5316b00-f3b8-4895-9e9a-c4b98649c2ca`,
+					Name:        "dc_id",
+					Description: `(Optional) ID of a data collector vm deployed in the on premise infrastructure. Example: ` + "`" + `d5316b00-f3b8-4895-9e9a-c4b98649c2ca` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `(Required) Host name for the cloud account endpoint. Example: dc1-lnd.mycompany.com`,
+					Description: `(Required) Host name for the cloud account endpoint. Example: ` + "`" + `dc1-lnd.mycompany.com` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -4285,7 +4360,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration_aws",
+			Type:             "vra_region_enumeration_aws",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for AWS cloud account.`,
 			Description: `
@@ -4302,19 +4377,19 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: us-east-2, ap-northeast-1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["us-east-2", "ap-northeast-1"]` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: us-east-2, ap-northeast-1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["us-east-2", "ap-northeast-1"]` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration_azure",
+			Type:             "vra_region_enumeration_azure",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for Azure cloud account.`,
 			Description: `
@@ -4339,19 +4414,19 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration_gcp",
+			Type:             "vra_region_enumeration_gcp",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for GCP cloud account.`,
 			Description: `
@@ -4376,19 +4451,19 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration_vmc",
+			Type:             "vra_region_enumeration_vmc",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for VMC cloud account.`,
 			Description: `
@@ -4397,7 +4472,7 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accept_self_signed_cert",
-					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: false`,
+					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "api_token",
@@ -4406,6 +4481,10 @@ data "vra_region" "this" {
 				resource.Attribute{
 					Name:        "dc_id",
 					Description: `(Optional) ID of a data collector vm deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collectors.`,
+				},
+				resource.Attribute{
+					Name:        "nsx_hostname",
+					Description: `(Required) The IP address of the NSX Manager server in the specified SDDC / FQDN.`,
 				},
 				resource.Attribute{
 					Name:        "sddc_name",
@@ -4425,19 +4504,19 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of Region names to enable provisioning on. Example: northamerica-northeast1`,
+					Description: `A set of Region names to enable provisioning on. Example: ` + "`" + `["northamerica-northeast1"]` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_region_enumeration_vsphere",
+			Type:             "vra_region_enumeration_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for region enumeration for vSphere cloud account.`,
 			Description: `
@@ -4446,11 +4525,11 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accept_self_signed_cert",
-					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: false`,
+					Description: `(Optional) Accept self signed certificate when connecting to vSphere. Example: ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "dcid",
-					Description: `(Required) ID of a data collector vm deployed in the on premise infrastructure. Example: d5316b00-f3b8-4895-9e9a-c4b98649c2ca`,
+					Name:        "dc_id",
+					Description: `(Required) ID of a data collector vm deployed in the on premise infrastructure. Example: ` + "`" + `d5316b00-f3b8-4895-9e9a-c4b98649c2ca` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "hostname",
@@ -4466,19 +4545,19 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of datacenter managed object reference identifiers to enable provisioning on. Example: Datacenter:datacenter-2`,
+					Description: `A set of datacenter managed object reference identifiers to enable provisioning on. Example: ` + "`" + `["Datacenter:datacenter-2"]` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
-					Description: `A set of datacenter managed object reference identifiers to enable provisioning on. Example: Datacenter:datacenter-2`,
+					Description: `A set of datacenter managed object reference identifiers to enable provisioning on. Example: ` + "`" + `["Datacenter:datacenter-2"]` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_security_group",
+			Type:             "vra_security_group",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for security groups.`,
 			Description: `
@@ -4575,7 +4654,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile",
+			Type:             "vra_storage_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile.`,
 			Description: `
@@ -4592,7 +4671,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4636,7 +4715,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4682,7 +4761,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4692,7 +4771,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_aws",
+			Type:             "vra_storage_profile_aws",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_aws.`,
 			Description: `
@@ -4701,7 +4780,7 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4725,7 +4804,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `(Optional) A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "volume_type",
@@ -4809,7 +4888,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_azure",
+			Type:             "vra_storage_profile_azure",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_azure.`,
 			Description: `
@@ -4818,7 +4897,7 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4882,7 +4961,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4948,7 +5027,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4958,7 +5037,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_vsphere",
+			Type:             "vra_storage_profile_vsphere",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_vsphere.`,
 			Description: `
@@ -4967,7 +5046,7 @@ data "vra_region" "this" {
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'.`,
+					Description: `(Optional) Filter query string that is supported by vRA multi-cloud IaaS API. Example: ` + "`" + `regionId eq '<regionId>' and cloudAccountId eq '<cloudAccountId>'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5039,7 +5118,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -5109,7 +5188,7 @@ data "vra_region" "this" {
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -5119,7 +5198,7 @@ data "vra_region" "this" {
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_zone",
+			Type:             "vra_zone",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data lookup for vra_zone.`,
 			Description: `
@@ -5287,48 +5366,48 @@ data "vra_region" "this" {
 
 	dataSourcesMap = map[string]int{
 
-		"vra_vra_block_device":                  0,
-		"vra_vra_block_device_snapshot":         1,
-		"vra_vra_blueprint":                     2,
-		"vra_vra_blueprint_version":             3,
-		"vra_vra_catalog_item":                  4,
-		"vra_vra_catalog_item_entitlement":      5,
-		"vra_vra_catalog_source_blueprint":      6,
-		"vra_vra_catalog_source_entitlement":    7,
-		"vra_vra_cloud_account_aws":             8,
-		"vra_vra_cloud_account_azure":           9,
-		"vra_vra_cloud_account_gcp":             10,
-		"vra_vra_cloud_account_nsxt":            11,
-		"vra_vra_cloud_account_nsxv":            12,
-		"vra_vra_cloud_account_vmc":             13,
-		"vra_vra_cloud_account_vsphere":         14,
-		"vra_vra_data_collector":                15,
-		"vra_vra_deployment":                    16,
-		"vra_vra_fabric_compute":                17,
-		"vra_vra_fabric_datastore_vsphere":      18,
-		"vra_vra_fabric_network":                19,
-		"vra_vra_fabric_storage_account_azure":  20,
-		"vra_vra_fabric_storage_policy_vsphere": 21,
-		"vra_vra_image":                         22,
-		"vra_vra_image_profile":                 23,
-		"vra_vra_machine":                       24,
-		"vra_vra_network":                       25,
-		"vra_vra_network_domain":                26,
-		"vra_vra_network_profile":               27,
-		"vra_vra_project":                       28,
-		"vra_vra_region":                        29,
-		"vra_vra_region_enumeration":            30,
-		"vra_vra_region_enumeration_aws":        31,
-		"vra_vra_region_enumeration_azure":      32,
-		"vra_vra_region_enumeration_gcp":        33,
-		"vra_vra_region_enumeration_vmc":        34,
-		"vra_vra_region_enumeration_vsphere":    35,
-		"vra_vra_security_group":                36,
-		"vra_vra_storage_profile":               37,
-		"vra_vra_storage_profile_aws":           38,
-		"vra_vra_storage_profile_azure":         39,
-		"vra_vra_storage_profile_vsphere":       40,
-		"vra_vra_zone":                          41,
+		"vra_block_device":                  0,
+		"vra_block_device_snapshot":         1,
+		"vra_blueprint":                     2,
+		"vra_blueprint_version":             3,
+		"vra_catalog_item":                  4,
+		"vra_catalog_item_entitlement":      5,
+		"vra_catalog_source_blueprint":      6,
+		"vra_catalog_source_entitlement":    7,
+		"vra_cloud_account_aws":             8,
+		"vra_cloud_account_azure":           9,
+		"vra_cloud_account_gcp":             10,
+		"vra_cloud_account_nsxt":            11,
+		"vra_cloud_account_nsxv":            12,
+		"vra_cloud_account_vmc":             13,
+		"vra_cloud_account_vsphere":         14,
+		"vra_data_collector":                15,
+		"vra_deployment":                    16,
+		"vra_fabric_compute":                17,
+		"vra_fabric_datastore_vsphere":      18,
+		"vra_fabric_network":                19,
+		"vra_fabric_storage_account_azure":  20,
+		"vra_fabric_storage_policy_vsphere": 21,
+		"vra_image":                         22,
+		"vra_image_profile":                 23,
+		"vra_machine":                       24,
+		"vra_network":                       25,
+		"vra_network_domain":                26,
+		"vra_network_profile":               27,
+		"vra_project":                       28,
+		"vra_region":                        29,
+		"vra_region_enumeration":            30,
+		"vra_region_enumeration_aws":        31,
+		"vra_region_enumeration_azure":      32,
+		"vra_region_enumeration_gcp":        33,
+		"vra_region_enumeration_vmc":        34,
+		"vra_region_enumeration_vsphere":    35,
+		"vra_security_group":                36,
+		"vra_storage_profile":               37,
+		"vra_storage_profile_aws":           38,
+		"vra_storage_profile_azure":         39,
+		"vra_storage_profile_vsphere":       40,
+		"vra_zone":                          41,
 	}
 )
 

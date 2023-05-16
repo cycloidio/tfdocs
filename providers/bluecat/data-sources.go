@@ -49,6 +49,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bluecat_bluecat_zone",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -57,6 +67,7 @@ var (
 		"bluecat_bluecat_host_record":  1,
 		"bluecat_bluecat_ipv4block":    2,
 		"bluecat_bluecat_ipv4network":  3,
+		"bluecat_bluecat_zone":         4,
 	}
 )
 

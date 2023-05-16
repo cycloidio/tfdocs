@@ -274,7 +274,7 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "use_metric_streams_sync",
-					Description: `(Optional) Enable the use of Amazon Cloudwatch Metric Streams for ingesting metrics. Note that this requires the inclusion of ` + "`" + `"cloudwatch:ListMetricStreams"` + "`" + `,` + "`" + `"cloudwatch:GetMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:PutMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:DeleteMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:StartMetricStreams"` + "`" + `, ` + "`" + `"cloudwatch:StopMetricStreams"` + "`" + ` and ` + "`" + `"iam:PassRole"` + "`" + ` permissions.`,
+					Description: `(Optional) Enable the use of Amazon Cloudwatch Metric Streams for ingesting metrics.<br> Note that this requires the inclusion of ` + "`" + `"cloudwatch:ListMetricStreams"` + "`" + `,` + "`" + `"cloudwatch:GetMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:PutMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:DeleteMetricStream"` + "`" + `, ` + "`" + `"cloudwatch:StartMetricStreams"` + "`" + `, ` + "`" + `"cloudwatch:StopMetricStreams"` + "`" + ` and ` + "`" + `"iam:PassRole"` + "`" + ` permissions.<br> Note you need to deploy additional resources on your AWS account to enable CloudWatch metrics streaming. Select one of the [CloudFormation templates](https://docs.splunk.com/Observability/gdi/get-data-in/connect/aws/aws-cloudformation.html) to deploy all the required resources.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -387,6 +387,10 @@ SignalFx Azure integrations. For help with this integration see [Monitoring Micr
 				resource.Attribute{
 					Name:        "sync_guest_os_namespaces",
 					Description: `(Optional) If enabled, SignalFx will try to sync additional namespaces for VMs (including VMs in scale sets): telegraf/mem, telegraf/cpu, azure.vm.windows.guest (these are namespaces recommended by Azure when enabling their Diagnostic Extension). If there are no metrics there, no new datapoints will be ingested. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "import_azure_monitor",
+					Description: `(Optional) If enabled, SignalFx will sync also Azure Monitor data. If disabled, SignalFx will import only metadata. Defaults to true.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -793,11 +797,19 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/dash
 					Name:        "id",
 					Description: `The ID of the integration.`,
 				},
+				resource.Attribute{
+					Name:        "dashboard.config_id",
+					Description: `The ID of the association between the dashboard group and the dashboard`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard.config_id",
+					Description: `The ID of the association between the dashboard group and the dashboard`,
 				},
 			},
 		},
@@ -1126,6 +1138,10 @@ SignalFx GCP Integration
 					Description: `(Required) Whether the integration is enabled.`,
 				},
 				resource.Attribute{
+					Name:        "include_list",
+					Description: `(Optional) [Compute Metadata Include List](https://dev.splunk.com/observability/docs/integrations/gcp_integration_overview/).`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the integration.`,
 				},
@@ -1146,8 +1162,12 @@ SignalFx GCP Integration
 					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'. See the documentation for [Creating Integrations](https://dev.splunk.com/observability/reference/api/integrations/latest#endpoint-create-integration) for valid values.`,
 				},
 				resource.Attribute{
+					Name:        "use_metric_source_project_for_quota",
+					Description: `(Optional) When this value is set to true Observability Cloud will force usage of a quota from the project where metrics are stored. For this to work the service account provided for the project needs to be provided with serviceusage.services.use permission or Service Usage Consumer role in this project. When set to false default quota settings are used.`,
+				},
+				resource.Attribute{
 					Name:        "whitelist",
-					Description: `(Optional) [Compute Metadata Whitelist](https://docs.splunk.com/Observability/infrastructure/navigators/gcp.html#compute-engine-instance). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, Deprecated) [Compute Metadata Include List](https://dev.splunk.com/observability/docs/integrations/gcp_integration_overview/). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1513,6 +1533,88 @@ The name of each value in the chart reflects the name of the plot and any associ
 					Description: `The URL of the chart.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_metric_ruleset",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage Splunk Infrastructure Monitoring metric rulesets`,
+			Description: `
+
+Provides an Observability Cloud resource for managing metric rulesets
+
+`,
+			Keywords: []string{
+				"metric",
+				"ruleset",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) Name of the input metric`,
+				},
+				resource.Attribute{
+					Name:        "aggregation_rules",
+					Description: `(Optional) List of aggregation rules for the metric`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) When false, this rule will not generate aggregated MTSs`,
+				},
+				resource.Attribute{
+					Name:        "matcher",
+					Description: `(Required) Matcher object`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of matcher. Must always be "dimension"`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) List of filters to filter the set of input MTSs`,
+				},
+				resource.Attribute{
+					Name:        "property",
+					Description: `(Required) - Name of the dimension`,
+				},
+				resource.Attribute{
+					Name:        "property_value",
+					Description: `(Required) - Value of the dimension`,
+				},
+				resource.Attribute{
+					Name:        "not",
+					Description: `When true, this filter will match all values not matching the property_values`,
+				},
+				resource.Attribute{
+					Name:        "aggregator",
+					Description: `(Required) - Aggregator object`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of aggregator. Must always be "rollup"`,
+				},
+				resource.Attribute{
+					Name:        "dimensions",
+					Description: `(Required) List of dimensions to either be kept or dropped in the new aggregated MTSs`,
+				},
+				resource.Attribute{
+					Name:        "drop_dimensions",
+					Description: `(Required) when true, the specified dimensions will be dropped from the aggregated MTSs`,
+				},
+				resource.Attribute{
+					Name:        "output_name",
+					Description: `(Required) name of the new aggregated metric`,
+				},
+				resource.Attribute{
+					Name:        "routing_rule",
+					Description: `(Required) Routing Rule object`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `(Required) - end destination of the input metric`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1925,6 +2027,57 @@ SignalFx Slack integration.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the integration.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_table_chart",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Data Table Charts`,
+			Description: `
+
+This special type of chart displays a Data Table. This Table can be grouped by a Dimension.
+
+`,
+			Keywords: []string{
+				"table",
+				"chart",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the table chart.`,
+				},
+				resource.Attribute{
+					Name:        "program_text",
+					Description: `(Required) The SignalFlow for your Data Table Chart`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the table chart.`,
+				},
+				resource.Attribute{
+					Name:        "group_by",
+					Description: `(Optional) Dimension to group by ## Attributes Reference In a addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the chart.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the chart.`,
 				},
 			},
 		},
@@ -2399,17 +2552,19 @@ SignalFx Webhook integration.
 		"signalfx_heatmap_chart":            11,
 		"signalfx_jira_integration":         12,
 		"signalfx_list_chart":               13,
-		"signalfx_opsgenie_integration":     14,
-		"signalfx_org_token":                15,
-		"signalfx_pagerduty_integration":    16,
-		"signalfx_service_now_integration":  17,
-		"signalfx_single_value_chart":       18,
-		"signalfx_slack_integration":        19,
-		"signalfx_team":                     20,
-		"signalfx_text_chart":               21,
-		"signalfx_time_chart":               22,
-		"signalfx_victor_ops_integration":   23,
-		"signalfx_webhook_integration":      24,
+		"signalfx_metric_ruleset":           14,
+		"signalfx_opsgenie_integration":     15,
+		"signalfx_org_token":                16,
+		"signalfx_pagerduty_integration":    17,
+		"signalfx_service_now_integration":  18,
+		"signalfx_single_value_chart":       19,
+		"signalfx_slack_integration":        20,
+		"signalfx_table_chart":              21,
+		"signalfx_team":                     22,
+		"signalfx_text_chart":               23,
+		"signalfx_time_chart":               24,
+		"signalfx_victor_ops_integration":   25,
+		"signalfx_webhook_integration":      26,
 	}
 )
 

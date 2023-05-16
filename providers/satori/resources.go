@@ -91,6 +91,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "satori_request_access_rule",
+			Category:         "Resources",
+			ShortDescription: `satori_request_access_rule resource allows defining dataset access request rules.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "satori_security_policy",
 			Category:         "Resources",
 			ShortDescription: `security_policy resource allows defining security policies.`,
@@ -109,6 +119,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "satori_user_settings",
+			Category:         "Resources",
+			ShortDescription: `satori_user_settings resource allows configuring user's settings.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -121,8 +141,10 @@ var (
 		"satori_datastore":                  5,
 		"satori_directory_group":            6,
 		"satori_masking_profile":            7,
-		"satori_security_policy":            8,
-		"satori_self_service_access_rule":   9,
+		"satori_request_access_rule":        8,
+		"satori_security_policy":            9,
+		"satori_self_service_access_rule":   10,
+		"satori_user_settings":              11,
 	}
 )
 

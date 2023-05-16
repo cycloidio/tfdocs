@@ -28,7 +28,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) The agent access token description. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) The agent access token description.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the integration. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "token",
@@ -306,6 +310,10 @@ var (
 					Description: `(Required) The Jira API Token. For more information, see [how to create a Jira API Token](https://confluence.atlassian.com/cloud/api-tokens-938839638.html).`,
 				},
 				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Defines whether the integration is Unidirectional or Bidirectional. For more information, see [more about Bidirectional Jira integrations](https://docs.lacework.com/onboarding/jira#bidirectional-integration). Defaults to ` + "`" + `Unidirectional` + "`" + `. The available options are:`,
+				},
+				resource.Attribute{
 					Name:        "group_issues_by",
 					Description: `(Optional) Defines how Lacework compliance events get grouped. Must be one of ` + "`" + `Events` + "`" + ` or ` + "`" + `Resources` + "`" + `. Defaults to ` + "`" + `Events` + "`" + `. The available options are:`,
 				},
@@ -357,6 +365,10 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Required) The password to the Jira user.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Defines whether the integration is Unidirectional or Bidirectional. For more information, see [more about Bidirectional Jira integrations](https://docs.lacework.com/onboarding/jira#bidirectional-integration). Defaults to ` + "`" + `Unidirectional` + "`" + `. The available options are:`,
 				},
 				resource.Attribute{
 					Name:        "group_issues_by",
@@ -752,7 +764,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_categories",
-					Description: `(Optional) The list of event categories the rule will apply to. Valid categories include: ` + "`" + `Compliance` + "`" + `, ` + "`" + `App` + "`" + `, ` + "`" + `Cloud` + "`" + `,` + "`" + `File` + "`" + `, ` + "`" + `Machine` + "`" + `, ` + "`" + `User` + "`" + ` and ` + "`" + `Platform` + "`" + `.`,
+					Description: `(Optional) The list of event categories the rule will apply to. Valid categories include: ` + "`" + `Compliance` + "`" + `, ` + "`" + `App` + "`" + `, ` + "`" + `Cloud` + "`" + `,` + "`" + `File` + "`" + `, ` + "`" + `Machine` + "`" + `, ` + "`" + `User` + "`" + `, ` + "`" + `Platform` + "`" + ` and ` + "`" + `K8sActivity` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "resource_groups",
@@ -761,6 +773,105 @@ var (
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Alert Rule can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_alert_rule.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_data_export_rule",
+			Category:         "Data Export Rules",
+			ShortDescription: `Create and manage Lacework Data Export Rules`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"export",
+				"rules",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The data export rule name.`,
+				},
+				resource.Attribute{
+					Name:        "integration_ids",
+					Description: `(Required) The list s3 data export alert channel ids for the rule to use.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The summary of the data export rule.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the rule is enabled or disabled. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Data Export Rule can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_data_export_rule.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_integration_aws_agentless_scanning",
+			Category:         "Cloud Account Integrations",
+			ShortDescription: `Create and manage AWS Agentless Scanning integration`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"account",
+				"integrations",
+				"integration",
+				"aws",
+				"agentless",
+				"scanning",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The AWS Agentless Scanning integration name.`,
+				},
+				resource.Attribute{
+					Name:        "scan_frequency",
+					Description: `(Required) How often, in hours, the scan will run.`,
+				},
+				resource.Attribute{
+					Name:        "query_text",
+					Description: `(Optional) The lql query.`,
+				},
+				resource.Attribute{
+					Name:        "scan_containers",
+					Description: `(Optional) Whether to includes scanning for containers.`,
+				},
+				resource.Attribute{
+					Name:        "scan_host_vulnerabilities",
+					Description: `(Optional) Whether to includes scanning for host vulnerabilities.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) The aws account id.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_arn",
+					Description: `(Optional) The bucket arn.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Optional) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts to create the external integration. Defaults to ` + "`" + `5` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional) The role arn.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) The external id. ## Import A Lacework AWS Agentless Scanning integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_aws_agentless_scanning.account_abc EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -875,6 +986,10 @@ var (
 					Description: `(Required) The SNS topic ARN to share with Lacework.`,
 				},
 				resource.Attribute{
+					Name:        "s3_bucket_arn",
+					Description: `(Optional) The S3 Bucket ARN to share with Lacework.`,
+				},
+				resource.Attribute{
 					Name:        "credentials",
 					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
 				},
@@ -932,6 +1047,86 @@ var (
 				resource.Attribute{
 					Name:        "secret_access_key",
 					Description: `(Required) The AWS secret key for the specified AWS access key. ## Import A Lacework AWS Config integration for AWS GovCloud can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_aws_govcloud_cfg.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_integration_aws_org_agentless_scanning",
+			Category:         "Cloud Account Integrations",
+			ShortDescription: `Create and manage AWS Organizations Agentless Scanning integration`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"account",
+				"integrations",
+				"integration",
+				"aws",
+				"org",
+				"agentless",
+				"scanning",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The AWS Organizations Agentless Scanning integration name.`,
+				},
+				resource.Attribute{
+					Name:        "scan_frequency",
+					Description: `(Required) How often, in hours, the scan will run.`,
+				},
+				resource.Attribute{
+					Name:        "query_text",
+					Description: `(Optional) The LQL query.`,
+				},
+				resource.Attribute{
+					Name:        "scan_containers",
+					Description: `(Optional) Whether to includes scanning for containers.`,
+				},
+				resource.Attribute{
+					Name:        "scan_host_vulnerabilities",
+					Description: `(Optional) Whether to includes scanning for host vulnerabilities.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) The AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_arn",
+					Description: `(Optional) The bucket ARN.`,
+				},
+				resource.Attribute{
+					Name:        "scanning_account",
+					Description: `(Required) The scanning AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "management_account",
+					Description: `(Optional) The management AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "monitored_accounts",
+					Description: `(Required) The list of monitroed AWS account IDs or OUs.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Optional) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts to create the external integration. Defaults to ` + "`" + `5` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional) The role arn.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) The external id. ## Import A Lacework AWS Organizations Agentless Scanning integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_aws_org_agentless_scanning.account_abc EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1060,18 +1255,6 @@ var (
 					Description: `(Required) The password for the specified Docker Hub user.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tag",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_label",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_repos",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
 					Name:        "limit_num_imgs",
 					Description: `(Optional) The maximum number of newest container images to assess per repository. Must be one of ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, or ` + "`" + `15` + "`" + `. Defaults to ` + "`" + `5` + "`" + `.`,
 				},
@@ -1080,20 +1263,28 @@ var (
 					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tags",
-					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+					Name:        "non_os_package_support",
+					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_labels",
-					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_repositories",
 					Description: `(Optional) A list of repositories to assess.`,
 				},
 				resource.Attribute{
-					Name:        "non_os_package_support",
-					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Docker Hub container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_hub.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ## Import A Lacework Docker Hub container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_hub.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1138,28 +1329,28 @@ var (
 					Description: `(Optional) Subscribe to registry notifications. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tag",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_label",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "non_os_package_support",
+					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_tags",
 					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_labels",
-					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
 				},
 				resource.Attribute{
-					Name:        "non_os_package_support",
-					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework Docker V2 container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_v2.jfrog EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ## Import A Lacework Docker V2 container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_docker_v2.jfrog EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1191,16 +1382,8 @@ var (
 					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tag",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_label",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_repos",
-					Description: `(Optional,`,
+					Name:        "non_os_package_support",
+					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "limit_num_imgs",
@@ -1215,16 +1398,20 @@ var (
 					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_labels",
-					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "limit_by_repositories",
 					Description: `(Optional) A list of repositories to assess.`,
 				},
 				resource.Attribute{
-					Name:        "non_os_package_support",
-					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the combination of the following arguments.`,
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ### Credentials ` + "`" + `credentials` + "`" + ` supports the combination of the following arguments.`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
@@ -1301,7 +1488,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The value of the label. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -1444,6 +1631,147 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "lacework_integration_gcp_gke_audit_log",
+			Category:         "Cloud Account Integrations",
+			ShortDescription: `Create and manage GCP GKE Audit Log integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"account",
+				"integrations",
+				"integration",
+				"gcp",
+				"gke",
+				"audit",
+				"log",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The GCP Audit Trail integration name.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Optional) The organization ID. Required if ` + "`" + `integration_type` + "`" + ` is set to ` + "`" + `ORGANIZATION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project ID.`,
+				},
+				resource.Attribute{
+					Name:        "subscription",
+					Description: `(Required) The PubSub Subscription.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `(Optional) The integration type. Must be one of ` + "`" + `PROJECT` + "`" + ` or ` + "`" + `ORGANIZATION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts to create the external integration. Defaults to ` + "`" + `5` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The service account client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `(Required) The service account client email.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `(Required) The service account private key ID.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The service account private key. ## Import A Lacework GCP GKE Audit Log integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_gcp_gke_audit_log.account_abc EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_integration_gcp_pub_sub_audit_log",
+			Category:         "Cloud Account Integrations",
+			ShortDescription: `Create and manage GCP Pub Sub Audit Log integrations`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"account",
+				"integrations",
+				"integration",
+				"gcp",
+				"pub",
+				"sub",
+				"audit",
+				"log",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The GCP Audit Trail integration name.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Optional) The organization ID. Required if ` + "`" + `integration_type` + "`" + ` is set to ` + "`" + `ORGANIZATION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The project ID.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `(Required) The PubSub Subscription.`,
+				},
+				resource.Attribute{
+					Name:        "topic_id",
+					Description: `(Required) The PubSub Topic.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `(Optional) The integration type. Must be one of ` + "`" + `PROJECT` + "`" + ` or ` + "`" + `ORGANIZATION` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retries",
+					Description: `(Optional) The number of attempts to create the external integration. Defaults to ` + "`" + `5` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The service account client ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_email",
+					Description: `(Required) The service account client email.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `(Required) The service account private key ID.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The service account private key. ## Import A Lacework GCP Pub Sub Audit Log integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_gcp_pub_sub_audit_log.account_abc EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lacework_integration_gcr",
 			Category:         "Container Registry Integrations",
 			ShortDescription: `Create and manage Google Container Registry (GCR) integrations`,
@@ -1469,18 +1797,6 @@ var (
 					Description: `(Required) The credentials needed by the integration. See [Credentials](#credentials) below for details.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tag",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_label",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
-					Name:        "limit_by_repos",
-					Description: `(Optional,`,
-				},
-				resource.Attribute{
 					Name:        "limit_num_imgs",
 					Description: `(Optional) The maximum number of newest container images to assess per repository. Must be one of ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, or ` + "`" + `15` + "`" + `. Defaults to ` + "`" + `5` + "`" + `.`,
 				},
@@ -1489,20 +1805,28 @@ var (
 					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_tags",
-					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+					Name:        "non_os_package_support",
+					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "limit_by_labels",
-					Description: `(Optional) A key based map of labels to limit the assessment of images with matching ` + "`" + `key:value` + "`" + ` labels. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
+					Name:        "limit_by_tags",
+					Description: `(Optional) A list of image tags to limit the assessment of images with matching tags. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_labels` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "limit_by_repositories",
 					Description: `(Optional) A list of repositories to assess.`,
 				},
 				resource.Attribute{
-					Name:        "non_os_package_support",
-					Description: `(Optional) Enable [program language scanning](https://docs.lacework.com/container-image-support#language-libraries-support). Defaults to ` + "`" + `true` + "`" + `. ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
+					Name:        "limit_by_label",
+					Description: `(Optional) A list of key/value labels to limit the assessment of images. If you specify ` + "`" + `limit_by_tags` + "`" + ` and ` + "`" + `limit_by_label` + "`" + ` limits, they function as an ` + "`" + `AND` + "`" + `. The ` + "`" + `limit_by_label` + "`" + ` block can be defined multiple times to define multiple label limits, it supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ### Credentials ` + "`" + `credentials` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -1587,7 +1911,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The value of the label. ## Import A Lacework Github container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_ghcr.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `(Required) The value of the label. For example, to limit by the label ` + "`" + `key` + "`" + ` with values ` + "`" + `value` + "`" + ` and ` + "`" + `value2` + "`" + `, plus the label ` + "`" + `key1` + "`" + ` with value ` + "`" + `value` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl limit_by_label { key = "key" value = "value" } limit_by_label { key = "key" value = "value2" } limit_by_label { key = "key1" value = "value" } ` + "`" + `` + "`" + `` + "`" + ` ## Import A Lacework Github container registry integration can be imported using a ` + "`" + `INT_GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_integration_ghcr.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1621,7 +1945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The policy type must be either ` + "`" + `Violation` + "`" + ` or ` + "`" + `Summary` + "`" + `.`,
+					Description: `(Required) The policy type must be ` + "`" + `Violation` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "evaluation",
@@ -1644,6 +1968,10 @@ var (
 					Description: `(Optional) The string appended to the end of the policy id.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of policy tags.`,
+				},
+				resource.Attribute{
 					Name:        "alerting",
 					Description: `(Optional) Alerting. See [Alerting](#alerting) below for details. ### Alerting ` + "`" + `alerting` + "`" + ` supports the following arguments:`,
 				},
@@ -1654,6 +1982,41 @@ var (
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) Whether the alerting profile is enabled or disabled. Defaults to ` + "`" + `true` + "`" + `. ## Import A Lacework policy can be imported using a ` + "`" + `POLICY_ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_policy.example YourLQLPolicyID ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lacework_policy_exception",
+			Category:         "LQL",
+			ShortDescription: `Create and manage Lacework Policy Exceptions`,
+			Description:      ``,
+			Keywords: []string{
+				"lql",
+				"policy",
+				"exception",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the policy exception.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required) The id of the policy the exception is associated.`,
+				},
+				resource.Attribute{
+					Name:        "constraint",
+					Description: `(Required) Constraint. See [Constraint](#Constraint) below for details. ### Constraint ` + "`" + `constraint` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "field_key",
+					Description: `(Required) The key of the constraint being applied. Example for Aws polices this could be ` + "`" + `accountIds` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "field_values",
+					Description: `(Required) The values related to the constraint key. ## Import A Lacework policy can be imported using a ` + "`" + `POLICY_ID` + "`" + ` and ` + "`" + `EXCEPTION_ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_policy_exception.example YourLQLPolicyID YourExceptionID ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2141,7 +2504,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vulnerability_criteria",
-					Description: `(Required) The vulnerability criteria. See [Vulnerability Criteria](#vulnerability-criteria) below for details.`,
+					Description: `(Required) The criteria of the vulnerability to be excluded. See [Vulnerability Criteria](#vulnerability-criteria) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2149,51 +2512,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) The state of the vulnerability exception. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "reason",
-					Description: `(Optional) The list of the severities that the rule will apply. Valid severities include: ` + "`" + `Accepted Risk` + "`" + `, ` + "`" + `False Positive` + "`" + `, ` + "`" + `Compensating Controls` + "`" + `, Fix Pending` + "`" + ` and ` + "`" + `Other` + "`" + `.`,
+					Name:        "expiry",
+					Description: `(Optional) The expiration date of the vulnerability exception. Example: ` + "`" + `2022-06-01T16:35:00Z` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "resource_scope",
-					Description: `(Optional) The resource scope. See [Resource Scope](#resource-scope) below for details. ### Vulnerability Criteria ` + "`" + `vulnerability criteria` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Define which resources will be affected by the exclusion. See [Resource Scope](#resource-scope) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `(Optional) The reason for the exception to exist. Valid reasons include: ` + "`" + `Accepted Risk` + "`" + `, ` + "`" + `False Positive` + "`" + `, ` + "`" + `Compensating Controls` + "`" + `, ` + "`" + `Fix Pending` + "`" + ` and ` + "`" + `Other` + "`" + `. See [Vulnerability Exceptions Use Cases](https://docs.lacework.com/console/vulnerability-exceptions-overview) for more details. ### Vulnerability Criteria ` + "`" + `vulnerability_criteria` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "severities",
-					Description: `(Optional) The list of the severities. Valid severities include: ` + "`" + `Critical` + "`" + `, ` + "`" + `High` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Low` + "`" + ` and ` + "`" + `Info` + "`" + `.`,
+					Description: `(Optional) The list of severities to which the exception will be constraint. Valid severities include: ` + "`" + `Critical` + "`" + `, ` + "`" + `High` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Low` + "`" + ` and ` + "`" + `Info` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cves",
-					Description: `(Optional) The list of the cves.`,
+					Description: `(Optional) The list of vulnerability (CVE) IDs.`,
 				},
 				resource.Attribute{
 					Name:        "package",
-					Description: `(Optional) The list of the packages.`,
+					Description: `(Optional) The list of package names (for example, an operating system or language package) to constraint.`,
 				},
 				resource.Attribute{
-					Name:        "fixable",
-					Description: `(Optional) Whether to filter on fixable. Defaults to ` + "`" + `false` + "`" + `. ### Resource Scope ` + "`" + `resource_scope` + "`" + ` supports the following arguments:`,
+					Name:        "fixable_vuln",
+					Description: `(Optional) Whether to filter on fixable or non-fixable vulnerability. This argument is of type ` + "`" + `string` + "`" + `. Valid values are: ` + "`" + `"true"` + "`" + `, ` + "`" + `"false"` + "`" + `. ### Resource Scope ` + "`" + `resource_scope` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "image_ids",
-					Description: `(Optional) The list of image ids.`,
+					Description: `(Optional) The list of sha256 hashes that was generated for one or more container images.`,
 				},
 				resource.Attribute{
 					Name:        "image_tags",
-					Description: `(Optional) The list of image tags.`,
+					Description: `(Optional) The list of container image tags.`,
 				},
 				resource.Attribute{
 					Name:        "registries",
-					Description: `(Optional) The list of registries.`,
+					Description: `(Optional) The list of container registries.`,
 				},
 				resource.Attribute{
 					Name:        "repositories",
-					Description: `(Optional) The list of repositories.`,
+					Description: `(Optional) The list of container repositories.`,
 				},
 				resource.Attribute{
 					Name:        "namespaces",
-					Description: `(Optional) The list of namespaces. ## Import A Lacework Vulnerability Exception Container can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_vulnerability_exception_container.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The list of namespace for the package distribution (for example, an operating system or language package). ## Import A Lacework vulnerability wxception for containers can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_vulnerability_exception_container.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2217,7 +2584,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vulnerability_criteria",
-					Description: `(Required) The vulnerability criteria. See [Vulnerability Criteria](#vulnerability-criteria) below for details.`,
+					Description: `(Required) The criteria of the vulnerability to be excluded. See [Vulnerability Criteria](#vulnerability-criteria) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2225,31 +2592,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) The state of the external integration. Defaults to ` + "`" + `true` + "`" + `.`,
+					Description: `(Optional) The state of the vulnerability exception. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "reason",
-					Description: `(Optional) The list of the severities that the rule will apply. Valid severities include: ` + "`" + `Accepted Risk` + "`" + `, ` + "`" + `False Positive` + "`" + `, ` + "`" + `Compensating Controls` + "`" + `, Fix Pending` + "`" + ` and ` + "`" + `Other` + "`" + `.`,
+					Name:        "expiry",
+					Description: `(Optional) The expiration date of the vulnerability exception. Example: ` + "`" + `2022-06-01T16:35:00Z` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "resource_scope",
-					Description: `(Optional) The resource scope. See [Resource Scope](#resource-scope) below for details. ### Vulnerability Criteria ` + "`" + `vulnerability criteria` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Define which resources will be affected by the exclusion. See [Resource Scope](#resource-scope) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `(Optional) The reason for the exception to exist. Valid reasons include: ` + "`" + `Accepted Risk` + "`" + `, ` + "`" + `False Positive` + "`" + `, ` + "`" + `Compensating Controls` + "`" + `, ` + "`" + `Fix Pending` + "`" + ` and ` + "`" + `Other` + "`" + `. See [Vulnerability Exceptions Use Cases](https://docs.lacework.com/console/vulnerability-exceptions-overview) for more details. ### Vulnerability Criteria ` + "`" + `vulnerability_criteria` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "severities",
-					Description: `(Optional) The list of the severities. Valid severities include: ` + "`" + `Critical` + "`" + `, ` + "`" + `High` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Low` + "`" + ` and ` + "`" + `Info` + "`" + `.`,
+					Description: `(Optional) The list of severities to which the exception will be constraint. Valid severities include: ` + "`" + `Critical` + "`" + `, ` + "`" + `High` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Low` + "`" + ` and ` + "`" + `Info` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cves",
-					Description: `(Optional) The list of the cves.`,
+					Description: `(Optional) The list of vulnerability (CVE) IDs.`,
 				},
 				resource.Attribute{
 					Name:        "package",
-					Description: `(Optional) The list of the cves. See [Resource Scope](#resource-scope) below for details.`,
+					Description: `(Optional) The list of package names (for example, an operating system or language package) to constraint.`,
 				},
 				resource.Attribute{
-					Name:        "fixable",
-					Description: `(Optional) Whether to filter on fixable. Defaults to ` + "`" + `false` + "`" + `. ### Resource Scope ` + "`" + `resource_scope` + "`" + ` supports the following arguments:`,
+					Name:        "fixable_vuln",
+					Description: `(Optional) Whether to filter on fixable or non-fixable vulnerability. This argument is of type ` + "`" + `string` + "`" + `. Valid values are: ` + "`" + `"true"` + "`" + `, ` + "`" + `"false"` + "`" + `. ### Resource Scope ` + "`" + `resource_scope` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -2257,7 +2628,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_ips",
-					Description: `(Optional) The list of external ips.`,
+					Description: `(Optional) The list of external IP addresses.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_names",
@@ -2265,7 +2636,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespaces",
-					Description: `(Optional) The list of namespaces. ## Import A Lacework vulnerability exception for hosts can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_vulnerability_exception_host.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The list of namespace for the package distribution (for example, an operating system or language package). ## Import A Lacework vulnerability exception for hosts can be imported using a ` + "`" + `GUID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import lacework_vulnerability_exception_host.example EXAMPLE_1234BAE1E42182964D23973F44CFEA3C4AB63B99E9A1EC5 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2274,52 +2645,58 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"lacework_agent_access_token":                0,
-		"lacework_alert_channel_aws_cloudwatch":      1,
-		"lacework_alert_channel_aws_s3":              2,
-		"lacework_alert_channel_cisco_webex":         3,
-		"lacework_alert_channel_datadog":             4,
-		"lacework_alert_channel_email":               5,
-		"lacework_alert_channel_gcp_pub_sub":         6,
-		"lacework_alert_channel_jira_cloud":          7,
-		"lacework_alert_channel_jira_server":         8,
-		"lacework_alert_channel_microsoft_teams":     9,
-		"lacework_alert_channel_newrelic":            10,
-		"lacework_alert_channel_pagerduty":           11,
-		"lacework_alert_channel_qradar":              12,
-		"lacework_alert_channel_service_now":         13,
-		"lacework_alert_channel_slack":               14,
-		"lacework_alert_channel_splunk":              15,
-		"lacework_alert_channel_victorops":           16,
-		"lacework_alert_channel_webhook":             17,
-		"lacework_alert_profile":                     18,
-		"lacework_alert_rule":                        19,
-		"lacework_integration_aws_cfg":               20,
-		"lacework_integration_aws_ct":                21,
-		"lacework_integration_aws_eks_audit_log":     22,
-		"lacework_integration_aws_govcloud_cfg":      23,
-		"lacework_integration_azure_al":              24,
-		"lacework_integration_azure_cfg":             25,
-		"lacework_integration_docker_hub":            26,
-		"lacework_integration_docker_v2":             27,
-		"lacework_integration_ecr":                   28,
-		"lacework_integration_gar":                   29,
-		"lacework_integration_gcp_at":                30,
-		"lacework_integration_gcp_cfg":               31,
-		"lacework_integration_gcr":                   32,
-		"lacework_integration_ghcr":                  33,
-		"lacework_policy":                            34,
-		"lacework_query":                             35,
-		"lacework_report_rule":                       36,
-		"lacework_resource_group_account":            37,
-		"lacework_resource_group_aws":                38,
-		"lacework_resource_group_azure":              39,
-		"lacework_resource_group_container":          40,
-		"lacework_resource_group_gcp":                41,
-		"lacework_resource_group_machine":            42,
-		"lacework_team_member":                       43,
-		"lacework_vulnerability_exception_container": 44,
-		"lacework_vulnerability_exception_host":      45,
+		"lacework_agent_access_token":                     0,
+		"lacework_alert_channel_aws_cloudwatch":           1,
+		"lacework_alert_channel_aws_s3":                   2,
+		"lacework_alert_channel_cisco_webex":              3,
+		"lacework_alert_channel_datadog":                  4,
+		"lacework_alert_channel_email":                    5,
+		"lacework_alert_channel_gcp_pub_sub":              6,
+		"lacework_alert_channel_jira_cloud":               7,
+		"lacework_alert_channel_jira_server":              8,
+		"lacework_alert_channel_microsoft_teams":          9,
+		"lacework_alert_channel_newrelic":                 10,
+		"lacework_alert_channel_pagerduty":                11,
+		"lacework_alert_channel_qradar":                   12,
+		"lacework_alert_channel_service_now":              13,
+		"lacework_alert_channel_slack":                    14,
+		"lacework_alert_channel_splunk":                   15,
+		"lacework_alert_channel_victorops":                16,
+		"lacework_alert_channel_webhook":                  17,
+		"lacework_alert_profile":                          18,
+		"lacework_alert_rule":                             19,
+		"lacework_data_export_rule":                       20,
+		"lacework_integration_aws_agentless_scanning":     21,
+		"lacework_integration_aws_cfg":                    22,
+		"lacework_integration_aws_ct":                     23,
+		"lacework_integration_aws_eks_audit_log":          24,
+		"lacework_integration_aws_govcloud_cfg":           25,
+		"lacework_integration_aws_org_agentless_scanning": 26,
+		"lacework_integration_azure_al":                   27,
+		"lacework_integration_azure_cfg":                  28,
+		"lacework_integration_docker_hub":                 29,
+		"lacework_integration_docker_v2":                  30,
+		"lacework_integration_ecr":                        31,
+		"lacework_integration_gar":                        32,
+		"lacework_integration_gcp_at":                     33,
+		"lacework_integration_gcp_cfg":                    34,
+		"lacework_integration_gcp_gke_audit_log":          35,
+		"lacework_integration_gcp_pub_sub_audit_log":      36,
+		"lacework_integration_gcr":                        37,
+		"lacework_integration_ghcr":                       38,
+		"lacework_policy":                                 39,
+		"lacework_policy_exception":                       40,
+		"lacework_query":                                  41,
+		"lacework_report_rule":                            42,
+		"lacework_resource_group_account":                 43,
+		"lacework_resource_group_aws":                     44,
+		"lacework_resource_group_azure":                   45,
+		"lacework_resource_group_container":               46,
+		"lacework_resource_group_gcp":                     47,
+		"lacework_resource_group_machine":                 48,
+		"lacework_team_member":                            49,
+		"lacework_vulnerability_exception_container":      50,
+		"lacework_vulnerability_exception_host":           51,
 	}
 )
 

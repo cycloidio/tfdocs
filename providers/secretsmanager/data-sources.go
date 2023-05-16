@@ -39,7 +39,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -61,7 +61,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -115,7 +115,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -161,7 +161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -211,7 +211,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -245,7 +245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -283,7 +283,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -309,7 +309,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -359,7 +359,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -397,7 +397,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -443,7 +443,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -477,7 +477,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -527,7 +527,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -565,7 +565,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -603,7 +603,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -629,7 +629,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -687,7 +687,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -705,7 +705,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -747,7 +747,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -781,7 +781,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -835,7 +835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -873,7 +873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -915,7 +915,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -949,7 +949,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 				resource.Attribute{
 					Name:        "totp",
@@ -995,7 +995,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1025,7 +1025,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1083,7 +1083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1129,7 +1129,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1159,7 +1159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1177,7 +1177,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1219,7 +1219,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1249,7 +1249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1291,7 +1291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1321,7 +1321,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1367,7 +1367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1401,7 +1401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},
@@ -1439,7 +1439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1465,7 +1465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_ref",
-					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `url` + "`" + ` - File download URL - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
+					Description: `A list containing file reference information: - ` + "`" + `uid` + "`" + ` - File UID - ` + "`" + `title` + "`" + ` - File title - ` + "`" + `name` + "`" + ` - File name - ` + "`" + `type` + "`" + ` - File content type - ` + "`" + `size` + "`" + ` - File size - ` + "`" + `last_modified` + "`" + ` - File last modification timestamp - ` + "`" + `content_base64` + "`" + ` - File content base64 encoded`,
 				},
 			},
 		},

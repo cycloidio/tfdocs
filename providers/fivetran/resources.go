@@ -25,6 +25,24 @@ This resource allows you to create, update, and delete connectors.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "fivetran_connector_schema_config",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+This resource allows you to manage the Standard Configuration settings of a connector:
+ - Define the schema change handling settings
+ - Enable and disable schemas, tables, and columns
+
+The resource is in ALPHA state. The resource schema and behavior are subject to change without prior notice.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "fivetran_destination",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -53,6 +71,20 @@ This resource allows you to create, update, and delete groups.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "fivetran_group_users",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+This resource allows you to create, update, and delete user memberships in groups.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "fivetran_user",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -69,10 +101,12 @@ This resource allows you to create, update, and delete users.
 
 	resourcesMap = map[string]int{
 
-		"fivetran_connector":   0,
-		"fivetran_destination": 1,
-		"fivetran_group":       2,
-		"fivetran_user":        3,
+		"fivetran_connector":               0,
+		"fivetran_connector_schema_config": 1,
+		"fivetran_destination":             2,
+		"fivetran_group":                   3,
+		"fivetran_group_users":             4,
+		"fivetran_user":                    5,
 	}
 )
 

@@ -44,6 +44,10 @@ var (
 					Description: `The ID the app's currently active deployment.`,
 				},
 				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource identifier for the app.`,
+				},
+				resource.Attribute{
 					Name:        "updated_at",
 					Description: `The date and time of when the app was last updated.`,
 				},
@@ -109,7 +113,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
@@ -225,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
@@ -281,11 +285,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
-					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `database` + "`" + ` can contain:`,
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `function` + "`" + ` component can contain:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the component.`,
+				},
+				resource.Attribute{
+					Name:        "source_dir",
+					Description: `An optional path to the working directory to use for the build.`,
+				},
+				resource.Attribute{
+					Name:        "git",
+					Description: `A Git repo to use as the component's source. The repository must be able to be cloned without authentication. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + ` or ` + "`" + `gitlab` + "`" + ` may be set. - ` + "`" + `repo_clone_url` + "`" + ` - The clone URL of the repo. - ` + "`" + `branch` + "`" + ` - The name of the branch to use.`,
+				},
+				resource.Attribute{
+					Name:        "github",
+					Description: `A GitHub repo to use as the component's source. DigitalOcean App Platform must have [access to the repository](https://cloud.digitalocean.com/apps/github/install). Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `repo` + "`" + ` - The name of the repo in the format ` + "`" + `owner/repo` + "`" + `. - ` + "`" + `branch` + "`" + ` - The name of the branch to use. - ` + "`" + `deploy_on_push` + "`" + ` - Whether to automatically deploy new commits made to the repo.`,
+				},
+				resource.Attribute{
+					Name:        "gitlab",
+					Description: `A Gitlab repo to use as the component's source. DigitalOcean App Platform must have [access to the repository](https://cloud.digitalocean.com/apps/gitlab/install). Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `repo` + "`" + ` - The name of the repo in the format ` + "`" + `owner/repo` + "`" + `. - ` + "`" + `branch` + "`" + ` - The name of the branch to use. - ` + "`" + `deploy_on_push` + "`" + ` - Whether to automatically deploy new commits made to the repo.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route",
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies of the app. - ` + "`" + `allow_origins` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` can be - ` + "`" + `exact` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin only if the client's origin exactly matches the value you provide. - ` + "`" + `prefix` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the beginning of the client's origin matches the value you provide. - ` + "`" + `regex` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the client’s origin matches the regex you provide, in [RE2 style syntax](https://github.com/google/re2/wiki/Syntax). - ` + "`" + `allow_headers` + "`" + ` - The set of allowed HTTP request headers. This configures the ` + "`" + `Access-Control-Allow-Headers` + "`" + ` header. - ` + "`" + `max_age` + "`" + ` - An optional duration specifying how long browsers can cache the results of a preflight request. This configures the Access-Control-Max-Age header. Example: ` + "`" + `5h30m` + "`" + `. - ` + "`" + `expose_headers` + "`" + ` - The set of HTTP response headers that browsers are allowed to access. This configures the ` + "`" + `Access-Control-Expose-Headers` + "`" + ` header. - ` + "`" + `allow_methods` + "`" + ` - The set of allowed HTTP methods. This configures the ` + "`" + `Access-Control-Allow-Methods` + "`" + ` header. - ` + "`" + `allow_credentials` + "`" + ` - Whether browsers should expose the response to the client-side JavaScript code when the request's credentials mode is ` + "`" + `include` + "`" + `. This configures the ` + "`" + `Access-Control-Allow-Credentials` + "`" + ` header.`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Describes an alert policy for the component. - ` + "`" + `rule` + "`" + ` - The type of the alert to configure. Component app alert policies can be: ` + "`" + `CPU_UTILIZATION` + "`" + `, ` + "`" + `MEM_UTILIZATION` + "`" + `, or ` + "`" + `RESTART_COUNT` + "`" + `. - ` + "`" + `value` + "`" + ` - The threshold for the type of the warning. - ` + "`" + `operator` + "`" + ` - The operator to use. This is either of ` + "`" + `GREATER_THAN` + "`" + ` or ` + "`" + `LESS_THAN` + "`" + `. - ` + "`" + `window` + "`" + ` - The time before alerts should be triggered. This is may be one of: ` + "`" + `FIVE_MINUTES` + "`" + `, ` + "`" + `TEN_MINUTES` + "`" + `, ` + "`" + `THIRTY_MINUTES` + "`" + `, ` + "`" + `ONE_HOUR` + "`" + `. - ` + "`" + `disabled` + "`" + ` - Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "log_destination",
+					Description: `Describes a log forwarding destination. - ` + "`" + `name` + "`" + ` - Name of the log destination. Minimum length: 2. Maximum length: 42. - ` + "`" + `papertrail` + "`" + ` - Papertrail configuration. - ` + "`" + `endpoint` + "`" + ` - Papertrail syslog endpoint. - ` + "`" + `datadog` + "`" + ` - Datadog configuration. - ` + "`" + `endpoint` + "`" + ` - Datadog HTTP log intake endpoint. - ` + "`" + `api_key` + "`" + ` - Datadog API key. - ` + "`" + `logtail` + "`" + ` - Logtail configuration. - ` + "`" + `token` + "`" + ` - Logtail token. A ` + "`" + `database` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -330,6 +374,10 @@ var (
 					Description: `The ID the app's currently active deployment.`,
 				},
 				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource identifier for the app.`,
+				},
+				resource.Attribute{
 					Name:        "updated_at",
 					Description: `The date and time of when the app was last updated.`,
 				},
@@ -395,7 +443,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
@@ -511,7 +559,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
@@ -567,11 +615,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image",
-					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided.`,
+					Description: `An image to use as the component's source. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `registry_type` + "`" + ` - The registry type. One of ` + "`" + `DOCR` + "`" + ` (DigitalOcean container registry) or ` + "`" + `DOCKER_HUB` + "`" + `. - ` + "`" + `registry` + "`" + ` - The registry name. Must be left empty for the ` + "`" + `DOCR` + "`" + ` registry type. Required for the ` + "`" + `DOCKER_HUB` + "`" + ` registry type. - ` + "`" + `repository` + "`" + ` - The repository name. - ` + "`" + `tag` + "`" + ` - The repository tag. Defaults to ` + "`" + `latest` + "`" + ` if not provided. - ` + "`" + `deploy_on_push` + "`" + ` - Configures automatically deploying images pushed to DOCR. - ` + "`" + `enabled` + "`" + ` - Whether to automatically deploy images pushed to DOCR.`,
 				},
 				resource.Attribute{
 					Name:        "env",
-					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `database` + "`" + ` can contain:`,
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `. A ` + "`" + `function` + "`" + ` component can contain:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the component.`,
+				},
+				resource.Attribute{
+					Name:        "source_dir",
+					Description: `An optional path to the working directory to use for the build.`,
+				},
+				resource.Attribute{
+					Name:        "git",
+					Description: `A Git repo to use as the component's source. The repository must be able to be cloned without authentication. Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + ` or ` + "`" + `gitlab` + "`" + ` may be set. - ` + "`" + `repo_clone_url` + "`" + ` - The clone URL of the repo. - ` + "`" + `branch` + "`" + ` - The name of the branch to use.`,
+				},
+				resource.Attribute{
+					Name:        "github",
+					Description: `A GitHub repo to use as the component's source. DigitalOcean App Platform must have [access to the repository](https://cloud.digitalocean.com/apps/github/install). Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `repo` + "`" + ` - The name of the repo in the format ` + "`" + `owner/repo` + "`" + `. - ` + "`" + `branch` + "`" + ` - The name of the branch to use. - ` + "`" + `deploy_on_push` + "`" + ` - Whether to automatically deploy new commits made to the repo.`,
+				},
+				resource.Attribute{
+					Name:        "gitlab",
+					Description: `A Gitlab repo to use as the component's source. DigitalOcean App Platform must have [access to the repository](https://cloud.digitalocean.com/apps/gitlab/install). Only one of ` + "`" + `git` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `gitlab` + "`" + `, or ` + "`" + `image` + "`" + ` may be set. - ` + "`" + `repo` + "`" + ` - The name of the repo in the format ` + "`" + `owner/repo` + "`" + `. - ` + "`" + `branch` + "`" + ` - The name of the branch to use. - ` + "`" + `deploy_on_push` + "`" + ` - Whether to automatically deploy new commits made to the repo.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `Describes an environment variable made available to an app competent. - ` + "`" + `key` + "`" + ` - The name of the environment variable. - ` + "`" + `value` + "`" + ` - The value of the environment variable. - ` + "`" + `scope` + "`" + ` - The visibility scope of the environment variable. One of ` + "`" + `RUN_TIME` + "`" + `, ` + "`" + `BUILD_TIME` + "`" + `, or ` + "`" + `RUN_AND_BUILD_TIME` + "`" + ` (default). - ` + "`" + `type` + "`" + ` - The type of the environment variable, ` + "`" + `GENERAL` + "`" + ` or ` + "`" + `SECRET` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route",
+					Description: `An HTTP paths that should be routed to this component. - ` + "`" + `path` + "`" + ` - Paths must start with ` + "`" + `/` + "`" + ` and must be unique within the app. - ` + "`" + `preserve_path_prefix` + "`" + ` - An optional flag to preserve the path that is forwarded to the backend service.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `The [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies of the app. - ` + "`" + `allow_origins` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` can be - ` + "`" + `exact` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin only if the client's origin exactly matches the value you provide. - ` + "`" + `prefix` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the beginning of the client's origin matches the value you provide. - ` + "`" + `regex` + "`" + ` - The ` + "`" + `Access-Control-Allow-Origin` + "`" + ` header will be set to the client's origin if the client’s origin matches the regex you provide, in [RE2 style syntax](https://github.com/google/re2/wiki/Syntax). - ` + "`" + `allow_headers` + "`" + ` - The set of allowed HTTP request headers. This configures the ` + "`" + `Access-Control-Allow-Headers` + "`" + ` header. - ` + "`" + `max_age` + "`" + ` - An optional duration specifying how long browsers can cache the results of a preflight request. This configures the Access-Control-Max-Age header. Example: ` + "`" + `5h30m` + "`" + `. - ` + "`" + `expose_headers` + "`" + ` - The set of HTTP response headers that browsers are allowed to access. This configures the ` + "`" + `Access-Control-Expose-Headers` + "`" + ` header. - ` + "`" + `allow_methods` + "`" + ` - The set of allowed HTTP methods. This configures the ` + "`" + `Access-Control-Allow-Methods` + "`" + ` header. - ` + "`" + `allow_credentials` + "`" + ` - Whether browsers should expose the response to the client-side JavaScript code when the request's credentials mode is ` + "`" + `include` + "`" + `. This configures the ` + "`" + `Access-Control-Allow-Credentials` + "`" + ` header.`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Describes an alert policy for the component. - ` + "`" + `rule` + "`" + ` - The type of the alert to configure. Component app alert policies can be: ` + "`" + `CPU_UTILIZATION` + "`" + `, ` + "`" + `MEM_UTILIZATION` + "`" + `, or ` + "`" + `RESTART_COUNT` + "`" + `. - ` + "`" + `value` + "`" + ` - The threshold for the type of the warning. - ` + "`" + `operator` + "`" + ` - The operator to use. This is either of ` + "`" + `GREATER_THAN` + "`" + ` or ` + "`" + `LESS_THAN` + "`" + `. - ` + "`" + `window` + "`" + ` - The time before alerts should be triggered. This is may be one of: ` + "`" + `FIVE_MINUTES` + "`" + `, ` + "`" + `TEN_MINUTES` + "`" + `, ` + "`" + `THIRTY_MINUTES` + "`" + `, ` + "`" + `ONE_HOUR` + "`" + `. - ` + "`" + `disabled` + "`" + ` - Determines whether or not the alert is disabled (default: ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "log_destination",
+					Description: `Describes a log forwarding destination. - ` + "`" + `name` + "`" + ` - Name of the log destination. Minimum length: 2. Maximum length: 42. - ` + "`" + `papertrail` + "`" + ` - Papertrail configuration. - ` + "`" + `endpoint` + "`" + ` - Papertrail syslog endpoint. - ` + "`" + `datadog` + "`" + ` - Datadog configuration. - ` + "`" + `endpoint` + "`" + ` - Datadog HTTP log intake endpoint. - ` + "`" + `api_key` + "`" + ` - Datadog API key. - ` + "`" + `logtail` + "`" + ` - Logtail configuration. - ` + "`" + `token` + "`" + ` - Logtail token. A ` + "`" + `database` + "`" + ` can contain:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -792,7 +880,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `Password for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
+					Description: `Password for the cluster's default user.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project that the database cluster is assigned to. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day",
@@ -870,7 +962,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `Password for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
+					Description: `Password for the cluster's default user.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The ID of the project that the database cluster is assigned to. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day",
@@ -901,6 +997,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the database replica.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -945,6 +1045,10 @@ var (
 					Description: `The ID of the database replica.`,
 				},
 				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of the database replica.`,
+				},
+				resource.Attribute{
 					Name:        "host",
 					Description: `Database replica's hostname.`,
 				},
@@ -979,6 +1083,50 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `Password for the replica's default user.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_user",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the database user. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the database user. The value will be either ` + "`" + `primary` + "`" + ` or ` + "`" + `normal` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the database user. This will not be set for MongoDB users.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_auth_plugin",
+					Description: `The authentication method of the MySQL user. The value will be ` + "`" + `mysql_native_password` + "`" + ` or ` + "`" + `caching_sha2_password` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the database user. The value will be either ` + "`" + `primary` + "`" + ` or ` + "`" + `normal` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the database user. This will not be set for MongoDB users.`,
+				},
+				resource.Attribute{
+					Name:        "mysql_auth_plugin",
+					Description: `The authentication method of the MySQL user. The value will be ` + "`" + `mysql_native_password` + "`" + ` or ` + "`" + `caching_sha2_password` + "`" + `.`,
 				},
 			},
 		},
@@ -2200,6 +2348,21 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_reserved_ip",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) The allocated IP address of the specific reserved IP to retrieve. ## Attributes Reference The following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_sizes",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -2346,6 +2509,10 @@ var (
 					Name:        "bucket_domain_name",
 					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
 				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The FQDN of the bucket without the bucket name (e.g. nyc3.digitaloceanspaces.com)`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2363,6 +2530,10 @@ var (
 				resource.Attribute{
 					Name:        "bucket_domain_name",
 					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `The FQDN of the bucket without the bucket name (e.g. nyc3.digitaloceanspaces.com)`,
 				},
 			},
 		},
@@ -2608,13 +2779,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "buckets",
-					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com) - ` + "`" + `endpoint` + "`" + ` - The FQDN of the bucket without the bucket name (e.g. nyc3.digitaloceanspaces.com)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "buckets",
-					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com)`,
+					Description: `A list of Spaces buckets satisfying any ` + "`" + `filter` + "`" + ` and ` + "`" + `sort` + "`" + ` criteria. Each bucket has the following attributes: - ` + "`" + `name` + "`" + ` - The name of the Spaces bucket - ` + "`" + `region` + "`" + ` - The slug of the region where the bucket is stored. - ` + "`" + `urn` + "`" + ` - The uniform resource name of the bucket - ` + "`" + `bucket_domain_name` + "`" + ` - The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com) - ` + "`" + `endpoint` + "`" + ` - The FQDN of the bucket without the bucket name (e.g. nyc3.digitaloceanspaces.com)`,
 				},
 			},
 		},
@@ -2651,7 +2822,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Filter the SSH Keys by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `public_key` + "`" + `, or ` + "`" + `fingerprint` + "`" + `. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
+					Description: `(Required) Filter the SSH Keys by this key. This may be one of ` + "`" + `name` + "`" + `, ` + "`" + `public_key` + "`" + `, or ` + "`" + `fingerprint` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) A list of values to match against the key field. Only retrieves SSH keys where the key field matches one or more of the values provided here. ` + "`" + `sort` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3088,36 +3263,38 @@ var (
 		"digitalocean_database_ca":           4,
 		"digitalocean_database_cluster":      5,
 		"digitalocean_database_replica":      6,
-		"digitalocean_domain":                7,
-		"digitalocean_domains":               8,
-		"digitalocean_droplet":               9,
-		"digitalocean_droplet_snapshot":      10,
-		"digitalocean_droplets":              11,
-		"digitalocean_firewall":              12,
-		"digitalocean_floating_ip":           13,
-		"digitalocean_image":                 14,
-		"digitalocean_images":                15,
-		"digitalocean_kubernetes_cluster":    16,
-		"digitalocean_kubernetes_versions":   17,
-		"digitalocean_loadbalancer":          18,
-		"digitalocean_project":               19,
-		"digitalocean_projects":              20,
-		"digitalocean_record":                21,
-		"digitalocean_records":               22,
-		"digitalocean_region":                23,
-		"digitalocean_regions":               24,
-		"digitalocean_sizes":                 25,
-		"digitalocean_spaces_bucket":         26,
-		"digitalocean_spaces_bucket_object":  27,
-		"digitalocean_spaces_bucket_objects": 28,
-		"digitalocean_spaces_buckets":        29,
-		"digitalocean_ssh_key":               30,
-		"digitalocean_ssh_keys":              31,
-		"digitalocean_tag":                   32,
-		"digitalocean_tags":                  33,
-		"digitalocean_volume":                34,
-		"digitalocean_volume_snapshot":       35,
-		"digitalocean_vpc":                   36,
+		"digitalocean_database_user":         7,
+		"digitalocean_domain":                8,
+		"digitalocean_domains":               9,
+		"digitalocean_droplet":               10,
+		"digitalocean_droplet_snapshot":      11,
+		"digitalocean_droplets":              12,
+		"digitalocean_firewall":              13,
+		"digitalocean_floating_ip":           14,
+		"digitalocean_image":                 15,
+		"digitalocean_images":                16,
+		"digitalocean_kubernetes_cluster":    17,
+		"digitalocean_kubernetes_versions":   18,
+		"digitalocean_loadbalancer":          19,
+		"digitalocean_project":               20,
+		"digitalocean_projects":              21,
+		"digitalocean_record":                22,
+		"digitalocean_records":               23,
+		"digitalocean_region":                24,
+		"digitalocean_regions":               25,
+		"digitalocean_reserved_ip":           26,
+		"digitalocean_sizes":                 27,
+		"digitalocean_spaces_bucket":         28,
+		"digitalocean_spaces_bucket_object":  29,
+		"digitalocean_spaces_bucket_objects": 30,
+		"digitalocean_spaces_buckets":        31,
+		"digitalocean_ssh_key":               32,
+		"digitalocean_ssh_keys":              33,
+		"digitalocean_tag":                   34,
+		"digitalocean_tags":                  35,
+		"digitalocean_volume":                36,
+		"digitalocean_volume_snapshot":       37,
+		"digitalocean_vpc":                   38,
 	}
 )
 

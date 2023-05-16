@@ -39,6 +39,31 @@ Buildkite Documentation: https://buildkite.com/docs/apis/rest-api/meta
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "buildkite_organization",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to look up the organization settings. It currently supports
+allowed_api_ip_addresses.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allowed_api_ip_addresses",
+					Description: `list of IP addresses in CIDR format that are allowed to access the Buildkite API.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "allowed_api_ip_addresses",
+					Description: `list of IP addresses in CIDR format that are allowed to access the Buildkite API.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "buildkite_pipeline",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -191,9 +216,10 @@ Buildkite documentation: https://buildkite.com/docs/pipelines/permissions
 
 	dataSourcesMap = map[string]int{
 
-		"buildkite_meta":     0,
-		"buildkite_pipeline": 1,
-		"buildkite_team":     2,
+		"buildkite_meta":         0,
+		"buildkite_organization": 1,
+		"buildkite_pipeline":     2,
+		"buildkite_team":         3,
 	}
 )
 

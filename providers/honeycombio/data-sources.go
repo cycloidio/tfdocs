@@ -11,6 +11,113 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "honeycombio_column",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+The ` + "`" + `honeycombio_column` + "`" + ` data source retrieves the details of a single column in a dataset.
+
+-> **Note** Terraform will fail unless a column is returned by the search. Ensure that your search is specific enough to return a column.
+If you want to match multiple columns, use the ` + "`" + `honeycombio_columns` + "`" + ` data source instead.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) The dataset this column is associated with`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the column ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `the type of the column (string, integer, float, or boolean)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `the description of the column`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `whether or not the column is hidden from the query builder and results`,
+				},
+				resource.Attribute{
+					Name:        "last_written_at",
+					Description: `the ISO8601 formatted time that the column last received data`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `the ISO8601 formatted time when the column was created`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `the ISO8601 formatted time when the column's metadata (type, description, etc) was last changed`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `the type of the column (string, integer, float, or boolean)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `the description of the column`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `whether or not the column is hidden from the query builder and results`,
+				},
+				resource.Attribute{
+					Name:        "last_written_at",
+					Description: `the ISO8601 formatted time that the column last received data`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `the ISO8601 formatted time when the column was created`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `the ISO8601 formatted time when the column's metadata (type, description, etc) was last changed`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "honeycombio_columns",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+The columns data source allows the columns of a dataset to be retrieved.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) The dataset to retrieve the columns list from`,
+				},
+				resource.Attribute{
+					Name:        "starts_with",
+					Description: `(Optional) Only return columns starting with the given value. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `a list of all the column names found in the dataset`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `a list of all the column names found in the dataset`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "honeycombio_datasets",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -47,6 +154,89 @@ The datasets data source allows the datasets of an account to be retrieved.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "honeycombio_derived_column",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+The ` + "`" + `honeycombio_derived_column` + "`" + ` data source retrieves the details of a single derived column.
+
+-> **Note** Terraform will fail unless a derived column is returned by the search. Ensure that your search is specific enough to return a derived column.
+If you want to match multiple derived columns, use the ` + "`" + `honeycombio_derived_columns` + "`" + ` data source instead.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) The dataset this derived column is associated with. Use ` + "`" + `__all__` + "`" + ` for Environment-wide derived columns.`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Required) The alias of the column ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ID of the derived column.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `the description of the derived column`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `the expression of the derived column`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ID of the derived column.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `the description of the derived column`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `the expression of the derived column`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "honeycombio_derived_columns",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+The ` + "`" + `honeycombio_derived_columns` + "`" + ` data source allows the derived columns of a dataset to be retrieved.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Required) The dataset to retrieve the columns list from. Use ` + "`" + `__all__` + "`" + ` for Environment-wide derived columns.`,
+				},
+				resource.Attribute{
+					Name:        "starts_with",
+					Description: `(Optional) Only return derived columns starting with the given value. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `a list of all the derived column names found in the dataset`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `a list of all the derived column names found in the dataset`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "honeycombio_query_result",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -65,8 +255,12 @@ As this data source is a wrapper around the Query Data API all of its [documente
 					Description: `(Required) The dataset this query is associated with.`,
 				},
 				resource.Attribute{
+					Name:        "query_json",
+					Description: `(Required) A JSON object describing the query according to the Query Specification. While the JSON can be constructed manually, it is easiest to use the honeycombio_query_specification data source. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
 					Name:        "query_id",
-					Description: `(Required) The ID of the query that will be executed to obtain the result. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `The ID of the Query created and executed to obtain the result.`,
 				},
 				resource.Attribute{
 					Name:        "query_url",
@@ -82,6 +276,10 @@ As this data source is a wrapper around the Query Data API all of its [documente
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "query_id",
+					Description: `The ID of the Query created and executed to obtain the result.`,
+				},
 				resource.Attribute{
 					Name:        "query_url",
 					Description: `The permalink to the executed query's results.`,
@@ -240,12 +438,171 @@ This is a data source which can be used to construct a JSON representation of a 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "honeycombio_recipient",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+` + "`" + `honeycombio_recipient` + "`" + ` data source provides details about a specific recipient in the Team.
+
+The ID of an existing recipient can be used when adding recipients to triggers or burn alerts.
+
+-> **Note** Terraform will fail unless exactly one recipient is returned by the search. Ensure that your search is specific enough to return a single recipient ID only.
+If you want to match multiple recipients, use the ` + "`" + `honeycombio_recipients` + "`" + ` data source instead.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of recipient, allowed types are ` + "`" + `email` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `slack` + "`" + ` and ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dataset",
+					Description: `(Optional) Deprecated: recipients are now a Team-level construct. Any provided value will be ignored.`,
+				},
+				resource.Attribute{
+					Name:        "detail_filter",
+					Description: `(Optional) a block to further filter recipients as described below.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) Deprecated: use ` + "`" + `detail_filter` + "`" + ` instead. The target of the recipient, this has another meaning depending on the type of recipient (see the table below). Type | Target ----------|------------------------- email | an email address marker | name of the marker pagerduty | _N/A_ slack | name of the channel webhook | name of the webhook To further filter the recipient results, a ` + "`" + `detail_filter` + "`" + ` block can be provided which accepts the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the detail field to filter by. Allowed values are ` + "`" + `address` + "`" + `, ` + "`" + `channel` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `integration_name` + "`" + `, and ` + "`" + `url` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the detail field to match on.`,
+				},
+				resource.Attribute{
+					Name:        "value_regex",
+					Description: `(Optional) A regular expression string to apply to the value of the detail field to match on. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the recipient.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The email recipient's address -- if of type ` + "`" + `email` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `The Slack recipient's channel -- if of type ` + "`" + `slack` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The webhook recipient's name -- if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Sensitive) The webhook recipient's secret -- if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The webhook recipient's URL - if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "integration_key",
+					Description: `(Sensitive) The PagerDuty recipient's integration key -- if of type ` + "`" + `pagerduty` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "integration_name",
+					Description: `The PagerDuty recipient's inregration name -- if of type ` + "`" + `pagerduty` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the recipient.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `The email recipient's address -- if of type ` + "`" + `email` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `The Slack recipient's channel -- if of type ` + "`" + `slack` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The webhook recipient's name -- if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Sensitive) The webhook recipient's secret -- if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The webhook recipient's URL - if of type ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "integration_key",
+					Description: `(Sensitive) The PagerDuty recipient's integration key -- if of type ` + "`" + `pagerduty` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "integration_name",
+					Description: `The PagerDuty recipient's inregration name -- if of type ` + "`" + `pagerduty` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "honeycombio_recipients",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description: `
+
+` + "`" + `honeycombio_recipients` + "`" + ` data source provides recipient IDs of recipients matching a set of criteria.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of recipient, allowed types are ` + "`" + `email` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `slack` + "`" + ` and ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "detail_filter",
+					Description: `(Optional) a block to further filter recipients as described below. ` + "`" + `type` + "`" + ` must be set when providing a filter. To further filter the recipient results, a ` + "`" + `detail_filter` + "`" + ` block can be provided which accepts the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the detail field to filter by. Allowed values are ` + "`" + `address` + "`" + `, ` + "`" + `channel` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `integration_name` + "`" + `, and ` + "`" + `url` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value of the detail field to match on.`,
+				},
+				resource.Attribute{
+					Name:        "value_regex",
+					Description: `(Optional) A regular expression string to apply to the value of the detail field to match on. ~>`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of all the recipient IDs found.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of all the recipient IDs found.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "honeycombio_trigger_recipient",
 			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description: `
 
-Search the triggers of a dataset for a trigger recipient. The ID of the existing trigger recipient can be used when adding trigger recipients to new triggers. Specifying a trigger recipient by its ID is necessary when adding Slack recipients, since these can not be created using the API.
+Search the triggers of a dataset for a trigger recipient. The ID of the existing trigger recipient can be used when adding trigger recipients to new triggers.
+
+-> **Deprecated** Use the ` + "`" + `honeycombio_recipient` + "`" + ` data source instead.
 
 `,
 			Keywords: []string{},
@@ -278,10 +635,16 @@ Search the triggers of a dataset for a trigger recipient. The ID of the existing
 
 	dataSourcesMap = map[string]int{
 
-		"honeycombio_datasets":            0,
-		"honeycombio_query_result":        1,
-		"honeycombio_query_specification": 2,
-		"honeycombio_trigger_recipient":   3,
+		"honeycombio_column":              0,
+		"honeycombio_columns":             1,
+		"honeycombio_datasets":            2,
+		"honeycombio_derived_column":      3,
+		"honeycombio_derived_columns":     4,
+		"honeycombio_query_result":        5,
+		"honeycombio_query_specification": 6,
+		"honeycombio_recipient":           7,
+		"honeycombio_recipients":          8,
+		"honeycombio_trigger_recipient":   9,
 	}
 )
 

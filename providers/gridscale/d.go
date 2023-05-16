@@ -1643,15 +1643,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `The UUID of the security zone that the service is running in.`,
+					Description: `The UUID of the security zone that the service is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `The template used to create the service.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minute",
@@ -1733,15 +1737,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `The UUID of the security zone that the service is running in.`,
+					Description: `The UUID of the security zone that the service is attached to.`,
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `The template used to create the service.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minute",
@@ -2052,6 +2060,42 @@ var (
 				resource.Attribute{
 					Name:        "hardware_profile",
 					Description: `The hardware profile of the server.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_profile_config",
+					Description: `Specifies the custom hardware settings for the virtual machine. Note: hardware_profile and hardware_profile_config parameters can't be used at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "machinetype",
+					Description: `Values: ` + "`" + `"i440fx"` + "`" + `, ` + "`" + `"q35_bios"` + "`" + `, ` + "`" + `"q35_uefi"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_device",
+					Description: `Values: ` + "`" + `"ide"` + "`" + `, ` + "`" + `"sata"` + "`" + `, ` + "`" + `"virtio_scsi"` + "`" + `, ` + "`" + `"virtio_block"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "usb_controller",
+					Description: `Values: ` + "`" + `"nec_xhci"` + "`" + `, ` + "`" + `"piix3_uhci"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nested_virtualization",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "hyperv_extensions",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "network_model",
+					Description: `Values: ` + "`" + `"e1000"` + "`" + `, ` + "`" + `"e1000e"` + "`" + `, ` + "`" + `"virtio"` + "`" + `, ` + "`" + `"vmxnet3"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "serial_interface",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "server_renice",
+					Description: `Boolean.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -2374,6 +2418,42 @@ var (
 				resource.Attribute{
 					Name:        "hardware_profile",
 					Description: `The hardware profile of the server.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_profile_config",
+					Description: `Specifies the custom hardware settings for the virtual machine. Note: hardware_profile and hardware_profile_config parameters can't be used at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "machinetype",
+					Description: `Values: ` + "`" + `"i440fx"` + "`" + `, ` + "`" + `"q35_bios"` + "`" + `, ` + "`" + `"q35_uefi"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_device",
+					Description: `Values: ` + "`" + `"ide"` + "`" + `, ` + "`" + `"sata"` + "`" + `, ` + "`" + `"virtio_scsi"` + "`" + `, ` + "`" + `"virtio_block"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "usb_controller",
+					Description: `Values: ` + "`" + `"nec_xhci"` + "`" + `, ` + "`" + `"piix3_uhci"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nested_virtualization",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "hyperv_extensions",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "network_model",
+					Description: `Values: ` + "`" + `"e1000"` + "`" + `, ` + "`" + `"e1000e"` + "`" + `, ` + "`" + `"virtio"` + "`" + `, ` + "`" + `"vmxnet3"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "serial_interface",
+					Description: `Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "server_renice",
+					Description: `Boolean.`,
 				},
 				resource.Attribute{
 					Name:        "storage",

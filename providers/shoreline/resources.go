@@ -43,7 +43,7 @@ var (
 			Name:             "",
 			Type:             "shoreline_circuit_breaker",
 			Category:         "Resources",
-			ShortDescription: `Shoreline circuit_breaker.`,
+			ShortDescription: `Shoreline circuit_breaker. An automatic rate limit on actions. See the Shoreline CircuitBreakers Documentation https://docs.shoreline.io/circuit_breakers for more info.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -73,7 +73,17 @@ var (
 			Name:             "",
 			Type:             "shoreline_notebook",
 			Category:         "Resources",
-			ShortDescription: `Shoreline notebook. An interactive notebook of Op commands and user documentation . See the Shoreline Notebook Documentation https://docs.shoreline.io/ui/notebooks for more info.`,
+			ShortDescription: `Notebooks replace static runbooks by capturing interactive debug and remediation sessions in a convenient UI.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "shoreline_principal",
+			Category:         "Resources",
+			ShortDescription: `Shoreline principal. An authorization group (e.g. Okta groups). Note: Admin privilege (in Shoreline) to create principal objects.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -100,7 +110,8 @@ var (
 		"shoreline_file":            4,
 		"shoreline_metric":          5,
 		"shoreline_notebook":        6,
-		"shoreline_resource":        7,
+		"shoreline_principal":       7,
+		"shoreline_resource":        8,
 	}
 )
 

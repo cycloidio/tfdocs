@@ -51,7 +51,27 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "checkly_environment_variable",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "checkly_maintenance_windows",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "checkly_private_location",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -93,14 +113,16 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"checkly_alert_channel":       0,
-		"checkly_check":               1,
-		"checkly_check_group":         2,
-		"checkly_dashboard":           3,
-		"checkly_maintenance_windows": 4,
-		"checkly_snippet":             5,
-		"checkly_trigger_check":       6,
-		"checkly_trigger_group":       7,
+		"checkly_alert_channel":        0,
+		"checkly_check":                1,
+		"checkly_check_group":          2,
+		"checkly_dashboard":            3,
+		"checkly_environment_variable": 4,
+		"checkly_maintenance_windows":  5,
+		"checkly_private_location":     6,
+		"checkly_snippet":              7,
+		"checkly_trigger_check":        8,
+		"checkly_trigger_group":        9,
 	}
 )
 

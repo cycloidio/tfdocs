@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_akka",
+			Type:             "sematext_sematext_app_akka",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -42,7 +42,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_apache",
+			Type:             "sematext_sematext_app_apache",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -73,7 +73,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_awsebs",
+			Type:             "sematext_sematext_app_awsebs",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -120,7 +120,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_awsec2",
+			Type:             "sematext_sematext_app_awsec2",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -167,7 +167,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_awselb",
+			Type:             "sematext_sematext_app_awselb",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -214,7 +214,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_cassandra",
+			Type:             "sematext_sematext_app_cassandra",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -245,7 +245,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_clickhouse",
+			Type:             "sematext_sematext_app_clickhouse",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -276,7 +276,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_elasticsearch",
+			Type:             "sematext_sematext_app_elasticsearch",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -307,7 +307,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_hadoopmrv1",
+			Type:             "sematext_sematext_app_hadoopmrv1",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -338,7 +338,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_hadoopyarn",
+			Type:             "sematext_sematext_app_hadoopyarn",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -369,7 +369,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_haproxy",
+			Type:             "sematext_sematext_app_haproxy",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -400,7 +400,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_hbase",
+			Type:             "sematext_sematext_app_hbase",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -431,7 +431,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_infra",
+			Type:             "sematext_sematext_app_infra",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -462,7 +462,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_jvm",
+			Type:             "sematext_sematext_app_jvm",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -493,7 +493,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_kafka",
+			Type:             "sematext_sematext_app_kafka",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -524,7 +524,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_logsene",
+			Type:             "sematext_sematext_app_logsene",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -555,7 +555,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_mobilelogs",
+			Type:             "sematext_sematext_app_mobilelogs",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -586,7 +586,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_mongodb",
+			Type:             "sematext_sematext_app_mongodb",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -617,7 +617,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_mysql",
+			Type:             "sematext_sematext_app_mysql",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -648,7 +648,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_nginx",
+			Type:             "sematext_sematext_app_nginx",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -679,7 +679,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_nginxplus",
+			Type:             "sematext_sematext_app_nginxplus",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -710,7 +710,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_nodejs",
+			Type:             "sematext_sematext_app_nodejs",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -741,7 +741,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_postgresql",
+			Type:             "sematext_sematext_app_postgresql",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -772,7 +772,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_rabbitmq",
+			Type:             "sematext_sematext_app_rabbitmq",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -803,7 +803,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_redis",
+			Type:             "sematext_sematext_app_redis",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -834,7 +834,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_solr",
+			Type:             "sematext_sematext_app_solr",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -865,7 +865,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_solrcloud",
+			Type:             "sematext_sematext_app_solrcloud",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -896,7 +896,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_spark",
+			Type:             "sematext_sematext_app_spark",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -927,7 +927,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_storm",
+			Type:             "sematext_sematext_app_storm",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -958,7 +958,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_tomcat",
+			Type:             "sematext_sematext_app_tomcat",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -989,7 +989,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "sematext_sematext_monitor_zookeeper",
+			Type:             "sematext_sematext_app_zookeeper",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -1022,37 +1022,37 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"sematext_sematext_monitor_akka":          0,
-		"sematext_sematext_monitor_apache":        1,
-		"sematext_sematext_monitor_awsebs":        2,
-		"sematext_sematext_monitor_awsec2":        3,
-		"sematext_sematext_monitor_awselb":        4,
-		"sematext_sematext_monitor_cassandra":     5,
-		"sematext_sematext_monitor_clickhouse":    6,
-		"sematext_sematext_monitor_elasticsearch": 7,
-		"sematext_sematext_monitor_hadoopmrv1":    8,
-		"sematext_sematext_monitor_hadoopyarn":    9,
-		"sematext_sematext_monitor_haproxy":       10,
-		"sematext_sematext_monitor_hbase":         11,
-		"sematext_sematext_monitor_infra":         12,
-		"sematext_sematext_monitor_jvm":           13,
-		"sematext_sematext_monitor_kafka":         14,
-		"sematext_sematext_monitor_logsene":       15,
-		"sematext_sematext_monitor_mobilelogs":    16,
-		"sematext_sematext_monitor_mongodb":       17,
-		"sematext_sematext_monitor_mysql":         18,
-		"sematext_sematext_monitor_nginx":         19,
-		"sematext_sematext_monitor_nginxplus":     20,
-		"sematext_sematext_monitor_nodejs":        21,
-		"sematext_sematext_monitor_postgresql":    22,
-		"sematext_sematext_monitor_rabbitmq":      23,
-		"sematext_sematext_monitor_redis":         24,
-		"sematext_sematext_monitor_solr":          25,
-		"sematext_sematext_monitor_solrcloud":     26,
-		"sematext_sematext_monitor_spark":         27,
-		"sematext_sematext_monitor_storm":         28,
-		"sematext_sematext_monitor_tomcat":        29,
-		"sematext_sematext_monitor_zookeeper":     30,
+		"sematext_sematext_app_akka":          0,
+		"sematext_sematext_app_apache":        1,
+		"sematext_sematext_app_awsebs":        2,
+		"sematext_sematext_app_awsec2":        3,
+		"sematext_sematext_app_awselb":        4,
+		"sematext_sematext_app_cassandra":     5,
+		"sematext_sematext_app_clickhouse":    6,
+		"sematext_sematext_app_elasticsearch": 7,
+		"sematext_sematext_app_hadoopmrv1":    8,
+		"sematext_sematext_app_hadoopyarn":    9,
+		"sematext_sematext_app_haproxy":       10,
+		"sematext_sematext_app_hbase":         11,
+		"sematext_sematext_app_infra":         12,
+		"sematext_sematext_app_jvm":           13,
+		"sematext_sematext_app_kafka":         14,
+		"sematext_sematext_app_logsene":       15,
+		"sematext_sematext_app_mobilelogs":    16,
+		"sematext_sematext_app_mongodb":       17,
+		"sematext_sematext_app_mysql":         18,
+		"sematext_sematext_app_nginx":         19,
+		"sematext_sematext_app_nginxplus":     20,
+		"sematext_sematext_app_nodejs":        21,
+		"sematext_sematext_app_postgresql":    22,
+		"sematext_sematext_app_rabbitmq":      23,
+		"sematext_sematext_app_redis":         24,
+		"sematext_sematext_app_solr":          25,
+		"sematext_sematext_app_solrcloud":     26,
+		"sematext_sematext_app_spark":         27,
+		"sematext_sematext_app_storm":         28,
+		"sematext_sematext_app_tomcat":        29,
+		"sematext_sematext_app_zookeeper":     30,
 	}
 )
 

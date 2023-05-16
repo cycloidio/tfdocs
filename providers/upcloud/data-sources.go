@@ -31,6 +31,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "upcloud_kubernetes_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Kubernetes cluster details. Please refer to https://www.terraform.io/language/state/sensitive-data to keep the credential data as safe as possible. NOTE: this is an experimental feature in an alpha phase, the resource definition will change in the future.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "upcloud_networks",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to get the available UpCloud networks.`,
@@ -83,13 +93,14 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"upcloud_hosts":        0,
-		"upcloud_ip_addresses": 1,
-		"upcloud_networks":     2,
-		"upcloud_storage":      3,
-		"upcloud_tags":         4,
-		"upcloud_zone":         5,
-		"upcloud_zones":        6,
+		"upcloud_hosts":              0,
+		"upcloud_ip_addresses":       1,
+		"upcloud_kubernetes_cluster": 2,
+		"upcloud_networks":           3,
+		"upcloud_storage":            4,
+		"upcloud_tags":               5,
+		"upcloud_zone":               6,
+		"upcloud_zones":              7,
 	}
 )
 

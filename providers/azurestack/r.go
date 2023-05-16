@@ -234,11 +234,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
-				},
-				resource.Attribute{
-					Name:        "outbound_rules_ids",
-					Description: `The list of IDs outbound rules that use this frontend IP. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -252,11 +248,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
-				},
-				resource.Attribute{
-					Name:        "outbound_rules_ids",
-					Description: `The list of IDs outbound rules that use this frontend IP. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurestack_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1172,6 +1164,10 @@ Manages a local network gateway connection over which specific connections can b
 					Description: `(Optional) Can be specified multiple times to define multiple routes. Each ` + "`" + `route` + "`" + ` block supports fields documented below.`,
 				},
 				resource.Attribute{
+					Name:        "disable_bgp_route_propagation",
+					Description: `(Optional) Boolean flag which controls propagation of routes learned by BGP on that route table. True means disable.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. The ` + "`" + `route` + "`" + ` block supports:`,
 				},
@@ -1255,12 +1251,12 @@ Manages a local network gateway connection over which specific connections can b
 					Description: `(Optional) A ` + "`" + `custom_domain` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource.\`,
+					Name:        "enable_https_traffic_only",
+					Description: `(Optional) Boolean flag which forces HTTPS if enabled, see [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "enable_https_traffic_only",
-					Description: `(Optional) Boolean flag which forces HTTPS if enabled, see [here](https://docs.microsoft.com/en-us/azure/storage/storage-require-secure-transfer/) for more information. Defaults to ` + "`" + `true` + "`" + `. ---`,
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource.\ ---`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2501,8 +2497,16 @@ Manages a local network gateway connection over which specific connections can b
 					Description: `(Optional) If ` + "`" + `true` + "`" + `, BGP (Border Gateway Protocol) is enabled for this connection. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "bgp_settings",
+					Description: `(Optional) A ` + "`" + `bgp_settings` + "`" + ` block which is documented below. In this block the BGP specific settings can be defined.`,
+				},
+				resource.Attribute{
 					Name:        "sku",
 					Description: `(Required) Configuration of the size and capacity of the virtual network gateway. Valid options are ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + ` and ` + "`" + `HighPerformance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "active_active",
+					Description: `(Optional) If true, an active-active Virtual Network Gateway will be created. An active-active gateway requires the HighPerformance SKU. If false, an active-standby gateway will be created. Defaults to false.`,
 				},
 				resource.Attribute{
 					Name:        "ip_configuration",
@@ -2558,7 +2562,11 @@ Manages a local network gateway connection over which specific connections can b
 				},
 				resource.Attribute{
 					Name:        "peering_address",
-					Description: `(Optional) The BGP peer IP address of the virtual network gateway. This address is needed to configure the created gateway as a BGP Peer on the on-premises VPN devices. The IP address must be part of the subnet of the Virtual Network Gateway. Changing this forces a new resource to be created The ` + "`" + `root_certificate` + "`" + ` block supports:`,
+					Description: `(Optional) The BGP peer IP address of the virtual network gateway. This address is needed to configure the created gateway as a BGP Peer on the on-premises VPN devices. The IP address must be part of the subnet of the Virtual Network Gateway. Changing this forces a new resource to be created`,
+				},
+				resource.Attribute{
+					Name:        "peer_weight",
+					Description: `(Optional) The weight added to routes which have been learned through BGP peering. Valid values can be between 0 and 100. The ` + "`" + `root_certificate` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",

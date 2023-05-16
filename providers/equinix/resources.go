@@ -48,7 +48,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_uuid",
-					Description: `(Required when ` + "`" + `device_uuid` + "`" + ` or ` + "`" + `service_token` + "`" + ` are not set) Unique identifier of the Equinix port from which the connection would originate.`,
+					Description: `(Required when ` + "`" + `device_uuid` + "`" + ` or ` + "`" + `service_token` + "`" + ` are not set) Unique identifier of the Equinix Fabric Port from which the connection would originate.`,
 				},
 				resource.Attribute{
 					Name:        "device_uuid",
@@ -124,7 +124,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_uuid",
-					Description: `(Optional) Applicable with primary ` + "`" + `port_uuid` + "`" + `. Identifier of the Equinix port from which the secondary connection would originate. If not specified primary ` + "`" + `port_uuid` + "`" + ` will be used.`,
+					Description: `(Optional) Applicable with primary ` + "`" + `port_uuid` + "`" + `. Identifier of the Equinix Fabric Port from which the secondary connection would originate. If not specified primary ` + "`" + `port_uuid` + "`" + ` will be used.`,
 				},
 				resource.Attribute{
 					Name:        "device_uuid",
@@ -190,6 +190,10 @@ var (
 					Name:        "actions",
 					Description: `One or more pending actions to complete connection provisioning.`,
 				},
+				resource.Attribute{
+					Name:        "vendor_token",
+					Description: `The Equinix Fabric Token the connection was created with. Applicable if the connection was created with a ` + "`" + `service_token` + "`" + ` (a-side) or ` + "`" + `zside_service_token` + "`" + ` (z-side).`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -227,6 +231,10 @@ var (
 				resource.Attribute{
 					Name:        "actions",
 					Description: `One or more pending actions to complete connection provisioning.`,
+				},
+				resource.Attribute{
+					Name:        "vendor_token",
+					Description: `The Equinix Fabric Token the connection was created with. Applicable if the connection was created with a ` + "`" + `service_token` + "`" + ` (a-side) or ` + "`" + `zside_service_token` + "`" + ` (z-side).`,
 				},
 			},
 		},
@@ -443,6 +451,33 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "equinix_equinix_fabric_connection",
+			Category:         "Fabric",
+			ShortDescription: `Fabric V4 API compatible resource allows creation and management of Equinix Fabric connection ~> Note Equinix Fabric v4 resources and datasources are currently in Beta. The interfaces related to equinix_fabric_ resources and datasources may change ahead of general availability. Please, do not hesitate to report any problems that you experience by opening a new issue https://github.com/equinix/terraform-provider-equinix/issues/new?template=bug.md`,
+			Description:      ``,
+			Keywords: []string{
+				"fabric",
+				"connection",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "equinix_equinix_fabric_service_profile",
+			Category:         "Fabric",
+			ShortDescription: `Fabric V4 API compatible resource allows creation and management of Equinix Fabric Service Profile ~> Note Equinix Fabric v4 resources and datasources are currently in Beta. The interfaces related to equinix_fabric_ resources and datasources may change ahead of general availability. Please, do not hesitate to report any problems that you experience by opening a new issue https://github.com/equinix/terraform-provider-equinix/issues/new?template=bug.md`,
+			Description:      ``,
+			Keywords: []string{
+				"fabric",
+				"service",
+				"profile",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "equinix_equinix_metal_bgp_session",
 			Category:         "Metal",
 			ShortDescription: ``,
@@ -484,8 +519,12 @@ var (
 					Description: `(Required) Name of the connection resource`,
 				},
 				resource.Attribute{
-					Name:        "organization_id",
-					Description: `(Required) ID of the organization responsible for the connection.`,
+					Name:        "metro",
+					Description: `(Optional) Metro where the connection will be created.`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "redundancy",
@@ -496,62 +535,74 @@ var (
 					Description: `(Required) Connection type - dedicated or shared.`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `Mode for connections in IBX facilities with the dedicated type - standard or tunnel`,
-				},
-				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional) ID of the project where the connection is scoped to, must be set for shared connection.`,
+					Description: `(Optional) ID of the project where the connection is scoped to, must be set for.`,
 				},
 				resource.Attribute{
-					Name:        "metro",
-					Description: `(Optional) Metro where the connection will be created.`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `(Optional) Facility where the connection will be created.`,
+					Name:        "speed",
+					Description: `(Required) Connection speed - one of 50Mbps, 200Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description for the connection resource.`,
 				},
 				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Mode for connections in IBX facilities with the dedicated type - standard or tunnel. Default is standard.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) String list of tags. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) String list of tags.`,
+				},
+				resource.Attribute{
+					Name:        "vlans",
+					Description: `(Optional) Only used with shared connection. Vlans to attach. Pass one vlan for Primary/Single connection and two vlans for Redundant connection.`,
+				},
+				resource.Attribute{
+					Name:        "service_token_type",
+					Description: `(Optional) Only used with shared connection. Type of service token to use for the connection, a_side or z_side. (`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to.`,
 				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection resource.`,
 				},
 				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token from the [Equinix Fabric Portal](https://fabric.equinix.com/dashboard).`,
-				},
-				resource.Attribute{
-					Name:        "speed",
-					Description: `Port speed in bits per second.`,
-				},
-				resource.Attribute{
 					Name:        "ports",
 					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [equinix_metal_connection datasource](../data-sources/equinix_metal_connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes required to configure the connection in Equinix Fabric with the [equinix_ecx_l2_connection](./equinix_ecx_l2_connection.md) resource or from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard). Scehma of service_token is described in documentation of the [equinix_metal_connection datasource](../data-sources/equinix_metal_connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Deprecated) Fabric Token required to configure the connection in Equinix Fabric with the [equinix_ecx_l2_connection](./equinix_ecx_l2_connection.md) resource or from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard). If your organization already has connection service tokens enabled, use ` + "`" + `service_tokens` + "`" + ` instead.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "organization_id",
+					Description: `ID of the organization where the connection is scoped to.`,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the connection resource.`,
 				},
 				resource.Attribute{
-					Name:        "token",
-					Description: `Fabric Token from the [Equinix Fabric Portal](https://fabric.equinix.com/dashboard).`,
-				},
-				resource.Attribute{
-					Name:        "speed",
-					Description: `Port speed in bits per second.`,
-				},
-				resource.Attribute{
 					Name:        "ports",
 					Description: `List of connection ports - primary (` + "`" + `ports[0]` + "`" + `) and secondary (` + "`" + `ports[1]` + "`" + `). Schema of port is described in documentation of the [equinix_metal_connection datasource](../data-sources/equinix_metal_connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "service_tokens",
+					Description: `List of connection service tokens with attributes required to configure the connection in Equinix Fabric with the [equinix_ecx_l2_connection](./equinix_ecx_l2_connection.md) resource or from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard). Scehma of service_token is described in documentation of the [equinix_metal_connection datasource](../data-sources/equinix_metal_connection.md).`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Deprecated) Fabric Token required to configure the connection in Equinix Fabric with the [equinix_ecx_l2_connection](./equinix_ecx_l2_connection.md) resource or from the [Equinix Fabric Portal](https://ecxfabric.equinix.com/dashboard). If your organization already has connection service tokens enabled, use ` + "`" + `service_tokens` + "`" + ` instead.`,
 				},
 			},
 		},
@@ -571,12 +622,16 @@ var (
 					Description: `(Optional) If true, a device with OS ` + "`" + `custom_ipxe` + "`" + ` will continue to boot via iPXE on reboots.`,
 				},
 				resource.Attribute{
+					Name:        "behavior",
+					Description: `(Optional) Behavioral overrides that change how the resource handles certain attribute updates. See [Behavior](#behavior) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "billing_cycle",
 					Description: `(Optional) monthly or hourly`,
 				},
 				resource.Attribute{
 					Name:        "custom_data",
-					Description: `(Optional) A string of the desired Custom Data for the device.`,
+					Description: `(Optional) A string of the desired Custom Data for the device. By default, changing this attribute will cause the provider to destroy and recreate your device. If ` + "`" + `reinstall` + "`" + ` is specified or ` + "`" + `behavior.allow_changes` + "`" + ` includes ` + "`" + `"custom_data"` + "`" + `, the device will be updated in-place instead of recreated.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -584,7 +639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facilities",
-					Description: `(Optional) List of facility codes with deployment preferences. Equinix Metal API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://metal.equinix.com/developers/api/facilities/), set your API auth token in the top of the page and see JSON from the API response. Conflicts with ` + "`" + `metro` + "`" + `.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "force_detach_volumes",
@@ -624,7 +679,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_ssh_key_ids",
-					Description: `(Optional) Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [equinix_metal_project_ssh_key](metal_project_ssh_key.md) resource.`,
+					Description: `(Optional) Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [equinix_metal_project_ssh_key](equinix_metal_project_ssh_key.md) resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_ssh_key_ids",
+					Description: `(Optional) Array of IDs of the user SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed user SSH keys (and any project_ssh_key_ids) will be added. User SSH keys can be created with the [equinix_metal_ssh_key](equinix_metal_ssh_key.md) resource`,
 				},
 				resource.Attribute{
 					Name:        "reinstall",
@@ -644,11 +703,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional) A string of the desired User Data for the device.`,
+					Description: `(Optional) A string of the desired User Data for the device. By default, changing this attribute will cause the provider to destroy and recreate your device. If ` + "`" + `reinstall` + "`" + ` is specified or ` + "`" + `behavior.allow_changes` + "`" + ` includes ` + "`" + `"user_data"` + "`" + `, the device will be updated in-place instead of recreated.`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_reservation_deprovision",
-					Description: `(Optional) Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019). ### IP address The ` + "`" + `ip_address` + "`" + ` block has below fields:`,
+					Description: `(Optional) Only used for devices in reserved hardware. If set, the deletion of this device will block until the hardware reservation is marked provisionable (about 4 minutes in August 2019). ### Behavior The ` + "`" + `behavior` + "`" + ` block has below fields:`,
+				},
+				resource.Attribute{
+					Name:        "allow_changes",
+					Description: `(Optional) List of attributes that are allowed to change without recreating the instance. Supported attributes: ` + "`" + `custom_data` + "`" + `, ` + "`" + `user_data` + "`" + `" ### IP address The ` + "`" + `ip_address` + "`" + ` block has below fields:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -672,7 +735,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deprovision_fast",
-					Description: `(Optional) Whether the OS disk should be filled with ` + "`" + `00h` + "`" + ` bytes before reinstall. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Whether the OS disk should be filled with ` + "`" + `00h` + "`" + ` bytes before reinstall. Defaults to ` + "`" + `false` + "`" + `. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/configuration/resources#operation-timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 20 mins) Used when creating the Device. This includes the time to provision the OS.`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the Device. This includes the time needed to reprovision instances when ` + "`" + `reinstall` + "`" + ` arguments are used.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 20 mins) Used when deleting the Device. This includes the time to deprovision a hardware reservation when ` + "`" + `wait_for_reservation_deprovision` + "`" + ` is enabled. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_private_ipv4",
@@ -696,7 +771,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployed_facility",
-					Description: `The facility where the device is deployed.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "deployed_hardware_reservation_id",
@@ -830,7 +905,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployed_facility",
-					Description: `The facility where the device is deployed.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "deployed_hardware_reservation_id",
@@ -961,7 +1036,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Network type to set. Must be one of ` + "`" + `layer3` + "`" + `, ` + "`" + `hybrid` + "`" + `, ` + "`" + `layer2-individual` + "`" + ` and ` + "`" + `layer2-bonded` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Network type to set. Must be one of ` + "`" + `layer3` + "`" + `, ` + "`" + `hybrid` + "`" + `, ` + "`" + `hybrid-bonded` + "`" + `, ` + "`" + `layer2-individual` + "`" + ` and ` + "`" + `layer2-bonded` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1040,7 +1115,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr_notation",
-					Description: `(Required) CIDR notation of subnet from block reserved in the same project and facility as the device. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) CIDR notation of subnet from block reserved in the same project and metro as the device. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1134,6 +1209,10 @@ var (
 					Description: `(Required) The name of the Organization.`,
 				},
 				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) An object that has the address information. See [Address](#address) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description string.`,
 				},
@@ -1147,7 +1226,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "logo",
-					Description: `(Optional) Logo URL. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Logo URL. ### Address The ` + "`" + `address` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) Postal address.`,
+				},
+				resource.Attribute{
+					Name:        "city",
+					Description: `(Required) City name.`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `(Required) Two letter country code (ISO 3166-1 alpha-2), e.g. US.`,
+				},
+				resource.Attribute{
+					Name:        "zip_code",
+					Description: `(Required) Zip Code.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) State name. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1174,6 +1273,90 @@ var (
 				resource.Attribute{
 					Name:        "updated",
 					Description: `The timestamp for the last time the organization was updated. ## Import This resource can be imported using an existing organization ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import equinix_metal_organization {existing_organization_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "equinix_equinix_metal_organization_member",
+			Category:         "Metal",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"metal",
+				"organization",
+				"member",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "invitee",
+					Description: `(Required) The email address of the user to invite`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Required) The organization to invite the user to`,
+				},
+				resource.Attribute{
+					Name:        "projects_ids",
+					Description: `(Required) Project IDs the member has access to within the organization. If the member is an 'admin', the projects list should be empty.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) Organization roles (admin, collaborator, limited_collaborator, billing)`,
+				},
+				resource.Attribute{
+					Name:        "message",
+					Description: `A message to include in the emailed invitation. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of the membership.`,
+				},
+				resource.Attribute{
+					Name:        "nonce",
+					Description: `The nonce for the invitation (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "invited_by",
+					Description: `The user_id of the user that sent the invitation (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When the invitation was created (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When the invitation was updated (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the membership ('invited' when an invitation is open, 'active' when the user is an organization member) ## Import This resource can be imported using the ` + "`" + `invitee` + "`" + ` and ` + "`" + `organization_id` + "`" + ` as colon separated arguments: ` + "`" + `` + "`" + `` + "`" + `sh terraform import equinix_metal_organization_member.resource_name {invitee}:{organization_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID of the membership.`,
+				},
+				resource.Attribute{
+					Name:        "nonce",
+					Description: `The nonce for the invitation (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "invited_by",
+					Description: `The user_id of the user that sent the invitation (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `When the invitation was created (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `When the invitation was updated (only known in the invitation stage)`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the membership ('invited' when an invitation is open, 'active' when the user is an organization member) ## Import This resource can be imported using the ` + "`" + `invitee` + "`" + ` and ` + "`" + `organization_id` + "`" + ` as colon separated arguments: ` + "`" + `` + "`" + `` + "`" + `sh terraform import equinix_metal_organization_member.resource_name {invitee}:{organization_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1210,11 +1393,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "native_vlan_id",
-					Description: `(Optional) UUID of a VLAN to assign as a native VLAN. It must be one of attached VLANs (from ` + "`" + `vlan_ids` + "`" + ` parameter), valid only for physical (non-bond) ports.`,
+					Description: `(Optional) UUID of a VLAN to assign as a native VLAN. It must be one of attached VLANs (from ` + "`" + `vlan_ids` + "`" + ` parameter).`,
 				},
 				resource.Attribute{
 					Name:        "reset_on_delete",
-					Description: `(Optional) Behavioral setting to reset the port to default settings. For a bond port it means layer3 without vlans attached, eth ports will be bonded without native vlan and vlans attached. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Behavioral setting to reset the port to default settings (layer3 bonded mode without any vlan attached) before delete/destroy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1361,7 +1544,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_type",
-					Description: `(Required) ` + "`" + `private` + "`" + ` or ` + "`" + `public` + "`" + `, the ` + "`" + `private` + "`" + ` is likely to be usable immediately, the ` + "`" + `public` + "`" + ` will need to be reviewed by Equinix Metal engineers.`,
+					Description: `(Required) ` + "`" + `local` + "`" + ` or ` + "`" + `global` + "`" + `, the ` + "`" + `local` + "`" + ` is likely to be usable immediately, the ` + "`" + `global` + "`" + ` will need to be reviewed by Equinix Metal engineers.`,
 				},
 				resource.Attribute{
 					Name:        "md5",
@@ -1552,7 +1735,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facility",
-					Description: `(Optional) Facility where to allocate the public IP address block, makes sense only if type is ` + "`" + `public_ipv4` + "`" + ` and must be empty if type is ` + "`" + `global_ipv4` + "`" + `. Conflicts with ` + "`" + `metro` + "`" + `.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "metro",
@@ -1569,6 +1752,14 @@ var (
 				resource.Attribute{
 					Name:        "vrf_id",
 					Description: `(Optional) Only valid and required when ` + "`" + `type` + "`" + ` is ` + "`" + `vrf` + "`" + `. VRF ID for type=vrf reservations.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_state",
+					Description: `(Optional) Wait for the IP reservation block to reach a desired state on resource creation. One of: ` + "`" + `pending` + "`" + `, ` + "`" + `created` + "`" + `. The ` + "`" + `created` + "`" + ` state is default and recommended if the addresses are needed within the configuration. An error will be returned if a timeout or the ` + "`" + `denied` + "`" + ` state is encountered.`,
+				},
+				resource.Attribute{
+					Name:        "custom_data",
+					Description: `(Optional) Custom Data is an arbitrary object (submitted in Terraform as serialized JSON) to assign to the IP Reservation. This may be helpful for self-managed IPAM. The object must be valid JSON.`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1608,7 +1799,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `Boolean flag whether addresses from a block are global (i.e. can be assigned in any facility).`,
+					Description: `Boolean flag whether addresses from a block are global (i.e. can be assigned in any metro).`,
 				},
 				resource.Attribute{
 					Name:        "vrf_id",
@@ -1646,7 +1837,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `Boolean flag whether addresses from a block are global (i.e. can be assigned in any facility).`,
+					Description: `Boolean flag whether addresses from a block are global (i.e. can be assigned in any metro).`,
 				},
 				resource.Attribute{
 					Name:        "vrf_id",
@@ -1689,7 +1880,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facilities",
-					Description: `(Optional) Facility IDs where devices should be created.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "metro",
@@ -1705,7 +1896,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Spot Market Request. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+					Description: `The ID of the Spot Market Request. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/configuration/resources#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -1719,7 +1910,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Spot Market Request. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/language/resources/syntax#operation-timeouts) for certain actions:`,
+					Description: `The ID of the Spot Market Request. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/configuration/resources#operation-timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -1889,10 +2080,6 @@ var (
 					Description: `(Optional) Name of the Virtual Circuit resource.`,
 				},
 				resource.Attribute{
-					Name:        "facility",
-					Description: `(Optional) Facility where the connection will be created.`,
-				},
-				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description for the Virtual Circuit resource.`,
 				},
@@ -1906,7 +2093,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_id",
-					Description: `(Optional) UUID of the VLAN to associate.`,
+					Description: `(Optional) UUID of the VRF to associate.`,
 				},
 				resource.Attribute{
 					Name:        "peer_asn",
@@ -1918,11 +2105,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metal_ip",
-					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The IP address that’s set as “our” IP that is configured on the rack_local_vlan SVI. Will default to the first usable IP in the subnet.`,
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The Metal IP address for the SVI (Switch Virtual Interface) of the VirtualCircuit. Will default to the first usable IP in the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "customer_ip",
-					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The IP address set as the customer IP which the CSR switch will peer with. Will default to the other usable IP in the subnet.`,
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The Customer IP address which the CSR switch will peer with. Will default to the other usable IP in the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "md5",
@@ -1972,8 +2159,12 @@ var (
 					Description: `(Required) ID of parent project.`,
 				},
 				resource.Attribute{
+					Name:        "metro",
+					Description: `(Optional) Metro in which to create the VLAN`,
+				},
+				resource.Attribute{
 					Name:        "facility",
-					Description: `(Required) Facility where to create the VLAN.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2052,7 +2243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) ACL template description.`,
+					Description: `(Optional) ACL template description, up to 200 characters.`,
 				},
 				resource.Attribute{
 					Name:        "metro_code",
@@ -2080,7 +2271,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dst_port",
-					Description: `(Required) Inbound traffic destination ports. Allowed values are a comma separated list of ports, e.g., ` + "`" + `20,22,23` + "`" + `, port range, e.g., ` + "`" + `1023-1040` + "`" + ` or word ` + "`" + `any` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) Inbound traffic destination ports. Allowed values are a comma separated list of ports, e.g., ` + "`" + `20,22,23` + "`" + `, port range, e.g., ` + "`" + `1023-1040` + "`" + ` or word ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Inbound rule description, up to 200 characters. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -2260,7 +2455,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "self_managed",
-					Description: `(Optional) Boolean value that determines device management mode, i.e., ` + "`" + `self-managed` + "`" + ` or ` + "`" + `Equinix managed` + "`" + ` (default).`,
+					Description: `(Optional) Boolean value that determines device management mode, i.e., ` + "`" + `self-managed` + "`" + ` or ` + "`" + `Equinix-managed` + "`" + ` (default).`,
 				},
 				resource.Attribute{
 					Name:        "byol",
@@ -2268,11 +2463,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "license_token",
-					Description: `(Optional) License Token applicable for some device types in BYOL licensing mode.`,
+					Description: `(Optional, conflicts with ` + "`" + `license_file` + "`" + `) License Token applicable for some device types in BYOL licensing mode.`,
 				},
 				resource.Attribute{
 					Name:        "license_file",
-					Description: `(Optional) Path to the license file that will be uploaded and applied on a device. Applicable for some devices types in BYOL licensing mode.`,
+					Description: `(Optional) Path to the license file that will be uploaded and applied on a device. Applicable for some device types in BYOL licensing mode.`,
+				},
+				resource.Attribute{
+					Name:        "license_file_id",
+					Description: `(Optional, conflicts with ` + "`" + `license_file` + "`" + `) Identifier of a license file that will be applied on the device.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init_file_id",
+					Description: `(Optional) Identifier of a cloud init file that will be applied on the device.`,
 				},
 				resource.Attribute{
 					Name:        "throughput",
@@ -2300,7 +2503,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "acl_template_id",
-					Description: `(Optional) Identifier of an ACL template that will be applied on the device.`,
+					Description: `(Optional) Identifier of a WAN interface ACL template that will be applied on the device.`,
 				},
 				resource.Attribute{
 					Name:        "mgmt_acl_template_uuid",
@@ -2348,11 +2551,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "license_token",
-					Description: `(Optional) License Token can be provided for some device types o the device.`,
+					Description: `(Optional, conflicts with ` + "`" + `license_file` + "`" + `) License Token can be provided for some device types o the device.`,
 				},
 				resource.Attribute{
 					Name:        "license_file",
-					Description: `(Optional) Path to the license file that will be uploaded and applied on a secondary device. Applicable for some devices types in BYOL licensing mode.`,
+					Description: `(Optional) Path to the license file that will be uploaded and applied on a secondary device. Applicable for some device types in BYOL licensing mode.`,
+				},
+				resource.Attribute{
+					Name:        "license_file_id",
+					Description: `(Optional, conflicts with ` + "`" + `license_file` + "`" + `) Identifier of a license file that will be applied on a secondary device.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init_file_id",
+					Description: `(Optional) Identifier of a cloud init file that will be applied on a secondary device.`,
 				},
 				resource.Attribute{
 					Name:        "account_number",
@@ -2376,7 +2587,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mgmt_acl_template_uuid",
-					Description: `(Optional) Identifier of an MGMT interface ACL template that will be applied on the device.`,
+					Description: `(Optional) Identifier of an MGMT interface ACL template that will be applied on a secondary device.`,
 				},
 				resource.Attribute{
 					Name:        "ssh-key",
@@ -2741,6 +2952,66 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "equinix_equinix_network_file",
+			Category:         "Network Edge",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"edge",
+				"file",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `(Required) File name.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Uploaded file content, expected to be a UTF-8 encoded string.`,
+				},
+				resource.Attribute{
+					Name:        "metro_code",
+					Description: `(Required) File upload location metro code. It should match the device location metro code.`,
+				},
+				resource.Attribute{
+					Name:        "type_code",
+					Description: `(Required) Device type code.`,
+				},
+				resource.Attribute{
+					Name:        "process_type",
+					Description: `(Required) File process type (LICENSE or CLOUD_INIT).`,
+				},
+				resource.Attribute{
+					Name:        "self_managed",
+					Description: `(Required) Boolean value that determines device management mode, i.e., ` + "`" + `self-managed` + "`" + ` or ` + "`" + `Equinix-managed` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "byol",
+					Description: `(Required) Boolean value that determines device licensing mode, i.e., ` + "`" + `bring your own license` + "`" + ` or ` + "`" + `subscription` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Unique identifier of file resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status. ## Import This resource can be imported using an existing ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import equinix_network_file.example {existing_id} ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `content` + "`" + `, ` + "`" + `self_managed` + "`" + ` and ` + "`" + `byol` + "`" + ` fields can not be imported.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Unique identifier of file resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status. ## Import This resource can be imported using an existing ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import equinix_network_file.example {existing_id} ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `content` + "`" + `, ` + "`" + `self_managed` + "`" + ` and ` + "`" + `byol` + "`" + ` fields can not be imported.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "equinix_equinix_network_ssh_key",
 			Category:         "Network Edge",
 			ShortDescription: ``,
@@ -2758,7 +3029,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `(Required) The SSH public key. If this is a file, it can be read using the file interpolation function. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The SSH public key. If this is a file, it can be read using the file interpolation function.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of SSH key: ` + "`" + `RSA` + "`" + ` (default) or ` + "`" + `DSA` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -2816,31 +3091,35 @@ var (
 		"equinix_equinix_ecx_l2_connection":          0,
 		"equinix_equinix_ecx_l2_connection_accepter": 1,
 		"equinix_equinix_ecx_l2_serviceprofile":      2,
-		"equinix_equinix_metal_bgp_session":          3,
-		"equinix_equinix_metal_connection":           4,
-		"equinix_equinix_metal_device":               5,
-		"equinix_equinix_metal_device_network_type":  6,
-		"equinix_equinix_metal_gateway":              7,
-		"equinix_equinix_metal_ip_attachment":        8,
-		"equinix_equinix_metal_organization":         9,
-		"equinix_equinix_metal_port":                 10,
-		"equinix_equinix_metal_port_vlan_attachment": 11,
-		"equinix_equinix_metal_project":              12,
-		"equinix_equinix_metal_project_api_key":      13,
-		"equinix_equinix_metal_project_ssh_key":      14,
-		"equinix_equinix_metal_reserved_ip_block":    15,
-		"equinix_equinix_metal_spot_market_request":  16,
-		"equinix_equinix_metal_ssh_key":              17,
-		"equinix_equinix_metal_user_api_key":         18,
-		"equinix_equinix_metal_virtual_circuit":      19,
-		"equinix_equinix_metal_vlan":                 20,
-		"equinix_equinix_metal_vrf":                  21,
-		"equinix_equinix_network_acl_template":       22,
-		"equinix_equinix_network_bgp":                23,
-		"equinix_equinix_network_device":             24,
-		"equinix_equinix_network_device_link":        25,
-		"equinix_equinix_network_ssh_key":            26,
-		"equinix_equinix_network_ssh_user":           27,
+		"equinix_equinix_fabric_connection":          3,
+		"equinix_equinix_fabric_service_profile":     4,
+		"equinix_equinix_metal_bgp_session":          5,
+		"equinix_equinix_metal_connection":           6,
+		"equinix_equinix_metal_device":               7,
+		"equinix_equinix_metal_device_network_type":  8,
+		"equinix_equinix_metal_gateway":              9,
+		"equinix_equinix_metal_ip_attachment":        10,
+		"equinix_equinix_metal_organization":         11,
+		"equinix_equinix_metal_organization_member":  12,
+		"equinix_equinix_metal_port":                 13,
+		"equinix_equinix_metal_port_vlan_attachment": 14,
+		"equinix_equinix_metal_project":              15,
+		"equinix_equinix_metal_project_api_key":      16,
+		"equinix_equinix_metal_project_ssh_key":      17,
+		"equinix_equinix_metal_reserved_ip_block":    18,
+		"equinix_equinix_metal_spot_market_request":  19,
+		"equinix_equinix_metal_ssh_key":              20,
+		"equinix_equinix_metal_user_api_key":         21,
+		"equinix_equinix_metal_virtual_circuit":      22,
+		"equinix_equinix_metal_vlan":                 23,
+		"equinix_equinix_metal_vrf":                  24,
+		"equinix_equinix_network_acl_template":       25,
+		"equinix_equinix_network_bgp":                26,
+		"equinix_equinix_network_device":             27,
+		"equinix_equinix_network_device_link":        28,
+		"equinix_equinix_network_file":               29,
+		"equinix_equinix_network_ssh_key":            30,
+		"equinix_equinix_network_ssh_user":           31,
 	}
 )
 

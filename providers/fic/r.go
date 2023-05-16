@@ -11,6 +11,210 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "fic_eri_firewall_component_v1",
+			Category:         "ERI(Enterprise Reliable InterConnect) Resources",
+			ShortDescription: `Manages a V1 Firewall Component resource within Flexible InterConnect.`,
+			Description:      ``,
+			Keywords: []string{
+				"eri",
+				"enterprise",
+				"reliable",
+				"interconnect",
+				"firewall",
+				"component",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `(Required) The router ID this Firewall Component belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "firewall_id",
+					Description: `(Required) ID of this Firewall Component. You can get this parameter only from parent router response body. So you have to add this to define Firewall Component in Terraform configurations.`,
+				},
+				resource.Attribute{
+					Name:        "user_ip_addresses",
+					Description: `(Required) List of user IP address.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Optional) List of firewall rules.`,
+				},
+				resource.Attribute{
+					Name:        "custom_applications",
+					Description: `(Optional) List of Firewall custom applications.`,
+				},
+				resource.Attribute{
+					Name:        "application_sets",
+					Description: `(Optional) List of Firewall application sets.`,
+				},
+				resource.Attribute{
+					Name:        "routing_group_settings",
+					Description: `(Optional) List of Firewall routing group settings. The ` + "`" + `rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) Name of the group as "from" parameter of this rule.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) Name of the group as "to" parameter of this rule.`,
+				},
+				resource.Attribute{
+					Name:        "entries",
+					Description: `(Required) List of details of this rule. The ` + "`" + `custom_applications` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Custom application name`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Protocol of the custom application. Either "tcp" or "udp" is allowed.`,
+				},
+				resource.Attribute{
+					Name:        "destination_port",
+					Description: `(Required) Destination port of the custom application. The ` + "`" + `application_sets` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the application set.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `(Required) List of applications. The ` + "`" + `routing_group_settings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) Name of the routing group set.`,
+				},
+				resource.Attribute{
+					Name:        "address_sets",
+					Description: `(Required) List of routing group setting details. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "redundant",
+					Description: `Redundancy of the Firewall Component.`,
+				},
+				resource.Attribute{
+					Name:        "is_activated",
+					Description: `Activation status of the Firewall Component.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "redundant",
+					Description: `Redundancy of the Firewall Component.`,
+				},
+				resource.Attribute{
+					Name:        "is_activated",
+					Description: `Activation status of the Firewall Component.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fic_eri_nat_component_v1",
+			Category:         "ERI(Enterprise Reliable InterConnect) Resources",
+			ShortDescription: `Manages a V1 NAT Component resource within Flexible InterConnect.`,
+			Description:      ``,
+			Keywords: []string{
+				"eri",
+				"enterprise",
+				"reliable",
+				"interconnect",
+				"nat",
+				"component",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `(Required) The router ID this NAT component belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "nat_id",
+					Description: `(Required) ID of this NAT component. You can get this parameter only from parent router response body. So you have to add this to define NAT component in Terraform configurations.`,
+				},
+				resource.Attribute{
+					Name:        "user_ip_addresses",
+					Description: `(Required) List of user IP address.`,
+				},
+				resource.Attribute{
+					Name:        "global_ip_address_sets",
+					Description: `(Required) Global IP Address Set definition in activating NAT component.`,
+				},
+				resource.Attribute{
+					Name:        "source_napt_rules",
+					Description: `(Required) Source NAPT Rules of the NAT component.`,
+				},
+				resource.Attribute{
+					Name:        "destination_nat_rules",
+					Description: `(Required) Destination NAT Rules of the NAT component. The ` + "`" + `source_napt_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) List of source group names.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) Destination group name.`,
+				},
+				resource.Attribute{
+					Name:        "entries",
+					Description: `(Required) Conversion rules of the NAPT. The ` + "`" + `destination_nat_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) Source group name.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) Destination group name.`,
+				},
+				resource.Attribute{
+					Name:        "entries",
+					Description: `(Required) Conversion rules of the NAT. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "source_napt_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "destination_nat_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redundant",
+					Description: `Redundancy of the NAT component.`,
+				},
+				resource.Attribute{
+					Name:        "is_activated",
+					Description: `Activation status of the NAT component.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "source_napt_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "destination_nat_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redundant",
+					Description: `Redundancy of the NAT component.`,
+				},
+				resource.Attribute{
+					Name:        "is_activated",
+					Description: `Activation status of the NAT component.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "fic_eri_global_ip_address_set_v1",
 			Category:         "ERI(Enterprise Reliable InterConnect) Resources",
 			ShortDescription: `Manages a V1 NAT Global IP Address Set resource within Flexible InterConnect.`,
@@ -1031,7 +1235,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_ip_address",
-					Description: `(Required; Required if ` + "`" + `vlan_ranges` + "`" + ` is empy) The IP Address of the router. It must have prefix 27.`,
+					Description: `(Required; Required if ` + "`" + `vlan_ranges` + "`" + ` is empty) The IP Address of the router. It must have prefix 27.`,
 				},
 				resource.Attribute{
 					Name:        "redundant",
@@ -1125,17 +1329,19 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"fic_eri_global_ip_address_set_v1":                0,
-		"fic_eri_port_to_azure_microsoft_connection_v1":   1,
-		"fic_eri_port_to_azure_private_connection_v1":     2,
-		"fic_eri_port_to_port_connection_v1":              3,
-		"fic_eri_port_v1":                                 4,
-		"fic_eri_router_paired_to_gcp_connection_v1":      5,
-		"fic_eri_router_to_azure_microsoft_connection_v1": 6,
-		"fic_eri_router_to_azure_private_connection_v1":   7,
-		"fic_eri_router_to_ecl_connection_v1":             8,
-		"fic_eri_router_to_uno_connection_v1":             9,
-		"fic_eri_router_v1":                               10,
+		"fic_eri_firewall_component_v1":                   0,
+		"fic_eri_nat_component_v1":                        1,
+		"fic_eri_global_ip_address_set_v1":                2,
+		"fic_eri_port_to_azure_microsoft_connection_v1":   3,
+		"fic_eri_port_to_azure_private_connection_v1":     4,
+		"fic_eri_port_to_port_connection_v1":              5,
+		"fic_eri_port_v1":                                 6,
+		"fic_eri_router_paired_to_gcp_connection_v1":      7,
+		"fic_eri_router_to_azure_microsoft_connection_v1": 8,
+		"fic_eri_router_to_azure_private_connection_v1":   9,
+		"fic_eri_router_to_ecl_connection_v1":             10,
+		"fic_eri_router_to_uno_connection_v1":             11,
+		"fic_eri_router_v1":                               12,
 	}
 )
 

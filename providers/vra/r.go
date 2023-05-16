@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_block_device",
+			Type:             "vra_block_device",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_block_device resource.`,
 			Description: `
@@ -63,7 +63,7 @@ Creates a VMware vRealize Automation block device resource.
 				},
 				resource.Attribute{
 					Name:        "source_reference",
-					Description: `(Optional) URI to use for block device. Example: ami-0d4cfd66 ## Attribute Reference`,
+					Description: `(Optional) URI to use for block device. Example: ` + "`" + `ami-0d4cfd66` + "`" + ` ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -147,7 +147,7 @@ Creates a VMware vRealize Automation block device resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource instance. Example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `Set of tag keys and values to apply to the resource instance. Example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -237,7 +237,7 @@ Creates a VMware vRealize Automation block device resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource instance. Example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `Set of tag keys and values to apply to the resource instance. Example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -247,7 +247,7 @@ Creates a VMware vRealize Automation block device resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_block_device_snapshot",
+			Type:             "vra_block_device_snapshot",
 			Category:         "Resources",
 			ShortDescription: `Creates a VMware vRealize Automation vra_block_device_snapshot resource.`,
 			Description: `
@@ -327,7 +327,7 @@ Creates a VMware vRealize Automation block device snapshot resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_blueprint",
+			Type:             "vra_blueprint",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation cloud template, formerly know as blueprint.`,
 			Description: `\_blueprint
@@ -515,7 +515,7 @@ Creates a VMware vRealize Automation (vRA) cloud template resource, formerly kno
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_blueprint_version",
+			Type:             "vra_blueprint_version",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation cloud template version.`,
 			Description: `\_blueprint\_version
@@ -655,7 +655,7 @@ Creates a VMware vRealize Automation cloud template (blueprint) version resource
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_item_entitlement",
+			Type:             "vra_catalog_item_entitlement",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation catalog item entitlement.`,
 			Description: `\_catalog\_item\_entitlement
@@ -751,7 +751,7 @@ This resource provides a way to create a catalog item entitlement in VMware vRea
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_source_blueprint",
+			Type:             "vra_catalog_source_blueprint",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation catalog source of type cloud template (blueprint).`,
 			Description: `\_catalog\_source\_blueprint
@@ -871,7 +871,7 @@ Creates a VMware vRealize Automation catalog source resource of type cloud templ
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_catalog_source_entitlement",
+			Type:             "vra_catalog_source_entitlement",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation catalog source entitlement.`,
 			Description: `\_catalog\_source\_entitlement
@@ -967,7 +967,7 @@ This resource provides a way to create a catalog source entitlement in VMware vR
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_aws",
+			Type:             "vra_cloud_account_aws",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_aws resource.`,
 			Description: `\_cloud\_account\_aws
@@ -999,7 +999,7 @@ Creates a VMware vRealize Automation AWS cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ] ## Attribute Reference`,
+					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ` ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1055,7 +1055,7 @@ Creates a VMware vRealize Automation AWS cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_azure",
+			Type:             "vra_cloud_account_azure",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_azure resource.`,
 			Description: `\_cloud\_account\_azure
@@ -1091,7 +1091,7 @@ Creates a VMware vRealize Automation Azure cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -1143,7 +1143,7 @@ Creates a VMware vRealize Automation Azure cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_gcp",
+			Type:             "vra_cloud_account_gcp",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_gcp resource.`,
 			Description: `\_cloud\_account\_gcp
@@ -1183,7 +1183,7 @@ Creates a VMware vRealize Automation GCP cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ] ## Attribute Reference`,
+					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ` ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1239,7 +1239,7 @@ Creates a VMware vRealize Automation GCP cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_nsxt",
+			Type:             "vra_cloud_account_nsxt",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_nsxt resource.`,
 			Description: `\_cloud\_account\_nsxt
@@ -1275,7 +1275,7 @@ Creates a VMware vRealize Automation NSX-T cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -1343,7 +1343,7 @@ Creates a VMware vRealize Automation NSX-T cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_nsxv",
+			Type:             "vra_cloud_account_nsxv",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_nsxv resource.`,
 			Description: `\_cloud\_account\_nsxv
@@ -1447,7 +1447,7 @@ Creates a VMware vRealize Automation NSX-V cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_vmc",
+			Type:             "vra_cloud_account_vmc",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_vmc resource.`,
 			Description: `\_cloud\_account\_vmc
@@ -1491,7 +1491,7 @@ Creates a VMware vRealize Automation VMC cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `(Optional) Set of tag keys and values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "vcenter_hostname",
@@ -1559,7 +1559,7 @@ Creates a VMware vRealize Automation VMC cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_cloud_account_vsphere",
+			Type:             "vra_cloud_account_vsphere",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_cloud_account_vsphere resource.`,
 			Description: `\_cloud\_account\_vsphere
@@ -1599,7 +1599,7 @@ Creates a VMware vRealize Automation vSphere cloud account resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A set of tag keys and optional values to apply to the cloud account. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `(Optional) A set of tag keys and optional values to apply to the cloud account. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -1667,7 +1667,7 @@ Creates a VMware vRealize Automation vSphere cloud account resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_content_source",
+			Type:             "vra_content_source",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a content source in vRealize Automation(vRA).`,
 			Description: `\_content_source
@@ -1779,7 +1779,7 @@ This resource provides a way to create a content source vRealize Automation(vRA)
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_deployment",
+			Type:             "vra_deployment",
 			Category:         "Resources",
 			ShortDescription: `A resource that can be used to create a vRealize Automation deployment.`,
 			Description: `\_deployment
@@ -1790,24 +1790,24 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "blueprint_d",
-					Description: `(Optional) The id of the vRA cloud template to request the deployment. Conflicts with ` + "`" + `catalog_item_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Name:        "blueprint_id",
+					Description: `(Optional) The id of the cloud template to be used to request the deployment. Conflicts with ` + "`" + `blueprint_content` + "`" + ` and ` + "`" + `catalog_item_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "blueprint_version",
-					Description: `(Optional) The version of the vRA cloud template to request the deployment. Used only when ` + "`" + `blueprint_id` + "`" + ` is provided.`,
+					Description: `(Optional) The version of the cloud template to be used to request the deployment. Used only when ` + "`" + `blueprint_id` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "blueprint_content",
-					Description: `(Optional) vRA Cloud template content. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `catalog_item_id` + "`" + `.`,
+					Description: `(Optional) The content of the the cloud template to be used to request the deployment. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `catalog_item_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_id",
-					Description: `(Optional) The id of the vRA catalog item to request the deployment. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
+					Description: `(Optional) The id of the catalog item to be used to request the deployment. Conflicts with ` + "`" + `blueprint_id` + "`" + ` and ` + "`" + `blueprint_content` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_item_version",
-					Description: `(Optional) The version of the vRA catalog item to request the deployment. Used only when ` + "`" + `catalog_item_id` + "`" + ` is provided.`,
+					Description: `(Optional) The version of the catalog item to be used to request the deployment. Used only when ` + "`" + `catalog_item_id` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1823,11 +1823,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A human-friendly name used as an identifier in APIs that support this option.`,
-				},
-				resource.Attribute{
-					Name:        "org_id",
-					Description: `(Optional) The ID of the organization this deployment belongs to.`,
+					Description: `(Required) The name of the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
@@ -1835,7 +1831,11 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the project this entity belongs to. ## Attribute Reference`,
+					Description: `(Required) The id of the project this deployment belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "reason",
+					Description: `(Optional) Reason for requesting/updating a blueprint. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1887,7 +1887,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of this entity.`,
+					Description: `The id of the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "inputs_including_defaults",
@@ -1975,7 +1975,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "last_updated_at",
-					Description: `Time at which the deployment was last updated.`,
+					Description: `TDate when the entity was last updated. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "last_updated_by",
@@ -1983,7 +1983,11 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "lease_expire_at",
-					Description: `Time at which the deployment lease expires.`,
+					Description: `Date when the deployment lease expire. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The Id of the organization this deployment belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "project",
@@ -2083,7 +2087,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Deployment status. Supported values are: ` + "`" + `CREATE_SUCCESSFUL` + "`" + `, ` + "`" + `CREATE_INPROGRESS` + "`" + `, ` + "`" + `CREATE_FAILED` + "`" + `, ` + "`" + `UPDATE_SUCCESSFUL` + "`" + `, ` + "`" + `UPDATE_INPROGRESS` + "`" + `, ` + "`" + `UPDATE_FAILED` + "`" + `, ` + "`" + `DELETE_SUCCESSFUL` + "`" + `, ` + "`" + `DELETE_INPROGRESS` + "`" + `, ` + "`" + `DELETE_FAILED` + "`" + `, ` + "`" + `ACTION_SUCCESSFUL` + "`" + `, ` + "`" + `ACTION_INPROGRESS` + "`" + `, ` + "`" + `ACTION_FAILED` + "`" + `. ## Import Deployment can be imported using the id, e.g. ` + "`" + `$ terraform import vra_deployment.this 05956583-6488-4e7d-84c9-92a7b7219a15` + "`" + ``,
+					Description: `The status of the deployment with respect to its life cycle operations. ## Import Deployment can be imported using the id, e.g. ` + "`" + `$ terraform import vra_deployment.this 05956583-6488-4e7d-84c9-92a7b7219a15` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2137,7 +2141,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of this entity.`,
+					Description: `The id of the deployment.`,
 				},
 				resource.Attribute{
 					Name:        "inputs_including_defaults",
@@ -2225,7 +2229,7 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "last_updated_at",
-					Description: `Time at which the deployment was last updated.`,
+					Description: `TDate when the entity was last updated. The date is in ISO 6801 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "last_updated_by",
@@ -2233,7 +2237,11 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "lease_expire_at",
-					Description: `Time at which the deployment lease expires.`,
+					Description: `Date when the deployment lease expire. The date is in ISO 6801 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The Id of the organization this deployment belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "project",
@@ -2333,13 +2341,13 @@ This resource provides a way to create a deployment in vRealize Automation(vRA) 
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Deployment status. Supported values are: ` + "`" + `CREATE_SUCCESSFUL` + "`" + `, ` + "`" + `CREATE_INPROGRESS` + "`" + `, ` + "`" + `CREATE_FAILED` + "`" + `, ` + "`" + `UPDATE_SUCCESSFUL` + "`" + `, ` + "`" + `UPDATE_INPROGRESS` + "`" + `, ` + "`" + `UPDATE_FAILED` + "`" + `, ` + "`" + `DELETE_SUCCESSFUL` + "`" + `, ` + "`" + `DELETE_INPROGRESS` + "`" + `, ` + "`" + `DELETE_FAILED` + "`" + `, ` + "`" + `ACTION_SUCCESSFUL` + "`" + `, ` + "`" + `ACTION_INPROGRESS` + "`" + `, ` + "`" + `ACTION_FAILED` + "`" + `. ## Import Deployment can be imported using the id, e.g. ` + "`" + `$ terraform import vra_deployment.this 05956583-6488-4e7d-84c9-92a7b7219a15` + "`" + ``,
+					Description: `The status of the deployment with respect to its life cycle operations. ## Import Deployment can be imported using the id, e.g. ` + "`" + `$ terraform import vra_deployment.this 05956583-6488-4e7d-84c9-92a7b7219a15` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_compute",
+			Type:             "vra_fabric_compute",
 			Category:         "Resources",
 			ShortDescription: `Updates a fabric_compute resource.`,
 			Description: `
@@ -2479,7 +2487,7 @@ Updates a VMware vRealize Automation fabric_compute resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_datastore_vsphere",
+			Type:             "vra_fabric_datastore_vsphere",
 			Category:         "Resources",
 			ShortDescription: `Updates a fabric_datastore_vsphere resource.`,
 			Description: `
@@ -2627,7 +2635,7 @@ Updates a VMware vRealize Automation fabric_datastore_vsphere resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_fabric_network_vsphere",
+			Type:             "vra_fabric_network_vsphere",
 			Category:         "Resources",
 			ShortDescription: `Updates a fabric_network_vsphere resource.`,
 			Description: `
@@ -2707,7 +2715,7 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -2749,7 +2757,7 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
+					Description: `Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -2759,7 +2767,7 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_flavor_profile",
+			Type:             "vra_flavor_profile",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_flavor_profile.`,
 			Description: `
@@ -2776,23 +2784,39 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 				},
 				resource.Attribute{
 					Name:        "region_id",
-					Description: `(Required) The id of the region for which this profile is defined as in vRealize Automation(vRA).`,
+					Description: `(Required) The id of the region for which this profile is defined.`,
 				},
 				resource.Attribute{
 					Name:        "flavor_mapping",
-					Description: `(Optional) Map between global fabric flavor keys and fabric flavor descriptions. ## Attribute Reference`,
+					Description: `(Optional) A list of the flavor mappings defined for the corresponding cloud end-point region.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the flavor mapping.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) The value of the instance type in the corresponding cloud. Mandatory for public clouds. Only ` + "`" + `instance_type` + "`" + ` or ` + "`" + `cpu_count` + "`" + `/` + "`" + `memory` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_count",
+					Description: `(Optional) Number of CPU cores. Mandatory for private clouds such as vSphere. Only ` + "`" + `instance_type` + "`" + ` or ` + "`" + `cpu_count` + "`" + `/` + "`" + `memory` + "`" + ` must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional) Total amount of memory (in megabytes). Mandatory for private clouds such as vSphere. Only ` + "`" + `instance_type` + "`" + ` or ` + "`" + `cpu_count` + "`" + `/` + "`" + `memory` + "`" + ` must be specified. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "cloud_account_id",
-					Description: `The ID of the cloud account this flavor profile belongs to.`,
+					Description: `Id of the cloud account this flavor profile belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when entity was created. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `The ID of the external region that is associated with the flavor profile.`,
+					Description: `The id of the region for which this profile is defined.`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -2800,29 +2824,29 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
+					Description: `The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
-					Description: `Email of entity owner.`,
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `Date when the entity was last updated. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_account_id",
-					Description: `The ID of the cloud account this flavor profile belongs to.`,
+					Description: `Id of the cloud account this flavor profile belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when entity was created. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_region_id",
-					Description: `The ID of the external region that is associated with the flavor profile.`,
+					Description: `The id of the region for which this profile is defined.`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -2830,21 +2854,21 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
+					Description: `The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
-					Description: `Email of entity owner.`,
+					Description: `Email of the user that owns the entity.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `Date when the entity was last updated. Date and time format is ISO 8601 and UTC.`,
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_image_profile",
+			Type:             "vra_image_profile",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_image_profile.`,
 			Description: `
@@ -2909,7 +2933,111 @@ Updates a VMware vRealize Automation fabric_network_vsphere resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_load_balancer",
+			Type:             "vra_integration",
+			Category:         "Resources",
+			ShortDescription: `Creates a vra_integration resource.`,
+			Description: `\_integration
+
+Creates a VMware vRealize Automation Integration resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "associated_cloud_account_ids",
+					Description: `(Optional) Ids of the cloud accounts to associate with this integration.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Optional) Certificate to be used to connect to the integration.`,
+				},
+				resource.Attribute{
+					Name:        "custom_properties",
+					Description: `(Optional) Additional custom properties that may be used to extend the Integration.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A human-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "integration_properties",
+					Description: `(Required) Integration specific properties supplied in as name value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `(Required) Integration type.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Optional) Secret access key or password to be used to authenticate with the integration.`,
+				},
+				resource.Attribute{
+					Name:        "private_key_id",
+					Description: `(Optional) Access key id or username to be used to authenticate with the integration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A set of tag keys and optional values to apply to the integration. Example: ` + "`" + `[ { "key" : "provider", "value": "vmware" } ]` + "`" + `. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. ## Import To import an existing integration, use the id as in the following example: ` + "`" + `$ terraform import vra_integration 90b9a230-bd61-4d39-a082-b12a17cd03c8` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `HATEOAS of entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The id of the organization this entity belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Email of the user that owns the entity.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `Date when the entity was last updated. The date is ISO 8601 and UTC. ## Import To import an existing integration, use the id as in the following example: ` + "`" + `$ terraform import vra_integration 90b9a230-bd61-4d39-a082-b12a17cd03c8` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vra_load_balancer",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_load_balancer resource.`,
 			Description: `
@@ -3061,7 +3189,7 @@ Creates a VMware vRealize Automation load balancer resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource instance. example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource instance. example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3115,7 +3243,7 @@ Creates a VMware vRealize Automation load balancer resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource instance. example:[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource instance. example: ` + "`" + `[ { "key" : "vmware.enumeration.type", "value": "nebs_block" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3133,7 +3261,7 @@ Creates a VMware vRealize Automation load balancer resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_machine",
+			Type:             "vra_machine",
 			Category:         "Resources",
 			ShortDescription: `Creates a vra_machine resource.`,
 			Description: `
@@ -3189,7 +3317,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "image_disk_constraints",
-					Description: `(Optional) Constraints that are used to drive placement policies for the image disk. Constraint expressions are matched against tags on existing placement targets. example:[{"mandatory" : "true", "expression": "environment:prod"}, {"mandatory" : "false", "expression": "pci"}]. It is nested argument with the following properties.`,
+					Description: `(Optional) Constraints that are used to drive placement policies for the image disk. Constraint expressions are matched against tags on existing placement targets. example: ` + "`" + `[{"mandatory" : "true", "expression": "environment:prod"}, {"mandatory" : "false", "expression": "pci"}]` + "`" + `. It is nested argument with the following properties.`,
 				},
 				resource.Attribute{
 					Name:        "expression",
@@ -3213,7 +3341,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "addresses",
-					Description: `(Optional) List of IP addresses allocated or in use by this network interface. example:[ "10.1.2.190" ]`,
+					Description: `(Optional) List of IP addresses allocated or in use by this network interface. example: ` + "`" + `[ "10.1.2.190" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "custom_properties",
@@ -3241,7 +3369,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Set of tag keys and optional values that should be set on any resource that is produced from this specification. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]. It is nested argument with the following properties.`,
+					Description: `(Optional) Set of tag keys and optional values that should be set on any resource that is produced from this specification. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + `. It is nested argument with the following properties.`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -3257,7 +3385,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "constraints",
-					Description: `Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example:[{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]`,
+					Description: `Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: ` + "`" + `[{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -3323,7 +3451,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "constraints",
-					Description: `Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example:[{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]`,
+					Description: `Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: ` + "`" + `[{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -3385,7 +3513,7 @@ Creates a VMware vRealize Automation machine resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network",
+			Type:             "vra_network",
 			Category:         "Resources",
 			ShortDescription: `Provides a VMware vRA vra_network resource.`,
 			Description: `
@@ -3450,7 +3578,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3492,7 +3620,7 @@ Creates a VMware vRealize Automation machine resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this resource. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this resource. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "update_at",
@@ -3502,7 +3630,7 @@ Creates a VMware vRealize Automation machine resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network_ip_range",
+			Type:             "vra_network_ip_range",
 			Category:         "Resources",
 			ShortDescription: `Creates a network_ip_range resource.`,
 			Description: `
@@ -3514,39 +3642,43 @@ Creates a VMware vRealize Automation network_ip_range resource.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `State object representing a network on a external cloud provider.`,
+					Description: `(Optional) A human-friendly description.`,
 				},
 				resource.Attribute{
 					Name:        "end_ip_address",
-					Description: `End IP address of the range.`,
+					Description: `(Required) End IP address of the range.`,
 				},
 				resource.Attribute{
-					Name:        "fabric_network_id",
-					Description: `Fabric network Id.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `ID of the network IP range.`,
+					Name:        "fabric_network_ids",
+					Description: `(Optional) The Ids of the fabric networks.`,
 				},
 				resource.Attribute{
 					Name:        "ip_version",
-					Description: `IP address version: IPv4 or IPv6. Default: IPv4.`,
+					Description: `(Required) IP address version: IPv4 or IPv6.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `A human-friendly name used as an identifier in APIs that support this option.`,
+					Description: `(Required) The name of the network IP range.`,
 				},
 				resource.Attribute{
 					Name:        "start_ip_address",
-					Description: `Start IP address of the range. ## Attribute Reference`,
+					Description: `(Required) Start IP address of the range.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Set of tag keys and values to apply to the resource. Example: ` + "`" + `[ { "key" : "vmware", "value": "provider" } ]` + "`" + ` ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
 					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the network IP range`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -3554,15 +3686,11 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
+					Description: `The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
 					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3572,11 +3700,15 @@ Creates a VMware vRealize Automation network_ip_range resource.
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Date when the entity was created. The date is in ISO 6801 and UTC.`,
+					Description: `Date when the entity was created. The date is in ISO 8601 and UTC.`,
 				},
 				resource.Attribute{
 					Name:        "external_id",
 					Description: `External entity Id on the provider side.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the network IP range`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -3584,15 +3716,11 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `ID of organization that entity belongs to.`,
+					Description: `The id of the organization this entity belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "owner",
 					Description: `Email of the user that owns the entity.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Set of tag keys and values to apply to the resource. Example:[ { "key" : "vmware", "value": "provider" } ]`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3602,7 +3730,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_network_profile",
+			Type:             "vra_network_profile",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_network_profile.`,
 			Description: `
@@ -3619,7 +3747,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "fabric_network_ids",
-					Description: `(Optional) A list of fabric network Ids which are assigned to the network profile. example:[ "6543" ]`,
+					Description: `(Optional) A list of fabric network Ids which are assigned to the network profile. example: ` + "`" + `[ "6543" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "isolated_external_fabric_network_id",
@@ -3679,11 +3807,11 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
-					Description: `A list of security group Ids which are assigned to the network profile. example:[ "6545" ]`,
+					Description: `A list of security group Ids which are assigned to the network profile. example: ` + "`" + `[ "6545" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3737,11 +3865,11 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
-					Description: `A list of security group Ids which are assigned to the network profile. example:[ "6545" ]`,
+					Description: `A list of security group Ids which are assigned to the network profile. example: ` + "`" + `[ "6545" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3751,7 +3879,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_project",
+			Type:             "vra_project",
 			Category:         "Resources",
 			ShortDescription: `Provides a VMware vRealize Automation vra_project resource.`,
 			Description: `\_project
@@ -3808,6 +3936,10 @@ Creates a VMware vRealize Automation network_ip_range resource.
 					Description: `(Optional) Specifies whether the resources in this projects are shared or not. If not set default will be used.`,
 				},
 				resource.Attribute{
+					Name:        "supervisor_roles",
+					Description: `(Optional) Supervisor users or groups associated with the project.`,
+				},
+				resource.Attribute{
 					Name:        "viewers",
 					Description: `(Optional) A list of viewer users associated with the project. >`,
 				},
@@ -3824,7 +3956,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile",
+			Type:             "vra_storage_profile",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile.`,
 			Description: `
@@ -3885,7 +4017,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3927,7 +4059,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -3937,7 +4069,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_aws",
+			Type:             "vra_storage_profile_aws",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_aws.`,
 			Description: `
@@ -3974,7 +4106,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `(Optional) A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "volume_type",
@@ -4034,7 +4166,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_azure",
+			Type:             "vra_storage_profile_azure",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_azure.`,
 			Description: `
@@ -4099,7 +4231,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4129,7 +4261,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4139,7 +4271,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_storage_profile_vsphere",
+			Type:             "vra_storage_profile_vsphere",
 			Category:         "Resources",
 			ShortDescription: `Provides a data lookup for vra_storage_profile_vsphere.`,
 			Description: `
@@ -4224,7 +4356,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4258,7 +4390,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A set of tag keys and optional values that were set on this Network Profile. example:[ { "key" : "ownedBy", "value": "Rainpole" } ]`,
+					Description: `A set of tag keys and optional values that were set on this Network Profile. example: ` + "`" + `[ { "key" : "ownedBy", "value": "Rainpole" } ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
@@ -4268,7 +4400,7 @@ Creates a VMware vRealize Automation network_ip_range resource.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vra_vra_zone",
+			Type:             "vra_zone",
 			Category:         "Resources",
 			ShortDescription: `Provides a VMware vRA vra_zone resource.`,
 			Description: `
@@ -4392,38 +4524,39 @@ Creates a VMware vRealize Automation network_ip_range resource.
 
 	resourcesMap = map[string]int{
 
-		"vra_vra_block_device":               0,
-		"vra_vra_block_device_snapshot":      1,
-		"vra_vra_blueprint":                  2,
-		"vra_vra_blueprint_version":          3,
-		"vra_vra_catalog_item_entitlement":   4,
-		"vra_vra_catalog_source_blueprint":   5,
-		"vra_vra_catalog_source_entitlement": 6,
-		"vra_vra_cloud_account_aws":          7,
-		"vra_vra_cloud_account_azure":        8,
-		"vra_vra_cloud_account_gcp":          9,
-		"vra_vra_cloud_account_nsxt":         10,
-		"vra_vra_cloud_account_nsxv":         11,
-		"vra_vra_cloud_account_vmc":          12,
-		"vra_vra_cloud_account_vsphere":      13,
-		"vra_vra_content_source":             14,
-		"vra_vra_deployment":                 15,
-		"vra_vra_fabric_compute":             16,
-		"vra_vra_fabric_datastore_vsphere":   17,
-		"vra_vra_fabric_network_vsphere":     18,
-		"vra_vra_flavor_profile":             19,
-		"vra_vra_image_profile":              20,
-		"vra_vra_load_balancer":              21,
-		"vra_vra_machine":                    22,
-		"vra_vra_network":                    23,
-		"vra_vra_network_ip_range":           24,
-		"vra_vra_network_profile":            25,
-		"vra_vra_project":                    26,
-		"vra_vra_storage_profile":            27,
-		"vra_vra_storage_profile_aws":        28,
-		"vra_vra_storage_profile_azure":      29,
-		"vra_vra_storage_profile_vsphere":    30,
-		"vra_vra_zone":                       31,
+		"vra_block_device":               0,
+		"vra_block_device_snapshot":      1,
+		"vra_blueprint":                  2,
+		"vra_blueprint_version":          3,
+		"vra_catalog_item_entitlement":   4,
+		"vra_catalog_source_blueprint":   5,
+		"vra_catalog_source_entitlement": 6,
+		"vra_cloud_account_aws":          7,
+		"vra_cloud_account_azure":        8,
+		"vra_cloud_account_gcp":          9,
+		"vra_cloud_account_nsxt":         10,
+		"vra_cloud_account_nsxv":         11,
+		"vra_cloud_account_vmc":          12,
+		"vra_cloud_account_vsphere":      13,
+		"vra_content_source":             14,
+		"vra_deployment":                 15,
+		"vra_fabric_compute":             16,
+		"vra_fabric_datastore_vsphere":   17,
+		"vra_fabric_network_vsphere":     18,
+		"vra_flavor_profile":             19,
+		"vra_image_profile":              20,
+		"vra_integration":                21,
+		"vra_load_balancer":              22,
+		"vra_machine":                    23,
+		"vra_network":                    24,
+		"vra_network_ip_range":           25,
+		"vra_network_profile":            26,
+		"vra_project":                    27,
+		"vra_storage_profile":            28,
+		"vra_storage_profile_aws":        29,
+		"vra_storage_profile_azure":      30,
+		"vra_storage_profile_vsphere":    31,
+		"vra_zone":                       32,
 	}
 )
 

@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "rollbar_integration",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rollbar_notification",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -32,6 +42,16 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "rollbar_project_access_token",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rollbar_service_links",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -73,12 +93,14 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"rollbar_notification":         0,
-		"rollbar_project":              1,
-		"rollbar_project_access_token": 2,
-		"rollbar_team":                 3,
-		"rollbar_team_user":            4,
-		"rollbar_user":                 5,
+		"rollbar_integration":          0,
+		"rollbar_notification":         1,
+		"rollbar_project":              2,
+		"rollbar_project_access_token": 3,
+		"rollbar_service_links":        4,
+		"rollbar_team":                 5,
+		"rollbar_team_user":            6,
+		"rollbar_user":                 7,
 	}
 )
 

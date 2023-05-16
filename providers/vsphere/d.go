@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "vsphere_content_library_item",
+			Type:             "vsphere_compute_cluster",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vSphere cluster data source. This can be used to get the general attributes of a vSphere cluster.`,
 			Description:      ``,
@@ -27,6 +27,72 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_compute_cluster_host_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vSphere cluster host group data source. Returns attributes of a vSphere cluster host group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the host group.`,
+				},
+				resource.Attribute{
+					Name:        "compute_cluster_id",
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the compute cluster for the host group. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_content_library",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware vSphere content library data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the content library. ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is a combination of the [managed object reference ID][docs-about-morefs] of the cluster, and the name of the virtual machine group.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_content_library_item",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware vSphere content library item data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the content library item.`,
+				},
+				resource.Attribute{
+					Name:        "library_id",
+					Description: `(Required) The ID of the content library in which the item exists.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type for the content library item. One of ` + "`" + `ovf` + "`" + `, ` + "`" + `vm-template` + "`" + `, or ` + "`" + `iso` + "`" + ` ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the content library item.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the content library item.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -117,6 +183,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_dynamic",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to get the [managed object reference ID][docs-about-morefs] of any tagged managed object in the vSphere inventory.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) A list of tag IDs that must be present on an object to be a match.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regular expression that will be used to match the object's name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The managed object type the returned object must match. The managed object types can be found in the managed object type section [here](https://developer.vmware.com/apis/968/vsphere). ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The device ID of the matched managed object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The device ID of the matched managed object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_folder",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware vSphere folder data source. This can be used to get the general attributes of a vSphere inventory folder.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The absolute path of the folder. For example, given a default datacenter of ` + "`" + `default-dc` + "`" + `, a folder of type ` + "`" + `vm` + "`" + `, and a folder name of ` + "`" + `terraform-test-folder` + "`" + `, the resulting path would be ` + "`" + `/default-dc/vm/terraform-test-folder` + "`" + `. The valid folder types to be used in the path are: ` + "`" + `vm` + "`" + `, ` + "`" + `host` + "`" + `, ` + "`" + `datacenter` + "`" + `, ` + "`" + `datastore` + "`" + `, or ` + "`" + `network` + "`" + `. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the [managed object ID][docs-about-morefs] of the folder. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_host",
 			Category:         "Data Sources",
 			ShortDescription: `A data source that can be used to return the attributes of an ESXi host.`,
@@ -153,6 +266,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_host_pci_device",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to get information for a PCI passthrough device on an ESXi host.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "host_id",
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of a host.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regular expression that will be used to match the host PCI device name.`,
+				},
+				resource.Attribute{
+					Name:        "vendor_id",
+					Description: `(Optional) The hexadecimal PCI device vendor ID.`,
+				},
+				resource.Attribute{
+					Name:        "class_id",
+					Description: `(Optional) The hexadecimal PCI device class ID [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The device ID of the PCI device.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the PCI device.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The device ID of the PCI device.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the PCI device.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_host_thumbprint",
 			Category:         "Data Sources",
 			ShortDescription: `A data source that can be used to get the thumbprint of an ESXi host.`,
@@ -173,6 +330,62 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_license",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware vSphere license data source. This can be used to get the general attributes of license keys.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "license_key",
+					Description: `(Required) The license key. ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of key/value pairs attached as labels (tags) to the license key.`,
+				},
+				resource.Attribute{
+					Name:        "edition_key",
+					Description: `The product edition of the license key.`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `Total number of units (example: CPUs) contained in the license.`,
+				},
+				resource.Attribute{
+					Name:        "used",
+					Description: `The number of units (example: CPUs) assigned to this license.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The display name for the license.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of key/value pairs attached as labels (tags) to the license key.`,
+				},
+				resource.Attribute{
+					Name:        "edition_key",
+					Description: `The product edition of the license key.`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `Total number of units (example: CPUs) contained in the license.`,
+				},
+				resource.Attribute{
+					Name:        "used",
+					Description: `The number of units (example: CPUs) assigned to this license.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The display name for the license.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -255,7 +468,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_unverified_ssl_cert",
-					Description: `(Optional) Allow unverified SSL certificates when deploying OVF/OVA from a URL. ## Attribute Reference`,
+					Description: `(Optional) Allow unverified SSL certificates when deploying OVF/OVA from a URL.`,
+				},
+				resource.Attribute{
+					Name:        "enable_hidden_properties",
+					Description: `(Optional) Allow properties with ` + "`" + `ovf:userConfigurable=false` + "`" + ` to be set. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "num_cpus",
@@ -378,6 +595,21 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_storage_policy",
+			Category:         "Data Sources",
+			ShortDescription: `A data source that can be used to get the UUID of a storage policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the storage policy. ## Attribute Reference The only exported attribute is ` + "`" + `id` + "`" + `, which is the UUID of this storage policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_tag",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vSphere tag data source. This can be used to reference tags not managed in Terraform.`,
@@ -406,6 +638,25 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the tag category. ## Attribute Reference In addition to the ` + "`" + `id` + "`" + ` being exported, all of the fields that are available in the [` + "`" + `vsphere_tag_category` + "`" + ` resource][resource-tag-category] are also populated.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_vapp_container",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vSphere vApp container data source. This can be used to return the general attributes of a vSphere vApp container.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the vApp container. This can be a name or path.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the datacenter in which the vApp container is located. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference The only exported attribute for this data source is ` + "`" + `id` + "`" + `, which represents the ID of the vApp container that was looked up.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -504,7 +755,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface_types",
-					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, ` + "`" + `vmxnet3vrdma` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_interfaces",
@@ -512,7 +763,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "adapter_type",
-					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + ` or ` + "`" + `vmxnet3` + "`" + `.`,
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `vmxnet3vrdma` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
@@ -622,7 +873,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_interface_types",
-					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `pcnet32` + "`" + `, ` + "`" + `sriov` + "`" + `, ` + "`" + `vmxnet2` + "`" + `, ` + "`" + `vmxnet3vrdma` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_interfaces",
@@ -630,7 +881,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "adapter_type",
-					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + ` or ` + "`" + `vmxnet3` + "`" + `.`,
+					Description: `The network interface types for each network interface found on the virtual machine, in device bus order. Will be one of ` + "`" + `e1000` + "`" + `, ` + "`" + `e1000e` + "`" + `, ` + "`" + `vmxnet3vrdma` + "`" + `, or ` + "`" + `vmxnet3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
@@ -754,22 +1005,31 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"vsphere_content_library_item":       0,
-		"vsphere_custom_attribute":           1,
-		"vsphere_datacenter":                 2,
-		"vsphere_datastore":                  3,
-		"vsphere_datastore_cluster":          4,
-		"vsphere_distributed_virtual_switch": 5,
-		"vsphere_host":                       6,
-		"vsphere_host_thumbprint":            7,
-		"vsphere_network":                    8,
-		"vsphere_ovf_vm_template":            9,
-		"vsphere_resource_pool":              10,
-		"vsphere_tag":                        11,
-		"vsphere_tag_category":               12,
-		"vsphere_virtual_machine":            13,
-		"vsphere_vmfs_disks":                 14,
-		"vsphere_role":                       15,
+		"vsphere_compute_cluster":            0,
+		"vsphere_compute_cluster_host_group": 1,
+		"vsphere_content_library":            2,
+		"vsphere_content_library_item":       3,
+		"vsphere_custom_attribute":           4,
+		"vsphere_datacenter":                 5,
+		"vsphere_datastore":                  6,
+		"vsphere_datastore_cluster":          7,
+		"vsphere_distributed_virtual_switch": 8,
+		"vsphere_dynamic":                    9,
+		"vsphere_folder":                     10,
+		"vsphere_host":                       11,
+		"vsphere_host_pci_device":            12,
+		"vsphere_host_thumbprint":            13,
+		"vsphere_license":                    14,
+		"vsphere_network":                    15,
+		"vsphere_ovf_vm_template":            16,
+		"vsphere_resource_pool":              17,
+		"vsphere_storage_policy":             18,
+		"vsphere_tag":                        19,
+		"vsphere_tag_category":               20,
+		"vsphere_vapp_container":             21,
+		"vsphere_virtual_machine":            22,
+		"vsphere_vmfs_disks":                 23,
+		"vsphere_role":                       24,
 	}
 )
 

@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloudcompute_custom_compliance",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to retrieve ID of a custom compliance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloudcompute_custom_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to retrieve ID of a custom rule.`,
@@ -23,7 +33,8 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"prismacloudcompute_custom_rule": 0,
+		"prismacloudcompute_custom_compliance": 0,
+		"prismacloudcompute_custom_rule":       1,
 	}
 )
 

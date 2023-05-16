@@ -1657,6 +1657,42 @@ Create and manage saved searches.
 					Description: `(Optional) Valid values are: Integer[p] Specifies the minimum time-to-live in seconds of the search artifacts if this action is triggered. If p follows Integer, specifies the number of scheduled periods. Defaults to 86400 (24 hours).`,
 				},
 				resource.Attribute{
+					Name:        "action_create_xsoar_incident",
+					Description: `(Optional) Enable XSOAR alerting (Should by 1 (Enabled) or 0 (Disabled))`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_send_all_servers",
+					Description: `(Optional) Enable XSOAR alerting sending to all servers (Should by 1 (Enabled) or 0 (Disabled)`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_server_url",
+					Description: `(Optional) XSOAR Server instance URL (Should start with https:// || http://)`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_incident_name",
+					Description: `(Optional) XSOAR incident name`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_details",
+					Description: `(Optional) XSOAR incident description`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_custom_fields",
+					Description: `(Optional) XSOAR custom incident fields (should be a comma separated list)`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_severity",
+					Description: `(Optional) XSOAR Severity (1 - Low, 2 - Medium, 3 - High, 4 - Critical)`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_occurred",
+					Description: `(Optional) XSOAR incident time`,
+				},
+				resource.Attribute{
+					Name:        "action_create_xsoar_incident_param_type",
+					Description: `(Optional) XSOAR incident type`,
+				},
+				resource.Attribute{
 					Name:        "action_slack_param_channel",
 					Description: `(Optional) Slack channel to send the message to (Should start with # or @)`,
 				},
@@ -1675,6 +1711,30 @@ Create and manage saved searches.
 				resource.Attribute{
 					Name:        "action_slack_param_webhook_url_override",
 					Description: `(Optional) You can override the Slack webhook URL here if you need to send the alert message to a different Slack team`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_account",
+					Description: `(Optional) Jira Service Desk account name`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_jira_project",
+					Description: `(Optional) Jira Project name`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_jira_issue_type",
+					Description: `(Optional) Jira issue type name`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_jira_summary",
+					Description: `(Optional) Jira issue title/summary`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_jira_priority",
+					Description: `(Optional) Jira priority of issue`,
+				},
+				resource.Attribute{
+					Name:        "action_jira_service_desk_param_jira_description",
+					Description: `(Optional) Jira issue description`,
 				},
 				resource.Attribute{
 					Name:        "action_webhook_param_url",

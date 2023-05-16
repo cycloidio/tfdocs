@@ -785,7 +785,7 @@ Use this data source to get detailed information of standard DNS records.
 				},
 				resource.Attribute{
 					Name:        "record_type",
-					Description: `(Required) (String) Must be formatted as the well-known resource record type (A, AAAA, TXT, etc.) or the corresponding number for the type, between 1 and 65535.<br/> Below are the supported resource record types with the corresponding number:<br/> ` + "`" + `A (1)` + "`" + ` ` + "`" + `NS (2)` + "`" + ` ` + "`" + `CNAME (5)` + "`" + ` ` + "`" + `PTR (12)` + "`" + ` ` + "`" + `MX (15)` + "`" + ` ` + "`" + `TXT (16)` + "`" + ` ` + "`" + `AAAA (28)` + "`" + ` ` + "`" + `SRV (33)` + "`" + ` ` + "`" + `SSHFP (44)` + "`" + ` ` + "`" + `APEXALIAS (65282)` + "`" + ` ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
+					Description: `(Required) (String) Must be formatted as the well-known resource record type (A, AAAA, TXT, etc.) or the corresponding number for the type, between 1 and 65535.<br/> Below are the supported resource record types with the corresponding number:<br/> ` + "`" + `A (1)` + "`" + ` ` + "`" + `NS (2)` + "`" + ` ` + "`" + `CNAME (5)` + "`" + ` ` + "`" + `SOA (6)` + "`" + ` ` + "`" + `PTR (12)` + "`" + ` ` + "`" + `MX (15)` + "`" + ` ` + "`" + `TXT (16)` + "`" + ` ` + "`" + `AAAA (28)` + "`" + ` ` + "`" + `SRV (33)` + "`" + ` ` + "`" + `SSHFP (44)` + "`" + ` ` + "`" + `APEXALIAS (65282)` + "`" + ` ## Attributes Reference In addition to all of the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -793,7 +793,7 @@ Use this data source to get detailed information of standard DNS records.
 				},
 				resource.Attribute{
 					Name:        "record_data",
-					Description: `(Computed) (String List) The data for the record displayed as the BIND presentation format for the specified RRTYPE.<br/> Example : For a SRV record, the format of data is ["priority weight port target"] (["2 2 523 example.com."]).`,
+					Description: `(Computed) (String List) The data for the record displayed as the BIND presentation format for the specified RRTYPE.<br/> __Note__ In SOA records the serial number is ignored and removed from the data: ` + "`" + `["mname rname refresh retry expire minimum"]` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `["ns.example.com admin@example.com 7200 3600 1209600 36000"]` + "`" + `` + "`" + `` + "`" + ` For a SRV record, the format of data is ` + "`" + `["priority weight port target"]` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `["2 2 523 example.com."]` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -803,7 +803,7 @@ Use this data source to get detailed information of standard DNS records.
 				},
 				resource.Attribute{
 					Name:        "record_data",
-					Description: `(Computed) (String List) The data for the record displayed as the BIND presentation format for the specified RRTYPE.<br/> Example : For a SRV record, the format of data is ["priority weight port target"] (["2 2 523 example.com."]).`,
+					Description: `(Computed) (String List) The data for the record displayed as the BIND presentation format for the specified RRTYPE.<br/> __Note__ In SOA records the serial number is ignored and removed from the data: ` + "`" + `["mname rname refresh retry expire minimum"]` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `["ns.example.com admin@example.com 7200 3600 1209600 36000"]` + "`" + `` + "`" + `` + "`" + ` For a SRV record, the format of data is ` + "`" + `["priority weight port target"]` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `["2 2 523 example.com."]` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
